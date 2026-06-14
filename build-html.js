@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const SRC = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-zh/docs';
-const OUT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/docs';
+const SRC_ALL = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-zh';
+const OUT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents';
 const DOCS_ROOT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-source/docs';
 const TOC_REPO = 'C:/Users/zhong/AppData/Local/Temp/vscode-docs';
 
@@ -242,15 +243,38 @@ function genIndex(secs) {
 console.log('Building HTML docs...\n');
 if (!fs.existsSync(OUT)) fs.mkdirSync(OUT, { recursive: true });
 var sections = buildSidebar();
+// Add blogs section
+sections.push({ name: 'Blogs (2026)', nodes: [
+  { type: 'link', name: 'Building docfind', href: 'blogs/2026/01/15/docfind.html' },
+  { type: 'link', name: 'MCP Apps Support', href: 'blogs/2026/01/26/mcp-apps-support.html' },
+  { type: 'link', name: 'Multi-Agent Development', href: 'blogs/2026/02/05/multi-agent-development.html' },
+  { type: 'link', name: 'Long Distance NES', href: 'blogs/2026/02/26/long-distance-nes.html' },
+  { type: 'link', name: 'Making Agents Practical', href: 'blogs/2026/03/05/making-agents-practical-for-real-world-development.html' },
+  { type: 'link', name: 'How VS Code Builds with AI', href: 'blogs/2026/03/13/how-VS-Code-Builds-with-AI.html' },
+  { type: 'link', name: 'Agent Harnesses', href: 'blogs/2026/05/15/agent-harnesses-github-copilot-vscode.html' },
+]});
+// Add release notes section
+var rnNodes = [];
+for (var v = 125; v >= 110; v--) {
+  rnNodes.push({ type: 'link', name: 'v1.' + v, href: 'release-notes/v1_' + v + '.html' });
+}
+sections.push({ name: 'Release Notes', nodes: rnNodes });
 console.log('Sections: ' + sections.length);
 
 // Index
-fs.writeFileSync(path.join(OUT, '..', 'index.html'), genIndex(sections), 'utf-8');
+fs.writeFileSync(path.join(OUT, 'index.html'), genIndex(sections), 'utf-8');
 console.log('Index done');
 
-// Convert files
+// Convert files from all source directories
+var SOURCE_DIRS = [
+  { src: SRC, base: 'docs' },
+  { src: SRC_ALL + '/blogs', base: 'blogs' },
+  { src: SRC_ALL + '/release-notes', base: 'release-notes' }
+];
 var t = 0, d = 0;
-(function walk(dir, base) {
+SOURCE_DIRS.forEach(function(sd) {
+  if (!fs.existsSync(sd.src)) return;
+  (function walk(dir, base) {
   fs.readdirSync(dir, { withFileTypes: true }).forEach(function(e) {
     var fp = path.join(dir, e.name), rp = base ? base + '/' + e.name : e.name;
     if (e.isDirectory()) { walk(fp, rp); return; }
@@ -280,6 +304,7 @@ var t = 0, d = 0;
       process.stdout.write('.');
     } catch(e) { console.error('\nError: ' + fp + ': ' + e.message); }
   });
-})(SRC, '');
+  })(sd.src, sd.base);
+});
 console.log('\n\nDone! ' + d + '/' + t + ' files.');
-console.log('Output: ' + path.resolve(OUT, '..'));
+console.log('Output: ' + path.resolve(OUT));

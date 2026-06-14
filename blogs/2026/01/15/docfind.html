@@ -1,118 +1,562 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><title>docfind - VS Code 博客</title>
-<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
-h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
-a{color:#0078d4}</style></head>
-<body><a href="../index.html">← 首页</a>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>构建 docfind：使用 Rust 和 WebAssembly 实现快速客户端搜索 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../../../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../../../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../../../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../../../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../../../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../../../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../../../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../../../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../../../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../../../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../../../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../../../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../../../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../../../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../../../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../../../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../../../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../../../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../../../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../../../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../../../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../../../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../../../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../../../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../../../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../../../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../../../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../../../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../../../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../../../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../../../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../../../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../../../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../../../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../../../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../../../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../../../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../../../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../../../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../../../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../../../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../../../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../../../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../../../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../../../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../../../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../../../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../../../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../../../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../../../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../../../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../../../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../../../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../../../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../../../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../../../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../../../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../../../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../../../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../../../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../../../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../../../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../../../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../../../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../../../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../../../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../../../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../../../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../../../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../../../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../../../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../../../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../../../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../../../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../../../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../../../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../../../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../../../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../../../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../../../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../../../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../../../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../../../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../../../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../../../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../../../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../../../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../../../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../../../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../../../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../../../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../../../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../../../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../../../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../../../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../../../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../../../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../../../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../../../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../../../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../../../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../../../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../../../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../../../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../../../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../../../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../../../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../../../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../../../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../../../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../../../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../../../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../../../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../../../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../../../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../../../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../../../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../../../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../../../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../../../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../../../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../../../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../../../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../../../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../../../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../../../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../../../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../../../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../../../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../../../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../../../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../../../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../../../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../../../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../../../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../../../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../../../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../../../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../../../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../../../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../../../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../../../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../../../../docs/setup/network.html" class="">Network</a>
+<a href="../../../../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../../../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../../../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../../../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../../../../docs/languages/json.html" class="">JSON</a>
+<a href="../../../../../docs/languages/html.html" class="">HTML</a>
+<a href="../../../../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../../../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../../../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../../../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../../../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../../../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../../../../docs/languages/java.html" class="">Java</a>
+<a href="../../../../../docs/languages/php.html" class="">PHP</a>
+<a href="../../../../../docs/languages/python.html" class="">Python</a>
+<a href="../../../../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../../../../docs/languages/r.html" class="">R</a>
+<a href="../../../../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../../../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../../../../docs/languages/go.html" class="">Go</a>
+<a href="../../../../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../../../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../../../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../../../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../../../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../../../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../../../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../../../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../../../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../../../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../../../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../../../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../../../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../../../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../../../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../../../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../../../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../../../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../../../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../../../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../../../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../../../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../../../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../../../../docs/python/editing.html" class="">Editing</a>
+<a href="../../../../../docs/python/linting.html" class="">Linting</a>
+<a href="../../../../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../../../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../../../../docs/python/environments.html" class="">Environments</a>
+<a href="../../../../../docs/python/testing.html" class="">Testing</a>
+<a href="../../../../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../../../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../../../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../../../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../../../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../../../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../../../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../../../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../../../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../../../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../../../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../../../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../../../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../../../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../../../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../../../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../../../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../../../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../../../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../../../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../../../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../../../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../../../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../../../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../../../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../../../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../../../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../../../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../../../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../../../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../../../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../../../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../../../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../../../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../../../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../../../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../../../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../../../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../../../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../../../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../../../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../../../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../../../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../../../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../../../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../../../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../../../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../../../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../../../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../../../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../../../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../../../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../../../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../../../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../../../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../../../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../../../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../../../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../../../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../../../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../../../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../../../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../../../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../../../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../../../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../../../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../../../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../../../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../../../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../../../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../../../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../../../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../../../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../../../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../../../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../../../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../../../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../../../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../../../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../../../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../../../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../../../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../../../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../../../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../../../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../../../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../../../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../../../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../../../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../../../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../../../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../../../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../../../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../../../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../../../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../../../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../../../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../../../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../../../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../../../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../../../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../../../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../../../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../../../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../../../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../../../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../../../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../../../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../../../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../../../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../../../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../../../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../../../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../../../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../../../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../../../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../../../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../../../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-blogs--2026-')"><span>Blogs (2026)</span><span class="toggle">▼</span></div><div id="s-blogs--2026-" class="sidebar-section-content"><a href="../../../../../blogs/2026/01/15/docfind.html" class="active">Building docfind</a>
+<a href="../../../../../blogs/2026/01/26/mcp-apps-support.html" class="">MCP Apps Support</a>
+<a href="../../../../../blogs/2026/02/05/multi-agent-development.html" class="">Multi-Agent Development</a>
+<a href="../../../../../blogs/2026/02/26/long-distance-nes.html" class="">Long Distance NES</a>
+<a href="../../../../../blogs/2026/03/05/making-agents-practical-for-real-world-development.html" class="">Making Agents Practical</a>
+<a href="../../../../../blogs/2026/03/13/how-VS-Code-Builds-with-AI.html" class="">How VS Code Builds with AI</a>
+<a href="../../../../../blogs/2026/05/15/agent-harnesses-github-copilot-vscode.html" class="">Agent Harnesses</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-release-notes')"><span>Release Notes</span><span class="toggle">▼</span></div><div id="s-release-notes" class="sidebar-section-content"><a href="../../../../../release-notes/v1_125.html" class="">v1.125</a>
+<a href="../../../../../release-notes/v1_124.html" class="">v1.124</a>
+<a href="../../../../../release-notes/v1_123.html" class="">v1.123</a>
+<a href="../../../../../release-notes/v1_122.html" class="">v1.122</a>
+<a href="../../../../../release-notes/v1_121.html" class="">v1.121</a>
+<a href="../../../../../release-notes/v1_120.html" class="">v1.120</a>
+<a href="../../../../../release-notes/v1_119.html" class="">v1.119</a>
+<a href="../../../../../release-notes/v1_118.html" class="">v1.118</a>
+<a href="../../../../../release-notes/v1_117.html" class="">v1.117</a>
+<a href="../../../../../release-notes/v1_116.html" class="">v1.116</a>
+<a href="../../../../../release-notes/v1_115.html" class="">v1.115</a>
+<a href="../../../../../release-notes/v1_114.html" class="">v1.114</a>
+<a href="../../../../../release-notes/v1_113.html" class="">v1.113</a>
+<a href="../../../../../release-notes/v1_112.html" class="">v1.112</a>
+<a href="../../../../../release-notes/v1_111.html" class="">v1.111</a>
+<a href="../../../../../release-notes/v1_110.html" class="">v1.110</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../../../../index.html">首页</a> / blogs/2026/01/15 / docfind</div>
+<h1>构建 docfind：使用 Rust 和 WebAssembly 实现快速客户端搜索</h1>
 
-# 构建 docfind：使用 Rust 和 WebAssembly 实现快速客户端搜索
+<p>2026年1月15日，作者 <a href="https://github.com/joaomoreno">João Moreno</a></p>
 
-2026年1月15日，作者 [João Moreno](https://github.com/joaomoreno)
+<p>如果你最近访问过 <a href="https://code.visualstudio.com/">VS Code 网站</a>，你可能会注意到一些新变化：一个快速、响应灵敏的搜索体验，感觉几乎是即时的。</p>
 
-如果你最近访问过 [VS Code 网站](https://code.visualstudio.com/)，你可能会注意到一些新变化：一个快速、响应灵敏的搜索体验，感觉几乎是即时的。
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/blogs/2026/01/15/docfind.mp4" title="Video showing how to run the Calculator command in VS Code for the Web." autoplay loop controls muted></video></p>
 
-<video src="docfind.mp4" title="Video showing how to run the Calculator command in VS Code for the Web." autoplay loop controls muted></video>
+<p>这一体验的背后是 <a href="https://github.com/microsoft/docfind">docfind</a>，这是我们构建的一个搜索引擎，它使用 <a href="https://en.wikipedia.org/wiki/WebAssembly">WebAssembly</a> 完全在你的浏览器中运行。在这篇文章中，我想分享 docfind 的故事：这是一段从一篇十年前的关于自动机理论的博客文章到修补 WebAssembly 二进制文件的旅程。</p>
 
-这一体验的背后是 [docfind](https://github.com/microsoft/docfind)，这是我们构建的一个搜索引擎，它使用 [WebAssembly](https://en.wikipedia.org/wiki/WebAssembly) 完全在你的浏览器中运行。在这篇文章中，我想分享 docfind 的故事：这是一段从一篇十年前的关于自动机理论的博客文章到修补 WebAssembly 二进制文件的旅程。
+<h2>问题</h2>
 
-## 问题
+<p>我目前是 VS Code 团队的软件工程经理，所以如今我没有太多时间编写代码。当我写代码的时候，很少是在不熟悉的领域。但有些问题会一直困扰你，直到你采取行动。</p>
 
-我目前是 VS Code 团队的软件工程经理，所以如今我没有太多时间编写代码。当我写代码的时候，很少是在不熟悉的领域。但有些问题会一直困扰你，直到你采取行动。
+<p>直到最近，我们的网站还只有那种基本的搜索体验：你输入查询，它就会将你重定向到由传统搜索引擎支持的搜索结果。这与当今开发者的期望相去甚远。我希望搜索结果能像许多其他网站那样，随着你的输入即时出现。它应该像 VS Code 的快速打开（<code>Ctrl+P</code>）那样响应迅速。</p>
 
-直到最近，我们的网站还只有那种基本的搜索体验：你输入查询，它就会将你重定向到由传统搜索引擎支持的搜索结果。这与当今开发者的期望相去甚远。我希望搜索结果能像许多其他网站那样，随着你的输入即时出现。它应该像 VS Code 的快速打开（`Ctrl+P`）那样响应迅速。
+<p>我和同事 <a href="https://github.com/nicktrog">Nick Trogh</a> 一起研究了各种替代方案。情况大致如下：</p>
 
-我和同事 [Nick Trogh](https://github.com/nicktrog) 一起研究了各种替代方案。情况大致如下：
+<ul>
+<li><strong><a href="https://www.algolia.com/">Algolia</a></strong>：最先进的搜索即服务。但我想要一个纯客户端的解决方案。</li>
+<li><strong><a href="https://typesense.org/">TypeSense</a></strong>：强大的开源搜索，但与 Algolia 一样需要服务端代码。此外，还需要额外维护和监控一个服务。</li>
+<li><strong><a href="https://lunrjs.com/">Lunr.js</a></strong>：基于 JavaScript 的客户端搜索，听起来很有前景。我们用我们的文档（约 3 MB 的 markdown）进行了测试，但它生成的索引文件大约有 10 MB。太大了。</li>
+<li><strong><a href="https://stork-search.net/">Stork Search</a></strong>：基于 WebAssembly 的客户端搜索，演示效果很好。但当我们测试时，索引仍然相当大，而且该项目似乎已不再维护。
+</li>
+</ul>
+<p>这些选项都没有达到最佳平衡点：快速、客户端运行、紧凑且易于托管和运营。我开始想我们是否可以自己构建一个。</p>
 
-- **[Algolia](https://www.algolia.com/)**：最先进的搜索即服务。但我想要一个纯客户端的解决方案。
-- **[TypeSense](https://typesense.org/)**：强大的开源搜索，但与 Algolia 一样需要服务端代码。此外，还需要额外维护和监控一个服务。
-- **[Lunr.js](https://lunrjs.com/)**：基于 JavaScript 的客户端搜索，听起来很有前景。我们用我们的文档（约 3 MB 的 markdown）进行了测试，但它生成的索引文件大约有 10 MB。太大了。
-- **[Stork Search](https://stork-search.net/)**：基于 WebAssembly 的客户端搜索，演示效果很好。但当我们测试时，索引仍然相当大，而且该项目似乎已不再维护。
+<h2>灵感</h2>
 
-这些选项都没有达到最佳平衡点：快速、客户端运行、紧凑且易于托管和运营。我开始想我们是否可以自己构建一个。
+<p>思考客户端搜索让我想起多年前读过的一篇博客文章。它是由 <a href="https://github.com/BurntSushi">Andrew Gallant</a>（burntsushi）——ripgrep 的创建者——撰写的，标题是 <a href="https://burntsushi.net/transducers/">Index 1,600,000,000 Keys with Automata and Rust</a>。这篇发表于近十年前的文章解释了如何使用<strong>有限状态转换器（FST）</strong>以紧凑的二进制格式索引海量字符串数据，并支持快速查找，包括正则表达式和模糊匹配。</p>
 
-## 灵感
+<p>关键的洞察是，FST 可以将排序后的字符串键存储在一个状态机中，这个状态机既内存高效又查询快速。更棒的是，Andrew 发布了一个名为 <a href="https://docs.rs/fst/latest/fst/">fst</a> 的 Rust 库，正好实现了这一点。</p>
 
-思考客户端搜索让我想起多年前读过的一篇博客文章。它是由 [Andrew Gallant](https://github.com/BurntSushi)（burntsushi）——ripgrep 的创建者——撰写的，标题是 [Index 1,600,000,000 Keys with Automata and Rust](https://burntsushi.net/transducers/)。这篇发表于近十年前的文章解释了如何使用**有限状态转换器（FST）**以紧凑的二进制格式索引海量字符串数据，并支持快速查找，包括正则表达式和模糊匹配。
+<p>如果我们能使用 FST 来索引从文档中提取的关键词呢？用户输入查询，我们通过 FST 将其与关键词匹配，然后返回相关文档列表，所有这些都在浏览器中完成，无需与服务器往返通信。</p>
 
-关键的洞察是，FST 可以将排序后的字符串键存储在一个状态机中，这个状态机既内存高效又查询快速。更棒的是，Andrew 发布了一个名为 [fst](https://docs.rs/fst/latest/fst/) 的 Rust 库，正好实现了这一点。
+<p>但是，我们如何获取这些文档关键词呢？而且，考虑到所有字符串都需要存储在内存中，这会不会产生一个非常大的索引文件？我们能否使用压缩来创建尽可能小的索引？这引导我找到了另外两块拼图：</p>
 
-如果我们能使用 FST 来索引从文档中提取的关键词呢？用户输入查询，我们通过 FST 将其与关键词匹配，然后返回相关文档列表，所有这些都在浏览器中完成，无需与服务器往返通信。
+<ul>
+<li><strong><a href="https://docs.rs/rake/latest/rake/">RAKE</a></strong>（快速自动关键词提取）：一种从文本中提取有意义的关键词和短语的算法。给它一篇文档，它会返回按重要性排名的关键词。</li>
+<li><strong><a href="https://docs.rs/fsst-rs/latest/fsst/index.html">FSST</a></strong>（快速静态符号表）：一种为短字符串优化的压缩算法。由于我们需要在内存中存储文档标题、类别和摘要片段，压缩有助于保持索引较小。
+</li>
+</ul>
+<p>有了 FST 用于快速关键词查找，RAKE 用于关键词提取，FSST 用于字符串压缩，我有了技术基础。现在我只需要用 Rust 构建它——Rust 是我并不特别擅长的一种语言——并且是在我从日常工作中挤出的有限时间里完成。</p>
 
-但是，我们如何获取这些文档关键词呢？而且，考虑到所有字符串都需要存储在内存中，这会不会产生一个非常大的索引文件？我们能否使用压缩来创建尽可能小的索引？这引导我找到了另外两块拼图：
+<h2>解决方案</h2>
 
-- **[RAKE](https://docs.rs/rake/latest/rake/)**（快速自动关键词提取）：一种从文本中提取有意义的关键词和短语的算法。给它一篇文档，它会返回按重要性排名的关键词。
-- **[FSST](https://docs.rs/fsst-rs/latest/fsst/index.html)**（快速静态符号表）：一种为短字符串优化的压缩算法。由于我们需要在内存中存储文档标题、类别和摘要片段，压缩有助于保持索引较小。
+<p>我最终创建了一个单一的 CLI 工具 docfind，旨在每次构建网站时从我们的网站文档创建索引文件。为了创建索引文件，这个 CLI 工具的用户应该不需要除 docfind 本身之外的任何外部依赖。该索引文件最终是一个单一的 WebAssembly 模块，通过 HTTP 方便地提供给访问者。当访问者来到我们的网站时，他们的浏览器会在后台下载 WebAssembly 模块，并使用它来支持搜索功能。</p>
 
-有了 FST 用于快速关键词查找，RAKE 用于关键词提取，FSST 用于字符串压缩，我有了技术基础。现在我只需要用 Rust 构建它——Rust 是我并不特别擅长的一种语言——并且是在我从日常工作中挤出的有限时间里完成。
+<h3>构建索引</h3>
 
-## 解决方案
+<p>以下是 docfind 如何将文档集合（<code>documents.json</code>）转换为相应索引文件（<code>docfind_bg.wasm</code>）的图示：</p>
 
-我最终创建了一个单一的 CLI 工具 docfind，旨在每次构建网站时从我们的网站文档创建索引文件。为了创建索引文件，这个 CLI 工具的用户应该不需要除 docfind 本身之外的任何外部依赖。该索引文件最终是一个单一的 WebAssembly 模块，通过 HTTP 方便地提供给访问者。当访问者来到我们的网站时，他们的浏览器会在后台下载 WebAssembly 模块，并使用它来支持搜索功能。
+<p><img src="docfind.svg" alt="A diagram showing the flow of data in docfind"></p>
 
-### 构建索引
+<p>Docfind 首先读取一个包含文档信息的 JSON 文件（标题、类别、URL、正文文本）。对于每个文档，它使用 RAKE 提取关键词，分配相关度分数，并构建一个将关键词映射到文档索引的 FST。所有文档字符串都使用 FSST 进行压缩。然后 FST 和压缩后的字符串被打包成一个二进制数据块，代表实际的索引。</p>
 
-以下是 docfind 如何将文档集合（`documents.json`）转换为相应索引文件（`docfind_bg.wasm`）的图示：
+<p><img src="docfind2.svg" alt="A visual explanation of what is a document, what are keywords and how are they represented in the index"></p>
 
-![A diagram showing the flow of data in docfind](docfind.svg)
+<p>表示索引的数据结构出人意料地简单：</p>
 
-Docfind 首先读取一个包含文档信息的 JSON 文件（标题、类别、URL、正文文本）。对于每个文档，它使用 RAKE 提取关键词，分配相关度分数，并构建一个将关键词映射到文档索引的 FST。所有文档字符串都使用 FSST 进行压缩。然后 FST 和压缩后的字符串被打包成一个二进制数据块，代表实际的索引。
-
-![A visual explanation of what is a document, what are keywords and how are they represented in the index](docfind2.svg)
-
-表示索引的数据结构出人意料地简单：
-
-```rust
-pub struct Index {
+<pre><code class="language-rust">pub struct Index {
     /// FST mapping keywords to document indices
-    fst: Vec<u8>,
+    fst: Vec&lt;u8&gt;,
 
     /// FSST-compressed document strings (title, category, href, body)
     document_strings: FsstStrVec,
 
     /// For each keyword index, a list of (document_index, score) pairs
-    keyword_to_documents: Vec<Vec<(usize, u8)>>,
-}
-```
+    keyword_to_documents: Vec&lt;Vec&lt;(usize, u8)&gt;&gt;,
+}</code></pre>
 
-索引存储关键词并将其映射到 `keyword_to_documents` 中的索引。每个条目指向带有相关度分数的相关文档。文档字符串以压缩形式存储，仅在需要显示时才解压。
+<p>索引存储关键词并将其映射到 <code>keyword_to_documents</code> 中的索引。每个条目指向带有相关度分数的相关文档。文档字符串以压缩形式存储，仅在需要显示时才解压。</p>
 
-现在，我们可以将该索引数据结构转储到一个二进制文件中，将其提供给我们的网站访问者，并在网站上设置某个 WebAssembly 模块来解析它并使用 FST 库执行搜索操作。但事情在这里变得有趣起来。与其将索引作为单独的二进制文件发布，docfind 将其直接嵌入到搜索库 WebAssembly 模块中，使访问者在打算在网站上搜索时只需获取一个单一的 HTTP 资源。
+<p>现在，我们可以将该索引数据结构转储到一个二进制文件中，将其提供给我们的网站访问者，并在网站上设置某个 WebAssembly 模块来解析它并使用 FST 库执行搜索操作。但事情在这里变得有趣起来。与其将索引作为单独的二进制文件发布，docfind 将其直接嵌入到搜索库 WebAssembly 模块中，使访问者在打算在网站上搜索时只需获取一个单一的 HTTP 资源。</p>
 
-### 搜索索引
+<h3>搜索索引</h3>
 
-那么客户端发生了什么？当用户输入查询时，WebAssembly 模块（代码和文档索引）被加载到内存中，通过遍历 FST 数据结构将该查询作为搜索操作执行。我们发现使用 [Levenshtein 自动机](https://en.wikipedia.org/wiki/Levenshtein_automaton)（用于容错拼写）和前缀匹配来获取更相关的匹配结果是很有效的。最后，通过组合多个匹配关键词的分数、按需解压相关文档字符串，并将排名结果以 JavaScript 对象的形式返回，从而生成搜索结果。
+<p>那么客户端发生了什么？当用户输入查询时，WebAssembly 模块（代码和文档索引）被加载到内存中，通过遍历 FST 数据结构将该查询作为搜索操作执行。我们发现使用 <a href="https://en.wikipedia.org/wiki/Levenshtein_automaton">Levenshtein 自动机</a>（用于容错拼写）和前缀匹配来获取更相关的匹配结果是很有效的。最后，通过组合多个匹配关键词的分数、按需解压相关文档字符串，并将排名结果以 JavaScript 对象的形式返回，从而生成搜索结果。</p>
 
-## 挑战
+<h2>挑战</h2>
 
-这个项目中最棘手的部分不是搜索算法或关键词提取，而是将索引嵌入到 WebAssembly 二进制文件中。
+<p>这个项目中最棘手的部分不是搜索算法或关键词提取，而是将索引嵌入到 WebAssembly 二进制文件中。</p>
 
-最朴素的方法是使用 Rust 的 `include_bytes!` 宏在编译时将索引烘焙到 WebAssembly 模块中。但这意味着每次文档更改时都需要重新编译 WebAssembly 模块。相反，我想要一个预编译的 WASM "模板"，CLI 工具可以用更新的索引对其进行修补。
+<p>最朴素的方法是使用 Rust 的 <code>include_bytes!</code> 宏在编译时将索引烘焙到 WebAssembly 模块中。但这意味着每次文档更改时都需要重新编译 WebAssembly 模块。相反，我想要一个预编译的 WASM "模板"，CLI 工具可以用更新的索引对其进行修补。</p>
 
-这意味着我需要静态创建一个带有空索引的 WebAssembly 模块模板，并将其嵌入到 docfind 中。然后，docfind 可以：
+<p>这意味着我需要静态创建一个带有空索引的 WebAssembly 模块模板，并将其嵌入到 docfind 中。然后，docfind 可以：</p>
 
-1. 解析嵌入的 WebAssembly 模块以了解其结构
-2. 查找内存段并计算索引需要多少额外空间
-3. 将索引添加为新的数据段，并相应地更新数据计数段
-4. 定位占位符全局变量并用实际的索引位置进行修补
-5. 输出一个有效的 WebAssembly 模块
+<ol>
+<li>解析嵌入的 WebAssembly 模块以了解其结构</li>
+<li>查找内存段并计算索引需要多少额外空间</li>
+<li>将索引添加为新的数据段，并相应地更新数据计数段</li>
+<li>定位占位符全局变量并用实际的索引位置进行修补</li>
+<li>输出一个有效的 WebAssembly 模块
+</li>
+</ol>
+<p>WebAssembly 模块模板声明了两个带有特殊标记值的占位符全局变量：</p>
 
-WebAssembly 模块模板声明了两个带有特殊标记值的占位符全局变量：
-
-```rust
-#[unsafe(no_mangle)]
+<pre><code class="language-rust">#[unsafe(no_mangle)]
 pub static mut INDEX_BASE: u32 = 0xdead_beef;
 
 #[unsafe(no_mangle)]
-pub static mut INDEX_LEN: u32 = 0xdead_beef;
-```
+pub static mut INDEX_LEN: u32 = 0xdead_beef;</code></pre>
 
-在运行时，搜索函数使用这些变量来定位嵌入的索引，并从原始字节中解析它：
+<p>在运行时，搜索函数使用这些变量来定位嵌入的索引，并从原始字节中解析它：</p>
 
-```rust
-static INDEX: OnceLock<Index> = OnceLock::new();
+<pre><code class="language-rust">static INDEX: OnceLock&lt;Index&gt; = OnceLock::new();
 
-pub fn search(query: &str, max_results: Option<usize>) -> Result<JsValue, JsValue> {
+pub fn search(query: &amp;str, max_results: Option&lt;usize&gt;) -&gt; Result&lt;JsValue, JsValue&gt; {
     let index = INDEX.get_or_init(|| {
         let raw_index = unsafe {
             std::slice::from_raw_parts(INDEX_BASE as *const u8, INDEX_LEN as usize)
@@ -120,77 +564,77 @@ pub fn search(query: &str, max_results: Option<usize>) -> Result<JsValue, JsValu
         Index::from_bytes(raw_index).expect("Failed to deserialize index")
     });
     // ... perform search
-}
-```
+}</code></pre>
 
-CLI 工具扫描 WASM 模板的导出段以查找这些全局变量，读取全局段以获取它们的内存地址，然后修补包含那些 `0xdead_beef` 值的数据段，用实际的索引基地址和长度替换它们：
+<p>CLI 工具扫描 WASM 模板的导出段以查找这些全局变量，读取全局段以获取它们的内存地址，然后修补包含那些 <code>0xdead_beef</code> 值的数据段，用实际的索引基地址和长度替换它们：</p>
 
-```rust
-// Patch the data if it contains the INDEX_BASE or INDEX_LEN addresses
-if index_base_global_address >= &start && index_base_global_address < &end {
+<pre><code class="language-rust">// Patch the data if it contains the INDEX_BASE or INDEX_LEN addresses
+if index_base_global_address &gt;= &amp;start &amp;&amp; index_base_global_address &lt; &amp;end {
     data[base_relative_offset..base_relative_offset + 4]
-        .copy_from_slice(&(index_base as i32).to_le_bytes());
+        .copy_from_slice(&amp;(index_base as i32).to_le_bytes());
     data[length_relative_offset..length_relative_offset + 4]
-        .copy_from_slice(&(raw_index.len() as i32).to_le_bytes());
+        .copy_from_slice(&amp;(raw_index.len() as i32).to_le_bytes());
 }
 
 // Add index as new data segment
 data_section.active(
     0,
-    &ConstExpr::i32_const(index_base as i32),
+    &amp;ConstExpr::i32_const(index_base as i32),
     raw_index.iter().copied(),
-);
-```
+);</code></pre>
 
-说得委婉些，这并不简单。理解 WASM 二进制格式、搞清楚全局变量如何存储和引用、计算内存偏移量——这些都是很容易让一个业余项目脱轨的问题。
+<p>说得委婉些，这并不简单。理解 WASM 二进制格式、搞清楚全局变量如何存储和引用、计算内存偏移量——这些都是很容易让一个业余项目脱轨的问题。</p>
 
-## 突破
+<h2>突破</h2>
 
-我必须坦诚，如果没有使用 [GitHub Copilot agents](https://code.visualstudio.com/docs/agents/overview)，我很可能无法完成这个项目。作为一个不再每天写代码的经理，用 Rust 这样一个以陡峭学习曲线著称的语言来解决项目是很有野心的。我不是 Rust 专家。我对借用检查器没有肌肉记忆。而且我肯定对 WebAssembly 二进制格式没有深入了解。但我对这一切的发展方向有一个大致的把握。Copilot 帮助我填补了空白并解决了难题。
+<p>我必须坦诚，如果没有使用 <a href="https://code.visualstudio.com/docs/agents/overview">GitHub Copilot agents</a>，我很可能无法完成这个项目。作为一个不再每天写代码的经理，用 Rust 这样一个以陡峭学习曲线著称的语言来解决项目是很有野心的。我不是 Rust 专家。我对借用检查器没有肌肉记忆。而且我肯定对 WebAssembly 二进制格式没有深入了解。但我对这一切的发展方向有一个大致的把握。Copilot 帮助我填补了空白并解决了难题。</p>
 
-**研究与探索。** 在评估 FST、RAKE 和 FSST 时，我使用 Copilot 来理解这些库的工作原理，提出澄清问题，并交换思路。这就像拥有一个随时可用的知识渊博的同事。
+<p><strong>研究与探索。</strong> 在评估 FST、RAKE 和 FSST 时，我使用 Copilot 来理解这些库的工作原理，提出澄清问题，并交换思路。这就像拥有一个随时可用的知识渊博的同事。</p>
 
-**高效的 Rust 开发。** 这可能是最大的收获。Copilot 的 [Next Edit Suggestions](/docs/editing/ai-powered-suggestions#_next-edit-suggestions) 把我变成了一个高效的 Rust 程序员。我不再花精力与借用检查器作斗争或查找语法。Copilot 处理了机械性的部分，让我专注于逻辑。
+<p><strong>高效的 Rust 开发。</strong> 这可能是最大的收获。Copilot 的 <a href="../docs/editing/ai-powered-suggestions#_next-edit-suggestions">Next Edit Suggestions</a> 把我变成了一个高效的 Rust 程序员。我不再花精力与借用检查器作斗争或查找语法。Copilot 处理了机械性的部分，让我专注于逻辑。</p>
 
-**脚手架搭建 WASM 目标。** 当我请 Copilot 为项目添加 WebAssembly 输出目标时，它不只是添加了配置，它还推断出我想要导出一个搜索函数，并用正确的 `wasm-bindgen` 注解搭建了整个 `lib.rs`。它甚至告诉我应该运行哪个命令来构建它。
+<p><strong>脚手架搭建 WASM 目标。</strong> 当我请 Copilot 为项目添加 WebAssembly 输出目标时，它不只是添加了配置，它还推断出我想要导出一个搜索函数，并用正确的 <code>wasm-bindgen</code> 注解搭建了整个 <code>lib.rs</code>。它甚至告诉我应该运行哪个命令来构建它。</p>
 
-**[docfind 库](https://github.com/microsoft/docfind)。** [Copilot 帮助我为 docfind 搭建了仓库的脚手架](https://github.com/microsoft/docfind/pulls?q=is%3Apr+author%3A%40copilot+is%3Aclosed)，包括创建一个可工作的演示页面以及性能展示数据。
+<p><strong><a href="https://github.com/microsoft/docfind">docfind 库</a>。</strong> <a href="https://github.com/microsoft/docfind/pulls?q=is%3Apr+author%3A%40copilot+is%3Aclosed">Copilot 帮助我为 docfind 搭建了仓库的脚手架</a>，包括创建一个可工作的演示页面以及性能展示数据。</p>
 
-**攻克难点。** WASM 二进制操作是这个项目的技术关键。理解如何定位全局变量、修补数据段和更新内存段需要深入了解我以前从未接触过的细节。Copilot 帮助我理解 WASM 二进制格式，建议了正确的 `wasmparser` 和 `wasm-encoder` API，并在我的修补二进制文件无效时帮助调试问题。
+<p><strong>攻克难点。</strong> WASM 二进制操作是这个项目的技术关键。理解如何定位全局变量、修补数据段和更新内存段需要深入了解我以前从未接触过的细节。Copilot 帮助我理解 WASM 二进制格式，建议了正确的 <code>wasmparser</code> 和 <code>wasm-encoder</code> API，并在我的修补二进制文件无效时帮助调试问题。</p>
 
-我相信如果没有 Copilot，这个项目会花费我更长的时间，而且这还是假设我不会在某个地方放弃。当你时间有限并且在自己专业领域之外工作时，我发现有一个能够填补知识空白并处理样板代码的 AI 助手不仅仅是便利，它就是交付和放弃之间的区别。
+<p>我相信如果没有 Copilot，这个项目会花费我更长的时间，而且这还是假设我不会在某个地方放弃。当你时间有限并且在自己专业领域之外工作时，我发现有一个能够填补知识空白并处理样板代码的 AI 助手不仅仅是便利，它就是交付和放弃之间的区别。</p>
 
-## 成果
+<h2>成果</h2>
 
-如今，docfind 为 VS Code 文档网站的搜索体验提供支持。你可以在 [docfind README](https://github.com/microsoft/docfind#live-demo) 中查看当前的性能指标，其中包含一个[交互式演示](https://microsoft.github.io/docfind)，完全在你的浏览器中搜索 50,000 篇新闻文章。
+<p>如今，docfind 为 VS Code 文档网站的搜索体验提供支持。你可以在 <a href="https://github.com/microsoft/docfind#live-demo">docfind README</a> 中查看当前的性能指标，其中包含一个<a href="https://microsoft.github.io/docfind">交互式演示</a>，完全在你的浏览器中搜索 50,000 篇新闻文章。</p>
 
-对于 VS Code 网站（约 3 MB 的 markdown，约 3,700 篇按标题划分的文档）：
+<p>对于 VS Code 网站（约 3 MB 的 markdown，约 3,700 篇按标题划分的文档）：</p>
 
-- **索引大小**：未压缩约 5.9 MB，使用 Brotli 压缩后约 2.7 MB
-- **搜索速度**：每次查询约 0.4 毫秒（在我的 M2 MacBook Air 上）
-- **网络**：单个 WebAssembly 模块，仅在用户表示搜索意图时才下载
+<ul>
+<li><strong>索引大小</strong>：未压缩约 5.9 MB，使用 Brotli 压缩后约 2.7 MB</li>
+<li><strong>搜索速度</strong>：每次查询约 0.4 毫秒（在我的 M2 MacBook Air 上）</li>
+<li><strong>网络</strong>：单个 WebAssembly 模块，仅在用户表示搜索意图时才下载
+</li>
+</ul>
+<p>无需维护服务器。无需管理 API 密钥。没有持续成本。只有一个自包含的 WebAssembly 模块，完全在浏览器中运行，在构建时创建。</p>
 
-无需维护服务器。无需管理 API 密钥。没有持续成本。只有一个自包含的 WebAssembly 模块，完全在浏览器中运行，在构建时创建。
+<h2>亲自尝试</h2>
 
-## 亲自尝试
+<p>我们已经将 docfind 开源，你现在就可以将它用于你自己的静态网站。安装非常简单：</p>
 
-我们已经将 docfind 开源，你现在就可以将它用于你自己的静态网站。安装非常简单：
+<pre><code class="language-sh">curl -fsSL https://microsoft.github.io/docfind/install.sh | sh</code></pre>
 
-```sh
-curl -fsSL https://microsoft.github.io/docfind/install.sh | sh
-```
+<p>或者，如果你使用的是 Windows：</p>
 
-或者，如果你使用的是 Windows：
+<pre><code class="language-psh">irm https://microsoft.github.io/docfind/install.ps1 | iex</code></pre>
 
-```psh
-irm https://microsoft.github.io/docfind/install.ps1 | iex
-```
+<p>准备一个包含你的文档的 <a href="https://github.com/microsoft/docfind?tab=readme-ov-file#creating-a-search-index">JSON 文件</a>，运行 <code>docfind documents.json output</code>，你将得到 <code>docfind.js</code> 和 <code>docfind_bg.wasm</code>，可以直接在你的网站中使用。你需要自己搭建用于显示搜索结果的客户端 UI（你总是可以使用 GitHub Copilot 来创建一个 😉）。</p>
 
-准备一个包含你的文档的 [JSON 文件](https://github.com/microsoft/docfind?tab=readme-ov-file#creating-a-search-index)，运行 `docfind documents.json output`，你将得到 `docfind.js` 和 `docfind_bg.wasm`，可以直接在你的网站中使用。你需要自己搭建用于显示搜索结果的客户端 UI（你总是可以使用 GitHub Copilot 来创建一个 😉）。
+<p>构建 docfind 让我重新认识到当初成为工程师的原因：用优雅的技术解决真实问题的乐趣。它也证明了像 Copilot 这样的 AI 工具正在改变可能性，让我们能够在时间和专业知识的限制下，去攻克那些原本遥不可及的项目。最后，向 <a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer">rust-analyzer</a> VS Code 扩展致敬，如果你在 VS Code 中使用 Rust，这是一个必备工具。</p>
 
-构建 docfind 让我重新认识到当初成为工程师的原因：用优雅的技术解决真实问题的乐趣。它也证明了像 Copilot 这样的 AI 工具正在改变可能性，让我们能够在时间和专业知识的限制下，去攻克那些原本遥不可及的项目。最后，向 [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer) VS Code 扩展致敬，如果你在 VS Code 中使用 Rust，这是一个必备工具。
+<p>如果你有问题或反馈，欢迎在 <a href="https://github.com/microsoft/docfind/issues">docfind 仓库</a> 上提交 issue。我们很乐意听到你的使用体验。</p>
 
-如果你有问题或反馈，欢迎在 [docfind 仓库](https://github.com/microsoft/docfind/issues) 上提交 issue。我们很乐意听到你的使用体验。
+<p>快乐编码！💙</p>
 
-快乐编码！💙
-</body></html>
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

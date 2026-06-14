@@ -1,249 +1,726 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head><meta charset="UTF-8"><title>v1_124 - VS Code 发布说明</title>
-<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
-h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
-a{color:#0078d4}</style></head>
-<body><a href="../index.html">← 首页</a>
-# Visual Studio Code 1.124
-
-在 [LinkedIn](https://www.linkedin.com/showcase/vs-code)、[X](https://go.microsoft.com/fwlink/?LinkID=533687)、[Bluesky](https://bsky.app/profile/vscode.dev) 上关注我们 <!-- %IF INSIDERS % | 在 [X](https://x.com/VSCodeChangelog) 或 [Bluesky](https://bsky.app/profile/vscodechangelog.bsky.social) 上关注 Insiders 更新日志 %ENDIF % --> <!-- %IF IN_PRODUCT % | [在线查看](https://code.visualstudio.com/updates)%ENDIF % -->
-
----
-
-_发布日期: 2026年6月10日_
-
-**更新 1.124.1**: 此更新解决了这些[问题](https://github.com/microsoft/vscode/pulls?q=is%3Apr+milestone%3A1.124.1+is%3Aclosed+)。
-
-**更新 1.124.2**: 此更新解决了这些[问题](https://github.com/microsoft/vscode/pulls?q=is%3Apr+milestone%3A1.124.2+is%3Aclosed+)。
-
-
-<!-- DOWNLOAD_LINKS_PLACEHOLDER -->
-
----
-
-欢迎来到 Visual Studio Code 1.124 版本。此版本使跨代理会话的工作更加快速，并赋予代理更多自主权来完成您的任务。
-
-* [Autopilot](#autopilot默认已启用): Autopilot 现已默认启用，并且更智能地判断任务何时真正完成。
-
-* [后台会话](#新会话的后台发送): 在后台快速发送请求，同时继续构思下一个会话。
-
-* [会话导航](#在会话之间导航): 使用键盘搜索、跳转和逐步浏览代理会话。
-
-* [浏览器历史记录](#历史记录): 重新访问和搜索您已在集成浏览器中打开过的页面。
-
-祝编码愉快！
-
----
-
-<!-- %IF STABLE %
-VS Code 正逐步向所有用户推出。使用 VS Code 中的**检查更新**功能立即获取最新版本。
-
-要尽快体验新功能，请[**下载每日 Insiders 构建版本**](https://code.visualstudio.com/insiders)，其中包含最新的更新。
-
----
-%ENDIF % -->
-
-<!-- TOC
-<div class="toc-nav-layout">
-  <nav id="toc-nav">
-    <div>本次更新内容</div>
-    <ul>
-      <li><a href="#agents-window-preview">Agents 窗口</a></li>
-      <li><a href="#autopilot-preview">Autopilot</a></li>
-      <li><a href="#editor-experience">编辑器体验</a></li>
-      <li><a href="#enterprise">企业版</a></li>
-      <li><a href="#deprecated-features-and-settings">已弃用的功能和设置</a></li>
-      <li><a href="#thank-you">致谢</a></li>
-    </ul>
-  </nav>
-  <div class="notes-main">
-导航结束 -->
-
-## Agents 窗口（预览版）
-
-[Agents 窗口](https://aka.ms/VSCode/Agents/docs)是一个专用的配套窗口，专为在项目和机器之间探索、迭代和审查代理会话而优化。此版本的重点是加快在会话之间切换的速度，并在重新加载时保留您的上下文。
-
-### 新会话的后台发送
-
-以前，开始新会话意味着必须等待它加载完成后才能构思下一个。现在，您可以在后台发送请求：在新会话视图中按 `kbstyle(Alt+Enter)`（或按住 `kbstyle(Alt)` 并选择**发送**）。
-
-视图会立即重置并保留其状态（例如所选模型和上下文），仅清除查询文本，因此您可以继续排队发送请求。每个已启动的会话在提交后会出现在会话列表中。
-
-使用 `kbstyle(Enter)` 发送提示词仍然会像之前一样导航到新会话中。
-
-### 在会话之间导航
-
-当您在多个代理会话之间工作时，能够快速查找和切换会话至关重要。此版本添加了几种通过键盘驱动的会话浏览方式，从可搜索的选择器到前后导航以及按位置直接跳转。
-
-* **会话选择器**: 按 `kbstyle(Ctrl+R)`（macOS 上为 `kbstyle(Cmd+R)`）打开快速选择器，该选择器将会话分为两组列出——**最近打开的**和**其他会话**，并预选当前活动会话。可以跨会话标题及其文件夹进行搜索，然后:
-
-  * 按 `kbstyle(Enter)` 打开所选会话。
-  * 按 `kbstyle(Cmd/Ctrl+Enter)` 在侧边打开它。
-  * 按 `kbstyle(Right Arrow)` 在后台打开它，同时保持选择器打开。
-
-  ![截图显示会话选择器快速选择器，会话按最近打开和其他会话分组。](images/1_124/agents-recent-sessions.webp)
-
-* **后退和前进**: 按 `kbstyle(Ctrl+Tab)` 后退，按 `kbstyle(Ctrl+Shift+Tab)` 前进，按最近访问顺序浏览您已访问过的会话。
-
-* **上一个和下一个会话**: **转到上一个会话**和**转到下一个会话**命令按显示顺序逐步浏览可见会话列表，遵循分组、筛选和折叠的部分，并在列表边缘停止。使用 `kbstyle(Alt+Up)` / `kbstyle(Alt+Down)`（或 `kbstyle(Ctrl+PageUp)` / `kbstyle(Ctrl+PageDown)`；macOS 上为 `kbstyle(Cmd+Alt+Left)` / `kbstyle(Cmd+Alt+Right)`）。
-
-  <video src="images/1_124/navigate-sessions-list.mp4" title="视频演示使用转到上一个会话和转到下一个会话命令导航会话列表。" autoplay loop controls muted></video>
-
-* **按位置聚焦会话**: 按 `kbstyle(Ctrl+1)` 到 `kbstyle(Ctrl+9)`（macOS 上为 `kbstyle(Cmd+1)` 到 `kbstyle(Cmd+9)`）聚焦网格中从左到右的第 N 个可见会话。
-
-  <video src="images/1_124/focus-session-position.mp4" title="视频演示使用数字键快捷键按网格中的位置聚焦会话。" autoplay loop controls muted></video>
-
-### 重新加载时恢复会话
-
-重新加载或重新打开 Agents 窗口不再丢失您的布局。之前的可见会话及其状态将自动恢复，让您回到离开时的位置。这包括:
-
-* 可见会话网格: 哪些会话已打开、它们的从左到右顺序、活动会话以及任何已置顶或固定的会话。
-* 每个会话的布局，包括辅助侧边栏可见性、活动视图容器以及每个会话中已打开的编辑器。
-* 会话列表状态，包括每个会话的固定和已读状态。
-
-### 关闭所有会话
-
-类似于编辑器的**全部关闭...**命令，您现在可以使用新的**关闭所有会话**命令一步关闭所有会话。当您打开了许多会话并希望快速切换到新会话而无需逐个关闭时，这尤其有用。
-
-在会话获得焦点时使用键盘快捷键 `kbstyle(Ctrl+K Ctrl+W)`（macOS 上为 `kbstyle(Cmd+K Cmd+W)`），或从命令面板访问该命令。
-
-### 变更视图中的单文件对比（预览版）
-
-**设置**: `setting(sessions.changes.openSingleFileDiff)`
-
-默认情况下，在**变更**视图中选择文件会打开多文件对比编辑器。要仅打开该文件的变更，您之前需要按 `kbstyle(Alt)` 并选择文件（**打开变更**）。
-
-要始终在选择变更视图中的文件时打开聚焦的单文件对比编辑器，请启用 `setting(sessions.changes.openSingleFileDiff)`。这使您可以一次专注于一项变更，而不会受到多文件对比中其他文件的干扰。启用该设置后，冗余的**打开变更**内联操作将被隐藏。
-
-### 使用侧边栏箭头扩展编辑器
-
-当您在 Agents 窗口中打开文件时，编辑器标题栏中的标签右侧会显示一个箭头开关。选择它可以折叠辅助侧边栏（auxiliary bar）并扩展编辑器，再次选择它可以恢复侧边栏。箭头方向反映当前侧边栏的可见性。
-
-<video src="images/1_124/agents-window-expand-editor.mp4" title="视频演示如何在 Agents 窗口中通过折叠侧边栏来扩展编辑器。" autoplay loop controls muted></video>
-
-## Autopilot（预览版）
-
-Autopilot 是聊天[权限级别](https://code.visualstudio.com/docs/agents/approvals#_permission-levels)之一，允许代理主动行事、自主工作，无需对每个操作都要求显式用户批准。
-
-### Autopilot 默认已启用
-
-**设置**: `setting(chat.permissions.default)`、`setting(chat.tools.global.autoApprove)`
-
-Autopilot 现在在 VS Code 中默认启用。组织仍可以通过 `setting(chat.tools.global.autoApprove)` 设置来控制 Autopilot 的可见性和使用。
-
-您可以使用 `setting(chat.permissions.default)` 配置新聊天的默认权限级别。随时可以在聊天输入框中更改当前的权限级别。
-
-### Advanced Autopilot
-
-**设置**: `setting(chat.autopilot.advanced.enabled)`
-
-判断代理何时真正完成任务是困难的。过早停止则工作不完整，循环过久则浪费时间和令牌。Advanced Autopilot 改变了 Autopilot（预览版）在决定何时继续迭代以及何时完成时的判断方式，使您获得更完整的结果，而无需手动监控循环。
-
-与其依赖固定规则，一个小型实用模型会读取聊天记录并判断任务是否完成。Autopilot 致力于达成的目标会显示在聊天上方的工具提示中，因此您可以随时看到它正在尝试完成什么。为保持范围可控，Autopilot 最多循环三次后停止。
-
-将 `setting(chat.autopilot.advanced.enabled)` 设置为 `true` 即可试用此功能。
-
-## 编辑器体验
-
-### 从简单文件对话框打开文件夹时创建文件夹
-
-当您从简单文件对话框（`setting(files.simpleDialog.enable:true)`）打开文件夹时，现在可以直接在对话框中输入要创建的文件夹名称并按 `kbstyle(Enter)` 或选择**确定**来创建新文件夹。
-
-### 集成浏览器
-
-#### 历史记录
-
-**设置**: `setting(workbench.browser.maxHistoryEntries)`
-
-集成浏览器现在会保留已访问页面的历史记录。在 URL 栏中输入时，历史记录项会作为建议显示，并且可以通过浏览器标签页中的 `kb(workbench.action.browser.showHistory)` 进行管理。可通过 `setting(workbench.browser.maxHistoryEntries)` 调整要记住的最大历史记录条目数。
-
-![截图显示集成浏览器中的 URL 栏，输入"Wiki"时显示来自历史记录的几个维基百科页面。](images/1_124/browser-history.webp)
-
-#### 改进的工具栏可自定义性
-
-以前，**将元素添加到聊天**和**切换开发者工具**是仅有的可以持久显示在浏览器工具栏右侧的操作。
-
-现在，所有出现在溢出菜单中的操作也可以通过右键单击 URL 输入右侧的工具栏区域来持久显示:
-
-![截图显示允许用户切换可见菜单项的上下文菜单。](images/1_124/browser-toolbar.webp)
-
-#### 更快的代理文本输入
-
-以前，输入文本并按 `kbstyle(Enter)` 需要两次单独的工具调用。现在，`typeInPage` 工具支持 `submit` 参数，允许代理在一次工具调用中输入文本并按 Enter。
-
-这减少了常见文本输入场景的往返次数。
-
-![截图显示一个工具调用，代理在其中向页面输入文本并按下了 Enter。](images/1_124/browser-type-tool.webp)
-
-## 企业版
-
-### 企业管理 Copilot 插件策略（实验性）
-
-VS Code 现在从已驱动 [Copilot CLI 企业插件标准](https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-plugin-standards)的同一个配置文件中读取策略，因此单一策略定义同时适用于两个客户端。未来，VS Code 和 CLI 将在基于此共享源的策略管理上进一步对齐。
-
-企业管理员现在可以集中控制哪些聊天插件和插件市场可供开发者使用，而无需要求每个开发者进行本地配置。
-
-在 1.123 中引入，三个新的策略支持的设置可以通过 Copilot 企业设置文件或现有的 MDM 解决方案进行配置:
-
-* `setting(chat.plugins.enabledPlugins)`: 组织显式启用或禁用的插件 ID 允许列表。
-* `setting(chat.plugins.extraMarketplaces)`: 组织希望提供的额外插件市场。
-* `setting(chat.plugins.strictMarketplaces)`: 启用后，仅信任由策略提供的市场。
-
-被策略阻止的插件仍然可见，但显示为禁用状态。由策略管理的市场会在市场选择器中标记。
-
-## 已弃用的功能和设置
-
-无
-
-## 致谢
-
-对我们的问题跟踪做出贡献的人员:
-
-* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
-* [@RedCMD (RedCMD)](https://github.com/RedCMD)
-* [@IllusionMH (Andrii Dieiev)](https://github.com/IllusionMH)
-* [@albertosantini (Alberto Santini)](https://github.com/albertosantini)
-
-对 `vscode` 做出贡献的人员:
-
-* [@1Burhanuddin (Burhanuddin Mundrawala)](https://github.com/1Burhanuddin): 修复: 更正 parcelWatcher.ts 注释中的拼写错误 occured -> occurred [PR #319721](https://github.com/microsoft/vscode/pull/319721)
-* [@ajasad25 (Asad Meeran)](https://github.com/ajasad25): 修复问题报告器"在 GitHub 上预览"打开仓库根目录而不是新建问题表单的问题 [PR #319577](https://github.com/microsoft/vscode/pull/319577)
-* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
-  * 改进扩展更新后的重启/重新加载消息（修复 #297278）[PR #307353](https://github.com/microsoft/vscode/pull/307353)
-  * 恢复快速选择器中符号图标的颜色（修复 #299650）[PR #299753](https://github.com/microsoft/vscode/pull/299753)
-* [@guomaggie](https://github.com/guomaggie): 从 Copilot Proxy 切换到 CAPI [PR #318443](https://github.com/microsoft/vscode/pull/318443)
-* [@ishaq2321 (Muhammad Ishaq Khan)](https://github.com/ishaq2321)
-  * 调试: 记录加载已存储断点/监视表达式时的错误（#319805）[PR #319806](https://github.com/microsoft/vscode/pull/319806)
-  * 编辑器: 缓存 shadowCaretRangeFromPoint 中 getComputedStyle 的结果（#319803）[PR #319804](https://github.com/microsoft/vscode/pull/319804)
-* [@KirtiRamchandani (Kirtikumar Anandrao Ramchandani)](https://github.com/KirtiRamchandani): 修复: 显示缺失的 Git LFS git 错误 [PR #319973](https://github.com/microsoft/vscode/pull/319973)
-* [@maruthang (Maruthan G)](https://github.com/maruthang): 修复(资源管理器): 保护文件资源管理器滚动处理程序免受瞬时树映射不同步的影响（#188365）[PR #310833](https://github.com/microsoft/vscode/pull/310833)
-* [@mohanrajvenkatesan23-04 (Mohanraj Venkatesan)](https://github.com/mohanrajvenkatesan23-04): html-language-features: 在 \<script\> 悬停中包含 JSDoc 摘要和标签 [PR #312585](https://github.com/microsoft/vscode/pull/312585)
-* [@mohityadav8 (Mohit Yadav)](https://github.com/mohityadav8): 修复(文档): 更正文档中的语法和拼写问题 [PR #317718](https://github.com/microsoft/vscode/pull/317718)
-* [@mutl3y](https://github.com/mutl3y): 修复(终端): 在 VS Code web 中 file:// 提供程序不存在时捕获 getCwdResource 中的 ENOPRO [PR #317780](https://github.com/microsoft/vscode/pull/317780)
-* [@sgoedecke (Sean Goedecke)](https://github.com/sgoedecke): 修复空模型提供程序的自动模式回退 [PR #316174](https://github.com/microsoft/vscode/pull/316174)
-* [@SimonSiefke (Simon Siefke)](https://github.com/SimonSiefke)
-  * 修复: extensionHostConnection 中的进程泄漏 [PR #319223](https://github.com/microsoft/vscode/pull/319223)
-  * 修复: 窗格复合栏中的内存泄漏 [PR #282589](https://github.com/microsoft/vscode/pull/282589)
-  * 修复: pty host 服务中的内存泄漏 [PR #287025](https://github.com/microsoft/vscode/pull/287025)
-* [@tbogoodnews (Taylor Blair)](https://github.com/tbogoodnews): 修复 BYOK 响应成功转向遥测 [PR #319637](https://github.com/microsoft/vscode/pull/319637)
-* [@vivekjm (Vivek JM)](https://github.com/vivekjm): 在没有符号时禁用复制面包屑路径 [PR #318042](https://github.com/microsoft/vscode/pull/318042)
-* [@yogeshwaran-c (Yogeshwaran C)](https://github.com/yogeshwaran-c): 从 Tab 键顺序中移除禁用的切换开关 [PR #319693](https://github.com/microsoft/vscode/pull/319693)
-
-对 `vscode-extension-samples` 做出贡献的人员:
-
-* [@fhwvtqdc2q-svg (Lloouujjiinn)](https://github.com/fhwvtqdc2q-svg): 替换已弃用的 typescript.tsc.autoDetect 设置 [PR #1287](https://github.com/microsoft/vscode-extension-samples/pull/1287)
-
-对 `vscode-pull-request-github` 做出贡献的人员:
-
-* [@Malix-Labs (Malix - Alix Brunet)](https://github.com/Malix-Labs): 功能: `contributes.yamlValidation` [PR #8761](https://github.com/microsoft/vscode-pull-request-github/pull/8761)
-
----
-
-我们非常感谢大家在新功能就绪后立即尝试使用，请经常回来查看并了解新内容。
-
->如果您想阅读以前 VS Code 版本的发行说明，请访问 [code.visualstudio.com](https://code.visualstudio.com) 上的[更新页面](https://code.visualstudio.com/updates)。
-
-<a id="scroll-to-top" role="button" title="回到顶部" aria-label="scroll to top" href="#"><span class="icon"></span></a>
-<link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/>
-</body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Studio Code 1.124 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-blogs--2026-')"><span>Blogs (2026)</span><span class="toggle">▼</span></div><div id="s-blogs--2026-" class="sidebar-section-content"><a href="../../blogs/2026/01/15/docfind.html" class="">Building docfind</a>
+<a href="../../blogs/2026/01/26/mcp-apps-support.html" class="">MCP Apps Support</a>
+<a href="../../blogs/2026/02/05/multi-agent-development.html" class="">Multi-Agent Development</a>
+<a href="../../blogs/2026/02/26/long-distance-nes.html" class="">Long Distance NES</a>
+<a href="../../blogs/2026/03/05/making-agents-practical-for-real-world-development.html" class="">Making Agents Practical</a>
+<a href="../../blogs/2026/03/13/how-VS-Code-Builds-with-AI.html" class="">How VS Code Builds with AI</a>
+<a href="../../blogs/2026/05/15/agent-harnesses-github-copilot-vscode.html" class="">Agent Harnesses</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-release-notes')"><span>Release Notes</span><span class="toggle">▼</span></div><div id="s-release-notes" class="sidebar-section-content"><a href="../../release-notes/v1_125.html" class="">v1.125</a>
+<a href="../../release-notes/v1_124.html" class="active">v1.124</a>
+<a href="../../release-notes/v1_123.html" class="">v1.123</a>
+<a href="../../release-notes/v1_122.html" class="">v1.122</a>
+<a href="../../release-notes/v1_121.html" class="">v1.121</a>
+<a href="../../release-notes/v1_120.html" class="">v1.120</a>
+<a href="../../release-notes/v1_119.html" class="">v1.119</a>
+<a href="../../release-notes/v1_118.html" class="">v1.118</a>
+<a href="../../release-notes/v1_117.html" class="">v1.117</a>
+<a href="../../release-notes/v1_116.html" class="">v1.116</a>
+<a href="../../release-notes/v1_115.html" class="">v1.115</a>
+<a href="../../release-notes/v1_114.html" class="">v1.114</a>
+<a href="../../release-notes/v1_113.html" class="">v1.113</a>
+<a href="../../release-notes/v1_112.html" class="">v1.112</a>
+<a href="../../release-notes/v1_111.html" class="">v1.111</a>
+<a href="../../release-notes/v1_110.html" class="">v1.110</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / release-notes / v1_124</div>
+<h1>Visual Studio Code 1.124</h1>
+
+<p>在 <a href="https://www.linkedin.com/showcase/vs-code">LinkedIn</a>、<a href="https://go.microsoft.com/fwlink/?LinkID=533687">X</a>、<a href="https://bsky.app/profile/vscode.dev">Bluesky</a> 上关注我们 <!-- %IF INSIDERS % | 在 <a href="https://x.com/VSCodeChangelog">X</a> 或 <a href="https://bsky.app/profile/vscodechangelog.bsky.social">Bluesky</a> 上关注 Insiders 更新日志 %ENDIF % --> <!-- %IF IN_PRODUCT % | <a href="https://code.visualstudio.com/updates">在线查看</a>%ENDIF % --></p>
+
+<hr>
+
+<p>_发布日期: 2026年6月10日_</p>
+
+<p><strong>更新 1.124.1</strong>: 此更新解决了这些<a href="https://github.com/microsoft/vscode/pulls?q=is%3Apr+milestone%3A1.124.1+is%3Aclosed+">问题</a>。</p>
+
+<p><strong>更新 1.124.2</strong>: 此更新解决了这些<a href="https://github.com/microsoft/vscode/pulls?q=is%3Apr+milestone%3A1.124.2+is%3Aclosed+">问题</a>。</p>
+
+
+<p><!-- DOWNLOAD_LINKS_PLACEHOLDER --></p>
+
+<hr>
+
+<p>欢迎来到 Visual Studio Code 1.124 版本。此版本使跨代理会话的工作更加快速，并赋予代理更多自主权来完成您的任务。</p>
+
+<ul>
+<li><a href="#autopilot默认已启用">Autopilot</a>: Autopilot 现已默认启用，并且更智能地判断任务何时真正完成。
+</li>
+<li><a href="#新会话的后台发送">后台会话</a>: 在后台快速发送请求，同时继续构思下一个会话。
+</li>
+<li><a href="#在会话之间导航">会话导航</a>: 使用键盘搜索、跳转和逐步浏览代理会话。
+</li>
+<li><a href="#历史记录">浏览器历史记录</a>: 重新访问和搜索您已在集成浏览器中打开过的页面。
+</li>
+</ul>
+<p>祝编码愉快！</p>
+
+<hr>
+
+<p><!-- %IF STABLE %</p>
+<p>VS Code 正逐步向所有用户推出。使用 VS Code 中的<strong>检查更新</strong>功能立即获取最新版本。</p>
+
+<p>要尽快体验新功能，请<a href="https://code.visualstudio.com/insiders"><strong>下载每日 Insiders 构建版本</strong></a>，其中包含最新的更新。</p>
+
+<hr>
+<p>%ENDIF % --></p>
+
+<p><!-- TOC</p>
+<p><div class="toc-nav-layout"></p>
+<p>  <nav id="toc-nav"></p>
+<p>    <div>本次更新内容</div></p>
+<p>    <ul></p>
+<p>      <li><a href="#agents-window-preview">Agents 窗口</a></li></p>
+<p>      <li><a href="#autopilot-preview">Autopilot</a></li></p>
+<p>      <li><a href="#editor-experience">编辑器体验</a></li></p>
+<p>      <li><a href="#enterprise">企业版</a></li></p>
+<p>      <li><a href="#deprecated-features-and-settings">已弃用的功能和设置</a></li></p>
+<p>      <li><a href="#thank-you">致谢</a></li></p>
+<p>    </ul></p>
+<p>  </nav></p>
+<p>  <div class="notes-main"></p>
+<p>导航结束 --></p>
+
+<h2>Agents 窗口（预览版）</h2>
+
+<p><a href="https://aka.ms/VSCode/Agents/docs">Agents 窗口</a>是一个专用的配套窗口，专为在项目和机器之间探索、迭代和审查代理会话而优化。此版本的重点是加快在会话之间切换的速度，并在重新加载时保留您的上下文。</p>
+
+<h3>新会话的后台发送</h3>
+
+<p>以前，开始新会话意味着必须等待它加载完成后才能构思下一个。现在，您可以在后台发送请求：在新会话视图中按 <code>kbstyle(Alt+Enter)</code>（或按住 <code>kbstyle(Alt)</code> 并选择<strong>发送</strong>）。</p>
+
+<p>视图会立即重置并保留其状态（例如所选模型和上下文），仅清除查询文本，因此您可以继续排队发送请求。每个已启动的会话在提交后会出现在会话列表中。</p>
+
+<p>使用 <code>kbstyle(Enter)</code> 发送提示词仍然会像之前一样导航到新会话中。</p>
+
+<h3>在会话之间导航</h3>
+
+<p>当您在多个代理会话之间工作时，能够快速查找和切换会话至关重要。此版本添加了几种通过键盘驱动的会话浏览方式，从可搜索的选择器到前后导航以及按位置直接跳转。</p>
+
+<ul>
+<li><strong>会话选择器</strong>: 按 <code>kbstyle(Ctrl+R)</code>（macOS 上为 <code>kbstyle(Cmd+R)</code>）打开快速选择器，该选择器将会话分为两组列出——<strong>最近打开的</strong>和<strong>其他会话</strong>，并预选当前活动会话。可以跨会话标题及其文件夹进行搜索，然后:
+<ul>
+<li>按 <code>kbstyle(Enter)</code> 打开所选会话。</li>
+<li>按 <code>kbstyle(Cmd/Ctrl+Enter)</code> 在侧边打开它。</li>
+<li>按 <code>kbstyle(Right Arrow)</code> 在后台打开它，同时保持选择器打开。
+</li>
+</ul>
+</li>
+</ul>
+<p>  <img src="images/1_124/agents-recent-sessions.webp" alt="截图显示会话选择器快速选择器，会话按最近打开和其他会话分组。"></p>
+
+<ul>
+<li><strong>后退和前进</strong>: 按 <code>kbstyle(Ctrl+Tab)</code> 后退，按 <code>kbstyle(Ctrl+Shift+Tab)</code> 前进，按最近访问顺序浏览您已访问过的会话。
+</li>
+<li><strong>上一个和下一个会话</strong>: <strong>转到上一个会话</strong>和<strong>转到下一个会话</strong>命令按显示顺序逐步浏览可见会话列表，遵循分组、筛选和折叠的部分，并在列表边缘停止。使用 <code>kbstyle(Alt+Up)</code> / <code>kbstyle(Alt+Down)</code>（或 <code>kbstyle(Ctrl+PageUp)</code> / <code>kbstyle(Ctrl+PageDown)</code>；macOS 上为 <code>kbstyle(Cmd+Alt+Left)</code> / <code>kbstyle(Cmd+Alt+Right)</code>）。
+</li>
+</ul>
+<p>  <video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_124/navigate-sessions-list.mp4" title="视频演示使用转到上一个会话和转到下一个会话命令导航会话列表。" autoplay loop controls muted></video></p>
+
+<ul>
+<li><strong>按位置聚焦会话</strong>: 按 <code>kbstyle(Ctrl+1)</code> 到 <code>kbstyle(Ctrl+9)</code>（macOS 上为 <code>kbstyle(Cmd+1)</code> 到 <code>kbstyle(Cmd+9)</code>）聚焦网格中从左到右的第 N 个可见会话。
+</li>
+</ul>
+<p>  <video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_124/focus-session-position.mp4" title="视频演示使用数字键快捷键按网格中的位置聚焦会话。" autoplay loop controls muted></video></p>
+
+<h3>重新加载时恢复会话</h3>
+
+<p>重新加载或重新打开 Agents 窗口不再丢失您的布局。之前的可见会话及其状态将自动恢复，让您回到离开时的位置。这包括:</p>
+
+<ul>
+<li>可见会话网格: 哪些会话已打开、它们的从左到右顺序、活动会话以及任何已置顶或固定的会话。</li>
+<li>每个会话的布局，包括辅助侧边栏可见性、活动视图容器以及每个会话中已打开的编辑器。</li>
+<li>会话列表状态，包括每个会话的固定和已读状态。
+<h3>关闭所有会话</h3>
+
+</li>
+</ul>
+<p>类似于编辑器的<strong>全部关闭...</strong>命令，您现在可以使用新的<strong>关闭所有会话</strong>命令一步关闭所有会话。当您打开了许多会话并希望快速切换到新会话而无需逐个关闭时，这尤其有用。</p>
+
+<p>在会话获得焦点时使用键盘快捷键 <code>kbstyle(Ctrl+K Ctrl+W)</code>（macOS 上为 <code>kbstyle(Cmd+K Cmd+W)</code>），或从命令面板访问该命令。</p>
+
+<h3>变更视图中的单文件对比（预览版）</h3>
+
+<p><strong>设置</strong>: <code>setting(sessions.changes.openSingleFileDiff)</code></p>
+
+<p>默认情况下，在<strong>变更</strong>视图中选择文件会打开多文件对比编辑器。要仅打开该文件的变更，您之前需要按 <code>kbstyle(Alt)</code> 并选择文件（<strong>打开变更</strong>）。</p>
+
+<p>要始终在选择变更视图中的文件时打开聚焦的单文件对比编辑器，请启用 <code>setting(sessions.changes.openSingleFileDiff)</code>。这使您可以一次专注于一项变更，而不会受到多文件对比中其他文件的干扰。启用该设置后，冗余的<strong>打开变更</strong>内联操作将被隐藏。</p>
+
+<h3>使用侧边栏箭头扩展编辑器</h3>
+
+<p>当您在 Agents 窗口中打开文件时，编辑器标题栏中的标签右侧会显示一个箭头开关。选择它可以折叠辅助侧边栏（auxiliary bar）并扩展编辑器，再次选择它可以恢复侧边栏。箭头方向反映当前侧边栏的可见性。</p>
+
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_124/agents-window-expand-editor.mp4" title="视频演示如何在 Agents 窗口中通过折叠侧边栏来扩展编辑器。" autoplay loop controls muted></video></p>
+
+<h2>Autopilot（预览版）</h2>
+
+<p>Autopilot 是聊天<a href="https://code.visualstudio.com/docs/agents/approvals#_permission-levels">权限级别</a>之一，允许代理主动行事、自主工作，无需对每个操作都要求显式用户批准。</p>
+
+<h3>Autopilot 默认已启用</h3>
+
+<p><strong>设置</strong>: <code>setting(chat.permissions.default)</code>、<code>setting(chat.tools.global.autoApprove)</code></p>
+
+<p>Autopilot 现在在 VS Code 中默认启用。组织仍可以通过 <code>setting(chat.tools.global.autoApprove)</code> 设置来控制 Autopilot 的可见性和使用。</p>
+
+<p>您可以使用 <code>setting(chat.permissions.default)</code> 配置新聊天的默认权限级别。随时可以在聊天输入框中更改当前的权限级别。</p>
+
+<h3>Advanced Autopilot</h3>
+
+<p><strong>设置</strong>: <code>setting(chat.autopilot.advanced.enabled)</code></p>
+
+<p>判断代理何时真正完成任务是困难的。过早停止则工作不完整，循环过久则浪费时间和令牌。Advanced Autopilot 改变了 Autopilot（预览版）在决定何时继续迭代以及何时完成时的判断方式，使您获得更完整的结果，而无需手动监控循环。</p>
+
+<p>与其依赖固定规则，一个小型实用模型会读取聊天记录并判断任务是否完成。Autopilot 致力于达成的目标会显示在聊天上方的工具提示中，因此您可以随时看到它正在尝试完成什么。为保持范围可控，Autopilot 最多循环三次后停止。</p>
+
+<p>将 <code>setting(chat.autopilot.advanced.enabled)</code> 设置为 <code>true</code> 即可试用此功能。</p>
+
+<h2>编辑器体验</h2>
+
+<h3>从简单文件对话框打开文件夹时创建文件夹</h3>
+
+<p>当您从简单文件对话框（<code>setting(files.simpleDialog.enable:true)</code>）打开文件夹时，现在可以直接在对话框中输入要创建的文件夹名称并按 <code>kbstyle(Enter)</code> 或选择<strong>确定</strong>来创建新文件夹。</p>
+
+<h3>集成浏览器</h3>
+
+<h4>历史记录</h4>
+
+<p><strong>设置</strong>: <code>setting(workbench.browser.maxHistoryEntries)</code></p>
+
+<p>集成浏览器现在会保留已访问页面的历史记录。在 URL 栏中输入时，历史记录项会作为建议显示，并且可以通过浏览器标签页中的 <code>kb(workbench.action.browser.showHistory)</code> 进行管理。可通过 <code>setting(workbench.browser.maxHistoryEntries)</code> 调整要记住的最大历史记录条目数。</p>
+
+<p><img src="images/1_124/browser-history.webp" alt="截图显示集成浏览器中的 URL 栏，输入"Wiki"时显示来自历史记录的几个维基百科页面。"></p>
+
+<h4>改进的工具栏可自定义性</h4>
+
+<p>以前，<strong>将元素添加到聊天</strong>和<strong>切换开发者工具</strong>是仅有的可以持久显示在浏览器工具栏右侧的操作。</p>
+
+<p>现在，所有出现在溢出菜单中的操作也可以通过右键单击 URL 输入右侧的工具栏区域来持久显示:</p>
+
+<p><img src="images/1_124/browser-toolbar.webp" alt="截图显示允许用户切换可见菜单项的上下文菜单。"></p>
+
+<h4>更快的代理文本输入</h4>
+
+<p>以前，输入文本并按 <code>kbstyle(Enter)</code> 需要两次单独的工具调用。现在，<code>typeInPage</code> 工具支持 <code>submit</code> 参数，允许代理在一次工具调用中输入文本并按 Enter。</p>
+
+<p>这减少了常见文本输入场景的往返次数。</p>
+
+<p><img src="images/1_124/browser-type-tool.webp" alt="截图显示一个工具调用，代理在其中向页面输入文本并按下了 Enter。"></p>
+
+<h2>企业版</h2>
+
+<h3>企业管理 Copilot 插件策略（实验性）</h3>
+
+<p>VS Code 现在从已驱动 <a href="https://docs.github.com/en/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/configure-enterprise-plugin-standards">Copilot CLI 企业插件标准</a>的同一个配置文件中读取策略，因此单一策略定义同时适用于两个客户端。未来，VS Code 和 CLI 将在基于此共享源的策略管理上进一步对齐。</p>
+
+<p>企业管理员现在可以集中控制哪些聊天插件和插件市场可供开发者使用，而无需要求每个开发者进行本地配置。</p>
+
+<p>在 1.123 中引入，三个新的策略支持的设置可以通过 Copilot 企业设置文件或现有的 MDM 解决方案进行配置:</p>
+
+<ul>
+<li><code>setting(chat.plugins.enabledPlugins)</code>: 组织显式启用或禁用的插件 ID 允许列表。</li>
+<li><code>setting(chat.plugins.extraMarketplaces)</code>: 组织希望提供的额外插件市场。</li>
+<li><code>setting(chat.plugins.strictMarketplaces)</code>: 启用后，仅信任由策略提供的市场。
+</li>
+</ul>
+<p>被策略阻止的插件仍然可见，但显示为禁用状态。由策略管理的市场会在市场选择器中标记。</p>
+
+<h2>已弃用的功能和设置</h2>
+
+<p>无</p>
+
+<h2>致谢</h2>
+
+<p>对我们的问题跟踪做出贡献的人员:</p>
+
+<ul>
+<li><a href="https://github.com/gjsjohnmurray">@gjsjohnmurray (John Murray)</a></li>
+<li><a href="https://github.com/RedCMD">@RedCMD (RedCMD)</a></li>
+<li><a href="https://github.com/IllusionMH">@IllusionMH (Andrii Dieiev)</a></li>
+<li><a href="https://github.com/albertosantini">@albertosantini (Alberto Santini)</a>
+</li>
+</ul>
+<p>对 <code>vscode</code> 做出贡献的人员:</p>
+
+<ul>
+<li><a href="https://github.com/1Burhanuddin">@1Burhanuddin (Burhanuddin Mundrawala)</a>: 修复: 更正 parcelWatcher.ts 注释中的拼写错误 occured -> occurred <a href="https://github.com/microsoft/vscode/pull/319721">PR #319721</a></li>
+<li><a href="https://github.com/ajasad25">@ajasad25 (Asad Meeran)</a>: 修复问题报告器"在 GitHub 上预览"打开仓库根目录而不是新建问题表单的问题 <a href="https://github.com/microsoft/vscode/pull/319577">PR #319577</a></li>
+<li><a href="https://github.com/gjsjohnmurray">@gjsjohnmurray (John Murray)</a><ul>
+<li>改进扩展更新后的重启/重新加载消息（修复 #297278）<a href="https://github.com/microsoft/vscode/pull/307353">PR #307353</a></li>
+<li>恢复快速选择器中符号图标的颜色（修复 #299650）<a href="https://github.com/microsoft/vscode/pull/299753">PR #299753</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/guomaggie">@guomaggie</a>: 从 Copilot Proxy 切换到 CAPI <a href="https://github.com/microsoft/vscode/pull/318443">PR #318443</a></li>
+<li><a href="https://github.com/ishaq2321">@ishaq2321 (Muhammad Ishaq Khan)</a><ul>
+<li>调试: 记录加载已存储断点/监视表达式时的错误（#319805）<a href="https://github.com/microsoft/vscode/pull/319806">PR #319806</a></li>
+<li>编辑器: 缓存 shadowCaretRangeFromPoint 中 getComputedStyle 的结果（#319803）<a href="https://github.com/microsoft/vscode/pull/319804">PR #319804</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/KirtiRamchandani">@KirtiRamchandani (Kirtikumar Anandrao Ramchandani)</a>: 修复: 显示缺失的 Git LFS git 错误 <a href="https://github.com/microsoft/vscode/pull/319973">PR #319973</a></li>
+<li><a href="https://github.com/maruthang">@maruthang (Maruthan G)</a>: 修复(资源管理器): 保护文件资源管理器滚动处理程序免受瞬时树映射不同步的影响（#188365）<a href="https://github.com/microsoft/vscode/pull/310833">PR #310833</a></li>
+<li><a href="https://github.com/mohanrajvenkatesan23-04">@mohanrajvenkatesan23-04 (Mohanraj Venkatesan)</a>: html-language-features: 在 \<script\> 悬停中包含 JSDoc 摘要和标签 <a href="https://github.com/microsoft/vscode/pull/312585">PR #312585</a></li>
+<li><a href="https://github.com/mohityadav8">@mohityadav8 (Mohit Yadav)</a>: 修复(文档): 更正文档中的语法和拼写问题 <a href="https://github.com/microsoft/vscode/pull/317718">PR #317718</a></li>
+<li><a href="https://github.com/mutl3y">@mutl3y</a>: 修复(终端): 在 VS Code web 中 file:// 提供程序不存在时捕获 getCwdResource 中的 ENOPRO <a href="https://github.com/microsoft/vscode/pull/317780">PR #317780</a></li>
+<li><a href="https://github.com/sgoedecke">@sgoedecke (Sean Goedecke)</a>: 修复空模型提供程序的自动模式回退 <a href="https://github.com/microsoft/vscode/pull/316174">PR #316174</a></li>
+<li><a href="https://github.com/SimonSiefke">@SimonSiefke (Simon Siefke)</a><ul>
+<li>修复: extensionHostConnection 中的进程泄漏 <a href="https://github.com/microsoft/vscode/pull/319223">PR #319223</a></li>
+<li>修复: 窗格复合栏中的内存泄漏 <a href="https://github.com/microsoft/vscode/pull/282589">PR #282589</a></li>
+<li>修复: pty host 服务中的内存泄漏 <a href="https://github.com/microsoft/vscode/pull/287025">PR #287025</a></li>
+</ul>
+</li>
+<li><a href="https://github.com/tbogoodnews">@tbogoodnews (Taylor Blair)</a>: 修复 BYOK 响应成功转向遥测 <a href="https://github.com/microsoft/vscode/pull/319637">PR #319637</a></li>
+<li><a href="https://github.com/vivekjm">@vivekjm (Vivek JM)</a>: 在没有符号时禁用复制面包屑路径 <a href="https://github.com/microsoft/vscode/pull/318042">PR #318042</a></li>
+<li><a href="https://github.com/yogeshwaran-c">@yogeshwaran-c (Yogeshwaran C)</a>: 从 Tab 键顺序中移除禁用的切换开关 <a href="https://github.com/microsoft/vscode/pull/319693">PR #319693</a>
+</li>
+</ul>
+<p>对 <code>vscode-extension-samples</code> 做出贡献的人员:</p>
+
+<ul>
+<li><a href="https://github.com/fhwvtqdc2q-svg">@fhwvtqdc2q-svg (Lloouujjiinn)</a>: 替换已弃用的 typescript.tsc.autoDetect 设置 <a href="https://github.com/microsoft/vscode-extension-samples/pull/1287">PR #1287</a>
+</li>
+</ul>
+<p>对 <code>vscode-pull-request-github</code> 做出贡献的人员:</p>
+
+<ul>
+<li><a href="https://github.com/Malix-Labs">@Malix-Labs (Malix - Alix Brunet)</a>: 功能: <code>contributes.yamlValidation</code> <a href="https://github.com/microsoft/vscode-pull-request-github/pull/8761">PR #8761</a>
+<hr>
+
+</li>
+</ul>
+<p>我们非常感谢大家在新功能就绪后立即尝试使用，请经常回来查看并了解新内容。</p>
+
+<p>>如果您想阅读以前 VS Code 版本的发行说明，请访问 <a href="https://code.visualstudio.com">code.visualstudio.com</a> 上的<a href="https://code.visualstudio.com/updates">更新页面</a>。</p>
+
+<p><a id="scroll-to-top" role="button" title="回到顶部" aria-label="scroll to top" href="#"><span class="icon"></span></a></p>
+<p><link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/></p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>
