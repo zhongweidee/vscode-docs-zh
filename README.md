@@ -2,22 +2,18 @@
 
 Visual Studio Code **1.124** 官方文档的简体中文翻译。
 
+## 在线阅读
+
+👉 **[https://zhongweidee.github.io/vscode-docs-zh/](https://zhongweidee.github.io/vscode-docs-zh/)**
+
+手机浏览器直接打开即可阅读。侧边栏可折叠展开，支持全部折叠/展开。
+
 ## 内容
 
 - **345 篇核心用户文档**已翻译为简体中文
 - 覆盖 VS Code 最新功能（Agent、MCP、Copilot 等）
 - 目录结构与官方一致
 - 提供 Markdown 源码和 HTML 浏览版本
-
-## 目录结构
-
-```
-vscode-docs-zh/
-  docs/          — 翻译后的 Markdown 源文件（345 篇）
-  vscode-docs-html/
-    index.html   — 首页，带翻译进度说明
-    docs/        — HTML 版本，带侧边栏导航
-```
 
 ## 翻译范围
 
@@ -35,9 +31,9 @@ vscode-docs-zh/
 - 保留 Markdown 格式、代码块、YAML frontmatter
 - 统一术语（debug→调试、extension→扩展 等）
 
-## 查看方式
+## 本地查看
 
-打开 `vscode-docs-html/index.html` 即可浏览。
+打开 `index.html` 即可浏览。
 
 ## 许可
 
