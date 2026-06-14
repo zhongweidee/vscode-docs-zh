@@ -74,7 +74,7 @@ function mdToHtml(md, filePath) {
     // Video: link via jsDelivr CDN (proper Content-Type: video/mp4)
     if (url.match(/\.(mp4|webm)$/i)) {
       var abs = path.relative(SRC, resolved).replace(/\\/g, '/');
-      return 'https://cdn.jsdelivr.net/gh/microsoft/vscode-docs@main/docs/' + abs;
+      return 'https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/' + abs;
     }
     // Image: keep path relative to markdown (HTML at same relative path)
     if (url.match(/\.(png|jpg|jpeg|gif|svg)$/i)) return rel;
@@ -270,7 +270,7 @@ var t = 0, d = 0;
       body = body.replace(/src="([^"]+\.(mp4|webm))"/gi, function(m, src) {
         if (src.indexOf('http') === 0) return m;
         var resolved = path.join(path.dirname(rp), src).replace(/\\/g, '/');
-        return 'src="https://cdn.jsdelivr.net/gh/microsoft/vscode-docs@main/docs/' + resolved + '"';
+        return 'src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/' + resolved + '"';
       });
       var depth = base ? base.split('/').length + 1 : 1;
       var sb = sidebarHtml(sections, rp.replace(/\.md$/, '.html'), depth);
