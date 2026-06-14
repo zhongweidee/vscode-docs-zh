@@ -4,5 +4,6 @@ node_modules/
 .DS_Store
 Thumbs.db
 .vscode-docs-source/
-.claude/
-!.claude/skills/
+.claude/memories/
+.claude/projects/
+.claude/worktrees/
