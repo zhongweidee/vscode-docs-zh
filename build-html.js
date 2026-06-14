@@ -296,7 +296,7 @@ SOURCE_DIRS.forEach(function(sd) {
         var resolved = path.join(path.dirname(rp), src).replace(/\\/g, '/');
         return 'src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/' + resolved + '"';
       });
-      var depth = base ? base.split('/').length + 1 : 1;
+      var depth = base ? base.split('/').length : 0;
       var sb = sidebarHtml(sections, rp.replace(/\.md$/, '.html'), depth);
       var htm = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + title.replace(/</g,'&lt;') + ' - VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <div class="breadcrumb"><a href="' + '../'.repeat(depth) + 'index.html">首页</a> / ' + (base||'') + ' / ' + e.name.replace(/\.md$/,'') + '</div>\n' + body + '\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}<\/script>\n</body>\n</html>';
       fs.writeFileSync(op, htm, 'utf-8');
