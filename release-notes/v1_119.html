@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>v1_119 - VS Code 发布说明</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
+h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
+a{color:#0078d4}</style></head>
+<body><a href="../index.html">← 首页</a>
+# Visual Studio Code 1.119
+
+在 [LinkedIn](https://www.linkedin.com/showcase/vs-code)、[X](https://go.microsoft.com/fwlink/?LinkID=533687)、[Bluesky](https://bsky.app/profile/vscode.dev) 上关注我们 <!-- %IF INSIDERS % | 在 [X](https://x.com/VSCodeChangelog) 或 [Bluesky](https://bsky.app/profile/vscodechangelog.bsky.social) 上关注 Insiders 更新日志 %ENDIF % --> <!-- %IF IN_PRODUCT % | [在线查看](https://code.visualstudio.com/updates)%ENDIF % -->
+
+---
+
+_发布日期：2026 年 5 月 6 日_
+
+**更新 1.119.1**：此更新解决了这些[安全问题](https://github.com/microsoft/vscode/issues?q=is%3Aissue+is%3Aclosed+milestone%3A1.119.1)。
+
+<!-- DOWNLOAD_LINKS_PLACEHOLDER -->
+
+---
+
+欢迎来到 Visual Studio Code 1.119 版本。此版本侧重于更流畅的代理交互、增强的可观察性，以及更高效的信任与安全控制。
+
+* [代理与浏览器交互](#与代理共享浏览器标签页)：让代理发现并请求集成浏览器访问权限。
+* [优化的令牌用量](#管理待办事项列表的优化令牌用量试验性功能)：使用轻量级模型管理代理待办事项列表。
+* [OpenTelemetry 跟踪](#代理会话的-opentelemetry-跟踪)：使用 OpenTelemetry 监控代理会话。
+* [信任与开发者效率](#信任与安全)：减少因网络访问或临时文件夹写入请求而产生的中断。
+* [Markdown 预览](#在当前编辑器与-markdown-预览之间切换)：在 Markdown 源代码与预览之间快速切换。
+
+编码愉快！
+
+---
+
+<!-- %IF STABLE %
+VS Code 正在逐步向所有用户推送。使用 VS Code 中的**检查更新**即可立即获取最新版本。
+
+要尽快试用新功能，请[**下载 Nightly Insiders 版本**](https://code.visualstudio.com/insiders)，该版本会在最新更新推出后立即包含这些更新。
+
+---
+%ENDIF % -->
+
+<!-- TOC
+<div class="toc-nav-layout">
+  <nav id="toc-nav">
+    <div>本次更新</div>
+    <ul>
+      <li><a href="#agent-experience">代理体验</a></li>
+      <li><a href="#chat-experience">聊天体验</a></li>
+      <li><a href="#trust-and-security">信任与安全</a></li>
+      <li><a href="#languages">语言支持</a></li>
+      <li><a href="#engineering">工程</a></li>
+      <li><a href="#deprecated-features-and-settings">弃用的功能与设置</a></li>
+      <li><a href="#thank-you">致谢</a></li>
+    </ul>
+  </nav>
+  <div class="notes-main">
+导航结束 -->
+
+## 代理体验
+
+### 与代理共享浏览器标签页
+
+当代理能够访问实时浏览器时，它们可以实时验证更改并更快地迭代。对于 Web 开发，代理可以在单次对话中修改代码、刷新页面并确认修复。对于设计工作流，代理可以将渲染输出与您的意图进行比较，并即时优化布局或样式。开始在 VS Code 中[使用集成浏览器与代理](https://code.visualstudio.com/docs/agents/guides/browser-agent-testing-guide)。
+
+代理不会自动拥有对[集成浏览器](https://code.visualstudio.com/docs/debugtest/integrated-browser)的访问权限。您需要显式地让代理共享浏览器页面，才能与其进行交互。这有助于保护敏感数据的隐私。
+
+在此版本中，我们新增了与代理共享浏览器的方式：
+
+#### 将浏览器标签页附加为上下文
+
+现在可以通过典型的入口点（如建议的上下文、上下文选择器和拖放操作）将浏览器标签页显式附加到聊天中。
+
+![屏幕截图，显示聊天中的一个隐式上下文项，用于将打开的浏览器添加到聊天上下文中。](images/1_119/browser-implicit-context.webp)
+
+当浏览器标签页被附加后，它会进入共享状态，代理可以读取并与页面进行交互。完成后，使用浏览器中的共享按钮停止共享。
+
+![屏幕截图，显示浏览器中的"与代理共享"按钮。](images/1_119/browser-share-button.webp)
+
+#### 代理发起的共享页面请求
+
+代理现在可以获取有关您打开了多少浏览器标签页以及哪些未被共享的信息。它们可以在需要与某个页面交互时请求共享一个打开的标签页，您可以在提示中批准或拒绝该请求。
+
+当代理尝试在与现有未共享标签页相同的域中打开新标签页时，会出现一个提示，询问您是否要重用现有标签页。这旨在鼓励标签页重用并减少混乱。
+
+![屏幕截图，显示一个聊天会话，用户提示在浏览器中测试应用，并收到共享现有标签页的提示。](images/1_119/browser-sharing-prompt.webp)
+
+### Visual Studio Code Agents（Insiders）
+
+> **注意**：Visual Studio Code Agents 目前处于预览阶段，仅在 VS Code Insiders 中可用。
+
+[Visual Studio Code Agents](https://aka.ms/VSCode/Agents/docs) 是随 VS Code Insiders 发布的一款配套体验。它提供了一个专注的、代理原生的环境，您可以在其中跨仓库运行并行会话，并对多步编码任务进行迭代。我们最初在 [1.115](https://code.visualstudio.com/updates/v1_115#_visual-studio-code-agents-preview) 版本中引入了 VS Code Agents，并根据用户反馈持续进行改进。
+
+此版本的更新包括：
+
+* **重新设计的新会话仓库选择器**：启动新会话时，您现在可以轻松地在本地文件夹、仓库或远程选项之间切换。
+
+  ![VS Code Agents 中重新设计的仓库选择器的屏幕截图。](images/1_119/Agents-new-dropdown-2.webp)
+
+* **子会话改进**：创建和管理子会话的体验持续改善，修复了子会话标签页和生命周期处理等方面的问题。
+
+* **Web 与移动端优化**：我们继续迭代在 [1.118](https://code.visualstudio.com/updates/v1_118#_web-client) 中引入的 [Agents Web 客户端](https://insiders.vscode.dev/agents)，以使浏览器体验与桌面体验保持一致。这包括对移动体验的改进，让您可以通过移动设备的浏览器创建和管理会话及其更改。
+
+* **环境管理与连续性**：我们持续投入于 VS Code 与 Agents 之间的连接，并改进环境管理方式。这在未来的版本中将逐步成型。
+
+* **进度用户体验**：当代理正在处理任务时，其进度现在更加可见，会有轮换的进度消息和聊天输入框的边框动画。
+
+* **开发者乐趣**：我们正在迭代寻找激发开发者乐趣的用户体验机会，包括新会话页面上的一个有趣彩蛋。启用 `setting(sessions.developerJoy.enabled)` 看看您是否能发现它！
+
+您的反馈有助于我们塑造 Agents 的体验，因此请继续通过在 [vscode 的 GitHub 仓库中提交问题](https://github.com/microsoft/vscode/issues)来与我们分享。您也可以浏览[现有的问题](https://github.com/microsoft/vscode/issues?q=state%3Aopen%20label%3A%22agents-app%22)来查看其他人报告的内容，并就特定主题提供您的反馈。
+
+### 代理会话的 OpenTelemetry 跟踪
+
+**设置**：`setting(github.copilot.chat.otel.enabled)`、`setting(github.copilot.chat.otel.otlpEndpoint)`
+
+随着代理会话变得更长、更自主化，了解代理做了什么、每个步骤耗时多长以及令牌消耗的分布，对于优化成本和调试意外行为至关重要。[OpenTelemetry](https://opentelemetry.io/) 是行业标准的可观察性框架。
+
+Copilot Chat 代理会话（包括本地代理、Copilot CLI 后台代理和 Claude 代理）现在会发出符合 [GenAI 语义约定](https://github.com/open-telemetry/semantic-conventions/blob/main/docs/gen-ai/)的 OpenTelemetry 跟踪、指标和事件，让您可以在任何兼容 OTLP 的后端（例如 [Aspire Dashboard](https://aspire.dev/dashboard/standalone/)）中监控代理行为、延迟和令牌用量。
+
+每个用户请求都会生成一个 `invoke_agent` 根跨度（例如 `invoke_agent claude`），其中包含嵌套的 `chat`、`execute_tool` 和 `execute_hook` 子跨度。子代理调用会自动成为调用代理的 `execute_tool` 跨度的子级，从而让您在一个完整的连接跟踪中获得代理工作的全面可见性。跨度会报告模型和令牌用量，包括缓存读取和缓存创建的细分信息。
+
+要试用此功能，请启用 `setting(github.copilot.chat.otel.enabled)` 并将 `setting(github.copilot.chat.otel.otlpEndpoint)` 指向您的收集器。
+
+![屏幕截图，显示 OTel 仪表板中带有嵌套聊天和工具跨度的 `invoke_agent` 跟踪的瀑布视图。](images/1_119/vscode-claude-otel.webp)
+
+在 VS Code 文档中了解如何[使用 OpenTelemetry 监控代理用量](https://code.visualstudio.com/docs/agents/guides/monitoring-agents)。
+
+## 聊天体验
+
+### 显示 Copilot CLI 和 Claude 代理响应的模型详情
+
+**设置**：`setting(github.copilot.chat.agent.modelDetails.enabled)`
+
+了解哪个模型处理了响应以及它是如何计入您的用量的，有助于您控制成本和质量。
+
+[Copilot CLI](https://code.visualstudio.com/docs/agents/agent-types/copilot-cli) 和 [Claude 代理](https://code.visualstudio.com/docs/agents/agent-types/third-party-agents)在聊天视图中的响应现在会显示每个使用的模型及其倍率。徽章会在每个响应完成时实时出现，无需重新加载窗口，并且在您中途切换模型时会更新。
+
+当您在 Copilot CLI 中使用**自动**模型选择时，徽章会显示实际使用的模型（例如 `Claude Sonnet 4.6`）而不是 `auto`。解析后的模型在从历史记录重建会话时也会被保留。
+
+此行为默认启用。要关闭徽章，请禁用 `setting(github.copilot.chat.agent.modelDetails.enabled)` 设置并重新加载窗口。
+
+### 管理待办事项列表的优化令牌用量（试验性功能）
+
+**设置**：`setting(github.copilot.chat.agent.backgroundTodoAgent.enabled)`
+
+待办事项列表通过为代理提供已完成工作和下一步计划的明确记录，帮助代理在复杂的多步任务中保持跟踪。然而，主模型每次调用工具更新待办事项列表都会消耗令牌，而这些成本在长会话中会逐渐累积。
+
+通过将待办事项列表管理卸载到轻量级后台代理，主模型可以专注于实际任务，而较小的模型则保持进度跟踪同步。这降低了总体令牌用量，同时不会牺牲保持代理专注的引导能力。
+
+启用此设置后，后台代理会监控主代理活动并更新待办事项列表，以反映已完成和正在进行的工作。主代理将无法使用待办事项工具，从而节省对话的令牌成本。
+
+> **注意**：如果待办事项工具被手动添加到聊天请求中（例如使用 `#todo`），或自定义代理在其工具列表中指定了它，则会覆盖后台代理而不会运行。
+
+此功能默认禁用。要试用，请启用 `setting(github.copilot.chat.agent.backgroundTodoAgent.enabled)` 设置。
+
+### 基于用量的计费更新
+
+GitHub Copilot 将于 6 月 1 日起过渡到[基于用量的计费](https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals)。为此，此版本包含对聊天状态仪表板、聊天输入通知和模型选择器的内部更改，以支持显示计费和配额信息。这些 UI 更新目前对用户不可见，将在基于用量的计费推出时生效。
+
+## 信任与安全
+
+### 允许代理沙箱中的网络访问
+
+**设置**：`setting(chat.agent.sandbox.enabled)`
+
+代理沙箱通过限制代理工具可以访问的内容来保护您的系统，但严格的网络阻止可能会妨碍代理安装包、调用 API 或运行开发服务器。
+
+`setting(chat.agent.sandbox.enabled)` 设置现在有一个 `allowNetwork` 模式，它在保持文件系统限制的同时移除了网络域阻止，因此您可以在获得沙箱保护的同时，不会因网络访问请求而频繁中断。
+
+```json
+"chat.agent.sandbox.enabled": "allowNetwork"
+```
+
+当沙箱的网络访问被允许时，`setting(chat.agent.allowedNetworkDomains)` 和 `setting(chat.agent.deniedNetworkDomains)` 设置将被忽略。
+
+在 VS Code 文档中了解有关[代理沙箱](https://code.visualstudio.com/docs/agents/concepts/trust-and-safety#_agent-sandboxing)的更多信息。
+
+### 对会话允许的命令自动批准写入临时文件夹
+
+**设置**：`setting(chat.tools.terminal.blockDetectedFileWrites)`
+
+对常规文件写入的频繁批准提示会降低代理工作流的效率。当 `setting(chat.tools.terminal.blockDetectedFileWrites)` 设置为其默认值 `outsideWorkspace` 时，在工作区之外写入的终端命令需要批准，即使您选择了**允许所有会话命令**也是如此。
+
+现在，当**允许所有会话命令**处于活动状态时，写入操作系统临时文件夹（macOS 和 Linux 上的 `/tmp`，Windows 上的 `%TEMP%`）将免于此检查。
+
+这意味着将临时文件暂存到临时文件夹的常见代理工作流不再中断会话，而写入工作区之外的其他位置仍然需要确认。
+
+## 语言支持
+
+### 在当前编辑器与 Markdown 预览之间切换
+
+我们让在 Markdown 预览之间来回切换当前编辑器变得更加容易。VS Code [早就](https://code.visualstudio.com/updates/v1_63#_markdown-preview-custom-editor)具有此功能，但经常被忽视。这些新按钮和命令使其更易于被发现。
+
+在 Markdown 文件中，选择工具栏中的此按钮或运行**Markdown: 切换到预览视图**命令。
+
+![屏幕截图，显示编辑器工具栏中的切换到预览视图按钮。](images/1_119/md-switch-preview-view.webp)
+
+打开预览后，您可以选择**切换到编辑器视图**按钮或命令来切换回源代码视图。
+
+![屏幕截图，显示预览工具栏中的切换到编辑器视图按钮。](images/1_119/md-switch-editor-view.webp)
+
+### 重新组织的 Markdown 设置
+
+为了帮助您发现和管理 [VS Code 内置 Markdown 支持](https://code.visualstudio.com/docs/languages/markdown)的设置，我们在设置编辑器中为它们创建了一些基本分组，位于**扩展** > **Markdown Language Features** 下。
+
+![屏幕截图，显示设置编辑器中的 Markdown 设置分组。](images/1_119/md-settings.webp)
+
+所有设置 ID 保持不变，但现在与[内置 Markdown 预览](https://code.visualstudio.com/docs/languages/markdown#_markdown-preview)相关的所有设置都列在**Preview** 子节下。
+
+## 工程
+
+### 完成将 Web 视图迁移到使用 CSS 锚点定位
+
+VS Code 的 Web 视图现在使用[锚点定位](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Anchor_positioning)在工作台中可视地定位自身。这提高了性能，使重新布局更加灵敏，尤其是在有许多活跃 Web 视图的情况下。它还让我们修复了一些棘手的长期存在的错误，例如在 Web 上移动工作台时 Web 视图位置发生偏移。
+
+以下是切换到基于锚点的定位之前，单个 Web 视图的典型重新布局调用：
+
+![屏幕截图，显示基于锚点定位之前重新布局调用的性能跟踪。](images/1_119/anchor-perf-before.webp)
+
+此处对 Web 视图的定位是使用 JS 完成的，它调用了 `getBoundingClientRect`。此调用最终相对较慢，因为它会触发浏览器的样式重新计算和重新布局。
+
+通过迁移到基于锚点的定位，浏览器现在根据 CSS 来处理 Web 视图的定位。
+
+![屏幕截图，显示基于锚点定位之后的重新布局性能。](images/1_119/anchor-perf-after.webp)
+
+### 类型检查现在使用 TypeScript 7 以加快开发迭代
+
+上次迭代中，我们[将 VS Code 的主要监视任务迁移到使用 TypeScript 7](https://code.visualstudio.com/updates/v1_118#_faster-development-builds-with-typescript-7)。本次迭代中，我们完成了将所有内置扩展和核心代码迁移到使用 TypeScript 7 的工作。
+
+通过将 Copilot 扩展迁移到使用 TypeScript 7，我们将类型检查时间从 22 秒缩短到 4 秒。这些显著的加速使开发者和代理都能更快地在 VS Code 代码库中进行迭代。
+
+## 弃用的功能与设置
+
+### 此版本中的新弃用
+
+无
+
+### 即将弃用的功能
+
+* **编辑模式**自 VS Code 1.110 版本起正式弃用。用户可以通过 VS Code 设置 `setting(chat.editMode.hidden)` 暂时重新启用编辑模式。此设置将支持到 1.125 版本。从 1.125 版本开始，编辑模式将被完全移除，无法再通过设置启用。
+
+## 致谢
+
+对我们问题跟踪的贡献：
+
+* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
+* [@RedCMD (RedCMD)](https://github.com/RedCMD)
+* [@IllusionMH (Andrii Dieiev)](https://github.com/IllusionMH)
+* [@albertosantini (Alberto Santini)](https://github.com/albertosantini)
+
+对 `vscode` 的贡献：
+
+* [@64johnlee (john lee)](https://github.com/64johnlee): fix: 启用引导对话框 Markdown 内容中的文本选择 [PR #313730](https://github.com/microsoft/vscode/pull/313730)
+* [@aanil677](https://github.com/aanil677): 修复 README 中的小语法问题 [PR #312480](https://github.com/microsoft/vscode/pull/312480)
+* [@AshtonYoon (Ashton Yoon)](https://github.com/AshtonYoon): markdown: 修复 #287050 引入的滚动同步回退问题 [PR #307763](https://github.com/microsoft/vscode/pull/307763)
+* [@iideprived (Herbert Smith)](https://github.com/iideprived): debug: 将触发的断点选择器默认设为第一个断点 [PR #313453](https://github.com/microsoft/vscode/pull/313453)
+* [@Jah-yee (RoomWithOutRoof)](https://github.com/Jah-yee): fix: 解决 NoChangeError 工具名称插值和拼写错误 [PR #309709](https://github.com/microsoft/vscode/pull/309709)
+* [@maruthang (Maruthan G)](https://github.com/maruthang): webview: 对自定义编辑器遵循默认的 localResourceRoots [PR #312492](https://github.com/microsoft/vscode/pull/312492)
+* [@OrenMe (Oren Me)](https://github.com/OrenMe): 为 markdown 自定义添加结构化预览 [PR #312545](https://github.com/microsoft/vscode/pull/312545)
+* [@shaypet](https://github.com/shaypet): 向 TitleAndDescriptionProvider 添加 compareBranch 以增强 PR 上下文 [PR #312326](https://github.com/microsoft/vscode/pull/312326)
+* [@xAndreiLi (Andrei Li)](https://github.com/xAndreiLi): feat(plugins): 允许组件路径在仓库边界内 [PR #308776](https://github.com/microsoft/vscode/pull/308776)
+* [@yemohyleyemohyle](https://github.com/yemohyleyemohyle)
+  * Yemohyle/添加到遥测 [PR #311837](https://github.com/microsoft/vscode/pull/311837)
+  * Yemohyle/添加到扩展遥测 [PR #313159](https://github.com/microsoft/vscode/pull/313159)
+* [@yogeshwaran-c (Yogeshwaran C)](https://github.com/yogeshwaran-c)
+  * 向 editor.hover.enabled 添加 'hint' 和 'info' 搜索关键字 [PR #313491](https://github.com/microsoft/vscode/pull/313491)
+  * 向编辑器组设置添加 'pane' 搜索关键字 [PR #313490](https://github.com/microsoft/vscode/pull/313490)
+* [@mizdra](https://github.com/mizdra): 修复由通过 require(esm) 加载的模块导入 'vscode' 引起的死锁 [PR #285417](https://github.com/microsoft/vscode/pull/285417)
+
+对 `vscode-pull-request-github` 的贡献：
+
+* [@mohamedamara1 (Mohamed Amara)](https://github.com/mohamedamara1): 从 PR 概览中显示关联的问题 #5824 [PR #6835](https://github.com/microsoft/vscode-pull-request-github/pull/6835)
+
+---
+
+我们非常感谢用户在新功能准备好后立即试用，请经常回来看一看，了解最新的更新内容。
+
+>如果您想阅读之前 VS Code 版本的发布说明，请访问 [code.visualstudio.com](https://code.visualstudio.com) 上的[更新](https://code.visualstudio.com/updates)页面。
+
+<a id="scroll-to-top" role="button" title="滚动到顶部" aria-label="scroll to top" href="#"><span class="icon"></span></a>
+<link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/>
+</body></html>

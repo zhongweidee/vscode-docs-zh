@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>v1_123 - VS Code 发布说明</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
+h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
+a{color:#0078d4}</style></head>
+<body><a href="../index.html">← 首页</a>
+# Visual Studio Code 1.123
+
+在 [LinkedIn](https://www.linkedin.com/showcase/vs-code)、[X](https://go.microsoft.com/fwlink/?LinkID=533687)、[Bluesky](https://bsky.app/profile/vscode.dev) 上关注我们 <!-- %IF INSIDERS % | 在 [X](https://x.com/VSCodeChangelog) 或 [Bluesky](https://bsky.app/profile/vscodechangelog.bsky.social) 上关注 Insiders 更新日志 %ENDIF % --> <!-- %IF IN_PRODUCT % | [在线查看](https://code.visualstudio.com/updates)%ENDIF % -->
+
+---
+
+_发布日期：2026年6月3日_
+
+**更新 1.123.1**：此更新解决了这些[安全问题](https://github.com/microsoft/vscode/issues?q=is%3Aissue+is%3Aclosed+milestone%3A1.123.1)。
+
+**更新 1.123.2**：此更新解决了这些[问题](https://github.com/microsoft/vscode/issues?q=is%3Aissue+is%3Aclosed+milestone%3A1.123.2)。
+
+<!-- DOWNLOAD_LINKS_PLACEHOLDER -->
+
+---
+
+欢迎来到 Visual Studio Code 1.123 版本。此版本改进了您与智能体和集成浏览器的工作方式。
+
+* [更大的上下文窗口](#anthropic-和-openai-模型的-1m-上下文窗口)：支持 Anthropic 和 OpenAI 模型的 1M 上下文窗口。
+* [会话同步](#会话同步与编年史)：自动跨机器同步您的聊天会话，并可搜索您的编码历史记录。
+* [智能体窗口](#智能体窗口预览)：并排打开多个智能体会话，以并行比较或审查工作。
+* [研究智能体](#研究智能体预览)：对某个主题进行深度研究，并获得一份详尽、引用充分的 Markdown 报告。
+* [集成浏览器更新](#集成浏览器)：收藏页面以便快速访问，以及更多捕获浏览器截图的方式。
+
+> 别忘了回看 [Build 2026 上的 VS Code Live](https://aka.ms/VSCode/Livestage)！
+
+祝编码愉快！
+
+---
+
+<!-- %IF STABLE %
+VS Code 正在逐步向所有用户推出。在 VS Code 中使用**检查更新**可立即获取最新版本。
+
+要尽早试用新功能，请[**下载每日 Insiders 构建版**](https://code.visualstudio.com/insiders)，其中包含最新更新。
+
+---
+%ENDIF % -->
+
+<!-- TOC
+<div class="toc-nav-layout">
+  <nav id="toc-nav">
+    <div>本次更新内容</div>
+    <ul>
+      <li><a href="#智能体">智能体</a></li>
+      <li><a href="#语言模型">语言模型</a></li>
+      <li><a href="#集成浏览器">集成浏览器</a></li>
+      <li><a href="#编辑器体验">编辑器体验</a></li>
+      <li><a href="#致谢">致谢</a></li>
+    </ul>
+  </nav>
+  <div class="notes-main">
+导航结束 -->
+
+## 智能体
+
+### 会话同步与编年史
+
+**设置**：`setting(chat.sessionSync.enabled)`
+
+您的聊天会话现在会自动同步到您的 GitHub 账户，为您提供一个可跨机器和工作区搜索的个人工作历史记录。
+
+每个会话都会记录对话内容、您操作过的文件、仓库上下文（仓库、分支、时间戳），以及过程中引用的任何拉取请求、议题或提交。
+
+借助聊天中新增的编年史命令（`/chronicle`），您可以充分利用这些历史记录：
+
+* 对过去的会话提出自然语言问题
+* 生成站会报告
+* 获取个性化生产力建议
+* 按主题、文件或 PR 搜索您的编码历史记录
+
+要启用会话同步，请开启 `setting(chat.sessionSync.enabled)`。您可以在 VS Code 状态栏中的 Copilot 状态仪表板中查看会话同步的状态。
+
+![会话同步状态消息在 Copilot 状态仪表板中的截图。](images/1_123/session-sync-status.webp)
+
+有关更多详细信息，请参阅[会话同步](https://code.visualstudio.com/docs/agents/sessions/session-sync)和[编年史](https://code.visualstudio.com/docs/agents/sessions/session-insights)文档。
+
+### 在沙箱中重试依赖网络的命令
+
+**设置**：`setting(chat.agent.sandbox.retryWithAllowNetworkRequests)`
+
+当_本地_智能体运行的终端命令需要访问未配置为允许域的域时，该命令会自动在沙箱内重试，并获得不受限制的网络访问权限。如果之后仍然失败，则会回退到非沙箱执行。这使得像 `git fetch` 这样的依赖网络的操作能够完成，同时保持文件系统保护措施。
+
+### 智能体窗口（预览）
+
+[智能体窗口](https://aka.ms/VSCode/Agents/docs)是一个专用的配套窗口，经过优化，可用于跨项目、跨机器探索、迭代和审查智能体会话。在此版本中，我们重点让您能够并排处理多个会话。
+
+#### 多个并行会话
+
+您现在可以在智能体窗口中同时打开多个会话。除了活动会话外，还可以通过以下方式在旁边打开另一个会话：
+
+* 在会话列表中的会话上下文菜单中选择**在侧边打开**。
+* 将会话从会话列表拖放到会话视图区域。
+* 按住 `kbstyle(Alt)` 并在会话列表中选择一个会话。
+
+<video src="images/1_123/sessions-grid.mp4" title="视频展示智能体窗口中多个智能体会话并排打开的情况。" autoplay loop controls muted></video>
+
+尽管可以同时显示多个会话，但任何时候只有一个处于活动状态的会话。**终端**、**文件**和**更改**视图都基于当前活动的会话运行，因此切换活动会话会更新这些视图以反映其状态。
+
+默认情况下，在会话列表中选择一个会话会用所选会话替换活动会话视图。要防止会话视图被替换，请使用视图右上角的固定操作将其固定。固定的会话视图永远不会被替换——选择另一个会话会将其打开到一个未固定的视图中。如果每个会话视图都已固定，则所选会话将在侧边打开。
+
+使用会话视图右上角的最大化操作可将其展开到所有打开的会话视图之上，让您专注于单个会话而不关闭其他会话。
+
+有关更多详细信息，请参阅[智能体窗口文档](https://aka.ms/VSCode/Agents/docs)。
+
+### 研究智能体（预览）
+
+> **注意**：研究智能体目前处于预览阶段，仅在 Insiders 的 Copilot CLI（本地）会话中可用。
+
+当您需要理解不熟悉的代码、比较不同方法或了解某个库或 API 的工作原理时，快速聊天回答并不总是足够的。研究智能体通过对某个主题进行深度研究，从您的代码库、相关的 GitHub 仓库和网络中收集和综合信息，生成一份详尽、引用充分的 Markdown 报告。
+
+研究智能体注重深度而非速度，并且只有只读访问权限，因此它负责研究和报告，而不是更改您的代码。要运行它，请在 Copilot CLI（本地）会话的聊天输入框中输入 `/research`，后跟您的研究主题。
+
+有关更多详细信息，请参阅[使用研究智能体进行深度研究](https://code.visualstudio.com/docs/agents/agent-types/copilot-cli#run-deep-research-with-the-research-agent)。
+
+## 语言模型
+
+### Anthropic 和 OpenAI 模型的 1M 上下文窗口
+
+VS Code 现在支持兼容的 Anthropic 和 OpenAI 模型的 100 万 token 上下文窗口。这个扩展的上下文窗口使您能够处理更大的代码库和更长的对话，而不会丢失重要的上下文信息。当使用支持的模型（如 Claude Opus 4.7 和 GPT-5.5）时，扩展的上下文窗口可用。
+
+![截图显示扩展的上下文大小选项。](images/1_122/extended-context-2.webp)
+
+> **注意**：更大的上下文窗口每次交互可能会消耗更多的 token，这会在基于使用量的计费下增加 AI 信用额度消耗。
+
+## 集成浏览器
+
+### 收藏页面
+
+我们将集成浏览器中的地址栏重新设计为一个更强大的体验，您不仅可以输入 URL，还可以收藏页面，并轻松访问收藏夹和打开的标签页。
+
+要将页面添加到收藏夹，请选择浏览器 URL 栏中的星形图标。
+
+![集成浏览器截图，突出显示浏览器 URL 栏中标记为"添加到收藏夹"的星形按钮。](images/1_123/browser-favorite-button.webp)
+
+当您选择 URL 栏时，可以看到您的收藏页面列表和打开的标签页。
+
+![截图显示浏览器 URL 栏周围弹出面板，展示收藏夹和打开的标签页。](images/1_123/browser-url-bar.webp)
+
+### 更多捕获截图的方式
+
+**设置**：`setting(workbench.browser.experimentalUserTools.enabled)`
+
+上一版本引入了**添加截图到聊天**功能，允许您将当前浏览器视口的截图作为上下文附加到聊天中。这对于 UI 相关的任务（例如调试布局问题）特别有用。
+
+在此版本中，我们添加了两个相关功能：
+
+* **添加区域截图到聊天**：对您选择的矩形区域进行截图，并将该截图添加为聊天上下文。
+* **添加整页截图到聊天（实验性）**：对整个网页进行截图，甚至包括当前视口以外的部分，并将该截图添加为聊天上下文。此实验性功能需要启用 `setting(workbench.browser.experimentalUserTools.enabled)` 设置。
+
+![集成浏览器的"添加到聊天"菜单截图，显示"添加区域截图到聊天"和"添加整页截图到聊天（实验性）"选项，捕获的截图作为上下文附加在聊天视图中。](images/1_123/browser-screenshot-area-fullpage.webp)
+
+## 编辑器体验
+
+### 扩展延迟自动更新
+
+VS Code 现在会在自动更新扩展至新发布的版本之前，应用两小时的延迟。当启用自动更新时，新版本会在发布两小时后自动更新，为防范有问题或可能被入侵的版本提供了一层额外的保护。
+
+这绝不会妨碍您，因为您仍然可以随时使用**更新**按钮立即更新任何扩展。在等待更新期间，扩展的详细信息视图会说明为何尚未更新以及自动更新将在何时进行。
+
+> **注意**：此延迟不适用于来自受信任发布者（如 Microsoft、GitHub 和 OpenAI）的扩展。这些扩展会继续立即更新。
+
+![扩展截图，显示延迟信息和更新计划。](images/1_123/extension-delayed-autoupdate.webp)
+
+
+## 致谢
+
+对我们的问题跟踪做出的贡献：
+
+* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
+* [@RedCMD (RedCMD)](https://github.com/RedCMD)
+* [@IllusionMH (Andrii Dieiev)](https://github.com/IllusionMH)
+* [@albertosantini (Alberto Santini)](https://github.com/albertosantini)
+
+对 `vscode` 的贡献：
+
+* [@aaronpowell (Aaron Powell)](https://github.com/aaronpowell)：为插件市场添加 marketplace ref 支持 [PR #317901](https://github.com/microsoft/vscode/pull/317901)
+* [@goingforstudying-ctrl](https://github.com/goingforstudying-ctrl)：修复：为 browser-emulation-toolbar-label 添加 white-space: nowrap [PR #318935](https://github.com/microsoft/vscode/pull/318935)
+* [@guomaggie](https://github.com/guomaggie)：[搜索子智能体] 处理上下文窗口超出限制的错误 [PR #316529](https://github.com/microsoft/vscode/pull/316529)
+* [@maruthang (Maruthan G)](https://github.com/maruthang)：修复：合并 URI 标志以防止 Windows 上 Electron 参数过滤 [PR #308150](https://github.com/microsoft/vscode/pull/308150)
+* [@oded-ist (Oded S)](https://github.com/oded-ist)：修复 read_cell_output 错误地将所有输出报告为过大 [PR #318148](https://github.com/microsoft/vscode/pull/318148)
+* [@PenguinDOOM (Penguin)](https://github.com/PenguinDOOM)：修复 BYOK 无效的有状态标记重试 [PR #317292](https://github.com/microsoft/vscode/pull/317292)
+* [@rebornix (Peng Lyu)](https://github.com/rebornix)：添加移动端多差异视图 [PR #318081](https://github.com/microsoft/vscode/pull/318081)
+* [@SimonSiefke (Simon Siefke)](https://github.com/SimonSiefke)
+  * 修复：扩展操作中的内存泄漏 [PR #315054](https://github.com/microsoft/vscode/pull/315054)
+  * 修复：ipc.electron.ts 中的内存泄漏 [PR #317846](https://github.com/microsoft/vscode/pull/317846)
+  * 修复：搜索结果中的内存泄漏 [PR #282309](https://github.com/microsoft/vscode/pull/282309)
+* [@SLdragon (rentu)](https://github.com/SLdragon)：功能：为 nes/inline 补全提供程序添加 languageDiagnosticsService 选项 [PR #317678](https://github.com/microsoft/vscode/pull/317678)
+* [@Tyriar (Daniel Imms)](https://github.com/Tyriar)：修复：移除 shell 集成测试中 Promise.race 内部的 await [PR #319068](https://github.com/microsoft/vscode/pull/319068)
+
+---
+
+我们非常感谢大家在新功能准备就绪后立即试用，请经常回来查看并了解最新动态。
+
+>如果您想阅读之前 VS Code 版本的发布说明，请访问 [code.visualstudio.com](https://code.visualstudio.com) 上的[更新](https://code.visualstudio.com/updates)页面。
+
+<a id="scroll-to-top" role="button" title="滚动到顶部" aria-label="scroll to top" href="#"><span class="icon"></span></a>
+<link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/>
+</body></html>

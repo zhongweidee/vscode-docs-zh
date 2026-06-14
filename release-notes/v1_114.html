@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>v1_114 - VS Code 发布说明</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
+h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
+a{color:#0078d4}</style></head>
+<body><a href="../index.html">← 首页</a>
+# Visual Studio Code 1.114
+
+关注我们的 [LinkedIn](https://www.linkedin.com/showcase/vs-code)、[X](https://go.microsoft.com/fwlink/?LinkID=533687)、[Bluesky](https://bsky.app/profile/vscode.dev) <!-- %IF INSIDERS % | 关注 Insiders 更新日志的 [X](https://x.com/VSCodeChangelog) 或 [Bluesky](https://bsky.app/profile/vscodechangelog.bsky.social) %ENDIF % --> <!-- %IF IN_PRODUCT % | [在线查看](https://code.visualstudio.com/updates)%ENDIF % -->
+
+---
+
+_发布日期：2026 年 4 月 1 日_
+
+<!-- DOWNLOAD_LINKS_PLACEHOLDER -->
+
+---
+
+欢迎来到 Visual Studio Code 1.114 版本。此版本的重点是**简化聊天体验**。
+
+* [**预览视频**](#图像轮播中的视频预览)：在聊天附件和资源管理器上下文菜单的图像轮播中预览视频。
+
+* [**复制聊天响应**](#复制聊天中的最终响应)：复制最终的 Markdown 聊天响应，以便轻松分享。
+
+* [**故障排除聊天**](#对历史聊天会话进行故障排除预览)：使用 `/troubleshoot` 诊断之前会话中的聊天自定义问题。
+
+* [**简化的代码搜索**](#工作区搜索简化)：获得更快、更一致的语义搜索结果。
+
+祝编程愉快！
+
+---
+
+<!-- %IF STABLE %
+VS Code 正在逐步向所有用户推出。请在 VS Code 中使用**检查更新**以立即获取最新版本。
+
+要尽快体验新功能，请[**下载每日更新的 Insiders 版本**](https://code.visualstudio.com/insiders)，该版本包含随时可用的最新更新。
+
+---
+%ENDIF % -->
+
+<!-- TOC
+<div class="toc-nav-layout">
+  <nav id="toc-nav">
+    <div>本次更新内容</div>
+    <ul>
+      <li><a href="#chat-experience">聊天体验</a></li>
+      <li><a href="#languages">编程语言</a></li>
+      <li><a href="#enterprise">企业版</a></li>
+      <li><a href="#contributions-to-extensions">对扩展的贡献</a></li>
+      <li><a href="#proposed-apis">提议的 API</a></li>
+      <li><a href="#deprecated-features-and-settings">已弃用的功能和设置</a></li>
+      <li><a href="#notable-fixes">值得注意的问题修复</a></li>
+      <li><a href="#thank-you">致谢</a></li>
+    </ul>
+  </nav>
+  <div class="notes-main">
+导航结束 -->
+
+## 聊天体验
+
+### 图像轮播中的视频预览
+
+**设置**：`setting(imageCarousel.chat.enabled)`、`setting(imageCarousel.explorerContextMenu.enabled)`
+
+[在 1.113 版本中引入的](https://code.visualstudio.com/updates/v1_113#_images-preview-for-chat-attachments)图像轮播现在也支持视频。您可以播放和浏览来自聊天附件或资源管理器上下文菜单的视频。
+
+<video src="images/1_114/video-carousel.mp4" title="在图像轮播中播放视频的演示视频。" autoplay loop controls muted></video>
+
+该查看器包括：
+
+* **视频播放**，带有控制按钮
+* **导航**，使用箭头或缩略图浏览所有图像和视频
+
+### 复制聊天中的最终响应
+
+聊天视图已经提供了复制整个对话或特定响应的命令。然而，这些命令也会包含代理的思考过程和工具调用。
+
+对于那些只需要复制最终响应的情况，现在聊天上下文菜单中新增了**复制最终响应**命令，该命令会复制代理响应中的最后一个 Markdown 段落，即在所有工具调用执行之后的部分。
+
+![复制最终响应上下文菜单命令的屏幕截图。](images/1_114/chat-copy-final-response.webp)
+
+### 工作区搜索简化
+
+`#codebase` 工具使 Copilot 能够对您的代码库进行语义搜索。这在拥有数万到数十万份文件的代码库中查找相关代码片段时尤其有用。
+
+当 `#codebase` 工具首次推出时，它是为 Copilot 的提问流程设计的：您提出问题或请求编辑，Copilot 直接在其响应中产生结果。现在，几乎所有的 Copilot 交互都是代理式的，代理可以运行多个工具并迭代后才产生编辑或响应，原始的 `#codebase` 设计的许多部分已不再适用。
+
+第一个重大变化是 `#codebase` 现在纯粹用于语义搜索。以前，它可以回退到不太准确（且效率较低）的模糊文本搜索。如果需要，代理仍然可以进行文本和模糊搜索，但我们希望将 `#codebase` 纯粹地聚焦在语义搜索上。
+
+我们还简化了代码库索引的管理方式。正是这个索引使 `#codebase` 工具能够快速提供语义搜索结果。以前，我们有"本地索引"和"远程索引"的概念。本地索引被限制在几千个文件以内，并且不总是语义化的。远程索引则是为给定仓库远程存储的，可以在团队间共享，并支持数百万个文件。
+
+现在只有一个单一状态：您的代码库是否已进行语义索引？不再区分本地和远程。在后台，索引的某些部分可能仍然存储在您的计算机上，而某些部分可能来自远程源，但您不再需要自行管理这些索引。
+
+以下这些变化对使用 Copilot 意味着什么：
+
+* `#codebase` 工具现在始终是语义化的，并提供一致的结果。
+
+* 当合理时，Copilot 会自动使用 `#codebase` 进行语义搜索。我们按需为您构建索引，并自动使用它们。您不需要自行管理索引。
+
+* 之前显示为"已索引"的工作区需要重新索引。这通常是因为它们使用的是本地的非语义索引。
+
+* 特别大型的代码库如果没有 GitHub 仓库，目前可能无法被索引。我们正在逐步推出对这些代码库的索引支持。
+
+即使您的工作区没有进行语义索引，我们发现您仍然可以通过 Copilot 的其他搜索方法（文本、grep、符号）获得良好的结果。
+
+所有这些变化将使与代理的协作更快，并为模型提供更高质量的上下文。我们还相信这些变化简化了 Copilot 的使用，并使其更容易理解可用的工具。
+
+更多详细信息，请参见[工作区指南](https://code.visualstudio.com/docs/agents/reference/workspace-context)。
+
+### 对历史聊天会话进行故障排除（预览）
+
+**设置**：`setting(github.copilot.chat.agentDebugLog.enabled)`、`setting(github.copilot.chat.agentDebugLog.fileLogging.enabled)`
+
+故障排除技能（通过 `/troubleshoot` 调用）通过分析代理调试日志并展示有关代理行为的洞察，帮助诊断聊天问题。例如，调查为什么自定义指令被忽略或响应变慢。
+
+从本版本开始，您现在可以在故障排除时引用任何之前的聊天会话。这使得事后调查问题变得更加容易，无需再次重现问题。
+
+要对之前的会话进行故障排除，请使用 `/troubleshoot` 命令并在提示中包含 `#session`。这将触发一个会话选择器，您可以从之前的聊天会话列表中进行选择。
+
+![聊天输入的屏幕截图，显示带有会话选择器的故障排除提示，其中列出了之前的会话。](images/1_114/troubleshoot-previous-session.webp)
+
+> **提示**：您也可以通过选择 `+`（**添加上下文**）> **会话**来附加会话。
+
+## 编程语言
+
+### TypeScript 6.0
+
+我们的 JavaScript 和 TypeScript 支持现在使用 TypeScript 6.0。这一重大更新包含重要的修复和改进。值得注意的是，本次 TypeScript 版本还弃用了一些旧的选项，为 [TypeScript 7.0 重写](https://devblogs.microsoft.com/typescript/typescript-native-port/)做准备。
+
+您可以在 [TypeScript 博客](https://devblogs.microsoft.com/typescript/announcing-typescript-6.0/)上阅读有关 TypeScript 6.0 版本的所有内容。
+
+### Python
+
+* Python 环境扩展中对环境文件通知和环境管理器选择优先级的各种错误修复：
+
+    * 当前工作区保存的解释器选择现在会在重启后优先于终端激活的虚拟环境或 conda 环境。
+    * 环境文件更改通知现在包含"不再显示"选项，可永久关闭该通知。
+
+    _[vscode-python#25867](https://github.com/microsoft/vscode-python/issues/25867)、[vscode-python-environments#1347](https://github.com/microsoft/vscode-python-environments/issues/1347)、[vscode-python-environments#1393](https://github.com/microsoft/vscode-python-environments/pull/1393)_
+
+* Python 环境扩展现在在检测到 Pixi 环境时会推荐社区 Pixi 扩展，并将 Pixi 包含在环境管理器优先级顺序中。_[vscode-python-environments#1291](https://github.com/microsoft/vscode-python-environments/pull/1291)_
+
+## 企业版
+
+### 用于禁用 Claude 代理的组策略
+
+管理员现在可以使用组策略来禁用聊天中的 Claude 代理集成。应用此策略后，`setting(github.copilot.chat.claudeAgent.enabled)` 设置将由组织管理，用户无法启用 Claude 代理。
+
+此策略配置为布尔值，键名为 `Claude3PIntegration`。在企业文档中了解更多关于[设备管理策略](https://code.visualstudio.com/docs/setup/enterprise#_device-management)的信息。
+
+## 对扩展的贡献
+
+### GitHub Pull Requests
+
+[GitHub Pull Requests](https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github) 扩展持续取得进展，该扩展使您能够处理、创建和管理拉取请求和问题。新功能包括：
+
+* 创建 PR 视图中的分支名称现在已缓存，以加快目标分支的加载速度。
+* PR 和问题概览 Web 视图中的 GitHub 永久链接现在会在工作区中存在该文件时打开对应的本地文件。
+
+查看扩展的 [0.134.0 版本更新日志](https://github.com/microsoft/vscode-pull-request-github/blob/main/CHANGELOG.md#01340)，了解该版本的全部内容。
+
+## 提议的 API
+
+### 细粒度工具审批
+
+具有审批流程的语言模型工具现在可以将审批范围限定到特定的参数组合。
+
+例如，内置的"运行 VS Code 命令"工具可以运行任何 VS Code 命令。用户可能觉得始终批准 `editor.action.formatDocument` 没有问题，但不想批准其他命令。使用此 API，工具实现可以将审批范围限定到特定的命令，这样用户就可以逐一批准每个命令。
+
+```typescript
+export interface LanguageModelToolConfirmationMessages {
+	/**
+	 * 当设置时，将显示一个按钮，允许用户批准此特定的工具和参数组合。
+	 * 该值显示为审批选项的标签。
+	 *
+	 * 例如，读取文件的工具可以将其设置为 `"允许读取 'foo.txt'"`，
+	 * 这样用户就可以批准该特定文件，而无需批准该工具的所有调用。
+	 */
+	approveCombination?: string | MarkdownString;
+}
+```
+
+有关更多详细信息，请参见完整的 API 提案：[细粒度工具审批](https://github.com/microsoft/vscode/blob/af50a47c13e23e0b3c46719dbd92fe00144362a5/src/vscode-dts/vscode.proposed.toolInvocationApproveCombination.d.ts)。
+
+查看在 [Copilot Chat 扩展](https://github.com/microsoft/vscode-copilot-chat/blob/a71b716b1ea82855b90bdab8cd307396b601475e/src/extension/tools/node/vscodeCmdTool.tsx#L101-L105)中使用该 API 的示例。
+
+## 已弃用的功能和设置
+
+### 本版本中新弃用的功能
+
+无
+
+### 即将弃用的功能
+
+* **编辑模式**自 VS Code 1.110 版本起已正式弃用。用户可以通过 VS Code 设置 `setting(chat.editMode.hidden)` 暂时重新启用编辑模式。此设置将持续支持到 1.125 版本。从 1.125 版本开始，编辑模式将被完全移除，不再能通过设置启用。
+
+## 值得注意的问题修复
+
+* [microsoft/vscode #303908](https://github.com/microsoft/vscode/issues/303908) 修复在集成浏览器中，VS Code 快捷键优先于页面快捷键的问题
+* [microsoft/vscode #299777](https://github.com/microsoft/vscode/issues/299777) 修复在集成浏览器中调试暂停时"将元素添加到聊天"功能无法使用的问题
+
+## 致谢
+
+对我们的问题跟踪的贡献：
+
+* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
+* [@RedCMD (RedCMD)](https://github.com/RedCMD)
+* [@IllusionMH (Andrii Dieiev)](https://github.com/IllusionMH)
+* [@albertosantini (Alberto Santini)](https://github.com/albertosantini)
+
+对 `vscode` 的贡献：
+
+* [@a77ming](https://github.com/a77ming)：修复代理会话欢迎页面的换行标题间距 [PR #304686](https://github.com/microsoft/vscode/pull/304686)
+* [@AshtonYoon (Ashton Yoon)](https://github.com/AshtonYoon)：修复 Markdown 预览中代码块的卡顿滚动问题 [PR #287050](https://github.com/microsoft/vscode/pull/287050)
+* [@buley (Tay)](https://github.com/buley)：修复：销毁读取流以防止文件描述符泄漏 [PR #303395](https://github.com/microsoft/vscode/pull/303395)
+* [@ConsoleTVs (Erik C. Forés)](https://github.com/ConsoleTVs)：修复(mcp)：解析代理插件 MCP 服务器定义中的环境变量 [PR #303156](https://github.com/microsoft/vscode/pull/303156)
+* [@jonathanrao99 (Jonathan Thota)](https://github.com/jonathanrao99)：浏览器：防止新标签页在快速选择器中闪烁 [PR #304297](https://github.com/microsoft/vscode/pull/304297)
+* [@ShehabSherif0 (Shehab Sherif)](https://github.com/ShehabSherif0)
+  * 修复 fuzzyScore2 测试断言中的运算符优先级问题 [PR #304449](https://github.com/microsoft/vscode/pull/304449)
+  * 修复性能视图中因复制粘贴错误导致启动计数被屏蔽的问题 [PR #304452](https://github.com/microsoft/vscode/pull/304452)
+* [@Tyriar (Daniel Imms)](https://github.com/Tyriar)：从通知、分类器、事件等模块中移除自身引用 [PR #304498](https://github.com/microsoft/vscode/pull/304498)
+* [@xingsy97 (xingsy97)](https://github.com/xingsy97)
+  * 键盘布局 - 替换 macOS 布局标签中的所有破折号和点号 [PR #303971](https://github.com/microsoft/vscode/pull/303971)
+  * 编辑器 - 修复粘贴偏好过滤器匹配所有提供程序的问题 [PR #304044](https://github.com/microsoft/vscode/pull/304044)
+  * 设置编辑器 - 避免重复刷新扩展列表 [PR #303957](https://github.com/microsoft/vscode/pull/303957)
+  * 设置：使用本地 StopWatch 避免并发搜索之间的计时损坏 [PR #304361](https://github.com/microsoft/vscode/pull/304361)
+  * mergeEditor：将 removeDiffs 从 O(K*N) 优化为单遍 O(N) [PR #304404](https://github.com/microsoft/vscode/pull/304404)
+  * 时间线：修复切换窗格可见性时的内存泄漏 [PR #304668](https://github.com/microsoft/vscode/pull/304668)
+  * 笔记本：修复未使用的单元格查找和损坏的选择去重问题 [PR #305105](https://github.com/microsoft/vscode/pull/305105)
+  * 聊天 - 移除已弃用的提示属性拼写 [PR #301976](https://github.com/microsoft/vscode/pull/301976)
+* [@yogeshwaran-c (Yogeshwaran C)](https://github.com/yogeshwaran-c)
+  * 修复：防止终端面板覆盖 terminalEditorActive 上下文键 [PR #304802](https://github.com/microsoft/vscode/pull/304802)
+  * 修复：使 HTML 示例代码片段现代化 [PR #304818](https://github.com/microsoft/vscode/pull/304818)
+  * 修复：使测试图标颜色继承列表错误和警告的前景色 [PR #304959](https://github.com/microsoft/vscode/pull/304959)
+  * 修复：为没有明确宽度和高度尺寸的 SVG 启用缩放 [PR #304973](https://github.com/microsoft/vscode/pull/304973)
+  * 修复：在会话间持久化测试覆盖率排序顺序 [PR #304979](https://github.com/microsoft/vscode/pull/304979)
+  * 修复：即使没有可见编辑器也将用户偏好发送到 TS 服务器 [PR #304987](https://github.com/microsoft/vscode/pull/304987)
+
+对 `vscode-pull-request-github` 的贡献：
+
+* [@Daniel-Aaron-Bloom](https://github.com/Daniel-Aaron-Bloom)：在 Web 视图中为永久链接添加本地文件链接 [PR #8583](https://github.com/microsoft/vscode-pull-request-github/pull/8583)
+
+对 `monaco-editor` 的贡献：
+
+* [@pgoslatara (Pádraic Slattery)](https://github.com/pgoslatara)：杂项：更新过时的 GitHub Actions 版本 [PR #5214](https://github.com/microsoft/monaco-editor/pull/5214)
+
+---
+
+我们非常感谢大家在功能准备好后立即试用，请经常回到这里查看并了解最新动态。
+
+>如果您想阅读之前 VS Code 版本的发布说明，请访问 [code.visualstudio.com](https://code.visualstudio.com) 上的[更新页面](https://code.visualstudio.com/updates)。
+
+<a id="scroll-to-top" role="button" title="返回顶部" aria-label="返回顶部" href="#"><span class="icon"></span></a>
+<link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/>
+</body></html>

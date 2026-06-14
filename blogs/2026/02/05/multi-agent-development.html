@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>multi-agent-development - VS Code 博客</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
+h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
+a{color:#0078d4}</style></head>
+<body><a href="../index.html">← 首页</a>
+
+# 你的多智能体开发之家
+
+2026年2月5日，VS Code 团队，[@code](https://x.com/code)
+
+智能体无处不在。我们一直在努力将 VS Code 打造成多智能体开发的家园——一个让你运行智能体、管理会话，并为每项任务选择合适工具的地方，无需切换编辑器或操心订阅问题。
+
+随着 [2026年1月版本（1.109）](https://aka.ms/VSCode/109) 的发布，我们迈出了自去年在 GitHub Universe 上阐述这一愿景以来最大的一步。现在，你可以直接在 GitHub Copilot 旁边运行 Claude 和 Codex 智能体。当你需要快速、交互式的帮助时，可以将它们作为本地智能体启动；对于较长时间运行的任务，则可以将异步任务委派给云端智能体。我们还对智能体会话视图进行了更新，让你在一个地方集中管理所有智能体。
+
+## 管理你的所有智能体
+
+智能体领域的发展日新月异。我们所有人仍在探索如何与智能体协作——任务明确时启动后就不用管它，需要控制时亲自动手，或者介于两者之间；这取决于具体任务，而且随时会变化。无论哪种方式，更多的智能体意味着更多需要跟踪的会话。
+
+智能体会话视图为你提供一个集中的位置，让你查看所有的智能体会话——本地、后台、云端——并在工作时在它们之间切换。
+
+启动一个云端智能体来处理定义明确的重构任务，然后切换到本地会话进行更具探索性的工作。监控一个后台任务，或者让它在后台运行，同时处理其他事务。
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/BsAHunfVwNs?si=6m4vsMuc2Wb0YRpb" title="展示统一智能体体验的视频。" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+上面的演示说明了开发者如何不断地同时处理多项事务：规划改进、构建功能、审查结果、调试错误。在每一个时刻，你都需要选择合适的工具：当需要亲自掌控时使用本地智能体，当需要隔离更改时使用后台或云端智能体，当需要多个进程时使用并行子智能体。
+
+以下快速概览可帮助你决定何时使用本地、后台或云端智能体：
+
+| 标准 | 本地 | 后台 | 云端 |
+|----------|-------|------------|-------|
+| 运行位置 | 你的机器 | 你的机器（CLI） | 远程基础设施 |
+| 交互方式 | 交互式 | 无人值守（异步） | 无人值守（异步），自主运行 |
+| 团队可见性 | 否 | 否 | 是（PR/Issue） |
+| 隔离性 | 否（直接工作区） | 是（工作树） | 是（远程） |
+
+现在你可以运行多种智能体类型，下一个问题是使用哪些智能体。
+
+## 你的智能体，你的选择
+
+从 1.109 版本开始，你可以在同一个 GitHub Copilot 订阅下运行 Claude 和 Codex 智能体：本地运行或云端运行皆可。
+
+Codex 作为本地智能体[已推出数月](https://code.visualstudio.com/blogs/2025/11/03/unified-agent-experience)。Claude 是新增的。它使用 Anthropic 官方的 Claude Agent 框架，因此你可以获得与其他 Claude 实现相同的提示词、工具和整体架构。
+
+![VS Code 中会话类型选择器的截图，显示 Claude 和 Codex 智能体选项。](local-agents.png)
+
+GitHub 也[刚刚宣布了 Claude 和 Codex 智能体支持](https://github.blog/changelog/2026-02-04-claude-and-codex-are-now-available-in-public-preview-on-github/)。Copilot Pro+ 和企业版订阅用户现在即可在 VS Code 中将它们作为云端智能体使用。
+
+![VS Code 中合作伙伴智能体选择器的截图，显示 Claude 和 Codex 的选项。](cloud-agents.png)
+
+> [!NOTE]
+> 通过 `setting(github.copilot.chat.claudeAgent.enabled)` 设置来启用或禁用 Claude 智能体会话的支持。
+>
+> Codex 本地智能体的先决条件：Copilot Pro+ 订阅和 [OpenAI Codex 扩展](https://marketplace.visualstudio.com/items?itemName=openai.chatgpt)。
+
+这种统一方法的美妙之处在于，所有这些智能体都出现在同一个智能体会话视图中。你可以在它们之间委派任务、比较它们的输出，并为每项工作选择最合适的工具。
+
+## 用子智能体进行编排
+
+运行多个智能体是一回事，让它们协同工作则是另一回事。
+
+假设你正在添加一个新功能，你的智能体需要研究身份验证模式、检查代码库中类似功能的结构，并扫描相关文档。按顺序执行这些任务会消耗大量时间，并添加大量上下文，使智能体难以专注于重要事项。
+
+[子智能体](https://code.visualstudio.com/docs/agents/subagents)解决了这个问题。它们是上下文隔离的智能体，独立于你的主会话运行——你的主智能体委派工作，只有最终结果返回。中间的探索过程保持隔离，让你的主上下文保持清洁。
+
+本版本新增功能：VS Code 现在可以并行运行多个子智能体。一次发起多个任务，更快获得结果，并在此过程中节省高级请求。
+
+我们还增加了对子智能体正在执行的操作的更好可见性。你可以查看哪些任务正在运行、正在使用哪个智能体，并展开任何子智能体以查看完整的提示词和结果。
+
+<video src="subagents-clip.mp4" title="展示 VS Code 中并行子智能体的视频。" autoplay muted controls></video>
+
+将此功能与[自定义智能体](https://code.visualstudio.com/docs/agent-customization/custom-agents)结合使用，为每个子智能体赋予专门的行为：一个具有只读权限和网页搜索工具的研究智能体，一个具有完整编辑能力的实现智能体，一个专注于漏洞扫描的安全智能体。为每个智能体定义工具、指令和模型。使用[移交](https://code.visualstudio.com/docs/agent-customization/custom-agents#_handoffs)创建从规划到实现再到审查的工作流——所有操作都从你的主会话中进行编排。
+
+## 基于开放标准构建
+
+更多的智能体，更多的使用方式。但智能体的价值取决于你能让它们为你的工作流发挥多大作用。
+
+这就是开放标准的意义所在。
+
+[MCP Apps](https://code.visualstudio.com/blogs/2026/01/26/mcp-apps-support) 于上周推出。这是首个官方的 MCP 扩展，它允许工具调用返回直接在聊天中渲染的交互式 UI 组件：仪表板、表单、可视化、多步骤工作流。这为人机智能体协作创造了更丰富、更有效的机会。VS Code 是首个全面支持 MCP Apps 的主流 AI 代码编辑器，我们非常期待社区在此基础上构建出的成果。
+
+<video src="mcp-apps-wide-demo.mp4" title="展示 VS Code 中 MCP Apps 的视频。" autoplay muted controls></video>
+
+我们还将 [Agent Skills](https://code.visualstudio.com/docs/agent-customization/agent-skills)（Anthropic 用于扩展 AI 智能体的开放标准）正式发布。Skills 是专门的技能，帮助智能体产出高质量的结果——它们为测试策略、API 设计或性能优化等领域提供经过验证的指令。扩展作者现在甚至可以使用 `chatSkills` 贡献点，将 Skills 打包并与扩展一起分发。这意味着生态系统可以像分享代码片段和主题一样，分享专门的 AI 能力。
+
+## VS Code：你的统一智能体体验
+
+智能体正在改变我们的工作方式。你不应该只能选一个，也不应该每次有新的出现就要切换工具。在 VS Code 中，你可以运行你想要的智能体，用开放标准扩展它们，并从一个地方管理一切。
+
+一年前，我们刚刚推出智能体模式。现在你已经有了 Copilot、Claude 和 Codex 并肩运行，还有远超于此的更多功能。我们正在与你一起构建这一切，你的反馈将塑造未来的发展方向。在 [VS Code 仓库](https://github.com/microsoft/vscode/issues) 中给我们提交 Issue，或者在社交媒体上找到我们。这仅仅是开始。
+
+想观看这些功能的现场演示吗？加入我们于 2 月 19 日举办的 [Agent Sessions Day](https://youtube.com/live/tAezuMSJuFs)！
+
+祝你编码愉快！
+</body></html>

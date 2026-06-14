@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8"><title>v1_118 - VS Code 发布说明</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.8;max-width:800px;margin:0 auto;padding:20px;color:#333}
+h1{font-size:28px;border-bottom:1px solid #eee;padding-bottom:10px}
+a{color:#0078d4}</style></head>
+<body><a href="../index.html">← 首页</a>
+# Visual Studio Code 1.118
+
+在 [LinkedIn](https://www.linkedin.com/showcase/vs-code)、[X](https://go.microsoft.com/fwlink/?LinkID=533687)、[Bluesky](https://bsky.app/profile/vscode.dev) 上关注我们 <!-- %IF INSIDERS % | 在 [X](https://x.com/VSCodeChangelog) 或 [Bluesky](https://bsky.app/profile/vscodechangelog.bsky.social) 上关注 Insiders 更新日志 %ENDIF % --> <!-- %IF IN_PRODUCT % | [在线查看](https://code.visualstudio.com/updates)%ENDIF % -->
+
+---
+
+_发布日期：2026年4月29日_
+
+<!-- DOWNLOAD_LINKS_PLACEHOLDER -->
+
+---
+
+欢迎阅读 Visual Studio Code 1.118 版本更新。此版本扩展了您使用 Copilot 智能体的场景，并提升了其效率。以下是本版本的亮点：
+
+* [远程控制](#远程控制-copilot-cli-会话实验性功能)：通过 GitHub.com 或移动端远程跟踪和控制正在运行的 Copilot CLI 会话。
+
+* [代码库搜索](#代码库搜索与上下文)：在任意工作区中进行语义搜索，在 GitHub 仓库和组织中进行文本搜索，找到您需要的代码。
+
+* [技能的专属上下文](#技能的专属上下文实验性功能)：隔离技能执行，让主对话保持专注、回答更精准。
+
+* [聊天会话洞察](#chronicle实验性功能)：将聊天历史转化为站立会议报告、使用技巧以及关于过往工作的解答。
+
+* [企业管控](#批准的组织账号策略)：限制 AI 功能仅能访问管理员信任的组织。
+
+* [提升 Token 使用效率](#提升-token-使用效率)：以更低的 token 消耗从每次请求中获取更大价值。
+
+祝编码愉快！
+
+---
+
+<!-- %IF STABLE %
+VS Code 正在逐步向所有用户推出。在 VS Code 中使用**检查更新**即可立即获取最新版本。
+
+要尽早体验新功能，请[**下载每日更新的 Insiders 版本**](https://code.visualstudio.com/insiders)，其中包含最新的更新内容。
+
+---
+%ENDIF % -->
+
+<!-- TOC
+<div class="toc-nav-layout">
+  <nav id="toc-nav">
+    <div>本次更新内容</div>
+    <ul>
+      <li><a href="#智能体体验">智能体体验</a></li>
+      <li><a href="#代码库搜索与上下文">代码库搜索与上下文</a></li>
+      <li><a href="#聊天性能与历史记录">聊天性能与历史记录</a></li>
+      <li><a href="#无障碍功能">无障碍功能</a></li>
+      <li><a href="#编辑器体验">编辑器体验</a></li>
+      <li><a href="#语言支持">语言支持</a></li>
+      <li><a href="#扩展贡献">扩展贡献</a></li>
+      <li><a href="#远程开发">远程开发</a></li>
+      <li><a href="#工程改进">工程改进</a></li>
+      <li><a href="#已弃用的功能与设置">已弃用的功能与设置</a></li>
+      <li><a href="#致谢">致谢</a></li>
+    </ul>
+  </nav>
+  <div class="notes-main">
+导航结束 -->
+
+## 智能体体验
+
+### Visual Studio Code Agents（Insiders）
+
+> **注意**：Visual Studio Code Agents 应用目前处于预览阶段，仅在安装 VS Code Insiders 时可用。
+
+[Visual Studio Code Agents](https://aka.ms/VSCode/Agents/docs) 是一个与 VS Code Insiders 配套发布的配套应用。它提供了一个专注的、以智能体为先的环境，您可以在其中跨仓库运行并行会话，并迭代完成多步骤的编码任务。我们最初在 [1.115](https://code.visualstudio.com/updates/v1_115#_visual-studio-code-agents-preview) 中引入了 Agents 应用，并根据用户反馈持续进行改进。
+
+在此版本中，您可以直接从 VS Code Insiders 标题栏发现 Agents 应用，轻松进入智能体驱动的工作流。我们还发布了专门的 [Agents 文档](https://aka.ms/VSCode/Agents/docs) 帮助您快速上手。
+
+近期的功能亮点包括：
+
+* **VS Code 与 Agents 之间的共享状态**：Agents 应用与 VS Code Insiders 共享更多状态，使两者之间的切换更加顺畅。这包括身份验证（在 Windows 上）、AI 自定义设置、工作区信任、最近打开的文件夹以及键盘快捷键。
+
+* **Claude 智能体**：Claude 智能体现已在 Agents 应用中可用，您可以将其与 Copilot CLI 或 Copilot Cloud 等其他智能体一起用于编码任务。
+
+* **Web 客户端**：通过浏览器访问 Agents 体验，网址为 [insiders.vscode.dev/agents](https://insiders.vscode.dev/agents)，将智能体原生工作流带到任何运行了 Dev Tunnel 的机器上（通过 `code-insiders tunnel`）。要开始使用，请[下载 VS Code Insiders](https://code.visualstudio.com/insiders) 并运行 `code-insiders tunnel` 来设置 [Dev Tunnel](https://code.visualstudio.com/docs/remote/tunnels)。然后，您可以通过 Web 连接到它。
+
+* **后台浏览器**：集成的浏览器在会话之间保持状态，当您返回会话时不再刷新。这使得在智能体工作时使用集成浏览器预览更改，切换上下文更加流畅。
+
+* **更改的布局控件**：当智能体进行更改时，您可以将差异视图与聊天视图并排打开，或在模态窗口中打开以专注于更改。使用差异视图工具栏中的布局控件在不同显示模式之间切换。
+
+* **动态标题栏入口点**：一键在 VS Code Insiders 和 Agents 应用之间切换。从 VS Code Insiders 标题栏选择**在 Agents 中打开**即可进入 Agents 应用，或从 Agents 标题栏选择**在 VS Code 中打开**即可返回 Insiders 编辑器。
+
+您的反馈有助于我们塑造 Agents 体验——请继续通过[在 GitHub 上提交问题](https://github.com/microsoft/vscode/issues)与我们分享。您也可以浏览[现有问题](https://github.com/microsoft/vscode/issues?q=state%3Aopen%20label%3A%22agents-app%22)来查看其他人报告的内容，并就特定主题提供您的反馈。
+
+<video src="images/1_118/2649_AgentsDemo_v4.5.mp4" title="展示 VS Code Insiders 中 Agents 应用体验的视频。" controls></video>
+
+### 远程控制 Copilot CLI 会话（实验性功能）
+
+**设置**：`setting(github.copilot.chat.cli.remote.enabled)`
+
+以前，要参与 Copilot CLI 会话，您必须在启动它的机器旁边。如果智能体在需要审批时暂停，或者在您离开办公桌时遇到问题，工作就会停滞，直到您回来。通过远程控制，您可以从任何地方监控和引导正在运行的 Copilot CLI 会话，让您无需绑定在机器旁即可灵活推动工作进度。
+
+[远程控制 Copilot CLI](https://code.visualstudio.com/docs/agents/agent-types/copilot-cli) 允许您从其他设备（使用 GitHub.com 或 GitHub 移动应用）查看进度、响应审批并引导工作，而您的 Copilot CLI 会话则在后台持续运行。
+
+<video src="images/1_118/copilot-cli-remote.mp4" title="展示从 GitHub.com 远程控制 Copilot CLI 会话的视频。" autoplay loop controls muted></video>
+
+要尝试远程控制：
+
+1. 启用 `setting(github.copilot.chat.cli.remote.enabled)` 设置。
+1. 在 Copilot CLI 聊天中输入 `/remote on` 开始使用。
+
+您可以随时运行 `/remote` 查看远程控制状态，或运行 `/remote off` 禁用远程控制。
+
+### Copilot CLI 的同步会话标题
+
+聊天会话标题在不同的聊天界面（如聊天会话列表、聊天编辑器选项卡和标题栏以及 Copilot CLI 终端界面）中用于提供一致的会话标识。根据您重命名 [Copilot CLI](https://code.visualstudio.com/docs/agents/agent-types/copilot-cli) 会话的位置，其他聊天界面可能仍显示旧标题。
+
+VS Code 采用 Copilot SDK 会话标题 API 作为真实来源，并通过单一的标题解析器路由会话列表和聊天编辑器标题，以保持各界面显示的标题一致。现在，当您重命名会话时，无论重命名操作起源于何处，聊天会话列表、聊天编辑器选项卡和标题栏以及终端中的 `copilot --resume` 都会保持同步。
+
+在终端中从 Copilot CLI 进行的重命名操作也会在下次读取会话元数据时被 VS Code 获取到。
+
+### Copilot 默认添加为 Git 共同作者
+
+VS Code 现在默认为聊天和智能体工作流启用 Git AI 共同作者功能。当 Copilot 对您的文件进行更改时，Copilot 会自动作为共同作者添加到该提交中。
+
+您可以使用 `setting(git.addAICoAuthor)` 更改默认行为。
+
+## 代码库搜索与上下文
+
+### 非 GitHub 仓库的语义索引已向所有用户推出
+
+当您向 Copilot 提出如"我们哪里处理用户身份验证？"这样的问题时，智能体需要将您模糊的意图转化为相关的确切文件和符号。纯文本搜索只能匹配您输入的字面词语，因此当您的代码库使用不同术语时，它往往会遗漏相关代码。语义索引允许智能体按*含义*进行搜索，即使代码中从未出现"authentication"这个词，也能找到使用 `login`、`signIn`、`verifyCredentials` 或 `OAuth token exchange` 等术语的文件。这使得智能体在回答和编辑时能够更好地理解代码。
+
+语义索引现在在所有工作区中都可用。以前，此功能仅限于使用 GitHub 或 ADO 仓库的工作区。
+
+语义索引会自动构建和维护。使用 GitHub 或 ADO 仓库的工作区通常可以立即使用语义搜索，而其他工作区可能需要几分钟时间来构建初始索引。您也可以使用**构建代码库语义索引**命令为当前工作区显式构建索引。
+
+语义搜索是 Copilot 在回答问题和生成编辑时用于理解工作区的众多工具之一。Copilot 会选择最合适的工具，因此您通常无需微观管理其搜索方式。有关语义搜索和 Copilot 使用的其他工具的更多详细信息，请查看[Copilot 如何理解您的工作区](https://code.visualstudio.com/docs/agents/reference/workspace-context)文档。
+
+### 跨仓库或组织的 GitHub 文本搜索
+
+当智能体需要在当前工作区之外的代码中查找精确字符串、API 名称或错误消息时，语义搜索并不总是最合适的。您希望在整个已知仓库或整个组织中进行精确匹配，而不是模糊匹配。
+
+为此，Copilot 现在包含了一个内置的 `githubTextSearch` 智能体工具，可以在 GitHub 仓库或整个 GitHub 组织的代码中进行类 grep 搜索。这补充了现有的 `githubRepo` 工具，后者在 GitHub 仓库内进行语义搜索。这两者共同为智能体提供了更丰富的方式来了解当前工作之外代码库的内容。
+
+对于更高级的 GitHub 功能，如搜索和管理问题或拉取请求，请考虑使用 [GitHub MCP 服务器](https://github.com/github/github-mcp-server)。
+
+### 技能的专属上下文（实验性功能）
+
+**设置**：`setting(github.copilot.chat.skillTool.enabled)`
+
+当您使用一个执行多步骤工具调用或引入大量参考资料的技能时，那些辅助内容可能会挤占您的主聊天上下文，并降低后续回复的质量。
+
+现在，您可以在专属的子智能体上下文中运行技能，将其执行与主对话隔离开来，使您的主上下文保持专注，技能回复的质量也更高。
+
+要在专属的子智能体上下文中运行技能，请在 `SKILL.md` 前言中设置 `context` 属性：
+
+```yaml
+---
+name: my-skill
+description: My skill description
+context: fork
+---
+```
+
+此功能是实验性的，需要启用 `setting(github.copilot.chat.skillTool.enabled)` 设置。
+
+### 工作区 `.mcp.json` 文件与服务器去重
+
+我们新增了对工作区级别 `.mcp.json` 文件的支持，用于声明 MCP 服务器，与 Copilot CLI 等其他工具保持一致。
+
+此外，我们还引入了对同名 MCP 服务器进行去重的行为。默认情况下，只会启用最具体的 MCP 服务器，启用某个服务器将禁用同名的其他服务器。您可以通过在扩展视图中搜索 `@mcp @installed`，或通过**聊天：打开自定义设置**窗口来控制哪些 MCP 服务器被启用。
+
+## 提升 Token 使用效率
+
+2026年4月27日，GitHub 宣布 Copilot 将于2026年6月1日转向[基于使用量的计费模式](https://github.blog/news-insights/company-news/github-copilot-is-moving-to-usage-based-billing/)。为帮助您充分利用您的计划，我们一直在努力推进多项提升 Token 使用效率的举措，同时不影响智能体的质量。下面描述的大多数改进已落实到位。如某项设置需要主动启用，会在相关章节中注明。
+
+### 提示缓存效率
+
+在过去的几个迭代中，我们改进了系统提示、工具、对话历史记录和摘要之间的缓存复用，同时不改变智能体的行为。实际上，这意味着重复的上下文以低得多的 Token 费率计费（例如，对于 Anthropic 模型大约低 10 倍），这有助于降低长时间、多轮次智能体工作流的成本。
+
+**策略性缓存断点放置。** 我们审查了缓存断点的设置位置，确保它们被高效利用并放置在稳定的边界上：系统提示末尾、工具列表末尾、最近一次工具轮次末尾，以及对话轮次边界。因此，在智能体会话启动后，每次请求中超过 93% 的内容都来自缓存，而不是被计为新的输入。
+
+**缓存稳定的系统提示和工具列表。** 缓存的效率取决于其之前字节的稳定性。我们审查了系统提示和工具注册路径，以消除跨请求的字节漂移来源。例如，新的 `setting(chat.experimental.symbolTools.cacheStable)` 使用静态描述注册 `vscode_renameSymbol` 和 `vscode_listCodeUsages`，而不是根据加载的语言而变化的描述。这样，当语言扩展在会话中途激活时，就不再会改变请求并重置缓存。我们还重新排序了工具列表，使延迟加载和非延迟加载的工具可预测地分组，使工具数组的字节在各轮次之间保持一致。
+
+**缓存友好的后台压缩。** 当会话变长时，我们会在后台总结较早的轮次，以便智能体在不耗尽上下文的情况下继续工作。模型仍然可以在需要时查阅早期轮次的工具结果和详细信息。这些后台摘要现在复用与主智能体相同的缓存上下文，使长时间、多轮次的会话效率显著提高。
+
+**最后两条消息的断点策略。** 在长时间的智能体会话中，较旧的轮次最终会超出可缓存窗口。我们现在将缓存断点锚定在**系统提示、工具列表和最近两条消息**上。此功能目前通过 `setting(github.copilot.chat.anthropic.cacheBreakpoints.lastTwoMessages)` 设置提供。
+
+### 工具搜索工具
+
+工具搜索工具通过将智能体的工具集分为两组来保持请求精简。一个紧凑的**始终可用**核心工具集（约 30 个工具，涵盖了约 88% 的工具调用）始终包含在内。其余工具是**延迟加载**的：它们的模式在模型显式请求之前不会加载到模型上下文中。当智能体需要延迟加载的能力时，它会调用 `tool_search`，该工具运行客户端、基于嵌入的语义搜索，并按需返回最相关的匹配项。
+
+结果是每一轮都有一个稳定、可缓存的前缀，以及显著更小的单轮工具占用，同时智能体仍然可以访问完整的工具集。
+
+工具搜索工具已默认对 Anthropic 模型（Claude Sonnet 4.5+ 和 Opus 4.5+）启用，我们观察到高达 **20% 的 token 节省**。在此版本中，我们正在将其推广到受支持的 OpenAI 模型（**GPT-5.4 和 GPT-5.5**），通过 Responses API 实现，早期的 Insiders 结果显示类似或更好的节省效果。要在 GPT 模型中使用工具搜索工具，请启用 `setting(github.copilot.chat.responsesApi.toolSearchTool.enabled)` 设置。
+
+### 新的搜索与执行工具
+
+此版本带来了两个新的专用智能体工具：搜索和执行。两者都由小型、专用的模型驱动，运行成本显著更低。经过一个多月的测试，我们看到了令人鼓舞的结果，Token 节省高达 20%。
+
+#### 智能体搜索工具
+
+智能体搜索工具处理代码库探索和上下文检索。当主智能体需要上下文时，它用自然语言描述要查找的内容，搜索工具接着接管。搜索工具随后运行一个独立进程，使用 grep、文件搜索、语义搜索和文件阅读来搜索您的工作区，然后返回最相关的结果。
+
+在底层，该工具由经过微调的小型语言模型驱动，该模型经过训练，可以在最少的轮次内并行运行大量搜索。这种紧凑的范围在保持检索质量不降低的前提下，使延迟和成本保持在低水平。
+
+推出工作将在下个月继续进行，将这些节省带给所有 Copilot Chat 用户。
+
+#### 智能体执行工具
+
+智能体执行工具处理所有与运行终端命令相关的事务。当智能体需要运行测试或检查构建时，它将任务交给执行工具，后者运行命令并报告结果。为保持范围紧凑，执行工具只能运行终端命令，并且每次调用最多只能执行 10 次终端调用，这样就不会无限循环。
+
+终端输出往往冗长且嘈杂。一旦任务完成，执行工具就将输出过滤为编码智能体实际需要的内容，仅将相关部分传回。将这项工作从主模型卸载到更小、更快的模型，可以防止冗长的输出消耗您的 Token 使用量。
+
+## 聊天性能与历史记录
+
+### OpenAI 模型支持 WebSocket
+
+对于支持 WebSocket 的 OpenAI 模型，聊天请求现在在 Responses API 上使用 [WebSocket 模式](https://developers.openai.com/api/docs/guides/websocket-mode)。VS Code 不再为每一轮开启新的 HTTP 请求，而是保持一个持久的 WebSocket 连接，仅发送新的输入项和先前的响应 ID。服务器保留对话状态，从而减少了后续轮次的请求大小和延迟，这在包含大量来回调用的智能体工作流中尤为显著。我们的测量结果显示，使用 WebSocket 使 OpenAI 模型**快了 12%**。
+
+当所选模型支持 WebSocket 模式时，会自动使用，无需任何配置。
+
+### Chronicle（实验性功能）
+
+**设置**：`setting(github.copilot.chat.localIndex.enabled)`
+
+随着您对 Copilot 的依赖不断增加，您的聊天历史记录成为您工作内容的宝贵记录——包括您处理了哪些内容、接触了哪些文件，以及引用了哪些 PR 和问题。但回顾这些历史记录却很困难：滚动浏览过往会话来回忆昨天做了什么或为站立会议做准备非常耗时，而且没有简单的方法可以跨会话提问或从自己的使用模式中学习。
+
+Chronicle 通过在本地的 SQLite 数据库中跟踪您的聊天交互来解决这个问题。每次您聊天时，它都会记录会话元数据（分支、仓库、时间戳）、对话轮次、通过工具调用接触的文件，以及外部引用（PR、问题、提交），以便您按需搜索和汇总您的编码活动。Chronicle 还可以分析您的使用情况，为您提供关于如何改进提示和工具使用的个性化建议。
+
+Chronicle 提供了几个命令，您可以在聊天中使用这些命令来查询您的会话历史记录并获取关于编码活动的洞察：
+
+* `/chronicle:standup`：根据过去 24 小时的编码会话生成立足会议报告，按功能/分支分组，包含摘要、文件列表和 PR 链接。
+
+* `/chronicle:tips`：分析 7 天的使用数据，提供关于提示、工具使用和工作流的个性化建议。
+
+* `/chronicle [query]`：针对会话历史记录的自由形式自然语言查询（例如，"我昨天编辑了哪些文件？"）。
+
+此功能是实验性的，需要启用 `setting(github.copilot.chat.localIndex.enabled)` 设置。
+
+## 信任与安全
+
+### 批准的组织账号策略
+
+企业现在可以使用 `ChatApprovedAccountOrganizations` 设备策略，基于批准的 GitHub 组织成员身份来控制聊天和相关 AI 功能的激活。
+
+此策略帮助组织在聊天入口点之间一致地应用基于 GitHub 账号的策略。聊天功能在以下条件满足后才会激活：(1) 用户已登录拥有批准组织成员身份的 GitHub 账号，(2) 基于账号的策略已解析。这种故障关闭行为对于在 GitHub.com 上配置了基于账号的策略，并且需要在显示聊天之前强制验证资格的企业非常有用。
+
+了解更多关于[企业策略](https://code.visualstudio.com/docs/enterprise/policies)的信息。
+
+### 沙盒默认读取权限
+
+`$HOME` 目录下的所有路径不再自动授予读取访问权限。此更新加强了沙盒隔离，确保命令只能访问明确需要的文件。
+
+在沙盒中运行任何命令之前，仅根据执行的命令添加读取权限，并拒绝 `$HOME` 目录中所有其他路径的读取访问。访问任意路径将因读取权限被拒绝而失败。
+
+默认情况下，工作区文件夹和沙盒临时文件夹（在运行时管理沙盒配置）被授予 `$HOME` 目录下的读取访问权限。
+
+## 无障碍功能
+
+### 从问题轮播聚焦终端的键盘快捷键
+
+**设置**：`setting(accessibility.verbosity.chatQuestionCarousel)`
+
+当 Copilot 通过由终端交互触发的问题轮播提问时，您现在可以按 `kb(workbench.action.chat.focusQuestionCarouselTerminal)` 快速将焦点返回终端。以前，唯一返回的方式是选择**聚焦终端**按钮。
+
+该按钮的 aria 标签现在还包含按键绑定提示，使屏幕阅读器用户更容易发现。您可以使用 `setting(accessibility.verbosity.chatQuestionCarousel)` 设置来控制导航提示是否出现在轮播的 aria 标签中。
+
+## 编辑器体验
+
+### 优化 Webview 中大型本地资源的加载
+
+我们优化了 [Webview](https://code.visualstudio.com/api/extension-guides/webview) 加载本地资源的方式，以提高速度并减少内存使用。此改进使所有使用 Webview 或自定义编辑器的扩展以及内置 VS Code 功能（如笔记本渲染）都受益。
+
+VS Code 中的 Webview 使用 Service Worker 从工作区或宿主机文件系统加载资源。Service Worker 拦截对本地文件的请求，然后通过 VS Code 的文件系统调用进行代理。这使我们不仅可以从磁盘加载资源，还可以从扩展贡献的虚拟文件系统加载资源。
+
+以前，对于文件系统请求，VS Code 会将整个文件读入缓冲区，然后发送到 Webview 的 Service Worker。对于少量小型的 JavaScript 和图像文件来说，这没什么问题，但当加载 20 个每个达到数十到数百 MB 的视频文件时就不适用了。
+
+现在，我们以块的形式将文件内容流式传输到 Service Worker。这种方法提高了响应速度，同时还减少了 VS Code 在将其交给浏览器引擎之前必须累积的数据量。
+
+我们通过采用[可传输流](https://github.com/whatwg/streams/blob/main/explainers/transferable-streams.md#transferable-streams-explained)进一步优化了流式传输。文件流在主 VS Code 渲染进程中创建，并由 Webview 的 Service Worker 中的 `new Response(...)` 直接消费。这绕过了之前多层的 `postMessage` 调用。
+
+## 语言支持
+
+### TypeScript 7.0 Beta 支持
+
+我们持续与 TypeScript 团队合作，改进 VS Code 对 [TypeScript 7](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/) 的支持。TypeScript 7 是用原生代码完全重写的版本，提供了显著更好的性能。
+
+TypeScript 7.0 Beta 继续改进语言功能，还包含了许多编辑器体验方面的改进。我们还让试用 TS 7.0 以及在它与当前稳定的 TS 6.0 版本之间来回切换变得更加方便。
+
+要在 VS Code 中试用 TS 7.0，您只需安装 [TypeScript Native 预览扩展](https://devblogs.microsoft.com/typescript/announcing-typescript-7-0-beta/#editor-experience)。
+
+## 扩展贡献
+
+### Chat Customizations Evaluation 扩展
+
+我们新增了一个扩展——**Chat Customizations Evaluations**（扩展 ID `ms-vscode.vscode-chat-customizations-evaluations`），用于帮助分析和改进您的聊天自定义设置，如提示文件、自定义智能体、指令和技能。分析自定义文件后，该扩展会为检测到的文件问题生成诊断信息，并提供改进建议。
+
+打开一个提示、智能体、指令或技能定义文件，然后选择**分析**以进行评估。诊断信息出现后，使用自定义评估修复技能来应用推荐的更改。
+
+<video src="images/1_118/customization-evaluations.mp4" title="展示 Chat Customizations Evaluations 扩展实际效果的视频。" autoplay loop controls muted></video>
+
+## 远程开发
+
+[远程开发扩展](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)允许您使用[Dev Container](https://code.visualstudio.com/docs/devcontainers/containers)、通过 SSH 或[远程隧道](https://code.visualstudio.com/docs/remote/tunnels)连接的远程计算机，或 [Windows Subsystem for Linux](https://learn.microsoft.com/windows/wsl)（WSL）作为全功能开发环境。
+
+### 默认启用 Dev Container 功能的锁文件
+
+**设置**：`setting(dev.containers.lockfile)`
+
+我们正在默认启用锁文件 `devcontainer-lock.json`。锁文件记录了首次安装 Dev Container 功能时其版本和校验和，并将该功能固定到特定版本和校验和上，以提高抵御供应链攻击的韧性。
+
+当有更新版本可用时，编辑器会在 `devcontainer.json` 文件中的 Dev Container 功能上显示 Code Lens。
+
+<video src="images/1_118/devcontainer-version-codelens.mp4" title="展示 Dev Container 功能版本 Code Lens 的视频。" autoplay loop controls muted></video>
+
+[Dependabot 支持](https://containers.dev/guide/dependabot)也可用于自动提交 PR 以更新锁文件。
+
+有关更多信息，请参阅 Dev Container 规范中的 [Dev Container 功能锁文件](https://github.com/devcontainers/spec/blob/main/docs/specs/devcontainer-lockfile.md)。
+
+## 工程改进
+
+### 使用 TypeScript 7 加快开发构建速度
+
+VS Code 的开发监视任务现在使用 TypeScript 7 进行类型检查。这显著减少了构建和全面类型检查我们代码库所需的时间。
+
+以前，对主 VS Code 项目中的大约 6,000 个文件进行类型检查大约需要 60 秒。TypeScript 7 将此时间缩短到约 10 秒（全新构建）。从启动监视构建任务到完成 VS Code 和所有内置扩展的构建和全面类型检查，现在大约只需要 30 秒。
+
+## 已弃用的功能与设置
+
+### 本版本新增的弃用项
+
+无
+
+### 即将到来的弃用项
+
+* **编辑模式**自 VS Code 1.110 版本起正式弃用。用户暂时可以通过 VS Code 设置 `setting(chat.editMode.hidden)` 重新启用编辑模式。此设置在 1.125 版本之前将保持支持。从 1.125 版本开始，编辑模式将被完全移除，不能再通过设置启用。
+
+## 致谢
+
+对我们的问题跟踪的贡献：
+
+* [@gjsjohnmurray (John Murray)](https://github.com/gjsjohnmurray)
+* [@RedCMD (RedCMD)](https://github.com/RedCMD)
+* [@IllusionMH (Andrii Dieiev)](https://github.com/IllusionMH)
+* [@albertosantini (Alberto Santini)](https://github.com/albertosantini)
+
+对 `vscode` 的贡献：
+
+* [@AbhitejJohn (Abhitej John)](https://github.com/AbhitejJohn)：将 skillContentRead 遥测属性重命名为使用 'skill' 前缀 [PR #311945](https://github.com/microsoft/vscode/pull/311945)
+* [@andrewkchan (Andrew Chan)](https://github.com/andrewkchan)：辅助窗口 - 修复 setTimeout 泄漏 [PR #311824](https://github.com/microsoft/vscode/pull/311824)
+* [@austinngan (Austin Ngan)](https://github.com/austinngan)：修复 Markdown 预览滚动反馈循环 (#303765) [PR #312237](https://github.com/microsoft/vscode/pull/312237)
+* [@fishcharlie (Charlie Fish)](https://github.com/fishcharlie)：聊天：在模型选择器中为重复的 BYOK 模型显示提供程序实例名称 [PR #312028](https://github.com/microsoft/vscode/pull/312028)
+* [@kevin-m-kent](https://github.com/kevin-m-kent)：为 vscode_renameSymbol 和 vscode_listCodeUsages 添加缓存稳定模式（实验性）[PR #312568](https://github.com/microsoft/vscode/pull/312568)
+* [@maruthang (Maruthan G)](https://github.com/maruthang)
+  * 修复：处理终端工具执行中的 heredoc/多行命令 [PR #307960](https://github.com/microsoft/vscode/pull/307960)
+  * 修复（聊天）：为工具确认中高度受限的代码块启用滚动条 (#283242) [PR #310975](https://github.com/microsoft/vscode/pull/310975)
+  * 修复：在 ScopedContextKeyService 中 disposeContext 之前清除父级更改监听器 [PR #307593](https://github.com/microsoft/vscode/pull/307593)
+* [@mossgowild (moss)](https://github.com/mossgowild)：终端工具：检测最后输出行上的提示 [PR #311765](https://github.com/microsoft/vscode/pull/311765)
+* [@ssg (Sedat Kapanoğlu)](https://github.com/ssg)：添加土耳其语 DOS (CP 857) 编码支持 [PR #300114](https://github.com/microsoft/vscode/pull/300114)
+* [@Tyriar (Daniel Imms)](https://github.com/Tyriar)：将跳过 Shell 处理移至服务层并优化 [PR #311892](https://github.com/microsoft/vscode/pull/311892)
+* [@winjo](https://github.com/winjo)：修复 AutoRepliesPtyServiceContribution 在进程释放时的内存泄漏 [PR #312150](https://github.com/microsoft/vscode/pull/312150)
+* [@xingsy97 (xingsy97)](https://github.com/xingsy97)：contextkey：修复扫描器对大於运算符返回 '>=' 而非 '>' [PR #307059](https://github.com/microsoft/vscode/pull/307059)
+* [@yogeshwaran-c (Yogeshwaran C)](https://github.com/yogeshwaran-c)
+  * 修复：使用 setupDelayedHover 管理设置指示器悬停以支持 Ctrl+K I [PR #304990](https://github.com/microsoft/vscode/pull/304990)
+  * 为所有调试控制台完成项显示详情字段 [PR #310379](https://github.com/microsoft/vscode/pull/310379)
+
+对 `vscode-pull-request-github` 的贡献：
+
+* [@Will-hxw (Will-hxw)](https://github.com/Will-hxw)：修复（reviewManager）：在 hasBranch 调用中使用 pr.base.ref 而非 pr.base.name [PR #8698](https://github.com/microsoft/vscode-pull-request-github/pull/8698)
+
+
+---
+
+我们非常感谢大家在第一时间体验新功能，请经常回来查看以了解最新动态。
+
+>如果您想阅读以往 VS Code 版本的更新说明，请访问 [code.visualstudio.com](https://code.visualstudio.com) 上的[更新页面](https://code.visualstudio.com/updates)。
+
+<a id="scroll-to-top" role="button" title="回到顶部" aria-label="scroll to top" href="#"><span class="icon"></span></a>
+<link rel="stylesheet" type="text/css" href="css/inproduct_releasenotes.css"/>
+</body></html>
