@@ -522,14 +522,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>除了支持调试由构建工具管理的 Java 项目外，VS Code 还支持在没有任何项目的情况下调试单个 Java 文件。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/single-file-debugging.mp4" autoplay loop muted playsinline controls title="调试单个 Main.java 文件"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/single-file-debugging.mp4" autoplay loop muted playsinline controls title="调试单个 Main.java 文件"></p>
 <p></video></p>
 
 <h2>调试会话输入</h2>
 
 <p>VS Code 中的默认调试控制台不支持输入。如果你的程序需要从终端输入，你可以使用 VS Code 中的集成终端（<code>kb(workbench.action.terminal.toggleTerminal)</code>）或外部终端来启动它。你还可以使用用户设置 <code>java.debug.settings.console</code> 为所有 Java 调试会话配置全局控制台。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/launch-in-terminal.mp4" autoplay loop muted playsinline controls title="调试通过集成终端接收输入的 Java 应用"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/launch-in-terminal.mp4" autoplay loop muted playsinline controls title="调试通过集成终端接收输入的 Java 应用"></p>
 <p></video></p>
 
 <h2>断点</h2>
@@ -540,7 +540,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>借助表达式求值功能，调试器还支持条件断点。你可以设置断点在表达式求值为 true 时中断。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/conditional-bp.mp4" autoplay loop muted playsinline controls title="当 i==1000 时设置条件断点"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/conditional-bp.mp4" autoplay loop muted playsinline controls title="当 i==1000 时设置条件断点"></p>
 <p></video></p>
 
 <h3>断点 - 数据断点</h3>
@@ -553,7 +553,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Java 调试器也支持 <a href="../blogs/2018/07/12/introducing-logpoints-and-auto-attach.md#introducing-logpoints">日志点</a>。日志点允许你在不编辑代码的情况下将输出发送到调试控制台。它们与断点不同，因为它们不会停止你应用程序的执行流程。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/logpoints.mp4" autoplay loop muted playsinline controls title="添加一个将 result.size 的值输出到调试控制台的日志点"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/logpoints.mp4" autoplay loop muted playsinline controls title="添加一个将 result.size 的值输出到调试控制台的日志点"></p>
 <p></video></p>
 
 <h3>断点 - 触发断点</h3>
@@ -562,20 +562,20 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>可以通过右键单击字形边距，选择 <strong>添加触发断点</strong>，然后选择启用该断点的其他断点来设置触发断点。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/editor/images/debugging/debug-triggered-breakpoint.mp4" autoplay loop controls muted></video></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/editor/images/debugging/debug-triggered-breakpoint.mp4" autoplay loop controls muted></video></p>
 
 <h2>表达式求值</h2>
 
 <p>调试器还允许你在 <strong>监视</strong> 窗口以及调试控制台中求值表达式。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/expression-evaluation.mp4" autoplay loop muted playsinline controls title="向监视窗口添加表达式以显示 owner 对象"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/expression-evaluation.mp4" autoplay loop muted playsinline controls title="向监视窗口添加表达式以显示 owner 对象"></p>
 <p></video></p>
 
 <h2>热代码替换</h2>
 
 <p>调试器支持的另一个高级功能是"热代码"替换。热代码替换（HCR）是一种调试技术，通过该技术，Debugger for Java 将类更改通过调试通道传输到另一个 Java 虚拟机（JVM）。HCR 有助于实验性开发并培养迭代式的试错编码方式。借助此新功能，你可以启动调试会话并在开发环境中更改 Java 文件，调试器将替换运行中 JVM 中的代码。无需重启，这就是它被称为"热"的原因。以下是如何在 VS Code 中对 Debugger for Java 使用 HCR 的演示。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/hcr.mp4" autoplay loop muted playsinline controls title="在调试会话中使用热代码替换来更改字符串输出"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/hcr.mp4" autoplay loop muted playsinline controls title="在调试会话中使用热代码替换来更改字符串输出"></p>
 <p></video></p>
 
 <p>你可以使用调试设置 <code>java.debug.settings.hotCodeReplace</code> 来控制如何触发热代码替换。可能的设置值为：</p>
@@ -590,14 +590,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>扩展支持单步筛选，用于在调试时过滤掉你不想看到或跳过的类型。借助此功能，你可以在 <code>launch.json</code> 中配置要筛选的包，以便在单步执行时跳过它们。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/step-filter.mp4" autoplay loop muted playsinline controls title="添加单步筛选以避免进入 java.lang.ClassLoader"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/step-filter.mp4" autoplay loop muted playsinline controls title="添加单步筛选以避免进入 java.lang.ClassLoader"></p>
 <p></video></p>
 
 <h2>配置选项</h2>
 
 <p>有许多选项和设置可用于配置调试器。例如，使用启动选项可以轻松配置 JVM 参数和环境变量。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/docs/java/images/java-debugging/launch-configuration.mp4" autoplay loop muted playsinline controls title="向工作区的 launch.json 文件添加各种配置选项"></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/java/images/java-debugging/launch-configuration.mp4" autoplay loop muted playsinline controls title="向工作区的 launch.json 文件添加各种配置选项"></p>
 <p></video></p>
 
 <p>请查阅 <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Language Support for Java™ by Red Hat</a> 扩展的文档，以获取有关设置项目的帮助。</p>

@@ -520,7 +520,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>终端的文件链接检测现在能够识别由 Copilot CLI 生成的引用 <code>~/.copilot/session-state/</code> 目录下文件的路径。在此之前，这些路径无法正确解析，因为内置的链接检测器不了解 Copilot CLI 的 session-state 目录结构。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_112/cli-terminal-links.mp4" title="视频演示 Copilot CLI 终端输出中的可点击文件链接在编辑器中打开文件。" autoplay loop controls muted></video></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/release-notes/images/1_112/cli-terminal-links.mp4" title="视频演示 Copilot CLI 终端输出中的可点击文件链接在编辑器中打开文件。" autoplay loop controls muted></video></p>
 
 <p>链接检测器现在可以处理绝对路径和相对路径：绝对路径和以波浪号开头的路径可直接打开，而相对路径则相对于活动 session-state 目录解析，并回退到工作区文件夹。</p>
 
@@ -631,7 +631,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要启用沙箱化，请在 <code>mcp.json</code> 文件中为服务器设置 <code>"sandboxEnabled": true</code>。当沙箱化服务器需要访问额外的文件夹或域时，VS Code 会提示你授予该权限，并更新该 <code>mcp.json</code> 文件的沙箱配置。在同一 <code>mcp.json</code> 文件中定义的所有服务器共享该沙箱配置。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_112/mcp-sandboxing.mp4" title="视频演示本地 MCP 服务器在沙箱模式下的运行。" autoplay loop controls muted></video></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/release-notes/images/1_112/mcp-sandboxing.mp4" title="视频演示本地 MCP 服务器在沙箱模式下的运行。" autoplay loop controls muted></video></p>
 
 <blockquote><strong>注意</strong>：本地运行的 MCP 服务器的沙箱化目前在 Windows 上不可用。WSL 和 SSH 等远程场景仍然可用。</blockquote>
 
@@ -667,7 +667,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>我们添加了一个新的 <code>editor-browser</code> 调试类型，支持通过启动和附加配置来调试集成浏览器标签页。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_112/browser-debugging.mp4" title="视频演示集成浏览器中的调试。" autoplay loop controls muted></video></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/release-notes/images/1_112/browser-debugging.mp4" title="视频演示集成浏览器中的调试。" autoplay loop controls muted></video></p>
 
 <p>支持现有 <code>msedge</code> 和 <code>chrome</code> 调试配置中的大多数选项，这使得迁移通常只需在 <code>launch.json</code> 中更改现有配置的类型即可。</p>
 
@@ -691,7 +691,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>    使用 <code>setting(workbench.browser.pageZoom)</code> 设置配置默认缩放级别。当设置为"匹配窗口"或未设置时，浏览器会匹配 VS Code 窗口的缩放。</p>
 
-<p>    <video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_112/browser-zoom.mp4" title="视频演示集成浏览器中的独立缩放。" autoplay loop controls muted></video></p>
+<p>    <video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/release-notes/images/1_112/browser-zoom.mp4" title="视频演示集成浏览器中的独立缩放。" autoplay loop controls muted></video></p>
 
 <h3>搜索后自动关闭查找对话框</h3>
 
@@ -705,7 +705,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在终端右边缘附近使用输入法编辑器（IME）输入时，组合预览文本以前可能溢出终端边界。现在，组合视图被限制在光标与终端右边缘之间的可用空间内。当输入新字符时，较早的字符会逐步隐藏，使预览文本保持在终端视口内。这与 Ghostty 等其他现代终端的行为一致。</p>
 
-<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/release-notes/images/1_112/ime-composition-fix.mp4" title="视频演示在终端右边缘附近输入时，输入法组合文本保持在终端边界内。" autoplay loop controls muted></video></p>
+<p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/release-notes/images/1_112/ime-composition-fix.mp4" title="视频演示在终端右边缘附近输入时，输入法组合文本保持在终端边界内。" autoplay loop controls muted></video></p>
 <blockquote><strong>注意</strong>：在 Windows 上，启用 <code>setting(terminal.integrated.windowsUseConptyDll)</code> 可获得最佳的输入法组合体验。</blockquote>
 
 <h2>已弃用的功能和设置</h2>
