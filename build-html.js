@@ -66,11 +66,15 @@ function mdToHtml(md, filePath) {
     return text;
   }
   function resolveLink(url, fromFile) {
-    if (url.startsWith('http') || url.startsWith('#')) return url;
+    if (url.startsWith('http') || url.startsWith('#') || url.startsWith('data:')) return url;
     if (url.startsWith('/')) return '..' + url;
     const baseDir = path.dirname(fromFile);
     const resolved = path.resolve(baseDir, url);
     const rel = path.relative(SRC, resolved).replace(/\\/g, '/');
+    // Video files: link to upstream GitHub raw
+    if (rel.match(/\.(mp4|webm)$/i)) {
+      return 'https://raw.githubusercontent.com/microsoft/vscode-docs/main/docs/' + rel;
+    }
     return rel.replace(/\.md$/, '.html');
   }
   function esc(text) { return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
@@ -258,6 +262,12 @@ var t = 0, d = 0;
       if (c.startsWith('---')) { var blk = c.slice(3, c.indexOf('---', 3)); blk.split('\n').forEach(function(l) { var i = l.indexOf(':'); if (i > 0) fm[l.slice(0,i).trim()] = l.slice(i+1).trim().replace(/^["\']|["\']$/g,''); }); }
       var title = fm.PageTitle || fm.MetaDescription || e.name.replace(/\.md$/, '');
       var body = mdToHtml(bc, fp);
+      // Rewrite video sources to upstream GitHub raw URLs
+      body = body.replace(/src="([^"]+\.(mp4|webm))"/gi, function(m, src) {
+        if (src.indexOf('http') === 0) return m;
+        var resolved = path.join(path.dirname(rp), src).replace(/\\/g, '/');
+        return 'src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/docs/' + resolved + '"';
+      });
       var depth = base ? base.split('/').length + 1 : 1;
       var sb = sidebarHtml(sections, rp.replace(/\.md$/, '.html'), depth);
       var htm = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + title.replace(/</g,'&lt;') + ' - VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <div class="breadcrumb"><a href="' + '../'.repeat(depth) + 'index.html">首页</a> / ' + (base||'') + ' / ' + e.name.replace(/\.md$/,'') + '</div>\n' + body + '\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}<\/script>\n</body>\n</html>';

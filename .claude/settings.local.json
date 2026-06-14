@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:github.com)",
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:code.visualstudio.com)",
+      "WebFetch(domain:readmex.com)",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/vscode-docs/branches/main\")",
+      "Bash(curl -s \"https://api.github.com/repos/microsoft/vscode-docs/contents/release-notes\")",
+      "Bash(python3 -c \"import json,sys; data=json.load\\(sys.stdin\\); [print\\(f['name']\\) for f in data if f['name'].endswith\\('.md'\\)]\")",
+      "Bash(curl *)",
+      "Bash(python3 *)",
+      "Bash(rm -rf \"C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-html\")",
+      "Bash(node build-html.js)"
+    ]
+  }
+}
