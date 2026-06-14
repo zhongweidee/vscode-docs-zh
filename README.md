@@ -8,7 +8,9 @@ Visual Studio Code **1.124** 官方文档的简体中文翻译。
 
 ## 手机阅读 (EPUB)
 
-📱 **[下载 EPUB 电子书](downloads/VS-Code-1.124-中文文档.epub)**（1.5 MB，309 章）
+📱 **下载 EPUB 电子书（1.5 MB，309 章）**
+
+👉 https://github.com/zhongweidee/vscode-docs-zh/raw/master/downloads/VS-Code-1.124-%E4%B8%AD%E6%96%87%E6%96%87%E6%A1%A3.epub
 
 在微信读书、多看阅读、Google Play 图书等 App 中打开即可阅读，支持目录导航、夜间模式、字体调节。
 
