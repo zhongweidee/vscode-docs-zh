@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>有关为不同 Python 应用程序配置 Visual Studio Code 调试器的详细信息。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / python / debugging</div>
+<h1>VS Code 中的 Python 调试</h1>
+
+<p>Python 扩展通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy">Python Debugger 扩展</a>支持对多种类型的 Python 应用程序进行调试。有关基本调试的简短演练，请参阅<a href="../docs/python/python-tutorial.md#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。另请参阅 <a href="../docs/python/tutorial-flask.md">Flask 教程</a>。这两个教程演示了核心技能，如设置断点和逐步执行代码。</p>
+
+<p>有关常规调试功能，如检查变量、设置断点以及其他不依赖于语言的调试活动，请查阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>。</p>
+
+<p>本文主要介绍特定于 Python 的调试<em>配置</em>，包括特定应用程序类型和远程调试的必要步骤。</p>
+
+<h2>Python Debugger 扩展</h2>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy">Python Debugger 扩展</a>在安装 VS Code 的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>时会自动安装。它使用 <a href="https://pypi.org/project/debugpy/">debugpy</a> 为多种类型的 Python 应用程序提供调试功能，包括脚本、Web 应用、远程进程等。</p>
+
+<p>要验证它是否已安装，请打开<strong>扩展</strong>视图（<code>kb(workbench.view.extensions)</code>）并搜索 <code>@installed python debugger</code>。您应该会在结果中看到 Python Debugger 扩展已列出。</p>
+
+<p>!<a href="python/images/shared/python-debugger-extension.png">Python Debugger extension shown in installed extensions view in VS Code.</a></p>
+
+<p>您可以参考该扩展的 <a href="https://github.com/microsoft/vscode-python-debugger/blob/main/README.md">README</a> 页面，了解支持的 Python 版本信息。</p>
+
+<h2>初始化配置</h2>
+
+<p>配置决定 VS Code 在调试会话期间的行为。配置定义在 <code>launch.json</code> 文件中，该文件存储在您工作区的 <code>.vscode</code> 文件夹中。</p>
+
+<blockquote><strong>注意</strong>：要更改调试配置，您的代码必须存储在一个文件夹中。</blockquote>
+
+<p>要初始化调试配置，请首先选择侧边栏中的<strong>运行</strong>视图：</p>
+
+<p>!<a href="python/images/debugging/debug-icon.png">Run icon</a></p>
+
+<p>如果您尚未定义任何配置，您将看到一个<strong>运行和调试</strong>按钮以及一个用于创建配置（launch.json）文件的链接：</p>
+
+<p>!<a href="python/images/debugging/debug-start.png">Debug toolbar settings command</a></p>
+
+<p>要生成带有 Python 配置的 <code>launch.json</code> 文件，请执行以下步骤：</p>
+
+<ol>
+<li>选择<strong>创建 launch.json 文件</strong>链接（如上图所示）或使用<strong>运行</strong> > <strong>打开配置</strong>菜单命令。
+</li>
+<li>从调试器选项列表中选择 <strong>Python Debugger</strong>。
+</li>
+<li>命令面板将打开一个配置菜单，允许您选择要用于 Python 项目文件的调试配置类型。如果您想调试单个 Python 脚本，请在出现的<strong>选择调试配置</strong>菜单中选择 <strong>Python File</strong>。
+</li>
+</ol>
+<p>    !<a href="python/images/shared/debug-configurations.png">List of Python debugger configuration options</a></p>
+
+<blockquote><strong>注意</strong>：在不存在配置的情况下，通过调试面板、<code>kbstyle(F5)</code> 或<strong>运行 > 开始调试</strong>启动调试会话也会弹出调试配置菜单，但不会创建 <code>launch.json</code> 文件。</blockquote>
+
+<ol>
+<li>然后，Python Debugger 扩展会创建并打开一个 <code>launch.json</code> 文件，其中包含基于您之前选择的预定义配置，在本例中为 <strong>Python File</strong>。您可以修改配置（例如添加参数），也可以添加自定义配置。
+</li>
+</ol>
+<p>   !<a href="python/images/debugging/configuration-json.png">Configuration json</a></p>
+
+<p>配置属性的详细信息将在本文后面的<a href="#set-configuration-options">标准配置和选项</a>中介绍。本文中的<a href="#debugging-specific-app-types">调试特定应用类型</a>部分还会介绍其他配置。</p>
+
+<h2>添加更多配置</h2>
+
+<p>默认情况下，VS Code 仅显示 Python Debugger 扩展提供的最常见配置。您可以通过使用配置列表和 <code>launch.json</code> 编辑器中显示的<strong>添加配置</strong>命令，选择要包含在 <code>launch.json</code> 中的其他配置。使用该命令时，VS Code 会提示您列出所有可用配置（请确保选择 <strong>Python</strong> 选项）：</p>
+
+<p>!<a href="python/images/debugging/add-configuration.png">Adding a new Python debugging configuration</a></p>
+
+<p>选择<strong>使用进程 ID 附加</strong>会生成以下结果：</p>
+<p>!<a href="python/images/debugging/added-configuration.png">Added a configuration</a></p>
+
+<p>有关所有这些配置的详细信息，请参阅<a href="#debugging-specific-app-types">调试特定应用类型</a>。</p>
+
+<p>在调试过程中，状态栏会显示当前配置和当前的调试解释器。选择配置会弹出一个列表，您可以从中选择不同的配置：</p>
+
+<p>!<a href="python/images/debugging/debug-status-bar.png">Debugging Status Bar</a></p>
+
+<p>默认情况下，调试器使用为工作区选择的相同解释器，就像 VS Code 的 Python 扩展的其他功能一样。要专门为调试使用不同的解释器，请在 <code>launch.json</code> 中为相应的调试器配置设置 <code>python</code> 的值。或者，使用状态栏上的 Python 解释器指示器选择不同的解释器。</p>
+
+<h2>基本调试</h2>
+
+<p>如果您只想调试一个 Python 脚本，最简单的方法是选择编辑器运行按钮旁边的向下箭头，然后选择 <strong>Python Debugger: Debug Python File</strong>。</p>
+
+<p>!<a href="python/images/debugging/debug-button-editor.png">Debug button on the top-right of the editor</a></p>
+
+<p>如果您想调试使用 Flask、Django 或 FastAPI 的 Web 应用程序，Python Debugger 扩展会通过<strong>运行和调试</strong>视图中的<strong>显示所有自动调试配置</strong>选项，根据您的项目结构提供动态创建的调试配置。</p>
+
+<p>!<a href="python/images/debugging/debug-auto-config.png">Show all automatic debug configurations option on the run view</a></p>
+
+<p>但如果您想调试其他类型的应用程序，可以通过<strong>运行</strong>视图单击<strong>运行和调试</strong>按钮来启动调试器。</p>
+
+<p>!<a href="python/images/debugging/debug-run.png">Run the debugger</a></p>
+
+<p>当未设置任何配置时，您将看到一个调试选项列表。在这里，您可以选择适当的选项来快速调试代码。</p>
+
+<p>两个常见选项是使用 <strong>Python File</strong> 配置来运行当前打开的 Python 文件，或使用<strong>使用进程 ID 附加</strong>配置将调试器附加到已在运行的进程。</p>
+
+<p>有关创建和使用调试配置的信息，请参阅<a href="#initialize-configurations">初始化配置</a>和<a href="#additional-configurations">添加更多配置</a>部分。添加配置后，可以从下拉列表中选择它，并使用<strong>开始调试</strong>按钮（<code>kbstyle(F5)</code>）启动。</p>
+
+<p>!<a href="python/images/debugging/debug-start-button.png">Start debugging button in the Run and Debug view</a></p>
+
+<h2>命令行调试</h2>
+
+<p>如果在您的 Python 环境中安装了 <code>debugpy</code>，也可以从命令行运行调试器。</p>
+
+<h3>安装 debugpy</h3>
+<p>您可以使用 <code>python -m pip install --upgrade debugpy</code> 将 <a href="https://pypi.org/project/debugpy/">debugpy</a> 安装到您的 Python 环境中。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>虽然使用虚拟环境不是必需的，但它是推荐的最佳实践。您可以在 VS Code 中通过打开命令面板（<code>kb(workbench.action.showCommands)</code>）并运行 <strong>Python: Create Environment</strong> 命令，或在环境管理器视图中选择 <strong>+</strong> 按钮来创建虚拟环境。</blockquote>
+
+<h3>命令行语法</h3>
+<p>调试器的命令行语法如下：</p>
+
+<pre><code class="language-bash">python -m debugpy
+    --listen | --connect
+    [&lt;host&gt;:]&lt;port&gt;
+    [--wait-for-client]
+    [--configure-&lt;name&gt; &lt;value&gt;]...
+    [--log-to &lt;path&gt;] [--log-to-stderr]
+    &lt;filename&gt; | -m &lt;module&gt; | -c &lt;code&gt; | --pid &lt;pid&gt;
+    [&lt;arg&gt;]...</code></pre>
+
+<h3>示例</h3>
+<p>在命令行中，您可以使用以下语法在指定端口（5678）和脚本上启动调试器。此示例假设脚本是长时间运行的，并省略了 <code>--wait-for-client</code> 标志，这意味着脚本不会等待客户端附加。</p>
+
+<pre><code class="language-bash">python -m debugpy --listen 5678 ./myscript.py</code></pre>
+
+<p>然后，您可以使用以下配置从 VS Code Python Debugger 扩展进行附加。</p>
+
+<pre><code class="language-json">{
+    "name": "Python Debugger: Attach",
+    "type": "debugpy",
+    "request": "attach",
+    "connect": {
+        "host": "localhost",
+        "port": 5678
+    }
+}</code></pre>
+
+<blockquote><strong>注意</strong>：对于 <strong>listen</strong>，指定主机是可选的，默认使用 127.0.0.1。</blockquote>
+
+<p>如果您想调试远程代码或在 Docker 容器中运行的代码，则需要在远程机器或容器上修改前面的 CLI 命令以指定主机。</p>
+
+<pre><code class="language-bash">python -m debugpy --listen 0.0.0.0:5678 ./myscript.py</code></pre>
+
+<p>关联的配置文件如下所示。</p>
+
+<pre><code class="language-json">{
+    "name": "Attach",
+    "type": "debugpy",
+    "request": "attach",
+    "connect": {
+       "host": "remote-machine-name", // 将此替换为远程机器名称
+       "port": 5678
+    }
+}</code></pre>
+
+<blockquote><strong>注意</strong>：请注意，当您指定 <code>127.0.0.1</code> 或 <code>localhost</code> 以外的主机值时，您正在开放一个端口以允许来自任何机器的访问，这会带来安全风险。在进行远程调试时，您应确保采取适当的安全预防措施，例如使用 SSH 隧道。</blockquote>
+
+<h3>命令行选项</h3>
+
+<table>
+  <thead><tr><th></th><th>标志</th><th>选项</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>---------</td><td>---------</td><td>---------</td><td></td></tr>
+  <tr><td></td><td><strong>--listen</strong> 或 <strong>--connect</strong></td><td><code>[<host>:]<port></code></td><td><strong>必需</strong>。指定调试适配器服务器等待传入连接（--listen）或与等待传入连接的客户端进行连接（--connect）的主机地址和端口。这与 VS Code 调试配置中使用的地址相同。默认情况下，主机地址为 <code>localhost (127.0.0.1)</code>。</td><td></td></tr>
+  <tr><td></td><td><strong>--wait-for-client</strong></td><td>无</td><td><strong>可选</strong>。指定代码在调试服务器有连接之前不应运行。此设置允许您从代码的第一行开始调试。</td><td></td></tr>
+  <tr><td></td><td><strong>--log-to</strong></td><td><code><path></code></td><td><strong>可选</strong>。指定用于保存日志的现有目录的路径。</td><td></td></tr>
+  <tr><td></td><td><strong>--log-to-stderr</strong></td><td>无</td><td><strong>可选</strong>。启用 debugpy 直接写入日志到 stderr。</td><td></td></tr>
+  <tr><td></td><td><strong>--pid</strong></td><td><code><pid></code></td><td><strong>可选</strong>。指定一个已在运行的进程，用于将调试服务器注入其中。</td><td></td></tr>
+  <tr><td></td><td><strong>--configure-\<name></strong></td><td><code><value></code></td><td><strong>可选</strong>。设置一个调试属性，该属性必须在客户端连接之前对调试服务器已知。此类属性可以直接在 <em>launch</em> 配置中使用，但对于 <em>attach</em> 配置，则必须以这种方式设置。例如，如果您不希望调试服务器自动将其自身注入到由您附加到的进程创建的子进程中，请使用 <code>--configure-subProcess false</code>。</td><td></td></tr>
+</tbody>
+</table>
+<blockquote><strong>注意</strong>：<code>[<arg>]</code> 可用于将命令行参数传递给正在启动的应用程序。</blockquote>
+
+<h2>通过网络连接进行附加调试</h2>
+
+<h3>本地脚本调试</h3>
+
+<p>有时您可能需要调试由另一个进程本地调用的 Python 脚本。例如，您可能正在调试一个运行不同 Python 脚本以完成特定处理任务的 Web 服务器。在这种情况下，您需要在脚本启动后立即将 VS Code 调试器附加到该脚本：</p>
+
+<ol>
+<li>运行 VS Code，打开包含脚本的文件夹或工作区，如果尚不存在 <code>launch.json</code>，则为该工作区创建一个。
+</li>
+<li>在脚本代码中，添加以下内容并保存文件：
+<pre><code class="language-python">    import debugpy
+
+    # 5678 是 VS Code 调试配置中的默认附加端口。除非指定了主机和端口，否则主机默认为 127.0.0.1
+    debugpy.listen(5678)
+    print("Waiting for debugger attach")
+    debugpy.wait_for_client()
+    debugpy.breakpoint()
+    print('break on this line')</code></pre>
+
+</li>
+<li>使用 <strong>Terminal: Create New Terminal</strong> 打开一个终端，这将激活脚本所选的环境。
+</li>
+<li>在终端中，<a href="#安装-debugpy">安装 debugpy 包</a>。
+</li>
+<li>在终端中使用脚本启动 Python，例如 <code>python3 myscript.py</code>。您应该会看到代码中包含的 "Waiting for debugger attach" 消息，脚本会在 <code>debugpy.wait_for_client()</code> 调用处暂停。
+</li>
+<li>切换到<strong>运行和调试</strong>视图（<code>kb(workbench.view.debug)</code>），从调试器下拉列表中选择适当的配置，然后启动调试器。
+</li>
+<li>调试器应该会在 <code>debugpy.breakpoint()</code> 调用处停止，从那时起您可以正常使用调试器。您还可以选择使用 UI 在脚本代码中设置其他断点，而不是使用 <code>debugpy.breakpoint()</code>。
+<h3>使用 SSH 进行远程脚本调试</h3>
+
+</li>
+</ol>
+<p>远程调试允许您在 VS Code 中本地逐步执行程序，而程序在远程计算机上运行。不需要在远程计算机上安装 VS Code。为了增加安全性，您可能需要使用安全连接（如 SSH）连接到远程计算机进行调试。</p>
+
+<blockquote><strong>注意</strong>：在 Windows 计算机上，您可能需要安装 <a href="https://learn.microsoft.com/windows-server/administration/openssh/openssh_install_firstuse">Windows 10 OpenSSH</a> 才能使用 <code>ssh</code> 命令。</blockquote>
+
+<p>以下步骤概述了设置 SSH 隧道的一般过程。SSH 隧道允许您在本地机器上工作，就像直接在远程机器上操作一样，比开放端口进行公共访问更安全。</p>
+
+<p><strong>在远程计算机上：</strong></p>
+
+<ol>
+<li>通过打开 <code>sshd_config</code> 配置文件（在 Linux 上位于 <code>/etc/ssh/</code> 下，在 Windows 上位于 <code>%programfiles(x86)%/openssh/etc</code> 下）并添加或修改以下设置来启用端口转发：
+<pre><code>    AllowTcpForwarding yes</code></pre>
+
+<blockquote><strong>注意</strong>：AllowTcpForwarding 的默认值是 yes，因此您可能不需要进行更改。</blockquote>
+
+</li>
+<li>如果您必须添加或修改 <code>AllowTcpForwarding</code>，请重启 SSH 服务器。在 Linux/macOS 上，运行 <code>sudo service ssh restart</code>；在 Windows 上，运行 <code>services.msc</code>，在服务列表中选择 OpenSSH 或 <code>sshd</code>，然后选择<strong>重启</strong>。
+</li>
+</ol>
+<p><strong>在本地计算机上：</strong></p>
+
+<ol>
+<li>通过运行 <code>ssh -2 -L sourceport:localhost:destinationport -i identityfile user@remoteaddress</code> 来创建 SSH 隧道，为 <code>destinationport</code> 选择一个端口，并在 <code>user@remoteaddress</code> 中使用适当的用户名和远程计算机的 IP 地址。例如，要在 IP 地址 1.2.3.4 上使用端口 5678，命令应为 <code>ssh -2 -L 5678:localhost:5678 -i identityfile user@1.2.3.4</code>。您可以使用 <code>-i</code> 标志指定身份文件的路径。
+</li>
+<li>验证您是否可以在 SSH 会话中看到提示符。
+</li>
+<li>在您的 VS Code 工作区中，在 <code>launch.json</code> 文件中创建远程调试配置，将端口设置为与 <code>ssh</code> 命令中使用的端口匹配，并将主机设置为 <code>localhost</code>。这里使用 <code>localhost</code> 是因为您已经设置了 SSH 隧道。
+<pre><code class="language-json">    {
+        "name": "Python Debugger: Attach",
+        "type": "debugpy",
+        "request": "attach",
+        "port": 5678,
+        "host": "localhost",
+        "pathMappings": [
+            {
+                "localRoot": "${workspaceFolder}", // 映射 C:\Users\user1\project1
+                "remoteRoot": "."                  // 映射到当前工作目录 ~/project1
+            }
+        ]
+    }</code></pre>
+
+</li>
+</ol>
+<p><strong>开始调试</strong></p>
+
+<p>现在已设置好到远程计算机的 SSH 隧道，您可以开始调试了。</p>
+
+<ol>
+<li>两台计算机：确保相同的源代码可用。
+</li>
+<li>两台计算机：<a href="#安装-debugpy">安装 debugpy</a>。
+</li>
+<li>远程计算机：有两种方式指定如何附加到远程进程。
+<ol>
+<li>在源代码中，添加以下行，将 <code>address</code> 替换为远程计算机的 IP 地址和端口号（此处仅以 IP 地址 1.2.3.4 作为示例）。
+<pre><code class="language-python">        import debugpy
+
+        # 允许其他计算机在此 IP 地址和端口上附加到 debugpy。
+        debugpy.listen(('1.2.3.4', 5678))
+
+        # 暂停程序，直到远程调试器附加
+        debugpy.wait_for_client()</code></pre>
+
+</li>
+</ol>
+</li>
+</ol>
+<p>        <code>listen</code> 中使用的 IP 地址应为远程计算机的私有 IP 地址。然后，您可以正常启动程序，它将在调试器附加之前暂停。</p>
+
+<ol>
+<li>通过 debugpy 启动远程进程，例如：
+<pre><code class="language-bash">       python3 -m debugpy --listen 1.2.3.4:5678 --wait-for-client -m myproject</code></pre>
+
+</li>
+</ol>
+<p>       这将使用 <code>python3</code> 启动包 <code>myproject</code>，使用远程计算机的私有 IP 地址 <code>1.2.3.4</code> 并在端口 <code>5678</code> 上监听（您也可以通过指定文件路径而不是使用 <code>-m</code> 来启动远程 Python 进程，例如 <code>./hello.py</code>）。</p>
+
+<ol>
+<li>本地计算机：<strong>仅当您按照上述方式修改了远程计算机上的源代码时</strong>，然后在源代码中，添加在远程计算机上添加的相同代码的注释副本。添加这些行可确保两台计算机上的源代码逐行匹配。
+<pre><code class="language-python">    #import debugpy
+
+    # 允许其他计算机在此 IP 地址和端口上附加到 debugpy。
+    #debugpy.listen(('1.2.3.4', 5678))
+
+    # 暂停程序，直到远程调试器附加
+    #debugpy.wait_for_client()</code></pre>
+
+</li>
+<li>本地计算机：切换到 VS Code 中的<strong>运行和调试</strong>视图（<code>kb(workbench.view.debug)</code>），选择 <strong>Python Debugger: Attach</strong> 配置
+</li>
+<li>本地计算机：在您想要开始调试的代码位置设置断点。
+</li>
+<li>本地计算机：使用修改后的 <strong>Python Debugger: Attach</strong> 配置和"开始调试"按钮启动 VS Code 调试器。VS Code 应该会在您本地设置的断点处停止，允许您逐步执行代码、检查变量并执行所有其他调试操作。您在<strong>调试控制台</strong>中输入的表达式也会在远程计算机上运行。
+</li>
+</ol>
+<p>    标准输出（如 <code>print</code> 语句的输出）会显示在两台计算机上。然而，其他输出（如来自 matplotlib 等包的图形绘图）仅显示在远程计算机上。</p>
+
+<ol>
+<li>在远程调试期间，调试工具栏显示如下：
+</li>
+</ol>
+<p>    !<a href="python/images/debugging/remote-debug-toolbar.png">Debugging toolbar during remote debugging</a></p>
+
+<p>    在此工具栏上，断开连接按钮（<code>kb(workbench.action.debug.stop)</code>）停止调试器并允许远程程序运行到完成。重启按钮（<code>kb(workbench.action.debug.restart)</code>）在本地计算机上重启调试器，但<strong>不会</strong>重启远程程序。仅当您已经重启了远程程序并需要重新附加调试器时，才使用重启按钮。</p>
+
+<h2>设置配置选项</h2>
+
+<p>当您首次创建 <code>launch.json</code> 时，有两个标准配置，可以在集成终端（VS Code 内部）或外部终端（VS Code 外部）中运行编辑器中的活动文件：</p>
+
+<pre><code class="language-json">{
+    "configurations": [
+        {
+            "name": "Python Debugger: Current File (Integrated Terminal)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Python Debugger: Current File (External Terminal)",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "externalTerminal"
+        }
+    ]
+}</code></pre>
+
+<p>下面将描述具体的设置。您还可以添加其他设置，例如 <code>args</code>，这些设置不包含在标准配置中。</p>
+
+<blockquote><strong>提示</strong>：在项目中，创建一个运行特定启动文件的配置通常很有帮助。例如，如果您希望在启动调试器时始终使用参数 <code>--port 1593</code> 启动 <code>startup.py</code>，请按如下方式创建一个配置条目：</blockquote>
+
+<pre><code class="language-json"> {
+     "name": "Python Debugger: startup.py",
+     "type": "debugpy",
+     "request": "launch",
+     "program": "${workspaceFolder}/startup.py",
+     "args" : ["--port", "1593"]
+ },</code></pre>
+
+<h3><code>name</code></h3>
+
+<p>提供在 VS Code 下拉列表中显示的调试配置的名称。</p>
+
+<h3><code>type</code></h3>
+
+<p>标识要使用的调试器类型；对于调试 Python 代码，请将其保留为 <code>debugpy</code>。</p>
+
+<h3><code>request</code></h3>
+
+<p>指定开始调试的模式：</p>
+
+<ul>
+<li><code>launch</code>：在 <code>program</code> 指定的文件上启动调试器</li>
+<li><code>attach</code>：将调试器附加到已在运行的进程。有关示例，请参阅<a href="#使用-ssh-进行远程脚本调试">远程调试</a>。
+<h3><code>program</code></h3>
+
+</li>
+</ul>
+<p>提供 Python 程序入口模块（启动文件）的完全限定路径。默认配置中常用的值 <code>${file}</code> 使用编辑器中当前活动的文件。通过指定特定的启动文件，无论打开哪些文件，您都可以始终确保以相同的入口点启动程序。例如：</p>
+
+<pre><code class="language-json">"program": "/Users/Me/Projects/MyProject/src/event_handlers/__init__.py",</code></pre>
+
+<p>您也可以依赖工作区根目录的相对路径。例如，如果根目录是 <code>/Users/Me/Projects/MyProject</code>，那么您可以使用以下示例：</p>
+
+<pre><code class="language-json">"program": "${workspaceFolder}/src/event_handlers/__init__.py",</code></pre>
+
+<h3><code>module</code></h3>
+
+<p>提供指定要调试的模块名称的能力，类似于在命令行运行时使用的 <code>-m</code> 参数。有关更多信息，请参阅 <a href="https://docs.python.org/3/using/cmdline.html#cmdoption-m">Python.org</a></p>
+
+<h3><code>python</code></h3>
+
+<p>指向用于调试的 Python 解释器的完整路径。</p>
+
+<p>如果未指定，此设置默认为为工作区选择的解释器，等效于使用值 <code>${command:python.interpreterPath}</code>。要使用不同的解释器，请在调试配置的 <code>python</code> 属性中指定其路径。</p>
+
+<p>或者，您可以使用在每个平台上定义的自定义环境变量来包含要使用的 Python 解释器的完整路径，这样就无需其他文件夹路径。</p>
+
+<p>如果您需要向 Python 解释器传递参数，可以使用 <code>pythonArgs</code> 属性。</p>
+
+<h3><code>pythonArgs</code></h3>
+
+<p>使用语法 <code>"pythonArgs": ["<arg 1>", "<arg 2>",...]</code> 指定要传递给 Python 解释器的参数。</p>
+
+<h3><code>args</code></h3>
+
+<p>指定要传递给 Python 程序的参数。由空格分隔的参数字符串的每个元素都应包含在引号中，例如：</p>
+
+<pre><code class="language-json">"args": ["--quiet", "--norepeat", "--port", "1593"],</code></pre>
+
+<p>如果您想为每次调试运行提供不同的参数，可以将 <code>args</code> 设置为 <code>"${command:pickArgs}"</code>。这将在每次启动调试会话时提示您输入参数。</p>
+
+<blockquote><strong>注意</strong>：<code>"${command:pickArgs}"</code> 和 <code>["${command:pickArgs}"]</code> 的解析方式存在差异，特别要注意 <code>[]</code> 的使用。作为数组时，所有参数作为单个字符串传递；不使用括号时，每个参数作为独立的字符串传递。</blockquote>
+
+<h3><code>stopOnEntry</code></h3>
+
+<p>当设置为 <code>true</code> 时，在正在调试的程序的第一行处中断调试器。如果省略（默认）或设置为 <code>false</code>，调试器会运行程序直到第一个断点。</p>
+
+<h3><code>console</code></h3>
+
+<p>指定程序输出的显示方式，只要 <code>redirectOutput</code> 的默认值未被修改。</p>
+
+<table>
+  <thead><tr><th></th><th>值</th><th>输出显示位置</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>----------------------------------</td><td>--------------------------------------------------------------------</td><td></td></tr>
+  <tr><td></td><td><code>"internalConsole"</code></td><td><strong>VS Code 调试控制台。</strong> 如果 <code>redirectOutput</code> 设置为 False，则不显示任何输出。</td><td></td></tr>
+  <tr><td></td><td><code>"integratedTerminal"</code>（默认）</td><td><a href="../docs/terminal/basics.md">VS Code 集成终端</a>。如果 <code>redirectOutput</code> 设置为 True，输出也会显示在调试控制台中。</td><td></td></tr>
+  <tr><td></td><td><code>"externalTerminal"</code></td><td><strong>独立控制台窗口</strong>。如果 <code>redirectOutput</code> 设置为 True，输出也会显示在调试控制台中。</td><td></td></tr>
+</tbody>
+</table>
+<h3><code>purpose</code></h3>
+
+<p>有多种方式可以使用 <code>purpose</code> 选项来配置<strong>运行</strong>按钮。将选项设置为 <code>debug-test</code>，定义该配置应在 VS Code 中调试测试时使用。</p>
+<p>然而，将选项设置为 <code>debug-in-terminal</code>，定义该配置仅应在访问编辑器右上角的<strong>运行 Python 文件</strong>按钮时使用（无论使用的是该按钮提供的<strong>运行 Python 文件</strong>还是<strong>调试 Python 文件</strong>选项）。</p>
+<p><strong>注意</strong>：<code>purpose</code> 选项不能用于通过 <code>kbstyle(F5)</code> 或<strong>运行 > 开始调试</strong>启动调试器。</p>
+
+<h3><code>autoReload</code></h3>
+
+<p>允许在调试器执行到达断点后，当代码发生更改时自动重载调试器。要启用此功能，请设置 <code>{"enable": true}</code>，如下面的代码所示。</p>
+
+<pre><code class="language-json">{
+   "name": "Python Debugger: Current File",
+   "type": "debugpy",
+   "request": "launch",
+   "program": "${file}",
+   "console": "integratedTerminal",
+   "autoReload": {
+      "enable": true
+ }
+}</code></pre>
+
+<blockquote><strong>注意</strong>：当调试器执行重载时，在导入时运行的代码可能会再次执行。为了避免这种情况，请尝试仅在模块中使用导入、常量和定义，将所有代码放入函数中。或者，您也可以使用 <code>if __name__=="__main__"</code> 检查。</blockquote>
+
+<h3><code>subProcess</code></h3>
+
+<p>指定是否启用子进程调试。默认值为 <code>false</code>，设置为 <code>true</code> 以启用。有关更多信息，请参阅<a href="../docs/debugtest/debugging.md#multi-target-debugging">多目标调试</a>。</p>
+
+<h3><code>cwd</code></h3>
+
+<p>指定调试器的当前工作目录，这是代码中使用的任何相对路径的基础文件夹。如果省略，默认为 <code>${workspaceFolder}</code>（VS Code 中打开的文件夹）。</p>
+
+<p>例如，假设 <code>${workspaceFolder}</code> 包含一个包含 <code>app.py</code> 的 <code>py_code</code> 文件夹，以及一个包含 <code>salaries.csv</code> 的 <code>data</code> 文件夹。如果您在 <code>py_code/app.py</code> 上启动调试器，则数据文件的相对路径取决于 <code>cwd</code> 的值：</p>
+
+<table>
+  <thead><tr><th></th><th>cwd</th><th>数据文件的相对路径</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>---</td><td>---</td><td></td></tr>
+  <tr><td></td><td>省略或 <code>${workspaceFolder}</code></td><td><code>data/salaries.csv</code></td><td></td></tr>
+  <tr><td></td><td><code>${workspaceFolder}/py_code</code></td><td><code>../data/salaries.csv</code></td><td></td></tr>
+  <tr><td></td><td><code>${workspaceFolder}/data</code></td><td><code>salaries.csv</code></td><td></td></tr>
+</tbody>
+</table>
+<h3><code>redirectOutput</code></h3>
+
+<p>当设置为 <code>true</code>（internalConsole 的默认值）时，使调试器将程序的所有输出打印到 VS Code 调试输出窗口。如果设置为 <code>false</code>（integratedTerminal 和 externalTerminal 的默认值），程序输出不会显示在调试器输出窗口中。</p>
+
+<p>此选项通常在使用 <code>"console": "integratedTerminal"</code> 或 <code>"console": "externalTerminal"</code> 时被禁用，因为无需在调试控制台中重复输出。</p>
+
+<h3><code>justMyCode</code></h3>
+
+<p>当省略或设置为 <code>true</code>（默认值）时，将调试限制为仅用户编写的代码。设置为 <code>false</code> 以同时启用标准库函数的调试。</p>
+
+<h3><code>django</code></h3>
+
+<p>当设置为 <code>true</code> 时，激活特定于 Django Web 框架的调试功能。</p>
+
+<h3><code>sudo</code></h3>
+
+<p>当设置为 <code>true</code> 并与 <code>"console": "externalTerminal"</code> 一起使用时，允许调试需要提升权限的应用程序。使用外部控制台是捕获密码的必要条件。</p>
+
+<h3><code>pyramid</code></h3>
+
+<p>当设置为 <code>true</code> 时，确保 Pyramid 应用程序使用<a href="https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/startup.html?highlight=pserve">必要的 <code>pserve</code> 命令</a>启动。</p>
+
+<h3><code>env</code></h3>
+
+<p>为调试器进程设置可选的环境变量，这些变量会附加到系统环境变量之上（调试器始终继承系统环境变量）。这些变量的值必须作为字符串输入。</p>
+
+<h3><code>envFile</code></h3>
+
+<p>包含环境变量定义的文件的可选路径。请参阅<a href="../docs/python/environments.md#environment-variable-definitions-file">配置 Python 环境 - 环境变量定义文件</a>。</p>
+
+<h3><code>gevent</code></h3>
+
+<p>如果设置为 <code>true</code>，启用 <a href="https://www.gevent.org/intro.html">gevent monkey-patched 代码</a>的调试。</p>
+
+<h3><code>jinja</code></h3>
+
+<p>当设置为 <code>true</code> 时，激活特定于 <a href="https://jinja.palletsprojects.com">Jinja</a> 模板框架的调试功能。</p>
+
+<h2>断点和日志点</h2>
+
+<p>Python Debugger 扩展支持用于调试代码的<a href="../docs/debugtest/debugging.md#breakpoints">断点</a>和<a href="../docs/debugtest/debugging.md#logpoints">日志点</a>。有关基本调试和使用断点的简短演练，请参阅<a href="../docs/python/python-tutorial.md#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。</p>
+
+<h3>条件断点</h3>
+
+<p>断点也可以设置为基于表达式、命中次数或两者的组合来触发。Python Debugger 扩展支持整数命中次数，以及带有 ==、>、>=、<、<= 和 % 运算符的整数。例如，您可以通过设置命中次数为 <code>>5</code> 来设置一个在五次发生后触发的断点。有关更多信息，请参阅 VS Code 调试主文章中的<a href="../docs/debugtest/debugging.md#conditional-breakpoints">条件断点</a>。</p>
+
+<h3>在代码中调用断点</h3>
+
+<p>在您的 Python 代码中，您可以在调试会话期间希望暂停调试器的任何位置调用 <code>debugpy.breakpoint()</code>。</p>
+
+<h3>断点验证</h3>
+
+<p>Python Debugger 扩展会自动检测设置在不可执行行上的断点，例如 <code>pass</code> 语句或多行语句的中间。在这种情况下，运行调试器会将断点移动到最近的有效行，以确保代码执行在该点停止。</p>
+
+<h2>调试特定应用类型</h2>
+
+<p>配置下拉列表为通用应用类型提供了各种不同的选项：</p>
+
+<table>
+  <thead><tr><th></th><th>配置</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>---</td><td>---</td><td></td></tr>
+  <tr><td></td><td>Attach</td><td>请参阅前一部分中的<a href="#通过网络连接进行附加调试">远程调试</a>。</td><td></td></tr>
+  <tr><td></td><td>Django</td><td>指定 <code>"program": "${workspaceFolder}/manage.py"</code>，<code>"args": ["runserver"]</code>。还添加 <code>"django": true</code> 以启用 Django HTML 模板的调试。</td><td></td></tr>
+  <tr><td></td><td>Flask</td><td>请参阅下面的 <a href="#flask-调试">Flask 调试</a>。</td><td></td></tr>
+  <tr><td></td><td>Gevent</td><td>向标准集成终端配置添加 <code>"gevent": true</code>。</td><td></td></tr>
+  <tr><td></td><td>Pyramid</td><td>移除 <code>program</code>，添加 <code>"args": ["${workspaceFolder}/development.ini"]</code>，添加 <code>"jinja": true</code> 以启用模板调试，并添加 <code>"pyramid": true</code> 以确保程序使用<a href="https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/startup.html?highlight=pserve">必要的 <code>pserve</code> 命令</a>启动。</td><td></td></tr>
+</tbody>
+</table>
+<p>远程调试和 Google App Engine 还需要特定步骤。有关调试测试的详细信息，请参阅<a href="../docs/python/testing.md">测试</a>。</p>
+
+<p>要调试需要管理员权限的应用程序，请使用 <code>"console": "externalTerminal"</code> 和 <code>"sudo": "True"</code>。</p>
+
+<h3>Flask 调试</h3>
+
+<pre><code class="language-json">{
+    "name": "Python Debugger: Flask",
+    "type": "debugpy",
+    "request": "launch",
+    "module": "flask",
+    "env": {
+        "FLASK_APP": "app.py"
+    },
+    "args": [
+        "run",
+        "--no-debugger"
+    ],
+    "jinja": true
+},</code></pre>
+
+<p>如您所见，此配置指定了 <code>"env": {"FLASK_APP": "app.py"}</code> 和 <code>"args": ["run", "--no-debugger"]</code>。使用 <code>"module": "flask"</code> 属性代替 <code>program</code>。（您可能会在 <code>env</code> 属性中看到 <code>"FLASK_APP": "${workspaceFolder}/app.py"</code>，在这种情况下，请修改配置以仅引用文件名。否则，您可能会看到 "Cannot import module C" 错误，其中 C 是驱动器号。）</p>
+
+<p><code>"jinja": true</code> 设置还启用了 Flask 默认 Jinja 模板引擎的调试。</p>
+
+<p>如果您想在开发模式下运行 Flask 的开发服务器，请使用以下配置：</p>
+
+<pre><code class="language-json">{
+    "name": "Python Debugger: Flask (development mode)",
+    "type": "debugpy",
+    "request": "launch",
+    "module": "flask",
+    "env": {
+        "FLASK_APP": "app.py",
+        "FLASK_ENV": "development"
+    },
+    "args": [
+        "run"
+    ],
+    "jinja": true
+},</code></pre>
+
+<p><a name="debugger-not-working"></a></p>
+<h2>故障排除</h2>
+
+<p>调试器可能无法工作的原因有很多。有时调试控制台会显示具体原因，但主要原因如下：</p>
+<ul>
+<li>确保 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy">Python Debugger 扩展</a>已在 VS Code 中安装并启用，方法是打开<strong>扩展</strong>视图（<code>kb(workbench.view.extensions)</code>）并搜索 <code>@installed python debugger</code>。
+</li>
+<li>Python 可执行文件的路径不正确：通过运行 <strong>Python: Select Interpreter</strong> 命令并查看当前值来检查所选解释器的路径：
+</li>
+</ul>
+<p>  !<a href="python/images/debugging/debug-troubleshooting-wrong-path.png">Troubleshooting wrong Python interpreter when debugging</a></p>
+
+<ul>
+<li>您在 <code>launch.json</code> 文件中将 <code>"type"</code> 设置为了已弃用的值 <code>"python"</code>：将其替换为 <code>"debugpy"</code> 以与 Python Debugger 扩展配合使用。
+</li>
+<li>监视窗口中有无效表达式：清除监视窗口中的所有表达式并重启调试器。</li>
+<li>如果您正在使用使用本机线程 API（例如 Win32 <code>CreateThread</code> 函数而不是 Python 线程 API）的多线程应用程序，目前需要在要调试的任何文件的顶部包含以下源代码：
+<pre><code class="language-python">    import debugpy
+    debugpy.debug_this_thread()</code></pre>
+
+</li>
+<li>如果您使用的是 <strong>Linux</strong> 系统，在尝试将调试器应用于任何正在运行的进程时，可能会收到"超时"错误消息。为避免这种情况，您可以临时运行以下命令：
+<pre><code class="language-bash">    echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope</code></pre>
+
+<h2>后续步骤</h2>
+
+</li>
+<li><a href="../docs/python/environments.md">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
+<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境并发现、运行和调试测试。</li>
+<li><a href="../docs/python/settings-reference.md">设置参考</a> - 探索 VS Code 中与 Python 相关的设置的完整范围。</li>
+<li><a href="../docs/debugtest/debugging.md">通用调试</a> - 了解 VS Code 的调试功能。</li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

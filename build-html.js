@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const SRC = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-zh/docs';
-const OUT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-html/docs';
+const OUT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/docs';
 const DOCS_ROOT = 'C:/Users/zhong/OneDrive/AI/vscode/download_documents/vscode-docs-source/docs';
 const TOC_REPO = 'C:/Users/zhong/AppData/Local/Temp/vscode-docs';
 
@@ -82,8 +82,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 .layout { display:flex; min-height:100vh; }
 .sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
 .sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
-.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
 .sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
 .sidebar-section { border-bottom:1px solid #3a3a42; }
 .sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
 .sidebar-section-title:hover { background:#3a3a42; }
@@ -193,10 +196,7 @@ function renderNodes(nodes, act, prefix) {
       h += renderNodes(n.children, act, prefix);
     } else if (n.type === 'sub') {
       var id = 'sub-' + n.name.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
-      var has = false;
-      (function check(ns) { ns.forEach(function(x) { if (x.type === 'link' && x.href === act) has = true; if (x.children) check(x.children); }); })(n.children);
-      var c = has ? '' : ' collapsed';
-      h += '<div class="sidebar-subsection"><div class="sidebar-sub-title' + c + '" onclick="ts(\'' + id + '\')"><span class="toggle">▶</span> ' + n.name + '</div><div id="' + id + '" class="sidebar-sub-content' + c + '">' + renderNodes(n.children, act, prefix) + '</div></div>\n';
+      h += '<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts(\'' + id + '\')"><span class="toggle">▶</span> ' + n.name + '</div><div id="' + id + '" class="sidebar-sub-content">' + renderNodes(n.children, act, prefix) + '</div></div>\n';
     }
   });
   return h;
@@ -204,13 +204,13 @@ function renderNodes(nodes, act, prefix) {
 
 function sidebarHtml(secs, act, depth) {
   var p = ''; for (var d = 0; d < depth; d++) p += '../';
-  var h = '<div class="sidebar-header"><h2><a href="' + p + 'index.html">📖 VS Code 中文文档</a></h2></div>\n';
+  var h = '<div class="sidebar-header"><h2><a href="' + p + 'index.html">📖 VS Code 中文文档</a></h2>\n';
+  h += '<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>\n';
   secs.forEach(function(s) {
     var id = 's-' + s.name.replace(/[^a-z0-9_-]/gi, '-').toLowerCase();
     var has = false;
     (function check(ns) { ns.forEach(function(x) { if (x.type === 'link' && x.href === act) has = true; if (x.children) check(x.children); }); })(s.nodes);
-    var c = has ? '' : ' collapsed';
-    h += '<div class="sidebar-section"><div class="sidebar-section-title' + c + '" onclick="ts(\'' + id + '\')"><span>' + s.name + '</span><span class="toggle">▼</span></div><div id="' + id + '" class="sidebar-section-content' + c + '">' + renderNodes(s.nodes, act, p) + '</div></div>\n';
+    h += '<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts(\'' + id + '\')"><span>' + s.name + '</span><span class="toggle">▼</span></div><div id="' + id + '" class="sidebar-section-content">' + renderNodes(s.nodes, act, p) + '</div></div>\n';
   });
   return h;
 }
@@ -227,7 +227,7 @@ function genIndex(secs) {
   }
   var toc = '';
   secs.forEach(function(s) { toc += '<li><strong>' + s.name + '</strong><ul>' + tocItems(s.nodes) + '</ul></li>\n'; });
-  return '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <h1>VS Code 中文文档</h1>\n    <p>Visual Studio Code <strong>1.124</strong> 文档的简体中文翻译版本。</p>\n    <p>源文档：<a href="https://github.com/microsoft/vscode-docs">microsoft/vscode-docs</a> main 分支（2026-06-12）</p>\n    <p>翻译于 2026-06-14，使用 DeepSeek V4 Flash 多智能体并行翻译。</p>\n    <div class="status-card">\n      <h3>📋 翻译进度</h3>\n      <div class="status-item"><span class="status-dot done"></span> docs/ 核心用户文档 345/348 ✅</div>\n      <div class="status-item"><span class="status-dot pending"></span> release-notes/ 版本发布说明 137 个文件未翻译</div>\n      <div class="status-item"><span class="status-dot pending"></span> api/ 扩展 API 文档 76 个文件未翻译</div>\n      <div class="status-item"><span class="status-dot pending"></span> blogs/ 官方博客 115 个文件未翻译</div>\n    </div>\n    <hr>\n    <h2>文档目录</h2>\n    <ul>\n' + toc + '</ul>\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}<\/script>\n</body>\n</html>';
+  return '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <h1>VS Code 中文文档</h1>\n    <p>Visual Studio Code <strong>1.124</strong> 文档的简体中文翻译版本。</p>\n    <p>源文档：<a href="https://github.com/microsoft/vscode-docs">microsoft/vscode-docs</a> main 分支（2026-06-12）</p>\n    <p>翻译于 2026-06-14，使用 DeepSeek V4 Flash 多智能体并行翻译。</p>\n    <div class="status-card">\n      <h3>📋 翻译进度</h3>\n      <div class="status-item"><span class="status-dot done"></span> docs/ 核心用户文档 345/348 ✅</div>\n      <div class="status-item"><span class="status-dot pending"></span> release-notes/ 版本发布说明 137 个文件未翻译</div>\n      <div class="status-item"><span class="status-dot pending"></span> api/ 扩展 API 文档 76 个文件未翻译</div>\n      <div class="status-item"><span class="status-dot pending"></span> blogs/ 官方博客 115 个文件未翻译</div>\n    </div>\n    <hr>\n    <h2>文档目录</h2>\n    <ul>\n' + toc + '</ul>\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}<\/script>\n</body>\n</html>';
 }
 
 // Main
@@ -260,7 +260,7 @@ var t = 0, d = 0;
       var body = mdToHtml(bc, fp);
       var depth = base ? base.split('/').length + 1 : 1;
       var sb = sidebarHtml(sections, rp.replace(/\.md$/, '.html'), depth);
-      var htm = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + title.replace(/</g,'&lt;') + ' - VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <div class="breadcrumb"><a href="' + '../'.repeat(depth) + 'index.html">首页</a> / ' + (base||'') + ' / ' + e.name.replace(/\.md$/,'') + '</div>\n' + body + '\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}<\/script>\n</body>\n</html>';
+      var htm = '<!DOCTYPE html>\n<html lang="zh-CN">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width, initial-scale=1.0">\n<title>' + title.replace(/</g,'&lt;') + ' - VS Code 中文文档</title>\n<style>' + CSS + '</style>\n</head>\n<body>\n<div class="layout">\n  <div class="sidebar">' + sb + '</div>\n  <div class="content">\n    <div class="breadcrumb"><a href="' + '../'.repeat(depth) + 'index.html">首页</a> / ' + (base||'') + ' / ' + e.name.replace(/\.md$/,'') + '</div>\n' + body + '\n  </div>\n</div>\n<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}<\/script>\n</body>\n</html>';
       fs.writeFileSync(op, htm, 'utf-8');
       d++;
       process.stdout.write('.');

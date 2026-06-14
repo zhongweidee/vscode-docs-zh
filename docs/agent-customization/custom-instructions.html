@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>了解如何在 VS Code 中为 GitHub Copilot Chat 创建自定义指令，确保 AI 响应符合您的编码规范、项目要求和开发标准。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / agent-customization / custom-instructions</div>
+<h1>在 VS Code 中使用自定义指令</h1>
+
+<p>自定义指令使您可以定义通用指南和规则，这些规则会自动影响 AI 生成代码和处理其他开发任务的方式。无需在每个聊天提示中手动包含上下文，只需在 Markdown 文件中指定自定义指令，即可确保 AI 响应始终符合您的编码规范和项目要求。</p>
+
+<p>您可以将自定义指令配置为自动应用于所有聊天请求，或仅应用于特定文件。此外，您还可以手动将自定义指令附加到特定聊天提示中。</p>
+
+<p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="Generate instructions"></p>
+<p>使用 <code>/init</code> 为项目设置 AI 支持，生成针对项目量身定制的自定义指令。</p>
+
+<ul>
+<li><a href="agent-customization/vscode:/GitHub.Copilot-Chat/chat?prompt=%2Finit">在 VS Code 中打开</a>
+</li>
+</ul>
+<p></div></p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>使用 <a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">Agent Customizations 编辑器</a>（预览版）在一个地方发现、创建和管理所有智能体自定义设置。运行<strong>聊天：打开自定义设置</strong>命令（通过命令面板）。</blockquote>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>在编辑器中输入时，自定义指令不会应用于<a href="../docs/editing/ai-powered-suggestions.md">内联建议</a>。</blockquote>
+
+<h2>指令文件类型</h2>
+
+<p>VS Code 支持两类自定义指令。如果项目中包含多个指令文件，VS Code 会将它们合并并添加到聊天上下文中，不保证特定顺序。</p>
+
+<h3>始终启用的指令</h3>
+
+<p>始终启用的指令会自动包含在每个聊天请求中。适用于项目范围的编码标准、架构决策以及适用于所有代码的约定。</p>
+
+<ul>
+<li>单个 <a href="#使用-githubcopilot-instructionsmd-文件"><code>.github/copilot-instructions.md</code></a> 文件<ul>
+<li>自动应用于工作区中的所有聊天请求<ul>
+<li>存储在工作区内
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一个或多个 <a href="#使用-agentsmd-文件"><code>AGENTS.md</code></a> 文件<ul>
+<li>适用于在工作区中使用多个 AI 智能体的情况<ul>
+<li>自动应用于工作区中的所有聊天请求或特定子文件夹（实验性功能）</li>
+<li>存储在工作区根目录或子文件夹中（实验性功能）
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#在团队间共享自定义指令">组织级指令</a><ul>
+<li>在 GitHub 组织内的多个工作区和仓库之间共享指令<ul>
+<li>在 GitHub 组织级别定义
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#使用-claudemd-文件"><code>CLAUDE.md</code></a> 文件<ul>
+<li>用于与 Claude Code 及其他基于 Claude 的工具兼容<ul>
+<li>存储在工作区根目录、<code>.claude</code> 文件夹或用户主目录中
+<h3>基于文件的指令</h3>
+
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>基于文件的指令会在智能体正在处理的文件与指定模式匹配，或者描述与当前任务匹配时应用。使用基于文件的指令来定义特定语言的约定、框架模式，或仅适用于代码库特定部分的规则。</p>
+
+<ul>
+<li>一个或多个 <a href="#使用-instructionsmd-文件"><code>.instructions.md</code></a> 文件<ul>
+<li>通过使用 glob 模式，根据文件类型或位置有条件地应用指令<ul>
+<li>存储在工作区或用户配置中
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>要在指令中引用特定上下文（如文件或 URL），可以使用 Markdown 链接。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote><strong>应该使用哪种方式？</strong> 从单个 <code>.github/copilot-instructions.md</code> 文件开始，用于项目范围的编码标准。当需要为不同文件类型或框架设置不同规则时，添加 <code>.instructions.md</code> 文件。如果在工作区中使用多个 AI 智能体，则使用 <code>AGENTS.md</code>。</blockquote>
+
+<h2>使用 <code>.github/copilot-instructions.md</code> 文件</h2>
+
+<p>VS Code 会自动检测工作区根目录中的 <code>.github/copilot-instructions.md</code> Markdown 文件，并将该文件中的指令应用于此工作区内的所有聊天请求。</p>
+
+<p>将 <code>copilot-instructions.md</code> 用于：</p>
+
+<ul>
+<li>适用于整个项目的编码风格和命名约定</li>
+<li>技术栈声明和首选库</li>
+<li>应遵循或避免的架构模式</li>
+<li>安全要求和错误处理方法</li>
+<li>文档标准
+</li>
+</ul>
+<p>按照以下步骤在工作区中创建 <code>.github/copilot-instructions.md</code> 文件：</p>
+
+<ol>
+<li>在工作区根目录下创建 <code>.github/copilot-instructions.md</code> 文件。如需要，先创建 <code>.github</code> 目录。
+</li>
+<li>使用 Markdown 格式描述您的指令。为了获得最佳效果，请保持简洁和聚焦。
+<blockquote>[!NOTE]</blockquote>
+<blockquote>VS Code 也支持使用 <a href="#使用-agentsmd-文件"><code>AGENTS.md</code> 文件</a>来实现始终启用的指令。</blockquote>
+
+</li>
+</ol>
+<p><details></p>
+<p><summary>示例：通用编码指南</summary></p>
+
+<pre><code class="language-markdown">---
+applyTo: "**"
+---
+# 项目通用编码标准
+
+## 命名约定
+- 组件名称、接口和类型别名使用 PascalCase
+- 变量、函数和方法使用 camelCase
+- 私有类成员加下划线前缀 (_)
+- 常量使用 ALL_CAPS
+
+## 错误处理
+- 对异步操作使用 try/catch 代码块
+- 在 React 组件中实现适当的错误边界
+- 始终记录带有上下文信息的错误</code></pre>
+
+<p></details></p>
+
+<h2>使用 <code>.instructions.md</code> 文件</h2>
+
+<p>您可以创建基于文件的指令，使用 <code>*.instructions.md</code> Markdown 文件，这些文件会根据智能体正在处理的文件或任务动态应用。</p>
+
+<p>智能体根据指令文件头部的 <code>applyTo</code> 属性中指定的文件模式，或指令描述与当前任务的语义匹配，来确定应用哪些指令文件。</p>
+
+<p>将 <code>.instructions.md</code> 文件用于：</p>
+
+<ul>
+<li>前端与后端代码的不同约定</li>
+<li>单体仓库中的特定语言指南</li>
+<li>特定模块的框架特定模式</li>
+<li>测试文件或文档的专项规则
+<h3>指令文件位置</h3>
+
+</li>
+</ul>
+<p>您可以为特定工作区或在用户级别定义指令，在用户级别定义的指令将应用于所有工作区。下表列出了基于作用域的指令文件的默认文件位置。您可以使用 <code>setting(chat.instructionsFilesLocations)</code> 设置为工作区指令文件配置其他文件位置。</p>
+
+<table>
+  <thead><tr><th></th><th>作用域</th><th>默认文件位置</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>-----------------------</td><td></td></tr>
+  <tr><td></td><td>工作区</td><td><code>.github/instructions</code> 文件夹</td><td></td></tr>
+  <tr><td></td><td>工作区（Claude 格式）</td><td><code>.claude/rules</code> 文件夹</td><td></td></tr>
+  <tr><td></td><td>用户配置</td><td><code>~/.copilot/instructions</code>、<code>~/.claude/rules</code> 或您的用户数据（特定于您的 VS Code 配置文件）</td><td></td></tr>
+</tbody>
+</table>
+<p>VS Code 会递归搜索这些文件夹，使您可以在子目录中组织指令文件。例如，您可以按团队、语言或模块分组：</p>
+
+<pre><code class="language-text">.github/instructions/
+  frontend/
+    react.instructions.md
+    accessibility.instructions.md
+  backend/
+    api-design.instructions.md
+  testing/
+    unit-tests.instructions.md</code></pre>
+
+<p>以下示例展示了如何配置指令文件位置以仅允许工作区级别的指令：</p>
+
+<pre><code class="language-json">"chat.instructionsFilesLocations": {
+  ".github/instructions": true,
+  ".claude/rules": true,
+  "~/.copilot/instructions": false,
+  "~/.claude/rules": false
+}</code></pre>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>在单体仓库中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 可以从父仓库根目录发现指令。详细了解<a href="../docs/agent-customization/overview.md#use-customizations-in-a-monorepo">父仓库发现</a>。</blockquote>
+
+<h3>指令文件格式</h3>
+
+<p>指令文件是带有 <code>.instructions.md</code> 扩展名的 Markdown 文件。可选的 YAML 前置元数据头部控制指令何时应用：</p>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>必需</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>----------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>name</code></td><td>否</td><td>在 UI 中显示的显示名称。默认为文件名。</td><td></td></tr>
+  <tr><td></td><td><code>description</code></td><td>否</td><td>在聊天视图中悬停时显示的简短描述。</td><td></td></tr>
+  <tr><td></td><td><code>applyTo</code></td><td>否</td><td>定义指令自动应用于哪些文件的 glob 模式，相对于工作区根目录。使用 <code>**</code> 应用于所有文件。如果未指定，指令不会自动应用，但仍可以手动将其添加到聊天请求中。</td><td></td></tr>
+</tbody>
+</table>
+<p>正文包含 Markdown 格式的指令。要引用智能体工具，请使用 <code>#tool:<tool-name></code> 语法（例如 <code>#tool:web/fetch</code>）。</p>
+
+<pre><code class="language-markdown">---
+name: 'Python 标准'
+description: 'Python 文件的编码约定'
+applyTo: '**/*.py'
+---
+# Python 编码标准
+- 遵循 PEP 8 风格指南。
+- 所有函数签名使用类型提示。
+- 为公共函数编写文档字符串。
+- 使用 4 个空格进行缩进。</code></pre>
+
+<h3>创建指令文件</h3>
+
+<p>创建指令文件时，选择将其存储在工作区还是用户配置中。工作区指令文件仅适用于该工作区，而用户指令文件可用于多个工作区。</p>
+
+<p>创建指令文件的方法：</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>在聊天输入框中输入 <code>/instructions</code> 可以快速打开<strong>配置指令和规则</strong>菜单。</blockquote>
+
+<ol>
+<li>在聊天视图中，选择<strong>配置聊天</strong>（齿轮图标）打开 Agent Customizations 编辑器，然后选择<strong>指令</strong>选项卡。
+</li>
+<li>从下拉菜单中选择<strong>新建指令（工作区）</strong>或<strong>新建指令（用户）</strong>，取决于您希望将指令文件存储在何处。
+</li>
+</ol>
+<p>    !<a href="agent-customization/images/customization/create-instructions-file.png">Agent Customizations 编辑器的屏幕截图，显示指令选项卡和创建新指令文件的下拉菜单。</a></p>
+
+<p>    或者，也可以使用命令面板（<code>kb(workbench.action.showCommands)</code>）中的<strong>聊天：新建指令文件</strong>命令。</p>
+
+<ol>
+<li>选择位置并为指令文件输入文件名。这是在 UI 中使用的默认名称。
+</li>
+<li>使用 Markdown 格式编写自定义指令。
+<ul>
+<li>填写文件顶部的 YAML 前置元数据，配置指令的描述、名称以及何时应用。<ul>
+<li>在文件正文中添加指令。
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>您可以在 Agent Customizations 编辑器中打开现有指令文件进行修改。</p>
+
+<h3>使用 AI 生成指令文件</h3>
+
+<p>您可以使用 AI 生成针对性的指令文件。在聊天中输入 <code>/create-instruction</code>，并描述您想要强制执行的约定或指南（例如"本项目始终使用制表符和单引号"）。智能体会提出澄清问题，并生成一个带有适当 <code>applyTo</code> 模式和内容的 <code>.instructions.md</code> 文件。</p>
+
+<p>您还可以从正在进行的对话中提取指令。例如，如果您在聊天会话期间纠正了智能体的导入风格，可以要求"从中提取一条指令"以将该纠正捕获为项目约定。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote><code>/create-instruction</code> 生成针对性的按需指令文件。要生成工作区范围的始终启用的指令，请改用 <a href="#为工作区生成自定义指令"><code>/init</code> 命令</a>。</blockquote>
+
+<p><details></p>
+<p><summary>示例：特定语言的编码指南</summary></p>
+
+<p>请注意这些指令如何引用通用编码指南文件。您可以将指令分离到多个文件中，以保持其组织性和专注于特定主题。</p>
+
+<pre><code class="language-markdown">---
+applyTo: "**/*.ts,**/*.tsx"
+---
+# TypeScript 和 React 的项目编码标准
+
+将[通用编码指南](./general-coding.instructions.md)应用于所有代码。
+
+## TypeScript 指南
+- 所有新代码使用 TypeScript
+- 尽可能遵循函数式编程原则
+- 使用接口（interface）定义数据结构和类型定义
+- 优先使用不可变数据（const, readonly）
+- 使用可选链（?.）和空值合并（??）运算符
+
+## React 指南
+- 使用带 hooks 的函数组件
+- 遵循 React hooks 规则（不使用条件 hooks）
+- 对有子组件的组件使用 React.FC 类型
+- 保持组件小而专注
+- 使用 CSS 模块进行组件样式设置</code></pre>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary>示例：文档编写指南</summary></p>
+
+<p>您可以为不同类型的任务创建指令文件，包括编写文档等非开发活动。</p>
+
+<pre><code class="language-markdown">---
+applyTo: "docs/**/*.md"
+---
+# 项目文档编写指南
+
+## 通用指南
+- 编写清晰简洁的文档。
+- 使用一致的术语和风格。
+- 在适当的地方包含代码示例。
+
+## 语法
+* 使用现在时动词（是、打开）而非过去时（曾经是、打开了）。
+* 写事实性陈述和直接命令。避免使用"可以"或"将会"等假设性词语。
+* 使用主动语态，主语执行动作。
+* 使用第二人称（你）直接与读者交流。
+
+## Markdown 指南
+- 使用标题组织内容。
+- 使用项目符号表示列表。
+- 包含相关资源的链接。
+- 使用代码块展示代码片段。</code></pre>
+
+<p></details></p>
+
+<p>更多社区贡献的示例，请参阅 <a href="https://github.com/github/awesome-copilot/tree/main">Awesome Copilot 仓库</a>。</p>
+
+<h2>使用 <code>AGENTS.md</code> 文件</h2>
+
+<p>VS Code 会自动检测工作区根目录中的 <code>AGENTS.md</code> Markdown 文件，并将该文件中的指令应用于此工作区内的所有聊天请求。如果您在工作区中使用多个 AI 智能体，并希望有一套被所有智能体识别的指令，或者希望有适用于单体仓库特定部分的子文件夹级别指令，这非常有用。</p>
+
+<p>在以下情况下使用 <code>AGENTS.md</code>：</p>
+
+<ul>
+<li>您使用多个 AI 编码智能体，并希望有一套被所有智能体识别的指令</li>
+<li>您希望有适用于单体仓库特定部分的子文件夹级别指令
+</li>
+</ul>
+<p>要启用或禁用对 <code>AGENTS.md</code> 文件的支持，请配置 <code>setting(chat.useAgentsMdFile)</code> 设置。</p>
+
+<h3>使用多个 <code>AGENTS.md</code> 文件（实验性功能）</h3>
+
+<p>在子文件夹中使用多个 <code>AGENTS.md</code> 文件适用于对不同项目部分应用不同指令的情况。例如，可以为前端代码设置一个 <code>AGENTS.md</code> 文件，为后端代码设置另一个。</p>
+
+<p>使用实验性的 <code>setting(chat.useNestedAgentsMdFiles)</code> 设置来启用或禁用对工作区中嵌套 <code>AGENTS.md</code> 文件的支持。</p>
+
+<p>启用后，VS Code 会在工作区的所有子文件夹中递归搜索 <code>AGENTS.md</code> 文件，并将其相对路径添加到聊天上下文中。然后，智能体可以根据正在编辑的文件决定使用哪些指令。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>对于特定文件夹的指令，您也可以使用多个具有不同 <code>applyTo</code> 模式（匹配文件夹结构）的 <a href="#使用-instructionsmd-文件"><code>.instructions.md</code></a> 文件。</blockquote>
+
+<h2>使用 <code>CLAUDE.md</code> 文件</h2>
+
+<p>VS Code 会自动检测 <code>CLAUDE.md</code> 文件，并将其作为始终启用的指令应用，类似于 <code>AGENTS.md</code>。如果您在 VS Code 之外还使用 Claude Code 或其他基于 Claude 的工具，并希望有一套被所有工具识别的指令，这非常有用。</p>
+
+<p>VS Code 在以下位置搜索 <code>CLAUDE.md</code> 文件：</p>
+
+<table>
+  <thead><tr><th></th><th>位置</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>----------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td>工作区根目录</td><td>工作区根目录下的 <code>CLAUDE.md</code></td><td></td></tr>
+  <tr><td></td><td><code>.claude</code> 文件夹</td><td>工作区中的 <code>.claude/CLAUDE.md</code></td><td></td></tr>
+  <tr><td></td><td>用户主目录</td><td><code>~/.claude/CLAUDE.md</code>，用于所有项目的个人指令</td><td></td></tr>
+  <tr><td></td><td>本地变体</td><td><code>CLAUDE.local.md</code>，用于仅本地指令（不提交到版本控制）</td><td></td></tr>
+</tbody>
+</table>
+<p>要启用或禁用对 <code>CLAUDE.md</code> 文件的支持，请配置 <code>setting(chat.useClaudeMdFile)</code> 设置。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>对于 <code>.claude/rules</code> 指令文件，VS Code 使用 <code>paths</code> 属性而不是 <code>applyTo</code> 来指定 glob 模式，遵循 <a href="https://code.claude.com/docs/en/memory#basic-structure">Claude Rules 格式</a>。<code>paths</code> 属性接受一个 glob 模式数组，省略时默认为 <code>**</code>（所有文件）。</blockquote>
+
+<h2>为工作区生成自定义指令</h2>
+
+<p>VS Code 可以分析您的工作区并生成与编码规范及项目结构相匹配的始终启用的自定义指令。这些指令随后会自动应用于工作区中的所有聊天请求。</p>
+
+<p>生成指令时，VS Code 执行以下步骤：</p>
+
+<ol>
+<li>发现工作区中现有的 AI 约定，例如 <code>copilot-instructions.md</code> 或 <code>AGENTS.md</code> 文件。</li>
+<li>分析您的项目结构和编码模式。</li>
+<li>生成针对项目量身定制的全面工作区指令。
+</li>
+</ol>
+<p>为工作区生成自定义指令的方法：</p>
+
+<ul>
+<li>在聊天输入框中输入 <code>/init</code> 并按 <code>kbstyle(Enter)</code>。
+</li>
+<li>输入 <code>/create-instructions</code>，然后描述您想要生成的指令。
+</li>
+<li>在 Agent Customizations 编辑器中，从下拉菜单中选择<strong>生成指令</strong>。
+<h2>在团队间共享自定义指令</h2>
+
+</li>
+</ul>
+<p>要在 GitHub 组织内的多个工作区和仓库之间共享自定义指令，您可以在 GitHub 组织级别定义它们。</p>
+
+<p>VS Code 会自动检测您的账户有权访问的组织级别定义的自定义指令。这些指令会在<strong>聊天指令</strong>菜单中与您的个人和工作区指令一起显示，并自动应用于所有聊天请求。</p>
+
+<p>要启用组织级自定义指令的发现，请将 <code>setting(github.copilot.chat.organizationInstructions.enabled)</code> 设置为 <code>true</code>。</p>
+
+<p>在 GitHub 文档中了解如何<a href="https://docs.github.com/en/copilot/how-tos/configure-custom-instructions/add-organization-instructions">为组织添加自定义指令</a>。</p>
+
+<h2>跨设备同步用户指令文件</h2>
+
+<p>VS Code 可以使用<a href="../docs/configure/settings-sync.md">设置同步</a>在多个设备之间同步您的用户指令文件。</p>
+
+<p>要同步用户指令文件，请启用设置同步并从命令面板（<code>kb(workbench.action.showCommands)</code>）中运行 <strong>Settings Sync: Configure</strong>。从要同步的设置列表中选择<strong>提示和指令</strong>。</p>
+
+<h2>在设置中指定自定义指令</h2>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>从 VS Code 1.102 开始，基于设置的代码生成和测试生成指令已被弃用。请改用<a href="#指令文件类型">基于文件的指令</a>。</blockquote>
+
+<p>对于代码审核、提交消息和拉取请求描述，您仍然可以使用 VS Code 设置来定义自定义指令。这些设置接受一个对象数组，每个对象包含 <code>text</code> 属性（内联指令）或 <code>file</code> 属性（Markdown 文件的路径）。</p>
+
+<table>
+  <thead><tr><th></th><th>场景</th><th>设置</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>----------</td><td>---------</td><td></td></tr>
+  <tr><td></td><td>代码审核</td><td><code>setting(github.copilot.chat.reviewSelection.instructions)</code></td><td></td></tr>
+  <tr><td></td><td>提交消息</td><td><code>setting(github.copilot.chat.commitMessageGeneration.instructions)</code></td><td></td></tr>
+  <tr><td></td><td>拉取请求描述</td><td><code>setting(github.copilot.chat.pullRequestDescriptionGeneration.instructions)</code></td><td></td></tr>
+</tbody>
+</table>
+<h2>指令优先级</h2>
+
+<p>当存在多种类型的自定义指令时，它们都会提供给 AI。发生冲突时，优先级较高的指令优先：</p>
+
+<ol>
+<li>个人指令（用户级别，最高优先级）</li>
+<li>仓库指令（<code>.github/copilot-instructions.md</code> 或 <code>AGENTS.md</code>）</li>
+<li>组织指令（最低优先级）
+<h2>编写有效指令的提示</h2>
+
+</li>
+<li>保持指令简短且自包含。每条指令应为一个单一、简单的陈述。如果需要提供多条信息，请使用多条指令。
+</li>
+<li>包含规则背后的原因。当指令解释了约定 _为什么_ 存在时，AI 在边缘情况下会做出更好的决策。例如："使用 <code>date-fns</code> 而不是 <code>moment.js</code>，因为 moment.js 已被弃用且会增加打包体积。"
+</li>
+<li>用具体的代码示例展示推荐和应避免的模式。AI 对示例的响应比对抽象规则更有效。
+</li>
+<li>关注非显而易见的规则。跳过标准代码检查工具或格式化工具已经强制执行的约定。
+</li>
+<li>对于任务或语言特定的指令，使用多个 <code>*.instructions.md</code> 文件，每个文件一个主题，并使用 <code>applyTo</code> 属性选择性地应用它们。
+</li>
+<li>将项目特定的指令存储在工作区中，以与其他团队成员共享，并将其纳入版本控制。
+</li>
+<li>在<a href="../docs/agent-customization/prompt-files.md">提示文件</a>和<a href="../docs/agent-customization/custom-agents.md">自定义智能体</a>中重用和引用指令文件，以保持其整洁和专注，并避免重复指令。
+</li>
+<li>指令之间的空白字符会被忽略，因此您可以将指令格式化为单个段落、分行显示或用空行分隔以提高可读性。
+<h2>常见问题解答</h2>
+
+<h3>为什么我的指令文件没有被应用？</h3>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>使用聊天自定义诊断视图查看所有已加载的指令文件及任何错误。在聊天视图中右键单击并选择<strong>诊断</strong>。详细了解 <a href="../docs/agents/agent-troubleshooting/troubleshooting.md">VS Code 中 AI 的故障排除</a>。</blockquote>
+
+</li>
+</ol>
+<p>如果您的指令文件没有被应用，请检查以下内容：</p>
+
+<ul>
+<li>验证指令文件是否位于正确位置。<code>.github/copilot-instructions.md</code> 文件必须位于工作区根目录下的 <code>.github</code> 文件夹中。<code>*.instructions.md</code> 文件必须位于 <code>setting(chat.instructionsFilesLocations)</code> 设置指定的文件夹（或其子目录）之一中（默认：<code>.github/instructions</code>），或位于您的用户配置中。
+</li>
+<li>对于 <code>*.instructions.md</code> 文件，检查 <code>applyTo</code> glob 模式是否与您正在处理的文件匹配。如果未指定 <code>applyTo</code> 属性，指令文件不会自动应用。查看聊天响应中的<strong>引用</strong>部分，了解使用了哪些指令文件。
+</li>
+<li>检查相关设置是否已启用：基于模式的指令使用 <code>setting(chat.includeApplyingInstructions)</code>，通过 Markdown 链接引用的指令使用 <code>setting(chat.includeReferencedInstructions)</code>，<code>AGENTS.md</code> 文件使用 <code>setting(chat.useAgentsMdFile)</code>。
+</li>
+</ul>
+<p>对于高级诊断，请<a href="https://github.com/microsoft/vscode/wiki/Copilot-Issues#language-model-requests-and-responses">在 Chat Debug 视图中检查语言模型请求</a>，或<a href="https://github.com/microsoft/vscode/wiki/Copilot-Issues#custom-instructions-logs">调试 <code>applyTo</code> 匹配逻辑</a>。</p>
+
+<h3>如何知道自定义指令文件来自哪里？</h3>
+
+<p>自定义指令文件可以来自不同来源：内置、用户配置中定义的、当前工作区中工作区定义的指令、组织级指令或扩展贡献的指令。</p>
+
+<p>要识别自定义指令文件的来源：</p>
+
+<ol>
+<li>从命令面板（<code>kb(workbench.action.showCommands)</code>）中选择<strong>聊天：配置指令</strong>。</li>
+<li>在列表中悬停在指令文件上。来源位置会显示在工具提示中。
+</li>
+</ol>
+<p>使用聊天自定义诊断视图查看所有已加载的指令文件及任何错误。在聊天视图中右键单击并选择<strong>诊断</strong>。详细了解 <a href="../docs/agents/agent-troubleshooting/troubleshooting.md">VS Code 中 AI 的故障排除</a>。</p>
+
+<h2>相关资源</h2>
+
+<ul>
+<li><a href="../docs/agent-customization/agent-skills.md">使用智能体技能</a></li>
+<li><a href="../docs/agent-customization/custom-agents.md">创建自定义智能体</a></li>
+<li><a href="https://github.com/github/awesome-copilot">社区贡献的指令、提示和自定义智能体</a></li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

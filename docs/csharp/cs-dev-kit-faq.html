@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C# Dev Kit 扩展常见问题解答 (FAQ) - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / csharp / cs-dev-kit-faq</div>
+<h1>C# Dev Kit 常见问题解答</h1>
+
+<p>欢迎使用本常见问题解答（FAQ）主题，了解有关 C# Dev Kit 扩展的更多信息，并对您可能遇到的问题进行故障排除。</p>
+
+<h2>常规</h2>
+
+<h3>什么是 C# Dev Kit？</h3>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit</a> 是一个扩展，旨在增强您在 Visual Studio Code 中的 C# 开发体验。它致力于为 VS Code 带来更全面、更高效、更可靠的 C# 体验。C# Dev Kit 不会取代<a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">现有的 C# 扩展</a>，而是在其提供的出色语言服务功能之上进行增强。开发者可以选择继续使用更新后的现有 C# 扩展，或通过添加 C# Dev Kit 来增强他们的体验。</p>
+
+<h3>当前支持哪些项目类型？</h3>
+
+<p>C# Dev Kit 支持为 .NET Core（通常也称为 .NET）构建 Web 应用、控制台应用、类库项目和测试项目。<a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-maui">.NET MAUI 扩展</a>和 <a href="https://marketplace.visualstudio.com/items?itemName=visualstudiotoolsforunity.vstuc">Unity 扩展</a>基于 C# Dev Kit 构建，并提供对构建 <a href="https://dotnet.microsoft.com/apps/maui">.NET 多平台应用 UI (MAUI)</a> 应用和 Unity 应用的额外支持。这些扩展支持现代 .NET 项目格式，也称为 "sdk-style" 项目。如果您正在构建非 SDK 格式的项目，例如 <a href="https://learn.microsoft.com/dotnet/standard/choosing-core-framework-server">.NET Framework</a> 应用和 Xamarin 应用，请参阅<a href="#项目系统">项目系统</a>部分。</p>
+
+<h3>C# Dev Kit 包含哪些扩展？</h3>
+
+<p>目前，C# Dev Kit 系列中包含的扩展有：</p>
+
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit">C# Dev Kit</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscodeintellicode-csharp">IntelliCode for C# Dev Kit</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.dotnet-maui">.NET MAUI</a></li>
+<li><a href="https://aka.ms/vscode-unity">Unity</a>
+</li>
+</ul>
+<p>这些扩展的使用受 <a href="https://aka.ms/vs/csdevkit/license">C# Dev Kit 扩展系列 EULA</a> 的约束。</p>
+
+<p>这些扩展还依赖于带有自己许可协议的依赖项——例如，C# Dev Kit 依赖于 <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# 扩展</a>和 <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.vscode-dotnet-runtime">.NET Install Tool</a>。</p>
+
+<h3>为什么 C# Dev Kit 没有激活 / 找不到 C# Dev Kit 命令？</h3>
+
+<p>在您尝试编辑 C# 文件时，C# Dev Kit 未激活的原因可能有以下几种。</p>
+
+<ol>
+<li><strong>未安装 2.0 以上版本的 C# 扩展</strong>。C# Dev Kit 要求 C# 扩展的版本为 2.0 或更高。请检查确保您已安装 C# 扩展且版本为 2.0 或更高。</li>
+<li><strong>工作区优先使用 C# 扩展</strong>。C# Dev Kit 不支持 .NET Framework 项目，如果您已将 <code>dotnet.preferCSharpExtension</code> 设置设为 true，则该工作区将禁用 C# Dev Kit。如果项目不是 .NET Framework 项目，请确保禁用此设置。</li>
+<li><strong>使用只读操作系统</strong>。C# Dev Kit 需要对其自身的扩展文件夹以及 VS Code 为扩展提供的文件夹具有写入权限，以便在操作系统中写入任意状态，因此如果您使用的操作系统是完全只读的，C# Dev Kit 将无法工作。
+</li>
+</ol>
+<p>如果您已检查以上几点但 C# Dev Kit 命令仍然找不到，请报告问题并提供 C# Dev Kit 的输出窗口中的信息。</p>
+
+<h2>许可与贡献</h2>
+
+<h3>谁可以使用 C# Dev Kit？</h3>
+
+<p>C# Dev Kit 通过社区许可证提供给符合条件的用户，同时也作为现有 <a href="https://visualstudio.microsoft.com/subscriptions">Visual Studio 订阅</a>的另一项附加内容提供。这意味着拥有有效 Visual Studio 订阅的开发者现在就可以使用 C# Dev Kit。</p>
+
+<p>对于个人、学术和开源项目，C# Dev Kit 可以免费使用。出于商业目的，最多 5 人的团队也可以免费使用 C# Dev Kit。对于 6 人及以上的开发者，这些用户将需要 Visual Studio Professional（或更高版本）订阅。C# Dev Kit 也包含在 GitHub Codespaces 和 Microsoft Dev Box 中，因此这些产品的用户无需额外付费即可使用 C# Dev Kit。</p>
+
+<h3>我在哪里提交反馈和建议？</h3>
+
+<p>用户可以通过 VS Code 的 <strong>帮助 > 报告问题</strong> 来报告问题或提出建议。选择是 bug、功能请求还是性能问题，提交到 <strong>一个扩展</strong>，然后从扩展列表中选择 <strong>C# Dev Kit</strong>。</p>
+
+<p>!<a href="csharp/images/faq/help-report-issue.png">Help > Report Issue image</a></p>
+
+<h3>C# Dev Kit 是开源的？为什么不是？</h3>
+
+<p>不是。C# Dev Kit 是闭源的，但依赖于开源的 C# for VS Code 扩展，并且两者都与开源组件通信，例如 <a href="https://github.com/dotnet/roslyn">Roslyn</a> 和 <a href="https://github.com/dotnet/razor">Razor</a>。我们开发 C# Dev Kit 的目标之一是为使用 VS Code 的 C# 开发者提供更高的生产力体验。为实现这一目标，C# Dev Kit 包含一些与我们其他工具共有的专有闭源功能。为了让这些体验也能提供给 VS Code 用户，我们需要将 C# Dev Kit 作为闭源扩展推出。</p>
+
+<h3>我如何做出贡献？</h3>
+
+<p>C# 扩展是 C# Dev Kit 的一部分，是完全开源的，并受<a href="https://aka.ms/vs/csdevkit/license">这些许可条款</a>的约束。此扩展的源代码可在 <a href="https://github.com/dotnet/vscode-csharp">https://github.com/dotnet/vscode-csharp</a> 上获取，并以 MIT 许可证授权。</p>
+
+<p>此项目已采纳 <a href="https://www.contributor-covenant.org">Contributor Covenant</a> 定义的行为准则，以明确我们社区中应有的行为。有关更多信息，请参阅 <a href="https://dotnetfoundation.org/about/policies/code-of-conduct">.NET Foundation 行为准则</a>。签署 <a href="https://cla.dotnetfoundation.org/">CLA</a> 后，社区可以自由地将您的贡献用于 .NET Foundation 项目。</p>
+
+<h2>.NET SDK</h2>
+
+<h3>安装脚本超时</h3>
+
+<p>请注意，根据您的网络速度，安装 .NET Core 运行时可能需要一些时间。默认情况下，如果安装时间超过 4.5 分钟，安装将无成功终止。如果您认为允许的下载时间太少（或太多），可以通过将 <code>dotnetAcquisitionExtension.installTimeoutValue</code> 设置为自定义值来更改超时值。</p>
+
+<p><a href="../docs/configure/settings.md">了解有关配置 VS Code 设置的更多信息</a>，并查看下面 <code>settings.json</code> 文件中的自定义超时示例。在此示例中，自定义超时值为 180 秒，即 3 分钟：</p>
+
+<pre><code class="language-json">{
+    "dotnetAcquisitionExtension.installTimeoutValue": 180
+}</code></pre>
+
+<h3>获取 .NET SDK 时出错</h3>
+
+<p>!<a href="csharp/images/faq/error-acquiring-dotnet-7.png">Error acquiring .NET SDK</a></p>
+
+<p>注意：如果您位于中国，您的 .NET SDK 下载可能会被阻止并导致超时。</p>
+
+<p>您需要确保已安装 .NET SDK。作为一种变通方法，您可以将 .NET 运行时获取扩展指向现有的 .NET 安装：</p>
+
+<p>!<a href="csharp/images/faq/point-dotnet-runtime-to-existing-dotnet-install.png">Point the .NET runtime acquisition extension to an existing .NET SDK install</a></p>
+
+<h3>如何手动安装 .NET？</h3>
+
+<p>如果 .NET 安装失败或您想重用现有的 .NET 安装，您可以使用 <code>dotnetAcquisitionExtension.existingDotnetPath</code> 设置。可以从 <strong>C# Dev Kit 引导教程</strong> 或 <a href="https://dotnet.microsoft.com/download">.NET 网站</a>手动安装 .NET。要将扩展指向该安装，请按以下示例使用扩展 ID 和路径更新您的设置：</p>
+
+<h4>Windows</h4>
+
+<pre><code class="language-json">{
+    "dotnetAcquisitionExtension.existingDotnetPath": [
+        { "extensionId": "msazuretools.azurerm-vscode-tools", "path": "C:\\Program Files\\dotnet\\dotnet.exe" }
+    ]
+}</code></pre>
+
+<h4>macOS</h4>
+
+<pre><code class="language-json">{
+    "dotnetAcquisitionExtension.existingDotnetPath": [
+        { "extensionId": "msazuretools.azurerm-vscode-tools", "path": "/usr/local/share/dotnet/dotnet" }
+    ]
+}</code></pre>
+
+<h3>扩展认为我处于离线状态，错误响应为 400 或 407，并且我使用了代理</h3>
+
+<p>如果您的系统使用代理且注册表访问已被禁用，则需要在扩展设置中显式设置代理 URL。当通过环境变量和注册表设置代理时，扩展会自动检测到，但如果您的代理仅通过注册表键管理且注册表访问被禁用，扩展将无法找到它。要设置代理 URL，请添加以下扩展设置：</p>
+
+<pre><code class="language-json">{
+    "dotnetAcquisitionExtension.proxyUrl": "https://your_proxy_url:port"
+}</code></pre>
+
+<h2>项目系统</h2>
+
+<h3>解决方案资源管理器报告我的项目在 C# Dev Kit 中不受支持</h3>
+
+<p>这通常是因为项目面向 .NET Framework 而不是 .NET Core/.NET。目前，C# Dev Kit 不支持 .NET Framework 项目。</p>
+
+<p>!<a href="csharp/images/faq/solution-explorer-not-supported-framework.png">Project Not Supported in Solution Explorer</a></p>
+
+<p>要解决此问题，您有两个选项。</p>
+
+<p>您可以<a href="https://learn.microsoft.com/dotnet/core/porting">将项目更新</a>为 SDK 样式项目，以访问所有可用的 C# Dev Kit 功能。</p>
+
+<p>或者，您可以使用设置编辑器中的 <strong>优先使用 CSharp 扩展</strong> 工作区设置，将项目和解决方案加载委托给 <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# 扩展</a>。请注意，使用此设置后，某些 C# Dev Kit 功能将不可用。要访问此设置，请转到设置编辑器并选择 <strong>工作区</strong> 选项卡。然后在搜索栏中搜索 "优先使用 CSharp"，并勾选 <strong>优先使用 CSharp 扩展</strong> 设置旁边的复选框。如果您尝试加载 .NET Framework 项目，C# Dev Kit 将自动显示一条通知，要求您将项目更新为 SDK 样式项目，或者通过从通知中选择 <strong>使用 C# 扩展</strong> 让 C# 扩展加载您的项目或解决方案。此选项将自动选中 <strong>优先使用 CSharp 扩展</strong> 设置。请注意，您需要重新加载 VS Code 才能使此设置生效。</p>
+
+<h3>我点击了"创建 .NET 项目"按钮但什么也没有发生</h3>
+
+<p>这通常发生在扩展版本不匹配时。C# Dev Kit 要求 <a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# 扩展</a>的版本为 2.0 或更高。如果您使用的是 C# 扩展的 v1 版本，C# Dev Kit 和 C# Dev Kit 相关命令将无法正常工作。要解决此问题，请将 C# 扩展升级到最新版本。</p>
+
+<h3>项目系统报告它遇到了问题</h3>
+
+<p>当发生内部项目系统错误时，您通常会在 VS Code 的角落看到一个类似这样的弹出通知：</p>
+
+<p>!<a href="csharp/images/faq/failed-to-restore-solution.png">Failed to Restore Solution</a></p>
+
+<p>选择 <strong>打开日志</strong> 按钮以打开一个视图，显示问题发生位置的堆栈跟踪信息。选择并复制日志中的所有文本。通过 VS Code 报告问题，并确保包含从日志中复制的文本。</p>
+
+<h3>当我打开解决方案时，收到通知"无法还原解决方案"</h3>
+
+<p>选择 <strong>显示错误</strong>。这将打开 NuGet 的输出面板。通读错误信息以确定包还原无法完成的原因。如果您无法解决问题，请通过 VS Code 报告问题。</p>
+
+<h3>解决方案资源管理器显示"未找到兼容的 .NET SDK"</h3>
+
+<p>此错误最可能的原因是 <code>global.json</code> 文件指定了与系统上已安装的不同的 SDK。</p>
+
+<p>!<a href="csharp/images/faq/compatible-dotnet-sdk-not-found.png">A compatible .NET SDK was not found</a></p>
+
+<p>打开输出窗口并切换到 <strong>项目</strong> 窗格以查找更多信息。您应该会看到类似以下内容：</p>
+
+<p>!<a href="csharp/images/faq/output-window-projects.png">Output Window Projects Pane</a></p>
+
+<p>要解决此问题，请更新 <code>global.json</code> 以指定已安装的 SDK，或从<a href="https://aka.ms/dotnet/download">下载 .NET</a> 页面安装指定的 SDK。</p>
+
+<p>接下来，关闭并重新打开工作区。</p>
+
+<p>也有可能是 SDK 安装的位置 C# Dev Kit 无法识别。例如，如果 SDK 是通过包管理器而不是通过 Microsoft 提供的安装程序安装的，就可能发生这种情况。要解决此问题，请通过包管理器卸载 SDK，然后通过<a href="https://aka.ms/dotnet/download">下载 .NET</a> 页面重新安装。</p>
+
+<h2>测试资源管理器</h2>
+
+<h3>为什么我的测试不出现在测试资源管理器面板中？</h3>
+
+<p>确保您的解决方案包含一个测试项目。只有属于已打开解决方案的测试项目才会被包含。要查看测试项目是否属于解决方案的一部分，请在文件资源管理器中打开解决方案资源管理器视图，查看项目是否出现在树中。右键单击解决方案节点以添加现有的测试项目，或在解决方案中创建新的测试项目。</p>
+
+<p>C# Dev Kit 还要求它已成功构建您的项目后，测试才会出现在测试资源管理器面板中。此外，如果对项目/解决方案执行了 <strong>清理</strong> 操作，测试 dll 将从测试资源管理器面板中移除。</p>
+
+<p>一旦您已验证测试项目属于解决方案的一部分，请通过右键单击解决方案资源管理器中的解决方案并选择 <strong>构建</strong> 或使用 <code>kb(workbench.action.tasks.build)</code> 来构建解决方案。构建完成后，您的测试将出现在测试资源管理器面板中。</p>
+
+<p>如果您的测试仍未出现，请考虑以下额外检查：</p>
+<ul>
+<li><strong>受支持的 .NET Core SDK</strong>：确保您正在为您的平台和计算机使用受支持的 .NET Core SDK。某些 SDK 在特定操作系统或架构上无法工作。有关更多信息，请查看官方 .NET 下载页面：<a href="https://dotnet.microsoft.com/en-us/download">https://dotnet.microsoft.com/en-us/download</a>。</li>
+<li><strong>有效的 SDK 安装</strong>：验证是否检测到有效的 SDK 安装。您可以<a href="#如何收集日志以排查测试资源管理器的问题">启用诊断日志记录</a>来检查为您的 .NET 项目检测到哪个 SDK。请注意，通过不受支持的工具（如 ASDF 或 <a href="https://mise.jdx.dev/">Mise</a>）安装的 .NET SDK 可能无法被检测到，因为它们偏离了 Microsoft 的官方安装方法。我们建议您遵循<a href="https://dotnet.microsoft.com/en-us/download">官方说明</a>。</li>
+<li><strong>构建输出</strong>：确认构建已完成并且已生成相应的输出二进制文件，例如 <code>.dll</code> 或 <code>.exe</code> 文件。</li>
+<li><strong>项目加载</strong>：确保所有项目已完成加载。在解决方案资源管理器中，查看测试项目旁边是否有测试图标，以确认它们已被检测到。
+<h3>我的测试出现在测试资源管理器面板中，但无法调试它们</h3>
+
+</li>
+</ul>
+<p>确保您的测试面向 .NET Core。C# Dev Kit 不支持 .NET Framework 项目，尽管 .NET Framework 项目可能会加载并看起来能正常工作。VS Code 中的调试器不支持 .NET Framework。</p>
+
+<h3>我刚刚向我的测试项目添加了新测试，但它们没有出现在测试资源管理器面板中？</h3>
+
+<p>C# Dev Kit 要求它已成功构建您的项目后，测试才会出现在测试资源管理器面板中。</p>
+
+<p>通过右键单击解决方案资源管理器中的解决方案并选择 <strong>构建</strong> 或使用 <code>kb(workbench.action.tasks.build)</code> 来构建解决方案。构建完成后，您的测试将出现在测试资源管理器面板中。</p>
+
+<h3>如何收集日志以排查测试资源管理器的问题？</h3>
+
+<p>如果您遇到测试资源管理器的问题，可以启用诊断日志记录来收集更多信息以进行故障排除：</p>
+
+<ol>
+<li>提高测试资源管理器的详细程度：</li>
+</ol>
+<p>    转到 C# Dev Kit 设置，将测试资源管理器的详细程度设置从 <code>minimal</code> 提高到 <code>diagnostic</code>。这将生成更详细的日志。</p>
+<ol>
+<li>检查输出窗口：</li>
+</ol>
+<p>    在 Visual Studio Code 中打开输出窗口，然后从下拉菜单中选择 <strong>C# Dev Kit - 测试资源管理器</strong>。诊断消息将以 <code>[dev]</code> 前缀显示。</p>
+<ol>
+<li>收集以下信息：</li>
+</ol>
+<p>   在报告问题时，请确保包含：</p>
+<ul>
+<li>输出窗口中的诊断日志。<ul>
+<li>您的操作系统及其版本（例如 Windows 10、macOS 13）。</li>
+<li>您正在使用的 C# Dev Kit 扩展的版本。转到扩展视图，将鼠标悬停在扩展上以查看版本信息。
+</li>
+</ul>
+</li>
+</ul>
+<p>这些信息将有助于更高效地诊断和解决问题。</p>
+
+<h2>调试器</h2>
+
+<h3>当我按 F5 时，什么也没有发生</h3>
+
+<p>确保您已打开 C# 项目，或者当前活动文档是 <code>.cs</code> 或 <code>.razor</code> 文件。如果调试器仍然无法加载，请确保 C# Dev Kit 和 C# 扩展都已被激活。</p>
+
+<h3>当我按 F5 时，它要求我"选择调试器"。我怎么知道该选哪一个？</h3>
+
+<p>如果您尝试调试 .NET 控制台应用程序、Blazor Server 应用、Blazor WebAssembly 或 Web 应用程序，请确保选择 <strong>C#</strong> 选项。其他选项可能是其他扩展的一部分，例如用于 JavaScript 调试的 <strong>Node</strong> 或用于 Python 调试的 <strong>Python</strong>，它们不属于 C# Dev Kit。</p>
+
+<h3>当我按 F5 时，它提示我输入密码（仅限 macOS）</h3>
+<p>macOS 默认禁用了开发者模式，如果某个程序想要用作调试器，会提示输入密码以保护用户。</p>
+
+<p>如果您希望禁用这些提示，可以运行以下命令：</p>
+<ul>
+<li><code>DevToolsSecurity --enable</code></li>
+<li><code>sudo dscl . append /Groups/_developer GroupMembership $USER</code>
+<h3>为什么调试不工作？</h3>
+
+</li>
+</ul>
+<p>如果您尝试调试库或测试项目，可能需要进行一些额外的步骤来确保您的代码得到正确调试。要调试库，您可以创建一个与该库交互的控制台或 Web 应用程序。对于测试项目，您可以使用测试资源管理器来有效调试您的代码。</p>
+
+<h3>调试时，我的断点没有绑定</h3>
+
+<p>您正在调试的进程不是在调试模式下构建的。请在调试进程之前确保以调试模式构建。</p>
+
+<h2>C# 编辑器</h2>
+
+<h3>如何让 IntelliSense 正确工作？</h3>
+
+<p>确保您已打开一个项目或解决方案。如果您有多个解决方案，扩展将自动打开一个或提示您打开一个。接下来，在设置搜索栏中搜索 "Trace"，然后将 <strong>Dotnet</strong> > <strong>Server:</strong> 从下拉菜单中设置为 <strong>Trace</strong>。此选项可提供更多输出信息，以帮助开发团队诊断问题。</p>
+
+<p>!<a href="csharp/images/faq/dotnet-server-trace.png">Set Dotnet Server to Trace</a></p>
+
+<p>完成此更改后，通过打开命令面板 (<code>kb(workbench.action.showCommands)</code>) 并输入"重新加载窗口"然后按 <code>kbstyle(Enter)</code> 来重新加载窗口。重新加载窗口后，在输出面板 (<code>kb(workbench.action.output.toggleOutput)</code>) 中检查项目日志，并从下拉菜单中选择 <strong>项目</strong>。这将显示与您的项目未完全加载相关的任何错误。复制输出面板中的所有文本，并通过 VS Code 报告问题，确保包含复制的文本。</p>
+
+<h3>C# 扩展无法启动服务器</h3>
+
+<p>作为一种变通方法，您可以使用 <code>dotnetAcquisitionExtension.existingDotnetPath</code> 设置将 .NET 运行时获取扩展指向现有的 .NET 7 安装：</p>
+
+<pre><code class="language-json">{
+    "dotnetAcquisitionExtension.existingDotnetPath": [
+        {
+            "extensionId": "msazuretools.azurerm-vscode-tools",
+            "path": "C\\Program Files\\dotnet\\dotnet.exe"
+        }
+    ]
+}
+</code></pre>
+
+<h3>我的诊断信息太多或不够</h3>
+
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp">C# 扩展</a>允许您配置各种后台代码分析设置。要访问这些设置，请转到 <strong>文件</strong> > <strong>首选项</strong> > <strong>设置</strong> 或使用键盘快捷方式 (<code>kb(workbench.action.openSettings)</code>)。在搜索栏中键入 "analysis" 以缩小与代码分析相关的设置范围。在 <strong>运行后台代码分析：</strong> 下，您可以从下拉菜单中选择分析范围。默认设置是分析打开的文件，但您可以将其自定义为整个解决方案、无或打开的文档。</p>
+
+<p>!<a href="csharp/images/faq/background-code-analysis.png">Configure Background Code Analysis</a></p>
+
+<p>您还可以使用 EditorConfig 文件来配置诊断和代码分析。要了解有关 EditorConfig 的更多信息，请查看<a href="https://learn.microsoft.com/dotnet/fundamentals/code-analysis/code-style-rule-options">文档</a>。</p>
+
+<p>如果您没有看到足够的诊断信息或根本看不到，可能是您的项目没有完全加载。要检查是否是这种情况，请参阅<a href="#如何让-intellisense-正确工作">如何让 IntelliSense 正确工作？</a>部分。它提供了有关如何验证您的项目是否完全加载的说明。</p>
+
+<h2>Razor 编辑器</h2>
+
+<h3>大多数或所有 Blazor 组件都显示警告</h3>
+
+<p>在 Blazor 组件被发现之前，C# Dev Kit 需要成功加载您的项目。此外，Razor 语言服务器需要生成 <code>project.razor.vscode.bin</code> 文件才能了解项目的状态。如果此文件未生成，或者生成时没有包含任何组件，Razor 体验可能会受到影响。</p>
+
+<p>为了提高性能，扩展有时会延迟生成或加载此文件，直到您打开第一个 <code>.razor</code> 或 <code>.cshtml</code> 文件为止。要确保解决方案资源管理器中您尝试使用的项目没有任何错误，请仔细检查。</p>
+
+<p>如果您的项目已正确加载，请验证文件系统中项目的 <code>obj\Debug\<tfm></code> 文件夹中是否存在 <code>project.razor.vscode.bin</code> 文件。由于它是二进制文件，直接验证文件内容并不容易，但通常大多数 Razor 项目生成的此文件至少为 150KB。如果文件只有几 KB，则意味着标记辅助程序和/或组件可能没有被正确发现。</p>
+
+<p>要强制重新生成文件，请关闭任何打开的 <code>.razor</code> 或 <code>.cshtml</code> 文件，重新加载 VS Code 窗口，待项目正确加载后，打开任何 <code>.razor</code> 或 <code>.cshtml</code> 文件以触发重新生成过程。</p>
+
+<h3>Razor 文件中提到了目标框架错误</h3>
+
+<p>Razor 语言服务器通常没有"解决方案"的概念，而是根据项目的 <code>obj\Debug\<tfm></code> 文件夹中是否存在 <code>project.razor.vscode.bin</code> 文件来加载项目。有时，来自不再使用的目标框架的旧文件可能会造成混淆，使 Razor 服务器认为项目是多目标的，或者某些组件仍在被引用，而实际上并非如此。</p>
+
+<p>要解决此问题，请清除 <code>obj</code> 文件夹中旧的目标框架文件夹，或全部清除。然后，重新加载 VS Code 窗口并打开一个 <code>.razor</code> 文件。这应确保生成新的 JSON 文件，并移除旧的文件。</p>
+
+<h2>IntelliCode</h2>
+
+<h3>我没有获得整行补全</h3>
+
+<p>当 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot</a> 扩展被启用时，整行补全将被禁用，以便您可以利用更高级的 <a href="../docs/editor/github-copilot.md">AI 补全</a> 功能。您可以通过检查 VS Code 右下角是否显示 Copilot 徽标来验证 Copilot 是否已启用。</p>
+
+<h2>热重载</h2>
+
+<h3>开始调试后热重载图标没有出现</h3>
+
+<p>只有在 C# Dev Kit 的<a href="../docs/csharp/debugging.md#用户设置">调试器设置</a>中启用了热重载选项时，调试器才会启动热重载会话。如果启用了该选项，在调试时状态栏中应会出现热重载图标：</p>
+
+<p>!<a href="csharp/images/debugging/hotreload-statusbar.png">Hot Reload icon in the bottom bar</a></p>
+
+<p>您可以点击热重载图标，或者打开 <strong>C# 热重载</strong> 输出窗口来查看诊断信息。如果您没有看到其中任何一个，则可能是 C# Dev Kit 扩展不支持该项目，请参阅<a href="../docs/csharp/debugging.md#支持的项目和场景">热重载支持的项目</a>。</p>
+
+<h3>热重载支持哪些类型的编辑？</h3>
+
+<p>有关热重载支持的 C# 代码更改列表，请参阅<a href="https://learn.microsoft.com/visualstudio/debugger/supported-code-changes-csharp?view=vs-2022">支持的代码更改</a>。</p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

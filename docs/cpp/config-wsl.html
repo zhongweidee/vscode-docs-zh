@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在 Visual Studio Code 中配置 C++ 扩展，以在安装了 Ubuntu 的 WSL 上使用 g++ 和 GDB - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / cpp / config-wsl</div>
+<h1>在 VS Code 中使用 C++ 和 WSL</h1>
+
+<p>在本教程中，你将在<a href="https://learn.microsoft.com/windows/wsl/install">适用于 Linux 的 Windows 子系统</a> (WSL) 的 Ubuntu 中配置 Visual Studio Code，以使用 GCC C++ 编译器 (g++) 和 GDB 调试器。GCC 代表 GNU 编译器集合；GDB 是 GNU 调试器。WSL 是一个 Windows 中的 Linux 环境，直接运行在计算机硬件上，而不是在虚拟机中。</p>
+
+<blockquote><strong>注意</strong>：本教程的大部分内容也适用于直接在 Linux 机器上使用 C++ 和 VS Code。</blockquote>
+
+<p>Visual Studio Code 通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">WSL 扩展</a>支持直接在 WSL 中工作。我们推荐这种 <a href="../docs/remote/wsl.md">WSL 开发</a>模式，在这种模式下，所有源代码文件以及编译器都托管在 Linux 发行版上。有关更多背景信息，请参阅 <a href="../docs/remote/remote-overview.md">VS Code 远程开发</a>。</p>
+
+<p>完成本教程后，你将能够创建和配置自己的 C++ 项目，并探索 VS Code 文档以了解其众多功能的更多信息。本教程不教授 GCC、Linux 或 C++ 语言。关于这些主题，网上有许多优秀的资源可供参考。</p>
+
+<p>如果你遇到任何问题，请随时在 <a href="https://github.com/microsoft/vscode-docs/issues">VS Code 文档仓库</a>中为本教程提交问题。</p>
+
+<h2>先决条件</h2>
+
+<p>要成功完成本教程，你必须执行以下步骤：</p>
+
+<ol>
+<li>安装 <a href="../download">Visual Studio Code</a>。
+</li>
+<li>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">WSL 扩展</a>。
+</li>
+<li>安装<a href="https://learn.microsoft.com/windows/wsl/install">适用于 Linux 的 Windows 子系统</a>，然后使用同一页面上的链接安装你选择的 Linux 发行版。本教程使用 Ubuntu。安装过程中，请记住你的 Linux 用户密码，因为你安装其他软件时需要用到它。
+<h2>设置你的 Linux 环境</h2>
+
+</li>
+<li>打开 WSL 的 Bash shell。如果你安装了 Ubuntu 发行版，请在 Windows 搜索框中输入 "Ubuntu"，然后在结果列表中单击它。对于 Debian，输入 "Debian"，以此类推。
+</li>
+</ol>
+<p>   !<a href="cpp/images/wsl/start-ubuntu.png">Ubuntu in Start Menu</a></p>
+
+<p>   shell 出现时会显示命令提示符，默认由你的用户名和计算机名组成，并将你放在主目录中。对于 Ubuntu，它看起来像这样：</p>
+
+<p>   !<a href="cpp/images/wsl/bash-ubuntu.png">Bash Shell</a></p>
+
+<ol>
+<li>创建一个名为 <code>projects</code> 的目录，然后在其下创建一个名为 <code>helloworld</code> 的子目录：
+<pre><code class="language-bash">   mkdir projects
+   cd projects
+   mkdir helloworld</code></pre>
+
+</li>
+<li>虽然你将使用 VS Code 来编辑源代码，但你将在 Linux 上使用 g++ 编译器编译源代码。你还将使用 GDB 在 Linux 上进行调试。这些工具在 Ubuntu 上默认没有安装，所以你需要安装它们。幸运的是，这个任务非常简单！
+</li>
+<li>在 WSL 命令提示符中，首先运行 <code>apt-get update</code> 来更新 Ubuntu 软件包列表。过时的发行版有时会干扰安装新软件包的尝试。
+<pre><code class="language-bash">   sudo apt-get update</code></pre>
+
+</li>
+</ol>
+<p>   如果你愿意，也可以运行 <code>sudo apt-get update && sudo apt-get dist-upgrade</code> 来同时下载最新版本的系统软件包，但这可能会根据你的网络连接速度花费更长的时间。</p>
+
+<ol>
+<li>在命令提示符中，输入以下命令安装 GNU 编译器工具和 GDB 调试器：
+<pre><code class="language-bash">   sudo apt-get install build-essential gdb</code></pre>
+
+</li>
+<li>通过定位 g++ 和 gdb 来验证安装是否成功。如果 <code>whereis</code> 命令没有返回文件名，请尝试再次运行更新命令。
+<pre><code class="language-bash">   whereis g++
+   whereis gdb</code></pre>
+
+</li>
+</ol>
+<p>><strong>注意</strong>：安装 g++ 编译器和 GDB 调试器的设置步骤同样适用于直接使用 Linux 机器而非 WSL 的情况。在 helloworld 项目中运行 VS Code，以及编辑、构建和调试步骤都是相同的。</p>
+
+<h2>在 WSL 中运行 VS Code</h2>
+
+<p>导航到你的 helloworld 项目文件夹，并在 WSL 终端中使用 <code>code .</code> 命令启动 VS Code：</p>
+
+<pre><code class="language-bash">cd $HOME/projects/helloworld
+code .</code></pre>
+
+<p>你将看到一条关于"正在安装 VS Code Server"的消息。VS Code 正在 Linux 端下载并安装一个小型服务器，桌面版 VS Code 随后将与之通信。VS Code 随后将启动并打开 <code>helloWorld</code> 文件夹。文件资源管理器显示 VS Code 现在在 WSL 上下文中运行，标题栏显示 <strong>WSL: Ubuntu</strong>。</p>
+
+<p>!<a href="cpp/images/wsl/file-explorer-wsl.png">File Explorer in WSL</a></p>
+
+<p>你也可以从状态栏中识别远程上下文。</p>
+
+<p>!<a href="cpp/images/wsl/wsl-status-bar.png">Remote context in the Status bar</a></p>
+
+<p>如果你单击远程状态栏项，你将看到适合该会话的远程命令下拉菜单。例如，如果你想结束在 WSL 中运行的会话，可以从下拉菜单中选择 <strong>关闭远程连接</strong> 命令。从 WSL 命令提示符运行 <code>code .</code> 将重新在 WSL 中启动 VS Code。</p>
+
+<p><strong>code .</strong> 命令在当前工作文件夹中打开 VS Code，该文件夹将成为你的"工作区"。在完成本教程的过程中，你将看到在工作区的 <code>.vscode</code> 文件夹中创建了三个文件：</p>
+
+<ul>
+<li><code>c_cpp_properties.json</code>（编译器路径和 IntelliSense 设置）</li>
+<li><code>tasks.json</code>（构建指令）</li>
+<li><code>launch.json</code>（调试器设置）
+<h2>添加源代码文件</h2>
+
+</li>
+</ul>
+<p>在文件资源管理器标题栏中，选择 <strong>新建文件</strong> 按钮并将文件命名为 <code>helloworld.cpp</code>。</p>
+
+<p>!<a href="cpp/images/wsl/new-file-button.png">New File title bar button</a></p>
+
+<h3>安装 C/C++ 扩展</h3>
+
+<p>创建文件后，VS Code 检测到它是一个 C++ 语言文件时，如果你尚未安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">Microsoft C/C++ 扩展</a>，系统可能会提示你安装它。</p>
+
+<p>!<a href="cpp/images/wsl/cpp-extension-notification.png">C++ extension notification</a></p>
+
+<p>选择 <strong>安装</strong>，然后在扩展视图中显示 <strong>需要重新加载</strong> 按钮时单击它，以完成 C/C++ 扩展的安装。</p>
+
+<p>如果你已经在 VS Code 本地安装了 C/C++ 语言扩展，则需要转到扩展视图 (<code>kb(workbench.view.extensions)</code>) 并将这些扩展安装到 WSL 中。本地安装的扩展可以通过选择 <strong>在 WSL 中安装</strong> 按钮，然后单击 <strong>需要重新加载</strong> 安装到 WSL 中。</p>
+
+<p>!<a href="cpp/images/wsl/install-in-wsl.png">Install in WSL button</a></p>
+
+<h3>添加 hello world 源代码</h3>
+
+<p>现在粘贴以下源代码：</p>
+
+<pre><code class="language-cpp">   #include &lt;iostream&gt;
+   #include &lt;vector&gt;
+   #include &lt;string&gt;
+
+   using namespace std;
+
+   int main()
+   {
+      vector&lt;string&gt; msg {"Hello", "C++", "World", "from", "VS Code", "and the C++ extension!"};
+
+      for (const string&amp; word : msg)
+      {
+         cout &lt;&lt; word &lt;&lt; " ";
+      }
+      cout &lt;&lt; endl;
+   }</code></pre>
+
+<p>现在按 <code>kb(workbench.action.files.save)</code> 保存文件。注意你刚刚添加的文件是如何出现在 VS Code 侧栏的 <strong>文件资源管理器</strong> 视图 (<code>kb(workbench.view.explorer)</code>) 中的：</p>
+
+<p>!<a href="cpp/images/wsl/file-explorer-helloworld.png">File Explorer</a></p>
+
+<p>你也可以启用<a href="../docs/editing/codebasics.md#save-auto-save">自动保存</a>以自动保存文件更改，方法是选中主 <strong>文件</strong> 菜单中的 <strong>自动保存</strong>。</p>
+
+<p>最左侧的活动栏允许你打开不同的视图，如 <strong>搜索</strong>、<strong>源代码管理</strong> 和 <strong>运行</strong>。你将在本教程后面查看 <strong>运行</strong> 视图。你可以在 VS Code <a href="../docs/editing/userinterface.md">用户界面文档</a>中了解有关其他视图的更多信息。</p>
+
+<h2>探索 IntelliSense</h2>
+
+<p>在你新建的 <code>helloworld.cpp</code> 文件中，将鼠标悬停在 <code>vector</code> 或 <code>string</code> 上方以查看类型信息。在声明 <code>msg</code> 变量后，开始输入 <code>msg.</code>，就像调用成员函数时那样。你应该会立即看到一个完成列表，显示所有成员函数，以及一个显示 <code>msg</code> 对象类型信息的窗口：</p>
+
+<p>!<a href="cpp/images/wsl/msg-intellisense.png">Statement completion IntelliSense</a></p>
+
+<p>你可以按 <code>kbstyle(Tab)</code> 键插入选中的成员；然后，当你添加左括号时，你将看到该函数所需参数的信息。</p>
+
+<h2>运行 helloworld.cpp</h2>
+
+<p>请记住，C++ 扩展使用你计算机上安装的 C++ 编译器来构建你的程序。在尝试在 VS Code 中运行和调试 <code>helloworld.cpp</code> 之前，请确保已安装 C++ 编译器。</p>
+
+<ol>
+<li>打开 <code>helloworld.cpp</code>，使其成为活动文件。</li>
+<li>按编辑器右上角的播放按钮。
+</li>
+</ol>
+<p>   !<a href="cpp/images/playbutton/run-play-button.png">Screenshot of helloworld.cpp and play button</a></p>
+
+<ol>
+<li>从系统上检测到的编译器列表中选择 <strong>g++ 生成和调试活动文件</strong>。
+</li>
+</ol>
+<p>   !<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+
+<p>你只会在第一次运行 <code>helloworld.cpp</code> 时被要求选择编译器。该编译器将被设置为 <code>tasks.json</code> 文件中的"默认"编译器。</p>
+
+<ol>
+<li>构建成功后，程序的输出将显示在集成 <strong>终端</strong> 中。
+</li>
+</ol>
+<p>    !<a href="cpp/images/playbutton/helloworld-terminal-output.png">screenshot of program output</a></p>
+
+<p>第一次运行程序时，C++ 扩展会创建 <code>tasks.json</code>，你可以在项目的 <code>.vscode</code> 文件夹中找到它。<code>tasks.json</code> 存储构建配置。</p>
+
+<p>你的新 <code>tasks.json</code> 文件应该类似于下面的 JSON：</p>
+
+<pre><code class="language-json">{
+"version": "2.0.0",
+"tasks": [
+    {
+        "type": "shell",
+        "label": "C/C++: g++ build active file",
+        "command": "/usr/bin/g++",
+        "args": [
+            "-g",
+            "${file}",
+            "-o",
+            "${fileDirname}/${fileBasenameNoExtension}"
+        ],
+        "options": {
+            "cwd": "/usr/bin"
+        },
+        "problemMatcher": [
+            "$gcc"
+        ],
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        },
+        "detail": "Task generated by Debugger."
+    }
+]
+}</code></pre>
+
+<p>><strong>注意</strong>：你可以在<a href="../docs/reference/variables-reference.md">变量参考</a>中了解有关 <code>tasks.json</code> 变量的更多信息。</p>
+
+<p><code>command</code> 设置指定要运行的程序；在本例中为 g++。</p>
+<p><code>args</code> 数组指定将传递给 g++ 的命令行参数。这些参数必须按照编译器期望的顺序指定。</p>
+
+<p>此任务告诉 g++ 获取活动文件 (<code>${file}</code>)，编译它，并在当前目录 (<code>${fileDirname}</code>) 中创建一个与活动文件同名但没有扩展名 (<code>${fileBasenameNoExtension}</code>) 的可执行文件，在我们的示例中结果为 <code>helloworld</code>。</p>
+
+<p><code>label</code> 值是你在任务列表中看到的内容；你可以随意命名。</p>
+
+<p><code>detail</code> 值是你在任务列表中看到的任务描述。强烈建议重命名此值以区别于类似的任务。</p>
+
+<p>从现在开始，播放按钮将从 <code>tasks.json</code> 中读取以确定如何构建和运行你的程序。你可以在 <code>tasks.json</code> 中定义多个构建任务，标记为默认的任务将被播放按钮使用。如果你需要更改默认编译器，可以运行 <strong>任务：配置默认生成任务</strong>。或者，你可以修改 <code>tasks.json</code> 文件，通过将以下片段：</p>
+
+<pre><code class="language-json">    "group": {
+        "kind": "build",
+        "isDefault": true
+    },</code></pre>
+
+<p>替换为：</p>
+
+<pre><code class="language-json">    "group": "build",</code></pre>
+
+<p>来删除默认设置。</p>
+
+<h3>修改 tasks.json</h3>
+
+<p>你可以修改 <code>tasks.json</code> 来构建多个 C++ 文件，方法是使用类似 <code>"${workspaceFolder}/*.cpp"</code> 的参数代替 <code>"${file}"</code>。这将构建当前文件夹中的所有 <code>.cpp</code> 文件。你还可以通过将 <code>"${fileDirname}/${fileBasenameNoExtension}"</code> 替换为硬编码的文件名（例如 'helloworld.out'）来修改输出文件名。</p>
+
+<h2>调试 helloworld.cpp</h2>
+
+<p>要调试你的代码，</p>
+
+<ol>
+<li>回到 <code>helloworld.cpp</code>，使其成为活动文件。</li>
+<li>通过单击编辑器边距或按 F9 在当前行设置断点。</li>
+</ol>
+<p>   !<a href="cpp/images/playbutton/cpp-breakpoint.png">screenshot of breakpoint in helloworld.cpp</a></p>
+<ol>
+<li>从播放按钮旁边的下拉菜单中，选择 <strong>调试 C/C++ 文件</strong>。</li>
+</ol>
+<p>   !<a href="cpp/images/playbutton/debug-cpp-file-play-button.png">Screenshot of play button drop-down</a></p>
+<ol>
+<li>从系统上检测到的编译器列表中选择 <strong>C/C++: g++ 生成和调试活动文件</strong>（你只会在第一次运行或调试 <code>helloworld.cpp</code> 时被要求选择编译器）。</li>
+</ol>
+<p>   !<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+
+<p>播放按钮有两种模式：<strong>运行 C/C++ 文件</strong> 和 <strong>调试 C/C++ 文件</strong>。它将默认为最后使用的模式。如果你在播放按钮中看到调试图标，你可以选择播放按钮进行调试，而无需选择下拉菜单项。</p>
+
+<h2>探索调试器</h2>
+
+<p>在你开始逐步执行代码之前，让我们花点时间注意一下用户界面中的几个变化：</p>
+
+<ul>
+<li>集成终端出现在源代码编辑器的底部。在 <strong>调试输出</strong> 选项卡中，你可以看到指示调试器已启动并正在运行的输出。</li>
+<li>编辑器高亮显示第 12 行，这是你在启动调试器之前设置的断点：
+</li>
+</ul>
+<p>   !<a href="cpp/images/playbutton/breakpoint-debug.png">Initial breakpoint</a></p>
+
+<ul>
+<li>左侧的 <strong>运行和调试</strong> 视图显示调试信息。你将在本教程后面看到一个示例。
+</li>
+<li>在代码编辑器的顶部，出现一个调试控制面板。你可以通过拖拽左侧的圆点将其在屏幕上移动。
+</li>
+</ul>
+<p>   !<a href="cpp/images/cpp/debug-controls.png">Debugging controls</a></p>
+
+<p>如果你在工作区中已经有一个 launch.json 文件，播放按钮将从中读取以确定如何运行和调试你的 C++ 文件。如果你没有 launch.json，播放按钮将动态创建一个临时的"快速调试"配置，完全无需 launch.json！</p>
+
+<h2>逐步执行代码</h2>
+
+<p>现在你已准备好开始逐步执行代码。</p>
+
+<ol>
+<li>单击或按调试控制面板中的 <strong>逐过程</strong> 图标。
+</li>
+</ol>
+<p>   !<a href="cpp/images/cpp/step-over-button.png">Step over button</a></p>
+
+<p>   这将使程序执行前进到 for 循环的第一行，并跳过在创建和初始化 <code>msg</code> 变量时调用的 <code>vector</code> 和 <code>string</code> 类中的所有内部函数调用。注意侧边 <strong>变量</strong> 窗口中的变化。</p>
+
+<p>   !<a href="cpp/images/wsl/debug-view-variables.png">Debugging windows</a></p>
+
+<ol>
+<li>再次按 <strong>逐过程</strong> 前进到此程序中的下一条语句（跳过为初始化循环而执行的所有内部代码）。现在，<strong>变量</strong> 窗口显示有关循环变量的信息。</li>
+<li>再次按 <strong>逐过程</strong> 执行 <code>cout</code> 语句。（注意，C++ 扩展在最后一个 cout 执行之前不会将任何输出打印到 <strong>调试控制台</strong>。）</li>
+<li>如果你愿意，可以继续按 <strong>逐过程</strong>，直到向量中的所有单词都打印到控制台。但如果你好奇，可以尝试按 <strong>逐语句</strong> 按钮来逐步执行 C++ 标准库中的源代码！
+</li>
+</ol>
+<p>   !<a href="cpp/images/cpp/gcc-system-header-stepping.png">Breakpoint in gcc standard library header</a></p>
+
+<p>   要返回到你自己的代码，一种方法是继续按 <strong>逐过程</strong>。另一种方法是在你的代码中设置断点，方法是切换到代码编辑器中的 <code>helloworld.cpp</code> 选项卡，将插入点放在循环内 <code>cout</code> 语句的某个位置，然后按 <code>kb(editor.debug.action.toggleBreakpoint)</code>。左侧的边槽中会出现一个红点，表示已在此行设置断点。</p>
+
+<p>   !<a href="cpp/images/cpp/breakpoint-in-main.png">Breakpoint in main</a></p>
+
+<p>   然后按 <code>kb(workbench.action.debug.start)</code> 从标准库头文件的当前行开始执行。执行将在 <code>cout</code> 处中断。如果你愿意，可以再次按 <code>kb(editor.debug.action.toggleBreakpoint)</code> 来关闭断点。</p>
+
+<p>   当循环完成后，你可以在集成终端的 <strong>调试控制台</strong> 选项卡中看到输出，以及 GDB 输出的一些其他诊断信息。</p>
+
+<p>   !<a href="cpp/images/wsl/debug-console-output-wsl.png">Debug console display</a></p>
+
+<h2>设置监视</h2>
+
+<p>要在程序执行时跟踪变量的值，请为该变量设置 <strong>监视</strong>。</p>
+
+<ol>
+<li>将插入点放在循环内。在 <strong>监视</strong> 窗口中，单击加号，在文本框中输入 <code>word</code>，这是循环变量的名称。现在在你逐步执行循环时查看监视窗口。
+</li>
+</ol>
+<p>   !<a href="cpp/images/cpp/watch-window.png">Watch window</a></p>
+
+<ol>
+<li>要在断点暂停执行时快速查看任何变量的值，你可以用鼠标指针悬停在其上方。
+</li>
+</ol>
+<p>   !<a href="cpp/images/cpp/mouse-hover.png">Mouse hover</a></p>
+
+<p>接下来，你将创建一个 <code>tasks.json</code> 文件来告诉 VS Code 如何构建（编译）程序。此任务将调用 g++ 编译器从源代码创建可执行文件。</p>
+
+<p>在编辑器中打开 <code>helloworld.cpp</code> 很重要，因为下一步使用编辑器中的活动文件作为上下文来在下一步中创建构建任务。</p>
+
+<h2>使用 launch.json 自定义调试</h2>
+
+<p>当你使用播放按钮或 <code>kb(workbench.action.debug.start)</code> 进行调试时，C++ 扩展会动态创建一个动态调试配置。</p>
+
+<p>在某些情况下，你可能需要自定义调试配置，例如指定在运行时传递给程序的参数。你可以在 <code>launch.json</code> 文件中定义自定义调试配置。</p>
+
+<p>要创建 <code>launch.json</code>，请从播放按钮下拉菜单中选择 <strong>添加调试配置</strong>。</p>
+
+<p>!<a href="cpp/images/playbutton/add-debug-configuration.png">Add debug configuration play button menu</a></p>
+
+<p>然后你将看到一个包含各种预定义调试配置的下拉菜单。选择 <strong>g++ 生成和调试活动文件</strong>。</p>
+
+<p>!<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+
+<p>VS Code 创建一个 <code>launch.json</code> 文件，内容大致如下：</p>
+
+<pre><code class="language-json">{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "C/C++: g++ build and debug active file",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "C/C++: g++ build active file"
+        }
+    ]
+}</code></pre>
+
+<p> 在上面的 JSON 中，<code>program</code> 指定你要调试的程序。这里它被设置为活动文件文件夹 <code>${fileDirname}</code> 和不带扩展名的活动文件名 <code>${fileBasenameNoExtension}</code>，如果 <code>helloworld.cpp</code> 是活动文件，则为 <code>helloworld</code>。<code>args</code> 属性是在运行时传递给程序的参数数组。</p>
+
+<p>默认情况下，C++ 扩展不会在你的源代码中添加任何断点，<code>stopAtEntry</code> 值设置为 <code>false</code>。</p>
+
+<p> 将 <code>stopAtEntry</code> 值更改为 <code>true</code>，使调试器在开始调试时停在 <code>main</code> 方法处。</p>
+
+<blockquote>从现在开始，播放按钮和 <code>kb(workbench.action.debug.start)</code> 将在启动程序进行调试时从 <code>launch.json</code> 文件中读取。</blockquote>
+
+<h2>C/C++ 配置</h2>
+
+<p>如果你想更好地控制 C/C++ 扩展，可以创建一个 <code>c_cpp_properties.json</code> 文件，它允许你更改设置，例如编译器路径、包含路径、C++ 标准（默认为 C++17）等。</p>
+
+<p>你可以通过从命令面板 (<code>kb(workbench.action.showCommands)</code>) 运行 <strong>C/C++: 编辑配置 (UI)</strong> 命令来查看 C/C++ 配置 UI。</p>
+
+<p>!<a href="cpp/images/cpp/command-palette.png">Command Palette</a></p>
+
+<p>这将打开 <strong>C/C++ 配置</strong> 页面。当你在此处进行更改时，VS Code 会将它们写入 <code>.vscode</code> 文件夹中名为 <code>c_cpp_properties.json</code> 的文件。</p>
+
+<p>!<a href="cpp/images/wsl/intellisense-configurations-wsl.png">Command Palette</a></p>
+
+<p>只有当你的程序包含不在工作区或标准库路径中的头文件时，你才需要修改 <strong>包含路径</strong> 设置。</p>
+
+<p>Visual Studio Code 将这些设置保存在 <code>.vscode/c_cpp_properties.json</code> 中。如果你直接打开该文件，它应该看起来像这样：</p>
+
+<pre><code class="language-json">{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "clang-x64"
+        }
+    ],
+    "version": 4
+}</code></pre>
+
+<h2>关闭 WSL 会话</h2>
+
+<p>当你在 WSL 中完成工作后，可以使用主 <strong>文件</strong> 菜单和命令面板 (<code>kb(workbench.action.showCommands)</code>) 中的 <strong>关闭远程连接</strong> 命令关闭远程会话。这将重新启动本地运行的 VS Code。你可以从 <strong>文件</strong> > <strong>打开最近的文件</strong> 列表中通过选择带有 <strong>[WSL]</strong> 后缀的文件夹轻松重新打开 WSL 会话。</p>
+
+<h2>后续步骤</h2>
+
+<ul>
+<li>探索 <a href="../docs/editing/codebasics.md">VS Code 用户指南</a>。</li>
+<li>查看 <a href="../docs/languages/cpp.md">C++ 扩展概述</a>。</li>
+<li>创建一个新的工作区，将你的 .json 文件复制到其中，为新工作区路径、程序名称等调整必要的设置，然后开始编码！</li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

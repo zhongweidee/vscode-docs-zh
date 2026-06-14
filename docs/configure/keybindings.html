@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在这里你可以找到 Visual Studio Code 的完整键盘快捷键列表以及如何更改它们。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / configure / keybindings</div>
+<h1>Visual Studio Code 键盘快捷键</h1>
+
+<p>Visual Studio Code 让你可以直接通过键盘完成大部分任务。本文介绍了如何修改 VS Code 中自带的默认键盘快捷键。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>如果你在 Mac 上访问此页面，你将看到 Mac 的键盘快捷键。如果你使用 Windows 或 Linux 访问，则可以看到该平台对应的按键。如果你需要其他平台的键盘快捷键，请将鼠标悬停在你感兴趣的按键上。</blockquote>
+
+<h2>键盘快捷键编辑器</h2>
+
+<p>VS Code 通过键盘快捷键编辑器提供了丰富的键盘快捷键编辑体验。编辑器列出了所有可用命令（带快捷键和不带快捷键的），并允许你使用可用的操作来更改、移除或重置它们的键盘快捷键。要查找命令或键盘快捷键，可使用搜索框并输入命令或快捷键来筛选列表。</p>
+
+<p>要打开键盘快捷键编辑器，请选择 <strong>文件（File）</strong> > <strong>首选项（Preferences）</strong> > <strong>键盘快捷键（Keyboard Shortcuts）</strong> 菜单，或在命令面板中使用 <strong>首选项：打开键盘快捷键</strong> 命令（<code>kb(workbench.action.openGlobalKeybindings)</code>）。键盘快捷键编辑器默认以<a href="../docs/editing/userinterface.md#modal-editors">模态覆盖层</a>的形式在编辑器区域顶部打开。</p>
+
+<p>!<a href="configure/images/keybinding/keyboard-shortcuts.gif">Keyboard Shortcuts</a></p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>键盘快捷键会匹配你当前的键盘布局。例如，使用美式键盘布局时快捷键 <code>kbstyle(Cmd+\)</code>，在切换到德语布局时将显示为 <code>kbstyle(Ctrl+Shift+Alt+Cmd+7)</code>。更改键盘快捷键的对话框会根据你的键盘布局分配正确且合适的键盘快捷键。</blockquote>
+
+<h2>自定义 UI 操作的快捷键</h2>
+
+<p>要自定义 UI 操作的键盘快捷键，请右键单击工作台中的任何操作项，然后选择 <strong>配置键绑定（Configure Keybinding）</strong>。这将打开键盘快捷键编辑器，并筛选出对应的命令。如果该操作有 <code>when</code> 子句，它会被自动包含，让你可以更方便地按需设置键盘快捷键。</p>
+
+<p><video src="images/keybinding/customize-keybinding.mp4" title="Video that shows how to customize the keyboard shortcut for the split editor action." autoplay loop controls muted></video></p>
+
+<h2>键映射扩展</h2>
+
+<p>键映射扩展可以将 VS Code 的快捷键修改为与其他编辑器一致，这样你就不需要学习新的键盘快捷键了。</p>
+
+<p>选择 <strong>文件（File）</strong> > <strong>首选项（Preferences）</strong> > <strong>从…迁移键盘快捷键（Migrate Keyboard Shortcuts from...）</strong> 菜单，可获取常用的键映射扩展列表。此外，Marketplace 中也有一个<a href="https://marketplace.visualstudio.com/search?target=VSCode&category=Keymaps&sortBy=Installs">键映射（Keymaps）分类</a>的扩展。</p>
+
+<p><div class="marketplace-extensions-curated-keymaps"></div></p>
+
+<h2>键盘快捷键参考</h2>
+
+<p>我们提供了可打印的默认键盘快捷键版本。选择 <strong>帮助（Help）</strong> > <strong>键盘快捷方式参考（Keyboard Shortcut Reference）</strong> 可显示一份精简的 PDF 版本，适合打印出来作为快捷参考。</p>
+
+<p>以下链接提供了三个平台对应版本（美式英文键盘）的访问：</p>
+
+<ul>
+<li><a href="https://go.microsoft.com/fwlink/?linkid=832145">Windows</a></li>
+<li><a href="https://go.microsoft.com/fwlink/?linkid=832143">macOS</a></li>
+<li><a href="https://go.microsoft.com/fwlink/?linkid=832144">Linux</a>
+<h2>检测键盘快捷键冲突</h2>
+
+</li>
+</ul>
+<p>如果你安装了许多扩展或者修改了键盘快捷键，可能会产生键盘快捷键冲突，即同一个键盘快捷键被映射到多个命令。这可能会导致令人困惑的行为，尤其是在编辑器中移动时不同的键盘快捷键会随着上下文范围的变化而生效或失效。</p>
+
+<p>右键单击键盘快捷键列表中的项目，并选择 <strong>显示相同键绑定（Show Same Keybindings）</strong>，可查看所有使用相同键盘快捷键的条目。</p>
+
+<p>!<a href="configure/images/keybinding/show-conflicts-menu.png">show keyboard shortcut conflicts menu</a></p>
+
+<h2>键盘快捷键故障排除</h2>
+
+<p>要排查键盘快捷键问题，你可以执行 <strong>开发人员：切换键盘快捷键故障排除（Developer: Toggle Keyboard Shortcuts Troubleshooting）</strong> 命令。这将激活已分派键盘快捷键的日志记录，并打开输出面板，显示相应的日志文件。</p>
+
+<p>然后你可以按下所需的键盘快捷键，并查看 VS Code 检测到了哪个键盘快捷键以及调用了哪个命令。</p>
+
+<p>例如，在 macOS 的代码编辑器中按下 <code>cmd+/</code> 时，日志输出将如下所示：</p>
+
+<pre><code>[KeybindingService]: / Received  keydown event - modifiers: [meta], code: MetaLeft, keyCode: 91, key: Meta
+[KeybindingService]: | Converted keydown event - modifiers: [meta], code: MetaLeft, keyCode: 57 ('Meta')
+[KeybindingService]: \ Keyboard event cannot be dispatched.
+[KeybindingService]: / Received  keydown event - modifiers: [meta], code: Slash, keyCode: 191, key: /
+[KeybindingService]: | Converted keydown event - modifiers: [meta], code: Slash, keyCode: 85 ('/')
+[KeybindingService]: | Resolving meta+[Slash]
+[KeybindingService]: \ From 2 keybinding entries, matched editor.action.commentLine, when: editorTextFocus &amp;&amp; !editorReadonly, source: built-in.</code></pre>
+
+<p>在此日志示例中，第一个 keydown 事件是针对 <code>MetaLeft</code> 键（<code>cmd</code>）的，无法被分派。第二个 keydown 事件是针对 <code>Slash</code> 键（<code>/</code>）的，被分派为 <code>meta+[Slash]</code>。有两个键盘快捷键条目映射自 <code>meta+[Slash]</code>，匹配到的是命令 <code>editor.action.commentLine</code>，其 <code>when</code> 条件为 <code>editorTextFocus && !editorReadonly</code>，并且是一个内置键盘快捷键条目。</p>
+
+<h2>查看已修改的键盘快捷键</h2>
+
+<p>要筛选列表仅显示你已修改的快捷键，请在 <strong>更多操作（More Actions）</strong>（<strong>...</strong>）菜单中选择 <strong>显示用户键绑定（Show User Keybindings）</strong> 命令。这将对 <strong>键盘快捷键</strong> 编辑器应用 <code>@source:user</code> 筛选器（<strong>来源（Source）</strong> 为 'User'）。</p>
+
+<p>!<a href="configure/images/keybinding/user-keyboard-shortcuts.png">Default Keyboard Shortcuts</a></p>
+
+<h2>高级自定义</h2>
+
+<p>VS Code 会在 <code>keybindings.json</code> 文件中记录你已自定义的键盘快捷键。对于高级自定义需求，你也可以直接修改 <code>keybindings.json</code> 文件。</p>
+
+<p>要打开 <code>keybindings.json</code> 文件：</p>
+
+<ul>
+<li>打开 <strong>键盘快捷键</strong> 编辑器，然后选择编辑器标题栏右侧的 <strong>打开键盘快捷键 (JSON)</strong> 按钮。
+</li>
+</ul>
+<p>  !<a href="configure/images/keybinding/open-keyboard-shortcuts-json.png">Open Keyboard Shortcuts JSON button</a></p>
+
+<ul>
+<li>或者，在命令面板（<code>kb(workbench.action.showCommands)</code>）中使用 <strong>打开默认键盘快捷键 (JSON)</strong> 命令。
+<h2>键盘规则</h2>
+
+</li>
+</ul>
+<p>VS Code 中的键盘快捷键配置也被称为_键盘规则_。每条规则由以下属性组成：</p>
+
+<ul>
+<li><code>key</code>：描述按下的键，例如 <code>kb(actions.find)</code>。</li>
+<li><code>command</code>：要执行的 VS Code 命令的标识符，例如 <code>workbench.view.explorer</code> 用于打开资源管理器视图。</li>
+<li><code>when</code>：（可选）子句，包含一个布尔表达式，其计算结果取决于当前的<a href="#when-clause-contexts">上下文</a>。
+</li>
+</ul>
+<p>和弦键（两次独立的按键操作）通过用空格分隔两次按键来描述。例如 <code>kbstyle(Ctrl+K Ctrl+C)</code>。</p>
+
+<p>当按下某个键时，将应用以下求值规则：</p>
+
+<ul>
+<li>规则从<strong>底部到顶部</strong>依次求值。</li>
+<li>第一个同时匹配 <code>key</code> 和 <code>when</code> 子句的规则将被接受。</li>
+<li>如果找到了某条规则，则不再处理后续规则。</li>
+<li>如果找到的规则设置了 <code>command</code>，则执行该 <code>command</code>。
+</li>
+</ul>
+<p>额外的 <code>keybindings.json</code> 规则会在运行时追加到默认规则的底部，从而允许它们覆盖默认规则。VS Code 会监听 <code>keybindings.json</code> 文件的变动，因此在 VS Code 运行期间编辑该文件将会在运行时更新规则。</p>
+
+<p>键盘快捷键的分派是通过分析以 JSON 表达的一系列规则来完成的。以下是一些示例：</p>
+
+<pre><code class="language-json">// Keyboard shortcuts that are active when the focus is in the editor
+{ "key": "home",            "command": "cursorHome",                  "when": "editorTextFocus" },
+{ "key": "shift+home",      "command": "cursorHomeSelect",            "when": "editorTextFocus" },
+
+// Keyboard shortcuts that are complementary
+{ "key": "f5",              "command": "workbench.action.debug.continue", "when": "inDebugMode" },
+{ "key": "f5",              "command": "workbench.action.debug.start",    "when": "!inDebugMode" },
+
+// Global keyboard shortcuts
+{ "key": "ctrl+f",          "command": "actions.find" },
+{ "key": "alt+left",        "command": "workbench.action.navigateBack" },
+{ "key": "alt+right",       "command": "workbench.action.navigateForward" },
+
+// Global keyboard shortcuts using chords (two separate keypress actions)
+{ "key": "ctrl+k enter",    "command": "workbench.action.keepEditor" },
+{ "key": "ctrl+k ctrl+w",   "command": "workbench.action.closeAllEditors" },</code></pre>
+
+<h2>可接受的按键</h2>
+
+<p><code>key</code> 由修饰键和按键本身组成。</p>
+
+<p>以下修饰键是可接受的：</p>
+
+<table>
+  <thead><tr><th></th><th>平台</th><th>修饰键</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>--</td><td>---------</td><td></td></tr>
+  <tr><td></td><td>macOS</td><td><code>kbstyle(Ctrl+)</code>、<code>kbstyle(Shift+)</code>、<code>kbstyle(Alt+)</code>、<code>kbstyle(Cmd+)</code></td><td></td></tr>
+  <tr><td></td><td>Windows</td><td><code>kbstyle(Ctrl+)</code>、<code>kbstyle(Shift+)</code>、<code>kbstyle(Alt+)</code>、<code>kbstyle(Win+)</code></td><td></td></tr>
+  <tr><td></td><td>Linux</td><td><code>kbstyle(Ctrl+)</code>、<code>kbstyle(Shift+)</code>、<code>kbstyle(Alt+)</code>、<code>kbstyle(Meta+)</code></td><td></td></tr>
+</tbody>
+</table>
+<p>以下按键是可接受的：</p>
+
+<ul>
+<li><code>kbstyle(f1-f19)</code>、<code>kbstyle(a-z)</code>、<code>kbstyle(0-9)</code></li>
+<li>`<code>kbstyle(</code>)`<code>、</code>kbstyle(-)<code>、</code>kbstyle(=)<code>、</code>kbstyle([)<code>、</code>kbstyle(])<code>、</code>kbstyle(\)<code>、</code>kbstyle(;)<code>、</code>kbstyle(')<code>、</code>kbstyle(,)<code>、</code>kbstyle(.)<code>、</code>kbstyle(/)`</li>
+<li><code>kbstyle(left)</code>、<code>kbstyle(up)</code>、<code>kbstyle(right)</code>、<code>kbstyle(down)</code>、<code>kbstyle(pageup)</code>、<code>kbstyle(pagedown)</code>、<code>kbstyle(end)</code>、<code>kbstyle(home)</code></li>
+<li><code>kbstyle(tab)</code>、<code>kbstyle(enter)</code>、<code>kbstyle(escape)</code>、<code>kbstyle(space)</code>、<code>kbstyle(backspace)</code>、<code>kbstyle(delete)</code></li>
+<li><code>kbstyle(pausebreak)</code>、<code>kbstyle(capslock)</code>、<code>kbstyle(insert)</code></li>
+<li><code>kbstyle(numpad0-numpad9)</code>、<code>kbstyle(numpad_multiply)</code>、<code>kbstyle(numpad_add)</code>、<code>kbstyle(numpad_separator)</code></li>
+<li><code>kbstyle(numpad_subtract)</code>、<code>kbstyle(numpad_decimal)</code>、<code>kbstyle(numpad_divide)</code>
+<h2>命令参数</h2>
+
+</li>
+</ul>
+<p>你可以带参数调用命令。如果你经常对特定文件或文件夹执行相同的操作，这将非常有用。你可以添加自定义键盘快捷键来精确完成你想要的操作。</p>
+
+<p>以下是一个覆盖 <code>kbstyle(Enter)</code> 键以打印某段文本的示例：</p>
+
+<pre><code class="language-json">  { "key": "enter", "command": "type",
+                    "args": { "text": "Hello World" },
+                    "when": "editorTextFocus" }</code></pre>
+
+<p><code>type</code> 命令将接收 <code>{"text": "Hello World"}</code> 作为其第一个参数，并将 "Hello World" 添加到文件中，而不是执行默认命令。</p>
+
+<p>有关支持参数的命令的更多信息，请参阅<a href="../api/references/commands.md">内置命令</a>。</p>
+
+<h2>运行多个命令</h2>
+
+<p>一个键盘快捷键可以配置为通过使用 <code>runCommands</code> 命令按顺序运行多个命令。</p>
+
+<ul>
+<li>运行多个不带参数的命令：
+</li>
+</ul>
+<p>  以下示例将当前行向下复制、将当前行标记为注释，然后将光标移动到复制的那一行。</p>
+
+<pre><code class="language-json">  {
+    "key": "ctrl+alt+c",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        "editor.action.copyLinesDownAction",
+        "cursorUp",
+        "editor.action.addCommentLine",
+        "cursorDown"
+      ]
+    }
+  },</code></pre>
+
+<ul>
+<li>向命令传递参数：
+</li>
+</ul>
+<p>  此示例创建一个新的无标题 TypeScript 文件并插入一个自定义代码片段。</p>
+
+<pre><code class="language-json">  {
+    "key": "ctrl+n",
+    "command": "runCommands",
+    "args": {
+      "commands": [
+        {
+          "command": "workbench.action.files.newUntitledFile",
+          "args": {
+            "languageId": "typescript"
+          }
+        },
+        {
+          "command": "editor.action.insertSnippet",
+          "args": {
+            "langId": "typescript",
+            "snippet": "class ${1:ClassName} {\n\tconstructor() {\n\t\t$0\n\t}\n}"
+          }
+        }
+      ]
+    }
+  },</code></pre>
+
+<p>请注意，由 <code>runCommands</code> 运行的命令会将 <code>"args"</code> 的值作为第一个参数接收。在上例中，<code>workbench.action.files.newUntitledFile</code> 接收 <code>{"languageId": "typescript" }</code> 作为其第一个也是唯一的参数。</p>
+
+<p>要传递多个参数，你需要将 <code>"args"</code> 设为数组：</p>
+
+<pre><code class="language-json">{
+  "key": "ctrl+shift+e",
+  "command": "runCommands",
+  "args": {
+    "commands": [
+      {
+        // command invoked with 2 arguments: vscode.executeCommand("myCommand", "arg1", "arg2")
+        "command": "myCommand",
+        "args": [
+          "arg1",
+          "arg2"
+        ]
+      }
+    ]
+  }
+}</code></pre>
+
+<p>要将数组作为第一个参数传递，请将该数组包装在另一个数组中：<code>"args": [ [1, 2, 3] ]</code>。</p>
+
+<h2>移除键盘快捷键</h2>
+
+<p>要移除键盘快捷键，请右键单击键盘快捷键编辑器中的条目，并选择 <strong>删除键绑定（Remove Keybinding）</strong>。</p>
+
+<p>要通过 <code>keybindings.json</code> 文件移除键盘快捷键，在 <code>command</code> 前添加 <code>-</code>，该规则将成为一条移除规则。</p>
+
+<p>以下是一个示例：</p>
+
+<pre><code class="language-json">// In Default Keyboard Shortcuts
+...
+{ "key": "tab", "command": "tab", "when": ... },
+{ "key": "tab", "command": "jumpToNextSnippetPlaceholder", "when": ... },
+{ "key": "tab", "command": "acceptSelectedSuggestion", "when": ... },
+...
+
+// To remove the second rule, for example, add in keybindings.json:
+{ "key": "tab", "command": "-jumpToNextSnippetPlaceholder" }
+</code></pre>
+
+<p>要用空操作覆盖特定的键盘快捷键规则，你可以指定一个空命令：</p>
+
+<pre><code class="language-json">// To override and disable any `tab` keyboard shortcut, for example, add in keybindings.json:
+{ "key": "tab", "command": "" }</code></pre>
+
+<h2>键盘布局</h2>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>本节仅与键盘快捷键相关，与编辑器中的输入无关。</blockquote>
+
+<p>按键是虚拟键的字符串表示，不一定与按下时产生的字符相关。更准确地说：</p>
+
+<ul>
+<li>参考：<a href="https://learn.microsoft.com/en-us/windows/win32/inputdev/virtual-key-codes">虚拟键码（Windows）</a></li>
+<li><code>kbstyle(tab)</code> 对应 <code>VK_TAB</code>（<code>0x09</code>）</li>
+<li><code>kbstyle(;)</code> 对应 <code>VK_OEM_1</code>（<code>0xBA</code>）</li>
+<li><code>kbstyle(=)</code> 对应 <code>VK_OEM_PLUS</code>（<code>0xBB</code>）</li>
+<li><code>kbstyle(,)</code> 对应 <code>VK_OEM_COMMA</code>（<code>0xBC</code>）</li>
+<li><code>kbstyle(-)</code> 对应 <code>VK_OEM_MINUS</code>（<code>0xBD</code>）</li>
+<li><code>kbstyle(.)</code> 对应 <code>VK_OEM_PERIOD</code>（<code>0xBE</code>）</li>
+<li><code>kbstyle(/)</code> 对应 <code>VK_OEM_2</code>（<code>0xBF</code>）</li>
+<li>`<code>kbstyle(</code>)`<code> 对应 </code>VK_OEM_3<code>（</code>0xC0`）</li>
+<li><code>kbstyle([)</code> 对应 <code>VK_OEM_4</code>（<code>0xDB</code>）</li>
+<li><code>kbstyle(\)</code> 对应 <code>VK_OEM_5</code>（<code>0xDC</code>）</li>
+<li><code>kbstyle(])</code> 对应 <code>VK_OEM_6</code>（<code>0xDD</code>）</li>
+<li><code>kbstyle(')</code> 对应 <code>VK_OEM_7</code>（<code>0xDE</code>）</li>
+<li>等等。
+</li>
+</ul>
+<p>不同的键盘布局通常会重新排列这些虚拟键或改变按下时产生的字符。当使用与标准美式键盘不同的键盘布局时，Visual Studio Code 会执行以下操作：</p>
+
+<p>所有键盘快捷键在 UI 中都会使用当前系统的键盘布局进行呈现。例如，使用法语（法国）键盘布局时，<code>拆分编辑器（Split Editor）</code> 现在呈现为 <code>kbstyle(Ctrl+*)</code>：</p>
+
+<p>!<a href="configure/images/keybinding/render-key-binding.png">render keyboard shortcut</a></p>
+
+<p>在编辑 <code>keybindings.json</code> 时，VS Code 会高亮显示可能产生误导的键盘快捷键——这些快捷键在文件中以标准美式键盘布局下产生的字符表示，但在当前系统键盘布局下需要按下带有不同标签的键。例如，以下是使用法语（法国）键盘布局时默认键盘快捷键规则的显示效果：</p>
+
+<p>!<a href="configure/images/keybinding/keybindings-json.png">keybindings.json guidance</a></p>
+
+<p>还有一个用于在编辑 <code>keybindings.json</code> 时帮助输入键盘快捷键规则的 UI 控件。要启动 <strong>定义键绑定（Define Keybinding）</strong> 控件，请按 <code>kb(editor.action.defineKeybinding)</code>。该控件会监听按键操作，并在文本框中呈现序列化的 JSON 表示形式，并在其下方显示 VS Code 在当前键盘布局下检测到的按键。输入你想要的按键组合后，你可以按 <code>kbstyle(Enter)</code> 键，一条规则片段就会被插入。</p>
+
+<p>!<a href="configure/images/keybinding/key-binding-widget.png">keyboard shortcut widget</a></p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>在 Linux 上，VS Code 会在启动时检测你当前的键盘布局，然后缓存此信息。我们建议你在更改键盘布局后重启 VS Code。</blockquote>
+
+<h2>键盘布局无关的绑定</h2>
+
+<p>使用扫描码，可以定义不随键盘布局变化而改变的键盘快捷键。例如：</p>
+
+<pre><code class="language-json">{ "key": "cmd+[Slash]", "command": "editor.action.commentLine",
+                           "when": "editorTextFocus" }</code></pre>
+
+<p>可接受的扫描码：</p>
+
+<ul>
+<li><code>kbstyle([F1]-[F19])</code>、<code>kbstyle([KeyA]-[KeyZ])</code>、<code>kbstyle([Digit0]-[Digit9])</code></li>
+<li><code>kbstyle([Backquote])</code>、<code>kbstyle([Minus])</code>、<code>kbstyle([Equal])</code>、<code>kbstyle([BracketLeft])</code>、<code>kbstyle([BracketRight])</code>、<code>kbstyle([Backslash])</code>、<code>kbstyle([Semicolon])</code>、<code>kbstyle([Quote])</code>、<code>kbstyle([Comma])</code>、<code>kbstyle([Period])</code>、<code>kbstyle([Slash])</code></li>
+<li><code>kbstyle([ArrowLeft])</code>、<code>kbstyle([ArrowUp])</code>、<code>kbstyle([ArrowRight])</code>、<code>kbstyle([ArrowDown])</code>、<code>kbstyle([PageUp])</code>、<code>kbstyle([PageDown])</code>、<code>kbstyle([End])</code>、<code>kbstyle([Home])</code></li>
+<li><code>kbstyle([Tab])</code>、<code>kbstyle([Enter])</code>、<code>kbstyle([Escape])</code>、<code>kbstyle([Space])</code>、<code>kbstyle([Backspace])</code>、<code>kbstyle([Delete])</code></li>
+<li><code>kbstyle([Pause])</code>、<code>kbstyle([CapsLock])</code>、<code>kbstyle([Insert])</code></li>
+<li><code>kbstyle([Numpad0]-[Numpad9])</code>、<code>kbstyle([NumpadMultiply])</code>、<code>kbstyle([NumpadAdd])</code>、<code>kbstyle([NumpadComma])</code></li>
+<li><code>kbstyle([NumpadSubtract])</code>、<code>kbstyle([NumpadDecimal])</code>、<code>kbstyle([NumpadDivide])</code>
+<h2>when 子句上下文</h2>
+
+</li>
+</ul>
+<p>VS Code 通过可选的 <code>when</code> 子句让你能够精确控制键盘快捷键的启用时机。如果你的键盘快捷键没有 <code>when</code> 子句，则该键盘快捷键在任何时候都是全局可用的。<code>when</code> 子句求值为 true 或 false 以决定是否启用键盘快捷键。</p>
+
+<p>VS Code 会根据 VS Code UI 中哪些元素可见和活动来设置各种上下文键和特定值。例如，内置的 <strong>开始调试（Start Debugging）</strong> 命令的键盘快捷键为 <code>kb(workbench.action.debug.start)</code>，该快捷键仅在有合适的调试器可用时（上下文 <code>debuggersAvailable</code> 为 true）并且编辑器不处于调试模式时（上下文 <code>inDebugMode</code> 为 false）才启用：</p>
+
+<p>!<a href="configure/images/keybinding/start-debugging-when-clause.png">Start Debugging when clause in the Keyboard Shorts editor</a></p>
+
+<p>你也可以在默认的 <code>keybinding.json</code>（<strong>首选项：打开默认键盘快捷键 (JSON)</strong>）中直接查看键盘快捷键的 when 子句：</p>
+
+<pre><code class="language-json">{ "key": "f5",  "command": "workbench.action.debug.start",
+                   "when": "debuggersAvailable &amp;&amp; !inDebugMode" },</code></pre>
+
+<h3>条件运算符</h3>
+
+<p>对于 <code>when</code> 子句中的条件表达式，以下条件运算符在键盘快捷键中非常有用：</p>
+
+<table>
+  <thead><tr><th></th><th>运算符</th><th>符号</th><th>示例</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>--------</td><td>------</td><td>-------</td><td></td></tr>
+  <tr><td></td><td>等于</td><td><code>==</code></td><td><code>"editorLangId == typescript"</code></td><td></td></tr>
+  <tr><td></td><td>不等于</td><td><code>!=</code></td><td><code>"resourceExtname != .js"</code></td><td></td></tr>
+  <tr><td></td><td>或</td><td><code>\</td><td>\</td><td></code></td><td><code>"isLinux</code><code>\</td><td>\</td><td></code><code>isWindows"</code></td><td></td></tr>
+  <tr><td></td><td>与</td><td><code>&&</code></td><td><code>"textInputFocus && !editorReadonly"</code></td><td></td></tr>
+  <tr><td></td><td>匹配</td><td><code>=~</code></td><td>`"resourceScheme =~ /^untitled$\</td><td>^file$/"`</td><td></td></tr>
+</tbody>
+</table>
+<p>你可以在 <a href="../api/references/when-clause-contexts.md#conditional-operators">when 子句上下文</a> 参考中找到完整的 when 子句条件运算符列表。</p>
+
+<h3>可用上下文</h3>
+
+<p>你可以在 <a href="../api/references/when-clause-contexts.md">when 子句上下文参考</a> 中找到一些可用的 <code>when</code> 子句上下文。</p>
+
+<p>此列表并非详尽无遗，你可以通过在键盘快捷键编辑器（<strong>首选项：打开键盘快捷键</strong>）中搜索和筛选，或查看默认的 <code>keybindings.json</code> 文件（<strong>首选项：打开默认键盘快捷键 (JSON)</strong>），来找到其他 <code>when</code> 子句上下文。</p>
+
+<h2>用于重构的自定义键盘快捷键</h2>
+
+<p><code>editor.action.codeAction</code> 命令允许你为特定的<a href="../docs/editing/refactoring.md">重构</a>（代码操作）配置键盘快捷键。例如，以下键盘快捷键会触发 <strong>提取函数（Extract function）</strong> 重构代码操作：</p>
+
+<pre><code class="language-json">{
+  "key": "ctrl+shift+r ctrl+e",
+  "command": "editor.action.codeAction",
+  "args": {
+    "kind": "refactor.extract.function"
+  }
+}</code></pre>
+
+<p>这在<a href="../docs/editing/refactoring.md#keyboard-shortcuts-for-code-actions">重构</a>一文中进行了深入介绍，你可以在其中了解不同类型的代码操作，以及在存在多个可选重构时如何对其进行优先级排序。</p>
+
+<h2>相关资源</h2>
+
+<ul>
+<li><a href="../docs/reference/default-keybindings.md">VS Code 默认键盘快捷键参考</a>
+<h2>常见问题</h2>
+
+<h3>我如何知道某个特定键绑定到哪个命令？</h3>
+
+</li>
+</ul>
+<p>在键盘快捷键编辑器中，你可以按特定的按键组合进行筛选，以查看哪些命令绑定到哪些键。在以下截图中，你可以看到 <code>kbstyle(Ctrl+Shift+P)</code> 绑定到 <strong>显示所有命令（Show All Commands）</strong> 以打开命令面板。</p>
+
+<p>!<a href="configure/images/keybinding/filter-on-keys.png">Keyboard shortcuts quick outline</a></p>
+
+<h3>如何为某个操作添加键盘快捷键，例如添加 Ctrl+D 用于删除行</h3>
+
+<p>在 <strong>默认键盘快捷键</strong> 中找到触发该操作的规则，并在你的 <code>keybindings.json</code> 文件中编写其修改版本：</p>
+
+<pre><code class="language-json">// Original, in Default Keyboard Shortcuts
+{ "key": "ctrl+shift+k",          "command": "editor.action.deleteLines",
+                                     "when": "editorTextFocus" },
+// Modified, in User/keybindings.json, Ctrl+D now will also trigger this action
+{ "key": "ctrl+d",                "command": "editor.action.deleteLines",
+                                     "when": "editorTextFocus" },</code></pre>
+
+<h3>如何仅为特定文件类型添加键盘快捷键？</h3>
+
+<p>在你的 <code>when</code> 子句中使用 <code>editorLangId</code> 上下文键：</p>
+
+<pre><code class="language-json">{ "key": "shift+alt+a",           "command": "editor.action.blockComment",
+                                     "when": "editorTextFocus &amp;&amp; editorLangId == csharp" },</code></pre>
+
+<h3>我在 <code>keybindings.json</code> 中修改了键盘快捷键，为什么它们不生效？</h3>
+
+<p>最常见的原因是文件中存在语法错误。否则，尝试移除 <code>when</code> 子句或选择一个不同的 <code>key</code>。不幸的是，目前这只能通过反复尝试来解决。</p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>

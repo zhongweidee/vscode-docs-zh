@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>通过扩展市场发现、添加、更新、禁用和卸载 Visual Studio Code 扩展（插件）。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; display:inline; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-tools { display:inline; float:right; }
+.sidebar-tools button { background:none; border:1px solid #555; color:#aaa; cursor:pointer; padding:0 7px; margin-left:3px; border-radius:3px; font-size:16px; font-weight:700; line-height:1.3; font-family:monospace; }
+.sidebar-tools button:hover { background:#3a3a42; color:#fff; border-color:#888; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../../index.html">📖 VS Code 中文文档</a></h2>
+<div class="sidebar-tools"><button onclick="toggleAll(true)" title="全部展开">+</button><button onclick="toggleAll(false)" title="全部折叠">−</button></div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content"><a href="../../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content"><div class="sidebar-group-label">Agents</div>
+<a href="../../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content"><a href="../../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content"><a href="../../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content"><div class="sidebar-group-label">Write code</div>
+<a href="../../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content"><a href="../../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content"><a href="../../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content"><a href="../../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content"><a href="../../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content"><a href="../../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content"><a href="../../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content"><a href="../../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content"><a href="../../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content"><a href="../../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content"><a href="../../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content"><a href="../../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../../docs/setup/network.html" class="">Network</a>
+<a href="../../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content"><div class="sidebar-group-label">Language Support</div>
+<a href="../../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../../docs/languages/json.html" class="">JSON</a>
+<a href="../../../docs/languages/html.html" class="">HTML</a>
+<a href="../../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../../docs/languages/java.html" class="">Java</a>
+<a href="../../../docs/languages/php.html" class="">PHP</a>
+<a href="../../../docs/languages/python.html" class="">Python</a>
+<a href="../../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../../docs/languages/r.html" class="">R</a>
+<a href="../../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../../docs/languages/go.html" class="">Go</a>
+<a href="../../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../../docs/python/editing.html" class="">Editing</a>
+<a href="../../../docs/python/linting.html" class="">Linting</a>
+<a href="../../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../../docs/python/environments.html" class="">Environments</a>
+<a href="../../../docs/python/testing.html" class="">Testing</a>
+<a href="../../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content"><a href="../../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../../index.html">首页</a> / configure/extensions / extension-marketplace</div>
+<h1>扩展市场</h1>
+
+<p>Visual Studio Code 开箱即用的功能仅仅是个开始。VS Code 扩展允许你向安装中添加语言、调试器和工具，以支持你的开发工作流。VS Code 丰富的可扩展性模型允许扩展作者直接接入 VS Code 用户界面，并通过 VS Code 使用的相同 API 贡献功能。本文将介绍如何从 <a href="https://marketplace.visualstudio.com/VSCode">Visual Studio Code Marketplace</a> 查找、安装和管理 VS Code 扩展。</p>
+
+<h2>浏览扩展</h2>
+
+<p>你可以在 VS Code 内部浏览和安装扩展。通过单击 VS Code 侧边<strong>活动栏</strong>上的扩展图标或使用<strong>视图：扩展</strong>命令（<code>kb(workbench.view.extensions)</code>）打开扩展视图。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extensions-view-icon.png">扩展视图图标</a></p>
+
+<p>这将显示 <a href="https://marketplace.visualstudio.com/VSCode">VS Code Marketplace</a> 上最受欢迎的 VS Code 扩展列表。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extensions-popular.png">热门扩展</a></p>
+
+<p>列表中的每个扩展都包含简要说明、发布者、下载次数和五星评级。你可以选择扩展项以显示扩展详情页面，在那里了解更多信息。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>如果你的计算机通过代理服务器访问互联网，则需要配置代理服务器。有关详细信息，请参阅<a href="../docs/setup/network.md#proxy-server-support">代理服务器支持</a>。</blockquote>
+
+<h2>安装扩展</h2>
+
+<p>要安装扩展，请选择<strong>安装</strong>按钮。安装完成后，<strong>安装</strong>按钮将变为<strong>管理</strong>齿轮按钮。</p>
+
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>扩展具有与 VS Code 本身相同的权限。从 VS Code 1.97 版本开始，当你首次安装来自第三方发布者的扩展时，VS Code 会显示一个对话框，提示你确认是否信任该扩展发布者。获取有关<a href="../docs/configure/extensions/extension-runtime-security.md">扩展运行时安全性</a>以及如何保护自己免受恶意扩展侵害的更多信息。</blockquote>
+
+<p>如果你想安装扩展的特定版本，右键单击扩展并选择<strong>安装其他版本</strong>。然后你可以从可用版本列表中选择一个版本。</p>
+
+<p>当<a href="../docs/configure/settings-sync.md">设置同步</a>启用时，你可以在多台计算机之间共享你的 VS Code 配置（如扩展）。要安装扩展但不在各计算机之间同步，请右键单击扩展并选择<strong>安装（不同步）</strong>。</p>
+
+<h3>查找并安装扩展</h3>
+
+<p>例如，让我们安装流行的 <a href="https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight">TODO Highlight</a> 扩展。此扩展会高亮显示源代码中的 'TODO:' 和 'FIXME:' 等文本，以便你快速找到未完成的部分。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/todo-highlighting.png">TODO Highlight 扩展在编辑器中的高亮显示</a></p>
+
+<p>在扩展视图（<code>kb(workbench.view.extensions)</code>）中，在搜索框中输入 'todo'，将市场产品筛选为标题或元数据中包含 'todo' 的扩展。你应该会在列表中看到 <strong>TODO Highlight</strong> 扩展。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/search-for-todo-extension.png">在扩展视图中搜索 todo</a></p>
+
+<p>每个扩展由其发布者和扩展 ID 唯一标识。如果选择 <strong>TODO Highlight</strong> 扩展，你将看到扩展详情页面，在那里可以找到扩展 ID，在本例中为 <code>wayou.vscode-todo-highlight</code>。如果有多个名称相似的扩展，了解扩展 ID 会很有帮助。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/todo-highlight-details.png">TODO Highlight 扩展详情，扩展 ID 高亮显示</a></p>
+
+<p>选择<strong>安装</strong>按钮，VS Code 将从市场下载并安装该扩展。安装完成后，<strong>安装</strong>按钮将被<strong>管理</strong>齿轮按钮替代。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/manage-button.png">管理齿轮按钮</a></p>
+
+<p>要查看 TODO Highlight 扩展的实际效果，打开任何源代码文件，添加文本 'TODO:'，你将看到该文本被高亮显示。</p>
+
+<p>TODO Highlight 扩展贡献了 <strong>TODO-Highlight: 列出高亮注释</strong>和 <strong>TODO-Highlight: 切换高亮</strong>两个命令，你可以在命令面板（<code>kb(workbench.action.showCommands)</code>）中找到它们。<strong>TODO-Highlight: 切换高亮</strong>命令让你可以快速禁用或启用高亮。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/todo-highlight-commands.png">命令面板中的 TODO Highlight 命令</a></p>
+
+<p>该扩展还提供了用于调整其行为的设置，你可以在设置编辑器（<code>kb(workbench.action.openSettings)</code>）中找到它们。例如，你可能希望文本搜索不区分大小写，那么你可以取消选中 <strong>Todohighlight: Is Case Sensitive</strong> 设置。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/todo-highlight-settings.png">设置编辑器中的 TODO Highlight 设置</a></p>
+
+<p>如果扩展未提供你所需的功能，你可以随时从<strong>管理</strong>按钮上下文菜单中<strong>卸载</strong>该扩展。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/todo-highlight-uninstall.png">卸载 TODO Highlight 扩展</a></p>
+
+<p>这只是如何安装和使用扩展的一个示例。VS Code Marketplace 拥有数千个扩展，支持数百种编程语言和任务。从对 <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Java</a>、<a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python</a>、<a href="https://marketplace.visualstudio.com/items?itemName=golang.Go">Go</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C++</a> 的全面语言支持，到<a href="https://marketplace.visualstudio.com/items?itemName=nwallace.createGUID">创建 GUID</a>、更改<a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme">颜色主题</a>或向编辑器添加<a href="https://marketplace.visualstudio.com/items?itemName=tonybaloney.vscode-pets">虚拟宠物</a>的简单扩展，应有尽有。</p>
+
+<h3>扩展详情</h3>
+
+<p>在扩展详情页面上，你可以阅读扩展的 README 并查看扩展的以下内容：</p>
+
+<ul>
+<li><strong>功能贡献</strong> - 扩展对 VS Code 的添加，例如设置、命令和键盘快捷键、语言语法、调试器等。</li>
+<li><strong>更新日志</strong> - 扩展仓库的 CHANGELOG（如果可用）。</li>
+<li><strong>依赖项</strong> - 列出扩展是否依赖于任何其他扩展。
+</li>
+</ul>
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-contributions.png">扩展贡献</a></p>
+
+<p>如果扩展是一个扩展包，<strong>扩展包</strong>部分将显示安装该包时将安装哪些扩展。<a href="../api/references/extension-manifest.md#extension-packs">扩展包</a>将多个独立扩展捆绑在一起，以便可以一次性轻松安装。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-pack.png">Azure Tools 扩展包</a></p>
+
+<h3>扩展视图筛选和命令</h3>
+
+<p>你可以使用<strong>筛选扩展</strong>上下文菜单来筛选扩展视图。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extensions-view-filter-menu.png">扩展视图筛选上下文菜单</a></p>
+
+<p>有以下筛选器可供显示：</p>
+
+<ul>
+<li>可以更新的已过期扩展列表</li>
+<li>当前已启用/已禁用的扩展列表</li>
+<li>基于你的工作区的推荐扩展列表</li>
+<li>全球热门扩展列表
+</li>
+</ul>
+<p>你可以按<strong>安装次数</strong>、<strong>评分</strong>、<strong>名称</strong>、<strong>发布日期</strong>或<strong>更新日期</strong>以升序或降序对扩展列表进行排序。你可以在<a href="#扩展视图筛选器">下文</a>了解更多关于扩展搜索筛选器的信息。</p>
+
+<p>你可以通过 <code>...</code> <strong>查看和更多操作</strong>按钮运行其他扩展视图命令。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/more-button.png">更多按钮</a></p>
+
+<p>通过此上下文菜单，你可以控制扩展更新、启用或禁用所有扩展，并使用<a href="https://code.visualstudio.com/blogs/2021/02/16/extension-bisect">扩展二分查找</a>工具来隔离有问题的扩展行为。</p>
+
+<h3>搜索扩展</h3>
+
+<p>你可以清除扩展视图顶部的搜索框，然后输入你要查找的扩展、工具或编程语言的名称。</p>
+
+<p>例如，输入 'python' 将显示 Python 语言扩展列表：</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extensions-python.png">Python 扩展</a></p>
+
+<p>如果你知道要查找的扩展的确切标识符，可以使用 <code>@id:</code> 前缀，例如 <code>@id:vue.volar</code>。此外，要筛选或排序结果，你可以使用下文详述的<a href="#扩展视图筛选器">筛选器</a>和<a href="#排序">排序</a>命令。</p>
+
+<h3>安装预发布版本扩展</h3>
+
+<p>扩展发布者可能提供扩展的预发布版本。要安装预发布版本，请选择<strong>安装</strong>按钮上的下拉菜单，然后选择<strong>安装预发布版本</strong>。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extensions-install-prerelease.png">安装预发布版本</a></p>
+
+<h2>管理扩展</h2>
+
+<p>VS Code 使管理扩展变得简单。你可以通过扩展视图、<strong>命令面板</strong>（命令带有 <strong>Extensions:</strong> 前缀）或命令行开关来安装、禁用、更新和卸载扩展。</p>
+
+<h3>列出已安装的扩展</h3>
+
+<p>默认情况下，扩展视图将显示你当前已安装的扩展以及所有为你推荐的扩展。你可以使用<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）或<strong>更多操作</strong>（<code>...</code>）下拉菜单 > <strong>视图</strong> > <strong>已安装</strong>中的<strong>扩展：聚焦到已安装视图</strong>命令，清除搜索框中的任何文本并显示所有已安装扩展的列表，包括那些已被禁用的扩展。</p>
+
+<h3>卸载扩展</h3>
+
+<p>要卸载扩展，请选择扩展条目右侧的<strong>管理</strong>齿轮按钮，然后从下拉菜单中选择<strong>卸载</strong>。这将卸载扩展并提示你重新启动扩展宿主（<strong>重启扩展</strong>）。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/uninstall-extension.png">卸载扩展</a></p>
+
+<h3>禁用扩展</h3>
+
+<p>如果你不想永久删除扩展，可以单击扩展条目右侧的齿轮按钮来临时禁用扩展。你可以全局禁用扩展，也可以仅为当前工作区禁用扩展。禁用扩展后，系统会提示你重新启动扩展宿主（<strong>重启扩展</strong>）。</p>
+
+<p>如果你想快速禁用所有已安装的扩展，<strong>命令面板</strong>和<strong>更多操作</strong>（<code>...</code>）下拉菜单中有一个<strong>禁用所有已安装的扩展</strong>命令。</p>
+
+<p>扩展在所有 VS Code 会话中将保持禁用状态，直到你重新启用它们。</p>
+
+<h3>启用扩展</h3>
+
+<p>同样，如果你已禁用了某个扩展（它会出现在列表的<strong>已禁用</strong>部分并标记为<strong><em>已禁用</strong></em>），你可以通过下拉菜单中的<strong>启用</strong>或<strong>启用（工作区）</strong>命令重新启用它。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/enable-extension.png">启用扩展</a></p>
+
+<p><strong>更多操作</strong>（<code>...</code>）下拉菜单中还有一个<strong>启用所有扩展</strong>命令。</p>
+
+<h3>扩展自动更新</h3>
+
+<p>VS Code 检查扩展更新并自动安装它们。更新后，系统会提示你重新启动扩展宿主（<strong>重启扩展</strong>）。</p>
+
+<p>如果你更愿意手动更新扩展，可以使用<strong>禁用所有扩展的自动更新</strong>命令或扩展视图中相应的操作来禁用自动更新。你也可以配置 <code>setting(extensions.autoUpdate)</code> <a href="../docs/configure/settings.md">设置</a>。使用<strong>启用所有扩展的自动更新</strong>命令重新启用自动更新。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/disable-auto-update-all-extensions.png">禁用所有扩展的自动更新操作</a></p>
+
+<p>你还可以通过右键单击扩展并切换<strong>自动更新</strong>项来为单个扩展配置自动更新。</p>
+
+<p>如果你不希望 VS Code 甚至检查更新，可以将 <code>setting(extensions.autoCheckUpdates)</code> 设置设为 false。</p>
+
+<h3>手动更新扩展</h3>
+
+<p>如果你禁用了扩展自动更新，可以使用使用了 <code>@updates</code> 筛选器的<strong>显示过期的扩展</strong>命令快速查找扩展更新。这将显示你当前已安装扩展的任何可用更新。</p>
+
+<p>选择过期扩展的<strong>更新</strong>按钮。更新将被安装，系统会提示你重新启动扩展宿主（<strong>重启扩展</strong>）。你还可以使用<strong>更新所有扩展</strong>命令一次性更新所有过期的扩展。</p>
+
+<p>如果你也禁用了自动检查更新，可以使用<strong>检查扩展更新</strong>命令来检查哪些扩展可以更新。</p>
+
+<h2>推荐的扩展</h2>
+
+<p>你可以使用<strong>显示推荐的扩展</strong>来查看推荐扩展列表，这会设置 <code>@recommended</code> <a href="#扩展视图筛选器">筛选器</a>。扩展推荐可以是：</p>
+
+<ul>
+<li><strong>工作区推荐</strong> - 由你当前工作区的其他用户推荐。</li>
+<li><strong>其他推荐</strong> - 基于最近打开的文件推荐。
+</li>
+</ul>
+<p>请参阅下面的章节，了解如何为项目中的其他用户<a href="#工作区推荐的扩展">贡献</a>推荐。</p>
+
+<h3>忽略推荐</h3>
+
+<p>要忽略某个推荐，请选择扩展项以打开详情页面，然后选择<strong>管理</strong>齿轮按钮显示上下文菜单。选择<strong>忽略推荐</strong>菜单项。被忽略的推荐将不再向你推荐。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/ignore-recommendation.png">忽略扩展推荐</a></p>
+
+<h2>配置扩展</h2>
+
+<p>VS Code 扩展可能具有非常不同的配置和要求。一些扩展向 VS Code 贡献<a href="../docs/configure/settings.md">设置</a>，可以在设置编辑器中进行修改。其他扩展可能有自己的配置文件。扩展还可能需要安装和设置额外的组件，如编译器、调试器和命令行工具。请查阅扩展的 README（在扩展视图详情页面中可见）或前往 <a href="https://marketplace.visualstudio.com/VSCode">VS Code Marketplace</a> 上的扩展页面（在详情页面中单击扩展名称）。许多扩展是开源的，并在其 Marketplace 页面上提供了指向其仓库的链接。</p>
+
+<h2>命令行扩展管理</h2>
+
+<p>为了更轻松地自动化和配置 VS Code，你可以从<a href="../docs/configure/command-line.md">命令行</a>列出、安装和卸载扩展。在标识扩展时，请提供 <code>publisher.extension</code> 形式的完整名称，例如 <code>ms-python.python</code>。</p>
+
+<p>示例：</p>
+
+<pre><code class="language-bash">code --extensions-dir &lt;dir&gt;
+    设置扩展的根路径。
+code --list-extensions
+    列出已安装的扩展。
+code --show-versions
+    使用 --list-extension 时显示已安装扩展的版本。
+code --install-extension (&lt;extension-id&gt; | &lt;extension-vsix-path&gt;)
+    安装一个扩展。
+code --uninstall-extension (&lt;extension-id&gt;)
+    卸载一个扩展。
+code --enable-proposed-api (&lt;extension-id&gt;)
+    为扩展启用建议的 API 功能。可以接收一个或多个扩展 ID 以单独启用。</code></pre>
+
+<p>你可以在扩展详情页面的 Marketplace 信息下查看扩展 ID。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-identifier.png">扩展标识符</a></p>
+
+<h2>扩展视图筛选器</h2>
+
+<p>扩展视图搜索框支持筛选器，以帮助你查找和管理扩展。如果你使用了<strong>显示已安装的扩展</strong>和<strong>显示推荐的扩展</strong>命令，你可能已经看到过 <code>@installed</code> 和 <code>@recommended</code> 等筛选器。此外，还有筛选器允许你按受欢迎程度或评分排序，以及按类别（例如 'Linters'）和标签（例如 'node'）搜索。你可以在扩展搜索框中输入 <code>@</code> 并浏览建议，查看所有筛选器和排序命令的完整列表：</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-search-filters.png">扩展搜索筛选器的智能感知</a></p>
+
+<p>以下是一些扩展视图筛选器：</p>
+
+<ul>
+<li><code>@builtin</code> - 显示 VS Code 自带的扩展。按类型分组（编程语言、主题等）。</li>
+<li><code>@deprecated</code> - 显示已弃用的扩展。</li>
+<li><code>@disabled</code> - 显示已禁用的已安装扩展。</li>
+<li><code>@enabled</code> - 显示已启用的已安装扩展。扩展可以单独启用/禁用。</li>
+<li><code>@featured</code> - 显示精选扩展。</li>
+<li><code>@installed</code> - 显示已安装的扩展。</li>
+<li><code>@popular</code> - 显示热门扩展。</li>
+<li><code>@recentlyPublished</code> - 显示最近在市场中发布的扩展。</li>
+<li><code>@recommended</code> - 显示推荐的扩展。按工作区特定或通用用途分组。</li>
+<li><code>@updates</code> - 显示已过期的已安装扩展。市场中提供了更新版本。</li>
+<li><code>@workspaceUnsupported</code> - 显示此工作区不支持的扩展。</li>
+<li><code>@category</code> - 显示属于指定类别的扩展。以下是部分支持的类别。要查看完整列表，请输入 <code>@category</code> 并按照建议列表中的选项操作：<ul>
+<li><code>@category:themes</code></li>
+<li><code>@category:formatters</code></li>
+<li><code>@category:linters</code></li>
+<li><code>@category:snippets</code>
+</li>
+</ul>
+</li>
+</ul>
+<p>这些筛选器也可以组合使用。例如：使用 <code>@installed @category:themes</code> 查看所有已安装的主题。</p>
+
+<p>如果未提供筛选器，扩展视图将显示当前已安装和推荐的扩展。</p>
+
+<h3>排序</h3>
+
+<p>你可以使用 <code>@sort</code> 筛选器对扩展进行排序，该筛选器可以取以下值：</p>
+
+<ul>
+<li><code>installs</code> - 按市场安装次数降序排序。</li>
+<li><code>name</code> - 按扩展名称字母顺序排序。</li>
+<li><code>publishedDate</code> - 按扩展发布日期排序。</li>
+<li><code>rating</code> - 按市场评分（1-5 星）降序排序。</li>
+<li><code>updateDate</code> - 按扩展最后更新名称排序。
+</li>
+</ul>
+<p>!<a href="configure/extensions/images/extension-marketplace/sort-install-count.png">按安装次数排序</a></p>
+
+<h3>类别和标签</h3>
+
+<p>扩展可以设置描述其功能的<strong>类别</strong>和<strong>标签</strong>。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/categories-and-tags.png">扩展类别和标签</a></p>
+
+<p>你可以使用 <code>category:</code> 和 <code>tag:</code> 按类别和标签进行筛选。</p>
+
+<p>支持的类别有：<code>[Azure, Data Science, Debuggers, Education, Extension Packs, Formatters, Keymaps, Language Packs, Linters, Machine Learning, Notebooks, Others, Programming Languages, SCM Providers, Snippets, Testing, Themes, Visualization]</code>。可以通过扩展搜索框中的 IntelliSense 访问它们：</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-search-categories.png">调试器类别</a></p>
+
+<p>请注意，如果类别名称超过一个单词，你必须用引号将其括起来（例如 <code>category:"SCM Providers"</code>）。</p>
+
+<p>标签可以包含任何字符串，并且不由 IntelliSense 提供，因此请查看市场以找到有用的标签。</p>
+
+<h2>从 VSIX 安装</h2>
+
+<p>你可以手动安装打包在 <code>.vsix</code> 文件中的 VS Code 扩展。使用扩展视图命令下拉菜单中的<strong>从 VSIX 安装</strong>命令，或<strong>命令面板</strong>中的<strong>扩展：从 VSIX 安装</strong>命令，指向 <code>.vsix</code> 文件。</p>
+
+<p>你也可以使用 VS Code 的 <code>--install-extension</code> 命令行开关，提供 <code>.vsix</code> 文件的路径进行安装。</p>
+
+<pre><code class="language-bash">code --install-extension myextension.vsix</code></pre>
+
+<p>你可以在命令行中多次提供 <code>--install-extension</code> 以一次安装多个扩展。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>当你通过 VSIX 安装扩展时，该扩展的<a href="#扩展自动更新">自动更新</a>默认处于禁用状态。</blockquote>
+
+<p>如果你想了解更多关于打包和发布扩展的信息，请参阅扩展 API 中的<a href="../api/working-with-extensions/publishing-extension.md">发布扩展</a>文章。</p>
+
+<h2>工作区推荐的扩展</h2>
+
+<p>一套好的扩展可以让特定工作区或编程语言的工作更加高效，你通常希望与你的团队或同事分享这个列表。你可以使用<strong>扩展：配置推荐的扩展（工作区文件夹）</strong>命令为工作区创建推荐的扩展列表。</p>
+
+<p>在单文件夹工作区中，该命令会在工作区的 <code>.vscode</code> 文件夹中创建一个 <code>extensions.json</code> 文件，你可以在其中添加扩展标识符列表（{publisherName}.{extensionName}）。</p>
+
+<p>在<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>中，该命令将打开你的 <code>.code-workspace</code> 文件，你可以在 <code>extensions.recommendations</code> 下列出扩展。你仍然可以使用<strong>扩展：配置推荐的扩展（工作区文件夹）</strong>命令向多根工作区中的各个文件夹添加扩展推荐。</p>
+
+<p>一个 <code>extensions.json</code> 示例如下：</p>
+
+<pre><code class="language-json">{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+    ]
+}</code></pre>
+
+<p>它推荐了一个代码检查扩展和一个代码格式化扩展。</p>
+
+<p>扩展使用其发布者标识符和扩展标识符 <code>publisher.extension</code> 来标识。你可以在扩展的详情页面上查看名称。VS Code 将在这些文件中为你提供已安装扩展的自动补全。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/extension-identifier.png">扩展标识符</a>。</p>
+
+<p>当工作区首次打开时，VS Code 会提示用户安装推荐的扩展。用户也可以使用<strong>扩展：显示推荐的扩展</strong>命令查看该列表。</p>
+
+<p>!<a href="configure/extensions/images/extension-marketplace/recommendations.png">显示推荐</a></p>
+
+<h2>后续步骤</h2>
+
+<p>以下是你可能感兴趣的一些主题……</p>
+
+<ul>
+<li><a href="../api">扩展 API</a> - 开始学习 VS Code 扩展 API。</li>
+<li><a href="../api/get-started/your-first-extension.md">你的第一个扩展</a> - 尝试创建一个简单的 Hello World 扩展。</li>
+<li><a href="../api/working-with-extensions/publishing-extension.md">发布到市场</a> - 将你自己的扩展发布到 VS Code Marketplace。
+<h2>常见问题</h2>
+
+<h3>扩展安装在哪里？</h3>
+
+</li>
+</ul>
+<p>扩展安装在每个用户的扩展文件夹中。根据你的平台，位置位于以下文件夹：</p>
+
+<ul>
+<li><strong>Windows</strong> <code>%USERPROFILE%\.vscode\extensions</code></li>
+<li><strong>macOS</strong> <code>~/.vscode/extensions</code></li>
+<li><strong>Linux</strong> <code>~/.vscode/extensions</code>
+</li>
+</ul>
+<p>你可以通过使用 <code>--extensions-dir <dir></code> 命令行<a href="../docs/configure/command-line.md">选项</a>启动 VS Code 来更改此位置。</p>
+
+<p>或者，你可以将 <code>VSCODE_EXTENSIONS</code> 环境变量设置为你想要安装扩展的位置。这在企业环境中非常有用，因为你希望集中管理用户计算机上安装扩展的位置。</p>
+
+<h3>每当我尝试安装任何扩展时，都会收到 connect ETIMEDOUT 错误</h3>
+
+<p>如果你的计算机通过代理服务器访问互联网，你可能会看到此错误。有关详细信息，请参阅设置主题中的<a href="../docs/setup/network.md#proxy-server-support">代理服务器支持</a>部分。</p>
+
+<h3>我可以直接从市场下载扩展吗？</h3>
+
+<p>一些用户更喜欢从市场一次下载扩展，然后从本地共享将其安装到多个 VS Code 实例。这在存在连接问题或你的开发团队希望使用一组固定扩展时非常有用。</p>
+
+<p>要下载扩展，请在扩展视图中搜索它，右键单击结果中的扩展，然后选择<strong>下载 VSIX</strong> 或<strong>下载特定版本的 VSIX</strong>。</p>
+
+<h3>我可以阻止 VS Code 提供扩展推荐吗？</h3>
+
+<p>可以，如果你不希望 VS Code 在扩展视图或通过通知显示扩展推荐，你可以修改以下设置：</p>
+
+<ul>
+<li><code>setting(extensions.showRecommendationsOnlyOnDemand)</code> - 设为 true 以移除<strong>推荐</strong>部分。</li>
+<li><code>setting(extensions.ignoreRecommendations)</code> - 设为 true 以静默扩展推荐通知。
+</li>
+</ul>
+<p>如果你想查看推荐，<strong>显示推荐的扩展</strong>命令始终可用。</p>
+
+<h3>我可以信任市场中的扩展吗？</h3>
+
+<p>Visual Studio Marketplace 采取了多种措施来保护你免受恶意扩展的侵害，你也可以在安装前执行各种步骤来确定扩展是否可靠。</p>
+
+<p>从 VS Code 1.97 版本开始，当你首次安装来自第三方发布者的扩展时，VS Code 会显示一个对话框，提示你确认是否信任该扩展发布者。</p>
+
+<p>获取有关<a href="../docs/configure/extensions/extension-runtime-security.md">扩展运行时安全性</a>的更多信息。</p>
+
+<h3>我可以为我的组织内部托管扩展吗？</h3>
+
+<p>可以，请参阅<a href="../docs/enterprise/extensions.md#host-a-private-extension-marketplace">扩展的私有市场</a>。</p>
+
+<h3>VS Code 无法验证扩展签名</h3>
+
+<p>Visual Studio Marketplace 在发布扩展时会对所有扩展进行签名。VS Code 在你安装扩展时会验证此签名，以检查扩展包的完整性和来源。</p>
+
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>安装扩展时，你可能会看到以下错误消息：<code>Cannot install extension because Visual Studio Code cannot verify the extension signature</code>。此错误可能由多种原因引起，如果你遇到此错误，请在决定继续安装之前谨慎行事。使用 <code>setting(extensions.verifySignature)</code> 设置禁用扩展签名验证。</blockquote>
+
+<h4>包完整性问题</h4>
+
+<p>对于包完整性问题，建议你联系 <a href="configure/extensions/mailto:vsmarketplace@microsoft.com?subject=Extension%20Signature%20Verification%20Issue">Visual Studio Marketplace 团队</a>报告问题。请务必包含扩展 ID。以下列表提供了与包完整性问题相关的错误代码：</p>
+
+<pre><code class="language-text">PackageIntegrityCheckFailed
+SignatureIsInvalid
+SignatureManifestIsInvalid
+SignatureIntegrityCheckFailed
+EntryIsMissing
+EntryIsTampered
+Untrusted
+CertificateRevoked
+SignatureIsNotValid
+SignatureArchiveHasTooManyEntries
+NotSigned</code></pre>
+
+<h4>其他问题</h4>
+
+<p>对于其他问题，如不受支持的环境或未知原因，建议你向 VS Code <a href="https://github.com/microsoft/vscode/issues/new">报告问题</a>，提供所有必要信息并包含共享日志：<code>kb(workbench.action.showCommands)</code> > <strong>打开视图……</strong> > <strong>共享</strong>。</p>
+
+<h3>连接到远程窗口时我的扩展无法同步</h3>
+
+<p><a href="../docs/configure/settings-sync.md">设置同步</a>允许你在多台计算机之间共享你的 Visual Studio Code 配置，如设置、键盘快捷键和已安装的扩展，这样你始终可以使用你喜欢的设置进行工作。</p>
+
+<p>当你连接到<a href="../docs/remote/remote-overview.md">远程</a>窗口（例如连接到 SSH、开发容器（devcontainer）或 WSL）时，VS Code 不会将你的扩展同步到远程窗口或从远程窗口同步扩展。</p>
+
+<h3>我可以允许或阻止组织中的特定扩展吗？</h3>
+
+<p>你可以通过配置 <code>extensions.allowed</code> 应用程序设置来控制可以在组织中安装哪些扩展。如果未配置该设置，则允许所有扩展。如果配置了该设置，则未列出的所有扩展都将被阻止安装。</p>
+
+<p>获取有关<a href="../docs/enterprise/extensions.md#configure-allowed-extensions">配置允许的扩展</a>的更多详细信息。</p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}function toggleAll(v){document.querySelectorAll(".sidebar-section-content,.sidebar-sub-content").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")});document.querySelectorAll(".sidebar-section-title,.sidebar-sub-title").forEach(function(e){v?e.classList.remove("collapsed"):e.classList.add("collapsed")})}</script>
+</body>
+</html>
