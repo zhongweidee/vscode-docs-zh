@@ -432,7 +432,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>让 C/C++ 扩展为您自动生成函数的声明或定义，从而简化创建过程。此功能适用于成员函数、命名空间类以及模板。</p>
 
-<p>!<a href="cpp/images/refactoring/create-declaration-and-definition-different-files.gif">跨两个文件创建定义和声明</a></p>
+<p><img src="images/refactoring/create-declaration-and-definition-different-files.gif" alt="跨两个文件创建定义和声明"></p>
 
 <p>要创建函数声明或定义，可以采用以下任一方式：</p>
 
@@ -444,7 +444,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>定义和声明的创建位置基于您之前在代码中建立的习惯模式。例如，如果您之前在同一文件中添加了定义和声明，那么扩展也会将新的内容添加到同一个文件中。函数的排列顺序会自动保持。</p>
 
-<p>!<a href="cpp/images/refactoring/create-declaration-and-definition-same-file.gif">在同一文件中创建定义和声明</a></p>
+<p><img src="images/refactoring/create-declaration-and-definition-same-file.gif" alt="在同一文件中创建定义和声明"></p>
 
 <p>如果您之前将声明或定义放在了与源文件不同的文件中，扩展会遵循您已有的惯例。例如，对于名称匹配的头文件和源文件，即使头文件尚未被包含在源文件中，两者也会被识别。在这种情况下，一旦添加了声明或定义，头文件会被自动引用到您的源文件中。</p>
 
@@ -458,7 +458,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要调用代码操作，请选中具有快速修复（Quick Fix）可用的函数，然后选择代码操作（灯泡图标），并选择<strong>复制‘YourFunctionName’的定义</strong>或<strong>复制‘YourFunctionName’的声明</strong>。</p>
 
-<p>!<a href="cpp/images/refactoring/copy-declaration-definition.gif">复制声明或定义</a></p>
+<p><img src="images/refactoring/copy-declaration-definition.gif" alt="复制声明或定义"></p>
 
 <h2>提取到方法</h2>
 
@@ -468,7 +468,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>然后，您可以为创建的新函数命名。包含您所选代码的新函数会被放置在当前函数的上方。</p>
 
-<p>!<a href="cpp/images/refactoring/extract-method.gif">提取方法并创建声明</a></p>
+<p><img src="images/refactoring/extract-method.gif" alt="提取方法并创建声明"></p>
 
 <h2>快速修复/代码操作</h2>
 
@@ -478,7 +478,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果您的 C++ 代码中存在未知符号，并且 C/C++ 扩展在工作区中识别到了正确的头文件，则现在会有一个快速修复可用。选择该快速修复，必要的头文件包含语句将被添加至当前 C++ 文件的顶部。</p>
 
-<p>!<a href="cpp/images/refactoring/quick-fix-add-missing-includes.gif">使用代码操作添加缺失的包含文件</a></p>
+<p><img src="images/refactoring/quick-fix-add-missing-includes.gif" alt="使用代码操作添加缺失的包含文件"></p>
 
 <h2>后续步骤</h2>
 

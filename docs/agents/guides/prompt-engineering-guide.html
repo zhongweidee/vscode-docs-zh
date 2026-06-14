@@ -454,10 +454,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在以下 TypeScript 示例中，我们想要记录 <code>add</code> 方法的输出。当没有任何引用时，AI 会建议使用 <code>console.log</code>：</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/copilot-suggestion-console-log.png">AI inline suggestion proposes Console.log when no imports in the file.</a></p>
+<p><img src="../images/prompt-engineering-guide/copilot-suggestion-console-log.png" alt="AI inline suggestion proposes Console.log when no imports in the file."></p>
 <p>另一方面，当您添加了对 <code>Log4js</code> 的引用时，AI 会建议使用该框架来记录输出：</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/copilot-suggestion-framework-log.png">AI inline suggestion proposes logging using the imported logging framework.</a></p>
+<p><img src="../images/prompt-engineering-guide/copilot-suggestion-framework-log.png" alt="AI inline suggestion proposes logging using the imported logging framework."></p>
 
 <h4>有意义的函数命名</h4>
 
@@ -477,7 +477,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>AI 会跟随您的代码风格来生成符合现有模式的建议，因此"垃圾进，垃圾出"这句格言在此适用。</p>
 <p>始终维持高质量标准需要自律。特别是当您快速摸索代码以让程序跑起来时，您可能希望在"探索"模式下暂时禁用代码补全。要临时暂停内联建议，请在状态栏中选择 Copilot 菜单，然后选择<strong>暂停</strong>按钮，每次点击会将暂停时间增加五分钟。要恢复内联建议，请在 Copilot 菜单中选择<strong>取消暂停</strong>按钮。</p>
 
-<p>!<a href="agents/images/inline-suggestions/snooze-code-completions.png">Screenshot of the Copilot menu in the Status Bar with Snooze and Cancel Snooze buttons.</a></p>
+<p><img src="../images/inline-suggestions/snooze-code-completions.png" alt="Screenshot of the Copilot menu in the Status Bar with Snooze and Cancel Snooze buttons."></p>
 
 <h2>充分利用聊天功能</h2>
 
@@ -493,7 +493,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>除了手动添加单个文件外，您还可以使用 <code>#codebase</code> 让 VS Code 自动从代码库中查找相关文件。这在您不知道哪些文件与您的问题相关时非常有用。</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/copilot-chat-view-attach-context.png">Screenshot of Chat view, showing the Attach context button and context Quick Pick.</a></p>
+<p><img src="../images/prompt-engineering-guide/copilot-chat-view-attach-context.png" alt="Screenshot of Chat view, showing the Attach context button and context Quick Pick."></p>
 
 <p>详细了解<a href="../docs/chat/copilot-chat-context.md">在聊天中使用上下文</a>。</p>
 
@@ -508,15 +508,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>向聊天寻求帮助时，您并不局限于第一个回复。您可以进行迭代，提示聊天改进解决方案。聊天同时拥有生成代码的上下文和您当前的对话记录。</p>
 <p>以下是一个使用内联聊天创建斐波那契数列计算函数的示例：</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/fibonacci-first.png">First response from AI for a function to calculate Fibonacci numbers</a></p>
+<p><img src="../images/prompt-engineering-guide/fibonacci-first.png" alt="First response from AI for a function to calculate Fibonacci numbers"></p>
 
 <p>也许您更喜欢不使用递归的解决方案：</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/fibonacci-second.png">Ask AI to not use recursion and new result</a></p>
+<p><img src="../images/prompt-engineering-guide/fibonacci-second.png" alt="Ask AI to not use recursion and new result"></p>
 
 <p>您甚至可以要求 AI 遵循编码规范或改进变量名：</p>
 
-<p>!<a href="agents/images/prompt-engineering-guide/fibonacci-third.png">Ask AI to use better variable names and new result</a></p>
+<p><img src="../images/prompt-engineering-guide/fibonacci-third.png" alt="Ask AI to use better variable names and new result"></p>
 
 <p>即使您已经接受了某个结果，您随时可以在之后要求 AI 对代码进行迭代改进。</p>
 

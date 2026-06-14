@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>本文介绍如何使用 Agent Inspector 直接在 VS Code 中调试、可视化和改进你的 AI 代理。按 F5 以完整的调试器支持启动代理，实时查看流式响应，并观察多个代理如何协同工作。</p>
 
-<p>!<a href="intelligentapps/images/agent-inspector/test_tool_visualizer.png">显示 Agent Inspector 界面的截图</a></p>
+<p><img src="images/agent-inspector/test_tool_visualizer.png" alt="显示 Agent Inspector 界面的截图"></p>
 
 <h2>优势</h2>
 
@@ -456,7 +456,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>选择以下选项之一，快速开始在代理项目中使用 Agent Inspector。</p>
 
-<p>!<a href="intelligentapps/images/agent-inspector/inspector-new.png">显示 Agent Inspector 快速入门的截图</a></p>
+<p><img src="images/agent-inspector/inspector-new.png" alt="显示 Agent Inspector 快速入门的截图"></p>
 
 <h3>选项 1：搭建示例项目（推荐）</h3>
 
@@ -549,14 +549,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>聊天调试区</h3>
 <p>发送消息以触发工作流并实时查看执行情况。</p>
-<p>!<a href="intelligentapps/images/agent-inspector/chat-area-new.png">聊天消息区域</a></p>
+<p><img src="images/agent-inspector/chat-area-new.png" alt="聊天消息区域"></p>
 
 <h3>工作流可视化</h3>
 <p>对于 <code>WorkflowAgent</code>，查看包含代理之间消息流的执行图。你还可以：</p>
 <ol>
 <li>选择每个节点以查看代理的输入和输出。</li>
 <li>双击任意节点以导航到代码。</li>
-<li>在代码中设置断点以暂停执行并检查变量。!<a href="intelligentapps/images/agent-inspector/break-point.png">显示工作流可视化的截图</a>
+<li>在代码中设置断点以暂停执行并检查变量。<img src="images/agent-inspector/break-point.png" alt="显示工作流可视化的截图">
 <h2>故障排除</h2>
 
 <table>
@@ -585,7 +585,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p><code>agentdev</code> CLI 启动一个本地 TestToolServer，该服务器将你的代理封装为一个监听端口 8087 的 HTTP 服务器。Inspector UI（一个 VS Code webview）通过 HTTP 和 WebSocket 与此服务器通信，以列出代理、流式传输 SSE 响应并触发编辑器中的代码导航。EventMapper 将 Agent Framework 事件转换为与 OpenAI 兼容的 SSE 格式，Python 调试器（debugpy）在端口 5679 上附加以进行单步调试。你的代理或工作流通过 Agent Framework SDK 的 <code>run_stream()</code> 运行。</p>
 
-<p>!<a href="intelligentapps/images/agent-inspector/architecture-diagram.png">显示 Agent Inspector 架构的图表</a></p>
+<p><img src="images/agent-inspector/architecture-diagram.png" alt="显示 Agent Inspector 架构的图表"></p>
 
   </div>
 </div>

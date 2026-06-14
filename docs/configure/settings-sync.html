@@ -434,7 +434,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以通过<strong>管理</strong>齿轮菜单中的<strong>备份和同步设置...</strong>选项，或者活动栏底部的<strong>账户</strong>菜单来开启设置同步。</p>
 
-<p>!<a href="configure/images/settings-sync/turn-on-sync.png">管理菜单截图，突出显示备份和同步设置命令。</a></p>
+<p><img src="images/settings-sync/turn-on-sync.png" alt="管理菜单截图，突出显示备份和同步设置命令。"></p>
 
 <p>要使用同步设置，你需要登录并选择要同步的设置。目前，设置同步支持以下设置：</p>
 
@@ -448,11 +448,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>配置文件
 </li>
 </ul>
-<p>!<a href="configure/images/settings-sync/sync-configure.png">设置同步配置快速选择截图，用于选择要同步的设置。</a></p>
+<p><img src="images/settings-sync/sync-configure.png" alt="设置同步配置快速选择截图，用于选择要同步的设置。"></p>
 
 <p>当你选择<strong>登录</strong>按钮时，可以选择使用 Microsoft 账户或 GitHub 账户登录。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-accounts.png">设置同步快速选择截图，用于选择账户类型。</a></p>
+<p><img src="images/settings-sync/sync-accounts.png" alt="设置同步快速选择截图，用于选择账户类型。"></p>
 
 <p>做出选择后，浏览器会打开，以便你登录 Microsoft 或 GitHub 账户。如果你选择 Microsoft 账户，可以使用个人账户（例如 Outlook 账户）或 Azure 账户，也可以将 GitHub 账户关联到新的或现有的 Microsoft 账户。</p>
 
@@ -462,7 +462,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你已经在另一台计算机上进行了同步，而在当前计算机上开启同步，你将看到以下<strong>合并或替换</strong>对话框。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-merge-replace.png">设置同步合并或替换对话框</a></p>
+<p><img src="images/settings-sync/sync-merge-replace.png" alt="设置同步合并或替换对话框"></p>
 
 <ul>
 <li><strong>合并</strong>：选择此选项将把<strong>本地</strong>设置与云端的<strong>远程</strong>设置进行合并。</li>
@@ -470,19 +470,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>手动合并...</strong>：选择此选项将打开<strong>合并</strong>视图，你可以在其中逐项合并偏好设置。
 </li>
 </ul>
-<p>!<a href="configure/images/settings-sync/sync-merges-view.png">设置同步合并视图</a></p>
+<p><img src="images/settings-sync/sync-merges-view.png" alt="设置同步合并视图"></p>
 
 <h2>配置同步数据</h2>
 
 <p>具有 <code>machine</code> 或 <code>machine-overridable</code> <a href="../updates/v1_34.md#machinespecific-settings">作用域</a>的计算机设置默认不会同步，因为它们的值因计算机而异。你还可以从设置编辑器或使用设置 <code>setting(settingsSync.ignoredSettings)</code> 向此列表添加或删除你想忽略的设置。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-ignored-settings.png">设置同步忽略的设置</a></p>
+<p><img src="images/settings-sync/sync-ignored-settings.png" alt="设置同步忽略的设置"></p>
 
 <p>键盘快捷键默认按平台同步。如果你的键盘快捷键与平台无关，可以通过禁用设置 <code>setting(settingsSync.keybindingsPerPlatform)</code> 来跨平台同步它们。</p>
 
 <p>所有内置和已安装的扩展及其全局启用状态都会同步。你可以跳过同步某个扩展，方法是在扩展视图 (<code>kb(workbench.view.extensions)</code>) 中操作，或者使用设置 <code>setting(settingsSync.ignoredExtensions)</code>。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-ignored-extensions.png">设置同步忽略的扩展</a></p>
+<p><img src="images/settings-sync/sync-ignored-extensions.png" alt="设置同步忽略的扩展"></p>
 
 <p>目前同步的用户界面状态包括：</p>
 
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>默认情况下，VS Code Stable 和 <a href="../insiders">Insiders</a> 构建使用不同的设置同步服务，因此不会共享设置。你可以在开启设置同步时选择 Stable 同步服务，将 Insiders 与 Stable 同步。此选项仅在 VS Code Insiders 中可用。</p>
 
-<p>!<a href="configure/images/settings-sync/settings-sync-switch.png">设置同步切换服务</a></p>
+<p><img src="images/settings-sync/settings-sync-switch.png" alt="设置同步切换服务"></p>
 
 <p><strong>注意：</strong> 由于 Insiders 构建比 Stable 构建更新，同步它们有时会导致数据不兼容。在这种情况下，设置同步将在 Stable 上自动禁用以防止数据不一致。一旦发布了较新版本的 Stable 构建，你可以升级 Stable 客户端并开启同步以继续同步。</p>
 
@@ -523,11 +523,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 在同步过程中始终存储你的偏好设置的本地和远程备份，并提供用于访问这些备份的视图。如果出现问题，你可以从这些视图恢复数据。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-backup-views.png">设置同步备份视图</a></p>
+<p><img src="images/settings-sync/sync-backup-views.png" alt="设置同步备份视图"></p>
 
 <p>你可以通过命令面板使用<strong>设置同步：显示已同步数据</strong>命令打开这些视图。本地同步活动视图默认隐藏，你可以在<strong>设置同步</strong>视图溢出操作下的<strong>视图</strong>子菜单中启用它。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-enable-local-activity-view.png">设置同步启用本地备份视图</a></p>
+<p><img src="images/settings-sync/sync-enable-local-activity-view.png" alt="设置同步启用本地备份视图"></p>
 
 <p>磁盘上的本地备份文件夹可以通过<strong>设置同步：打开本地备份文件夹</strong>命令访问。该文件夹按偏好设置类型组织，包含 JSON 文件的版本，文件名带有备份发生时间的时间戳。</p>
 
@@ -537,7 +537,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 会跟踪正在同步你的偏好设置的计算机，并提供一个视图来访问它们。每台计算机都会根据 VS Code 的类型（Insiders 或 Stable）及其所在平台获得一个默认名称。你可以随时使用视图中计算机条目上的编辑操作来更新计算机名称。你还可以使用视图中计算机条目上的<strong>关闭设置同步</strong>上下文菜单操作来禁用另一台计算机上的同步。</p>
 
-<p>!<a href="configure/images/settings-sync/sync-machines-view.png">设置同步计算机视图</a></p>
+<p><img src="images/settings-sync/sync-machines-view.png" alt="设置同步计算机视图"></p>
 
 <p>你可以通过命令面板使用<strong>设置同步：显示已同步数据</strong>命令打开此视图。</p>
 

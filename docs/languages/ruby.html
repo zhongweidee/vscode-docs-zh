@@ -430,7 +430,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>本主题详细介绍如何在 Visual Studio Code 中使用 <a href="https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-lsp">Ruby LSP</a> 扩展来设置和使用 Ruby。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_extension.png">Ruby extension banner</a></p>
+<p><img src="images/ruby/ruby_lsp_extension.png" alt="Ruby extension banner"></p>
 
 <h2>安装</h2>
 
@@ -444,7 +444,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以通过扩展视图（<code>kb(workbench.view.extensions)</code>）在 VS Code 中查找并安装 Ruby LSP 扩展，搜索"Ruby LSP"即可。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_extensions_view.png">Ruby LSP extension in the Extensions view</a></p>
+<p><img src="images/ruby/ruby_lsp_extensions_view.png" alt="Ruby LSP extension in the Extensions view"></p>
 
 <p>我们将在本主题中讨论 Ruby LSP 的许多功能，但您也可以参考该扩展的<a href="https://shopify.github.io/ruby-lsp">文档</a>和<a href="https://github.com/Shopify/ruby-lsp">仓库</a>。</p>
 
@@ -452,7 +452,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>安装后，请检查<strong>状态栏</strong>中的语言状态项，以查看 Ruby LSP 服务器的状态。如果版本管理器已配置好，它应显示您项目正确的 Ruby 版本。服务器状态应显示为"正在启动"或"正在运行"，而不是错误。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_status_center.png">Ruby LSP language status center</a></p>
+<p><img src="images/ruby/ruby_lsp_status_center.png" alt="Ruby LSP language status center"></p>
 
 <p>该扩展会自动生成一个 <code>.ruby-lsp</code> 文件夹，其中包含一个自定义 bundle，内含语言服务器 gem <code>ruby-lsp</code>。无需进行任何配置。</p>
 
@@ -485,7 +485,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Ruby LSP 能够在代码中显示有关推断值或隐式值的有用信息。在下面的示例中，您可以看到 <code>StandardError</code> 被显示为空 <code>rescue</code> 调用中正在捕获的隐式异常类。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_inlay_hints.png">Ruby program with inlay hints displayed</a></p>
+<p><img src="images/ruby/ruby_lsp_inlay_hints.png" alt="Ruby program with inlay hints displayed"></p>
 
 <p>虽然内联提示有助于理解代码，但您也可以通过<strong>编辑器 > 内联提示：已启用</strong>设置（<code>setting(editor.inlayHints.enabled)</code>）禁用此功能，或使用以下配置仅针对 Ruby LSP 禁用此功能：</p>
 
@@ -504,7 +504,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>局部参数（如方法、块或 lambda 参数），在其存在的作用域内保持一致。
 </li>
 </ul>
-<p>!<a href="languages/images/ruby/ruby_lsp_semantic_highlighting.png">Ruby LSP semantic highlighting</a></p>
+<p><img src="images/ruby/ruby_lsp_semantic_highlighting.png" alt="Ruby LSP semantic highlighting"></p>
 
 <p>><strong>注意</strong>：此截图使用的是 <a href="https://marketplace.visualstudio.com/items?itemName=Shopify.ruby-extensions-pack">Ruby 扩展包</a>中包含的 Spinel 主题。主题必须使用 Ruby LSP 提供的信息，才能为 Ruby 文件提供丰富的高亮显示。</p>
 
@@ -518,7 +518,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果您的项目不使用 RuboCop，Ruby LSP 将使用 <a href="https://ruby-syntax-tree.github.io/syntax_tree">SyntaxTree</a> 来格式化文件。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_linting.png">Linting a Ruby file</a></p>
+<p><img src="images/ruby/ruby_lsp_linting.png" alt="Linting a Ruby file"></p>
 
 <p>您还可以在每次保存时运行格式化程序（<strong>编辑器：保存时格式化</strong>），以便在工作时自动保持 Ruby 代码格式正确。为此，您必须启用保存时格式化。</p>
 
@@ -532,7 +532,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当代码检查工具在您的源代码中发现错误和警告时，Ruby LSP 通常可以提供建议的快速修复（也称为代码操作），通过编辑器中的灯泡悬停提示即可使用。您可以通过 <code>kb(editor.action.quickFix)</code> 快速打开可用的快速修复。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_quickfix.png">Quick Fixes for linting violations</a></p>
+<p><img src="images/ruby/ruby_lsp_quickfix.png" alt="Quick Fixes for linting violations"></p>
 
 <p>此外，<strong>代码操作小组件：包含附近的快速修复</strong>（<code>setting(editor.codeActionWidget.includeNearbyQuickFixes)</code>）是一项默认启用的设置，它会激活 <code>kb(editor.action.quickFix)</code>（命令 ID <code>editor.action.quickFix</code>）所在行中最近的快速修复，无论光标在该行中的什么位置。</p>
 
@@ -542,7 +542,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>除了快速修复之外，Ruby LSP 还通过代码操作提供重构选项。例如，它可以通过单击将 Ruby 表达式提取为局部变量。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_refactor.png">Refactor extract to variable</a></p>
+<p><img src="images/ruby/ruby_lsp_refactor.png" alt="Refactor extract to variable"></p>
 
 <h2>调试</h2>
 
@@ -554,7 +554,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Ruby LSP 在单元测试上方添加了 CodeLens 按钮，使您能够在测试资源管理器中运行示例、在新终端中运行它们或启动调试器。对于这些用途，无需进行任何配置。</p>
 
-<p>!<a href="languages/images/ruby/ruby_lsp_code_lens.png">Test running code lenses</a></p>
+<p><img src="images/ruby/ruby_lsp_code_lens.png" alt="Test running code lenses"></p>
 
 <h3>通过启动任务进行调试</h3>
 
@@ -603,13 +603,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开一个 Ruby 文件，点击编辑器左侧的装订线来设置断点。它应显示为一个红点。
 </li>
 </ol>
-<p>   !<a href="languages/images/ruby/ruby_lsp_breakpoint.png">Red breakpoint dot in the left gutter of the editor</a></p>
+<p>   <img src="images/ruby/ruby_lsp_breakpoint.png" alt="Red breakpoint dot in the left gutter of the editor"></p>
 
 <ol>
 <li>通过在<strong>运行和调试</strong>下选择所需的任务，并单击开始调试按钮（默认键盘快捷键 <code>kb(workbench.action.debug.start)</code>）来开始调试。
 </li>
 </ol>
-<p>   !<a href="languages/images/ruby/ruby_lsp_debugging_session.png">Debug session stopped at breakpoint</a></p>
+<p>   <img src="images/ruby/ruby_lsp_debugging_session.png" alt="Debug session stopped at breakpoint"></p>
 
 <h2>后续步骤</h2>
 

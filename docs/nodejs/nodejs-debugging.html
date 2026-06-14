@@ -450,7 +450,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>启用<strong>自动附加</strong>后，你需要通过点击终端右上角的 ⚠ 图标来重启终端，或者直接创建一个新终端。然后，调试器会在一秒内附加到你的程序：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/auto-attach.gif">Auto Attach</a></p>
+<p><img src="images/nodejs-debugging/auto-attach.gif" alt="Auto Attach"></p>
 
 <p>当自动附加开启时，<code>Auto Attach</code> 项将出现在 VS Code 窗口底部的状态栏中。点击它可以更改自动附加模式，或临时关闭它。如果你正在运行一些不需要调试的一次性程序，但不想完全禁用该功能，临时关闭自动附加会很有用。</p>
 
@@ -488,7 +488,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>与<a href="#auto-attach">自动附加</a>类似，JavaScript 调试终端会自动调试你在其中运行的任何 Node.js 进程。你可以通过命令面板 (<code>kbs(workbench.action.showCommands)</code>) 运行<strong>调试：创建 JavaScript 调试终端</strong>命令，或从终端切换下拉菜单中选择<strong>创建 JavaScript 调试终端</strong>来创建调试终端。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/create-debug-terminal.png">Create Debug Terminal</a></p>
+<p><img src="images/nodejs-debugging/create-debug-terminal.png" alt="Create Debug Terminal"></p>
 
 <h3>附加配置</h3>
 
@@ -561,11 +561,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>你可以在 <code>launch.json</code> 文件中触发 IntelliSense (<code>kb(editor.action.triggerSuggest)</code>) 来查看常用 Node.js 调试场景的启动配置代码片段。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/launch-snippets.png">Launch configuration snippets for Node.js</a></p>
+<p><img src="images/nodejs-debugging/launch-snippets.png" alt="Launch configuration snippets for Node.js"></p>
 
 <p>你也可以通过 <code>launch.json</code> 编辑器窗口右下角的<strong>添加配置...</strong>按钮来调出这些代码片段。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/add-configuration-button.png">Add Configuration button</a></p>
+<p><img src="images/nodejs-debugging/add-configuration-button.png" alt="Add Configuration button"></p>
 
 <p>以下代码片段可用：</p>
 
@@ -689,7 +689,7 @@ lines="foo\nbar"</code></pre>
 
 <p>命令面板 (<code>kb(workbench.action.showCommands)</code>) 中的<strong>附加到 Node 进程</strong>命令会打开一个快速选择菜单，列出 Node.js 调试器可用的所有潜在进程：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/process-picker.png">Node.js Process picker</a></p>
+<p><img src="images/nodejs-debugging/process-picker.png" alt="Node.js Process picker"></p>
 
 <p>选择器中列出的各个进程显示了调试端口和进程 ID。在该列表中选择你的 Node.js 进程后，Node.js 调试器将尝试附加到它。</p>
 
@@ -882,7 +882,7 @@ lines="foo\nbar"</code></pre>
 
 <p>如果你需要在不属于工作区的脚本中设置断点，因此无法通过正常的 VS Code 文件浏览轻松定位和打开，你可以通过<strong>运行和调试</strong>视图中的<strong>已加载脚本</strong>视图访问已加载的脚本：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/loaded-scripts-explorer.gif">Loaded Scripts Explorer</a></p>
+<p><img src="images/nodejs-debugging/loaded-scripts-explorer.gif" alt="Loaded Scripts Explorer"></p>
 
 <p><strong>已加载脚本</strong>视图允许你通过输入脚本名称来快速选择脚本，或在<strong>键入时筛选</strong>开启时过滤列表。</p>
 
@@ -926,7 +926,7 @@ lines="foo\nbar"</code></pre>
 
 <p>Node 调试器支持在堆栈帧处重新开始执行。这在以下情况下很有用：你在源代码中发现了一个问题，并希望使用修改后的输入值重新运行一小部分代码。停止然后重新启动完整的调试会话可能很耗时。<strong>重启动帧</strong>操作允许你在使用<strong>设置值</strong>操作更改变量后重新进入当前函数：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/restartFrame.gif">Restart frame</a></p>
+<p><img src="images/nodejs-debugging/restartFrame.gif" alt="Restart frame"></p>
 
 <p><strong>重启动帧</strong>不会回滚函数外部的状态变更，因此它可能并不总是按预期工作。</p>
 
@@ -936,7 +936,7 @@ lines="foo\nbar"</code></pre>
 
 <p>条件断点是仅在表达式返回真值时才会暂停的断点。你可以通过右键点击行号旁的装订线并选择"条件断点"来创建：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/conditional-breakpoint.gif">Conditional breakpoint</a></p>
+<p><img src="images/nodejs-debugging/conditional-breakpoint.gif" alt="Conditional breakpoint"></p>
 
 <h3>日志点</h3>
 
@@ -944,13 +944,13 @@ lines="foo\nbar"</code></pre>
 
 <p>你可以通过右键点击行号旁的装订线并选择"日志点"来创建。例如，这可能会记录类似 <code>位置是 /usr/local</code> 的内容：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/logpoint-breakpoint.gif">Logpoint</a></p>
+<p><img src="images/nodejs-debugging/logpoint-breakpoint.gif" alt="Logpoint"></p>
 
 <h3>命中次数断点</h3>
 
 <p>"命中次数条件"控制断点需要被命中多少次才能"中断"执行。你可以通过右键点击行号旁的装订线，选择"条件断点"，然后切换到"命中次数"来放置命中次数断点。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/hit-count-breakpoint.gif">Hit count breakpoint</a></p>
+<p><img src="images/nodejs-debugging/hit-count-breakpoint.gif" alt="Hit count breakpoint"></p>
 
 <p>Node.js 调试器支持的命中次数语法可以是整数，或者运算符 <code><</code>、<code><=</code>、<code>==</code>、<code>></code>、<code>>=</code>、<code>%</code> 之一后跟整数。</p>
 
@@ -981,11 +981,11 @@ lines="foo\nbar"</code></pre>
 
 <p>这样做时，你会发现一些断点不会"固定"到请求的行，而是"跳转"到已解析代码中的下一个可能行。为避免混淆，VS Code 始终在 Node.js 认为断点所在的位置显示断点。在<strong>断点</strong>部分，这些断点会显示一个箭头，指示请求的行号和实际行号之间的差异：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/breakpointsvalidation.png">Breakpoints View</a></p>
+<p><img src="images/nodejs-debugging/breakpointsvalidation.png" alt="Breakpoints View"></p>
 
 <p>此断点验证发生在会话启动并向 Node.js 注册断点时，或者会话已在运行且设置了新断点时。在这种情况下，断点可能会"跳转"到不同的位置。在 Node.js 解析了所有代码后（例如，通过运行代码），可以使用<strong>断点</strong>部分标题中的<strong>重新应用</strong>按钮轻松将断点重新应用到请求的位置。这应该会使断点"跳回"到请求的位置。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/breakpointstoolbar.png">Breakpoint Actions</a></p>
+<p><img src="images/nodejs-debugging/breakpointstoolbar.png" alt="Breakpoint Actions"></p>
 
 <h2>跳过不感兴趣的代码</h2>
 
@@ -1017,7 +1017,7 @@ lines="foo\nbar"</code></pre>
 </ul>
 <p>被跳过的源代码在调用堆栈视图中以"暗淡"样式显示：</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/dimmed-callstack.png">Skipped source is dimmed in call stack view</a></p>
+<p><img src="images/nodejs-debugging/dimmed-callstack.png" alt="Skipped source is dimmed in call stack view"></p>
 
 <p>将鼠标悬停在暗淡的条目上会解释堆栈帧被暗淡化的原因。</p>
 
@@ -1053,7 +1053,7 @@ lines="foo\nbar"</code></pre>
 
 <p>在下图中，调试器在创建 Mandelbrot 分形的 C++ 源代码中的断点处暂停。调用堆栈是可见的，包含从 JavaScript 代码到 WebAssembly 再到映射的 C++ 代码的帧。你还可以看到 C++ 代码中的变量，以及对与 int32 <code>height</code> 变量关联的内存进行的编辑。</p>
 
-<p>!<a href="nodejs/images/nodejs-debugging/wasm-dwarf.png">Debugger stopped on a breakpoint in C++ source code</a></p>
+<p><img src="images/nodejs-debugging/wasm-dwarf.png" alt="Debugger stopped on a breakpoint in C++ source code"></p>
 
 <p>虽然接近同等水平，但调试 WebAssembly 与普通 JavaScript 有一些不同：</p>
 

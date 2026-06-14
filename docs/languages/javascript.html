@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 内置了 JavaScript IntelliSense、调试、格式化、代码导航、重构以及许多其他高级语言功能。</p>
 
-<p>!<a href="languages/images/javascript/overview.png">Working with JavaScript in Visual Studio Code</a></p>
+<p><img src="images/javascript/overview.png" alt="Working with JavaScript in Visual Studio Code"></p>
 
 <p>这些功能大多开箱即用，但部分功能可能需要基本配置才能获得最佳体验。本页总结了 VS Code 自带的 JavaScript 功能。来自 <a href="https://marketplace.visualstudio.com">VS Code 扩展市场</a> 的扩展可以增强或更改这些内置功能中的大部分。有关这些功能如何工作以及如何配置的更深入指南，请参阅<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a>。</p>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>将鼠标悬停在 JavaScript 符号上可以快速查看其类型信息和相关文档。</p>
 
-<p>!<a href="languages/images/javascript/hover.png">Hovering over a JavaScript variable to see its type information</a></p>
+<p><img src="images/javascript/hover.png" alt="Hovering over a JavaScript variable to see its type information"></p>
 
 <p><code>kb(editor.action.showHover)</code> 键盘快捷键会在当前光标位置显示此悬停信息。</p>
 
@@ -509,7 +509,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在编写 JavaScript 函数调用时，VS Code 会显示函数签名信息，并突出显示当前正在补全的参数：</p>
 
-<p>!<a href="languages/images/javascript/signature-help.png">Signature help for some DOM methods</a></p>
+<p><img src="images/javascript/signature-help.png" alt="Signature help for some DOM methods"></p>
 
 <p>当您在函数调用中键入 <code>(</code> 或 <code>,</code> 时，签名帮助会自动显示。按 <code>kb(editor.action.triggerParameterHints)</code> 可以手动触发签名帮助。</p>
 
@@ -519,13 +519,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>只需开始输入即可查看当前项目中所有可用 JavaScript 符号的<a href="#intellisense">建议</a>。自动导入建议会显示它们将被导入的来源：</p>
 
-<p>!<a href="languages/images/javascript/auto-import-before.png">Global symbols are shown in the suggestion list</a></p>
+<p><img src="images/javascript/auto-import-before.png" alt="Global symbols are shown in the suggestion list"></p>
 
 <p>如果您选择其中一个自动导入建议，VS Code 会为其添加导入。</p>
 
 <p>在此示例中，VS Code 在文件顶部添加了来自 <a href="https://material-ui.com">material-ui</a> 的 <code>Button</code> 导入：</p>
 
-<p>!<a href="languages/images/javascript/auto-import-after.png">After selecting a symbol from a different file, an import is added for it automatically</a></p>
+<p><img src="images/javascript/auto-import-after.png" alt="After selecting a symbol from a different file, an import is added for it automatically"></p>
 
 <p>要禁用自动导入，请将 <code>"js/ts.suggest.autoImports"</code> 设置为 <code>false</code>。</p>
 
@@ -587,7 +587,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 的所有 JavaScript 功能同样适用于 <a href="https://reactjs.org/docs/introducing-jsx.html">JSX</a>：</p>
 
-<p>!<a href="languages/images/javascript/jsx.png">JSX IntelliSense</a></p>
+<p><img src="images/javascript/jsx.png" alt="JSX IntelliSense"></p>
 
 <p>您可以在普通 <code><em>.js</code> 文件和 <code></em>.jsx</code> 文件中使用 JSX 语法。</p>
 
@@ -621,13 +621,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>按 <code>kb(editor.action.rename)</code> 可在整个 JavaScript 项目中重命名光标下的符号：</p>
 
-<p>!<a href="languages/images/javascript/rename.png">Renaming a variable</a></p>
+<p><img src="images/javascript/rename.png" alt="Renaming a variable"></p>
 
 <h2>重构</h2>
 
 <p>VS Code 包含一些便捷的 JavaScript 重构功能，例如 <strong>Extract function</strong> 和 <strong>Extract constant</strong>。只需选择要提取的源代码，然后点击行号旁的灯泡图标或按 (<code>kb(editor.action.quickFix)</code>) 查看可用的重构操作。</p>
 
-<p>!<a href="languages/images/javascript/refactorings.png">JavaScript refactoring</a></p>
+<p><img src="images/javascript/refactorings.png" alt="JavaScript refactoring"></p>
 
 <p>可用的重构包括：</p>
 
@@ -648,7 +648,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>未使用的 JavaScript 代码（例如始终为真的 <code>if</code> 语句的 else 块或未引用的导入）会在编辑器中以淡出效果显示：</p>
 
-<p>!<a href="languages/images/javascript/unreachable.png">Unreachable source code faded out</a></p>
+<p><img src="images/javascript/unreachable.png" alt="Unreachable source code faded out"></p>
 
 <p>您可以通过将光标放在这些未使用的代码上并触发快速修复命令（<code>kb(editor.action.quickFix)</code>）或点击灯泡图标来快速删除它们。</p>
 
@@ -714,7 +714,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Copilot 将提供如下建议——使用 <code>kbstyle(Tab)</code> 接受建议：</p>
 
-<p>!<a href="languages/images/javascript/js-suggest.png">Copilot JavaScript ghost text suggestion</a></p>
+<p><img src="images/javascript/js-suggest.png" alt="Copilot JavaScript ghost text suggestion"></p>
 
 <h2>内联提示</h2>
 
@@ -722,7 +722,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>参数名称内联提示</strong> 显示函数调用中参数的名称：</p>
 
-<p>!<a href="languages/images/javascript/inlay-parameters.png">Parameter name inlay hints</a></p>
+<p><img src="images/javascript/inlay-parameters.png" alt="Parameter name inlay hints"></p>
 
 <p>这可以帮助您一眼就能理解每个参数的含义，这对于接受布尔值标志或参数容易混淆的函数尤其有帮助。</p>
 
@@ -738,37 +738,37 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>设置：<code>setting(js/ts.inlayHints.variableTypes.enabled)</code></p>
 
-<p>!<a href="languages/images/javascript/inlay-var-types.png">Variable type inlay hints</a></p>
+<p><img src="images/javascript/inlay-var-types.png" alt="Variable type inlay hints"></p>
 
 <p><strong>属性类型内联提示</strong> 显示没有显式类型注解的类属性的类型。</p>
 
 <p>设置：<code>setting(js/ts.inlayHints.propertyDeclarationTypes.enabled)</code></p>
 
-<p>!<a href="languages/images/javascript/inlay-property-types.png">Property type inlay hints</a></p>
+<p><img src="images/javascript/inlay-property-types.png" alt="Property type inlay hints"></p>
 
 <p><strong>参数类型提示</strong> 显示隐式类型参数的类型。</p>
 
 <p>设置：<code>setting(js/ts.inlayHints.parameterTypes.enabled)</code></p>
 
-<p>!<a href="languages/images/javascript/inlay-parameter-types.png">Parameter type inlay hints</a></p>
+<p><img src="images/javascript/inlay-parameter-types.png" alt="Parameter type inlay hints"></p>
 
 <p><strong>返回类型内联提示</strong> 显示没有显式类型注解的函数的返回类型。</p>
 
 <p>设置：<code>setting(js/ts.inlayHints.functionLikeReturnTypes.enabled)</code></p>
 
-<p>!<a href="languages/images/javascript/inlay-return-type.png">Return type inlay hints</a></p>
+<p><img src="images/javascript/inlay-return-type.png" alt="Return type inlay hints"></p>
 
 <h2>引用 CodeLens</h2>
 
 <p>JavaScript 引用 CodeLens 为类、方法、属性和导出对象显示内联引用计数：</p>
 
-<p>!<a href="languages/images/javascript/references-codelens.png">JavaScript references CodeLens</a></p>
+<p><img src="images/javascript/references-codelens.png" alt="JavaScript references CodeLens"></p>
 
 <p>要启用引用 CodeLens，请将 <code>"js/ts.referencesCodeLens.enabled"</code> 设置为 <code>true</code>。</p>
 
 <p>点击引用计数可以快速浏览引用列表：</p>
 
-<p>!<a href="languages/images/javascript/references-codelens-peek.png">JavaScript references CodeLens peek</a></p>
+<p><img src="images/javascript/references-codelens-peek.png" alt="JavaScript references CodeLens peek"></p>
 
 <h2>代码检查工具</h2>
 
@@ -783,7 +783,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您也可以在普通 JavaScript 文件中利用 TypeScript 的一些高级类型检查和错误报告功能。这是发现常见编程错误的绝佳方法。这些类型检查还为 JavaScript 启用了一些令人兴奋的快速修复功能，包括 <strong>Add missing import</strong> 和 <strong>Add missing property</strong>。</p>
 
-<p>!<a href="languages/images/javascript/checkjs-example.gif">Using type checking and Quick Fixes in a JavaScript file</a></p>
+<p><img src="images/javascript/checkjs-example.gif" alt="Using type checking and Quick Fixes in a JavaScript file"></p>
 
 <p>TypeScript 尝试在 <code>.js</code> 文件中推断类型，就像在 <code>.ts</code> 文件中所做的那样。当类型无法推断时，可以通过 JSDoc 注释显式指定。您可以在<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a> 中阅读更多关于 TypeScript 如何使用 JSDoc 进行 JavaScript 类型检查的信息。</p>
 
@@ -801,7 +801,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用内置调试器在 VS Code 中调试 Node.js。设置很容易，并且有 <a href="../docs/nodejs/nodejs-tutorial.md#debug-your-express-app">Node.js 调试教程</a>可以帮助您。</p>
 
-<p>!<a href="languages/images/javascript/debug_data_inspection.gif">debug data inspection</a></p>
+<p><img src="images/javascript/debug_data_inspection.gif" alt="debug data inspection"></p>
 
 <h2>热门扩展</h2>
 

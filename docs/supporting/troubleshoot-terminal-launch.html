@@ -459,15 +459,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>   您可以在设置编辑器（<strong>文件</strong> > <strong>首选项</strong> > <strong>设置</strong>）中查看设置，并通过设置 ID 搜索特定设置。</p>
 
-<p>   !<a href="supporting/images/troubleshoot-terminal-launch/search-for-settings.png">搜索集成终端设置</a></p>
+<p>   <img src="images/troubleshoot-terminal-launch/search-for-settings.png" alt="搜索集成终端设置"></p>
 
 <p>   快速检查是否更改了您可能未注意到的设置的方法是使用设置编辑器中的 <code>@modified</code> 过滤器。</p>
 
-<p>   !<a href="supporting/images/troubleshoot-terminal-launch/search-for-modified-settings.png">过滤已修改的设置</a></p>
+<p>   <img src="images/troubleshoot-terminal-launch/search-for-modified-settings.png" alt="过滤已修改的设置"></p>
 
 <p>   大多数集成终端设置需要直接在您的用户 <code>settings.json</code> JSON 文件中修改。您可以通过设置编辑器中的 <strong>在 settings.json 中编辑</strong> 链接，或通过命令面板 (<code>kb(workbench.action.showCommands)</code>) 中的 <strong>首选项：打开用户设置 (JSON)</strong> 命令来打开 <code>settings.json</code>。</p>
 
-<p>   !<a href="supporting/images/troubleshoot-terminal-launch/settings-json-file.png">用户的 settings.json 文件</a></p>
+<p>   <img src="images/troubleshoot-terminal-launch/settings-json-file.png" alt="用户的 settings.json 文件"></p>
 
 <ol>
 <li><strong>直接测试您的 shell。</strong> 尝试在 VS Code 之外通过外部终端或命令提示符运行您指定的集成终端 shell。某些终端启动失败可能是由于您的 shell 安装问题，并非 VS Code 所特有。显示的退出代码来自 shell，您可以通过在互联网上搜索特定 shell 和退出代码来诊断 shell 问题。
@@ -538,7 +538,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当 conhost 的属性中启用了旧版控制台模式时，可能会出现此情况。要更改此设置，请从开始菜单打开 cmd.exe，右键单击标题栏，转到 <strong>属性</strong>，然后在 <strong>选项</strong> 选项卡中取消选中 <strong>使用旧版控制台</strong>。</p>
 
-<p>!<a href="supporting/images/troubleshoot-terminal-launch/legacy-console-mode.png">使用旧版控制台模式复选框</a></p>
+<p><img src="images/troubleshoot-terminal-launch/legacy-console-mode.png" alt="使用旧版控制台模式复选框"></p>
 
 <h2>后续步骤</h2>
 

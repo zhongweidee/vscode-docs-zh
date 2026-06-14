@@ -436,7 +436,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>按住 <code>kbstyle(Ctrl)</code> 并按下 <code>kbstyle(Tab)</code> 可查看编辑器组中所有已打开文件的列表。要打开其中一个文件，请再次使用 <code>kbstyle(Tab)</code> 选择要导航到的文件，然后松开 <code>kbstyle(Ctrl)</code> 将其打开。</p>
 
-<p>!<a href="editing/images/editingevolved/quicknav.png">Quick Navigation</a></p>
+<p><img src="images/editingevolved/quicknav.png" alt="Quick Navigation"></p>
 
 <p>或者，您可以使用 <code>kb(workbench.action.navigateBack)</code> 和 <code>kb(workbench.action.navigateForward)</code> 在文件和编辑位置之间导航。如果您在同一文件的不同行之间跳转，这些快捷键可以让您轻松地在这些位置之间导航。</p>
 
@@ -444,17 +444,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>编辑器内容上方有一个导航栏，称为<a href="https://en.wikipedia.org/wiki/Breadcrumb_(navigation">面包屑导航</a>)。它显示当前位置，并允许您在文件夹、文件和符号之间快速导航。</p>
 
-<p>!<a href="editing/images/editingevolved/breadcrumbs.png">Breadcrumbs</a></p>
+<p><img src="images/editingevolved/breadcrumbs.png" alt="Breadcrumbs"></p>
 
 <p>面包屑导航始终显示文件路径，并借助语言扩展显示光标位置之前的符号路径。显示的符号与大纲视图和转到符号中的符号相同。</p>
 
 <p>在路径中选择一个面包屑会显示一个包含该层级同级项的下拉菜单，以便您可以快速导航到其他文件夹和文件。</p>
 
-<p>!<a href="editing/images/editingevolved/breadcrumb-folder-dropdown.png">breadcrumb folder dropdown</a></p>
+<p><img src="images/editingevolved/breadcrumb-folder-dropdown.png" alt="breadcrumb folder dropdown"></p>
 
 <p>如果当前文件类型支持符号语言，您将看到当前符号路径以及同层级和下级其他符号的下拉菜单。</p>
 
-<p>!<a href="editing/images/editingevolved/breadcrumb-symbol-dropdown.png">breadcrumb symbol dropdown</a></p>
+<p><img src="images/editingevolved/breadcrumb-symbol-dropdown.png" alt="breadcrumb symbol dropdown"></p>
 
 <p>您可以通过 <strong>视图</strong> > <strong>显示面包屑</strong> 切换开关或 <code>setting(breadcrumbs.enabled)</code> <a href="../docs/configure/settings.md">设置</a>来关闭面包屑导航。</p>
 
@@ -492,7 +492,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果您按下 <code>kbstyle(Ctrl)</code> 并将鼠标悬停在符号上，将显示声明的预览：</p>
 
-<p>!<a href="editing/images/editingevolved/ctrlhover.png">Ctrl Hover</a></p>
+<p><img src="images/editingevolved/ctrlhover.png" alt="Ctrl Hover"></p>
 
 <blockquote><strong>提示：</strong> 您可以使用 <code>kbstyle(Ctrl+Click)</code> 跳转到定义，或使用 <code>kbstyle(Ctrl+Alt+Click)</code> 在侧边打开定义。</blockquote>
 
@@ -508,19 +508,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以使用 <code>kb(workbench.action.gotoSymbol)</code> 在文件内部导航符号。通过输入 <code>kbstyle(:)</code>，符号将按类别分组。按下 <code>kbstyle(Up)</code> 或 <code>kbstyle(Down)</code> 并导航到您想要的位置。</p>
 
-<p>!<a href="editing/images/editingevolved/gotosymbol.png">Go to Symbol</a></p>
+<p><img src="images/editingevolved/gotosymbol.png" alt="Go to Symbol"></p>
 
 <h2>按名称打开符号</h2>
 
 <p>某些语言支持使用 <code>kb(workbench.action.showAllSymbols)</code> 跨文件跳转到符号。输入您想要导航到的类型的首字母（无论它包含在哪个文件中），然后按下 <code>kbstyle(Enter)</code>。</p>
 
-<p>!<a href="editing/images/editingevolved/symbol.png">Open symbol by name</a></p>
+<p><img src="images/editingevolved/symbol.png" alt="Open symbol by name"></p>
 
 <h2>速览</h2>
 
 <p>我们认为，当您只想快速查看某些内容时，没有什么比大幅度的上下文切换更糟糕的了。这就是我们支持速览编辑器的原因。当您执行<strong>转到引用</strong>搜索（通过 <code>kb(editor.action.goToReferences)</code>）或<strong>速览定义</strong>（通过 <code>kb(editor.action.peekDefinition)</code>）时，我们会将结果以内联方式嵌入：</p>
 
-<p>!<a href="editing/images/editingevolved/references.png">Peek References</a></p>
+<p><img src="images/editingevolved/references.png" alt="Peek References"></p>
 
 <p>您可以在速览编辑器中浏览不同的引用，并直接进行快速编辑。单击速览编辑器文件名或双击结果列表将在外部编辑器中打开引用。</p>
 
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当光标靠近匹配的括号之一时，匹配的括号将被高亮显示。</p>
 
-<p>!<a href="editing/images/editingevolved/brackets.png">Bracket Matching</a></p>
+<p><img src="images/editingevolved/brackets.png" alt="Bracket Matching"></p>
 
 <blockquote><strong>提示：</strong> 您可以使用 <code>kb(editor.action.jumpToBracket)</code> 跳转到匹配的括号</blockquote>
 
@@ -538,7 +538,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>也可以通过将 <code>setting(editor.bracketPairColorization.enabled)</code> 设置为 <code>true</code> 来对匹配的括号对进行着色。</p>
 
-<p>!<a href="editing/images/editingevolved/bracket-pair-colorization-on-off.drawio.png">Bracket Pair Colorization</a></p>
+<p><img src="images/editingevolved/bracket-pair-colorization-on-off.drawio.png" alt="Bracket Pair Colorization"></p>
 
 <p>所有颜色都是可主题化的，最多可以配置六种颜色。</p>
 
@@ -554,7 +554,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>某些语言（如 C#）支持内联引用信息，并且会实时更新。这使您可以快速分析编辑的影响，或特定方法或属性在整个项目中的使用热度：</p>
 
-<p>!<a href="editing/images/editingevolved/referenceinfo.png">Reference information</a></p>
+<p><img src="images/editingevolved/referenceinfo.png" alt="Reference information"></p>
 
 <blockquote><strong>提示：</strong> 单击这些注释可直接调用<strong>速览引用</strong>操作。</blockquote>
 
@@ -564,7 +564,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>某些语言支持跨文件重命名符号。按下 <code>kb(editor.action.rename)</code>，然后输入所需的新名称并按下 <code>kbstyle(Enter)</code>。该符号的所有使用处都将被跨文件重命名。</p>
 
-<p>!<a href="editing/images/editingevolved/rename.png">Rename</a></p>
+<p><img src="images/editingevolved/rename.png" alt="Rename"></p>
 
 <h2>错误和警告</h2>
 
@@ -576,11 +576,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>如果您打开一个包含错误或警告的文件，它们将以内联方式呈现并与文本和概览标尺一起显示。
 </li>
 </ul>
-<p>!<a href="editing/images/editingevolved/errors.png">errors in problems panel</a></p>
+<p><img src="images/editingevolved/errors.png" alt="errors in problems panel"></p>
 
 <blockquote><strong>提示：</strong> 要循环浏览当前文件中的错误或警告，您可以按下 <code>kb(editor.action.marker.next)</code> 或 <code>kb(editor.action.marker.prev)</code>，这将显示一个内联区域，详细说明问题以及可能的代码操作（如果可用）：</blockquote>
 
-<p>!<a href="editing/images/editingevolved/errorsinline.png">Errors and Warnings Inline</a></p>
+<p><img src="images/editingevolved/errorsinline.png" alt="Errors and Warnings Inline"></p>
 
 <h2>代码操作</h2>
 
@@ -590,7 +590,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>某些语言提供内联提示：即以内联方式呈现的关于源代码的附加信息。这通常用于显示推断的类型。下面的示例显示了内联提示，这些提示显示了 JavaScript 变量和函数返回类型的推断类型。</p>
 
-<p>!<a href="editing/images/editingevolved/inlay-hints.png">Inlay hints for inferred types in TypeScript</a></p>
+<p><img src="images/editingevolved/inlay-hints.png" alt="Inlay hints for inferred types in TypeScript"></p>
 
 <p>内联提示可以通过 <code>setting(editor.inlayHints.enabled)</code> 设置启用/禁用，默认情况下是启用的。需要扩展（如 TypeScript 或 Rust）来提供实际的内联提示信息。</p>
 
@@ -598,11 +598,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>为了您的安全，VS Code 在从编辑器打开外部网站链接之前会显示提示。</p>
 
-<p>!<a href="editing/images/editingevolved/outgoing-link-prompt.png">Outgoing link prompt</a></p>
+<p><img src="images/editingevolved/outgoing-link-prompt.png" alt="Outgoing link prompt"></p>
 
 <p>您可以在浏览器中继续访问外部网站，或者选择复制链接或取消请求。如果您选择<strong>配置受信任的域</strong>，会出现一个下拉菜单，让您可以信任确切的 URL、信任 URL 域及其子域，或信任所有域以禁用外部链接保护。</p>
 
-<p>!<a href="editing/images/editingevolved/trusted-domain-dropdown.png">Configure Trusted Domains dropdown</a></p>
+<p><img src="images/editingevolved/trusted-domain-dropdown.png" alt="Configure Trusted Domains dropdown"></p>
 
 <p><strong>管理受信任的域</strong>选项也可随时从命令面板中使用，它会打开<strong>受信任的域</strong> JSON 文件，您可以在其中添加、删除或修改受信任的域。</p>
 

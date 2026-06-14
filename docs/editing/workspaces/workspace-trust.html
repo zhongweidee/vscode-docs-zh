@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 非常重视安全性，并希望帮助你安全地浏览和编辑代码，无论其来源或原作者是谁。工作区信任功能让你可以决定项目文件夹中的代码是否可以在未经你明确批准的情况下由 VS Code 和扩展执行。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-trust-dialog.png">信任此文件夹对话框</a></p>
+<p><img src="images/workspace-trust/workspace-trust-dialog.png" alt="信任此文件夹对话框"></p>
 
 <p>><strong>注意</strong>：如有疑问，请将文件夹保持在<a href="#restricted-mode">受限模式</a>。你可以稍后随时<a href="#trusting-a-workspace">启用信任</a>。</p>
 
@@ -447,13 +447,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>工作台顶部会显示一个横幅，其中包含通过工作区信任编辑器<strong>管理</strong>文件夹的链接。在状态栏中，你还可以看到一个表示工作区处于受限模式的徽章。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/restricted-mode-banner.png">工作区信任受限模式横幅</a></p>
+<p><img src="images/workspace-trust/restricted-mode-banner.png" alt="工作区信任受限模式横幅"></p>
 
 <p>受限模式通过禁用或限制多个 VS Code 功能的运行来尝试防止自动代码执行：AI 代理程序、终端、任务、调试、工作区设置和扩展。</p>
 
 <p>要查看受限模式下禁用的功能的完整列表，你可以通过横幅中的<strong>管理</strong>链接或选择状态栏中的受限模式徽章来打开工作区信任编辑器。工作区信任编辑器默认以<a href="../docs/editing/userinterface.md#modal-editors">模态浮层</a>的形式在编辑器区域上方打开。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-trust-editor.png">工作区信任编辑器</a></p>
+<p><img src="images/workspace-trust/workspace-trust-editor.png" alt="工作区信任编辑器"></p>
 
 <blockquote>[!CAUTION]</blockquote>
 <blockquote>工作区信任无法阻止恶意扩展执行代码并忽略<strong>受限模式</strong>。你只应安装和运行来自你信任的知名发布者的扩展。</blockquote>
@@ -480,7 +480,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你在受限模式下尝试运行甚至列举任务（<strong>任务</strong> > <strong>运行任务</strong>），VS Code 会显示一个提示，要求确认你信任该文件夹，然后才能继续执行任务。如果取消该对话框，VS Code 将保持在受限模式。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/restricted-mode-tasks-dialog.png">工作区信任受限模式任务对话框</a></p>
+<p><img src="images/workspace-trust/restricted-mode-tasks-dialog.png" alt="工作区信任受限模式任务对话框"></p>
 
 <h3>调试</h3>
 
@@ -488,17 +488,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你在受限模式下尝试启动调试会话（<strong>调试</strong> > <strong>开始调试</strong>），VS Code 会显示一个提示，要求确认你信任该文件夹，然后才能继续启动调试器。如果你取消该对话框，VS Code 将保持在受限模式，并且不会启动调试会话。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/restricted-mode-debugging-dialog.png">工作区信任受限模式调试对话框</a></p>
+<p><img src="images/workspace-trust/restricted-mode-debugging-dialog.png" alt="工作区信任受限模式调试对话框"></p>
 
 <h3>工作区设置</h3>
 
 <p>工作区<a href="../docs/configure/settings.md">设置</a>存储在工作区根目录下的 <code>.vscode</code> 文件夹中，因此会被克隆该工作区仓库的所有人共享。某些设置包含可执行文件的路径（例如 linter 二进制文件），如果指向恶意代码，可能会造成损害。因此，VS Code 在受限模式下会禁用它，而不是应用这些工作区设置。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-settings-link.png">工作区信任编辑器工作区设置链接</a></p>
+<p><img src="images/workspace-trust/workspace-settings-link.png" alt="工作区信任编辑器工作区设置链接"></p>
 
 <p>在工作区信任编辑器中，选择未被应用的工作区设置的链接，即可打开按 <code>@tag:requireTrustedWorkspace</code> 标签筛选的设置编辑器。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/requireTrustedWorkspace-settings.png">在受限制的工作区中按 requireTrustedWorkspace 标签筛选的设置编辑器</a></p>
+<p><img src="images/workspace-trust/requireTrustedWorkspace-settings.png" alt="在受限制的工作区中按 requireTrustedWorkspace 标签筛选的设置编辑器"></p>
 
 <h3>扩展</h3>
 
@@ -506,11 +506,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>大多数扩展会代表你运行代码，并可能造成伤害。有些扩展的设置如果被配置为运行意外的可执行文件，可能会导致它们恶意操作。因此，在受限模式下，未明确选择加入工作区信任的扩展默认会被禁用。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/disabled-extensions-link.png">工作区信任已禁用扩展链接</a></p>
+<p><img src="images/workspace-trust/disabled-extensions-link.png" alt="工作区信任已禁用扩展链接"></p>
 
 <p>你可以通过选择工作区信任编辑器中的<strong>扩展已禁用或功能受限</strong>链接来查看已安装扩展的状态，该链接会显示按 <code>@workspaceUnsupported</code> 筛选器筛选的扩展视图。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspaceUnsupported-extensions-view.png">按 workspaceUnsupported 筛选的扩展视图，显示已禁用和受限的扩展</a></p>
+<p><img src="images/workspace-trust/workspaceUnsupported-extensions-view.png" alt="按 workspaceUnsupported 筛选的扩展视图，显示已禁用和受限的扩展"></p>
 
 <p>未选择加入工作区信任的扩展在受限模式下可以被禁用或受限。</p>
 
@@ -524,13 +524,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>扩展可以在扩展视图中的工作区信任徽章中添加自定义文本，说明在不受信任的文件夹中运行时的限制。例如，VS Code 内置的 PHP 扩展将 <code>setting(php.validate.executablePath)</code> 设置的使用限制为受信任的文件夹，因为覆盖此设置可能会运行恶意程序。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/php-limited-hover.png">PHP 扩展在受限模式下受限的悬停提示</a></p>
+<p><img src="images/workspace-trust/php-limited-hover.png" alt="PHP 扩展在受限模式下受限的悬停提示"></p>
 
 <p>你可以使用 <code>setting(extensions.supportUntrustedWorkspaces)</code> 设置来覆盖扩展的工作区信任支持级别，如下面的<a href="#enabling-extensions">启用扩展</a>部分所述。</p>
 
 <p>如果你在受限模式下尝试安装扩展，系统会提示你信任工作区或仅安装扩展。如果扩展不支持工作区信任，它会被安装但处于禁用状态或以受限功能运行。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-trust-install-extension.png">工作区信任在受限模式下安装扩展对话框</a></p>
+<p><img src="images/workspace-trust/workspace-trust-install-extension.png" alt="工作区信任在受限模式下安装扩展对话框"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>扩展作者可以通过阅读<a href="../api/extension-guides/workspace-trust.md">工作区信任扩展指南</a>来了解如何更新他们的扩展以支持工作区信任。</blockquote>
@@ -541,11 +541,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你打开一个新文件夹时，初始的工作区信任提示允许你信任该文件夹及其子文件夹。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-trust-dialog.png">信任此文件夹对话框</a></p>
+<p><img src="images/workspace-trust/workspace-trust-dialog.png" alt="信任此文件夹对话框"></p>
 
 <p>你也可以打开工作区编辑器，通过选择<strong>信任</strong>或<strong>信任父文件夹</strong>按钮来快速切换文件夹的信任状态。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/workspace-trust-buttons.png">工作区信任编辑器信任按钮</a></p>
+<p><img src="images/workspace-trust/workspace-trust-buttons.png" alt="工作区信任编辑器信任按钮"></p>
 
 <p>有几种方法可以打开工作区信任编辑器对话框。</p>
 
@@ -569,7 +569,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>当你信任一个文件夹时，它会被添加到工作区信任编辑器中显示的<strong>受信任的文件夹和工作区</strong>列表中。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/trusted-folders-workspaces-list.png">工作区信任编辑器受信任的文件夹和工作区列表</a></p>
+<p><img src="images/workspace-trust/trusted-folders-workspaces-list.png" alt="工作区信任编辑器受信任的文件夹和工作区列表"></p>
 
 <p>你可以手动添加、编辑和从此列表中删除文件夹，以启用或禁用工作区信任。活动文件夹在此列表中以粗体高亮显示。</p>
 
@@ -577,7 +577,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你通过工作区信任编辑器信任一个文件夹时，你可以选择同时信任父文件夹。这会将信任应用于父文件夹及其所有子文件夹。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/trust-parent-folder.png">工作区信任编辑器显示信任父文件夹按钮</a></p>
+<p><img src="images/workspace-trust/trust-parent-folder.png" alt="工作区信任编辑器显示信任父文件夹按钮"></p>
 
 <p>如果你在一个文件夹下有许多包含受信任内容的文件夹，信任父文件夹会很有帮助。</p>
 
@@ -609,7 +609,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在设置编辑器 (<code>kb(workbench.action.openSettings)</code>) 中，你可以通过<strong>扩展：支持不受信任的工作区</strong>设置 (<code>setting(extensions.supportUntrustedWorkspaces)</code>) 为各个扩展覆盖工作区信任。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/extensions-support-untrusted.png">扩展支持</a></p>
+<p><img src="images/workspace-trust/extensions-support-untrusted.png" alt="扩展支持"></p>
 
 <p>选择<strong>在 settings.json 中编辑</strong>链接来管理扩展 ID 列表及其支持状态和版本。你可以通过 IntelliSense 建议选择任何已安装的扩展。</p>
 
@@ -630,7 +630,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你打开一个位于受信任文件夹之外的文件，VS Code 会检测到该文件来自文件夹根目录之外的某个位置，并提示你选择继续打开该文件或在受限模式下的新窗口中打开该文件。以受限模式打开是最安全的选择，一旦你确定文件是可信的，可以随时在原始的 VS Code 窗口中重新打开该文件。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/untrusted-file-dialog.png">不受信任文件对话框</a></p>
+<p><img src="images/workspace-trust/untrusted-file-dialog.png" alt="不受信任文件对话框"></p>
 
 <p>如果你希望从受信任工作区外部打开文件时不收到提示，可以将 <code>setting(security.workspace.trust.untrustedFiles)</code> 设置为 <code>open</code>。你还可以将 <code>setting(security.workspace.trust.untrustedFiles)</code> 设置为 <code>newWindow</code>，以始终在受限模式下创建新窗口。在不信任文件对话框中勾选<strong>记住我对所有工作区的决定</strong>选项，会将你的选择应用于 <code>setting(security.workspace.trust.untrustedFiles)</code> 用户设置。</p>
 
@@ -638,7 +638,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当使用包含多个文件夹的<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>时，如果你尝试向受信任的多根工作区添加一个新文件夹，系统会提示你决定是否信任该文件夹中的文件，否则整个工作区将切换到受限模式。</p>
 
-<p>!<a href="editing/workspaces/images/workspace-trust/untrusted-folder-dialog.png">不受信任文件夹对话框</a></p>
+<p><img src="images/workspace-trust/untrusted-folder-dialog.png" alt="不受信任文件夹对话框"></p>
 
 <h3>空窗口（未打开文件夹）</h3>
 

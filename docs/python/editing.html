@@ -434,7 +434,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>IntelliSense 是与代码完成相关的代码编辑功能的统称。花点时间看一下下面的示例。当键入 <strong>print</strong> 时，请注意 IntelliSense 如何填充自动补全选项。当用户开始键入名为 <strong>greeting</strong> 的变量时，也会获得一个选项列表。</p>
 
-<p>!<a href="python/images/editing/hello-world.gif">Hello World Example for IntelliSense</a></p>
+<p><img src="images/editing/hello-world.gif" alt="Hello World Example for IntelliSense"></p>
 
 <p>自动补全和 IntelliSense 适用于当前工作文件夹内的所有文件。也适用于在标准位置安装的 Python 包。</p>
 
@@ -456,7 +456,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以通过在设置中将 <code>python.analysis.autoImportCompletions</code> 设置为 <code>true</code> 来启用自动导入。默认情况下，自动导入是禁用的。</p>
 
-<p>!<a href="python/images/editing/auto-import-suggestion.png">Completion with auto import displayed on the suggestion list</a></p>
+<p><img src="images/editing/auto-import-suggestion.png" alt="Completion with auto import displayed on the suggestion list"></p>
 
 <h3>为自定义包位置启用 IntelliSense</h3>
 
@@ -482,7 +482,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://copilot.github.com/">GitHub Copilot</a> 是一款 AI 驱动的代码补全工具，可帮助你更快、更智能地编写代码。你可以在 VS Code 中使用 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot 扩展</a>来生成代码，或从它生成的代码中学习。</p>
 
-<p><a href="python/images/editing/copilot-extension.png"><img src="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" alt="GitHub Copilot extension in the VS Code Marketplace</a>"></p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot"><img src="images/editing/copilot-extension.png" alt="GitHub Copilot extension in the VS Code Marketplace"></a></p>
 
 <p>GitHub Copilot 为多种语言和各种框架提供建议，尤其适用于 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++。</p>
 
@@ -508,24 +508,24 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>使用 Pylance 时，添加导入快速修复使你能够快速完成为环境中安装的模块添加 import 语句。当你在编辑器中开始键入包名称时，会出现一个代码操作来自动完成源代码行。将鼠标悬停在文本上（标记有波浪线），然后选择代码操作灯泡图标。然后你可以从潜在导入列表中进行选择。</p>
 
-<p>!<a href="python/images/editing/quickFix.png">Add import code action</a></p>
+<p><img src="images/editing/quickFix.png" alt="Add import code action"></p>
 
 <p>此代码操作还能识别以下常见 Python 包的流行缩写：<code>numpy</code> 为 np、<code>tensorflow</code> 为 tf、<code>pandas</code> 为 pd、<code>matplotlib.pyplot</code> 为 plt、<code>matplotlib</code> 为 mpl、<code>math</code> 为 m、<code>scipi.io</code> 为 spio、<code>scipy</code> 为 sp、<code>panel</code> 为 pn、<code>holoviews</code> 为 hv。</p>
 
-<p>!<a href="python/images/editing/packageAbbreviations.gif">Common package abbreviations</a></p>
+<p><img src="images/editing/packageAbbreviations.gif" alt="Common package abbreviations"></p>
 
 <p>导入建议列表显示前 3 个高置信度的导入选项，优先级排序基于：最近使用的导入、来自同一模块的符号、来自标准库的符号、来自用户模块的符号、来自第三方包的符号，最后按模块和符号名称排序。</p>
 
 <h3>搜索其他导入匹配项</h3>
 <p>默认情况下，添加导入快速修复仅显示 3 个高置信度的导入选项。如果它们没有列出你要查找的内容，你可以使用 Pylance 的<strong>搜索其他导入匹配项</strong>快速修复来处理缺失导入错误。此快速修复显示一个快速选择菜单，使你能够搜索与前缀匹配缺失导入符号的导入选项。</p>
 
-<p>!<a href="python/images/editing/search-imports-code-action.gif">Search for additional import matches Code Action</a></p>
+<p><img src="images/editing/search-imports-code-action.gif" alt="Search for additional import matches Code Action"></p>
 
 
 <h3>更改拼写</h3>
 <p>当未解析变量或缺失导入诊断可能由拼写错误引起时，Pylance 会显示<strong>更改拼写</strong>快速修复。此代码操作根据工作区中找到的最接近匹配项建议符号的正确拼写。</p>
 
-<p>!<a href="python/images/editing/change-spelling-code-action.gif">Change spelling code action on missing import due to a typo</a></p>
+<p><img src="images/editing/change-spelling-code-action.gif" alt="Change spelling code action on missing import due to a typo"></p>
 
 
 <blockquote><strong>注意</strong>：对于用户符号，这些快速修复将仅从定义它们的文件中建议导入。不支持从用户符号被外部/导入的文件中建议导入。</blockquote>
@@ -542,7 +542,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以通过选择要提取为变量的代码行来调用此命令。然后选择旁边显示的灯泡图标。</p>
 
-<p>!<a href="python/images/editing/refactorExtractVar.gif">Refactoring a variable</a></p>
+<p><img src="images/editing/refactorExtractVar.gif" alt="Refactoring a variable"></p>
 
 <h3>提取方法</h3>
 
@@ -550,7 +550,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以通过选择要提取为方法的代码行来调用此命令。然后选择旁边显示的灯泡图标。</p>
 
-<p>!<a href="python/images/editing/refactorExtractMethod.gif">Refactoring code into a method</a></p>
+<p><img src="images/editing/refactorExtractMethod.gif" alt="Refactoring code into a method"></p>
 
 <h3>重命名模块</h3>
 
@@ -558,7 +558,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要自定义需要更新哪些引用，你可以在<strong>重构预览</strong>中按行或从文件级别切换复选框。做出选择后，你可以选择<strong>应用重构</strong>或<strong>放弃重构</strong>。</p>
 
-<p>!<a href="python/images/editing/refactorRenameModule.gif">Renaming a module</a></p>
+<p><img src="images/editing/refactorRenameModule.gif" alt="Renaming a module"></p>
 
 <h3>移动符号</h3>
 
@@ -572,7 +572,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以通过将鼠标悬停在要移动的符号上，然后选择所需操作旁边出现的灯泡图标来访问这些代码操作。或者，你可以右键单击符号，然后从上下文菜单中选择<strong>重构...</strong>。</p>
 
 
-<p>!<a href="python/images/editing/move-symbol.gif">Move Symbol refactoring options</a></p>
+<p><img src="images/editing/move-symbol.gif" alt="Move Symbol refactoring options"></p>
 
 <h3>实现所有继承的抽象类</h3>
 
@@ -580,7 +580,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Pylance 提供了一个代码操作来简化创建这些类的过程。当你定义一个继承自抽象类的新类时，现在可以使用<strong>实现所有继承的抽象类</strong>代码操作来自动实现父类的所有抽象方法和属性：</p>
 
-<p>!<a href="python/images/editing/implement-inherited-abstract-classes.gif">Implement inherited abstract classes</a></p>
+<p><img src="images/editing/implement-inherited-abstract-classes.gif" alt="Implement inherited abstract classes"></p>
 
 
 <h3>排序导入</h3>
@@ -591,7 +591,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><strong>提示</strong>：你可以为 <code>editor.action.organizeImports</code> 命令分配键盘快捷键。</blockquote>
 
-<p>!<a href="python/images/editing/sortImports.gif">Sorting import statements</a></p>
+<p><img src="images/editing/sortImports.gif" alt="Sorting import statements"></p>
 
 <h2>疑难解答</h2>
 

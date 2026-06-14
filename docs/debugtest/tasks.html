@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>存在大量工具用于自动化执行诸如代码检查、构建、打包、测试或部署软件系统等任务。例如 <a href="https://www.typescriptlang.org/">TypeScript 编译器</a>、代码检查工具如 <a href="https://eslint.org/">ESLint</a> 和 <a href="https://palantir.github.io/tslint/">TSLint</a>，以及构建系统如 <a href="https://en.wikipedia.org/wiki/Make_software">Make</a>、<a href="https://ant.apache.org/">Ant</a>、<a href="https://gulpjs.com/">Gulp</a>、<a href="https://jakejs.com/">Jake</a>、<a href="https://ruby.github.io/rake/">Rake</a> 和 <a href="https://github.com/microsoft/msbuild">MSBuild</a>。</p>
 
-<p>!<a href="debugtest/images/tasks/tasks_hero.png">VS Code 可以与多种外部工具交互</a></p>
+<p><img src="images/tasks/tasks_hero.png" alt="VS Code 可以与多种外部工具交互"></p>
 
 <p>这些工具大多从命令行运行，用于自动化软件开发的内部和外部循环（编辑、编译、测试和调试）中的任务。鉴于它们在开发生命周期中的重要性，能够在 VS Code 内部运行工具并分析其结果是非常有帮助的。VS Code 中的任务可以配置为运行脚本和启动进程，这样许多现有的工具就可以在 VS Code 内部使用，而无需进入命令行或编写新代码。工作区或文件夹特定的任务在 <code>.vscode</code> 文件夹中的 <code>tasks.json</code> 文件中配置。</p>
 
@@ -457,7 +457,7 @@ sayHello('Dave');</code></pre>
 
 <p>按下 <code>kb(workbench.action.tasks.build)</code> 或从全局<strong>终端</strong>菜单运行<strong>运行生成任务</strong>，会显示以下选择器：</p>
 
-<p>!<a href="debugtest/images/tasks/typescript-build.png">TypeScript 生成任务</a></p>
+<p><img src="images/tasks/typescript-build.png" alt="TypeScript 生成任务"></p>
 
 <p>第一个条目执行 TypeScript 编译器并将 TypeScript 文件翻译为 JavaScript 文件。编译器完成后，应该会有一个 <code>HelloWorld.js</code> 文件。第二个条目以监视模式启动 TypeScript 编译器。每次保存 <code>HelloWorld.ts</code> 文件时，都会重新生成 <code>HelloWorld.js</code> 文件。</p>
 
@@ -488,15 +488,15 @@ sayHello('Dave');</code></pre>
 
 <p>VS Code 目前为以下系统自动检测任务：Gulp、Grunt、Jake 和 npm。我们正在与相应的扩展作者合作，以添加对 Maven 和 C# <code>dotnet</code> 命令的支持。如果您使用 Node.js 作为运行时开发 JavaScript 应用程序，通常会有一个 <code>package.json</code> 文件描述您的依赖项和要运行的脚本。如果您已经克隆了 <a href="https://github.com/spicydonuts/eslint-starter">eslint-starter</a> 示例，那么从全局菜单执行<strong>运行任务</strong>会显示以下列表：</p>
 
-<p>!<a href="debugtest/images/tasks/eslint-starter.png">任务 ESLint 启动器</a></p>
+<p><img src="images/tasks/eslint-starter.png" alt="任务 ESLint 启动器"></p>
 
 <p>如果您还没有安装必要的 npm 模块，请运行 <code>npm install</code> 进行安装。现在打开 <code>server.js</code> 文件，在语句末尾添加一个分号（请注意，ESLint 启动器假定语句不带分号），然后再次执行<strong>运行任务</strong>。这次选择 <strong>npm: lint</strong> 任务。当提示选择要使用的问题匹配器时，选择 <strong>ESLint stylish</strong></p>
 
-<p>!<a href="debugtest/images/tasks/eslint-problem-matcher-selection.png">任务 ESLint 问题匹配器选择</a></p>
+<p><img src="images/tasks/eslint-problem-matcher-selection.png" alt="任务 ESLint 问题匹配器选择"></p>
 
 <p>执行该任务会产生一个错误，显示在<strong>问题</strong>视图中：</p>
 
-<p>!<a href="debugtest/images/tasks/eslint-problem.png">任务 ESLint 问题</a></p>
+<p><img src="images/tasks/eslint-problem.png" alt="任务 ESLint 问题"></p>
 
 <p>此外，VS Code 创建了一个包含以下内容的 <code>tasks.json</code> 文件：</p>
 
@@ -519,7 +519,7 @@ sayHello('Dave');</code></pre>
 
 <p>对于 Gulp、Grunt 和 Jake，任务自动检测的工作方式相同。下面是为 <a href="https://github.com/microsoft/vscode-node-debug">vscode-node-debug</a> 扩展检测到的任务的示例。</p>
 
-<p>!<a href="debugtest/images/tasks/gulp-auto-detect.png">Gulp 任务自动检测</a></p>
+<p><img src="images/tasks/gulp-auto-detect.png" alt="Gulp 任务自动检测"></p>
 
 <p>><strong>提示：</strong> 您可以通过<strong>快速打开</strong> (<code>kb(workbench.action.quickOpen)</code>) 输入 'task'、<code>kbstyle(Space)</code> 和命令名称来运行您的任务。例如，输入 'task lint'。</p>
 
@@ -537,7 +537,7 @@ sayHello('Dave');</code></pre>
 
 <p>并非所有任务或脚本都能在工作区中被自动检测到。有时需要定义自己的自定义任务。假设您有一个脚本用于运行测试，以便正确设置某些环境。该脚本存储在您的工作区内的一个 script 文件夹中，在 Linux 和 macOS 上名为 <code>test.sh</code>，在 Windows 上名为 <code>test.cmd</code>。从全局<strong>终端</strong>菜单运行<strong>配置任务</strong>，然后选择<strong>从模板创建 tasks.json 文件</strong>条目。这将打开以下选择器：</p>
 
-<p>!<a href="debugtest/images/tasks/configure-task-runner.png">配置任务运行器</a></p>
+<p><img src="images/tasks/configure-task-runner.png" alt="配置任务运行器"></p>
 
 <p>><strong>注意：</strong> 如果您没有看到任务运行器模板列表，可能您的文件夹中已经有一个 <code>tasks.json</code> 文件，其内容将在编辑器中打开。请关闭该文件，然后删除或重命名它以继续此示例。</p>
 
@@ -580,7 +580,7 @@ sayHello('Dave');</code></pre>
 </ul>
 <p>您可以通过 <code>tasks.json</code> 文件中的 IntelliSense 查看完整的任务属性和值集合。使用<strong>触发建议</strong> (<code>kb(editor.action.triggerSuggest)</code>) 调出建议，并阅读悬停时或<strong>了解更多...</strong>（'i'）弹出窗口中的描述。</p>
 
-<p>!<a href="debugtest/images/tasks/tasks-intellisense.png">tasks.json IntelliSense</a></p>
+<p><img src="images/tasks/tasks-intellisense.png" alt="tasks.json IntelliSense"></p>
 
 <p>您还可以查看 <a href="../docs/reference/tasks-appendix.md">tasks.json 架构</a>。</p>
 
@@ -632,11 +632,11 @@ sayHello('Dave');</code></pre>
 
 <p>还有更多的任务属性可用于配置您的工作流。您可以使用 <code>kb(editor.action.triggerSuggest)</code> 通过 IntelliSense 获取有效属性的概述。</p>
 
-<p>!<a href="debugtest/images/tasks/intellisense.png">任务 IntelliSense</a></p>
+<p><img src="images/tasks/intellisense.png" alt="任务 IntelliSense"></p>
 
 <p>除了全局菜单栏，任务命令还可以通过<strong>命令面板</strong> (<code>kb(workbench.action.showCommands)</code>) 访问。您可以过滤 'task'，并查看各种与任务相关的命令。</p>
 
-<p>!<a href="debugtest/images/tasks/command-palette.png">命令面板中的任务</a></p>
+<p><img src="images/tasks/command-palette.png" alt="命令面板中的任务"></p>
 
 <h3>复合任务</h3>
 
@@ -846,7 +846,7 @@ gulp.task('default', ['lint'], function () {
 
 <p>从全局<strong>终端</strong>菜单执行<strong>运行任务</strong>将显示以下选择器：</p>
 
-<p>!<a href="debugtest/images/tasks/configure-tasks.png">配置任务</a></p>
+<p><img src="images/tasks/configure-tasks.png" alt="配置任务"></p>
 
 <p>按齿轮图标。这将创建以下 <code>tasks.json</code> 文件：</p>
 
@@ -931,7 +931,7 @@ gulp.task('default', ['lint'], function () {
 
 <p>如果简单的变量替换还不够，您还可以通过在 <code>tasks.json</code> 文件中添加 <code>inputs</code> 部分来从任务的用户获取输入。</p>
 
-<p>!<a href="debugtest/images/tasks/run-input-example.gif">输入示例</a></p>
+<p><img src="images/tasks/run-input-example.gif" alt="输入示例"></p>
 
 <p>有关 <code>inputs</code> 的更多信息，请参阅<a href="../docs/reference/variables-reference.md">变量参考</a>。</p>
 
@@ -1113,7 +1113,7 @@ gulp.task('default', ['lint'], function () {
 
 <p>在 VS Code 中运行它并按 <code>kb(workbench.actions.view.problems)</code> 获取问题列表，会得到以下输出：</p>
 
-<p>!<a href="debugtest/images/tasks/problemmatcher.png">GCC 问题匹配器</a></p>
+<p><img src="images/tasks/problemmatcher.png" alt="GCC 问题匹配器"></p>
 
 <p>><strong>注意：</strong> <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++ 扩展</a>包含用于 GCC 的问题匹配器，因此无需自己定义。</p>
 

@@ -434,13 +434,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>最简单的重构操作之一是重命名方法或变量。按下 <code>kb(editor.action.rename)</code> 即可在整个 TypeScript 项目中重命名光标下的符号：</p>
 
-<p>!<a href="typescript/images/refactoring/rename.png">重命名方法</a></p>
+<p><img src="images/refactoring/rename.png" alt="重命名方法"></p>
 
 <h2>重构</h2>
 
 <p>要查看可用的 TypeScript 重构操作，请将光标放在源代码的某个区域上，然后右键单击弹出编辑器上下文菜单并选择 <strong>重构</strong>，或直接按 <code>kb(editor.action.refactor)</code>。</p>
 
-<p>!<a href="typescript/images/refactoring/refactorings.png">TypeScript 重构</a></p>
+<p><img src="images/refactoring/refactorings.png" alt="TypeScript 重构"></p>
 
 <p>有关重构操作以及如何为各个重构操作配置键盘快捷方式的更多信息，请参阅<a href="../docs/editing/refactoring.md">重构</a>。</p>
 
@@ -450,7 +450,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>提取到方法或函数</strong> - 将选中的语句或表达式提取到文件中的新方法或新函数。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-extract-function.gif">对选中内容触发提取方法重构</a></p>
+<p>   <img src="images/refactoring/refactor-extract-function.gif" alt="对选中内容触发提取方法重构"></p>
 
 <p>   在选择 <strong>提取到方法</strong> 或 <strong>提取到函数</strong> 重构操作后，输入提取出的方法/函数的名称。</p>
 
@@ -458,25 +458,25 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>提取到常量</strong> - 将选中的表达式提取到文件中的新常量。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-extract-constant.gif">从选中内容提取常量</a></p>
+<p>   <img src="images/refactoring/refactor-extract-constant.gif" alt="从选中内容提取常量"></p>
 
 <ul>
 <li><strong>将类型提取到接口或类型别名</strong> - 将选中的复杂类型提取到接口或类型别名。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-extract-interface.gif">将内联类型提取到接口</a></p>
+<p>   <img src="images/refactoring/refactor-extract-interface.gif" alt="将内联类型提取到接口"></p>
 
 <ul>
 <li><strong>移动到新文件</strong> - 将文件顶层作用域中的一个或多个类、函数、常量或接口移动到新文件中。新文件的名称根据所选符号的名称推断得出。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-move-file.gif">将类移动到新文件</a></p>
+<p>   <img src="images/refactoring/refactor-move-file.gif" alt="将类移动到新文件"></p>
 
 <ul>
 <li><strong>在命名导入和命名空间导入之间转换</strong> - 在命名导入（<code>import { Name } from './foo'</code>）和命名空间导入（<code>import * as foo from './foo'</code>）之间进行转换。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-convert-import.gif">将命名导入转换为命名空间导入</a></p>
+<p>   <img src="images/refactoring/refactor-convert-import.gif" alt="将命名导入转换为命名空间导入"></p>
 
 <ul>
 <li><strong>在默认导出和命名导出之间转换</strong> - 在使用 <code>export default</code> 和命名导出（<code>export const Foo = ...</code>）之间进行转换。
@@ -486,13 +486,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>生成 get 和 set 访问器</strong> - 通过为选中的类属性生成 getter 和 setter 来封装该属性。
 </li>
 </ul>
-<p>   !<a href="typescript/images/refactoring/refactor-generate-get-set.gif">从类属性生成 getter 和 setter</a></p>
+<p>   <img src="images/refactoring/refactor-generate-get-set.gif" alt="从类属性生成 getter 和 setter"></p>
 
 <ul>
 <li><strong>推断函数返回类型</strong> - 为函数添加显式的返回类型注解。
 </li>
 </ul>
-<p>    !<a href="typescript/images/refactoring/ts-infer-return.gif">推断函数返回类型重构操作的实际效果</a></p>
+<p>    <img src="images/refactoring/ts-infer-return.gif" alt="推断函数返回类型重构操作的实际效果"></p>
 
 <ul>
 <li><strong>为箭头函数添加/删除大括号</strong> - 将单行箭头函数转换为多行形式，反之亦然。
@@ -519,7 +519,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>未使用的 TypeScript 代码（例如始终为真的 <code>if</code> 语句的 <code>else</code> 块或未被引用的导入）会在编辑器中淡化显示：</p>
 
-<p>!<a href="typescript/images/refactoring/unreachable.png">无法访问的源代码被淡化显示</a></p>
+<p><img src="images/refactoring/unreachable.png" alt="无法访问的源代码被淡化显示"></p>
 
 <p>你可以通过将光标放在这些代码上并触发快速修复命令（<code>kb(editor.action.quickFix)</code>）或点击灯泡来快速删除它们。</p>
 

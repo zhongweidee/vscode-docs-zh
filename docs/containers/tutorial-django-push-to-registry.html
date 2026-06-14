@@ -434,7 +434,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>确保你创建的注册表终结点在 VS Code 的<strong>容器资源管理器</strong>中的<strong>注册表</strong>下可见：</p>
 
-<p>!<a href="containers/images/quickstarts/python-django-registries.png">Container Explorer in VS Code showing registries</a></p>
+<p><img src="images/quickstarts/python-django-registries.png" alt="Container Explorer in VS Code showing registries"></p>
 
 <h2>Django 应用设置</h2>
 
@@ -467,7 +467,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择你创建的注册表以进行推送。这将有助于正确标记镜像。
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/select-registry.png">Select a registry</a></p>
+<p>    <img src="images/quickstarts/select-registry.png" alt="Select a registry"></p>
 
 <ol>
 <li>选择注册表和完整标签后，镜像将被推送。上传进度将显示在<strong>终端</strong>窗口中。
@@ -475,7 +475,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>完成后，在<strong>容器资源管理器</strong>中展开<strong>注册表</strong> > <strong>Azure</strong>（或 <strong>DockerHub</strong>）节点，然后展开注册表和镜像名称以查看确切的镜像。（你可能需要刷新<strong>容器资源管理器</strong>。）
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/python-django-image-in-acr.png">The built app image in the Azure Container Registry</a></p>
+<p>    <img src="images/quickstarts/python-django-image-in-acr.png" alt="The built app image in the Azure Container Registry"></p>
 
 <blockquote><strong>提示</strong>：首次推送镜像时，你将看到 VS Code 上传镜像组成的每个层。然而，后续的推送操作只会从第一个发生更改的层开始更新。由于你的应用代码通常是最常更改的部分，这也就是为什么应用代码通常复制在 Dockerfile 的最后几行。要查看此内部循环的实际效果，请对代码进行小幅更改，重新构建镜像，然后再次将其推送到注册表。</blockquote>
 

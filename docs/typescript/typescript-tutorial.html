@@ -450,7 +450,7 @@ code .</code></pre>
 
 <p>在文件资源管理器中，创建一个名为 <code>helloworld.ts</code> 的新文件。</p>
 
-<p>!<a href="typescript/images/tutorial/create-new-file.png">create new file</a></p>
+<p><img src="images/tutorial/create-new-file.png" alt="create new file"></p>
 
 <p>现在添加以下 TypeScript 代码。你会注意到 TypeScript 关键字 <code>let</code> 和 <code>string</code> 类型声明。</p>
 
@@ -459,11 +459,11 @@ console.log(message);</code></pre>
 
 <p>要编译你的 TypeScript 代码，可以打开<a href="../docs/terminal/basics.md">集成终端</a>（<code>kb(workbench.action.terminal.toggleTerminal)</code>）并输入 <code>tsc helloworld.ts</code>。这将编译并创建一个新的 <code>helloworld.js</code> JavaScript 文件。</p>
 
-<p>!<a href="typescript/images/tutorial/compiled-hello-world.png">compiled hello world</a></p>
+<p><img src="images/tutorial/compiled-hello-world.png" alt="compiled hello world"></p>
 
 <p>如果你已安装 Node.js，可以运行 <code>node helloworld.js</code>。</p>
 
-<p>!<a href="typescript/images/tutorial/run-hello-world.png">run hello world</a></p>
+<p><img src="images/tutorial/run-hello-world.png" alt="run hello world"></p>
 
 <p>如果你打开 <code>helloworld.js</code>，会发现它与 <code>helloworld.ts</code> 看起来没有太大区别。类型信息已被移除，<code>let</code> 现在变成了 <code>var</code>。</p>
 
@@ -474,11 +474,11 @@ console.log(message);</code></pre>
 
 <p>在 VS Code 中，你可以看到语法高亮和括号匹配等语言功能。当你在编辑器中输入时，你可能已经注意到 IntelliSense，即 VS Code 和 TypeScript 语言服务器提供的智能代码补全和建议。下面你可以看到 <code>console</code> 的方法。</p>
 
-<p>!<a href="typescript/images/tutorial/intellisense.png">IntelliSense</a></p>
+<p><img src="images/tutorial/intellisense.png" alt="IntelliSense"></p>
 
 <p>当你选择一个方法时，你会得到参数帮助，并且始终可以获得悬停信息。</p>
 
-<p>!<a href="typescript/images/tutorial/parameter-help.png">parameter help</a></p>
+<p><img src="images/tutorial/parameter-help.png" alt="parameter help"></p>
 
 <h2>tsconfig.json</h2>
 
@@ -497,7 +497,7 @@ console.log(message);</code></pre>
 
 <p>在编辑 <code>tsconfig.json</code> 时，IntelliSense（<code>kb(editor.action.triggerSuggest)</code>）会帮助你完成编辑。</p>
 
-<p>!<a href="typescript/images/tutorial/tsconfig-intellisense.png">tsconfig.json IntelliSense</a></p>
+<p><img src="images/tutorial/tsconfig-intellisense.png" alt="tsconfig.json IntelliSense"></p>
 
 <p>默认情况下，如果未包含 <code>files</code> 属性，TypeScript 会包括当前文件夹及子文件夹中的所有 <code>.ts</code> 文件，因此我们不需要显式列出 <code>helloworld.ts</code>。</p>
 
@@ -521,13 +521,13 @@ console.log(message);</code></pre>
 
 <p>TypeScript 通过强类型检查帮助你避免常见的编程错误。例如，如果你将一个数字赋值给 <code>message</code>，TypeScript 编译器会报错 <strong>'error TS2322: Type '2' is not assignable to type 'string''</strong>。你可以在 VS Code 的编辑器（带悬停信息的红色波浪线）和问题面板（<code>kb(workbench.actions.view.problems)</code>）中看到类型检查错误。<code>[ts]</code> 前缀让你知道此错误来自 TypeScript 语言服务。</p>
 
-<p>!<a href="typescript/images/tutorial/incorrect-type-error.png">incorrect type error</a></p>
+<p><img src="images/tutorial/incorrect-type-error.png" alt="incorrect type error"></p>
 
 <h2>快速修复</h2>
 
 <p>TypeScript 语言服务拥有一套强大的诊断功能，用于查找常见的编码问题。例如，它可以分析你的源代码并检测不可达代码，这些代码会在编辑器中以灰色显示。如果你将鼠标悬停在源代码行上，会看到解释性悬停信息；如果你将光标放在该行上，会看到一个快速修复灯泡图标。</p>
 
-<p>!<a href="typescript/images/tutorial/unreachable-code-detected.png">unreachable code detected</a></p>
+<p><img src="images/tutorial/unreachable-code-detected.png" alt="unreachable code detected"></p>
 
 <p>点击灯泡图标或按下 <code>kb(editor.action.quickFix)</code> 会弹出快速修复菜单，你可以在其中选择<strong>删除不可达代码</strong>修复。</p>
 
@@ -554,11 +554,11 @@ console.log(message);</code></pre>
 
 <p>调试器将会启动一个会话，运行你的代码，并在调试控制台面板中显示"Hello World"消息。</p>
 
-<p>!<a href="typescript/images/tutorial/debug-console.png">debug console output</a></p>
+<p><img src="images/tutorial/debug-console.png" alt="debug console output"></p>
 
 <p>在 <code>helloworld.ts</code> 中，通过点击编辑器左侧的边距来设置断点。如果断点已设置，你会看到一个红色圆圈。再次按下 <code>kb(workbench.action.debug.start)</code>。当断点被命中时，执行将停止，你可以在<strong>运行和调试</strong>视图（<code>kb(workbench.view.debug)</code>）中查看变量值和调用堆栈等调试信息。</p>
 
-<p>!<a href="typescript/images/tutorial/debug-breakpoint.png">debug breakpoint</a></p>
+<p><img src="images/tutorial/debug-breakpoint.png" alt="debug breakpoint"></p>
 
 <p>请参阅<a href="../docs/typescript/typescript-debugging.md">调试 TypeScript</a> 以详细了解 VS Code 对 TypeScript 的内置调试支持，以及如何为你的项目场景配置调试器。</p>
 

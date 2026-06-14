@@ -440,7 +440,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>容器工具扩展会将 <code>docker-compose.yml</code> 文件添加到你的工作区中。此文件包含按生产环境预期启动容器的配置。在某些情况下，还会生成一个 <code>docker-compose.debug.yml</code> 文件。此文件提供了一种简化模式用于启动调试器。</p>
 
-<p>!<a href="containers/images/compose/docker-compose-files.png">具有 docker-compose 文件的项目截图</a></p>
+<p><img src="images/compose/docker-compose-files.png" alt="具有 docker-compose 文件的项目截图"></p>
 
 <p>VS Code 容器工具扩展生成的文件可以开箱即用，但你也可以根据自己的场景进行自定义优化。然后，你可以使用<strong>容器：Compose Up</strong> 命令（右键点击 <code>docker-compose.yml</code> 文件，或在<strong>命令面板</strong>中找到该命令）一次性启动所有内容。你也可以在 VS Code 中的命令提示符或终端窗口中使用 <code>docker-compose up</code> 命令来启动容器。有关如何配置 Docker Compose 行为以及有哪些命令行选项可用，请参考 <a href="https://docs.docker.com/compose/reference/up">Docker Compose 文档</a>。</p>
 
@@ -514,7 +514,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>完成编辑<strong>附加</strong>配置后，保存 <code>launch.json</code>，并选择你的新启动配置作为活动配置。在<strong>调试</strong>选项卡中，在<strong>配置</strong>下拉菜单中找到新配置。
 </li>
 </ol>
-<p>   !<a href="containers/images/compose/docker-compose-configuration.png">配置下拉菜单截图</a></p>
+<p>   <img src="images/compose/docker-compose-configuration.png" alt="配置下拉菜单截图"></p>
 
 <ol>
 <li>右键点击 <code>docker-compose.debug.yml</code> 文件并选择<strong>Compose Up</strong>。
@@ -532,7 +532,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在<strong>调试</strong>选项卡中，选择<strong>配置</strong>下拉菜单，选择<strong>新建配置</strong>，选择<strong>Python 调试程序</strong>，然后选择 <code>Remote Attach</code> 配置模板。
 </li>
 </ol>
-<p>   !<a href="containers/images/compose/docker-compose-python-remote-attach.png">Python Remote Attach 截图</a></p>
+<p>   <img src="images/compose/docker-compose-python-remote-attach.png" alt="Python Remote Attach 截图"></p>
 
 <ol>
 <li>系统会提示你选择要用于调试的主机（例如 localhost）和端口。Python 的默认调试端口是 5678。如果你有多个应用，你需要更改其中之一的端口，以便每个应用都有唯一的端口。你可以在 <code>launch.json</code> 中指向正确的调试端口，并保存文件。如果你省略此项，端口将自动选择。
@@ -576,7 +576,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>一旦容器构建完成并运行，选择<strong>Python 调试程序：远程附加</strong>启动配置后，按 <code>kb(workbench.action.debug.start)</code> 来附加调试器。
 </li>
 </ol>
-<p>    !<a href="containers/images/compose/docker-compose-python-debug.png">Python 调试截图</a></p>
+<p>    <img src="images/compose/docker-compose-python-debug.png" alt="Python 调试截图"></p>
 
 <blockquote><strong>注意：</strong> 如果你想将 Python 调试器导入到特定文件中，更多信息可在 <a href="https://github.com/microsoft/debugpy#debugpy-import-usage">debugpy 自述文件</a> 中找到。</blockquote>
 
@@ -584,7 +584,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>当你附加到一个公开 HTTP 端点并返回 HTML 的服务时，Web 浏览器可能不会自动打开。要在浏览器中打开应用，请在容器资源管理器中右键点击容器并选择<strong>在浏览器中打开</strong>。如果配置了多个端口，系统会要求你选择端口。
 </li>
 </ol>
-<p>   !<a href="containers/images/compose/docker-compose-open-in-browser.png">在浏览器中打开截图</a></p>
+<p>   <img src="images/compose/docker-compose-open-in-browser.png" alt="在浏览器中打开截图"></p>
 
 <p>    你现在正在容器中调试正在运行的应用程序。</p>
 
@@ -608,13 +608,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>以通常的方式启动调试器。从<strong>调试</strong>选项卡中，选择绿色箭头（<strong>开始</strong>按钮）或使用 <code>kb(workbench.action.debug.start)</code>。
 </li>
 </ol>
-<p>   !<a href="containers/images/compose/docker-compose-attach.png">启动调试截图</a></p>
+<p>   <img src="images/compose/docker-compose-attach.png" alt="启动调试截图"></p>
 
 <ol>
 <li>如果你尝试附加到运行在容器中的 .NET 应用，你会看到一个提示，要求选择应用的容器。
 </li>
 </ol>
-<p>   !<a href="containers/images/compose/select-container.png">容器选择截图</a></p>
+<p>   <img src="images/compose/select-container.png" alt="容器选择截图"></p>
 
 <p>   要跳过此步骤，可以在 launch.json 的<strong>附加</strong>配置中指定容器名称：</p>
 
@@ -622,11 +622,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>   接下来，系统会询问你是否要将调试器（<code>vsdbg</code>）复制到容器中。选择<strong>是</strong>。</p>
 
-<p>   !<a href="containers/images/compose/docker-compose-netcore-debugger-prompt.png">调试器提示截图</a></p>
+<p>   <img src="images/compose/docker-compose-netcore-debugger-prompt.png" alt="调试器提示截图"></p>
 
 <p>如果一切配置正确，调试器应该会附加到你的 .NET 应用程序。</p>
 
-<p>!<a href="containers/images/compose/docker-compose-debugging.png">调试会话截图</a></p>
+<p><img src="images/compose/docker-compose-debugging.png" alt="调试会话截图"></p>
 
 <h2>卷挂载</h2>
 

@@ -450,7 +450,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在本教程中，请选择 <strong>dictionarybased</strong> 分支：</p>
 
-<p>!<a href="python/images/fastapi-tutorial/dictionarybased_github_branch.png">dictionarybased branch selected in the python-sample-vscode-fastapi-tutorial GitHub repo</a></p>
+<p><img src="images/fastapi-tutorial/dictionarybased_github_branch.png" alt="dictionarybased branch selected in the python-sample-vscode-fastapi-tutorial GitHub repo"></p>
 
 <p>然后，选择 <strong>Code</strong> > <strong>Codespaces</strong> > <strong>Create Codespace on \<dictionarybased\></strong> 分支来为您的项目创建并打开 codespace。</p>
 
@@ -500,23 +500,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>当询问环境类型时，选择 <strong>Venv</strong>：
 </li>
 </ol>
-<p>    !<a href="python/images/environments/create_environment_dropdown.png">Dropdown with "Venv" or "Conda" as options for environments that can be created with the Python: Create Environment command</a></p>
+<p>    <img src="images/environments/create_environment_dropdown.png" alt="Dropdown with "Venv" or "Conda" as options for environments that can be created with the Python: Create Environment command"></p>
 
 <ol>
 <li>然后选择您计算机上可用的最新 Python 版本：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/create_environment_interpreters_list.png">List of available global environments that can be used to create a virtual environment</a></p>
+<p>    <img src="images/fastapi-tutorial/create_environment_interpreters_list.png" alt="List of available global environments that can be used to create a virtual environment"></p>
 
 <ol>
 <li>从下拉列表中选择 <code>requirements.txt</code> 文件，以便自动安装依赖项，然后选择<strong>确定</strong>：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/create_environment_select_requirements.png">Check box selected to install dependencies from requirements.txt file</a></p>
+<p>    <img src="images/fastapi-tutorial/create_environment_select_requirements.png" alt="Check box selected to install dependencies from requirements.txt file"></p>
 
 <p>虚拟环境将被创建，依赖项也会自动安装，并且该环境将被选为工作区供 Python 扩展使用。您可以通过检查 VS Code 右下角来确认它已被选中：</p>
 
-<p>!<a href="python/images/shared/environment-in-status-bar.png">Environment in the Status bar</a></p>
+<p><img src="images/shared/environment-in-status-bar.png" alt="Environment in the Status bar"></p>
 
 <p>><strong>注意</strong>：如果您在状态栏上找不到新创建的环境信息，可以单击 Python 解释器指示器（或从命令面板运行 <strong>Python: 选择解释器</strong> 命令）并手动选择虚拟环境。</p>
 
@@ -544,11 +544,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>从下拉菜单中，选择列表中的 <strong>FastAPI</strong> 配置选项：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_debug_config_option.png">Dropdown with debugger configuration options, with FastAPI being highlighted</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_debug_config_option.png" alt="Dropdown with debugger configuration options, with FastAPI being highlighted"></p>
 
 <p>    这将自动创建一个调试配置，调用 uvicorn 通过调试器启动应用服务器，并允许您逐步执行源代码以检查其行为。您应该在终端中看到类似以下内容：</p>
 
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_debug_terminal.png">Uvicorn server running message displayed in the terminal, with an URL to access the app</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_debug_terminal.png" alt="Uvicorn server running message displayed in the terminal, with an URL to access the app"></p>
 
 <p>   ><strong>提示</strong>：如果您的默认端口已被占用，请停止调试器并打开命令面板（<code>kb(workbench.action.showCommands)</code>），搜索 <strong>Debug: Add Configuration</strong>，选择 Python Debugger，然后选择 FastAPI。这将在 <code>.vscode/launch.json</code> 中创建一个可供您编辑的自定义配置文件。在 <code>"args":[]</code> 中添加以下内容以设置自定义端口：<code>"--port=5000"</code>。保存文件，然后使用（<code>kb(workbench.action.debug.start)</code>）重启调试器。</p>
 
@@ -556,7 +556,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>kbstyle(Ctrl+Click)</code> 终端中的 <code>http://127.0.0.1:8000/</code> URL，在默认浏览器中打开该地址：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/helloworld_browser.png">Hello World message displayed in the browser</a></p>
+<p>    <img src="images/fastapi-tutorial/helloworld_browser.png" alt="Hello World message displayed in the browser"></p>
 
 <p>    恭喜！您的 FastAPI 应用已启动并运行！</p>
 
@@ -594,13 +594,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>搜索"python type checking mode"并将其设置为 <code>basic</code> 以进行基本类型检查。Pylance 现在将显示诊断信息和警告以捕获简单的类型相关错误。或者，您可以将其设置为 <code>strict</code> 以强制执行更高级的<a href="https://microsoft.github.io/pyright/#/configuration?id=diagnostic-rule-defaults">类型检查规则</a>。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/type_checking_mode_setting.png">Python Analysis Type Checking Mode options (off, basic and strict) in Settings editor</a></p>
+<p>    <img src="images/fastapi-tutorial/type_checking_mode_setting.png" alt="Python Analysis Type Checking Mode options (off, basic and strict) in Settings editor"></p>
 
 <ol>
 <li>接下来，搜索"Python inlay type hints"，并为<strong>变量类型</strong>和<strong>函数返回类型</strong>启用内联提示：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/function_and_variable_return_type_hint_settings.png">Two Python Analysis Type Hints settings being enabled in the Settings editor: for Function Return Types and for Variable Types</a></p>
+<p>    <img src="images/fastapi-tutorial/function_and_variable_return_type_hint_settings.png" alt="Two Python Analysis Type Hints settings being enabled in the Settings editor: for Function Return Types and for Variable Types"></p>
 
 <h2>创建路由</h2>
 
@@ -652,7 +652,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    如果您在上一节中启用了类型提示，您可能会注意到 Pylance 会添加函数返回类型以及 <code>item_ids</code> 和 <code>item_id</code> 类型的内联提示。您可以选择双击每个建议将它们插入到代码中：</p>
 
-<p>    !<a href="python/images/fastapi-tutorial/pylance_inlay_hints.png">Inlay function return and variable type hints being displayed by Pylance throughout the sample code</a></p>
+<p>    <img src="images/fastapi-tutorial/pylance_inlay_hints.png" alt="Inlay function return and variable type hints being displayed by Pylance throughout the sample code"></p>
 
 <p>    现在让我们检查此路由是否按预期工作。最快的方法是同时使用 VS Code 的调试器和 FastAPI 的 <code>/docs</code> 端点，后者提供有关所有可用 API 路由的信息，并让您与 API 交互以探索其参数和响应。此文档是根据 FastAPI 应用中定义的元数据和类型提示动态生成的。</p>
 
@@ -660,7 +660,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 <code>if quantity <= 0</code> 语句旁边添加一个断点，通过单击行号左侧的边距（或 <code>kb(editor.debug.action.toggleBreakpoint)</code>）来添加。调试器将在该行执行之前停止，以便您可以逐行检查代码。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/debugger_breakpoint.png">Breakpoint set next to the first line in the add_item function</a></p>
+<p>    <img src="images/fastapi-tutorial/debugger_breakpoint.png" alt="Breakpoint set next to the first line in the add_item function"></p>
 
 <ol>
 <li>启动调试器（<code>kb(workbench.action.debug.start)</code>），然后在浏览器中导航到 <code>http://127.0.0.1:8000/docs</code>。
@@ -668,13 +668,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    应该有一个 Swagger 界面，其中包含应用中可用的两个端点：<code>/items</code> 和根路径（<code>/</code>）。</p>
 
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_first_swagger_page.png">Swagger UI displaying two endpoints: /items and /</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_first_swagger_page.png" alt="Swagger UI displaying two endpoints: /items and /"></p>
 
 <ol>
 <li>选择 <code>/items</code> 路由旁边的向下箭头将其展开，然后单击右侧出现的 <strong>Try it out</strong> 按钮。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_tryitout_button.png">"Try it out" button displayed next to the /items route in the Swagger UI</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_tryitout_button.png" alt=""Try it out" button displayed next to the /items route in the Swagger UI"></p>
 
 <ol>
 <li>通过向 <code>item_name</code> 字段传递一个字符串和向 <code>quantity</code> 传递一个数字来添加购物清单项。例如，您可以提供 apple 作为 <code>item_name</code>，2 作为 <code>quantity</code>。
@@ -682,17 +682,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择 <strong>Execute</strong>。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_execute_button.png">Execute button displayed below the /items route</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_execute_button.png" alt="Execute button displayed below the /items route"></p>
 
 <ol>
 <li>再次打开 VS Code，注意调试器已停在您之前设置的断点处。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_breakpoint_hit.png">Debugger stopped at the breakpoint set in the add_item function</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_breakpoint_hit.png" alt="Debugger stopped at the breakpoint set in the add_item function"></p>
 
 <p>    在左侧，此时定义的所有局部和全局变量都显示在"运行和调试"视图下的变量窗口中。在我们的示例中，<code>item_name</code> 在局部变量视图下设置为 'apple'，<code>quantity</code> 设置为 2，全局变量视图下显示一个空的 <code>grocery_list</code> 字典。</p>
 
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_debugger_variables.png">Variables window displayed in the Run and Debug view, with the item and grocery_list variables highlighted</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_debugger_variables.png" alt="Variables window displayed in the Run and Debug view, with the item and grocery_list variables highlighted"></p>
 
 <p>    现在让我们使用 VS Code 的调试控制台进行一些探索。</p>
 
@@ -700,7 +700,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选中 <code>quantity <= 0</code> 语句，在编辑器上右键单击，然后选择<strong>在调试控制台中计算</strong>：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_evaluate_debug_console.png">Evaluate in Debug Console option displayed in the context menu when right-clicking on a line of code</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_evaluate_debug_console.png" alt="Evaluate in Debug Console option displayed in the context menu when right-clicking on a line of code"></p>
 
 <p>    这将打开调试控制台并运行所选表达式。正如我们的示例所预期的，该表达式计算结果为 <code>False</code>。</p>
 
@@ -824,7 +824,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择 <strong>Python 3</strong>：
 </li>
 </ul>
-<p>    !<a href="python/images/fastapi-tutorial/devcontainers_python3.png">Python 3 option selected in the Dev Containers configuration files list</a></p>
+<p>    <img src="images/fastapi-tutorial/devcontainers_python3.png" alt="Python 3 option selected in the Dev Containers configuration files list"></p>
 
 <ol>
 <li>选择默认版本。
@@ -834,7 +834,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    我们可以选择安装<a href="https://github.com/devcontainers/features">功能</a>以包含在容器中。对于本教程，我们将安装 <a href="https://github.com/itsmechlark/features/tree/main/src/redis-server">Redis Server</a>，这是一个社区贡献的功能，用于安装并添加适当的 dev 容器设置以支持 Redis。</p>
 
-<p>    !<a href="python/images/fastapi-tutorial/devcontainers_redis_server_feature.png">Redis Server option selected in the Dev Containers configuration files list</a></p>
+<p>    <img src="images/fastapi-tutorial/devcontainers_redis_server_feature.png" alt="Redis Server option selected in the Dev Containers configuration files list"></p>
 
 <p>    这将在您的工作区中创建一个 <code>.devcontainer</code> 文件夹，其中包含一个 <code>devcontainer.json</code> 文件。让我们对此文件进行一些编辑，使容器设置包含诸如安装我们所需的 VS Code 扩展以及项目依赖项等步骤。</p>
 
@@ -885,13 +885,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>容器设置完成后，您会注意到 VS Code 左下角有一个指示器：</p>
 
-<p>!<a href="python/images/fastapi-tutorial/devcontainer_indicator.png">Dev Containers indicator displayed on the bottom left corner of VS Code</a></p>
+<p><img src="images/fastapi-tutorial/devcontainer_indicator.png" alt="Dev Containers indicator displayed on the bottom left corner of VS Code"></p>
 
 <p>><strong>注意</strong>：请仔细检查 Python 和 Pylance 扩展是否已成功安装在容器中，可以通过打开扩展视图（<code>kb(workbench.view.extensions)</code>）并搜索它们来确认。如果没有，您可以通过运行<strong>在 Dev Container 中安装</strong>来安装它们。</p>
 
 <p>所选 Python 解释器信息在右下角的状态栏上可用，与 <code>devcontainer.json</code> 文件中指定的版本匹配：</p>
 
-<p>!<a href="python/images/fastapi-tutorial/devcontainer_python_interpreter.png">Python interpreter selection</a></p>
+<p><img src="images/fastapi-tutorial/devcontainer_python_interpreter.png" alt="Python interpreter selection"></p>
 
 <p>><strong>注意</strong>：如果您在状态栏上找不到 Python 解释器信息，可以单击 Python 解释器指示器（或从命令面板运行 <strong>Python: 选择解释器</strong> 命令）并手动选择容器中的 Python 解释器。</p>
 
@@ -917,7 +917,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>将光标放在编辑器中的 "redis" 上，然后单击显示的灯泡（或 <code>kb(editor.action.quickFix)</code>）。然后选择 <strong>添加 'import redis'</strong>。
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/fastapi_add_redis_quickfix.png">Light bulb displayed next to the Redis variable, with the option to add the import statement</a></p>
+<p>    <img src="images/fastapi-tutorial/fastapi_add_redis_quickfix.png" alt="Light bulb displayed next to the Redis variable, with the option to add the import statement"></p>
 
 <p>    ><strong>提示</strong>：您可以通过在设置编辑器（<code>kb(workbench.action.openSettings)</code>）中查找<strong>自动导入完成</strong>设置并启用它，来设置 Pylance 自动添加导入。</p>
 
@@ -945,7 +945,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>如果您启用了内联提示，Pylance 应该在 <code>item_id_str</code> 旁边显示变量类型提示。您可以选择双击来接受它：
 </li>
 </ol>
-<p>    !<a href="python/images/fastapi-tutorial/pylance_redis_typehint.png">Variable type hint displayed next to the item_id_str variable</a></p>
+<p>    <img src="images/fastapi-tutorial/pylance_redis_typehint.png" alt="Variable type hint displayed next to the item_id_str variable"></p>
 
 <ol>
 <li>如果项不存在，则 <code>item_id_str</code> 为 <code>None</code>。所以现在我们可以删除包含以下内容的行：

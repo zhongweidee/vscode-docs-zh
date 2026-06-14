@@ -457,7 +457,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>    你也可以直接从 VS Code 欢迎页面打开代理窗口。</p>
 
-<p>    !<a href="agents/images/agents-window/vscode-open-in-agents.png">Screenshot showing how to open the Agents window from the Open in Agents button in the title bar and from the Welcome page.</a></p>
+<p>    <img src="images/agents-window/vscode-open-in-agents.png" alt="Screenshot showing how to open the Agents window from the Open in Agents button in the title bar and from the Welcome page."></p>
 
 <ul>
 <li>从命令行运行 <code>code --agents</code>。
@@ -485,7 +485,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>更改面板</strong>：位于右侧，你可以在其中审查代理在会话期间生成的文件更改和其他产出物，并查看工作区的文件资源管理器。
 </li>
 </ol>
-<p>!<a href="agents/images/agents-window/agents-window-ui-annotated.png">Screenshot of the Agents window interface, showing the sessions list, customizations panel, chat area, and changes panel.</a></p>
+<p><img src="images/agents-window/agents-window-ui-annotated.png" alt="Screenshot of the Agents window interface, showing the sessions list, customizations panel, chat area, and changes panel."></p>
 
 <h2>启动代理会话</h2>
 
@@ -499,7 +499,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择侧边栏顶部的"新建"，或按 <code>kb(workbench.action.chat.newChat)</code>。
 </li>
 </ol>
-<p>    !<a href="agents/images/agents-window/agents-window-new-session.png">Screenshot showing how to start a new agent session by selecting New at the top of the sidebar in the Agents window.</a></p>
+<p>    <img src="images/agents-window/agents-window-new-session.png" alt="Screenshot showing how to start a new agent session by selecting New at the top of the sidebar in the Agents window."></p>
 
 <ol>
 <li>使用工作区下拉菜单为你的聊天会话选择一个本地文件夹或 GitHub 仓库。
@@ -546,7 +546,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你在列表中选择一个会话时，聊天面板会显示该会话的完整历史记录。该会话随后成为活动会话，<strong>更改</strong>面板会显示该会话中代理的最新文件更新以及相关工作区中的文件。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-session-list.png">Screenshot showing the sessions list in the sidebar in the Agents window.</a></p>
+<p><img src="images/agents-window/agents-window-session-list.png" alt="Screenshot showing the sessions list in the sidebar in the Agents window."></p>
 
 <h2>管理和审查文件更改</h2>
 
@@ -559,7 +559,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>要审查代理所做的更改，请在"更改"选项卡中选择一个文件以打开差异视图，该视图显示代理所做的编辑与工作区当前状态之间的比较。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-diff-view.png">Screenshot showing the diff view in a modal window in the Agents window, with the layout controls in the diff view toolbar visible.</a></p>
+<p><img src="images/agents-window/agents-window-diff-view.png" alt="Screenshot showing the diff view in a modal window in the Agents window, with the layout controls in the diff view toolbar visible."></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>默认情况下，选择一个文件会打开一个包含会话中所有更改的多文件差异编辑器。要改为打开选定文件的专注单文件差异编辑器，请启用 <code>setting(sessions.changes.openSingleFileDiff)</code> 设置。</blockquote>
@@ -568,7 +568,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在差异视图中审查更改时，单击编辑内部，然后选择"添加反馈"以直接在文件中输入反馈注释，并示意代理进行调整。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-add-feedback.png">Screenshot showing how to add feedback from the diff view in the Agents window, with the Add Feedback button visible in the toolbar.</a></p>
+<p><img src="images/agents-window/agents-window-add-feedback.png" alt="Screenshot showing how to add feedback from the diff view in the Agents window, with the Add Feedback button visible in the toolbar."></p>
 
 <p>审查更改后，"更改"面板提供以下选项来对代理所做的编辑进行操作：</p>
 
@@ -579,7 +579,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>放弃</strong>：如果你不想保留某个编辑，可以直接从"更改"面板放弃该编辑。
 </li>
 </ul>
-<p>!<a href="agents/images/agents-window/agents-window-changes.png">Screenshot showing the changes panel in the Agents window, with the Files and Changes views visible.</a></p>
+<p><img src="images/agents-window/agents-window-changes.png" alt="Screenshot showing the changes panel in the Agents window, with the Files and Changes views visible."></p>
 
 <p>当你创建新会话时，"文件"面板包含一个同步按钮，可让你在代理开始工作之前从基准分支拉取上游更改。这有助于代理从你分支的最新状态开始，并减少在将其更改合并回来时发生合并冲突的几率。</p>
 
@@ -595,7 +595,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择标题栏中的"任务"下拉菜单，然后选择"添加任务"。
 </li>
 </ol>
-<p>    !<a href="agents/images/agents-window/agents-window-add-task.png">Screenshot showing the Add Task dialog in the Agents window, where you can configure a task to run in the context of the current session.</a></p>
+<p>    <img src="images/agents-window/agents-window-add-task.png" alt="Screenshot showing the Add Task dialog in the Agents window, where you can configure a task to run in the context of the current session."></p>
 
 <ol>
 <li>提供任务详细信息：
@@ -616,7 +616,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你的应用程序涉及基于浏览器的行为，你可以在代理窗口中使用<a href="../docs/debugtest/integrated-browser.md">集成浏览器</a>。从聊天会话中选择一个 <code>localhost</code> 链接即可在代理窗口内的集成浏览器中打开它。浏览器选项卡将在会话切换期间保持存在，因此如果你打开另一个会话，浏览器选项卡将打开到你之前打开的同一页面，并保留该页面的状态。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-integrated-browser.png">Screenshot showing the integrated browser open in the Agents window, displaying a localhost page that was opened from a link in the chat session.</a></p>
+<p><img src="images/agents-window/agents-window-integrated-browser.png" alt="Screenshot showing the integrated browser open in the Agents window, displaying a localhost page that was opened from a link in the chat session."></p>
 
 <p>或者，你也可以从集成终端中选择一个 <code>localhost</code> 链接，或通过命令面板 (<code>kb(workbench.action.showCommands)</code>) 中的"打开集成浏览器"命令来打开集成浏览器。你可以使用集成浏览器中的布局控件将其显示为模态窗口或嵌入代理窗口布局中，与其他视图并列。</p>
 
@@ -650,7 +650,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    请注意，聊天区域中会出现一个用于子会话的新选项卡，与父会话的选项卡并列。子会话不会作为单独的项目出现在会话列表中。</p>
 
-<p>    !<a href="agents/images/agents-window/agents-window-new-subsession.png">Screenshot showing how a new sub-session tab appears in the chat area alongside the parent session tab in the Agents window.</a></p>
+<p>    <img src="images/agents-window/agents-window-new-subsession.png" alt="Screenshot showing how a new sub-session tab appears in the chat area alongside the parent session tab in the Agents window."></p>
 
 <ol>
 <li>输入提示并按 <code>kbstyle(Enter)</code> 启动子会话。
@@ -709,7 +709,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>使用代理自定义面板左上角的下拉菜单选择自定义设置应应用于哪个代理。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-customizations.png">Screenshot showing the Agent Customizations panel in the Agents window, with the list of available customizations visible.</a></p>
+<p><img src="images/agents-window/agents-window-customizations.png" alt="Screenshot showing the Agent Customizations panel in the Agents window, with the list of available customizations visible."></p>
 
 <h2>信任文件夹</h2>
 
@@ -717,7 +717,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你选择不信任该文件夹，则无法在代理窗口中为该文件夹启动或继续代理会话。</p>
 
-<p>!<a href="agents/images/agents-window/agents-window-folder-trust.png">Screenshot of the folder trust prompt in the Agents window, asking the user to trust the folder before starting an agent session.</a></p>
+<p><img src="images/agents-window/agents-window-folder-trust.png" alt="Screenshot of the folder trust prompt in the Agents window, asking the user to trust the folder before starting an agent session."></p>
 
 <p>代理窗口与主 VS Code 窗口共享相同的工作区信任状态。如果你在 VS Code 中信任某个文件夹，则在代理窗口中也会受信任，反之亦然。有关工作区信任的更多信息，请参阅<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任文档</a>。</p>
 

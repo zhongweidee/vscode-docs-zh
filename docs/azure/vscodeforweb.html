@@ -430,7 +430,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>该环境由 <a href="https://learn.microsoft.com/en-us/azure/cloud-shell/overview">Azure Cloud Shell</a> 提供支持，提供长达 <strong>4 小时的计算时间</strong>，无需手动配置开发环境或安装依赖项。<code>/azure</code> 预装了最新的库、扩展和工具，让你即刻开始编码。</p>
 
-<p>!<a href="azure/images/vscodeforweb/azurescreenshot.png">VS Code for the Web Azure</a></p>
+<p><img src="images/vscodeforweb/azurescreenshot.png" alt="VS Code for the Web Azure"></p>
 
 <h2>入门指南</h2>
 
@@ -538,19 +538,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 </li>
 </ul>
-<p>        !<a href="azure/images/vscodeforweb/first.png">Screenshot that shows Microsoft Foundry Portal</a></p>
+<p>        <img src="images/vscodeforweb/first.png" alt="Screenshot that shows Microsoft Foundry Portal"></p>
 
 <ol>
 <li>从 gpt-4o-mini 模型卡片中配置模型终结点。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/second.png">Screenshot that shows Microsoft Foundry Portal Model</a></p>
+<p>        <img src="images/vscodeforweb/second.png" alt="Screenshot that shows Microsoft Foundry Portal Model"></p>
 
 <ol>
 <li>进入代理 playground，调整生成控制选项，如最大响应数和历史消息数。添加知识、工具和操作。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/third.png">Screenshot that shows model output</a></p>
+<p>        <img src="images/vscodeforweb/third.png" alt="Screenshot that shows model output"></p>
 
 <ol>
 <li>迭代你的示例提示词，并在代理 playground 中继续试验。
@@ -560,49 +560,49 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/fourth.png">Screenshot that shows view code button</a></p>
+<p>        <img src="images/vscodeforweb/fourth.png" alt="Screenshot that shows view code button"></p>
 
 <p>        在那里，你可以看到代理的多语言代码示例（Python、C# 和 JavaScript），以及模型的 JSON、cURL、JavaScript、C# 和 Go 代码示例，Entra ID 可用于对代理进行身份验证，模型现在支持"密钥授权"。</p>
 
-<p>        !<a href="azure/images/vscodeforweb/fifth.png">Screenshot that shows EntraID auth</a></p>
+<p>        <img src="images/vscodeforweb/fifth.png" alt="Screenshot that shows EntraID auth"></p>
 
 <ol>
 <li>准备好后，选择 <strong>Open in VS Code</strong>，你将被重定向到 VS Code for the Web 的 /azure 环境。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/sixth.png">Screenshot that shows Open in VS Code button</a></p>
+<p>        <img src="images/vscodeforweb/sixth.png" alt="Screenshot that shows Open in VS Code button"></p>
 
 <p>        你会注意到，随着环境的设置，代码示例、API 终结点和密钥将自动导入到新的 VS Code for the Web 工作区中。</p>
 
-<p>        !<a href="azure/images/vscodeforweb/seventh.png">Screenshot that shows loading dial</a></p>
+<p>        <img src="images/vscodeforweb/seventh.png" alt="Screenshot that shows loading dial"></p>
 
 <p>        在右下角，你会看到 API 密钥已设置在终端的环墧变量中，并且示例代码已成功下载。</p>
 
-<p>        !<a href="azure/images/vscodeforweb/eighth.png">Screenshot that shows loaded environment</a></p>
+<p>        <img src="images/vscodeforweb/eighth.png" alt="Screenshot that shows loaded environment"></p>
 
 <ol>
 <li>通过终端使用 <code>python agent_run.py</code> 在本地运行模型。几秒钟内，你将看到成功的模型响应。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/thirteenth.png">Screenshot that shows agent python file</a></p>
+<p>        <img src="images/vscodeforweb/thirteenth.png" alt="Screenshot that shows agent python file"></p>
 
 <ol>
 <li>可以使用 <code>azd</code> 命令来配置和部署使用该代理的 Web 应用。<code>azd init</code> 会初始化 git 仓库，创建一个默认的 Azure 工作区，代理可以在该工作区中用于应用程序。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/fourteenth.png">Screenshot that shows azd init</a></p>
+<p>        <img src="images/vscodeforweb/fourteenth.png" alt="Screenshot that shows azd init"></p>
 
 <ol>
 <li><code>azd up</code> 配置 Web 应用并创建相关的 Azure 资源。完成后，你可以通过选择终端中提供的链接在浏览器中查看你的应用程序正在运行。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/fifteenth.png">Screenshot that shows azd up</a></p>
+<p>        <img src="images/vscodeforweb/fifteenth.png" alt="Screenshot that shows azd up"></p>
 
 <ol>
 <li>通过选择左下角的"Continue on Desktop"，在桌面版 VS Code 或 GitHub Desktop 中继续工作。此按钮允许你在一次操作中将工作区移动到本地环境。如果你已有附加到现有应用程序的开发容器，你可以选择使用该容器或移动到本地环境。
 </li>
 </ol>
-<p>        !<a href="azure/images/vscodeforweb/sixteenth.png">Screenshot that shows Continue On button</a></p>
+<p>        <img src="images/vscodeforweb/sixteenth.png" alt="Screenshot that shows Continue On button"></p>
 
 <ul>
 <li><a href="https://learn.microsoft.com/en-us/azure/azure-functions/functions-develop-vs-code?tabs=node-v4%2Cpython-v2%2Cisolated-process%2Cquick-create&pivots=programming-language-python">快速启动 Azure Function 应用</a>
@@ -663,23 +663,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用右上角的按钮在 Azure 门户中打开 Cloud Shell。</p>
 
-<p>!<a href="azure/images/vscodeforweb/tbs2.png">Screenshot that shows Azure Portal </a></p>
+<p><img src="images/vscodeforweb/tbs2.png" alt="Screenshot that shows Azure Portal "></p>
 
 <p>接下来，在 Settings 下拉菜单中选择 <strong>Reset User Settings</strong>。</p>
 
-<p>!<a href="azure/images/vscodeforweb/tbs3.png">Screenshot that shows Settings</a></p>
+<p><img src="images/vscodeforweb/tbs3.png" alt="Screenshot that shows Settings"></p>
 
 <p>完成后，你应该会看到以下屏幕。</p>
 
-<p>!<a href="azure/images/vscodeforweb/tbs4.png">Screenshot that shows Azure Cloud Shell</a></p>
+<p><img src="images/vscodeforweb/tbs4.png" alt="Screenshot that shows Azure Cloud Shell"></p>
 
 <h3>收集日志</h3>
 
 <p>扩展日志将帮助我们诊断 vscode.dev/azure 的任何问题。你可以通过转到 Output 视图，然后选择 <strong>VS Code for the Web - Azure</strong> 输出通道来访问它们。</p>
 
-<p>!<a href="azure/images/vscodeforweb/tbs5.png">Screenshot that shows Logs</a></p>
+<p><img src="images/vscodeforweb/tbs5.png" alt="Screenshot that shows Logs"></p>
 
-<p>!<a href="azure/images/vscodeforweb/tbs6.png">Screenshot that shows Logs</a></p>
+<p><img src="images/vscodeforweb/tbs6.png" alt="Screenshot that shows Logs"></p>
 
 <h2>相关资源</h2>
 

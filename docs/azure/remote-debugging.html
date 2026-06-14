@@ -432,7 +432,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 的远程调试支持由 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice">Azure 应用服务</a> 扩展提供，适用于部署到 Azure 的应用程序。</p>
 
-<p>!<a href="azure/images/remote-debugging/install-app-service.png">选择应用服务扩展</a></p>
+<p><img src="images/remote-debugging/install-app-service.png" alt="选择应用服务扩展"></p>
 
 <p>要安装 Azure 应用服务扩展：</p>
 
@@ -446,7 +446,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>安装 Azure 应用服务扩展后，你会注意到活动栏中添加了一个 <strong>Azure</strong> 视图。选择 Azure 视图以打开 Azure 应用服务资源管理器。</p>
 
-<p>!<a href="azure/images/remote-debugging/app-service-explorer.png">应用服务资源管理器</a></p>
+<p><img src="images/remote-debugging/app-service-explorer.png" alt="应用服务资源管理器"></p>
 
 <p>在应用服务资源管理器中选择 <strong>登录到 Azure</strong>，或从 <strong>命令面板</strong> (<code>kb(workbench.action.showCommands)</code>) 中选择 <strong>Azure: 登录</strong> 以登录到你的 Azure 帐户。如果你没有帐户，请选择 <strong>创建 Azure 帐户...</strong> 来创建一个 Azure 免费帐户，以便试用 Azure 服务的任意组合。</p>
 
@@ -456,13 +456,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要为你的应用程序启动远程调试会话，请在应用服务资源管理器中右键单击你的应用，然后选择 <strong>启动远程调试</strong>。</p>
 
-<p>!<a href="azure/images/remote-debugging/start-remote-debugging.png">启动远程调试</a></p>
+<p><img src="images/remote-debugging/start-remote-debugging.png" alt="启动远程调试"></p>
 
 <p>此过程要求重启应用并启用调试器。系统会提示你确认重启。</p>
 
 <p>重启后，VS Code 会通过 SSH 隧道连接到应用的调试端口。建立连接可能需要一些时间。连接成功后，VS Code 会切换到调试模式，其工作方式与在本地调试应用时相同。</p>
 
-<p>!<a href="azure/images/remote-debugging/remote-breakpoint.png">远程断点</a></p>
+<p><img src="images/remote-debugging/remote-breakpoint.png" alt="远程断点"></p>
 
 <p>当你准备结束远程调试会话时，像平常一样断开调试器的连接，并确认要重启应用。</p>
 

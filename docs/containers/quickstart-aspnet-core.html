@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开命令面板（<code>kb(workbench.action.showCommands)</code>）并使用 <strong>Containers: Add Docker Files to Workspace...</strong> 命令：
 </li>
 </ul>
-<p>   !<a href="containers/images/quickstarts/aspnetcore-add-dotnet.png">添加 Dockerfile 到 .NET 项目</a></p>
+<p>   <img src="images/quickstarts/aspnetcore-add-dotnet.png" alt="添加 Dockerfile 到 .NET 项目"></p>
 
 <ol>
 <li>当提示选择应用程序平台时，选择 <strong>.NET: ASP.NET Core</strong>。</li>
@@ -494,7 +494,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>使用 <code>ENV</code> 指令向服务容器镜像添加一个环境变量。该指令应放在 <code>Dockerfile</code> 的 <code>base</code> 阶段（文件中的第一个阶段）。将 <code>ASPNETCORE_URLS</code> 变量设置为 <code>http://*:5000</code>：
 </li>
 </ol>
-<p>   !<a href="containers/images/quickstarts/aspnetcore-intellisense-env.png">向 Docker 镜像添加环境变量</a></p>
+<p>   <img src="images/quickstarts/aspnetcore-intellisense-env.png" alt="向 Docker 镜像添加环境变量"></p>
 
 <p>   请注意容器工具扩展如何列出所有可用的 Dockerfile 指令并描述其语法。</p>
 
@@ -508,7 +508,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开容器资源管理器，验证新镜像在镜像树中可见：
 </li>
 </ol>
-<p>   !<a href="containers/images/quickstarts/aspnetcore-verify-image.png">验证 Docker 镜像存在</a></p>
+<p>   <img src="images/quickstarts/aspnetcore-verify-image.png" alt="验证 Docker 镜像存在"></p>
 
 <h2>测试服务容器</h2>
 
@@ -516,7 +516,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>右键单击上一步构建的镜像，选择<strong>运行</strong>或<strong>交互式运行</strong>。容器应该会启动，你应该能在容器资源管理器的"容器"视图中看到它：
 </li>
 </ol>
-<p>   !<a href="containers/images/quickstarts/aspnetcore-running-container.png">运行中的服务容器</a></p>
+<p>   <img src="images/quickstarts/aspnetcore-running-container.png" alt="运行中的服务容器"></p>
 
 <ol>
 <li>打开网页浏览器并导航到 <a href="http://localhost:5000/WeatherForecast">http://localhost:5000/WeatherForecast</a>。你应该会看到 JSON 格式的天气数据，类似如下：
@@ -565,7 +565,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>确保该配置被选为活动配置：
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/aspnetcore-debug-configuration.png">选中的 Docker 调试配置</a></p>
+<p>    <img src="images/quickstarts/aspnetcore-debug-configuration.png" alt="选中的 Docker 调试配置"></p>
 
 <ol>
 <li>开始调试（<code>kb(workbench.action.debug.start)</code>）。<ul>

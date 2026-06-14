@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://en.wikipedia.org/wiki/Code_refactoring">源代码重构</a>可以在不修改运行时行为的前提下，通过重组代码来提升项目的质量和可维护性。Visual Studio Code 支持重构操作（<em>重构</em>），例如<a href="https://refactoring.com/catalog/extractMethod.html">提取方法</a>和<a href="https://refactoring.com/catalog/extractVariable.html">提取变量</a>，以便你在编辑器中改进代码库。</p>
 
-<p>!<a href="editing/images/refactoring/refactoring-hero.png">refactoring hero image</a></p>
+<p><img src="images/refactoring/refactoring-hero.png" alt="refactoring hero image"></p>
 
 <p>例如，为了避免代码重复（维护的一大痛点），常用的重构手法是<a href="https://refactoring.com/catalog/extractMethod.html">提取方法</a>重构，即选中一段源代码，将其提取到独立的共享方法中，以便在其他位置复用该代码。</p>
 
@@ -448,7 +448,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>通过 <code>setting(editor.codeActionsOnSave)</code> 设置，你可以配置一组在保存文件时自动应用的 Code Action，例如用于整理导入语句。根据你的工作区文件和已启用的扩展，IntelliSense 会提供可用的 Code Action 列表。</p>
 
-<p>!<a href="editing/images/refactoring/code-actions-on-save.png">Screenshot of settings.json, showing IntelliSense suggestions for the editor.codeActionsOnSave setting.</a></p>
+<p><img src="images/refactoring/code-actions-on-save.png" alt="Screenshot of settings.json, showing IntelliSense suggestions for the editor.codeActionsOnSave setting."></p>
 
 <p>你可以为 <code>setting(editor.codeActionsOnSave)</code> 配置一个或多个 Code Action。这些 Code Action 将按列出顺序依次执行。</p>
 
@@ -481,7 +481,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>TypeScript 语言服务提供了<strong>提取为常量</strong>重构，用于为当前选中的表达式创建一个新的局部变量：</p>
 
-<p>!<a href="editing/images/refactoring/ts-extract-local.gif">Extract local</a></p>
+<p><img src="images/refactoring/ts-extract-local.gif" alt="Extract local"></p>
 
 <p>在处理类时，你也可以将值提取为一个新的属性。</p>
 
@@ -489,7 +489,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>重命名是与源代码重构相关的常见操作，VS Code 提供了专门的<strong>重命名符号</strong>命令（<code>kb(editor.action.rename)</code>）。某些语言支持跨文件重命名符号。按 <code>kb(editor.action.rename)</code>，输入新的名称，然后按 <code>kbstyle(Enter)</code>。该符号在所有文件中的所有实例都会被重命名。</p>
 
-<p>!<a href="editing/images/refactoring/rename.png">Rename</a></p>
+<p><img src="images/refactoring/rename.png" alt="Rename"></p>
 
 <h2>重构预览</h2>
 
@@ -497,17 +497,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要打开<strong>重构预览</strong>面板，请打开 Code Action 控件，将鼠标悬停在某个重构选项上，然后按 <code>kb(previewSelectedCodeAction)</code>。</p>
 
-<p>!<a href="editing/images/refactoring/refactor-preview-launch.gif">Video of launching the Refactor Preview panel by pressing <code>CtrlCmd + Enter</code> on the Code Actions control.</a></p>
+<p><img src="images/refactoring/refactor-preview-launch.gif" alt="Video of launching the Refactor Preview panel by pressing <code>CtrlCmd + Enter</code> on the Code Actions control."></p>
 
 <p>你可以在<strong>重构预览</strong>面板中选择任意更改，以查看重构操作所产生的更改差异视图。</p>
 
-<p>!<a href="editing/images/refactoring/refactor-preview.png">Screenshot of the Refactor Preview panel that shows an 'Extract to' refactoring that results in two changes</a></p>
+<p><img src="images/refactoring/refactor-preview.png" alt="Screenshot of the Refactor Preview panel that shows an 'Extract to' refactoring that results in two changes"></p>
 
 <p>使用<strong>接受</strong>或<strong>放弃</strong>控件来应用或取消提议的重构更改。</p>
 
 <p>你还可以通过在重构预览面板中取消选中某些提议的更改，来部分应用重构更改。</p>
 
-<p>!<a href="editing/images/refactoring/refactor-preview-partial.png">Screenshot of the Refactor Preview panel that shows how to partially apply changes by deselecting specific changes.</a></p>
+<p><img src="images/refactoring/refactor-preview-partial.png" alt="Screenshot of the Refactor Preview panel that shows how to partially apply changes by deselecting specific changes."></p>
 
 <h2>Code Action 的键盘快捷键</h2>
 
@@ -525,7 +525,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用上述键盘快捷键时，如果只有一个 <code>"refactor.extract.function"</code> Code Action 可用，则会自动应用它。如果有多个<strong>提取函数</strong> Code Action 可用，VS Code 会弹出上下文菜单供你选择：</p>
 
-<p>!<a href="editing/images/refactoring/code-action-context-menu.png">Select Code Action context menu</a></p>
+<p><img src="images/refactoring/code-action-context-menu.png" alt="Select Code Action context menu"></p>
 
 <p>你还可以通过使用 <code>apply</code> 参数来控制如何以及何时自动应用 Code Action：</p>
 

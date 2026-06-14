@@ -457,7 +457,7 @@ print(msg)</code></pre>
 
 <p>当 Python 扩展检测到代码单元格时，它会添加 <strong>Run Cell</strong> 和 <strong>Debug Cell</strong> CodeLens 装饰。第一个单元格还包含 <strong>Run Below</strong>，而所有后续单元格都包含 <strong>Run Above</strong>：</p>
 
-<p>!<a href="python/images/jupyter/code-cells-01.png">VS Code 编辑器中 Jupyter 代码单元格的装饰</a></p>
+<p><img src="images/jupyter/code-cells-01.png" alt="VS Code 编辑器中 Jupyter 代码单元格的装饰"></p>
 
 <blockquote><strong>注意：</strong> 默认情况下，<strong>Debug Cell</strong> 只会单步执行用户代码。如果你想单步执行非用户代码，需要在 Jupyter 扩展设置中取消选中 <strong>Debug Just My Code</strong> (<code>kb(workbench.action.openSettings)</code>)。</blockquote>
 
@@ -465,7 +465,7 @@ print(msg)</code></pre>
 
 <p>选择一个命令会启动 Jupyter（如有必要，这可能需要一分钟时间），然后在 <strong>Python 交互</strong>窗口中运行相应的单元格：</p>
 
-<p>!<a href="python/images/jupyter/code-cells-02.png">代码单元格在 Python 交互窗口中运行</a></p>
+<p><img src="images/jupyter/code-cells-02.png" alt="代码单元格在 Python 交互窗口中运行"></p>
 
 <p>你也可以使用 (<code>kbstyle(Ctrl+Enter)</code>) 或 <strong>Python: Run Selection/Line in Python Terminal</strong> 命令 (<code>kbstyle(Shift+Enter)</code>) 来运行代码单元格。使用此命令后，Python 扩展会自动将光标移动到下一个单元格。如果你在文件的最后一个单元格中，扩展会自动插入另一个 <code># %%</code> 分隔符来创建新单元格，模拟 Jupyter 笔记本的行为。</p>
 
@@ -503,7 +503,7 @@ print(msg)</code></pre>
 
 <p>Python 交互窗口具有完整的 IntelliSense 功能——代码补全、成员列表、方法快速信息和参数提示。在 Python 交互窗口中输入代码的效率与在代码编辑器中一样高。</p>
 
-<p>!<a href="python/images/jupyter/interactive-window-intellisense.gif">Python 交互窗口中的 IntelliSense</a></p>
+<p><img src="images/jupyter/interactive-window-intellisense.gif" alt="Python 交互窗口中的 IntelliSense"></p>
 
 <h3>图表查看器</h3>
 
@@ -526,7 +526,7 @@ ax.legend()
 
 plt.show()</code></pre>
 
-<p>!<a href="python/images/jupyter/plot-viewer.gif">Python 交互窗口中的图表查看器</a></p>
+<p><img src="images/jupyter/plot-viewer.gif" alt="Python 交互窗口中的图表查看器"></p>
 
 <blockquote><strong>注意：</strong> Python 交互窗口支持渲染使用 <a href="https://matplotlib.org/">matplotlib</a> 和 <a href="https://altair-viz.github.io/index.html">Altair</a> 创建的图表。</blockquote>
 
@@ -534,7 +534,7 @@ plt.show()</code></pre>
 
 <p>Python 交互窗口还支持 <a href="https://visualstudio.microsoft.com/services/live-share/">Visual Studio Live Share</a> 以进行实时协作。Live Share 允许你共同编辑和共同调试，同时共享音频、服务器、终端、差异、注释等内容。</p>
 
-<p>!<a href="python/images/jupyter/live-share-and-interactive.gif">Python 交互窗口的 Live Share</a></p>
+<p><img src="images/jupyter/live-share-and-interactive.gif" alt="Python 交互窗口的 Live Share"></p>
 
 <p>此功能需要在主机和客户机上均安装 <a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare">Live Share 扩展</a>。--></p>
 
@@ -542,11 +542,11 @@ plt.show()</code></pre>
 
 <p>在 Python 交互窗口中，你可以查看、检查和筛选当前 Jupyter 会话中的变量。在运行代码和单元格后，选择交互窗口工具栏中的<strong>变量</strong>按钮以打开变量资源管理器，你将看到当前变量的列表，这些变量会随着代码中变量的使用而自动更新。</p>
 
-<p>!<a href="python/images/jupyter/jupyter-variable-explorer.png">变量资源管理器</a></p>
+<p><img src="images/jupyter/jupyter-variable-explorer.png" alt="变量资源管理器"></p>
 
 <p>有关变量的更多信息，你还可以双击某一行或使用<strong>在数据查看器中显示变量</strong>按钮，在数据查看器中查看变量的更详细视图。打开后，你可以通过搜索行来筛选值。</p>
 
-<p>!<a href="python/images/jupyter/jupyter-data-viewer.png">数据查看器</a></p>
+<p><img src="images/jupyter/jupyter-data-viewer.png" alt="数据查看器"></p>
 
 <h2>连接到远程 Jupyter 服务器</h2>
 
@@ -558,18 +558,18 @@ plt.show()</code></pre>
 <li>从命令面板 (<code>kb(workbench.action.showCommands)</code>) 中运行 <strong>Jupyter: Specify local or remote Jupyter server for connections</strong> 命令。</li>
 <li>选择你希望如何连接到 Jupyter 服务器。</li>
 </ol>
-<p>    !<a href="python/images/jupyter/local-remote-connections.png">提示提供 Jupyter 服务器 URI</a></p>
+<p>    <img src="images/jupyter/local-remote-connections.png" alt="提示提供 Jupyter 服务器 URI"></p>
 <ol>
 <li>如果是远程工作，请在提示时提供服务器的 URI（主机名），并在 URL 中包含身份验证令牌，以 <code>?token=</code> 作为 URL 参数。（如果你在 VS Code 终端中启动服务器时启用了身份验证令牌，带有令牌的 URL 通常会出现在终端输出中，你可以从中复制它。）或者，你可以在提供 URI 后指定用户名和密码。
 </li>
 </ol>
-<p>    !<a href="python/images/jupyter/enter-url-auth-token.png">提示提供 Jupyter 服务器 URI</a></p>
+<p>    <img src="images/jupyter/enter-url-auth-token.png" alt="提示提供 Jupyter 服务器 URI"></p>
 
 <ol>
 <li>Python 交互窗口通过显示 URI（在下图中被模糊处理）来指示代码在哪里运行：
 </li>
 </ol>
-<p>    !<a href="python/images/jupyter/jupyter-running-remotely.png">Python 交互窗口显示代码正在远程 Jupyter 服务器上运行</a></p>
+<p>    <img src="images/jupyter/jupyter-running-remotely.png" alt="Python 交互窗口显示代码正在远程 Jupyter 服务器上运行"></p>
 
 <blockquote><strong>注意：</strong> 为了增强安全性，Microsoft 建议为你的 Jupyter 服务器配置安全预防措施，例如 SSL 和令牌支持。这有助于确保发送到 Jupyter 服务器的请求经过身份验证，并且与远程服务器的连接是加密的。有关保护笔记本服务器的指导，请参阅 <a href="https://jupyter-server.readthedocs.io/en/latest/operators/public-server.html">Jupyter 文档</a>。</blockquote>
 
@@ -579,11 +579,11 @@ plt.show()</code></pre>
 
 <p>当你打开一个笔记本文件时，Visual Studio Code 会自动在笔记本编辑器中打开它。使用工具栏上的转换图标将 Notebook (.ipynb) 文件转换为 Python 文件 (.py)。</p>
 
-<p>!<a href="python/images/jupyter/native-toolbar-convert.png">转换 Jupyter 笔记本文件的图标</a></p>
+<p><img src="images/jupyter/native-toolbar-convert.png" alt="转换 Jupyter 笔记本文件的图标"></p>
 
 <p>选择转换图标，然后选择"Python Script"，等待几秒钟，VS Code 会在一个未命名的文件中打开转换后的笔记本。笔记本的单元格在 Python 文件中用 <code># %%</code> 注释分隔；Markdown 单元格会完全转换为前面带有 <code># %% [markdown]</code> 的注释，并在交互窗口中与代码和输出（如图表）一起以 HTML 形式呈现：</p>
 
-<p>!<a href="python/images/jupyter/jupyter-notebook.png">Jupyter 笔记本在 VS Code 和 Python 交互窗口中运行</a></p>
+<p><img src="images/jupyter/jupyter-notebook.png" alt="Jupyter 笔记本在 VS Code 和 Python 交互窗口中运行"></p>
 
 <blockquote><strong>注意：</strong> 首次在 Python 文件中运行代码单元格时，Python 扩展会启动一个 Jupyter 服务器。服务器启动以及 <strong>Python 交互</strong>窗口显示代码结果可能需要一些时间。</blockquote>
 

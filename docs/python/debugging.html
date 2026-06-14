@@ -438,7 +438,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要验证它是否已安装，请打开<strong>扩展</strong>视图（<code>kb(workbench.view.extensions)</code>）并搜索 <code>@installed python debugger</code>。您应该会在结果中看到 Python Debugger 扩展已列出。</p>
 
-<p>!<a href="python/images/shared/python-debugger-extension.png">Python Debugger extension shown in installed extensions view in VS Code.</a></p>
+<p><img src="images/shared/python-debugger-extension.png" alt="Python Debugger extension shown in installed extensions view in VS Code."></p>
 
 <p>您可以参考该扩展的 <a href="https://github.com/microsoft/vscode-python-debugger/blob/main/README.md">README</a> 页面，了解支持的 Python 版本信息。</p>
 
@@ -450,11 +450,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要初始化调试配置，请首先选择侧边栏中的<strong>运行</strong>视图：</p>
 
-<p>!<a href="python/images/debugging/debug-icon.png">Run icon</a></p>
+<p><img src="images/debugging/debug-icon.png" alt="Run icon"></p>
 
 <p>如果您尚未定义任何配置，您将看到一个<strong>运行和调试</strong>按钮以及一个用于创建配置（launch.json）文件的链接：</p>
 
-<p>!<a href="python/images/debugging/debug-start.png">Debug toolbar settings command</a></p>
+<p><img src="images/debugging/debug-start.png" alt="Debug toolbar settings command"></p>
 
 <p>要生成带有 Python 配置的 <code>launch.json</code> 文件，请执行以下步骤：</p>
 
@@ -466,7 +466,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>命令面板将打开一个配置菜单，允许您选择要用于 Python 项目文件的调试配置类型。如果您想调试单个 Python 脚本，请在出现的<strong>选择调试配置</strong>菜单中选择 <strong>Python File</strong>。
 </li>
 </ol>
-<p>    !<a href="python/images/shared/debug-configurations.png">List of Python debugger configuration options</a></p>
+<p>    <img src="images/shared/debug-configurations.png" alt="List of Python debugger configuration options"></p>
 
 <blockquote><strong>注意</strong>：在不存在配置的情况下，通过调试面板、<code>kbstyle(F5)</code> 或<strong>运行 > 开始调试</strong>启动调试会话也会弹出调试配置菜单，但不会创建 <code>launch.json</code> 文件。</blockquote>
 
@@ -474,7 +474,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>然后，Python Debugger 扩展会创建并打开一个 <code>launch.json</code> 文件，其中包含基于您之前选择的预定义配置，在本例中为 <strong>Python File</strong>。您可以修改配置（例如添加参数），也可以添加自定义配置。
 </li>
 </ol>
-<p>   !<a href="python/images/debugging/configuration-json.png">Configuration json</a></p>
+<p>   <img src="images/debugging/configuration-json.png" alt="Configuration json"></p>
 
 <p>配置属性的详细信息将在本文后面的<a href="#set-configuration-options">标准配置和选项</a>中介绍。本文中的<a href="#debugging-specific-app-types">调试特定应用类型</a>部分还会介绍其他配置。</p>
 
@@ -482,16 +482,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>默认情况下，VS Code 仅显示 Python Debugger 扩展提供的最常见配置。您可以通过使用配置列表和 <code>launch.json</code> 编辑器中显示的<strong>添加配置</strong>命令，选择要包含在 <code>launch.json</code> 中的其他配置。使用该命令时，VS Code 会提示您列出所有可用配置（请确保选择 <strong>Python</strong> 选项）：</p>
 
-<p>!<a href="python/images/debugging/add-configuration.png">Adding a new Python debugging configuration</a></p>
+<p><img src="images/debugging/add-configuration.png" alt="Adding a new Python debugging configuration"></p>
 
 <p>选择<strong>使用进程 ID 附加</strong>会生成以下结果：</p>
-<p>!<a href="python/images/debugging/added-configuration.png">Added a configuration</a></p>
+<p><img src="images/debugging/added-configuration.png" alt="Added a configuration"></p>
 
 <p>有关所有这些配置的详细信息，请参阅<a href="#debugging-specific-app-types">调试特定应用类型</a>。</p>
 
 <p>在调试过程中，状态栏会显示当前配置和当前的调试解释器。选择配置会弹出一个列表，您可以从中选择不同的配置：</p>
 
-<p>!<a href="python/images/debugging/debug-status-bar.png">Debugging Status Bar</a></p>
+<p><img src="images/debugging/debug-status-bar.png" alt="Debugging Status Bar"></p>
 
 <p>默认情况下，调试器使用为工作区选择的相同解释器，就像 VS Code 的 Python 扩展的其他功能一样。要专门为调试使用不同的解释器，请在 <code>launch.json</code> 中为相应的调试器配置设置 <code>python</code> 的值。或者，使用状态栏上的 Python 解释器指示器选择不同的解释器。</p>
 
@@ -499,15 +499,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果您只想调试一个 Python 脚本，最简单的方法是选择编辑器运行按钮旁边的向下箭头，然后选择 <strong>Python Debugger: Debug Python File</strong>。</p>
 
-<p>!<a href="python/images/debugging/debug-button-editor.png">Debug button on the top-right of the editor</a></p>
+<p><img src="images/debugging/debug-button-editor.png" alt="Debug button on the top-right of the editor"></p>
 
 <p>如果您想调试使用 Flask、Django 或 FastAPI 的 Web 应用程序，Python Debugger 扩展会通过<strong>运行和调试</strong>视图中的<strong>显示所有自动调试配置</strong>选项，根据您的项目结构提供动态创建的调试配置。</p>
 
-<p>!<a href="python/images/debugging/debug-auto-config.png">Show all automatic debug configurations option on the run view</a></p>
+<p><img src="images/debugging/debug-auto-config.png" alt="Show all automatic debug configurations option on the run view"></p>
 
 <p>但如果您想调试其他类型的应用程序，可以通过<strong>运行</strong>视图单击<strong>运行和调试</strong>按钮来启动调试器。</p>
 
-<p>!<a href="python/images/debugging/debug-run.png">Run the debugger</a></p>
+<p><img src="images/debugging/debug-run.png" alt="Run the debugger"></p>
 
 <p>当未设置任何配置时，您将看到一个调试选项列表。在这里，您可以选择适当的选项来快速调试代码。</p>
 
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>有关创建和使用调试配置的信息，请参阅<a href="#initialize-configurations">初始化配置</a>和<a href="#additional-configurations">添加更多配置</a>部分。添加配置后，可以从下拉列表中选择它，并使用<strong>开始调试</strong>按钮（<code>kbstyle(F5)</code>）启动。</p>
 
-<p>!<a href="python/images/debugging/debug-start-button.png">Start debugging button in the Run and Debug view</a></p>
+<p><img src="images/debugging/debug-start-button.png" alt="Start debugging button in the Run and Debug view"></p>
 
 <h2>命令行调试</h2>
 
@@ -725,7 +725,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在远程调试期间，调试工具栏显示如下：
 </li>
 </ol>
-<p>    !<a href="python/images/debugging/remote-debug-toolbar.png">Debugging toolbar during remote debugging</a></p>
+<p>    <img src="images/debugging/remote-debug-toolbar.png" alt="Debugging toolbar during remote debugging"></p>
 
 <p>    在此工具栏上，断开连接按钮（<code>kb(workbench.action.debug.stop)</code>）停止调试器并允许远程程序运行到完成。重启按钮（<code>kb(workbench.action.debug.restart)</code>）在本地计算机上重启调试器，但<strong>不会</strong>重启远程程序。仅当您已经重启了远程程序并需要重新附加调试器时，才使用重启按钮。</p>
 
@@ -999,7 +999,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>Python 可执行文件的路径不正确：通过运行 <strong>Python: Select Interpreter</strong> 命令并查看当前值来检查所选解释器的路径：
 </li>
 </ul>
-<p>  !<a href="python/images/debugging/debug-troubleshooting-wrong-path.png">Troubleshooting wrong Python interpreter when debugging</a></p>
+<p>  <img src="images/debugging/debug-troubleshooting-wrong-path.png" alt="Troubleshooting wrong Python interpreter when debugging"></p>
 
 <ul>
 <li>您在 <code>launch.json</code> 文件中将 <code>"type"</code> 设置为了已弃用的值 <code>"python"</code>：将其替换为 <code>"debugpy"</code> 以与 Python Debugger 扩展配合使用。

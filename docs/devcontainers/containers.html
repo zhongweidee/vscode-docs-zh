@@ -430,7 +430,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>工作区文件从本地文件系统挂载，或复制或克隆到容器中。扩展在容器内部安装和运行，在那里它们可以完全访问工具、平台和文件系统。这意味着你可以仅通过连接到不同的容器来无缝切换整个开发环境。</p>
 
-<p>!<a href="devcontainers/images/containers/architecture-containers.png">Container Architecture</a></p>
+<p><img src="images/containers/architecture-containers.png" alt="Container Architecture"></p>
 
 <p>这使得 VS Code 能够提供<strong>本地级别的开发体验</strong>，包括完整的 IntelliSense（代码补全）、代码导航和调试，<strong>无论你的工具（或代码）位于何处</strong>。</p>
 
@@ -545,7 +545,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>最简单的方法是尝试其中一个示例开发容器。<a href="../docs/devcontainers/tutorial.md">容器教程</a>将引导你设置 Docker 和 Dev Containers 扩展，并让你选择一个示例：</p>
 
-<p>!<a href="devcontainers/images/containers/select-a-sample.png">Select a sample from the list</a></p>
+<p><img src="images/containers/select-a-sample.png" alt="Select a sample from the list"></p>
 
 <blockquote>注意：如果你已经安装了 VS Code 和 Docker，那么你可以使用<a href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-python">在开发容器中打开</a>。你可以在<a href="../docs/devcontainers/create-dev-container.md#add-configuration-files-to-a-repository">创建开发容器指南</a>中了解更多关于此功能以及如何将其添加到你的仓库的信息。</blockquote>
 
@@ -559,7 +559,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/remote-dev-status-bar.png">Quick actions Status bar item</a></p>
+<p>    <img src="images/containers/remote-dev-status-bar.png" alt="Quick actions Status bar item"></p>
 
 <ol>
 <li>现在为你的开发容器选择一个起点。你可以从可筛选列表中选择一个基础的<strong>开发容器模板</strong>，或者如果在你选择的文件夹中存在现有的 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a> 或 <a href="https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples">Docker Compose 文件</a>，也可以使用它们。
@@ -567,7 +567,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/select-dev-container-def.png">Select a node Dev Container Template</a></p>
+<p>    <img src="images/containers/select-dev-container-def.png" alt="Select a node Dev Container Template"></p>
 
 <p>    列表将根据你打开的文件夹的内容自动排序。</p>
 
@@ -583,7 +583,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>VS Code 窗口将重新加载并开始构建开发容器。进度通知会提供状态更新。你只需要在第一次打开开发容器时构建它；在第一次成功构建后打开文件夹会快得多。
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/dev-container-progress.png">Dev Container Progress Notification</a></p>
+<p>    <img src="images/containers/dev-container-progress.png" alt="Dev Container Progress Notification"></p>
 
 <ol>
 <li>构建完成后，VS Code 将自动连接到容器。
@@ -668,7 +668,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在出现的输入框中输入 <code>microsoft/vscode-remote-try-node</code>（或其他"try"仓库之一）、Git URI、GitHub 分支 URL 或 GitHub PR URL，然后按 <code>kbstyle(Enter)</code>。
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/vscode-remote-try-node.png">Input box with a repository name in it</a></p>
+<p>    <img src="images/containers/vscode-remote-try-node.png" alt="Input box with a repository name in it"></p>
 
 <blockquote><strong>提示：</strong> 如果你选择私有仓库，你可能需要设置凭据管理器或将 SSH 密钥添加到 SSH 代理。请参阅<a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>。</blockquote>
 
@@ -678,7 +678,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/select-dev-container-def.png">Select a node Dev Container Template</a></p>
+<p>    <img src="images/containers/select-dev-container-def.png" alt="Select a node Dev Container Template"></p>
 
 <p>    列表将根据你打开的文件夹的内容自动排序。显示的开发容器模板来自我们的<a href="https://containers.dev/templates">第一方和社区索引</a>，这是 <a href="https://containers.dev/">Dev Container 规范</a>的一部分。我们在 <a href="https://github.com/devcontainers/templates">devcontainers/templates 仓库</a>中托管了一组作为规范一部分的模板。你可以浏览该仓库的 <code>src</code> 文件夹以查看每个模板的内容。</p>
 
@@ -686,11 +686,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>VS Code 窗口（实例）将重新加载，克隆源代码，并开始构建开发容器。进度通知会提供状态更新。
 </li>
 </ol>
-<p>    !<a href="devcontainers/images/containers/dev-container-progress.png">Dev Container Progress Notification</a></p>
+<p>    <img src="images/containers/dev-container-progress.png" alt="Dev Container Progress Notification"></p>
 
 <p>    如果你在步骤 2 中粘贴了 GitHub 拉取请求 URL，PR 将被自动检出，并且 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github">GitHub Pull Requests</a> 扩展将被安装在容器中。该扩展提供额外的 PR 相关功能，如 PR 资源管理器、内联交互 PR 评论和状态栏可见性。</p>
 
-<p>    !<a href="devcontainers/images/containers/checkout-pr-status.png">PR status in status bar</a></p>
+<p>    <img src="images/containers/checkout-pr-status.png" alt="PR status in status bar"></p>
 
 <ol>
 <li>构建完成后，VS Code 将自动连接到容器。你现在可以在这个独立环境中处理仓库源代码，就像你在本地克隆了代码一样。
@@ -721,13 +721,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>在<a href="../docs/devcontainers/attach-container.md">附加到现有容器</a>时，系统会要求你确认附加意味着你信任该容器。这只需要确认一次。</p>
 
-<p>!<a href="devcontainers/images/containers/attach-containers-trust.png">Workspace trust prompt when attaching to container</a></p>
+<p><img src="images/containers/attach-containers-trust.png" alt="Workspace trust prompt when attaching to container"></p>
 
 <h3>在卷中克隆仓库</h3>
 
 <p>在<a href="#quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume">容器卷中克隆仓库</a>时，系统会要求你确认克隆仓库意味着你信任该仓库。这只需要确认一次。</p>
 
-<p>!<a href="devcontainers/images/containers/clone-containers-trust.png">Workspace trust prompt when cloning in container volume</a></p>
+<p><img src="images/containers/clone-containers-trust.png" alt="Workspace trust prompt when cloning in container volume"></p>
 
 <h3>检查卷</h3>
 
@@ -743,7 +743,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>从命令面板（<code>kbstyle(F1)</code>）中选择 <strong>Dev Containers: Add Dev Container Configuration Files...</strong> 命令，会将所需文件作为起点添加到你的项目中，你可以根据需要进一步自定义。该命令让你可以根据文件夹内容从列表中选择预定义的容器配置，重用现有的 Dockerfile，或重用现有的 Docker Compose 文件。</p>
 
-<p>!<a href="devcontainers/images/containers/select-dev-container-def.png">Select a node Dev Container Template</a></p>
+<p><img src="images/containers/select-dev-container-def.png" alt="Select a node Dev Container Template"></p>
 
 <p>你也可以手动创建 devcontainer.json，并使用任何镜像、Dockerfile 或 Docker Compose 文件集作为起点。以下是一个简单的示例，使用了一个预构建的<a href="https://github.com/devcontainers/images/tree/main/src/typescript-node">开发容器镜像</a>：</p>
 
@@ -771,7 +771,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你使用 <strong>Dev Containers: Add Dev Container Configuration Files</strong> 时，你会看到一个脚本列表，用于自定义现有的开发容器配置，例如安装 Git 或 Azure CLI：</p>
 
-<p>!<a href="devcontainers/images/containers/container-features.png">Dev container Features list drop down</a></p>
+<p><img src="images/containers/container-features.png" alt="Dev container Features list drop down"></p>
 
 <p>当你重建并在容器中重新打开时，你选择的功能将在你的 <code>devcontainer.json</code> 中可用：</p>
 
@@ -783,7 +783,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你直接在 <code>devcontainer.json</code> 中编辑 <code>"features"</code> 属性时，你将获得 IntelliSense：</p>
 
-<p>!<a href="devcontainers/images/containers/features-intellisense.png">Intellisense when modifying terraform Feature</a></p>
+<p><img src="images/containers/features-intellisense.png" alt="Intellisense when modifying terraform Feature"></p>
 
 <p><strong>Dev Containers: Configure Container Features</strong> 命令允许你更新现有配置。</p>
 
@@ -852,11 +852,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你也可以在远程资源管理器中检查你的卷。确保在下拉菜单中选择了 Containers，然后你会注意到一个 <strong>Dev Volumes</strong> 部分。你可以右键单击一个卷来检查其创建信息，例如卷的创建时间、克隆到其中的仓库以及挂载点。你还可以在开发容器中浏览它。</p>
 
-<p>!<a href="devcontainers/images/containers/dev-volumes.png">Right-click dev volumes in Remote Explorer</a></p>
+<p><img src="images/containers/dev-volumes.png" alt="Right-click dev volumes in Remote Explorer"></p>
 
 <p>如果你安装了 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a>，你可以在<strong>容器资源管理器</strong>的 <strong>Volumes</strong> 部分右键单击一个卷并选择 <strong>Explore in a Development Container</strong>。</p>
 
-<p>!<a href="devcontainers/images/containers/docker-explore-dev-container.png">Explore in dev container in Container Tools context menu</a></p>
+<p><img src="images/containers/docker-explore-dev-container.png" alt="Explore in dev container in Container Tools context menu"></p>
 
 <h2>管理扩展</h2>
 
@@ -864,19 +864,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你从扩展视图安装扩展，它将自动安装在正确的位置。你可以根据类别分组来判断扩展安装在何处。会有一个 <strong>Local - Installed</strong> 类别，以及一个针对你的容器的类别。</p>
 
-<p>!<a href="devcontainers/images/containers/containers-installed-remote-indicator.png">Workspace Extension Category</a></p>
+<p><img src="images/containers/containers-installed-remote-indicator.png" alt="Workspace Extension Category"></p>
 
-<p>!<a href="devcontainers/images/containers/local-installed-extensions.png">Local Extension Category</a></p>
+<p><img src="images/containers/local-installed-extensions.png" alt="Local Extension Category"></p>
 
 <blockquote><strong>注意：</strong> 如果你是扩展作者，并且你的扩展不能正常工作或安装在了错误的位置，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>了解详细信息。</blockquote>
 
 <p>实际上需要在远程运行的本地扩展将在 <strong>Local - Installed</strong> 类别中显示为<strong>已禁用</strong>。选择<strong>安装</strong>以在你的远程主机上安装扩展。</p>
 
-<p>!<a href="devcontainers/images/containers/containers-disabled-extensions.png">Disabled Extensions w/Install Button</a></p>
+<p><img src="images/containers/containers-disabled-extensions.png" alt="Disabled Extensions w/Install Button"></p>
 
 <p>你还可以通过转到扩展视图并使用 <strong>Local - Installed</strong> 标题栏右侧的云按钮选择 <strong>Install Local Extensions in Dev Container: {Name}</strong>，将所有本地安装的扩展安装到 Dev Container 中。这将显示一个下拉菜单，你可以在其中选择要在容器中安装哪些本地安装的扩展。</p>
 
-<p>!<a href="devcontainers/images/containers/install-all-extn-containers.png">Install all extensions</a></p>
+<p><img src="images/containers/install-all-extn-containers.png" alt="Install all extensions"></p>
 
 <p>但是，某些扩展可能需要你在容器中<a href="../docs/devcontainers/create-dev-container.md#install-additional-software">安装额外的软件</a>。如果遇到问题，请查阅扩展文档了解详细信息。</p>
 
@@ -884,7 +884,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>虽然你可以手动编辑 <a href="../docs/devcontainers/create-dev-container.md#create-a-devcontainerjson-file">devcontainer.json</a> 文件来添加扩展 ID 列表，但你也可以在扩展视图中右键单击任何扩展并选择 <strong>Add to devcontainer.json</strong>。</p>
 
-<p>!<a href="devcontainers/images/containers/containers-addto-devcontainer.png">Add to devcontainer.json menu</a></p>
+<p><img src="images/containers/containers-addto-devcontainer.png" alt="Add to devcontainer.json menu"></p>
 
 <h3>选择不安装扩展</h3>
 
@@ -939,7 +939,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你需要访问一个你没有添加到 <code>devcontainer.json</code> 或在 Docker Compose 文件中发布的端口，你可以通过从命令面板（<code>kbstyle(F1)</code>）运行 <strong>Forward a Port</strong> 命令来<strong>临时转发</strong>一个新端口，该端口在会话期间有效。</p>
 
-<p>!<a href="devcontainers/images/containers/forward-port-containers.png">Forward port input</a></p>
+<p><img src="images/containers/forward-port-containers.png" alt="Forward port input"></p>
 
 <p>选择端口后，通知会告诉你应该使用哪个 localhost 端口来访问容器中的端口。例如，如果你转发了一个监听端口 3000 的 HTTP 服务器，通知可能会告诉你它被映射到了 localhost 上的端口 4123。然后你可以使用 <code>http://localhost:4123</code> 连接到此远程 HTTP 服务器。</p>
 
@@ -947,7 +947,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你希望 VS Code 记住你已转发的任何端口，请在设置编辑器（<code>kb(workbench.action.openSettings)</code>）中勾选 <strong>Remote: Restore Forwarded Ports</strong>，或在 <code>settings.json</code> 中设置 <code>"remote.restoreForwardedPorts": true</code>。</p>
 
-<p>!<a href="devcontainers/images/containers/restore-forwarded-ports.png">Restore forwarded ports setting</a></p>
+<p><img src="images/containers/restore-forwarded-ports.png" alt="Restore forwarded ports setting"></p>
 
 <h3>发布端口</h3>
 
@@ -975,7 +975,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你还可以从同一个终端窗口使用 <code>code</code> 命令行来执行许多操作，例如在容器中打开新文件或文件夹。输入 <code>code --help</code> 来了解命令行中可用的选项。</p>
 
-<p>!<a href="devcontainers/images/containers/code-command-in-terminal.png">Using the code CLI</a></p>
+<p><img src="images/containers/code-command-in-terminal.png" alt="Using the code CLI"></p>
 
 <h2>在容器中调试</h2>
 
@@ -987,7 +987,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你连接到开发容器时，VS Code 的本地用户设置也会被重用。虽然这保持了你用户体验的一致性，但你可能希望在你的本地机器和每个容器之间改变其中一些设置。幸运的是，一旦你连接到容器，你还可以通过从命令面板（<code>kbstyle(F1)</code>）运行 <strong>Preferences: Open Remote Settings</strong> 命令，或在设置编辑器中选择<strong>远程</strong>选项卡来设置容器特定的设置。每当你连接到容器时，这些设置将覆盖你已有的任何本地设置。</p>
 
-<p>!<a href="devcontainers/images/containers/container-settings.png">Container specific settings tab</a></p>
+<p><img src="images/containers/container-settings.png" alt="Container specific settings tab"></p>
 
 <h3>默认容器特定设置</h3>
 
@@ -1013,7 +1013,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>虽然你可以使用命令行来管理你的容器，但你也可以使用<strong>远程资源管理器</strong>。要停止容器，请从下拉菜单中选择 Containers（如果存在），右键单击正在运行的容器，然后选择 <strong>Stop Container</strong>。你还可以启动已退出的容器、删除容器和删除最近的文件夹。从详细信息视图中，你可以转发端口并在浏览器中打开已转发的端口。</p>
 
-<p>!<a href="devcontainers/images/containers/containers-explorer.png">Containers Explorer screenshot</a></p>
+<p><img src="images/containers/containers-explorer.png" alt="Containers Explorer screenshot"></p>
 
 <p>如果你想清理镜像或批量删除容器，请参阅<a href="../docs/devcontainers/tips-and-tricks.md#cleaning-out-unused-containers-and-images">清理未使用的容器和镜像</a>了解不同的选项。</p>
 
@@ -1025,7 +1025,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要使用它，请将你的 dotfile GitHub 仓库添加到 VS Code 的用户设置（<code>kb(workbench.action.openSettings)</code>）中，如下所示：</p>
 
-<p>!<a href="devcontainers/images/containers/dotfiles.png">Settings for dotfiles</a></p>
+<p><img src="images/containers/dotfiles.png" alt="Settings for dotfiles"></p>
 
 <p>或在 <code>settings.json</code> 中：</p>
 

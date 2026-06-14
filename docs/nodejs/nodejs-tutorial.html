@@ -452,11 +452,11 @@ code .</code></pre>
 
 <p>在文件资源管理器工具栏中，按新建文件按钮：</p>
 
-<p>!<a href="nodejs/images/nodejs/toolbar-new-file.png">File Explorer New File</a></p>
+<p><img src="images/nodejs/toolbar-new-file.png" alt="File Explorer New File"></p>
 
 <p>并将文件命名为 <code>app.js</code>：</p>
 
-<p>!<a href="nodejs/images/nodejs/app-js-file-created.png">File Explorer app.js</a></p>
+<p><img src="images/nodejs/app-js-file-created.png" alt="File Explorer app.js"></p>
 
 <p>通过使用 <code>.js</code> 文件扩展名，VS Code 将此文件解释为 JavaScript，并将使用 JavaScript 语言服务来评估其内容。请参阅 VS Code <a href="../docs/languages/javascript.md">JavaScript 语言</a>主题以了解有关 JavaScript 支持的更多信息。</p>
 
@@ -467,11 +467,11 @@ console.log(msg);</code></pre>
 
 <p>请注意，当你输入 <code>console.</code> 时，<a href="../docs/editing/intellisense.md">IntelliSense</a> 会自动呈现 <code>console</code> 对象的相关信息。</p>
 
-<p>!<a href="nodejs/images/nodejs/consoleintellisense.png">console IntelliSense</a></p>
+<p><img src="images/nodejs/consoleintellisense.png" alt="console IntelliSense"></p>
 
 <p>还要注意，VS Code 知道 <code>msg</code> 是一个字符串，这是基于其初始化为 <code>'Hello World'</code> 推断出来的。如果你输入 <code>msg.</code>，你将看到 IntelliSense 显示 <code>msg</code> 上所有可用的字符串函数。</p>
 
-<p>!<a href="nodejs/images/nodejs/stringintellisense.png">string IntelliSense</a></p>
+<p><img src="images/nodejs/stringintellisense.png" alt="string IntelliSense"></p>
 
 <p>在体验完 IntelliSense 之后，将上述源代码示例中的任何额外更改还原并保存文件（<code>kb(workbench.action.files.save)</code>）。</p>
 
@@ -489,7 +489,7 @@ console.log(msg);</code></pre>
 
 <p><strong>视图</strong> > <strong>终端</strong>（带有反引号字符的 <code>kb(workbench.action.terminal.toggleTerminal)</code>）将打开集成终端，你可以在那里运行 <code>node app.js</code>：</p>
 
-<p>!<a href="nodejs/images/nodejs/integrated-terminal.png">integrated terminal</a></p>
+<p><img src="images/nodejs/integrated-terminal.png" alt="integrated terminal"></p>
 
 <p>在本演练中，你可以使用外部终端或 VS Code 集成终端来运行命令行工具。</p>
 
@@ -499,15 +499,15 @@ console.log(msg);</code></pre>
 
 <p>要在 <code>app.js</code> 中设置断点，请将编辑器光标放在第一行，然后按 <code>kb(editor.debug.action.toggleBreakpoint)</code> 或点击行号旁边的编辑器左侧装订线区域。装订线中将出现一个红色圆圈。</p>
 
-<p>!<a href="nodejs/images/nodejs/app-js-breakpoint-set.png">app.js breakpoint set</a></p>
+<p><img src="images/nodejs/app-js-breakpoint-set.png" alt="app.js breakpoint set"></p>
 
 <p>要开始调试，请选择活动栏中的<strong>运行和调试</strong>视图：</p>
 
-<p>!<a href="nodejs/images/nodejs/debugicon.png">Run icon</a></p>
+<p><img src="images/nodejs/debugicon.png" alt="Run icon"></p>
 
 <p>现在你可以点击调试工具栏的绿色箭头或按 <code>kb(workbench.action.debug.start)</code> 来启动并调试 "Hello World"。你的断点将被命中，你可以查看并逐步执行这个简单的应用程序。请注意，VS Code 会显示不同颜色的状态栏，以指示它处于调试模式，并且会显示调试控制台。</p>
 
-<p>!<a href="nodejs/images/nodejs/hello-world-debugging.png">hello world debugging</a></p>
+<p><img src="images/nodejs/hello-world-debugging.png" alt="hello world debugging"></p>
 
 <p>现在你已经看到了 VS Code 在 "Hello World" 中的实际表现，下一节将展示如何使用 VS Code 开发全栈 Node.js Web 应用。</p>
 
@@ -544,7 +544,7 @@ npm install</code></pre>
 
 <p>Node.js Web 服务器将启动，你可以浏览到 <a href="http://localhost:3000">http://localhost:3000</a> 来查看正在运行的应用程序。</p>
 
-<p>!<a href="nodejs/images/nodejs/express.png">Your first Node Express App</a></p>
+<p><img src="images/nodejs/express.png" alt="Your first Node Express App"></p>
 
 <h2>出色的代码编辑</h2>
 
@@ -560,13 +560,13 @@ npm install</code></pre>
 
 <p>打开 <code>app.js</code> 文件，将鼠标悬停在 Node.js 全局对象 <code>__dirname</code> 上。注意 VS Code 是如何理解 <code>__dirname</code> 是一个字符串的。更有趣的是，你可以获得针对 Node.js 框架的完整 IntelliSense。例如，你可以 <code>require</code> <code>http</code> 模块，并在 Visual Studio Code 中输入时获得针对 <code>http</code> 类的完整 IntelliSense。</p>
 
-<p>!<a href="nodejs/images/nodejs/intellisense.png">http IntelliSense</a></p>
+<p><img src="images/nodejs/intellisense.png" alt="http IntelliSense"></p>
 
 <p>VS Code 使用 TypeScript 类型声明（typings）文件（例如 <code>node.d.ts</code>）来向 VS Code 提供有关你在应用程序中使用的基于 JavaScript 的框架的元数据。类型声明文件是用 TypeScript 编写的，因此它们可以表达参数和函数的数据类型，使 VS Code 能够提供丰富的 IntelliSense 体验。得益于一项名为 <code>自动类型获取</code> 的功能，你不必担心下载这些类型声明文件，VS Code 会为你自动安装它们。</p>
 
 <p>你还可以编写引用其他文件中模块的代码。例如，在 <code>app.js</code> 中我们 <code>require</code> 了 <code>./routes/index</code> 模块，该模块导出了一个 <code>Express.Router</code> 类。如果你在 <code>index</code> 上调出 IntelliSense，你可以看到 <code>Router</code> 类的形状。</p>
 
-<p>!<a href="nodejs/images/nodejs/moduleintellisense.png">Express.Router IntelliSense</a></p>
+<p><img src="images/nodejs/moduleintellisense.png" alt="Express.Router IntelliSense"></p>
 
 <h2>调试你的 Express 应用</h2>
 
@@ -586,7 +586,7 @@ npm install</code></pre>
 
 <p>保存新文件，并确保在<strong>运行和调试</strong>视图顶部的配置下拉菜单中选择了<strong>启动程序</strong>。打开 <code>app.js</code>，在文件顶部附近创建 Express 应用对象的位置，通过点击行号左侧的装订线来设置一个断点。按 <code>kb(workbench.action.debug.start)</code> 开始调试应用程序。VS Code 将在新终端中启动服务器，并命中我们设置的断点。从那里你可以检查变量、创建监视以及逐步执行代码。</p>
 
-<p>!<a href="nodejs/images/nodejs/debugsession.png">Debug session</a></p>
+<p><img src="images/nodejs/debugsession.png" alt="Debug session"></p>
 
 <h2>部署你的应用程序</h2>
 

@@ -483,11 +483,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>有了上面的 <code>devcontainer.json</code>，你的开发容器就功能齐全了，你可以连接到它并开始在其中进行开发。使用 <strong>Dev Containers: Reopen in Container</strong> 命令试一试：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/dev-containers-reopen.png">Quick pick with list of Dev Containers commands</a></p>
+<p><img src="images/create-dev-container/dev-containers-reopen.png" alt="Quick pick with list of Dev Containers commands"></p>
 
 <p>运行此命令后，当 VS Code 重新启动时，你现在处于一个 Node.js 和 TypeScript 开发容器中，端口 3000 已转发，ESLint 扩展已安装。连接后，注意状态栏左侧的绿色远程指示器，表明你已连接到你的开发容器：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/connected-to-dev-container.png">VS Code instance connected to dev container</a></p>
+<p><img src="images/create-dev-container/connected-to-dev-container.png" alt="VS Code instance connected to dev container"></p>
 
 <h3>其他开发容器场景</h3>
 
@@ -602,17 +602,17 @@ RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
 
 <p>该命令允许你根据你的文件夹内容从列表中选择预定义的容器配置：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/select-dev-container-def-all.png">Add a dev container config</a></p>
+<p><img src="images/create-dev-container/select-dev-container-def-all.png" alt="Add a dev container config"></p>
 
 <p>你可以选择的预定义容器配置来自我们的<a href="https://containers.dev/templates">第一方和社区索引</a>，它是 <a href="https://containers.dev/">Dev Container 规范</a>的一部分。我们在 <a href="https://github.com/devcontainers/templates">devcontainers/templates 仓库</a>中托管了一组模板作为规范的一部分。你可以浏览该仓库的 <code>src</code> 文件夹来查看每个模板的内容。</p>
 
 <p>在使用 <strong>Dev Containers: Add Dev Container Configuration Files...</strong> 结束时，你将看到可用功能的列表，这些功能是你可以轻松添加到开发容器中的工具和语言。<strong>Dev Containers: Configure Container Features</strong> 允许你更新现有配置。</p>
 
-<p>!<a href="devcontainers/images/containers/container-features.png">Dev container features in Command Palette</a></p>
+<p><img src="images/containers/container-features.png" alt="Dev container features in Command Palette"></p>
 
 <p>你也可以重用现有的 Dockerfile：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/select-dockerfile.png">Select Dockerfile</a></p>
+<p><img src="images/create-dev-container/select-dockerfile.png" alt="Select Dockerfile"></p>
 
 <p>现在你有了 <code>devcontainer.json</code> 和 Dockerfile，让我们来看看编辑容器配置文件的一般过程。</p>
 
@@ -622,7 +622,7 @@ RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
 
 <p>以下是使用这些命令的典型编辑循环：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/container-edit-loop.png">Container edit loop illustration</a></p>
+<p><img src="images/create-dev-container/container-edit-loop.png" alt="Container edit loop illustration"></p>
 
 <ol>
 <li>从命令面板（<code>kbstyle(F1)</code>）中的 <strong>Dev Containers: Add Dev Container Configuration Files...</strong> 开始。</li>
@@ -822,7 +822,7 @@ services:
 
 <p>你可以通过将 <code>devcontainer.json</code> 文件添加到源代码管理来轻松共享自定义的开发容器模板。通过在你的仓库中包含这些文件，任何在 VS Code 中打开你仓库本地副本的人都将自动收到重新在容器中打开文件夹的提示，前提是他们已安装 Dev Containers 扩展。</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/dev-container-reopen-prompt.png">Dev container configuration file reopen notification</a></p>
+<p><img src="images/create-dev-container/dev-container-reopen-prompt.png" alt="Dev container configuration file reopen notification"></p>
 
 <p>除了让你的团队使用一致的环境和工具链的优势之外，这也使新贡献者或团队成员更容易快速投入工作。首次贡献者将需要更少的指导，并在环境设置方面遇到更少的问题。</p>
 
@@ -846,7 +846,7 @@ services:
 
 <p>在设置编辑器中，你可以搜索 'dev containers repo' 来找到该设置：</p>
 
-<p>!<a href="devcontainers/images/create-dev-container/repo-container-folder-setting.png">Repository container folders setting</a></p>
+<p><img src="images/create-dev-container/repo-container-folder-setting.png" alt="Repository container folders setting"></p>
 
 <p>接下来，将你的 <code>.devcontainer/devcontainer.json</code>（及相关文件）放入一个镜像仓库远程位置的子文件夹中。例如，如果你想为 <code>github.com/devcontainers/templates</code> 创建配置，你将创建以下文件夹结构：</p>
 

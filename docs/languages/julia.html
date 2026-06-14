@@ -430,7 +430,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>适用于 Visual Studio Code 的 <a href="https://marketplace.visualstudio.com/items?itemName=julialang.language-julia">Julia 扩展</a>包含内置的动态自动补全、内联结果、绘图面板、集成 REPL、变量视图、代码导航以及许多其他高级语言功能。</p>
 
-<p>!<a href="languages/images/julia/overview.png">Julia VS Code overview</a></p>
+<p><img src="images/julia/overview.png" alt="Julia VS Code overview"></p>
 
 <p>这些功能大多数开箱即用，而某些功能可能需要进行基本配置才能获得最佳体验。本页面总结了 Julia VS Code 扩展中包含的 Julia 功能。有关这些功能如何工作以及如何配置的更深入指南，请参阅 <a href="https://www.julia-vscode.org/docs/stable/">Julia in VS Code</a> 文档。</p>
 
@@ -452,7 +452,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>如果您在安装 Julia VS Code 扩展时遇到任何问题，请查看<a href="../docs/configure/extensions/extension-marketplace.md#install-an-extension">安装扩展</a>，这应该有助于澄清任何问题。</p>
 
-<p>!<a href="languages/images/julia/julia-extension-marketplace.png">Julia in the VS Code Marketplace</a></p>
+<p><img src="images/julia/julia-extension-marketplace.png" alt="Julia in the VS Code Marketplace"></p>
 
 <h2>运行代码</h2>
 
@@ -462,21 +462,21 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以通过打开要调试的 Julia 文件来开始调试。然后，在活动栏上选择<strong>运行和调试</strong>视图（如下所示）：</p>
 
-<p>!<a href="languages/images/julia/debug1.png">Getting started debugging Julia code</a></p>
+<p><img src="images/julia/debug1.png" alt="Getting started debugging Julia code"></p>
 
 <p>接下来，您可以通过单击行号左侧来添加断点：</p>
 
-<p>!<a href="languages/images/julia/debug2.png">Adding a breakpoint</a></p>
+<p><img src="images/julia/debug2.png" alt="Adding a breakpoint"></p>
 
 <p>红点只会在您选择了行号旁边的区域之后才会显示。</p>
 
 <p>在添加了断点（或任何其他类型的调试配置）之后，选择左侧的<strong>运行和调试</strong>按钮。初始运行可能需要几秒钟才能开始。然后，您应该会看到使用调试配置运行代码的输出。在此示例中，由于我们添加了断点，您将看到以下内容：</p>
 
-<p>!<a href="languages/images/julia/debug3.png">Run and Debug your Julia file</a></p>
+<p><img src="images/julia/debug3.png" alt="Run and Debug your Julia file"></p>
 
 <p>请注意，第二个 print 命令尚未执行，终端中只有第一个 print 命令的文本。您可以通过选择<strong>继续</strong>按钮来完成程序的执行：</p>
 
-<p>!<a href="languages/images/julia/debug4.png">Finish the code execution in the debugger</a></p>
+<p><img src="images/julia/debug4.png" alt="Finish the code execution in the debugger"></p>
 
 <p>要了解更多关于使用 VS Code 调试 Julia 代码的信息，您可以阅读 <a href="https://www.julia-vscode.org/docs/stable/userguide/debugging/">Julia in VS Code - Debugging</a>。</p>
 
@@ -484,7 +484,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Julia VS Code 扩展通过 IntelliSense 提供代码补全功能。此功能开箱即用，对有经验和初学的 Julia 开发者都很有用。</p>
 
-<p>!<a href="languages/images/julia/code-completion.gif">Code completion with IntelliSense</a></p>
+<p><img src="images/julia/code-completion.gif" alt="Code completion with IntelliSense"></p>
 
 <p>您可以在 <a href="../docs/editing/intellisense.md">VS Code IntelliSense</a> 主题中了解更多信息。</p>
 
@@ -492,15 +492,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>默认情况下，在窗口左侧的活动栏中，您将看到 Julia 三点徽标，如下所示：</p>
 
-<p>!<a href="languages/images/julia/julia-tab1.png">Julia icon in the Activity bar</a></p>
+<p><img src="images/julia/julia-tab1.png" alt="Julia icon in the Activity bar"></p>
 
 <p>如果选择 Julia 图标，将打开 Julia 视图，其中显示<strong>工作区</strong>、<strong>文档</strong>和<strong>绘图导航器</strong>部分。<strong>工作区</strong>部分显示已加载到活动 Julia 会话中的源代码集合。默认情况下，它将是空白的，因为您尚未运行任何代码，但在运行某些代码之后，您将能够看到工作区的状态。</p>
 
-<p>!<a href="languages/images/julia/julia-tab2.png">Julia Workspace</a></p>
+<p><img src="images/julia/julia-tab2.png" alt="Julia Workspace"></p>
 
 <p><strong>文档</strong>部分允许您查看特定 Julia 函数的详细信息，而无需打开单独的浏览器窗口。您可以搜索已加载到活动会话中的任何 Julia 包的文档（通过执行 <code>using some_package</code>），但默认情况下，搜索栏将仅显示核心 Julia 文档的结果。</p>
 
-<p>!<a href="languages/images/julia/julia-tab3.png">Julia Documentation</a></p>
+<p><img src="images/julia/julia-tab3.png" alt="Julia Documentation"></p>
 
 <p>还有一个内置的<strong>绘图导航器</strong>，当您处理具有可视化组件的项目时，它非常有用。您可以设置图表默认在 VS Code 中渲染，然后方便地前后导航浏览它们。</p>
 

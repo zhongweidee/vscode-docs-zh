@@ -443,7 +443,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>VS Code 的终端有一项名为 shell 集成的附加功能，它通过命令左侧和滚动条中的装饰标记来跟踪命令运行的位置：</p>
 
-<p>!<a href="terminal/images/basics/integrated-terminal.png">集成终端可以像独立终端一样运行 mkdir 和 git 等命令。VS Code 的终端有一项名为 shell 集成的附加功能，它通过命令左侧和滚动条中的装饰标记来跟踪命令运行的位置。</a></p>
+<p><img src="images/basics/integrated-terminal.png" alt="集成终端可以像独立终端一样运行 mkdir 和 git 等命令。VS Code 的终端有一项名为 shell 集成的附加功能，它通过命令左侧和滚动条中的装饰标记来跟踪命令运行的位置。"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>如果您更喜欢在 VS Code 外部工作，可以使用 <code>kb(workbench.action.terminal.openNativeConsole)</code> 键盘快捷键打开外部终端</blockquote>
@@ -452,7 +452,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>集成终端可以使用您机器上安装的各种 shell，默认 shell 从系统默认设置中获取。Shell 会被检测到并显示在终端配置文件下拉菜单中。</p>
 
-<p>!<a href="terminal/images/basics/select-profile-dropdown.png">检测到的配置文件可以在新终端按钮旁边的下拉菜单中选择。Windows 上的示例包括 PowerShell、命令提示符、Git Bash 和 WSL</a></p>
+<p><img src="images/basics/select-profile-dropdown.png" alt="检测到的配置文件可以在新终端按钮旁边的下拉菜单中选择。Windows 上的示例包括 PowerShell、命令提示符、Git Bash 和 WSL"></p>
 
 <p>您可以在<a href="../docs/terminal/profiles.md">终端配置文件</a>文章中了解更多关于配置终端 shell 的信息。</p>
 
@@ -460,7 +460,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>终端选项卡用户界面位于终端视图的右侧。每个终端都有一个条目，包含其名称、图标、颜色和组装饰标记（如果有）。</p>
 
-<p>!<a href="terminal/images/basics/tabs.png">激活启动配置文件按钮将显示所有检测到和手动配置的配置文件</a></p>
+<p><img src="images/basics/tabs.png" alt="激活启动配置文件按钮将显示所有检测到和手动配置的配置文件"></p>
 
 <p>通过选择<strong>终端</strong>面板右上角的 <strong>+</strong> 图标、从终端下拉菜单中选择配置文件或触发 <code>kb(workbench.action.terminal.new)</code> 命令来添加终端实例。此操作会在与该终端关联的选项卡列表中创建另一个条目。</p>
 
@@ -494,11 +494,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以使用<strong>终端：在编辑器区域中创建新终端</strong>命令、<strong>终端：在编辑器区域中侧方创建新终端</strong>命令，或将终端从终端视图拖入编辑器区域，在编辑器区域中打开终端（终端编辑器）。终端编辑器会像常规编辑器选项卡一样显示：</p>
 
-<p>!<a href="terminal/images/basics/terminal-editor.png">终端编辑器像常规文本文件选项卡一样显示</a></p>
+<p><img src="images/basics/terminal-editor.png" alt="终端编辑器像常规文本文件选项卡一样显示"></p>
 
 <p>您可以使用编辑器组布局系统将终端编辑器放在任意一侧或以多维方式排列，例如，将 PowerShell 和 WSL 终端堆叠在文件编辑器的右侧：</p>
 
-<p>!<a href="terminal/images/basics/terminal-editor-grid.png">终端编辑器可以使用编辑器组布局系统进行布局，例如 2 个终端可以放置在文本编辑器的右侧</a></p>
+<p><img src="images/basics/terminal-editor-grid.png" alt="终端编辑器可以使用编辑器组布局系统进行布局，例如 2 个终端可以放置在文本编辑器的右侧"></p>
 
 <p><code>setting(terminal.integrated.defaultLocation)</code> 设置可以更改终端的默认 <code>view</code> 或 <code>editor</code> 区域位置。</p>
 
@@ -546,29 +546,29 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>URI/URL：外观像 URI 的链接，例如 <code>https://code.visualstudio.com</code>、<code>vscode://path/to/file</code> 或 <code>file://path/to/file</code>，将使用该协议的标准处理器打开。例如，<code>https</code> 链接将打开浏览器。
 </li>
 </ul>
-<p>  !<a href="terminal/images/basics/link-uri.png">打开 URI 链接将在系统浏览器中打开它</a></p>
+<p>  <img src="images/basics/link-uri.png" alt="打开 URI 链接将在系统浏览器中打开它"></p>
 
 <ul>
 <li>文件链接：指向已验证系统中存在的文件的链接。这些将在新编辑器选项卡中打开文件，并支持许多常见的行/列格式，如 <code>file:1:2</code>、<code>file:line 1, column 2</code>。
 </li>
 </ul>
-<p>  !<a href="terminal/images/basics/link-file.png">激活文件链接将在编辑器中打开它</a></p>
+<p>  <img src="images/basics/link-file.png" alt="激活文件链接将在编辑器中打开它"></p>
 
 <ul>
 <li>文件夹链接：指向文件夹的链接类似于文件链接，但将在该文件夹处打开一个新的 VS Code 窗口。
 </li>
 </ul>
-<p>  !<a href="terminal/images/basics/link-folder.png">激活文件夹链接将在新窗口中打开它</a></p>
+<p>  <img src="images/basics/link-folder.png" alt="激活文件夹链接将在新窗口中打开它"></p>
 
 <ul>
 <li>单词链接：回退链接类型，使用 <code>setting(terminal.integrated.wordSeparators)</code> 设置。该设置定义单词边界，使几乎所有文本都成为单词。激活单词链接会在工作区中搜索该单词。如果只有一个结果，则会打开它；否则将显示搜索结果。单词链接被视为"低置信度"链接，除非您按住 <code>kbstyle(Ctrl)</code>/<code>kbstyle(Cmd)</code> 键，否则不会显示下划线或工具提示。它们对行和列后缀的支持也有限。
 </li>
 </ul>
-<p>  !<a href="terminal/images/basics/link-word.png">激活单词链接 'terminal:15' 将打开一个快速选择器，在工作区中搜索所有包含 'terminal' 的文件，选择一个选项将在第 15 行打开该文件</a></p>
+<p>  <img src="images/basics/link-word.png" alt="激活单词链接 'terminal:15' 将打开一个快速选择器，在工作区中搜索所有包含 'terminal' 的文件，选择一个选项将在第 15 行打开该文件"></p>
 
 <p><strong>打开检测到的链接</strong>命令 (<code>kb(workbench.action.terminal.openDetectedLink)</code>) 可用于通过键盘访问链接：</p>
 
-<p>!<a href="terminal/images/basics/link-open-detected.png">打开检测到的链接会打开一个快速选择器，显示视口中所有按类别分组的链接</a></p>
+<p><img src="images/basics/link-open-detected.png" alt="打开检测到的链接会打开一个快速选择器，显示视口中所有按类别分组的链接"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>如果链接验证导致性能问题，例如在高延迟远程环境中，请通过 <code>setting(terminal.integrated.enableFileLinks)</code> <a href="../docs/configure/settings.md">设置</a>禁用它。</blockquote>
@@ -577,7 +577,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>扩展可以提供<strong>链接提供程序</strong>，允许扩展定义单击时会发生什么。一个例子是 <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> 扩展检测 Git 分支链接。</p>
 
-<p>!<a href="terminal/images/basics/link-extension.png">安装 GitLens 后，悬停分支名称将提供在 UI 中打开分支的自定义行为</a></p>
+<p><img src="images/basics/link-extension.png" alt="安装 GitLens 后，悬停分支名称将提供在 UI 中打开分支的自定义行为"></p>
 
 <h3>键盘可访问性</h3>
 
@@ -641,7 +641,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>集成终端具有查找功能，可以通过 <code>kb(workbench.action.terminal.focusFind)</code> 触发。</p>
 
-<p>!<a href="terminal/images/basics/terminal-find.png">在终端中查找将高亮显示所有匹配查询的文本</a></p>
+<p><img src="images/basics/terminal-find.png" alt="在终端中查找将高亮显示所有匹配查询的文本"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>可以通过从<a href="../docs/terminal/advanced.md#keyboard-shortcuts-and-the-shell">跳过 shell 的命令</a>中删除 <code>workbench.action.terminal.focusFind</code> 命令，将 <code>kbstyle(Ctrl+F)</code> 发送给 shell。</blockquote>
@@ -786,7 +786,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ol>
-<p>!<a href="terminal/images/basics/terminal-chat-2.png">终端内联聊天可帮助您快速获取并运行 shell 命令</a></p>
+<p><img src="images/basics/terminal-chat-2.png" alt="终端内联聊天可帮助您快速获取并运行 shell 命令"></p>
 
 <p>当 Copilot 提供回复时，您可以选择<strong>运行</strong>直接执行命令，或选择<strong>插入</strong>将其添加到终端中以供进一步编辑。</p>
 
@@ -846,7 +846,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以通过资源管理器中的<strong>在集成终端中打开</strong>上下文菜单命令为特定文件夹打开新终端。</p>
 
-<p>!<a href="terminal/images/basics/open-in-terminal-command.png">资源管理器中选定的文件夹，显示包含"在集成终端中打开"命令的上下文菜单</a></p>
+<p><img src="images/basics/open-in-terminal-command.png" alt="资源管理器中选定的文件夹，显示包含"在集成终端中打开"命令的上下文菜单"></p>
 
 <p>默认情况下，<strong>在集成终端中打开</strong>没有关联的键盘快捷键，但您可以通过键盘快捷方式编辑器 (<code>kb(workbench.action.openGlobalKeybindings)</code>) 添加自己的快捷键，将键盘快捷键添加到 <code>keybindings.json</code> 中。</p>
 

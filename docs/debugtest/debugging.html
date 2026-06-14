@@ -438,7 +438,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以下图示展示了调试器用户界面的主要组成部分：</p>
 
-<p>!<a href="debugtest/images/debugging/debugging_hero.png">Debugging diagram</a></p>
+<p><img src="images/debugging/debugging_hero.png" alt="Debugging diagram"></p>
 
 <ol>
 <li><strong>"运行和调试"视图</strong>：显示与运行、调试以及管理调试配置设置相关的所有信息。</li>
@@ -481,7 +481,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>使用 <code>kb(workbench.action.debug.start)</code> 键启动调试会话，或在<strong>"运行和调试"</strong>视图 (<code>workbench.view.debug</code>) 中选择<strong>"运行和调试"</strong>。
 </li>
 </ol>
-<p>    !<a href="debugtest/images/debugging/debug-start.png">Simplified initial Run and Debug view</a></p>
+<p>    <img src="images/debugging/debug-start.png" alt="Simplified initial Run and Debug view"></p>
 
 <p>    对于更复杂的调试场景，如附加到正在运行的进程，你需要创建一个 <code>launch.json</code> 文件来指定调试器配置。获取有关<a href="../docs/debugtest/debugging-configuration.md">调试配置</a>的更多信息。</p>
 
@@ -495,19 +495,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>当调试会话开始时，将显示<strong>"调试控制台"</strong>面板并显示调试输出，状态栏颜色也会发生变化（默认颜色主题为橙色）。
 </li>
 </ol>
-<p>    !<a href="debugtest/images/debugging/debug-session.png">debug session</a></p>
+<p>    <img src="images/debugging/debug-session.png" alt="debug session"></p>
 
 <ol>
 <li>状态栏中的调试状态显示活动的调试配置。选择调试状态可以更改活动启动配置并开始调试，而无需打开<strong>"运行和调试"</strong>视图。
 </li>
 </ol>
-<p>    !<a href="debugtest/images/debugging/debug-status.png">Debug status</a></p>
+<p>    <img src="images/debugging/debug-status.png" alt="Debug status"></p>
 
 <h2>调试操作</h2>
 
 <p>一旦调试会话开始，调试工具栏就会出现在窗口顶部。工具栏包含用于控制调试会话流程的操作，例如单步执行代码、暂停执行和停止调试会话。</p>
 
-<p>!<a href="debugtest/images/debugging/toolbar.png">Screenshot that shows the Debug toolbar, with icons to control the flow of the debug session.</a></p>
+<p><img src="images/debugging/toolbar.png" alt="Screenshot that shows the Debug toolbar, with icons to control the flow of the debug session."></p>
 
 <p>下表描述了调试工具栏中可用的操作：</p>
 
@@ -544,11 +544,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>或者，可以通过启用 <code>setting(debug.showBreakpointsInOverviewRuler)</code> 设置，在编辑器的概述标尺中显示断点：</p>
 
-<p>!<a href="debugtest/images/debugging/bpts-in-overview.png">breakpoints in overview ruler</a></p>
+<p><img src="images/debugging/bpts-in-overview.png" alt="breakpoints in overview ruler"></p>
 
 <p>为了更好地控制断点，请使用<strong>"运行和调试"</strong>视图的<strong>"断点"</strong>部分。此部分列出了代码中的所有断点，并提供额外的操作来管理它们。</p>
 
-<p>!<a href="debugtest/images/debugging/breakpoints.png">Breakpoints</a></p>
+<p><img src="images/debugging/breakpoints.png" alt="Breakpoints"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>如果你希望以树形视图查看断点，按文件分组，请将 <code>setting(debug.breakpointsView.presentation)</code> 设置配置为 <code>tree</code>。</blockquote>
@@ -580,7 +580,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择要设置的条件类型（表达式、命中次数或等待断点）。
 </li>
 </ol>
-<p>    !<a href="debugtest/images/debugging/hitCount.gif">HitCount</a></p>
+<p>    <img src="images/debugging/hitCount.gif" alt="HitCount"></p>
 
 <p>要向现有断点添加条件：</p>
 
@@ -633,7 +633,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要添加日志点，请在编辑器左边距中右键单击并选择<strong>"添加日志点"</strong>，或在命令面板 (<code>kb(workbench.action.showCommands)</code>) 中使用<strong>"调试: 添加日志点..."</strong>命令。你还可以配置 <code>setting(debug.gutterMiddleClickAction)</code> 设置，以在编辑器装订线中按下鼠标中键时切换日志点。</p>
 
-<p>!<a href="debugtest/images/debugging/log-points.gif">Logpoints</a></p>
+<p><img src="images/debugging/log-points.gif" alt="Logpoints"></p>
 
 <p>与常规断点一样，日志点可以启用或禁用，也可以由条件和/或命中次数控制。</p>
 
@@ -646,7 +646,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在调试会话期间，你可以在<strong>"运行和调试"</strong>视图的<strong>"变量"</strong>部分中检查变量和表达式，或者将鼠标悬停在编辑器中的源代码上。变量值和表达式计算结果相对于<strong>"调用堆栈"</strong>部分中所选的堆栈帧。</p>
 
-<p>!<a href="debugtest/images/debugging/variables.png">Screenshot of the Variables section in the Run and Debug view.</a></p>
+<p><img src="images/debugging/variables.png" alt="Screenshot of the Variables section in the Run and Debug view."></p>
 
 <p>要在调试会话期间更改变量的值，请在<strong>"变量"</strong>部分中右键单击该变量，然后选择<strong>"设置值"</strong> (<code>kb(debug.setVariable)</code>)。</p>
 
@@ -654,11 +654,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>变量和表达式也可以在<strong>"运行和调试"</strong>视图的<strong>"监视"</strong>部分中进行计算和监视。</p>
 
-<p>!<a href="debugtest/images/debugging/watch.png">Screenshot of the Watch section in the Run and Debug view.</a></p>
+<p><img src="images/debugging/watch.png" alt="Screenshot of the Watch section in the Run and Debug view."></p>
 
 <p>要按名称或值筛选变量，请在焦点位于<strong>"变量"</strong>部分时使用 <code>kb(list.find)</code> 键盘快捷键，然后输入搜索词。</p>
 
-<p>!<a href="debugtest/images/debugging/filtering-variables.png">Screenshot of the filter control in the Variables section.</a></p>
+<p><img src="images/debugging/filtering-variables.png" alt="Screenshot of the filter control in the Variables section."></p>
 
 <h3>调试控制台 REPL</h3>
 
@@ -668,7 +668,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>调试控制台输入使用活动编辑器的模式，这意味着调试控制台输入支持语法着色、缩进、引号自动补全和其他语言功能。</p>
 
-<p>!<a href="debugtest/images/debugging/debugconsole.png">Screenshot of the Debug Console.</a></p>
+<p><img src="images/debugging/debugconsole.png" alt="Screenshot of the Debug Console."></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>你必须处于活动的调试会话中才能使用调试控制台 REPL。</blockquote>
@@ -681,13 +681,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>各个会话现在在<strong>"调用堆栈"</strong>视图中显示为顶级元素。
 </li>
 </ul>
-<p>    !<a href="debugtest/images/debugging/debug-callstack.png">Callstack View</a></p>
+<p>    <img src="images/debugging/debug-callstack.png" alt="Callstack View"></p>
 
 <ul>
 <li>调试工具栏显示当前<strong>活动会话</strong>（所有其他会话可在下拉菜单中找到）。
 </li>
 </ul>
-<p>    !<a href="debugtest/images/debugging/debug-actions-widget.png">Debug Actions Widget</a></p>
+<p>    <img src="images/debugging/debug-actions-widget.png" alt="Debug Actions Widget"></p>
 
 <ul>
 <li>调试操作（例如，调试工具栏中的所有操作）在活动会话上执行。可以通过使用调试工具栏中的下拉菜单或选择<strong>"调用堆栈"</strong>视图中的不同元素来更改活动会话。

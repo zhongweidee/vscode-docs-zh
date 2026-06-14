@@ -443,13 +443,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">VS Code 的 C++ 扩展</a>。通过在<strong>扩展</strong>视图（<code>kb(workbench.view.extensions)</code>）中搜索 'c++' 来安装 C/C++ 扩展。
 </li>
 </ol>
-<p>    !<a href="cpp/images/cpp/cpp-extension.png">C/C++ extension</a></p>
+<p>    <img src="images/cpp/cpp-extension.png" alt="C/C++ extension"></p>
 
 <ol>
 <li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools">VS Code 的 CMake Tools 扩展</a>。通过在<strong>扩展</strong>视图（<code>kb(workbench.view.extensions)</code>）中搜索 'CMake tools' 来安装 CMake Tools 扩展。
 </li>
 </ol>
-<p>    !<a href="cpp/images/cpp/cmake-extension.png">CMake tools extension</a></p>
+<p>    <img src="images/cpp/cmake-extension.png" alt="CMake tools extension"></p>
 
 <ol>
 <li>你还需要安装 CMake、编译器、调试器和构建工具。
@@ -493,7 +493,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>创建 CMake 项目</h2>
 
-<p>如果你没有现有的 CMake 项目，请按照<a href="cpp/cmake-quickstart">创建 CMake 项目</a>中的步骤操作。</p>
+<p>如果你没有现有的 CMake 项目，请按照<a href="cmake-quickstart">创建 CMake 项目</a>中的步骤操作。</p>
 
 <p>如果你已经有一个现有的 CMake 项目，且其根目录中有一个 <code>CMakeLists.txt</code> 文件，请继续<a href="#configure-hello-world">配置 Hello World</a>以配置你的项目。</p>
 
@@ -509,17 +509,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>我们建议使用 CMake Presets 来管理你的 CMake 配置。CMake Presets 使你能够指定一个通用的 JSON 文件，在其中存储项目的所有配置。然后，你可以跨不同的 IDE 和不同的操作系统与他人共享此文件。</p>
 
-<p>如果你按照<a href="cpp/cmake-quickstart">创建 CMake 项目</a>中的步骤创建了项目，则你的项目已配置为使用 CMake Presets。</p>
+<p>如果你按照<a href="cmake-quickstart">创建 CMake 项目</a>中的步骤创建了项目，则你的项目已配置为使用 CMake Presets。</p>
 
 <p>如果你的项目有一个 <code>CMakePresets.json</code> 文件，你可以使用 Configure 和 Build 预设来指定如何在你的机器上构建项目。</p>
 
 <p>你可以在 CMake Tools 视图的<strong>Configure</strong>和<strong>Build</strong>节点下的 Project Status 中查看预设的活动配置。你可以随时选择这些节点来设置或更改你的 Configure 和 Build 预设。</p>
 
-<p>!<a href="cpp/images/cpp/cmake-side-panel-presets.png">CMake Side Panel with presets</a></p>
+<p><img src="images/cpp/cmake-side-panel-presets.png" alt="CMake Side Panel with presets"></p>
 
 <p>你还可以通过在命令面板（<code>kb(workbench.action.showCommands)</code>）中运行<strong>CMake: Select Configure Preset</strong>或<strong>CMake: Select Build Preset</strong>命令来设置你的预设。</p>
 
-<p>!<a href="cpp/images/cpp/select-cmake-preset.png">CMake Select presets</a></p>
+<p><img src="images/cpp/select-cmake-preset.png" alt="CMake Select presets"></p>
 
 <h4>使用 CMake Kits 进行配置</h4>
 <p>如果你的项目没有 <code>CMakePresets.json</code> 文件，则需要使用工具包（kits）。工具包代表一个工具链，即用于构建项目的编译器、链接器和其他工具。</p>
@@ -532,11 +532,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择你要使用的编译器。例如，根据你安装的编译器，你可能会看到类似以下内容：
 </li>
 </ol>
-<p>    !<a href="cpp/images/cpp/cmake-selectkit.png">Select the kit</a></p>
+<p>    <img src="images/cpp/cmake-selectkit.png" alt="Select the kit"></p>
 
 <p>    先前选择的工具包现在显示在 CMake Tools 视图的<strong>Project Status</strong>部分中。</p>
 
-<p>    !<a href="cpp/images/cpp/cmake-kit.png">Selected kit in Sidebar</a></p>
+<p>    <img src="images/cpp/cmake-kit.png" alt="Selected kit in Sidebar"></p>
 
 <p>要更改工具包，你可以在 CMake Tools 视图的<strong>Project Status</strong>部分中选择工具包，或从命令面板再次运行<strong>CMake: Select a Kit</strong>命令。如果你没有看到你正在寻找的编译器，你可以编辑项目中的 <code>cmake-tools-kits.json</code> 文件。要编辑该文件，请打开命令面板（<code>kb(workbench.action.showCommands)</code>）并运行<strong>CMake: Edit User-Local CMake Kits</strong>命令。</p>
 
@@ -551,11 +551,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要选择变体，请打开命令面板（<code>kb(workbench.action.showCommands)</code>）运行<strong>CMake: Select Variant</strong>命令。</p>
 
-<p>!<a href="cpp/images/cpp/cmake-select-variant.png">Select variant</a></p>
+<p><img src="images/cpp/cmake-select-variant.png" alt="Select variant"></p>
 
 <p>选择<strong>Debug</strong>以在构建中包含调试信息。</p>
 
-<p>!<a href="cpp/images/cpp/cmake-variant-type.png">Select debug variant type</a></p>
+<p><img src="images/cpp/cmake-variant-type.png" alt="Select debug variant type"></p>
 
 <p>选定的变体将显示在状态栏中活动工具包的旁边。</p>
 
@@ -567,18 +567,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>配置项目后，你就可以进行构建了。打开命令面板（<code>kb(workbench.action.showCommands)</code>）并运行<strong>CMake: Build</strong>命令，或从状态栏中选择<strong>Build</strong>按钮。</p>
 
-<p>!<a href="cpp/images/cpp/cmake-build-v2.png">Build</a></p>
+<p><img src="images/cpp/cmake-build-v2.png" alt="Build"></p>
 
 <p>你可以通过从命令面板中选择<strong>CMake: Set Build Target</strong>来选择要构建的目标。默认情况下，CMake Tools 会构建所有目标。选定的目标将显示在 CMake Tools 侧边栏中<strong>Build</strong>节点下的<strong>Project Status</strong>视图中，也可以从那里进行设置。</p>
 
-<p>!<a href="cpp/images/cpp/build-target.png">Build Target</a></p>
+<p><img src="images/cpp/build-target.png" alt="Build Target"></p>
 
 <h2>调试 hello world</h2>
 
 <p>要运行和调试你的项目，请打开 <code>main.cpp</code> 并在 <code>std::cout</code> 行上设置一个断点。</p>
 <p>然后打开命令面板（<code>kb(workbench.action.showCommands)</code>）并运行<strong>CMake: Debug</strong>。调试器将在 <code>std::cout</code> 行停止：</p>
 
-<p>!<a href="cpp/images/cpp/cmake-debug.png">Debug</a></p>
+<p><img src="images/cpp/cmake-debug.png" alt="Debug"></p>
 
 <p>继续按 <code>kb(workbench.action.debug.start)</code> 以继续执行。</p>
 

@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 </li>
 </ol>
-<p>      !<a href="intelligentapps/images/finetune/settings.png">Foundry Toolkit Settings</a></p>
+<p>      <img src="images/finetune/settings.png" alt="Foundry Toolkit Settings"></p>
 
 <ol>
 <li>重新加载 VS Code 以使更改生效。
@@ -463,7 +463,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在命令面板 (<code>kb(workbench.action.showCommands)</code>) 中运行 <code>Foundry Toolkit: Focus on Tools View</code></li>
 <li>导航到 <code>Fine-tuning</code> 以访问模型目录。选择一个模型进行微调。为您的项目命名并选择其在您机器上的位置。然后，点击 <em>"Configure Project"</em> 按钮。</li>
 </ol>
-<p>    !<a href="intelligentapps/images/finetune/panel-select-model.png">Panel: Select Model</a></p>
+<p>    <img src="images/finetune/panel-select-model.png" alt="Panel: Select Model"></p>
 <ol>
 <li>项目配置<ol>
 <li>避免启用 <em>"Fine-tune locally"</em> 选项。<ol>
@@ -474,11 +474,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 </li>
 </ol>
-<p>      !<a href="intelligentapps/images/finetune/panel-config-model.png">Panel: Configure the Model</a></p>
+<p>      <img src="images/finetune/panel-config-model.png" alt="Panel: Configure the Model"></p>
 <ol>
 <li>选择 <em>"Relaunch Window In Workspace"</em> 以打开您的微调项目。</li>
 </ol>
-<p>      !<a href="intelligentapps/images/finetune/panel-generate-project.png">Panel: Generate Project</a></p>
+<p>      <img src="images/finetune/panel-generate-project.png" alt="Panel: Generate Project"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>该项目目前在 Foundry Toolkit for VS Code 中可以在本地或远程运行。如果您在项目创建期间选择了 <em>"Fine-tune locally"</em>，它将仅在 WSL 中运行，不使用云资源。否则，该项目将被限制在远程 Azure 容器应用环境中运行。</blockquote>
@@ -487,16 +487,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要开始，您需要为远程微调预配 Azure 资源。从命令面板中找到并执行 <code>Foundry Toolkit: Provision Azure Container Apps job for fine-tuning</code>。在此过程中，系统会提示您选择 Azure 订阅和资源组。</p>
 
-<p>!<a href="intelligentapps/images/finetune/command-provision-finetune.png">Provision Fine-Tuning</a></p>
+<p><img src="images/finetune/command-provision-finetune.png" alt="Provision Fine-Tuning"></p>
 
 <p>通过输出通道中显示的链接监控预配进度。</p>
-<p>!<a href="intelligentapps/images/finetune/log-finetining-progress.png">Provision Progress</a></p>
+<p><img src="images/finetune/log-finetining-progress.png" alt="Provision Progress"></p>
 
 <h3>运行微调</h3>
 
 <p>要启动远程微调作业，请在命令面板中运行 <code>Foundry Toolkit: Run fine-tuning</code> 命令。</p>
 
-<p>!<a href="intelligentapps/images/finetune/command-run-finetuning.png">Run Fine-tuning</a></p>
+<p><img src="images/finetune/command-run-finetuning.png" alt="Run Fine-tuning"></p>
 
 <p>然后扩展将执行以下操作：</p>
 
@@ -511,7 +511,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>微调结果将存储在 Azure 文件中。</p>
 <p>要浏览 Azure 文件共享中的输出文件，您可以使用输出面板中提供的链接导航到 Azure 门户。或者，您可以直接访问 Azure 门户，找到 <code>./infra/fintuning.config.json</code> 中定义的名为 <code>STORAGE_ACCOUNT_NAME</code> 的存储账户，以及 <code>./infra/fintuning.config.json</code> 中定义的名为 <code>FILE_SHARE_NAME</code> 的文件共享。</p>
 
-<p>!<a href="intelligentapps/images/finetune/log-finetuning-files.png">file-share</a></p>
+<p><img src="images/finetune/log-finetuning-files.png" alt="file-share"></p>
 
 <h3>查看日志</h3>
 
@@ -519,7 +519,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>或者，您可以直接在 VSCode 输出面板中查看控制台日志。</p>
 
-<p>!<a href="intelligentapps/images/finetune/notification-finetune.png">log-button</a></p>
+<p><img src="images/finetune/notification-finetune.png" alt="log-button"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>作业可能需要几分钟才能启动。如果已有正在运行的作业，当前作业可能会排队等待稍后启动。</blockquote>
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>或者，如果您已经打开了 Azure 门户，可以从 Azure 容器应用作业的 <em>"Execution history"</em> 面板中找到作业历史记录。</p>
 
-<p>!<a href="intelligentapps/images/finetune/finetune-job-history.png">Job Execution History</a></p>
+<p><img src="images/finetune/finetune-job-history.png" alt="Job Execution History"></p>
 
 <p>日志有两种类型，<em>"Console"</em> 和 <em>"System"</em>。</p>
 
@@ -541,7 +541,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>要查看和查询您的日志，请选择 <em>"Console"</em> 按钮并导航到 Log Analytics 页面，您可以在其中查看所有日志并编写查询。</p>
 
-<p>!<a href="intelligentapps/images/finetune/finetune-job-log-query.png">Job Log Analytics</a></p>
+<p><img src="images/finetune/finetune-job-log-query.png" alt="Job Log Analytics"></p>
 
 <blockquote>有关 Azure 容器应用日志的更多信息，请参阅 <a href="https://learn.microsoft.com/azure/container-apps/logging">Azure 容器应用中的应用程序日志记录</a>。</blockquote>
 
@@ -551,11 +551,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>或者您可以在命令面板中运行命令 <code>Foundry Toolkit: Show the running fine-tuning job streaming logs</code>。</p>
 
-<p>!<a href="intelligentapps/images/finetune/command-show-streaming-log.png">Streaming Log Command</a></p>
+<p><img src="images/finetune/command-show-streaming-log.png" alt="Streaming Log Command"></p>
 
 <p>正在运行的微调作业的流式日志将显示在输出面板中。</p>
 
-<p>!<a href="intelligentapps/images/finetune/log-finetuning-res.png">Streaming Log Output</a></p>
+<p><img src="images/finetune/log-finetuning-res.png" alt="Streaming Log Output"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>作业可能因资源不足而排队。如果日志未显示，请等待一段时间，然后再次执行命令重新连接到流式日志。</blockquote>
@@ -565,13 +565,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>适配器在远程环境中训练完成后，使用一个简单的 Gradio 应用程序与模型交互。</p>
 
-<p>!<a href="intelligentapps/images/finetune/log-finetuning-res.png">Fine-tune complete</a></p>
+<p><img src="images/finetune/log-finetuning-res.png" alt="Fine-tune complete"></p>
 
 <h3>预配 Azure 资源</h3>
 
 <p>与微调过程类似，您需要通过从命令面板执行 <code>Foundry Toolkit: Provision Azure Container Apps for inference</code> 来为远程推理设置 Azure 资源。在此设置过程中，系统会要求您选择 Azure 订阅和资源组。</p>
 
-<p>!<a href="intelligentapps/images/finetune/command-provision-inference.png">Provision Inference Resource</a></p>
+<p><img src="images/finetune/command-provision-inference.png" alt="Provision Inference Resource"></p>
 
 <p>默认情况下，推理的订阅和资源组应与微调所用的一致。推理将使用相同的 Azure 容器应用环境，并访问存储在 Azure 文件中的模型和模型适配器，这些是在微调步骤中生成的。</p>
 
@@ -579,12 +579,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果您希望修改推理代码或重新加载推理模型，请执行 <code>Foundry Toolkit: Deploy for inference</code> 命令。这将把您的最新代码与 ACA 同步并重启副本。</p>
 
-<p>!<a href="intelligentapps/images/finetune/command-deploy.png">Deploy for inference</a></p>
+<p><img src="images/finetune/command-deploy.png" alt="Deploy for inference"></p>
 
 <p>部署成功完成后，模型现在可以使用此终结点进行评估。</p>
 <p>您可以通过选择 VSCode 通知中显示的 <em>"Go to Inference Endpoint"</em> 按钮来访问推理 API。或者，Web API 终结点可以在 <code>./infra/inference.config.json</code> 中的 <code>ACA_APP_ENDPOINT</code> 下以及输出面板中找到。</p>
 
-<p>!<a href="intelligentapps/images/finetune/notification-deploy.png">App Endpoint</a></p>
+<p><img src="images/finetune/notification-deploy.png" alt="App Endpoint"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>推理终结点可能需要几分钟才能完全运行。</blockquote>
@@ -613,15 +613,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在命令面板中，输入并选择 <code>Foundry Toolkit: Add Azure Container Apps Job secret for fine-tuning</code>
 </li>
 </ol>
-<p>    !<a href="intelligentapps/images/finetune/command-add-secret.png">Add secret</a></p>
+<p>    <img src="images/finetune/command-add-secret.png" alt="Add secret"></p>
 
 <ol>
 <li>提供密钥名称和值
 </li>
 </ol>
-<p>    !<a href="intelligentapps/images/finetune/input-secret-name.png">Input secret name</a></p>
+<p>    <img src="images/finetune/input-secret-name.png" alt="Input secret name"></p>
 
-<p>    !<a href="intelligentapps/images/finetune/input-secret.png">Input secret</a></p>
+<p>    <img src="images/finetune/input-secret.png" alt="Input secret"></p>
 
 <p>    例如，如果您使用私有 HuggingFace 数据集或需要 Hugging Face 访问控制的模型，请将您的 HuggingFace 令牌设置为环境变量 <a href="https://huggingface.co/docs/huggingface_hub/package_reference/environment_variables#hftoken"><code>HF_TOKEN</code></a>，以避免在 Hugging Face Hub 上手动登录。</p>
 

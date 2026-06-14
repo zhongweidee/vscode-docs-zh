@@ -451,11 +451,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开命令面板 (<code>kb(workbench.action.showCommands)</code>) 并使用<strong>容器映像: 构建映像...</strong> 命令来构建映像。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/command-build-image.png">构建容器映像</a></p>
+<p>    <img src="images/app-service/command-build-image.png" alt="构建容器映像"></p>
 
 <p>    你可以在构建映像命令的输出中找到映像名称，也可以在容器资源管理器的映像窗格中找到相同的名称。</p>
 
-<p>    !<a href="containers/images/app-service/terminal-output-build-image.png">构建映像输出</a></p>
+<p>    <img src="images/app-service/terminal-output-build-image.png" alt="构建映像输出"></p>
 
 <h2>将映像推送到容器注册表</h2>
 
@@ -465,13 +465,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开容器资源管理器，在<strong>注册表</strong>组下选择<strong>连接注册表...</strong> 图标，并按照提示操作。选择提供程序（Azure 或 Docker Hub）并提供凭据以连接到注册表。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/explorer-connect-registry.png">连接到注册表</a></p>
+<p>    <img src="images/app-service/explorer-connect-registry.png" alt="连接到注册表"></p>
 
 <ol>
 <li>现在，注册表将显示在"注册表"下方。
 </li>
 </ol>
-<p>   !<a href="containers/images/app-service/explorer-registries.png">注册表</a></p>
+<p>   <img src="images/app-service/explorer-registries.png" alt="注册表"></p>
 
 <ol>
 <li>（可选）为映像打标签。为了将映像上传到注册表，需要为映像打上注册表名称的标签，以便 <code>docker push</code> 命令将其上传到正确的注册表。<ul>
@@ -483,20 +483,20 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ol>
-<p>        !<a href="containers/images/app-service/explorer-tag-image.png">为映像打标签</a></p>
+<p>        <img src="images/app-service/explorer-tag-image.png" alt="为映像打标签"></p>
 <ul>
 <li>指定新名称 <code><你的注册表或用户名>/<映像名称>:<标签></code> 并完成打标签操作。例如，名为 WebApp6 的 ACR 的新映像名称将为 'webapp6.azurecr.io/webapp6:latest'，对于 Docker Hub，则为 'myusername/webapp6:latest'。
 </li>
 <li>该映像将显示在容器资源管理器中，位于映像标签所指向的注册表下。选择此映像并选择<strong>推送</strong>。如果映像尚未打标签，系统将提示你选择要推送到的注册表，并将根据选择为映像打标签。
 </li>
 </ul>
-<p>    !<a href="containers/images/app-service/explorer-push-image.png">推送映像</a></p>
+<p>    <img src="images/app-service/explorer-push-image.png" alt="推送映像"></p>
 
 <ol>
 <li>推送命令完成后，刷新推送映像的注册表节点，上传的映像将显示出来。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/explorer-refresh-registry.png">刷新注册表</a></p>
+<p>    <img src="images/app-service/explorer-refresh-registry.png" alt="刷新注册表"></p>
 
 <h2>将映像部署到 Azure</h2>
 
@@ -506,7 +506,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在容器资源管理器中，导航到"注册表"下的映像，右键单击标签，选择<strong>将映像部署到 Azure 应用服务...</strong> 或<strong>将映像部署到 Azure 容器应用...</strong>。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/explorer-deploy-to-app-service.png">部署到 Azure 应用服务</a></p>
+<p>    <img src="images/app-service/explorer-deploy-to-app-service.png" alt="部署到 Azure 应用服务"></p>
 
 <ol>
 <li>出现提示时，提供应用服务或容器应用的值。<ul>
@@ -521,19 +521,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>部署完成后，Visual Studio Code 会显示一条包含网站 URL 的通知。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/notification-appservice-deployment.png">部署完成通知</a></p>
+<p>    <img src="images/app-service/notification-appservice-deployment.png" alt="部署完成通知"></p>
 
 <ol>
 <li>你还可以在 Visual Studio Code 的输出面板的"容器工具"部分中查看结果。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/output-appservice-deployment.png">部署完成输出</a></p>
+<p>    <img src="images/app-service/output-appservice-deployment.png" alt="部署完成输出"></p>
 
 <ol>
 <li>要浏览已部署的网站，你可以使用 <code>kbstyle(Ctrl+click)</code> 打开输出面板中的 URL。你可能需要稍等片刻，等待应用在 Azure 中变为活动状态。新的应用服务或容器应用也会出现在 Visual Studio Code 的 Azure 视图中，你可以在其中右键单击网站并选择<strong>浏览网站</strong>。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/webapp-homepage.png">Web 应用程序</a></p>
+<p>    <img src="images/app-service/webapp-homepage.png" alt="Web 应用程序"></p>
 
 <h2>后续步骤</h2>
 

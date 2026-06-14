@@ -447,7 +447,7 @@ tsc --help</code></pre>
 
 <p>需要记住的重要一点是，VS Code 的 TypeScript 语言服务与你安装的 TypeScript 编译器是分开的。当你打开一个 TypeScript 文件时，可以在状态栏的语言状态项中看到 VS Code 的 TypeScript 版本。</p>
 
-<p>!<a href="typescript/images/compiling/version-status-bar.png">TypeScript version displayed in the language status in the Status Bar.</a></p>
+<p><img src="images/compiling/version-status-bar.png" alt="TypeScript version displayed in the language status in the Status Bar."></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>你可以使用_固定_图标将 TypeScript 版本固定到状态栏上。</blockquote>
@@ -458,7 +458,7 @@ tsc --help</code></pre>
 
 <p>通常，任何新的 TypeScript 项目的第一步是添加 <code>tsconfig.json</code> 文件。<code>tsconfig.json</code> 文件定义了 TypeScript <a href="https://www.typescriptlang.org/docs/handbook/tsconfig-json.html">项目设置</a>，例如编译器选项和应包含的文件。为此，打开你想要存放源代码的文件夹，并添加一个名为 <code>tsconfig.json</code> 的新文件。在这个文件里，IntelliSense（<code>kb(editor.action.triggerSuggest)</code>）会一路帮助你。</p>
 
-<p>!<a href="typescript/images/compiling/tsconfigintellisense.png">tsconfig.json IntelliSense</a></p>
+<p><img src="images/compiling/tsconfigintellisense.png" alt="tsconfig.json IntelliSense"></p>
 
 <p>一个简单的 <code>tsconfig.json</code> 示例如下，面向 ES5、<strong>CommonJS</strong> <a href="https://wiki.commonjs.org/wiki/Modules/1.0">模块</a>和 source map：</p>
 
@@ -487,13 +487,13 @@ console.log(message);</code></pre>
 
 <p>你现在应该能看到转译后的 <code>helloworld.js</code> JavaScript 文件，如果你安装了 <a href="https://nodejs.org">Node.js</a>，可以通过输入 <code>node helloworld.js</code> 来运行它。</p>
 
-<p>!<a href="typescript/images/compiling/build-hello-world.png">build and run Hello World</a></p>
+<p><img src="images/compiling/build-hello-world.png" alt="build and run Hello World"></p>
 
 <h3>步骤 2：运行 TypeScript 构建</h3>
 
 <p>从全局<strong>终端</strong>菜单中执行<strong>运行生成任务</strong>（<code>kb(workbench.action.tasks.build)</code>）。如果你在上一节中创建了 <code>tsconfig.json</code> 文件，应该会出现以下选择器：</p>
 
-<p>!<a href="typescript/images/compiling/typescript-build.png">TypeScript Build</a></p>
+<p><img src="images/compiling/typescript-build.png" alt="TypeScript Build"></p>
 
 <p>选择 <strong>tsc: build</strong> 条目。这将在工作区中生成 <code>HelloWorld.js</code> 和 <code>HelloWorld.js.map</code> 文件。</p>
 
@@ -540,7 +540,7 @@ console.log(message);</code></pre>
 
 <p>你可以在状态栏中看到错误和警告计数。点击错误和警告图标可以获取问题列表并导航到它们。</p>
 
-<p>!<a href="typescript/images/compiling/error-status-bar.png">Error in Status Bar</a></p>
+<p><img src="images/compiling/error-status-bar.png" alt="Error in Status Bar"></p>
 
 <p>你还可以使用键盘打开列表 <code>kb(workbench.actions.view.problems)</code>。</p>
 
@@ -572,7 +572,7 @@ console.log(message);</code></pre>
 
 <p>此模式将匹配任何 JavaScript 文件（<code><em>*/</em>.js</code>），但仅当存在同名的同级 TypeScript 文件时。如果 JavaScript 编译到同一位置，文件资源管理器将不再显示生成的 JavaScript 资源。</p>
 
-<p>!<a href="typescript/images/compiling/hidingDerivedBefore.png">Hiding derived resources</a> !<a href="typescript/images/compiling/hidingDerivedAfter.png">Hiding derived resources</a></p>
+<p><img src="images/compiling/hidingDerivedBefore.png" alt="Hiding derived resources"> <img src="images/compiling/hidingDerivedAfter.png" alt="Hiding derived resources"></p>
 
 <p>在工作区根目录的 <code>.vscode</code> 文件夹中的 <code>settings.json</code> 文件里添加带过滤条件的 <code>files.exclude</code> 设置。你可以通过命令面板（<code>kb(workbench.action.showCommands)</code>）中的 <strong>Preferences: Open Workspace Settings (JSON)</strong> 命令打开工作区 <code>settings.json</code>。</p>
 
@@ -598,7 +598,7 @@ console.log(message);</code></pre>
 </ul>
 <p>活动的 TypeScript 版本及其安装位置可以显示在状态栏中。选择状态栏中的语言栏项（<code>{ }</code>），然后选择 TypeScript 版本的固定图标，让它保持在状态栏中可见。</p>
 
-<p>!<a href="typescript/images/compiling/status-bar-version-v2.png">TypeScript status bar version</a></p>
+<p><img src="images/compiling/status-bar-version-v2.png" alt="TypeScript status bar version"></p>
 
 <p>如果你想更改工作区中 TypeScript 的默认版本，有几种选择：</p>
 
@@ -606,7 +606,7 @@ console.log(message);</code></pre>
 
 <p>如果你的工作区有特定的 TypeScript 版本，你可以通过打开一个 TypeScript 或 JavaScript 文件并点击状态栏中的 TypeScript 版本号，在工作区版本的 TypeScript 和 VS Code 默认使用的版本之间切换。系统将弹出一个消息框，询问你应该使用哪个版本的 TypeScript：</p>
 
-<p>!<a href="typescript/images/compiling/select-ts-version-message.png">TypeScript version selector</a></p>
+<p><img src="images/compiling/select-ts-version-message.png" alt="TypeScript version selector"></p>
 
 <p>使用此功能可以在 VS Code 自带的 TypeScript 版本和工作区中的 TypeScript 版本之间切换。你还可以通过 <strong>TypeScript: Select TypeScript Version</strong> 命令触发 TypeScript 版本选择器。</p>
 

@@ -436,27 +436,27 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>Java 项目</strong>视图帮助你查看 Java 项目及其依赖项，并提供项目管理任务的入口点。</p>
 
-<p>!<a href="java/images/java-project/projectmanager-overview.png">project view</a></p>
+<p><img src="images/java-project/projectmanager-overview.png" alt="project view"></p>
 
 <p>>默认情况下，Java 项目视图显示在<strong>资源管理器</strong>视图下方。如果你看不到它，请尝试点击<strong>资源管理器</strong>标题栏中的 <code>...</code> 按钮，然后选择<strong>Java 项目</strong>。</p>
 
 <p>在导航栏的溢出按钮中，有更多可用的选项。例如，你可以在分层视图和平面视图之间切换。</p>
 
-<p>!<a href="java/images/java-project/overflow-button.png">overflow button</a></p>
+<p><img src="images/java-project/overflow-button.png" alt="overflow button"></p>
 
 <p>你可以在资源管理器中的节点旁边找到一些按钮，这些按钮为某些操作提供了有用的快捷方式。</p>
 
-<p>!<a href="java/images/java-project/inline-button.png">inline button</a></p>
+<p><img src="images/java-project/inline-button.png" alt="inline button"></p>
 
 <p>每个节点的上下文菜单中还有许多有用的功能，你可以在资源管理器中右键点击节点来展开它。</p>
 
-<p>!<a href="java/images/java-project/context-menu.png">context menu</a></p>
+<p><img src="images/java-project/context-menu.png" alt="context menu"></p>
 
 <h3>创建新的 Java 项目</h3>
 
 <p>你可以通过点击导航栏中的 <strong>+</strong> 按钮，或通过命令面板（<code>kb(workbench.action.showCommands)</code>）中的命令：<strong>Java: Create Java Project...</strong> 来创建新的 Java 项目。在创建过程中，VS Code 会根据你的项目类型协助安装所需的扩展，如果这些扩展尚未安装的话。</p>
 
-<p>!<a href="java/images/java-project/projectmanager-createproject.png">create project</a></p>
+<p><img src="images/java-project/projectmanager-createproject.png" alt="create project"></p>
 
 <h3>导入 Java 项目</h3>
 
@@ -468,7 +468,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以从项目视图中导出构建为 JAR，或通过运行命令 <strong>Java: Export Jar...</strong> 来导出。</p>
 
-<p>!<a href="java/images/java-project/exportjar.gif">Export jar from the project view</a></p>
+<p><img src="images/java-project/exportjar.gif" alt="Export jar from the project view"></p>
 
 <h2>为项目配置运行时</h2>
 
@@ -500,7 +500,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要查看哪些 JDK 用于你的项目，你可以在<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）中触发命令 <strong>Java: Configure Java Runtime</strong>。此命令将打开一个视图，显示项目的运行时信息：</p>
 
-<p>!<a href="java/images/java-project/configure-project-runtime.png">Project runtime</a></p>
+<p><img src="images/java-project/configure-project-runtime.png" alt="Project runtime"></p>
 
 <h3>更改 Maven 和 Gradle 项目的 JDK</h3>
 
@@ -514,7 +514,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你想下载新的 JDK，你可以点击 <code>download</code> 链接，或在<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）中触发命令 <strong>Java: Install New JDK</strong>。它将打开一个新视图，引导你下载 JDK。</p>
 
-<p>!<a href="java/images/java-project/download-jdk.png">Download-jdk</a></p>
+<p><img src="images/java-project/download-jdk.png" alt="Download-jdk"></p>
 
 <blockquote><strong>注意</strong>：要启用 Java 预览功能，请参阅<a href="../docs/java/java-faq.md#how-can-i-use-visual-studio-code-with-new-java-versions">如何在 VS Code 中使用新的 Java 版本</a>。</blockquote>
 
@@ -522,7 +522,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Project Management for Java 扩展提供了一个用户界面来配置非托管文件夹的类路径。可以在类路径配置页面中手动设置类路径。你可以通过从命令面板（<code>kb(workbench.action.showCommands)</code>）执行 <strong>Java: Configure Classpath</strong> 命令来打开它。</p>
 
-<p>!<a href="java/images/java-project/configure-classpath.png">configure classpath</a></p>
+<p><img src="images/java-project/configure-classpath.png" alt="configure classpath"></p>
 
 <p>在某些罕见情况下，你可能需要通过从命令面板（<code>kb(workbench.action.showCommands)</code>）执行 <strong>Java: Clean Java Language Server Workspace</strong> 命令来清理 Java 工作区，以便让语言服务器重新构建你的依赖项。</p>
 
@@ -532,13 +532,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>对于 Maven 项目，你可以通过点击项目视图中 <strong>Maven Dependencies</strong> 节点旁边的 <strong>+</strong> 图标来添加依赖。</p>
 
-<p>!<a href="java/images/java-project/add-maven-dependency.png">add maven dependency</a></p>
+<p><img src="images/java-project/add-maven-dependency.png" alt="add maven dependency"></p>
 
 <h3>管理非托管文件夹的依赖</h3>
 
 <p>如果你的项目是一个没有任何构建工具的非托管文件夹，你可以通过点击 <strong>Referenced Libraries</strong> 节点或其下项目上的 <strong>+</strong> 图标或 <strong>-</strong> 图标来管理依赖项，或者你也可以直接将 jar 库文件拖放到 <code>Referenced Libraries</code> 节点上。</p>
 
-<p>!<a href="java/images/java-project/manage-referenced-libraries.png">manage referenced libraries</a></p>
+<p><img src="images/java-project/manage-referenced-libraries.png" alt="manage referenced libraries"></p>
 
 <blockquote>你还可以在类路径配置页面中管理依赖项。请参阅：<a href="#configure-classpath-for-unmanaged-folders">配置非托管文件夹的类路径</a></blockquote>
 
@@ -626,7 +626,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>点击语言状态项可切换到标准模式。</p>
 
-<p>!<a href="java/images/java-project/switch-to-standard.gif">Switch to Standard</a></p>
+<p><img src="images/java-project/switch-to-standard.gif" alt="Switch to Standard"></p>
 
 <h2>构建状态</h2>
 

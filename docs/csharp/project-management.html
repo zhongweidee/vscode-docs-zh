@@ -438,23 +438,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果工作区中只有一个解决方案文件（.sln 文件），解决方案资源管理器将检测到该文件并在工作区加载后自动加载它。例如，请查看下面的动画，其中展示了打开包含单个解决方案文件的工作区的体验。</p>
 
-<p>!<a href="csharp/images/project-management/open-workspace-1-sln-file.gif">Open workspace with 1 solution file</a></p>
+<p><img src="images/project-management/open-workspace-1-sln-file.gif" alt="Open workspace with 1 solution file"></p>
 
 <p>在上面的动画中，工作区是首次加载到 VS Code 中。工作区加载后，解决方案资源管理器检测到唯一的 <code>.sln</code> 文件并自动加载它。</p>
 
 <p>当工作区中有多个解决方案文件时，系统将提示你选择要加载的特定解决方案文件。在工作区加载了某个解决方案文件后，该扩展将记住上次加载的解决方案文件，并在该工作区于 VS Code 中加载时自动重新加载该文件。在下面的动画中，你可以看到首次打开包含多个解决方案文件的工作区的体验。</p>
 
-<p>!<a href="csharp/images/project-management/open-workspace-multiple-sln-files.gif">Open workspace with multiple solution files</a></p>
+<p><img src="images/project-management/open-workspace-multiple-sln-files.gif" alt="Open workspace with multiple solution files"></p>
 
 <p>在上面的视频中，工作区加载后，解决方案资源管理器检测到工作区包含多个解决方案文件，并通过标准的 VS Code 通知提示你选择要加载的解决方案。此后当你打开同一个工作区时，解决方案资源管理器会记住上次加载的解决方案文件并自动重新加载它。</p>
 
 <p>当你在解决方案资源管理器中加载了一个解决方案并想要关闭该解决方案时，可以使用<strong>关闭解决方案</strong>命令。你可以在右键单击解决方案资源管理器中的解决方案时，在上下文菜单中找到此命令。</p>
 
-<p>!<a href="csharp/images/project-management/close-solution-context-menu.png">Close solution context menu</a></p>
+<p><img src="images/project-management/close-solution-context-menu.png" alt="Close solution context menu"></p>
 
 <p>你也可以在命令面板中调用此命令。你可以使用 <code>kb(workbench.action.showCommands)</code> 打开命令面板。如下图所示。</p>
 
-<p>!<a href="csharp/images/project-management/close-solution-command-palette.png">Close solution from the Command Palette</a></p>
+<p><img src="images/project-management/close-solution-command-palette.png" alt="Close solution from the Command Palette"></p>
 
 <p>关闭解决方案后，解决方案资源管理器将显示一个按钮，以便你稍后可以从工作区中打开解决方案文件。你也可以在命令面板中使用 <strong>.NET: Open Solution</strong> 命令来调用该命令。</p>
 
@@ -464,25 +464,25 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在解决方案资源管理器中，如果解决方案包含解决方案文件夹（用于在解决方案中对项目进行分组的虚拟文件夹），它们将会被显示出来。在这里，你可以与解决方案文件夹的内容进行交互。要添加新的解决方案文件夹，你可以右键单击解决方案并选择<strong>新建解决方案文件夹</strong>菜单项。请查看下面的短视频。</p>
 
-<p>!<a href="csharp/images/project-management/csdevkit-new-sln-folder.gif">C# Dev Kit new solution folder</a></p>
+<p><img src="images/project-management/csdevkit-new-sln-folder.gif" alt="C# Dev Kit new solution folder"></p>
 
 <p>在上面的视频中，创建了一个名为 "tests" 的新解决方案文件夹。创建解决方案文件夹后，你可以通过<strong>添加现有项目</strong>上下文菜单向其中添加项目。下面的动画展示了此体验。</p>
 
-<p>!<a href="csharp/images/project-management/add-existing-project.gif">Add existing project</a></p>
+<p><img src="images/project-management/add-existing-project.gif" alt="Add existing project"></p>
 
 <p>你还可以通过<strong>添加新文件</strong>上下文菜单向解决方案文件夹添加新文件，如下图所示。</p>
 
-<p>!<a href="csharp/images/project-management/add-file-to-solution-folder.png">Add file to solution folder</a></p>
+<p><img src="images/project-management/add-file-to-solution-folder.png" alt="Add file to solution folder"></p>
 
 <p>调用此命令后，系统将提示你在命令面板中选择要使用的文件模板。下图显示了这一点。</p>
 
-<p>!<a href="csharp/images/project-management/add-new-file-command-palette.png">Add new file from Command Palette </a></p>
+<p><img src="images/project-management/add-new-file-command-palette.png" alt="Add new file from Command Palette "></p>
 
 <p>此列表显示了该扩展当前为解决方案文件夹支持的文件模板。要创建不使用模板的文件（创建空白文件），请选择<strong>自定义文件（不使用模板）</strong>。</p>
 
 <p>要删除解决方案文件夹，可以使用<strong>删除</strong>上下文菜单选项。</p>
 
-<p>!<a href="csharp/images/project-management/sln-folder-delete.png">Remove Solution Folder</a></p>
+<p><img src="images/project-management/sln-folder-delete.png" alt="Remove Solution Folder"></p>
 
 <p>当你从解决方案中删除解决方案文件夹时，解决方案文件夹及其内容将从解决方案中移除。它所包含的文件和/或项目不会从磁盘中删除。现在我们已经讨论了解决方案文件夹，接下来看看如何在解决方案资源管理器中与项目进行更多交互。</p>
 
@@ -490,7 +490,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在解决方案资源管理器中，有许多功能可让你使用项目。当你首次打开解决方案时，你将看到项目和解决方案文件夹。你可以展开解决方案文件夹或项目来查看其内容。下图显示了展开了一些节点的解决方案资源管理器。</p>
 
-<p>!<a href="csharp/images/project-management/sln-explorer.png">Solution Explorer with expanded nodes</a></p>
+<p><img src="images/project-management/sln-explorer.png" alt="Solution Explorer with expanded nodes"></p>
 
 <p>在上图中，我们可以看到解决方案资源管理器展开了一些解决方案文件夹以及 <code>TemplatesWeb</code> 项目。此版本中支持了最基本的文件嵌套，我们将扩展该支持，使其与 Visual Studio IDE 中看到的文件嵌套更加一致。</p>
 

@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://www.typescriptlang.org">TypeScript</a> 是 JavaScript 的类型化超集，可编译为纯 JavaScript。它提供类、模块和接口，帮助你构建健壮的组件。</p>
 
-<p>!<a href="languages/images/typescript/overview.png">Working with TypeScript in Visual Studio Code</a></p>
+<p><img src="images/typescript/overview.png" alt="Working with TypeScript in Visual Studio Code"></p>
 
 <h2>安装 TypeScript 编译器</h2>
 
@@ -454,7 +454,7 @@ code .</code></pre>
 
 <p>在文件资源管理器中，创建一个名为 <code>helloworld.ts</code> 的新文件。</p>
 
-<p>!<a href="languages/images/typescript/create-new-file.png">create new file</a></p>
+<p><img src="images/typescript/create-new-file.png" alt="create new file"></p>
 
 <p>现在添加以下 TypeScript 代码。你会注意到 TypeScript 关键字 <code>let</code> 和 <code>string</code> 类型声明。</p>
 
@@ -463,11 +463,11 @@ console.log(message);</code></pre>
 
 <p>要编译 TypeScript 代码，你可以打开<a href="../docs/terminal/basics.md">集成终端</a>（<code>kb(workbench.action.terminal.toggleTerminal)</code>）并输入 <code>tsc helloworld.ts</code>。这将编译并创建一个新的 <code>helloworld.js</code> JavaScript 文件。</p>
 
-<p>!<a href="languages/images/typescript/compiled-hello-world.png">compiled hello world</a></p>
+<p><img src="images/typescript/compiled-hello-world.png" alt="compiled hello world"></p>
 
 <p>如果你已安装 Node.js，可以运行 <code>node helloworld.js</code>。</p>
 
-<p>!<a href="languages/images/typescript/run-hello-world.png">run hello world</a></p>
+<p><img src="images/typescript/run-hello-world.png" alt="run hello world"></p>
 
 <p>如果你打开 <code>helloworld.js</code>，你会发现它和 <code>helloworld.ts</code> 看起来差别不大。类型信息已被移除，<code>let</code> 变成了 <code>var</code>。</p>
 
@@ -478,7 +478,7 @@ console.log(message);</code></pre>
 
 <p>IntelliSense 为你提供智能代码补全、悬停信息和签名帮助，让你能够更快速、更准确地编写代码。</p>
 
-<p>!<a href="languages/images/typescript/ts-intellisense.png">TypeScript small completions for String type</a></p>
+<p><img src="images/typescript/ts-intellisense.png" alt="TypeScript small completions for String type"></p>
 
 <p>VS Code 为单个 TypeScript 文件以及 TypeScript <code>tsconfig.json</code> 项目提供 IntelliSense。</p>
 
@@ -486,7 +486,7 @@ console.log(message);</code></pre>
 
 <p>将鼠标悬停在 TypeScript 符号上，可以快速查看其类型信息和相关文档：</p>
 
-<p>!<a href="languages/images/typescript/hover.png">Hover for a lodash function</a></p>
+<p><img src="images/typescript/hover.png" alt="Hover for a lodash function"></p>
 
 <p>你也可以使用 <code>kb(editor.action.showHover)</code> 键盘快捷键在当前光标位置显示悬停信息。</p>
 
@@ -494,7 +494,7 @@ console.log(message);</code></pre>
 
 <p>当你编写 TypeScript 函数调用时，VS Code 会显示函数签名信息，并高亮显示你当前正在输入的参数：</p>
 
-<p>!<a href="languages/images/typescript/signature-help.png">Signature help for the lodash capitalize function</a></p>
+<p><img src="images/typescript/signature-help.png" alt="Signature help for the lodash capitalize function"></p>
 
 <p>签名帮助会在你在函数调用中输入 <code>(</code> 或 <code>,</code> 时自动显示。使用 <code>kb(editor.action.triggerParameterHints)</code> 可以手动触发签名帮助。</p>
 
@@ -502,7 +502,7 @@ console.log(message);</code></pre>
 
 <p>除了智能代码补全之外，VS Code 还包含基本的 TypeScript <a href="../docs/editing/userdefinedsnippets.md">代码片段</a>，在你输入时会自动建议。</p>
 
-<p>!<a href="languages/images/typescript/ts-snippets.png">TypeScript 'for' snippet suggestions</a></p>
+<p><img src="images/typescript/ts-snippets.png" alt="TypeScript 'for' snippet suggestions"></p>
 
 <p>你可以安装扩展来获取更多代码片段，也可以为 TypeScript 定义自己的代码片段。有关更多信息，请参阅<a href="../docs/editing/userdefinedsnippets.md">用户自定义代码片段</a>。</p>
 
@@ -518,11 +518,11 @@ console.log(message);</code></pre>
 <li>如果你打开的文件包含错误或警告，它们将以内联方式显示在文本旁和概览标尺中。
 </li>
 </ul>
-<p>!<a href="languages/images/typescript/ts-error.png">Error in the editor and Problems panel</a></p>
+<p><img src="images/typescript/ts-error.png" alt="Error in the editor and Problems panel"></p>
 
 <p>要在当前文件中循环浏览错误或警告，你可以按 <code>kb(editor.action.marker.nextInFiles)</code> 或 <code>kb(editor.action.marker.prevInFiles)</code>，这将显示一个内联区域，详细说明问题及可能的代码操作（如果可用）：</p>
 
-<p>!<a href="languages/images/typescript/ts-error-inline.png">Error inline in the editor</a></p>
+<p><img src="images/typescript/ts-error-inline.png" alt="Error inline in the editor"></p>
 
 <h2>代码导航</h2>
 
@@ -555,7 +555,7 @@ console.log(message);</code></pre>
 
 <p>VS Code 为 TypeScript 提供了一些便捷的重构功能，例如<strong>提取函数</strong>和<strong>提取常量</strong>。只需选中你想要提取的源代码，然后点击行号旁的灯泡图标或按（<code>kb(editor.action.quickFix)</code>）即可查看可用的重构选项。</p>
 
-<p>!<a href="languages/images/typescript/refactorings.png">TypeScript refactoring</a></p>
+<p><img src="images/typescript/refactorings.png" alt="TypeScript refactoring"></p>
 
 <p>有关重构以及如何为各个重构操作配置键盘快捷键的更多信息，请参阅<a href="../docs/typescript/typescript-refactoring.md">重构 TypeScript</a>。</p>
 
@@ -563,7 +563,7 @@ console.log(message);</code></pre>
 
 <p>最简单的重构操作之一是重命名方法或变量。按 <code>kb(editor.action.rename)</code> 可以重命名光标所在符号，该更改会应用于整个 TypeScript 项目：</p>
 
-<p>!<a href="languages/images/typescript/rename.png">Renaming a method</a></p>
+<p><img src="images/typescript/rename.png" alt="Renaming a method"></p>
 
 <h2>调试</h2>
 
@@ -577,7 +577,7 @@ console.log(message);</code></pre>
 
 <p>使用内置调试器在 VS Code 中调试 Node.js。设置非常简单，还有 <a href="../docs/nodejs/nodejs-tutorial.md#debug-your-express-app">Node.js 调试教程</a>可以帮助你。</p>
 
-<p>!<a href="languages/images/javascript/debug_data_inspection.gif">debug data inspection</a></p>
+<p><img src="images/javascript/debug_data_inspection.gif" alt="debug data inspection"></p>
 
 <h2>Linter</h2>
 

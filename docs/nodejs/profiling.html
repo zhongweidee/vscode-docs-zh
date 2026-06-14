@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>进入调试后，切换到"运行和调试"视图（<code>kb(workbench.view.debug)</code>），找到<strong>调用堆栈</strong>视图。将鼠标悬停在要调试的会话上，然后选择<strong>获取性能分析</strong>按钮。您也可以通过命令面板（<code>kb(workbench.action.showCommands)</code>）运行此命令。</p>
 
-<p>!<a href="nodejs/images/profiling/take-profile.png">显示按钮的截图</a></p>
+<p><img src="images/profiling/take-profile.png" alt="显示按钮的截图"></p>
 
 <p>然后 VS Code 会询问您想要哪种<a href="#types-of-profiles">性能分析类型</a>；选择适合您的类型。</p>
 
@@ -481,7 +481,7 @@ console.profileEnd();</code></pre>
 
 <p>VS Code 带有一个集成的可视化查看器，支持查看 JavaScript 的 <code>.cpuprofile</code> 和 <code>.heapprofile</code> 文件。当您打开这些文件时，首先会看到一个类似下表的表格视图：</p>
 
-<p>!<a href="nodejs/images/profiling/profile-table.png">显示分析表格的截图</a></p>
+<p><img src="images/profiling/profile-table.png" alt="显示分析表格的截图"></p>
 
 <p>这是一个<strong>自底向上</strong>的程序视图。每一行代表程序中的一个函数，默认按照在该特定函数中花费的时间排序。这也称为"自身时间"。函数的"总时间"是在该函数及其调用的所有函数中花费的时间之和。您可以展开每个表格行来查看该函数是从哪里被调用的。</p>
 
@@ -504,7 +504,7 @@ a();</code></pre>
 
 <p>表格视图在某些情况下很好用，但通常您可能希望看到更直观的分析数据表示。您可以通过点击表格视图右上角的火焰 🔥 图标来实现这一点。如果您尚未安装提供火焰图编辑器的附加扩展，系统会提示您安装。</p>
 
-<p>!<a href="nodejs/images/profiling/heap-profile.png">堆分析火焰图</a></p>
+<p><img src="images/profiling/heap-profile.png" alt="堆分析火焰图"></p>
 
 <p>乍看之下可能有些令人困惑，但别担心，我们来理解一下！</p>
 
@@ -518,15 +518,15 @@ a();</code></pre>
 
 <p>如果您正在处理 CPU 分析，您看到的火焰图很可能不像上面那个那样容易理解。您可能会看到大量看起来像这样的独立调用堆栈：</p>
 
-<p>!<a href="nodejs/images/profiling/cpu-profile-noise.png">杂乱的 CPU 分析</a></p>
+<p><img src="images/profiling/cpu-profile-noise.png" alt="杂乱的 CPU 分析"></p>
 
 <p>为了便于分析，VS Code 提供了"左倾"视图，将所有相似的调用堆栈分组在一起。</p>
 
-<p>!<a href="nodejs/images/profiling/toggle-button.png">切换按钮</a></p>
+<p><img src="images/profiling/toggle-button.png" alt="切换按钮"></p>
 
 <p>这将从按时间顺序的分析视图切换为更类似堆分析的视图。横轴仍然是总分析时长，但每个条形代表该函数在所有从该堆栈调用的次数中的总时间。</p>
 
-<p>!<a href="nodejs/images/profiling/cpu-profile-nice.png">更清晰的 CPU 分析</a></p>
+<p><img src="images/profiling/cpu-profile-nice.png" alt="更清晰的 CPU 分析"></p>
 
 <p>对于某些应用（如服务器），单个调用可能相对较快，但您想找出在多次调用中总体开销最大的函数，这种视图会更有用。</p>
 

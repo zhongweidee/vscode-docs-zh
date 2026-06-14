@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://reactjs.org">React</a> 是由 Facebook 开发的一个流行的 JavaScript 库，用于构建用户界面。Visual Studio Code 编辑器开箱即用地支持 React.js 的 IntelliSense 和代码导航。</p>
 
-<p>!<a href="nodejs/images/reactjs/welcome-to-react.png">Welcome to React</a></p>
+<p><img src="images/reactjs/welcome-to-react.png" alt="Welcome to React"></p>
 
 <h2>欢迎使用 React</h2>
 
@@ -465,35 +465,35 @@ code .</code></pre>
 
 <p>在文件资源管理器中，你会看到应用程序的 <code>README.md</code> Markdown 文件。这个文件包含了许多关于应用程序和 React 的有用信息。查看 README 的一个好方法是使用 VS Code 的 <a href="../docs/languages/markdown.md#markdown-preview">Markdown 预览</a>。你可以在当前编辑器组中打开预览（<strong>Markdown: 打开预览</strong> <code>kb(markdown.togglePreview)</code>）或在侧边的新编辑器组中打开预览（<strong>Markdown: 在侧边打开预览</strong> <code>kb(markdown.showPreviewToSide)</code>）。你将获得良好的格式、标题超链接导航以及代码块中的语法高亮显示。</p>
 
-<p>!<a href="nodejs/images/reactjs/markdown-preview.png">README Markdown Preview</a></p>
+<p><img src="images/reactjs/markdown-preview.png" alt="README Markdown Preview"></p>
 
 <h3>语法高亮和括号匹配</h3>
 
 <p>现在展开 <code>src</code> 文件夹并选择 <code>index.js</code> 文件。你会注意到 VS Code 对各种源代码元素都有语法高亮，并且如果你将光标放在圆括号上，匹配的括号也会被选中。</p>
 
-<p>!<a href="nodejs/images/reactjs/bracket-matching.png">React bracket matching</a></p>
+<p><img src="images/reactjs/bracket-matching.png" alt="React bracket matching"></p>
 
 <h3>IntelliSense</h3>
 
 <p>当你在 <code>index.js</code> 中开始输入时，你会看到智能建议或自动补全。</p>
 
-<p>!<a href="nodejs/images/reactjs/suggestions.png">React IntelliSense suggestions</a></p>
+<p><img src="images/reactjs/suggestions.png" alt="React IntelliSense suggestions"></p>
 
 <p>选择建议并输入 <code>.</code> 后，你可以通过 <a href="../docs/editing/intellisense.md">IntelliSense</a> 查看对象上的类型和方法。</p>
 
-<p>!<a href="nodejs/images/reactjs/intellisense.png">React IntelliSense</a></p>
+<p><img src="images/reactjs/intellisense.png" alt="React IntelliSense"></p>
 
 <p>VS Code 使用 TypeScript 语言服务进行 JavaScript 代码智能分析，并且它有一个名为 <a href="../docs/nodejs/working-with-javascript.md#typings-and-automatic-type-acquisition">自动类型获取</a> (ATA) 的功能。ATA 会下载 <code>package.json</code> 中引用的 npm 模块的 npm 类型声明文件（<code>*.d.ts</code>）。</p>
 
 <p>如果你选择一个方法，你还会获得参数帮助：</p>
 
-<p>!<a href="nodejs/images/reactjs/parameter-help.png">React parameter help</a></p>
+<p><img src="images/reactjs/parameter-help.png" alt="React parameter help"></p>
 
 <h3>转到定义、速览定义</h3>
 
 <p>通过 TypeScript 语言服务，VS Code 还可以通过 <strong>转到定义</strong> (<code>kb(editor.action.revealDefinition)</code>) 或 <strong>速览定义</strong> (<code>kb(editor.action.peekDefinition)</code>) 在编辑器中提供类型定义信息。将光标放在 <code>App</code> 上，右键单击并选择 <strong>速览定义</strong>。一个 <a href="../docs/editing/editingevolved.md#peek">速览窗口</a> 将打开，显示来自 <code>App.js</code> 的 <code>App</code> 定义。</p>
 
-<p>!<a href="nodejs/images/reactjs/peek-definition.png">React Peek definition</a></p>
+<p><img src="images/reactjs/peek-definition.png" alt="React Peek definition"></p>
 
 <p>按 <code>kbstyle(Escape)</code> 关闭速览窗口。</p>
 
@@ -527,7 +527,7 @@ reportWebVitals();</code></pre>
 
 <p>><strong>提示</strong>：VS Code 支持自动保存，默认情况下会在延迟后保存你的文件。在 <strong>文件</strong> 菜单中勾选 <strong>自动保存</strong> 选项来开启自动保存，或直接配置 <code>files.autoSave</code> 用户 <a href="../docs/configure/settings.md">设置</a>。</p>
 
-<p>!<a href="nodejs/images/reactjs/hello-world.png">Hello, world</a></p>
+<p><img src="images/reactjs/hello-world.png" alt="Hello, world"></p>
 
 <h2>调试 React</h2>
 
@@ -539,7 +539,7 @@ reportWebVitals();</code></pre>
 
 <p>要在 <code>index.js</code> 中设置断点，请单击行号左侧的装订线。这将设置一个断点，显示为红色圆圈。</p>
 
-<p>!<a href="nodejs/images/reactjs/breakpoint.png">Set a breakpoint</a></p>
+<p><img src="images/reactjs/breakpoint.png" alt="Set a breakpoint"></p>
 
 <h3>配置调试器</h3>
 
@@ -562,11 +562,11 @@ reportWebVitals();</code></pre>
 
 <p>确保你的开发服务器正在运行（<code>npm start</code>）。然后按 <code>kb(workbench.action.debug.start)</code> 或绿色箭头启动调试器并打开一个新的浏览器实例。设置断点的源代码在调试器附加之前在启动时运行，因此我们在刷新网页之前不会触发断点。刷新页面，你应该会触发断点。</p>
 
-<p>!<a href="nodejs/images/reactjs/hit-breakpoint.png">Debugger hitting breakpoint</a></p>
+<p><img src="images/reactjs/hit-breakpoint.png" alt="Debugger hitting breakpoint"></p>
 
 <p>你可以逐步执行源代码 (<code>kb(workbench.action.debug.stepOver)</code>)，检查诸如 <code>HelloWorld</code> 等变量，并查看客户端 React 应用程序的调用堆栈。</p>
 
-<p>!<a href="nodejs/images/reactjs/debug-variable.png">Debug element variable</a></p>
+<p><img src="images/reactjs/debug-variable.png" alt="Debug element variable"></p>
 
 <p>有关调试器及其可用选项的更多信息，请查看我们关于 <a href="../docs/nodejs/browser-debugging.md">浏览器调试</a> 的文档。</p>
 
@@ -580,7 +580,7 @@ reportWebVitals();</code></pre>
 
 <p>尝试在你的 React 源代码中制造一个小错误，你会看到红色波浪线和 <strong>问题</strong> 面板中的错误。</p>
 
-<p>!<a href="nodejs/images/reactjs/js-error.png">JavaScript error</a></p>
+<p><img src="images/reactjs/js-error.png" alt="JavaScript error"></p>
 
 <p>代码检查工具可以提供更复杂的分析，强制执行编码规范并检测反面模式。一个流行的 JavaScript 代码检查工具是 <a href="https://eslint.org/">ESLint</a>。将 ESLint 与 ESLint VS Code <a href="https://marketplace.visualstudio.com/items/dbaeumer.vscode-eslint">扩展</a> 结合使用，可以提供出色的产品内代码检查体验。</p>
 
@@ -590,11 +590,11 @@ reportWebVitals();</code></pre>
 
 <p>然后通过转到 <strong>扩展</strong> 视图并输入 'eslint' 来安装 ESLint 扩展。</p>
 
-<p>!<a href="nodejs/images/reactjs/eslint-extension.png">ESLint extension</a></p>
+<p><img src="images/reactjs/eslint-extension.png" alt="ESLint extension"></p>
 
 <p>安装 ESLint 扩展并重新加载 VS Code 后，你需要创建一个 ESLint 配置文件 <code>.eslintrc.js</code>。你可以使用扩展的 <strong>ESLint: 创建 ESLint 配置</strong> 命令从 <strong>命令面板</strong> (<code>kb(workbench.action.showCommands)</code>) 创建。</p>
 
-<p>!<a href="nodejs/images/reactjs/create-eslintrc.png">Find the configuration command</a></p>
+<p><img src="images/reactjs/create-eslintrc.png" alt="Find the configuration command"></p>
 
 <p>该命令将提示你在 <strong>终端</strong> 面板中回答一系列问题。接受默认值，它将在项目根目录中创建一个类似于以下的 <code>.eslintrc.js</code> 文件：</p>
 
@@ -623,7 +623,7 @@ reportWebVitals();</code></pre>
 
 <p>ESLint 现在将分析打开的文件，并在 <code>index.js</code> 中显示关于 'App' 被定义但从未使用的警告。</p>
 
-<p>!<a href="nodejs/images/reactjs/app-is-unused.png">App is unused</a></p>
+<p><img src="images/reactjs/app-is-unused.png" alt="App is unused"></p>
 
 <p>你可以在 <code>.eslintrc.js</code> 文件中修改 ESLint <a href="https://eslint.org/docs/rules/">规则</a>。</p>
 
@@ -635,7 +635,7 @@ reportWebVitals();</code></pre>
 
 <p>现在，当你在一行中错误地使用了多个分号时，你会在编辑器中看到一个错误（红色波浪线），并在 <strong>问题</strong> 面板中看到错误条目。</p>
 
-<p>!<a href="nodejs/images/reactjs/extra-semi-error.png">Extra semicolon error</a></p>
+<p><img src="images/reactjs/extra-semi-error.png" alt="Extra semicolon error"></p>
 
 <h2>流行的入门套件</h2>
 
@@ -663,7 +663,7 @@ reportWebVitals();</code></pre>
 
 <p>是的。例如，如果你打开 <code>create-react-app</code> 项目的 <code>App.js</code> 文件，你可以在 <code>render()</code> 方法中的 React JSX 内看到 IntelliSense。</p>
 
-<p>!<a href="nodejs/images/reactjs/jsx-intellisense.png">JSX IntelliSense</a></p>
+<p><img src="images/reactjs/jsx-intellisense.png" alt="JSX IntelliSense"></p>
 
   </div>
 </div>

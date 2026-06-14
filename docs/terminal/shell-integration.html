@@ -516,7 +516,7 @@ code --locate-shell-integration-path bash
 
 <p>终端中的 IntelliSense 使你能够获得文件、文件夹、命令、命令参数和选项的建议。可以通过 <code>setting(terminal.integrated.suggest.enabled)</code> 设置来启用或禁用此功能。</p>
 
-<p>!<a href="terminal/images/shell-integration/terminal-suggest.png">终端截图，显示用户输入了 git checkout 并收到了分支名称的建议。</a></p>
+<p><img src="images/shell-integration/terminal-suggest.png" alt="终端截图，显示用户输入了 git checkout 并收到了分支名称的建议。"></p>
 
 <p>在你输入时，会出现一个建议列表。要手动触发建议，请使用 <code>kb(workbench.action.terminal.triggerSuggest)</code> 键盘快捷键。</p>
 
@@ -549,11 +549,11 @@ code --locate-shell-integration-path bash
 
 <p>shell 集成启用的功能之一是能够获取在终端中运行的命令的退出代码。利用这些信息，会在行左侧添加装饰器来指示命令是成功还是失败。这些装饰器也会显示在滚动条中相对较新的概览标尺中，就像在编辑器中一样。</p>
 
-<p>!<a href="terminal/images/shell-integration/decorations.png">成功的命令旁边出现蓝色圆圈，失败的命令旁边出现带有叉号的红色圆圈。圆圈的颜色也会显示在滚动条中</a></p>
+<p><img src="images/shell-integration/decorations.png" alt="成功的命令旁边出现蓝色圆圈，失败的命令旁边出现带有叉号的红色圆圈。圆圈的颜色也会显示在滚动条中"></p>
 
 <p>可以与该装饰器交互以提供一些上下文操作，例如重新运行命令：</p>
 
-<p>!<a href="terminal/images/shell-integration/decoration-menu.png">点击成功的命令装饰器会显示一个上下文菜单，包含以下项目：复制输出、复制输出为 HTML、重新运行命令以及这是如何工作的？</a></p>
+<p><img src="images/shell-integration/decoration-menu.png" alt="点击成功的命令装饰器会显示一个上下文菜单，包含以下项目：复制输出、复制输出为 HTML、重新运行命令以及这是如何工作的？"></p>
 
 <p>命令和概览标尺装饰器可以通过 <code>setting(terminal.integrated.shellIntegration.decorationsEnabled)</code> 设置进行配置。</p>
 
@@ -565,7 +565,7 @@ code --locate-shell-integration-path bash
 
 <p>命令指示条是一个在悬停时显示在命令及其输出旁边的竖条。这有助于更快地识别命令，也是验证 shell 集成是否正常工作的方式。</p>
 
-<p>!<a href="terminal/images/shell-integration/terminal-command-guide.png">终端截图，突出显示了左侧的命令指示条竖线，用于指示命令的边界。</a></p>
+<p><img src="images/shell-integration/terminal-command-guide.png" alt="终端截图，突出显示了左侧的命令指示条竖线，用于指示命令的边界。"></p>
 
 <p>你可以使用颜色主题来自定义命令指示条的颜色。要切换命令指示条，请配置 <code>setting(terminal.integrated.shellIntegration.showCommandGuide)</code> 设置。</p>
 
@@ -573,7 +573,7 @@ code --locate-shell-integration-path bash
 
 <p>粘性滚动功能会将终端顶部部分显示的命令"固定"住，使你更容易看到输出所属的命令。点击粘性滚动组件将滚动到该命令在终端缓冲区中的位置。</p>
 
-<p>!<a href="terminal/images/shell-integration/sticky-scroll.png">粘性滚动将在终端视口顶部显示命令</a></p>
+<p><img src="images/shell-integration/sticky-scroll.png" alt="粘性滚动将在终端视口顶部显示命令"></p>
 
 <p>可以通过 <code>setting(terminal.integrated.stickyScroll.enabled)</code> 设置来启用此功能。</p>
 
@@ -581,7 +581,7 @@ code --locate-shell-integration-path bash
 
 <p>VS Code 会扫描命令的输出，并呈现一个带有操作的快速修复建议，这些操作极有可能是用户接下来想做的事情。</p>
 
-<p>!<a href="terminal/images/shell-integration/quick-fix.png">运行 'git push --set-upstream' 将显示一个灯泡图标，打开一个下拉菜单，其中包含在 github.com 上新建 PR 的选项</a></p>
+<p><img src="images/shell-integration/quick-fix.png" alt="运行 'git push --set-upstream' 将显示一个灯泡图标，打开一个下拉菜单，其中包含在 github.com 上新建 PR 的选项"></p>
 
 <p>以下是一些内置的快速修复：</p>
 
@@ -599,7 +599,7 @@ code --locate-shell-integration-path bash
 
 <p><strong>终端：运行最近的命令</strong> 命令会在快速选择中显示来自各种来源的历史记录，提供类似于 shell 反向搜索（<code>kbstyle(Ctrl+R)</code>）的功能。来源包括当前会话的历史记录、此 shell 类型的之前会话历史记录以及常见的 shell 历史记录文件。</p>
 
-<p>!<a href="terminal/images/shell-integration/recent-command.png">"运行最近的命令"命令显示一个快速选择列表，其中包含之前运行过的命令，可以像"转到文件"命令一样进行过滤</a></p>
+<p><img src="images/shell-integration/recent-command.png" alt=""运行最近的命令"命令显示一个快速选择列表，其中包含之前运行过的命令，可以像"转到文件"命令一样进行过滤"></p>
 
 <p>该命令的其他一些功能：</p>
 
@@ -730,7 +730,7 @@ code --locate-shell-integration-path bash
 <li><code>OSC 1337 ; SetMark ST</code>：在触发行左侧添加标记，并在滚动条中添加注释：
 </li>
 </ul>
-<p>    !<a href="terminal/images/shell-integration/setmark.png">当此序列被写入终端时，命令左侧会出现一个小灰色圆圈，滚动条中也会有相应的注释</a></p>
+<p>    <img src="images/shell-integration/setmark.png" alt="当此序列被写入终端时，命令左侧会出现一个小灰色圆圈，滚动条中也会有相应的注释"></p>
 
 <p>    这些标记与命令导航集成，使其易于通过 <code>kb(workbench.action.terminal.scrollToPreviousCommand)</code> 和 <code>kb(workbench.action.terminal.scrollToNextCommand)</code> 导航到。</p>
 

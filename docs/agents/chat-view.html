@@ -439,7 +439,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>在本文中，你将了解如何在聊天视图中打开并使用代理。有关同时适用于聊天视图和<a href="../docs/agents/agents-window.md">代理窗口</a>的聊天机制——例如发送请求、添加上下文和查看更改——请参阅<a href="../docs/chat/chat-overview.md">在 VS Code 中使用聊天</a>。</p>
 
-<p>!<a href="agents/images/agents-overview/chat-sessions-view.png">Screenshot showing an agent session in the Chat view alongside the editor in VS Code.</a></p>
+<p><img src="images/agents-overview/chat-sessions-view.png" alt="Screenshot showing an agent session in the Chat view alongside the editor in VS Code."></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>聊天视图（代码优先）和<a href="../docs/agents/agents-window.md">代理窗口</a>（代理优先）是与代理协作的主要界面。它们共享相同的会话和设置，因此你可以在两者之间自由切换。要切换，请选择标题栏中的<strong>在代理中打开</strong>按钮，或运行 <code>code --agents</code>。如需选择帮助，请参阅<a href="../docs/agents/overview.md#choose-how-you-work-with-agents">选择你与代理协作的方式</a>。</blockquote>
@@ -459,7 +459,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 VS Code 标题栏中选择<strong>聊天</strong>菜单，然后选择<strong>打开聊天</strong>。
 </li>
 </ul>
-<p>    !<a href="agents/images/agents-overview/chat-sessions-view.png">Screenshot showing the Chat menu in the VS Code title bar.</a></p>
+<p>    <img src="images/agents-overview/chat-sessions-view.png" alt="Screenshot showing the Chat menu in the VS Code title bar."></p>
 
 <ul>
 <li>使用键盘快捷键 <code>kb(workbench.action.chat.open)</code>。
@@ -475,19 +475,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>侧边栏</strong>（默认）：选择<strong>新建聊天 (+)</strong> > <strong>新建聊天</strong>，或运行<strong>聊天: 新建聊天</strong>命令。最适合在代码旁边保持聊天可见。
 </li>
 </ul>
-<p>    !<a href="chat/images/chat-sessions/new-chat-session-chat-view.png">Screenshot of opening a new chat session in the Chat view in VS Code.</a></p>
+<p>    <img src="../chat/images/chat-sessions/new-chat-session-chat-view.png" alt="Screenshot of opening a new chat session in the Chat view in VS Code."></p>
 
 <ul>
 <li><strong>编辑器选项卡</strong>：选择<strong>新建聊天 (+)</strong> > <strong>新建聊天编辑器</strong>，或运行<strong>聊天: 新建聊天编辑器</strong>命令。最适合为聊天提供更多空间或并排比较会话。
 </li>
 </ul>
-<p>    !<a href="chat/images/chat-sessions/new-chat-session-editor-tab.png">Screenshot of opening a new chat session in an editor tab in VS Code.</a></p>
+<p>    <img src="../chat/images/chat-sessions/new-chat-session-editor-tab.png" alt="Screenshot of opening a new chat session in an editor tab in VS Code."></p>
 
 <ul>
 <li><strong>单独窗口</strong>：选择<strong>新建聊天 (+)</strong> > <strong>新建聊天窗口</strong>，或运行<strong>聊天: 新建聊天窗口</strong>命令。最适合多显示器设置。
 </li>
 </ul>
-<p>    !<a href="chat/images/chat-sessions/new-chat-session-separate-window.png">Screenshot of opening a new chat session in a separate window in VS Code.</a></p>
+<p>    <img src="../chat/images/chat-sessions/new-chat-session-separate-window.png" alt="Screenshot of opening a new chat session in a separate window in VS Code."></p>
 
 <h2>界面概览</h2>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>聊天输入</strong>：位于底部，你可以在此输入提示，并通过代理目标、代理、语言模型和权限选择器配置会话。
 </li>
 </ol>
-<p>!<a href="agents/images/agents-overview/chat-view-expanded.png">Screenshot showing the Chat view with the sessions list, conversation, and chat input.</a></p>
+<p><img src="images/agents-overview/chat-view-expanded.png" alt="Screenshot showing the Chat view with the sessions list, conversation, and chat input."></p>
 
 <p>聊天视图有两种模式：紧凑模式和并排模式。使用聊天视图右上角的切换控件在两者之间切换。在紧凑模式下，会话列表和对话共享同一个面板。在并排模式下，会话列表保持可见，位于对话旁边。了解更多关于<a href="../docs/chat/chat-sessions.md#sessions-list">会话列表布局选项</a>的信息。</p>
 
@@ -509,7 +509,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要启动新会话，请选择<strong>新建聊天</strong>（<code>+</code>）或按 <code>kb(workbench.action.chat.newChat)</code>。在发送第一条提示之前，请使用聊天输入区域中的控件选择代理目标、代理、语言模型和权限级别。你可以在会话期间随时调整这些设置。了解更多关于<a href="../docs/agents/overview.md">配置你的代理会话</a>的信息。</p>
 
-<p>!<a href="agents/images/agents-overview/agent-type-dropdown.png">Screenshot showing the agent target dropdown in the Chat view.</a></p>
+<p><img src="images/agents-overview/agent-type-dropdown.png" alt="Screenshot showing the agent target dropdown in the Chat view."></p>
 
 <p>输入提示并按 <code>kb(workbench.action.chat.submit)</code> 开始。代理会将你的任务分解为多个步骤，编辑工作区中的文件，运行命令，并在出现问题时自行修正。了解更多关于<a href="../docs/chat/chat-sessions.md">管理聊天会话</a>的信息。</p>
 

@@ -482,7 +482,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>[!TIP]</blockquote>
 <blockquote>你也可以使用 <strong>Python</strong> 侧边栏创建环境。展开 <strong>Environment Managers</strong> 并选择 <strong>+</strong> 按钮进行快速创建，该功能使用合理的默认设置。</blockquote>
 
-<p>    !<a href="python/images/flask-tutorial/command-palette.png">Flask 教程：在 VS Code 中打开命令面板</a></p>
+<p>    <img src="images/flask-tutorial/command-palette.png" alt="Flask 教程：在 VS Code 中打开命令面板"></p>
 
 <ol>
 <li>使用以下方法之一在虚拟环境中安装 Flask：
@@ -514,7 +514,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 VS Code 中，在项目文件夹中创建一个名为 <code>app.py</code> 的新文件，可以使用菜单中的 <strong>File</strong> > <strong>New</strong>，按 <code>kbstyle(Ctrl+N)</code>，或使用资源管理器视图中的新文件图标（如下所示）。
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/new-file-icon.png">Flask 教程：资源管理器视图中的新文件图标</a></p>
+<p>    <img src="images/flask-tutorial/new-file-icon.png" alt="Flask 教程：资源管理器视图中的新文件图标"></p>
 
 <ol>
 <li>在 <code>app.py</code> 中，添加代码以导入 Flask 并创建 Flask 对象的实例。如果你手动输入以下代码（而不是复制粘贴），可以观察到 VS Code 的 <a href="../docs/python/editing.md#autocomplete-and-intellisense">IntelliSense 和自动补全</a>：
@@ -550,7 +550,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>要在默认浏览器中打开渲染后的页面，请 <code>kbstyle(Ctrl+click)</code> 终端中的 <code>http://127.0.0.1:5000/</code> URL。
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/app-in-browser-01.png">Flask 教程：浏览器中运行的应用</a></p>
+<p>    <img src="images/flask-tutorial/app-in-browser-01.png" alt="Flask 教程：浏览器中运行的应用"></p>
 
 <ol>
 <li>注意，当你访问像 / 这样的 URL 时，调试终端中会显示一条消息，显示 HTTP 请求：
@@ -621,13 +621,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    断点在左边距中显示为红色圆点：</p>
 
-<p>    !<a href="python/images/flask-tutorial/debug-breakpoint-set.png">Flask 教程：在 hello_there 函数的第一行设置断点</a></p>
+<p>    <img src="images/flask-tutorial/debug-breakpoint-set.png" alt="Flask 教程：在 hello_there 函数的第一行设置断点"></p>
 
 <ol>
 <li>切换到 VS Code 中的 <strong>Run and Debug</strong> 视图（使用左侧活动栏或 <code>kb(workbench.view.debug)</code>）。你可能会看到消息 "To customize Run and Debug create a launch.json file"。这意味着你还没有包含调试配置的 <code>launch.json</code> 文件。如果你单击 <strong>create a launch.json file</strong> 链接，VS Code 可以为你创建该文件：
 </li>
 </ol>
-<p>    !<a href="python/images/shared/debug-panel-initial-view.png">Flask 教程：调试面板的初始视图</a></p>
+<p>    <img src="images/shared/debug-panel-initial-view.png" alt="Flask 教程：调试面板的初始视图"></p>
 
 <ol>
 <li>选择该链接，VS Code 将提示你选择调试配置。从下拉菜单中选择 <strong>Flask</strong>，VS Code 会用一个 Flask 运行配置填充一个新的 <code>launch.json</code> 文件。<code>launch.json</code> 文件包含多个调试配置，每个配置都是 <code>configuration</code> 数组中的一个独立 JSON 对象。
@@ -659,27 +659,27 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>保存 <code>launch.json</code>（<code>kb(workbench.action.files.save)</code>）。在调试配置下拉列表中选择 <strong>Python: Flask</strong> 配置。
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/debug-select-configuration.png">Flask 教程：选择 Flask 调试配置</a></p>
+<p>    <img src="images/flask-tutorial/debug-select-configuration.png" alt="Flask 教程：选择 Flask 调试配置"></p>
 
 <ol>
 <li>通过选择 <strong>Run</strong> > <strong>Start Debugging</strong> 菜单命令，或选择列表旁边的绿色 <strong>Start Debugging</strong> 箭头（<code>kb(workbench.action.debug.continue)</code>）来启动调试器：
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/debug-continue-arrow.png">Flask 教程：调试工具栏上的开始调试/继续箭头</a></p>
+<p>    <img src="images/flask-tutorial/debug-continue-arrow.png" alt="Flask 教程：调试工具栏上的开始调试/继续箭头"></p>
 
 <p>    注意状态栏颜色变化以指示正在调试：</p>
 
-<p>    !<a href="python/images/flask-tutorial/debug-status-bar.png">Flask 教程：调试状态栏的外观</a></p>
+<p>    <img src="images/flask-tutorial/debug-status-bar.png" alt="Flask 教程：调试状态栏的外观"></p>
 
 <p>    VS Code 中还会出现一个调试工具栏（如下所示），包含以下顺序的命令：Pause（或 Continue，<code>kb(workbench.action.debug.continue)</code>）、Step Over（<code>kb(workbench.action.debug.stepOver)</code>）、Step Into（<code>kb(workbench.action.debug.stepInto)</code>）、Step Out（<code>kb(workbench.action.debug.stepOut)</code>）、Restart（<code>kb(workbench.action.debug.restart)</code>）和 Stop（<code>kb(workbench.action.debug.stop)</code>）。有关每个命令的说明，请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>。</p>
 
-<p>    !<a href="python/images/flask-tutorial/debug-toolbar.png">Flask 教程：VS Code 调试工具栏</a></p>
+<p>    <img src="images/flask-tutorial/debug-toolbar.png" alt="Flask 教程：VS Code 调试工具栏"></p>
 
 <ol>
 <li>输出出现在 "Python Debug Console" 终端中。<code>kbstyle(Ctrl+click)</code> 该终端中的 <code>http://127.0.0.1:5000/</code> 链接，在浏览器中打开该 URL。在浏览器的地址栏中，导航到 <code>http://127.0.0.1:5000/hello/VSCode</code>。在页面渲染之前，VS Code 在你设置的断点处暂停程序。断点上的小黄色箭头表示这是要运行的下一行代码。
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/debug-program-paused.png">Flask 教程：VS Code 在断点处暂停</a></p>
+<p>    <img src="images/flask-tutorial/debug-program-paused.png" alt="Flask 教程：VS Code 在断点处暂停"></p>
 
 <ol>
 <li>使用 Step Over 执行 <code>now = datetime.now()</code> 语句。
@@ -687,7 +687,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 VS Code 窗口的左侧，你会看到 <strong>Variables</strong> 窗格，其中显示局部变量（如 <code>now</code>）以及参数（如 <code>name</code>）。下面是 <strong>Watch</strong>、<strong>Call Stack</strong> 和 <strong>Breakpoints</strong> 窗格（详情请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>）。在 <strong>Locals</strong> 部分，尝试展开不同的值。你还可以双击值（或使用 <code>kb(debug.setVariable)</code>）来修改它们。然而，修改变量如 <code>now</code> 可能会破坏程序。开发人员通常只在代码一开始没有产生正确值时才会进行更改。
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/debug-local-variables.png">Flask 教程：调试期间 VS Code 中的局部变量和参数</a></p>
+<p>    <img src="images/flask-tutorial/debug-local-variables.png" alt="Flask 教程：调试期间 VS Code 中的局部变量和参数"></p>
 
 <ol>
 <li>当程序暂停时，<strong>Debug Console</strong> 面板（不同于终端面板中的 "Python Debug Console"）允许你使用程序的当前状态试验表达式和尝试代码片段。例如，一旦你单步跳过 <code>now = datetime.now()</code> 这一行，你可以尝试不同的日期/时间格式。在编辑器中，选择读取 <code>now.strftime("%A, %d %B, %Y at %X")</code> 的代码，然后右键单击并选择 <strong>Evaluate in Debug Console</strong>，将该代码发送到调试控制台，在那里运行：
@@ -709,7 +709,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>如果需要，再单步执行几行代码，然后选择 Continue（<code>kb(workbench.action.debug.continue)</code>）让程序运行。浏览器窗口会显示结果：
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/debug-run-result.png">Flask 教程：修改后程序的结果</a></p>
+<p>    <img src="images/flask-tutorial/debug-run-result.png" alt="Flask 教程：修改后程序的结果"></p>
 
 <ol>
 <li>更改代码中的行以使用不同的日期时间格式，例如 <code>now.strftime("%a, %d %b, %y at %X")</code>，然后保存文件。Flask 服务器会自动重新加载，这意味着无需重启调试器即可应用更改。刷新浏览器页面以查看更新。
@@ -729,7 +729,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>Peek Definition</strong>（<code>kb(editor.action.peekDefinition)</code>，也在右键上下文菜单中）类似，但直接在编辑器中显示类定义（在编辑器窗口中腾出空间以避免遮挡任何代码）。按 <code>kbstyle(Escape)</code> 关闭速览窗口或使用右上角的 <strong>x</strong>。
 </li>
 </ul>
-<p>    !<a href="python/images/flask-tutorial/peek-definition.png">Flask 教程：Peek Definition 显示 Flask 类内联显示</a></p>
+<p>    <img src="images/flask-tutorial/peek-definition.png" alt="Flask 教程：Peek Definition 显示 Flask 类内联显示"></p>
 
 <h2>使用模板渲染页面</h2>
 
@@ -963,11 +963,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 <code>templates</code> 文件夹中，创建一个名为 <code>home.html</code> 的新文件。然后开始输入 <code>flext</code>，代码片段会作为补全出现：
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/autocomplete-for-code-snippet.png">Flask 教程：flextlayout 代码片段的自动补全</a></p>
+<p>    <img src="images/flask-tutorial/autocomplete-for-code-snippet.png" alt="Flask 教程：flextlayout 代码片段的自动补全"></p>
 
 <p>    选择补全后，代码片段的代码会出现，光标位于代码片段的插入点：</p>
 
-<p>    !<a href="python/images/flask-tutorial/code-snippet-inserted.png">Flask 教程：插入 flextlayout 代码片段</a></p>
+<p>    <img src="images/flask-tutorial/code-snippet-inserted.png" alt="Flask 教程：插入 flextlayout 代码片段"></p>
 
 <ol>
 <li>在 "title" 块的插入点写入 <code>Home</code>，在 "content" 块中写入 <code><p>Home page for the Visual Studio Code Flask tutorial.</p></code>，然后保存文件。这些行是扩展页面模板中唯一独特的部分。
@@ -997,7 +997,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>所有页面模板就位后，保存 <code>app.py</code>，运行应用，并打开浏览器查看结果。在页面之间导航，验证页面模板是否正确扩展了基础模板。</p>
 
-<p>!<a href="python/images/flask-tutorial/full-app.png">Flask 教程：应用从基础模板渲染通用导航栏</a></p>
+<p><img src="images/flask-tutorial/full-app.png" alt="Flask 教程：应用从基础模板渲染通用导航栏"></p>
 
 <p>><strong>Note</strong>: 如果看不到最新更改，你可能需要对页面进行硬刷新以避免看到缓存文件。</p>
 
@@ -1086,7 +1086,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>你的项目结构现在应类似于以下结构：
 </li>
 </ol>
-<p>    !<a href="python/images/flask-tutorial/project-structure.png">Flask 教程：修改后的项目结构，将应用的各个部分放在单独的文件和文件夹中</a></p>
+<p>    <img src="images/flask-tutorial/project-structure.png" alt="Flask 教程：修改后的项目结构，将应用的各个部分放在单独的文件和文件夹中"></p>
 
 <ol>
 <li>再次在调试器中运行应用以确保一切正常。要在 VS Code 调试器外部运行应用，请在终端中执行以下步骤：<ol>

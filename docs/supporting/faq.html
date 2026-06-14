@@ -514,7 +514,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>支持哪些操作系统？</h3>
 
-<p>VS Code 可在 macOS、Linux 和 Windows 上运行。请参阅<a href="supporting/requirements">要求文档</a>了解支持的版本。你可以在<a href="../docs/getstarted/overview.md">设置概览</a>中找到更多平台特定的详细信息。</p>
+<p>VS Code 可在 macOS、Linux 和 Windows 上运行。请参阅<a href="requirements">要求文档</a>了解支持的版本。你可以在<a href="../docs/getstarted/overview.md">设置概览</a>中找到更多平台特定的详细信息。</p>
 
 <h3>我可以在旧版 Windows 上运行 VS Code 吗？</h3>
 
@@ -658,7 +658,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>对于错误、功能请求或联系扩展作者，你应使用 <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a> 中提供的链接，或使用命令面板中的<strong>帮助：报告问题</strong>。但是，如果存在扩展不遵守我们行为准则的问题，例如包含亵渎内容、色情内容或对用户构成风险，那么我们有<a href="supporting/mailto:VSMarketplace@microsoft.com">一个用于报告问题的电子邮件别名</a>。收到邮件后，我们的 Marketplace 团队将会研究适当的处理方案，直至包括取消发布该扩展。</p>
+<p>对于错误、功能请求或联系扩展作者，你应使用 <a href="https://marketplace.visualstudio.com/vscode">Visual Studio Code Marketplace</a> 中提供的链接，或使用命令面板中的<strong>帮助：报告问题</strong>。但是，如果存在扩展不遵守我们行为准则的问题，例如包含亵渎内容、色情内容或对用户构成风险，那么我们有<a href="mailto:VSMarketplace@microsoft.com">一个用于报告问题的电子邮件别名</a>。收到邮件后，我们的 Marketplace 团队将会研究适当的处理方案，直至包括取消发布该扩展。</p>
 
 <h2>VS Code 版本</h2>
 
@@ -676,7 +676,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以在版本发布说明的顶部找到一些版本下载的链接：</p>
 
-<p>!<a href="supporting/images/faq/links-release-notes.png">发布说明中的下载链接</a></p>
+<p><img src="images/faq/links-release-notes.png" alt="发布说明中的下载链接"></p>
 
 <p>如果你需要的安装类型未在其中列出，可以通过以下 URL 手动下载：</p>
 
@@ -787,7 +787,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>为了解决这个问题，当通过 UI 手势启动时，VS Code 将启动一个小进程来运行（或"解析"）在 <code>.bashrc</code>、<code>.zshrc</code> 或 PowerShell 配置文件文件中定义的 shell 环境。如果在可配置的超时时间（通过 <code>application.shellEnvironmentResolutionTimeout</code>，默认为 10 秒）后，shell 环境仍未解析完成或因其他原因解析失败，VS Code 将中止"解析"进程，在没有 shell 环境设置的情况下启动，并且你将看到类似以下的错误：</p>
 
-<p>!<a href="supporting/images/faq/shell-env-error.png">Shell 环境启动错误</a></p>
+<p><img src="images/faq/shell-env-error.png" alt="Shell 环境启动错误"></p>
 
 <p>如果错误消息表明解析你的 shell 环境耗时过长，<a href="#investigate-slow-shell-initialization">下面的步骤</a>可以帮助你排查可能导致缓慢的原因。你还可以通过配置 <code>application.shellEnvironmentResolutionTimeout</code> 设置来增加超时时间。但请记住，增加此值意味着你将需要等待更长时间才能使用 VS Code 中的某些功能，例如扩展。</p>
 

@@ -452,11 +452,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开 WSL 的 Bash shell。如果你安装了 Ubuntu 发行版，请在 Windows 搜索框中输入 "Ubuntu"，然后在结果列表中单击它。对于 Debian，输入 "Debian"，以此类推。
 </li>
 </ol>
-<p>   !<a href="cpp/images/wsl/start-ubuntu.png">Ubuntu in Start Menu</a></p>
+<p>   <img src="images/wsl/start-ubuntu.png" alt="Ubuntu in Start Menu"></p>
 
 <p>   shell 出现时会显示命令提示符，默认由你的用户名和计算机名组成，并将你放在主目录中。对于 Ubuntu，它看起来像这样：</p>
 
-<p>   !<a href="cpp/images/wsl/bash-ubuntu.png">Bash Shell</a></p>
+<p>   <img src="images/wsl/bash-ubuntu.png" alt="Bash Shell"></p>
 
 <ol>
 <li>创建一个名为 <code>projects</code> 的目录，然后在其下创建一个名为 <code>helloworld</code> 的子目录：
@@ -496,11 +496,11 @@ code .</code></pre>
 
 <p>你将看到一条关于"正在安装 VS Code Server"的消息。VS Code 正在 Linux 端下载并安装一个小型服务器，桌面版 VS Code 随后将与之通信。VS Code 随后将启动并打开 <code>helloWorld</code> 文件夹。文件资源管理器显示 VS Code 现在在 WSL 上下文中运行，标题栏显示 <strong>WSL: Ubuntu</strong>。</p>
 
-<p>!<a href="cpp/images/wsl/file-explorer-wsl.png">File Explorer in WSL</a></p>
+<p><img src="images/wsl/file-explorer-wsl.png" alt="File Explorer in WSL"></p>
 
 <p>你也可以从状态栏中识别远程上下文。</p>
 
-<p>!<a href="cpp/images/wsl/wsl-status-bar.png">Remote context in the Status bar</a></p>
+<p><img src="images/wsl/wsl-status-bar.png" alt="Remote context in the Status bar"></p>
 
 <p>如果你单击远程状态栏项，你将看到适合该会话的远程命令下拉菜单。例如，如果你想结束在 WSL 中运行的会话，可以从下拉菜单中选择 <strong>关闭远程连接</strong> 命令。从 WSL 命令提示符运行 <code>code .</code> 将重新在 WSL 中启动 VS Code。</p>
 
@@ -516,19 +516,19 @@ code .</code></pre>
 </ul>
 <p>在文件资源管理器标题栏中，选择 <strong>新建文件</strong> 按钮并将文件命名为 <code>helloworld.cpp</code>。</p>
 
-<p>!<a href="cpp/images/wsl/new-file-button.png">New File title bar button</a></p>
+<p><img src="images/wsl/new-file-button.png" alt="New File title bar button"></p>
 
 <h3>安装 C/C++ 扩展</h3>
 
 <p>创建文件后，VS Code 检测到它是一个 C++ 语言文件时，如果你尚未安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">Microsoft C/C++ 扩展</a>，系统可能会提示你安装它。</p>
 
-<p>!<a href="cpp/images/wsl/cpp-extension-notification.png">C++ extension notification</a></p>
+<p><img src="images/wsl/cpp-extension-notification.png" alt="C++ extension notification"></p>
 
 <p>选择 <strong>安装</strong>，然后在扩展视图中显示 <strong>需要重新加载</strong> 按钮时单击它，以完成 C/C++ 扩展的安装。</p>
 
 <p>如果你已经在 VS Code 本地安装了 C/C++ 语言扩展，则需要转到扩展视图 (<code>kb(workbench.view.extensions)</code>) 并将这些扩展安装到 WSL 中。本地安装的扩展可以通过选择 <strong>在 WSL 中安装</strong> 按钮，然后单击 <strong>需要重新加载</strong> 安装到 WSL 中。</p>
 
-<p>!<a href="cpp/images/wsl/install-in-wsl.png">Install in WSL button</a></p>
+<p><img src="images/wsl/install-in-wsl.png" alt="Install in WSL button"></p>
 
 <h3>添加 hello world 源代码</h3>
 
@@ -553,7 +553,7 @@ code .</code></pre>
 
 <p>现在按 <code>kb(workbench.action.files.save)</code> 保存文件。注意你刚刚添加的文件是如何出现在 VS Code 侧栏的 <strong>文件资源管理器</strong> 视图 (<code>kb(workbench.view.explorer)</code>) 中的：</p>
 
-<p>!<a href="cpp/images/wsl/file-explorer-helloworld.png">File Explorer</a></p>
+<p><img src="images/wsl/file-explorer-helloworld.png" alt="File Explorer"></p>
 
 <p>你也可以启用<a href="../docs/editing/codebasics.md#save-auto-save">自动保存</a>以自动保存文件更改，方法是选中主 <strong>文件</strong> 菜单中的 <strong>自动保存</strong>。</p>
 
@@ -563,7 +563,7 @@ code .</code></pre>
 
 <p>在你新建的 <code>helloworld.cpp</code> 文件中，将鼠标悬停在 <code>vector</code> 或 <code>string</code> 上方以查看类型信息。在声明 <code>msg</code> 变量后，开始输入 <code>msg.</code>，就像调用成员函数时那样。你应该会立即看到一个完成列表，显示所有成员函数，以及一个显示 <code>msg</code> 对象类型信息的窗口：</p>
 
-<p>!<a href="cpp/images/wsl/msg-intellisense.png">Statement completion IntelliSense</a></p>
+<p><img src="images/wsl/msg-intellisense.png" alt="Statement completion IntelliSense"></p>
 
 <p>你可以按 <code>kbstyle(Tab)</code> 键插入选中的成员；然后，当你添加左括号时，你将看到该函数所需参数的信息。</p>
 
@@ -576,13 +576,13 @@ code .</code></pre>
 <li>按编辑器右上角的播放按钮。
 </li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/run-play-button.png">Screenshot of helloworld.cpp and play button</a></p>
+<p>   <img src="images/playbutton/run-play-button.png" alt="Screenshot of helloworld.cpp and play button"></p>
 
 <ol>
 <li>从系统上检测到的编译器列表中选择 <strong>g++ 生成和调试活动文件</strong>。
 </li>
 </ol>
-<p>   !<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+<p>   <img src="images/wsl/build-and-debug-active-file.png" alt="C++ debug configuration dropdown"></p>
 
 <p>你只会在第一次运行 <code>helloworld.cpp</code> 时被要求选择编译器。该编译器将被设置为 <code>tasks.json</code> 文件中的"默认"编译器。</p>
 
@@ -590,7 +590,7 @@ code .</code></pre>
 <li>构建成功后，程序的输出将显示在集成 <strong>终端</strong> 中。
 </li>
 </ol>
-<p>    !<a href="cpp/images/playbutton/helloworld-terminal-output.png">screenshot of program output</a></p>
+<p>    <img src="images/playbutton/helloworld-terminal-output.png" alt="screenshot of program output"></p>
 
 <p>第一次运行程序时，C++ 扩展会创建 <code>tasks.json</code>，你可以在项目的 <code>.vscode</code> 文件夹中找到它。<code>tasks.json</code> 存储构建配置。</p>
 
@@ -660,15 +660,15 @@ code .</code></pre>
 <li>回到 <code>helloworld.cpp</code>，使其成为活动文件。</li>
 <li>通过单击编辑器边距或按 F9 在当前行设置断点。</li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/cpp-breakpoint.png">screenshot of breakpoint in helloworld.cpp</a></p>
+<p>   <img src="images/playbutton/cpp-breakpoint.png" alt="screenshot of breakpoint in helloworld.cpp"></p>
 <ol>
 <li>从播放按钮旁边的下拉菜单中，选择 <strong>调试 C/C++ 文件</strong>。</li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/debug-cpp-file-play-button.png">Screenshot of play button drop-down</a></p>
+<p>   <img src="images/playbutton/debug-cpp-file-play-button.png" alt="Screenshot of play button drop-down"></p>
 <ol>
 <li>从系统上检测到的编译器列表中选择 <strong>C/C++: g++ 生成和调试活动文件</strong>（你只会在第一次运行或调试 <code>helloworld.cpp</code> 时被要求选择编译器）。</li>
 </ol>
-<p>   !<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+<p>   <img src="images/wsl/build-and-debug-active-file.png" alt="C++ debug configuration dropdown"></p>
 
 <p>播放按钮有两种模式：<strong>运行 C/C++ 文件</strong> 和 <strong>调试 C/C++ 文件</strong>。它将默认为最后使用的模式。如果你在播放按钮中看到调试图标，你可以选择播放按钮进行调试，而无需选择下拉菜单项。</p>
 
@@ -681,7 +681,7 @@ code .</code></pre>
 <li>编辑器高亮显示第 12 行，这是你在启动调试器之前设置的断点：
 </li>
 </ul>
-<p>   !<a href="cpp/images/playbutton/breakpoint-debug.png">Initial breakpoint</a></p>
+<p>   <img src="images/playbutton/breakpoint-debug.png" alt="Initial breakpoint"></p>
 
 <ul>
 <li>左侧的 <strong>运行和调试</strong> 视图显示调试信息。你将在本教程后面看到一个示例。
@@ -689,7 +689,7 @@ code .</code></pre>
 <li>在代码编辑器的顶部，出现一个调试控制面板。你可以通过拖拽左侧的圆点将其在屏幕上移动。
 </li>
 </ul>
-<p>   !<a href="cpp/images/cpp/debug-controls.png">Debugging controls</a></p>
+<p>   <img src="images/cpp/debug-controls.png" alt="Debugging controls"></p>
 
 <p>如果你在工作区中已经有一个 launch.json 文件，播放按钮将从中读取以确定如何运行和调试你的 C++ 文件。如果你没有 launch.json，播放按钮将动态创建一个临时的"快速调试"配置，完全无需 launch.json！</p>
 
@@ -701,11 +701,11 @@ code .</code></pre>
 <li>单击或按调试控制面板中的 <strong>逐过程</strong> 图标。
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/step-over-button.png">Step over button</a></p>
+<p>   <img src="images/cpp/step-over-button.png" alt="Step over button"></p>
 
 <p>   这将使程序执行前进到 for 循环的第一行，并跳过在创建和初始化 <code>msg</code> 变量时调用的 <code>vector</code> 和 <code>string</code> 类中的所有内部函数调用。注意侧边 <strong>变量</strong> 窗口中的变化。</p>
 
-<p>   !<a href="cpp/images/wsl/debug-view-variables.png">Debugging windows</a></p>
+<p>   <img src="images/wsl/debug-view-variables.png" alt="Debugging windows"></p>
 
 <ol>
 <li>再次按 <strong>逐过程</strong> 前进到此程序中的下一条语句（跳过为初始化循环而执行的所有内部代码）。现在，<strong>变量</strong> 窗口显示有关循环变量的信息。</li>
@@ -713,17 +713,17 @@ code .</code></pre>
 <li>如果你愿意，可以继续按 <strong>逐过程</strong>，直到向量中的所有单词都打印到控制台。但如果你好奇，可以尝试按 <strong>逐语句</strong> 按钮来逐步执行 C++ 标准库中的源代码！
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/gcc-system-header-stepping.png">Breakpoint in gcc standard library header</a></p>
+<p>   <img src="images/cpp/gcc-system-header-stepping.png" alt="Breakpoint in gcc standard library header"></p>
 
 <p>   要返回到你自己的代码，一种方法是继续按 <strong>逐过程</strong>。另一种方法是在你的代码中设置断点，方法是切换到代码编辑器中的 <code>helloworld.cpp</code> 选项卡，将插入点放在循环内 <code>cout</code> 语句的某个位置，然后按 <code>kb(editor.debug.action.toggleBreakpoint)</code>。左侧的边槽中会出现一个红点，表示已在此行设置断点。</p>
 
-<p>   !<a href="cpp/images/cpp/breakpoint-in-main.png">Breakpoint in main</a></p>
+<p>   <img src="images/cpp/breakpoint-in-main.png" alt="Breakpoint in main"></p>
 
 <p>   然后按 <code>kb(workbench.action.debug.start)</code> 从标准库头文件的当前行开始执行。执行将在 <code>cout</code> 处中断。如果你愿意，可以再次按 <code>kb(editor.debug.action.toggleBreakpoint)</code> 来关闭断点。</p>
 
 <p>   当循环完成后，你可以在集成终端的 <strong>调试控制台</strong> 选项卡中看到输出，以及 GDB 输出的一些其他诊断信息。</p>
 
-<p>   !<a href="cpp/images/wsl/debug-console-output-wsl.png">Debug console display</a></p>
+<p>   <img src="images/wsl/debug-console-output-wsl.png" alt="Debug console display"></p>
 
 <h2>设置监视</h2>
 
@@ -733,13 +733,13 @@ code .</code></pre>
 <li>将插入点放在循环内。在 <strong>监视</strong> 窗口中，单击加号，在文本框中输入 <code>word</code>，这是循环变量的名称。现在在你逐步执行循环时查看监视窗口。
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/watch-window.png">Watch window</a></p>
+<p>   <img src="images/cpp/watch-window.png" alt="Watch window"></p>
 
 <ol>
 <li>要在断点暂停执行时快速查看任何变量的值，你可以用鼠标指针悬停在其上方。
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/mouse-hover.png">Mouse hover</a></p>
+<p>   <img src="images/cpp/mouse-hover.png" alt="Mouse hover"></p>
 
 <p>接下来，你将创建一个 <code>tasks.json</code> 文件来告诉 VS Code 如何构建（编译）程序。此任务将调用 g++ 编译器从源代码创建可执行文件。</p>
 
@@ -753,11 +753,11 @@ code .</code></pre>
 
 <p>要创建 <code>launch.json</code>，请从播放按钮下拉菜单中选择 <strong>添加调试配置</strong>。</p>
 
-<p>!<a href="cpp/images/playbutton/add-debug-configuration.png">Add debug configuration play button menu</a></p>
+<p><img src="images/playbutton/add-debug-configuration.png" alt="Add debug configuration play button menu"></p>
 
 <p>然后你将看到一个包含各种预定义调试配置的下拉菜单。选择 <strong>g++ 生成和调试活动文件</strong>。</p>
 
-<p>!<a href="cpp/images/wsl/build-and-debug-active-file.png">C++ debug configuration dropdown</a></p>
+<p><img src="images/wsl/build-and-debug-active-file.png" alt="C++ debug configuration dropdown"></p>
 
 <p>VS Code 创建一个 <code>launch.json</code> 文件，内容大致如下：</p>
 
@@ -802,11 +802,11 @@ code .</code></pre>
 
 <p>你可以通过从命令面板 (<code>kb(workbench.action.showCommands)</code>) 运行 <strong>C/C++: 编辑配置 (UI)</strong> 命令来查看 C/C++ 配置 UI。</p>
 
-<p>!<a href="cpp/images/cpp/command-palette.png">Command Palette</a></p>
+<p><img src="images/cpp/command-palette.png" alt="Command Palette"></p>
 
 <p>这将打开 <strong>C/C++ 配置</strong> 页面。当你在此处进行更改时，VS Code 会将它们写入 <code>.vscode</code> 文件夹中名为 <code>c_cpp_properties.json</code> 的文件。</p>
 
-<p>!<a href="cpp/images/wsl/intellisense-configurations-wsl.png">Command Palette</a></p>
+<p><img src="images/wsl/intellisense-configurations-wsl.png" alt="Command Palette"></p>
 
 <p>只有当你的程序包含不在工作区或标准库路径中的头文件时，你才需要修改 <strong>包含路径</strong> 设置。</p>
 

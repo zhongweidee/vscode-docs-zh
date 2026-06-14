@@ -440,7 +440,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>容器工具扩展。要安装该扩展，请打开扩展视图（<code>kb(workbench.view.extensions)</code>），搜索 <code>container tools</code> 以筛选结果，然后选择由 Microsoft 开发的容器工具扩展。
 </li>
 </ul>
-<p>  !<a href="containers/images/overview/installation-extension-search.png">选择容器工具扩展</a> <!-- TODO: image needs updating --></p>
+<p>  <img src="images/overview/installation-extension-search.png" alt="选择容器工具扩展"> <!-- TODO: image needs updating --></p>
 
 <h3>创建 Python 项目</h3>
 
@@ -463,7 +463,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）并选择<strong>容器：将 Docker 文件添加到工作区...</strong>：
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/python-add-python.png">将 Dockerfile 添加到 Python 项目</a></p>
+<p>    <img src="images/quickstarts/python-add-python.png" alt="将 Dockerfile 添加到 Python 项目"></p>
 
 <ol>
 <li>当系统提示选择应用类型时，选择 <strong>Python: Django</strong>、<strong>Python: Flask</strong> 或 <strong>Python: General</strong> 作为应用类型。在本教程中，我们将重点讨论 <strong>Python: General</strong> 的情况，但也会包含 Django 和 Flask 的说明。
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 <code>EXPOSE</code> 语句下方，键入 <code>kb(editor.action.triggerSuggest)</code> 触发 IntelliSense，然后滚动到 <code>ENV</code>。
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/python-edit-dockerfile.png">向 Dockerfile 添加环境变量</a></p>
+<p>    <img src="images/quickstarts/python-edit-dockerfile.png" alt="向 Dockerfile 添加环境变量"></p>
 
 <ol>
 <li>按 <code>kbstyle(Tab)</code> 或 <code>kbstyle(Enter)</code> 完成该语句，然后将 <code>key</code> 设置为变量名，并设置 <code>value</code>。
@@ -562,7 +562,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>导航到<strong>运行和调试</strong>，然后根据情况选择 <strong>Containers: Python - General</strong>、<strong>Containers: Python - Django</strong> 或 <strong>Containers: Python - Flask</strong>。
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/python-debug-configuration.png">选择的容器调试配置</a></p>
+<p>    <img src="images/quickstarts/python-debug-configuration.png" alt="选择的容器调试配置"></p>
 
 <ol>
 <li>使用 <code>kb(workbench.action.debug.start)</code> 键开始调试。<ul>
@@ -580,7 +580,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>容器工具扩展将启动你的浏览器到一个随机映射的端口：</p>
 
-<p>  !<a href="containers/images/quickstarts/python-web-launch.png">Django 网站启动</a></p>
+<p>  <img src="images/quickstarts/python-web-launch.png" alt="Django 网站启动"></p>
 
 <p>><strong>提示</strong>：要修改 Docker 构建设置（例如更改镜像标签），请导航到 <code>.vscode -> tasks.json</code>，在 <code>docker-build</code> 任务下的 <code>dockerBuild</code> 属性中进行修改。使用文件中的 IntelliSense（<code>kb(editor.action.triggerSuggest)</code>）来显示所有其他有效的指令。</p>
 
@@ -593,7 +593,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在<strong>容器</strong>选项卡中，右键单击你的容器并选择<strong>查看日志</strong>。
 </li>
 </ol>
-<p>    !<a href="containers/images/quickstarts/python-view-logs.png">查看容器日志</a></p>
+<p>    <img src="images/quickstarts/python-view-logs.png" alt="查看容器日志"></p>
 
 <ol>
 <li>输出将显示在终端中。
@@ -609,13 +609,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>有两种方式可以调用在 Azure 中构建的命令。你可以右键单击 Dockerfile，然后选择<strong>在 Azure 中构建镜像</strong>。你也可以使用<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）并搜索命令 <strong>Azure Container Registry: Build Image in Azure</strong>。
 </li>
 </ol>
-<p>    !<a href="containers/images/app-service/acr-build-image-in-azure.png">调用在 Azure 中构建镜像命令</a></p>
+<p>    <img src="images/app-service/acr-build-image-in-azure.png" alt="调用在 Azure 中构建镜像命令"></p>
 
 <ol>
 <li>为构建的镜像选择名称和标签。你将使用它来在容器注册表中识别它。
 </li>
 </ol>
-<p>   !<a href="containers/images/app-service/acr-tag-image.png">为构建的镜像选择名称和标签。</a></p>
+<p>   <img src="images/app-service/acr-tag-image.png" alt="为构建的镜像选择名称和标签。"></p>
 
 <ol>
 <li>选择你要使用的 Azure 订阅。
@@ -625,7 +625,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>指定基础操作系统，Linux 或 Windows。此选择必须与 Dockerfile 保持一致。
 </li>
 </ol>
-<p>   !<a href="containers/images/app-service/acr-build-image-select-base-os.png">为构建的镜像选择基础操作系统</a></p>
+<p>   <img src="images/app-service/acr-build-image-select-base-os.png" alt="为构建的镜像选择基础操作系统"></p>
 
 <p>构建镜像的过程可能需要几分钟。你可以在终端中跟踪进度。如果遇到错误（<code>Error: failed to download context.</code>），请尝试在容器注册表上使用<strong>刷新</strong>选项，然后再次请求构建。在重新构建之前，请手动删除旧镜像。</p>
 
@@ -637,7 +637,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>右键单击镜像标签，然后选择<strong>将镜像部署到 Azure App Service</strong> 或<strong>将镜像部署到 Azure Container Apps</strong>。
 </li>
 </ol>
-<p>   !<a href="containers/images/quickstarts/deploy-image-to-azure-python.png">将镜像部署到 Azure App Service</a></p>
+<p>   <img src="images/quickstarts/deploy-image-to-azure-python.png" alt="将镜像部署到 Azure App Service"></p>
 
 <ol>
 <li>提供网站的名称。这必须是唯一的名称，并且对于 Django 应用，还必须将其列为 <code>settings.py</code> 文件中 <code>ALLOWED_HOSTS</code> 列表中的有效主机名。
@@ -653,13 +653,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>右键单击 App Service 节点并查看可用选项。选择<strong>部署到 Web 应用</strong>，然后指定你的应用文件夹以进行部署。
 </li>
 </ol>
-<p>   !<a href="containers/images/app-service/deploy-to-web-app.png">部署到 Web 应用</a></p>
+<p>   <img src="images/app-service/deploy-to-web-app.png" alt="部署到 Web 应用"></p>
 
 <p>   当系统警告这将覆盖之前的部署时，选择<strong>部署</strong>以确认。</p>
 
 <p>   这可能需要几分钟；你可以在终端窗口中监控进度。完成后，会出现一个可访问该站点按钮。</p>
 
-<p>   !<a href="containers/images/app-service/browse-website-button.png">浏览网站按钮</a></p>
+<p>   <img src="images/app-service/browse-website-button.png" alt="浏览网站按钮"></p>
 
 <p>   使用该按钮并验证你的更改是否反映在网站上。</p>
 

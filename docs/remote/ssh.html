@@ -430,7 +430,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>无需在本地计算机上放置源代码即可获得这些优势，因为该扩展直接在远程计算机上运行命令和其他扩展。该扩展将在远程操作系统上安装 VS Code Server；该服务器独立于远程操作系统上任何现有的 VS Code 安装。</p>
 
-<p>!<a href="remote/images/ssh/architecture-ssh.png">SSH Architecture</a></p>
+<p><img src="images/ssh/architecture-ssh.png" alt="SSH Architecture"></p>
 
 <p>这让 VS Code 能够提供<strong>本地质量的开发体验</strong>——包括完整的 IntelliSense（自动补全）、代码导航和调试——<strong>无论你的代码托管在哪里</strong>。</p>
 
@@ -477,7 +477,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    在设置编辑器中：</p>
 
-<p>    !<a href="remote/images/ssh/ssh-listen-on-socket.png">Listen on socket VS Code setting</a></p>
+<p>    <img src="images/ssh/ssh-listen-on-socket.png" alt="Listen on socket VS Code setting"></p>
 
 <p>    有关详细信息，请参阅<a href="../docs/remote/troubleshooting.md#improving-security-on-multi-user-servers">提示和技巧</a>文章。</p>
 
@@ -499,13 +499,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 VS Code 中，从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中选择 <strong>Remote-SSH: Connect to Host...</strong>，并使用与步骤 1 相同的 <code>user@hostname</code>。
 </li>
 </ol>
-<p>    !<a href="remote/images/ssh/ssh-user@box.png">Illustration of user@host input box</a></p>
+<p>    <img src="images/ssh/ssh-user@box.png" alt="Illustration of user@host input box"></p>
 
 <ol>
 <li>如果 VS Code 无法自动检测你连接到的服务器类型，系统将要求你手动选择类型。
 </li>
 </ol>
-<p>    !<a href="remote/images/ssh/ssh-select-platform.png">Illustration of platform selection</a></p>
+<p>    <img src="images/ssh/ssh-select-platform.png" alt="Illustration of platform selection"></p>
 
 <p>    选择平台后，它将存储在 <a href="../docs/configure/settings.md">VS Code 设置</a>中的 <code>remote.SSH.remotePlatform</code> 属性下，以便你可以随时更改。</p>
 
@@ -521,7 +521,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>连接后，你将进入一个空窗口。你可以随时参考状态栏来查看你连接到了哪个主机。
 </li>
 </ol>
-<p>    !<a href="remote/images/ssh/ssh-statusbar.png">SSH Status bar item</a></p>
+<p>    <img src="images/ssh/ssh-statusbar.png" alt="SSH Status bar item"></p>
 
 <p>    在连接状态下，点击状态栏项将提供远程命令列表。</p>
 
@@ -529,7 +529,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>然后，你可以像在本地一样，使用 <strong>文件 > 打开...</strong> 或 <strong>文件 > 打开工作区...</strong> 在远程计算机上打开任何文件夹或工作区！
 </li>
 </ol>
-<p>    !<a href="remote/images/ssh/ssh-open-folder.png">File Open on a remote SSH host</a></p>
+<p>    <img src="images/ssh/ssh-open-folder.png" alt="File Open on a remote SSH host"></p>
 
 <p>    从这里开始，<a href="#管理扩展">安装任何扩展</a>以便在连接到主机时使用，然后开始编辑！</p>
 
@@ -562,15 +562,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>首先从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中选择 <strong>Remote-SSH: Add New SSH Host...</strong>，或点击活动栏中 SSH <strong>远程资源管理器</strong>中的<strong>添加新项</strong>图标。</p>
 
-<p>!<a href="remote/images/ssh/ssh-explorer-add-new.png">Remote Explorer Add New item</a></p>
+<p><img src="images/ssh/ssh-explorer-add-new.png" alt="Remote Explorer Add New item"></p>
 
 <p>然后系统将要求你输入 SSH 连接信息。你可以输入主机名：</p>
 
-<p>!<a href="remote/images/ssh/ssh-host-input.png">Remote Explorer SSH host input</a></p>
+<p><img src="images/ssh/ssh-host-input.png" alt="Remote Explorer SSH host input"></p>
 
 <p>或者输入你从命令行连接到主机时使用的完整 <code>ssh</code> 命令：</p>
 
-<p>!<a href="remote/images/ssh/ssh-command-input.png">Remote Explorer SSH command input</a></p>
+<p><img src="images/ssh/ssh-command-input.png" alt="Remote Explorer SSH command input"></p>
 
 <p>最后，系统将要求你选择一个要使用的配置文件。如果你想要使用与列出文件不同的配置文件，还可以在用户 <code>settings.json</code> 文件中设置 <code>"remote.SSH.configFile"</code> 属性。扩展会处理其余的工作！</p>
 
@@ -585,11 +585,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>从此以后，当你从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中选择 <strong>Remote-SSH: Connect to Host...</strong> 时，或者在<strong>远程资源管理器</strong>的 <strong>SSH 目标</strong>部分中，该主机将出现在主机列表中。</p>
 
-<p>!<a href="remote/images/ssh/ssh-explorer-connect.png">SSH targets in the Remote Explorer</a></p>
+<p><img src="images/ssh/ssh-explorer-connect.png" alt="SSH targets in the Remote Explorer"></p>
 
 <p><strong>远程资源管理器</strong>允许你在远程主机上打开一个新的空窗口，或直接打开你之前打开过的文件夹。展开主机，点击要打开文件夹旁边的<strong>打开文件夹</strong>图标。</p>
 
-<p>!<a href="remote/images/ssh/ssh-explorer-open-folder.png">Remote Explorer open folder</a></p>
+<p><img src="images/ssh/ssh-explorer-open-folder.png" alt="Remote Explorer open folder"></p>
 
 <h2>管理扩展</h2>
 
@@ -599,17 +599,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>将有一个用于远程 SSH 主机的类别：</p>
 
-<p>!<a href="remote/images/ssh/ssh-installed-remote-indicator.png">Workspace Extension Category</a></p>
+<p><img src="images/ssh/ssh-installed-remote-indicator.png" alt="Workspace Extension Category"></p>
 
 <p>还有一个<strong>本地 - 已安装</strong>类别：</p>
 
-<p>!<a href="remote/images/common/local-installed-extensions.png">Local Extension Category</a></p>
+<p><img src="images/common/local-installed-extensions.png" alt="Local Extension Category"></p>
 
 <blockquote><strong>注意：</strong> 如果你是扩展作者，发现你的扩展无法正常工作或安装在错误的位置，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>了解详细信息。</blockquote>
 
 <p>实际需要在远程运行的本地扩展将在<strong>本地 - 已安装</strong>类别中显示为灰色和禁用状态。选择<strong>安装</strong>以在远程主机上安装扩展。</p>
 
-<p>!<a href="remote/images/ssh/ssh-disabled-extensions.png">Disabled Extensions w/Install Button</a></p>
+<p><img src="images/ssh/ssh-disabled-extensions.png" alt="Disabled Extensions w/Install Button"></p>
 
 <p>你还可以通过转到扩展视图，使用 <strong>本地 - 已安装</strong> 标题栏右侧的云按钮，选择 <strong>Install Local Extensions in SSH: {Hostname}</strong>，将所有本地安装的扩展安装到 SSH 主机上。这将显示一个下拉菜单，你可以从中选择要在 SSH 主机上安装哪些本地扩展。</p>
 
@@ -643,11 +643,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>连接到主机后，如果你想在会话期间<strong>临时转发</strong>一个新端口，请从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中选择<strong>转发端口</strong>，或在<strong>端口视图</strong>中选择<strong>添加端口</strong>按钮。你可以在底部面板中看到端口视图，或通过运行命令 <strong>端口：聚焦端口视图</strong> 来查看。</p>
 
-<p>!<a href="remote/images/ssh/forward-port-ssh.png">Forward port button</a></p>
+<p><img src="images/ssh/forward-port-ssh.png" alt="Forward port button"></p>
 
 <p>系统将要求你输入要转发的端口，你可以为其指定一个名称。</p>
 
-<p>!<a href="remote/images/ssh/add-new-port.png">Adding a new port</a></p>
+<p><img src="images/ssh/add-new-port.png" alt="Adding a new port"></p>
 
 <p>通知将告诉你应该使用哪个本地主机端口来访问远程端口。例如，如果你转发了一个监听在端口 3000 上的 HTTP 服务器，通知可能会告诉你它被映射到本地主机的端口 4123，因为 3000 已被使用。然后你可以使用 <code>http://localhost:4123</code> 连接到此远程 HTTP 服务器。</p>
 
@@ -655,7 +655,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你希望 VS Code 记住你已转发的任何端口，请在设置编辑器（<code>kb(workbench.action.openSettings)</code>）中勾选 <strong>Remote: Restore Forwarded Ports</strong>，或在 <code>settings.json</code> 中设置 <code>"remote.restoreForwardedPorts": true</code>。</p>
 
-<p>!<a href="remote/images/common/restore-forwarded-ports.png">Restore forwarded ports setting</a></p>
+<p><img src="images/common/restore-forwarded-ports.png" alt="Restore forwarded ports setting"></p>
 
 <h4>更改隧道的本地端口</h4>
 
@@ -663,7 +663,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>右键点击要修改的隧道，然后在上下文菜单中选择<strong>更改本地地址端口</strong>。</p>
 
-<p>!<a href="remote/images/ssh/change-local-port.png">Change Local Address Port</a></p>
+<p><img src="images/ssh/change-local-port.png" alt="Change Local Address Port"></p>
 
 <h3>始终转发端口</h3>
 
@@ -683,7 +683,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你也可以从同一个终端窗口使用 <code>code</code> 命令行来执行许多操作，例如在远程主机上打开新文件或文件夹。输入 <code>code --help</code> 查看命令行中可用的所有选项。</p>
 
-<p>!<a href="remote/images/ssh/code-command-in-terminal.png">Using the code CLI</a></p>
+<p><img src="images/ssh/code-command-in-terminal.png" alt="Using the code CLI"></p>
 
 <h2>在 SSH 主机上调试</h2>
 
@@ -695,7 +695,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 的本地用户设置在连接到 SSH 主机时也会被重用。虽然这保持了你用户体验的一致性，但你可能希望在你的本地计算机和每个主机之间对这些设置进行一些变化。幸运的是，连接到主机后，你还可以通过从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）运行<strong>首选项：打开远程设置</strong>命令，或在设置编辑器中选择<strong>远程</strong>选项卡来设置主机特定的设置。每当你连接到主机时，这些设置将覆盖你现有的任何用户设置。工作区设置将覆盖远程和用户设置。</p>
 
-<p>!<a href="remote/images/ssh/ssh-settings.png">Host-specific settings tab</a></p>
+<p><img src="images/ssh/ssh-settings.png" alt="Host-specific settings tab"></p>
 
 <h2>使用本地工具</h2>
 

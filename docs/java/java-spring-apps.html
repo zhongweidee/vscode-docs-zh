@@ -444,7 +444,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>高效且轻松地监控生产工作负载。
 </li>
 </ul>
-<p>!<a href="java/images/java-webapp/greeting-from-spring.png">Greeting from Java</a></p>
+<p><img src="images/java-webapp/greeting-from-spring.png" alt="Greeting from Java"></p>
 
 <h2>准备工作</h2>
 
@@ -468,23 +468,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>><strong>注意</strong>：你可以从 <a href="https://code.visualstudio.com/">https://code.visualstudio.com</a> 安装 Visual Studio Code，并从 <a href="https://git-scm.com/">https://git-scm.com</a> 安装 Git。</p>
 
-<p>!<a href="java/images/java-webapp/clone-repository.gif">Clone Spring Repository</a></p>
+<p><img src="images/java-webapp/clone-repository.gif" alt="Clone Spring Repository"></p>
 
 <p>在 VS Code 中，打开 <code>complete</code> 文件夹内的任意 Java 文件（例如 <code>src\main\java\hello\Application.java</code>）。如果你尚未为 VS Code 安装 Java 语言扩展，系统会提示你安装 Microsoft <a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack">Java 扩展包</a>。按照说明操作，并在安装完成后重新加载 VS Code。</p>
 
-<p>!<a href="java/images/java-webapp/install-extensions.gif">Install Java Extensions</a></p>
+<p><img src="images/java-webapp/install-extensions.gif" alt="Install Java Extensions"></p>
 
 <p>安装 Java 扩展包后，它将自动为你构建项目（构建可能需要几分钟）。你可以通过按 <code>kb(workbench.action.debug.start)</code> 并选择 <strong>Java</strong> 环境，在 VS Code 中运行应用程序。Java 调试扩展将在项目的 <code>.vscode</code> 文件夹下为你生成调试配置文件 <code>launch.json</code>。你可以在 VS Code 状态栏中查看构建进度，一切就绪后，最终的活动调试配置将显示出来。</p>
 
-<p>!<a href="java/images/java-webapp/debugging-status-bar.png">debug configuration in the Status bar</a></p>
+<p><img src="images/java-webapp/debugging-status-bar.png" alt="debug configuration in the Status bar"></p>
 
 <p>你可以在调试<a href="../docs/debugtest/debugging-configuration.md#launch-configurations">启动配置</a>中了解有关 VS Code 如何启动应用程序的更多信息。再次按 <code>kb(workbench.action.debug.start)</code> 以启动调试器。</p>
 
-<p>!<a href="java/images/java-webapp/run-spring-boot.gif">Run Spring Boot</a></p>
+<p><img src="images/java-webapp/run-spring-boot.gif" alt="Run Spring Boot"></p>
 
 <p>使用 Web 浏览器访问 <a href="http://localhost:8080">http://localhost:8080</a> 来测试 Web 应用。你应该会看到以下消息："Greetings from Spring Boot!"。</p>
 
-<p>!<a href="java/images/java-webapp/greeting-from-spring.png">Greeting from Spring</a></p>
+<p><img src="images/java-webapp/greeting-from-spring.png" alt="Greeting from Spring"></p>
 
 <h2>进行更改</h2>
 
@@ -492,13 +492,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>选择编辑器顶部的<strong>重启</strong>按钮以重新启动应用，并通过重新加载浏览器查看结果。</p>
 
-<p>!<a href="java/images/java-webapp/restart-application.png">Restart Application</a></p>
+<p><img src="images/java-webapp/restart-application.png" alt="Restart Application"></p>
 
 <h2>调试应用程序</h2>
 
 <p>在应用程序源代码中设置断点（<code>kb(editor.debug.action.toggleBreakpoint)</code>），然后重新加载浏览器以触发断点。</p>
 
-<p>!<a href="java/images/java-webapp/debugging.png">Debug Application</a></p>
+<p><img src="images/java-webapp/debugging.png" alt="Debug Application"></p>
 
 <p>如果你想了解有关使用 VS Code 调试 Java 的更多信息，可以阅读 <a href="../docs/java/java-debugging.md">Java 调试</a>。</p>
 
@@ -534,7 +534,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要登录到 Azure，请从<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）运行 <strong>Azure: Sign In</strong>。或者，你可以通过单击 <strong>SPRING APPS</strong> 资源管理器中的 <strong>Sign in to Azure...</strong> 来登录到你的 Azure 账户。</p>
 
-<p>!<a href="java/images/java-spring-cloud/signinasa.png">Azure sign in code</a></p>
+<p><img src="images/java-spring-cloud/signinasa.png" alt="Azure sign in code"></p>
 
 <h3>在 Azure Spring Apps 上创建应用</h3>
 
@@ -544,13 +544,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>右键单击你的订阅，选择 <strong>Create Service in Portal</strong>。在 Azure 门户上完成以下步骤，以创建 Azure Spring Apps 服务实例。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/create-service.png">Create Azure Spring Apps Service instance</a></p>
+<p>    <img src="images/java-spring-cloud/create-service.png" alt="Create Azure Spring Apps Service instance"></p>
 
 <ol>
 <li>服务实例创建后，刷新 Azure 资源管理器以显示新的服务实例。右键单击该服务实例，选择 <strong>Create App</strong>。输入应用名称，选择 Java 版本，然后按 <code>kbstyle(Enter)</code> 开始创建。应用将在几分钟内准备就绪。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/create-app.png">Create App</a></p>
+<p>    <img src="images/java-spring-cloud/create-app.png" alt="Create App"></p>
 
 <h3>构建和部署应用</h3>
 
@@ -562,13 +562,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 Azure 资源管理器中右键单击应用，选择 <strong>Deploy</strong>，并在提示时选择你构建的 Jar 文件。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/deploy-app.png">Deploy App</a></p>
+<p>    <img src="images/java-spring-cloud/deploy-app.png" alt="Deploy App"></p>
 
 <ol>
 <li>你可以在右下角查看部署状态。完成后，选择 <strong>Access Public Endpoint</strong> 以测试在 Azure 上运行的应用，并在提示时选择 <strong>Yes</strong> 以分配公共终结点。请注意，仅支持 Spring Boot fat Jar，请<a href="https://learn.microsoft.com/azure/spring-apps/how-to-prepare-app-deployment?pivots=programming-language-java&tabs=basic-standard-tier">详细了解 Azure Spring Apps 上的应用</a>。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/access-public-endpoint.png">Access public endpoint</a></p>
+<p>    <img src="images/java-spring-cloud/access-public-endpoint.png" alt="Access public endpoint"></p>
 
 <h3>缩放应用</h3>
 
@@ -576,7 +576,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>你可以通过右键单击<strong>缩放设置</strong>下的<strong>实例计数</strong>并选择 <strong>Edit</strong> 来轻松缩放应用。输入 "2" 并按 <code>kbstyle(Enter)</code> 以缩放应用。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/scale.png">Scale app</a></p>
+<p>    <img src="images/java-spring-cloud/scale.png" alt="Scale app"></p>
 
 <h3>流式传输应用程序日志</h3>
 
@@ -584,13 +584,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>展开<strong>应用实例</strong>节点，右键单击你想要查看日志的实例，然后选择 <strong>Start Streaming Logs</strong>。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/start-log-streaming.png">Start log streaming</a></p>
+<p>    <img src="images/java-spring-cloud/start-log-streaming.png" alt="Start log streaming"></p>
 
 <ol>
 <li>Visual Studio Code 输出窗口将打开，并建立与日志流的连接。
 </li>
 </ol>
-<p>    !<a href="java/images/java-spring-cloud/log-output.png">Log output</a></p>
+<p>    <img src="images/java-spring-cloud/log-output.png" alt="Log output"></p>
 
 <h2>后续步骤</h2>
 

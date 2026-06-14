@@ -442,13 +442,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>在此模式下，性能分析工具会对下一个启动并发出 Windows ML 事件的应用进行性能分析。</p>
 <p>此选项非常适合测试只需运行一次的应用。在这种情况下，你启动性能分析，然后运行应用，资源使用情况就会显示出来。</p>
 
-<p>!<a href="intelligentapps/images/profiling/the-next-session-guide-2.png">Screenshot that shows how to start by the next session</a></p>
+<p><img src="images/profiling/the-next-session-guide-2.png" alt="Screenshot that shows how to start by the next session"></p>
 
 <p>该工具会对新启动的应用开始性能分析。这意味着，对于 Python 笔记本的分析，如果内核已在运行，你需要重启内核才能开始对其进行性能分析。仅启动一个新笔记本不会自动开始性能分析。</p>
 
 <blockquote>[!IMPORTANT]</blockquote>
 <blockquote>要接收 Windows ML 事件，该工具需要在管理员模式下运行。如果 VS Code 未以管理员模式启动，则会显示一条通知，引导你重启 VS Code。你需要关闭所有其他 VS Code 实例，才能使管理员模式下的重启生效。</blockquote>
-<blockquote>!<a href="intelligentapps/images/profiling/the-next-session-admin.png">Screenshot that shows a notification to restart VS Code in admin mode</a></blockquote>
+<blockquote><img src="images/profiling/the-next-session-admin.png" alt="Screenshot that shows a notification to restart VS Code in admin mode"></blockquote>
 
 
 <h2>对正在运行的应用进行性能分析</h2>
@@ -463,7 +463,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>此选项非常适合对已在运行且你无法为分析目的重启的应用进行性能分析。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-process-id-or-name-2.png">Screenshot that shows how to start by process id or name</a></p>
+<p><img src="images/profiling/by-process-id-or-name-2.png" alt="Screenshot that shows how to start by process id or name"></p>
 
 <h2>对 ONNX 模型进行性能分析</h2>
 
@@ -471,25 +471,25 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>此选项非常适合在不同的 EP 上对 ONNX 模型进行性能分析。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-model-file-config-2.png">Screenshot that shows how to start by model file</a></p>
+<p><img src="images/profiling/by-model-file-config-2.png" alt="Screenshot that shows how to start by model file"></p>
 
 <p>性能分析完成后，会显示一条通知，引导你打开或保存报告。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-model-file-succeeded.png">Screenshot that shows the succeeded notification</a></p>
+<p><img src="images/profiling/by-model-file-succeeded.png" alt="Screenshot that shows the succeeded notification"></p>
 
 <p>该报告包含 ONNX 模型的详细性能分析统计信息和结果。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-model-file-result.png">Screenshot that shows the report data</a></p>
+<p><img src="images/profiling/by-model-file-result.png" alt="Screenshot that shows the report data"></p>
 
 <h3>对每个操作的基准时间进行分析</h3>
 
 <p>如果启用了 OP 性能分析功能，将生成操作级别的数据，让你可以更详细地检查模型。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-model-file-op-succeeded.png">Screenshot that shows the succeeded notification with OP profiling enabled</a></p>
+<p><img src="images/profiling/by-model-file-op-succeeded.png" alt="Screenshot that shows the succeeded notification with OP profiling enabled"></p>
 
 <p>该报告包含每个操作的详细延迟信息。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-model-file-op-result.png">Screenshot that shows the report data for each OP</a></p>
+<p><img src="images/profiling/by-model-file-op-result.png" alt="Screenshot that shows the report data for each OP"></p>
 
 <h4>为 Intel (OpenVINO) EP 启用操作级别数据</h4>
 
@@ -510,7 +510,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在此模式下，性能分析工具会在目标执行提供程序（EP）上对 ONNX GenAI 模型进行性能分析，处理指定数量的提示。你可以在运行时查看资源使用情况。</p>
 
-<p>!<a href="intelligentapps/images/profiling/by-genai-model-file-config.png">Screenshot that shows how to start by genai model</a></p>
+<p><img src="images/profiling/by-genai-model-file-config.png" alt="Screenshot that shows how to start by genai model"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>你需要选择 GenAI 模型的文件夹，该文件夹是包含 <code>genai_config.json</code> 的文件夹。</blockquote>
@@ -519,7 +519,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在主窗口中，顶部的图表显示 CPU、GPU、NPU 和内存的使用情况。使用情况每秒更新一次，并保留 10 分钟。你可以使用右上角的工具通过放大、缩小和平移来导航时间轴。</p>
 
-<p>!<a href="intelligentapps/images/profiling/resource-usage-view.png">Screenshot that shows the resource usage view</a></p>
+<p><img src="images/profiling/resource-usage-view.png" alt="Screenshot that shows the resource usage view"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>此功能使用性能计数器。要获得更高的准确性，你也可以尝试使用 <a href="https://learn.microsoft.com/en-us/windows-hardware/test/wpt/windows-performance-recorder">Windows Performance Recorder</a>。</blockquote>
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote>[!IMPORTANT]</blockquote>
 <blockquote>要接收 Windows ML 事件，该工具需要在管理员模式下运行。如果 VS Code 未以管理员模式启动，则会显示一条通知，引导你重启 VS Code。你需要关闭所有其他 VS Code 实例，才能使管理员模式下的重启生效。</blockquote>
-<blockquote>!<a href="intelligentapps/images/profiling/events-view-admin.png">Screenshot that shows a notification to restart VS Code in admin mode</a></blockquote>
+<blockquote><img src="images/profiling/events-view-admin.png" alt="Screenshot that shows a notification to restart VS Code in admin mode"></blockquote>
 
 <p>目前，只显示以下事件类型：</p>
 
@@ -540,7 +540,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>Inference：当模型在会话上运行推理时
 </li>
 </ul>
-<p>!<a href="intelligentapps/images/profiling/events-view.png">Screenshot that shows the Windows ML events view</a></p>
+<p><img src="images/profiling/events-view.png" alt="Screenshot that shows the Windows ML events view"></p>
 
 <h2>你学到内容</h2>
 

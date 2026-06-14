@@ -448,7 +448,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Docker 可能需要几分钟才能启动。如果鲸鱼图标在动，很可能仍在启动过程中。你可以点击图标查看状态。</p>
 
-<p>!<a href="devcontainers/images/tutorial/docker-status.png">Docker status</a></p>
+<p><img src="images/tutorial/docker-status.png" alt="Docker status"></p>
 
 <h3>检查 Docker</h3>
 
@@ -463,17 +463,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><a class="install-extension-btn" href="vscode:extension/ms-vscode-remote.remote-containers">安装开发容器扩展</a></blockquote>
 
-<p>!<a href="devcontainers/images/tutorial/dev-containers-extension.png">Dev Containers extension</a></p>
+<p><img src="images/tutorial/dev-containers-extension.png" alt="Dev Containers extension"></p>
 
 <h3>检查安装情况</h3>
 
 <p>安装开发容器扩展后，你会在最左侧的状态栏中看到一个新的状态栏项。</p>
 
-<p>!<a href="devcontainers/images/tutorial/remote-status-bar.png">Remote Status bar item</a></p>
+<p><img src="images/tutorial/remote-status-bar.png" alt="Remote Status bar item"></p>
 
 <p>远程状态栏项可以快速显示 VS Code 当前运行的环境（本地或远程），点击该项将打开开发容器命令。</p>
 
-<p>!<a href="devcontainers/images/tutorial/dev-containers-commands-simple.png">Dev Containers commands</a></p>
+<p><img src="images/tutorial/dev-containers-commands-simple.png" alt="Dev Containers commands"></p>
 
 <h2>获取示例</h2>
 
@@ -481,7 +481,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>打开命令面板（<code>F1</code>）以运行命令 <strong>开发容器：试用开发容器示例...</strong>，然后从列表中选择 Node 示例。</p>
 
-<p>!<a href="devcontainers/images/containers/select-a-sample.png">Select a sample from the list</a></p>
+<p><img src="images/containers/select-a-sample.png" alt="Select a sample from the list"></p>
 
 <p><strong>注意</strong>：还有其他开发容器示例，如 <code>vscode-remote-try-python</code> 或 <code>vscode-remote-try-java</code>，但本教程将使用 <code>vscode-remote-try-node</code>。</p>
 
@@ -489,7 +489,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>窗口将重新加载，但由于容器尚不存在，VS Code 将创建一个容器，并将示例仓库克隆到一个隔离的<a href="https://docs.docker.com/storage/volumes/">容器卷</a>中。这可能需要一些时间，进度通知会提供状态更新。幸运的是，下次打开该文件夹时就不需要此步骤了，因为容器已经存在。</p>
 
-<p>!<a href="devcontainers/images/containers/dev-container-progress.png">Dev Container Progress Notification</a></p>
+<p><img src="images/containers/dev-container-progress.png" alt="Dev Container Progress Notification"></p>
 
 <p>容器构建完成后，VS Code 会自动连接到容器，并将项目文件夹从本地文件系统映射到容器中。</p>
 
@@ -497,7 +497,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>容器运行并成功连接后，你应该会在状态栏的左下角看到远程环境变化：</p>
 
-<p>!<a href="devcontainers/images/tutorial/connected.png">Building image</a></p>
+<p><img src="images/tutorial/connected.png" alt="Building image"></p>
 
 <h2>检查你的环境</h2>
 
@@ -509,13 +509,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>应该会显示以下版本：</p>
 
-<p>!<a href="devcontainers/images/tutorial/version-check-updated.png">Node.js version check</a></p>
+<p><img src="images/tutorial/version-check-updated.png" alt="Node.js version check"></p>
 
 <h3>运行应用程序</h3>
 
 <p>现在我们可以按 <code>kb(workbench.action.debug.start)</code>，这将在容器内运行应用程序。进程启动后，导航到 <a href="http://localhost:3000">http://localhost:3000</a>，你应该会看到运行中的简单 Node.js 服务器！</p>
 
-<p>!<a href="devcontainers/images/tutorial/hello-remote-world.png">Running the application</a></p>
+<p><img src="images/tutorial/hello-remote-world.png" alt="Running the application"></p>
 
 <h3>结束容器连接</h3>
 
@@ -535,7 +535,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>完成后，你的本地 Visual Studio Code 副本将连接到运行在新开发容器内的 Visual Studio Code Server。</p>
 
-<p>!<a href="remote/images/remote-overview/architecture.png">Architecture</a></p>
+<p><img src="../remote/images/remote-overview/architecture.png" alt="Architecture"></p>
 
 <h3>devcontainer.json</h3>
 

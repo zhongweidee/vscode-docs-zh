@@ -436,7 +436,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>大纲视图是文件资源管理器底部的一个独立区域。展开后，它会显示当前活动编辑器的符号树。对于 Markdown 文件，符号树就是 Markdown 文件的标题层级结构。</p>
 
-<p>!<a href="languages/images/Markdown/markdown-outline-view.png">Markdown Outline view</a></p>
+<p><img src="images/Markdown/markdown-outline-view.png" alt="Markdown Outline view"></p>
 
 <p>大纲视图是查看文档标题结构和概要的绝佳方式。</p>
 
@@ -450,7 +450,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用 <code>kb(workbench.action.gotoSymbol)</code> 可快速跳转到当前文件中的标题。</p>
 
-<p>!<a href="languages/images/Markdown/go-to-symbol.png">Jumping to a header in a Markdown file</a></p>
+<p><img src="images/Markdown/go-to-symbol.png" alt="Jumping to a header in a Markdown file"></p>
 
 <p>你可以浏览文件中的所有标题，或者开始输入标题名称以找到你想要的那个。找到目标标题后，按 <code>kbstyle(Enter)</code> 将光标移动到该标题处。按 <code>kbstyle(Esc)</code> 取消跳转到标题。</p>
 
@@ -458,7 +458,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用 <code>kb(workbench.action.showAllSymbols)</code> 可搜索当前工作区中所有 Markdown 文件内的标题。</p>
 
-<p>!<a href="languages/images/Markdown/go-to-symbol-in-workspace.png">Jumping to a header across all Markdown files in a workspace</a></p>
+<p><img src="images/Markdown/go-to-symbol-in-workspace.png" alt="Jumping to a header across all Markdown files in a workspace"></p>
 
 <p>开始输入标题名称以筛选列表，找到你想要的标题。</p>
 
@@ -466,13 +466,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>路径补全功能可帮助你创建指向文件和图片的链接。当你输入图片或链接的路径时，这些路径会自动由 <a href="../docs/editing/intellisense.md">IntelliSense</a> 显示，也可以通过使用 <code>kb(editor.action.triggerSuggest)</code> 手动请求。</p>
 
-<p>!<a href="languages/images/Markdown/path-completions.png">Path completions in a Markdown link</a></p>
+<p><img src="images/Markdown/path-completions.png" alt="Path completions in a Markdown link"></p>
 
 <p>以 <code>/</code> 开头的路径将相对于当前工作区根目录解析，而以 <code>./</code> 开头或无任何前缀的路径则相对于当前文件解析。当你输入 <code>/</code> 时，路径建议会自动显示，也可以通过使用 <code>kb(editor.action.triggerSuggest)</code> 手动调用。</p>
 
 <p>路径 IntelliSense 还可以帮助你链接到当前文件或另一个 Markdown 文件中的标题。以 <code>#</code> 开头路径可查看文件中所有标题的补全建议（根据你的设置，可能需要使用 <code>kb(editor.action.triggerSuggest)</code> 才能看到这些建议）：</p>
 
-<p>!<a href="languages/images/Markdown/path-completions-header.png">Header section suggestions in a Markdown link</a></p>
+<p><img src="images/Markdown/path-completions-header.png" alt="Header section suggestions in a Markdown link"></p>
 
 <p>你可以通过 <code>"markdown.suggest.paths.enabled": false</code> 禁用路径 IntelliSense。</p>
 
@@ -480,11 +480,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>需要链接到另一个 Markdown 文档中的标题，但又不想输入完整文件路径或记不住？试试工作区标题补全功能！首先，在 Markdown 链接中输入 <code>##</code> 即可查看当前工作区中所有 Markdown 标题的列表：</p>
 
-<p>!<a href="languages/images/Markdown/md-workspace-header-suggestion.png">Suggestions for all Markdown headers in the current workspace</a></p>
+<p><img src="images/Markdown/md-workspace-header-suggestion.png" alt="Suggestions for all Markdown headers in the current workspace"></p>
 
 <p>接受其中一个补全项可插入指向该标题的完整链接，即使该标题在另一个文件中：</p>
 
-<p>!<a href="languages/images/Markdown/md-workspace-header-suggestion-insert.png">Adding a link to the selected header in another file</a></p>
+<p><img src="images/Markdown/md-workspace-header-suggestion-insert.png" alt="Adding a link to the selected header in another file"></p>
 
 <p>你可以通过 <code>setting(markdown.suggest.paths.includeWorkspaceHeaderCompletions)</code> 设置来配置是否显示以及何时显示工作区标题补全。有效的设置值包括：</p>
 
@@ -502,15 +502,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以<strong>拖放</strong>文件，从 VS Code 的资源管理器或操作系统中将文件拖放到 Markdown 编辑器中。首先从 VS Code 资源管理器中拖出一个文件到你的 Markdown 代码上方，然后按住 <code>kbstyle(Shift)</code> 开始将文件放入其中。预览光标会显示放下文件时插入的位置。</p>
 
-<p>!<a href="languages/images/Markdown/drop-link.gif">Inserting a Markdown link by dragging and dropping from the explorer</a></p>
+<p><img src="images/Markdown/drop-link.gif" alt="Inserting a Markdown link by dragging and dropping from the explorer"></p>
 
 <p>如果你更喜欢使用键盘，也可以<strong>复制并粘贴</strong>文件或图片数据到 Markdown 编辑器中。当你粘贴一个文件、文件链接或 URL 时，你可以选择插入 Markdown 链接或将链接作为纯文本包含。</p>
 
-<p>!<a href="languages/images/Markdown/markdown-paste-link.png">Inserting a Markdown link by pasting a link in the editor</a></p>
+<p><img src="images/Markdown/markdown-paste-link.png" alt="Inserting a Markdown link by pasting a link in the editor"></p>
 
 <p>或者你可以使用 <strong>Markdown：从工作区插入图片</strong> 命令来插入图片，以及使用 <strong>Markdown：插入指向工作区中文件的链接</strong> 命令来插入文件链接。</p>
 
-<p>插入的图片使用 Markdown 图片语法 <code><img src="languages/path/to/image.png" alt=""></code>。链接则插入普通的 Markdown 链接 <code>[](path/to/file.md)</code>。</p>
+<p>插入的图片使用 Markdown 图片语法 <code><img src="path/to/image.png" alt=""></code>。链接则插入普通的 Markdown 链接 <code>[](path/to/file.md)</code>。</p>
 
 <p>默认情况下，VS Code 会自动将工作区外拖放或粘贴的图片复制到你的工作区中。<code>setting(markdown.copyFiles.destination)</code> 设置控制新图片文件的创建位置。此设置将匹配当前 Markdown 文档的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>映射到目标图片位置。目标图片位置还可以使用一些简单的变量。有关可用变量的信息，请参阅 <code>setting(markdown.copyFiles.destination)</code> 的设置描述。</p>
 
@@ -542,7 +542,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择"代码操作"（灯泡）图标，然后选择<strong>生成替代文本</strong>。
 </li>
 </ol>
-<p>    !<a href="copilot/images/copilot-smart-actions/generate-alt-text.png">Screenshot that shows a Code Action menu with Generate alt text option for a Markdown image link.</a></p>
+<p>    <img src="../copilot/images/copilot-smart-actions/generate-alt-text.png" alt="Screenshot that shows a Code Action menu with Generate alt text option for a Markdown image link."></p>
 
 <ol>
 <li>如果你已经有替代文本，选择"代码操作"，然后选择<strong>优化替代文本</strong>。
@@ -570,13 +570,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>段落
 </li>
 </ul>
-<p>!<a href="languages/images/Markdown/smart-select.gif">Smart select within a Markdown document expands from a block element, to the block element containing it, to the rest of the content under a header, to the header itself</a></p>
+<p><img src="images/Markdown/smart-select.gif" alt="Smart select within a Markdown document expands from a block element, to the block element containing it, to the rest of the content under a header, to the header itself"></p>
 
 <h3>链接验证</h3>
 
 <p>链接验证会检查 Markdown 代码中的本地链接，以确保它们有效。这可以发现常见错误，例如链接到已被重命名的标题或磁盘上不再存在的文件。</p>
 
-<p>!<a href="languages/images/Markdown/link-validation.png">A warning shown in the editor when linking to a file that does not exist</a></p>
+<p><img src="images/Markdown/link-validation.png" alt="A warning shown in the editor when linking to a file that does not exist"></p>
 
 <p>链接验证默认情况下处于关闭状态。要启用它，请设置 <code>"markdown.validate.enabled": true</code>。VS Code 随后会分析指向标题、图片和其他本地文件的 Markdown 链接。无效链接会以警告或错误的形式报告。所有链接验证均在本地进行，不会检查外部的 http(s) 链接。</p>
 
@@ -585,7 +585,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><code>setting(markdown.validate.fileLinks.enabled)</code> ——启用/禁用对本地文件的链接验证：<code><a href="../path/to/file.md">link</a></code></li>
 <li><code>setting(markdown.validate.fragmentLinks.enabled)</code> ——启用/禁用对当前文件中标题的链接验证：<code><a href="#some-header">link</a></code></li>
-<li><code>setting(markdown.validate.fileLinks.markdownFragmentLinks)</code> ——启用/禁用对其他 Markdown 文件中标题的链接验证：<code><a href="languages/other-file.md#some-header">link</a></code></li>
+<li><code>setting(markdown.validate.fileLinks.markdownFragmentLinks)</code> ——启用/禁用对其他 Markdown 文件中标题的链接验证：<code><a href="other-file.md#some-header">link</a></code></li>
 <li><code>setting(markdown.validate.referenceLinks.enabled)</code> ——启用/禁用对引用链接的验证：<code>[link][ref]</code>。</li>
 <li><code>setting(markdown.validate.ignoredLinks)</code> ——一个跳过验证的链接 glob 模式列表。当你链接到磁盘上不存在但 Markdown 发布后确实存在的文件时，这很有用。
 <h3>查找标题和链接的所有引用</h3>
@@ -594,30 +594,30 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>使用<strong>查找所有引用</strong>（<code>kb(references-view.findReferences)</code>）命令可查找当前工作区中引用某个 Markdown 标题或链接的所有位置：</p>
 
-<p>!<a href="languages/images/Markdown/find-all-references.png">Jumping to a header in a Markdown file</a></p>
+<p><img src="images/Markdown/find-all-references.png" alt="Jumping to a header in a Markdown file"></p>
 
 <p><strong>查找所有引用</strong>支持以下场景：</p>
 
 <ul>
 <li>标题：<code># My Header</code>。显示所有指向 <code>#my-header</code> 的链接。</li>
 <li>外部链接：<code><a href="http://example.com">text</a></code>。显示所有指向 <code>http://example.com</code> 的链接。</li>
-<li>内部链接：<code><a href="languages/path/to/file.html">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 的链接。</li>
-<li>链接中的片段：<code><a href="languages/path/to/file.md#my-header">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 中 <code>#my-header</code> 的链接。
+<li>内部链接：<code><a href="path/to/file.html">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 的链接。</li>
+<li>链接中的片段：<code><a href="path/to/file.md#my-header">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 中 <code>#my-header</code> 的链接。
 <h3>重命名标题和链接</h3>
 
 </li>
 </ul>
 <p>每次修改 Markdown 标题时担心意外破坏链接？试试使用<strong>重命名符号</strong>（<code>kb(editor.action.rename)</code>）来代替。输入新标题名称并按 <code>kbstyle(Enter)</code> 后，VS Code 会更新标题并自动更新所有指向该标题的链接：</p>
 
-<p>!<a href="languages/images/Markdown/rename-header.gif">Renaming a Markdown header to update all links to it</a></p>
+<p><img src="images/Markdown/rename-header.gif" alt="Renaming a Markdown header to update all links to it"></p>
 
 <p>你也可以对以下内容使用 <code>kb(editor.action.rename)</code>：</p>
 
 <ul>
 <li>标题：<code># My Header</code>。这会更新所有指向 <code>#my-header</code> 的链接。</li>
 <li>外部链接：<code><a href="http://example.com/page">text</a></code>。这会更新所有链接到 <code>http://example.com/page</code> 的位置。</li>
-<li>内部链接：<code><a href="languages/path/to/file.html">text</a></code>。这会重命名文件 <code>./path/to/file.md</code> 并更新所有指向它的链接。</li>
-<li>链接中的片段：<code><a href="languages/path/to/file.md#my-header">text</a></code>。这会重命名 <code>./path/to/file.md</code> 中的标题并更新所有指向它的链接。
+<li>内部链接：<code><a href="path/to/file.html">text</a></code>。这会重命名文件 <code>./path/to/file.md</code> 并更新所有指向它的链接。</li>
+<li>链接中的片段：<code><a href="path/to/file.md#my-header">text</a></code>。这会重命名 <code>./path/to/file.md</code> 中的标题并更新所有指向它的链接。
 <h3>文件移动或重命名时自动更新链接</h3>
 
 </li>
@@ -638,7 +638,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以下是一个简单文件的示例。</p>
 
-<p>!<a href="languages/images/Markdown/preview.png">Markdown Preview</a></p>
+<p><img src="images/Markdown/preview.png" alt="Markdown Preview"></p>
 
 <p>><strong>提示：</strong> 你也可以右键单击编辑器标签页并选择<strong>打开预览</strong>（<code>kb(markdown.togglePreview)</code>），或使用<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）运行 <strong>Markdown：在侧边打开预览</strong> 命令（<code>kb(markdown.showPreviewToSide)</code>）。</p>
 
@@ -646,11 +646,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>默认情况下，Markdown 预览会自动更新以预览当前活动的 Markdown 文件：</p>
 
-<p>!<a href="languages/images/Markdown/md-dynamic-preview.gif">The preview automatically switching to preview the current Markdown document</a></p>
+<p><img src="images/Markdown/md-dynamic-preview.gif" alt="The preview automatically switching to preview the current Markdown document"></p>
 
 <p>你可以使用 <strong>Markdown：切换预览锁定</strong> 命令锁定 Markdown 预览，使其保持对当前 Markdown 文档的预览。锁定的预览在标题栏中会显示 <strong>\[预览]</strong> 标识：</p>
 
-<p>!<a href="languages/images/Markdown/locked-preview-title.png">A locked Markdown preview</a></p>
+<p><img src="images/Markdown/locked-preview-title.png" alt="A locked Markdown preview"></p>
 
 <p>><strong>注意：</strong> <strong>Markdown：切换预览锁定</strong> 命令仅在 Markdown 预览是活动标签页时才可用。</p>
 
@@ -658,17 +658,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 会自动同步 Markdown 编辑器和预览窗格。滚动 Markdown 预览时，编辑器会相应滚动以匹配预览的视口。滚动 Markdown 编辑器时，预览也会相应滚动以匹配其视口：</p>
 
-<p>!<a href="languages/images/Markdown/preview-scroll-sync.gif">Markdown Preview editor selection scroll sync</a></p>
+<p><img src="images/Markdown/preview-scroll-sync.gif" alt="Markdown Preview editor selection scroll sync"></p>
 
 <p>你可以使用 <code>setting(markdown.preview.scrollPreviewWithEditor)</code> 和 <code>setting(markdown.preview.scrollEditorWithPreview)</code> <a href="../docs/configure/settings.md">设置</a>来禁用滚动同步。</p>
 
 <p>编辑器中当前选中的行会在 Markdown 预览的左侧边距中以浅灰色条标注：</p>
 
-<p>!<a href="languages/images/Markdown/preview-selection-marker.png">Markdown Preview editor line marker</a></p>
+<p><img src="images/Markdown/preview-selection-marker.png" alt="Markdown Preview editor line marker"></p>
 
 <p>此外，在 Markdown 预览中双击某个元素时，会自动打开该文件的编辑器并滚动到距离所点击元素最近的行。</p>
 
-<p>!<a href="languages/images/Markdown/double-click-preview-switch.gif">Markdown Preview double click switches to editor</a></p>
+<p><img src="images/Markdown/double-click-preview-switch.gif" alt="Markdown Preview double click switches to editor"></p>
 
 <h3>差异视图中的 Markdown 预览</h3>
 
@@ -744,7 +744,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 内置的 Markdown 预览使用 <a href="https://katex.org/">KaTeX</a> 渲染数学公式。</p>
 
-<p>!<a href="languages/images/Markdown/math-formula-rendering.png">Markdown Preview rendering of math formulas with KaTeX</a></p>
+<p><img src="images/Markdown/math-formula-rendering.png" alt="Markdown Preview rendering of math formulas with KaTeX"></p>
 
 <p>行内数学公式用单个美元符号包裹：</p>
 
@@ -799,11 +799,11 @@ $$</code></pre>
 
 <p>当 Markdown 预览阻止页面上的内容时，预览窗口右上角会弹出一个警告提示：</p>
 
-<p>!<a href="languages/images/Markdown/security-alert.png">Markdown security alert</a></p>
+<p><img src="images/Markdown/security-alert.png" alt="Markdown security alert"></p>
 
 <p>你可以通过点击此弹出窗口或在任何 Markdown 文件中运行 <strong>Markdown：更改预览安全设置</strong> 命令来更改 Markdown 预览中允许的内容：</p>
 
-<p>!<a href="languages/images/Markdown/security-selector.png">Markdown security selector</a></p>
+<p><img src="images/Markdown/security-selector.png" alt="Markdown security selector"></p>
 
 <p>Markdown 预览安全设置适用于工作区中的所有文件。</p>
 
@@ -829,7 +829,7 @@ $$</code></pre>
 
 <p>你可以通过 <strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择一个配置文件模板：</p>
 
-<p>!<a href="languages/images/Markdown/profile-template-dropdown.png">Create Profile dropdown with profile templates</a></p>
+<p><img src="images/Markdown/profile-template-dropdown.png" alt="Create Profile dropdown with profile templates"></p>
 
 <p>选择配置文件模板后，你可以查看设置和扩展，如果不想包含某些项目，可以移除单个项目。在基于模板创建新配置文件后，对设置、扩展或界面所做的更改都会保留在你的配置文件中。</p>
 

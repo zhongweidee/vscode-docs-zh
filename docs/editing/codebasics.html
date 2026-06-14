@@ -445,7 +445,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>[!NOTE]</blockquote>
 <blockquote>你的显卡驱动程序（例如 NVIDIA）可能会覆盖这些默认快捷键。</blockquote>
 
-<p>!<a href="editing/images/codebasics/multicursor.gif">Multi-cursor</a></p>
+<p><img src="images/codebasics/multicursor.gif" alt="Multi-cursor"></p>
 
 <p><code>kb(editor.action.addSelectionToNextFindMatch)</code> 会选择光标所在处的单词，或者当前选择内容的下一个匹配项。</p>
 
@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>你可以在使用多光标查找时跳过下一个匹配项，方法是执行</blockquote>
 <blockquote><code>kb(editor.action.moveSelectionToNextFindMatch)</code>。这有助于你在编辑重复文本时避免添加不需要的选择。</blockquote>
 
-<p>!<a href="editing/images/codebasics/multicursor-word.gif">Multi-cursor-next-word</a></p>
+<p><img src="images/codebasics/multicursor-word.gif" alt="Multi-cursor-next-word"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>你还可以使用 <code>kb(editor.action.selectHighlights)</code> 添加更多光标，它将在当前选中文本的每个匹配项处添加一个选择。</blockquote>
@@ -479,13 +479,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以下是一个使用 <code>kb(editor.action.smartSelect.expand)</code> 扩展选择的示例：</p>
 
-<p>!<a href="editing/images/codebasics/expandselection.gif">Expand selection</a></p>
+<p><img src="images/codebasics/expandselection.gif" alt="Expand selection"></p>
 
 <h2>列（框）选择</h2>
 
 <p>将光标放在一个角，然后按住 <code>kbstyle(Shift+Alt)</code> 并拖动到对角：</p>
 
-<p>!<a href="editing/images/codebasics/column-select.gif">Column text selection</a></p>
+<p><img src="images/codebasics/column-select.gif" alt="Column text selection"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>当使用 <code>kbstyle(Ctrl/Cmd)</code> 作为<a href="#多光标修饰键">多光标修饰键</a>时，此操作会变为 <code>kbstyle(Shift+Ctrl/Cmd)</code>。</blockquote>
@@ -572,7 +572,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当查找控件打开时，它会自动将编辑器中选中的文本填充到查找输入框中。如果选择为空，则会将光标下的单词插入输入框中。</p>
 
-<p>!<a href="editing/images/codebasics/seed-search-string-from-selection.gif">Seed Search String From Selection</a></p>
+<p><img src="images/codebasics/seed-search-string-from-selection.gif" alt="Seed Search String From Selection"></p>
 
 <p>可以通过将 <code>setting(editor.find.seedSearchStringFromSelection)</code> 设置为 <code>"never"</code> 来关闭此功能。</p>
 
@@ -580,7 +580,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>默认情况下，查找操作在整个编辑器文件上运行。要将搜索限制在文本选择范围内，请选择查找控件上的 <strong>在选择中查找</strong> 图标或按 <code>kb(toggleFindInSelection)</code>。</p>
 
-<p>!<a href="editing/images/codebasics/find-in-selection.gif">Find In Selection</a></p>
+<p><img src="images/codebasics/find-in-selection.gif" alt="Find In Selection"></p>
 
 <p>如果你希望它成为查找控件的默认行为，可以将 <code>setting(editor.find.autoFindInSelection)</code> 设置为 <code>always</code>，或者设置为 <code>multiline</code>，表示仅在选择了多行内容时才在选定文本中运行。</p>
 
@@ -604,23 +604,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ul>
-<p>!<a href="editing/images/codebasics/search-replace-advanced-options.png">Advanced Find and Replace Options</a></p>
+<p><img src="images/codebasics/search-replace-advanced-options.png" alt="Advanced Find and Replace Options"></p>
 
 <h3>多行支持和查找控件调整大小</h3>
 
 <p>你可以通过将文本粘贴到查找输入框和替换输入框来搜索多行文本。按 <code>kbstyle(Ctrl+Enter)</code> 在输入框中插入新行。</p>
 
-<p>!<a href="editing/images/codebasics/multiple-line-support.gif">Multiple Line Support</a></p>
+<p><img src="images/codebasics/multiple-line-support.gif" alt="Multiple Line Support"></p>
 
 <p>在搜索长文本时，查找控件的默认大小可能太小。你可以拖动左侧窗框来放大查找控件，或双击左侧窗框将其最大化或缩小到默认大小。</p>
 
-<p>!<a href="editing/images/codebasics/resize-find-widget.gif">Resize Find control</a></p>
+<p><img src="images/codebasics/resize-find-widget.gif" alt="Resize Find control"></p>
 
 <h2>跨文件搜索</h2>
 
 <p>VS Code 允许你快速搜索当前打开的文件夹中的所有文件。按 <code>kb(workbench.view.search)</code> 并输入你的搜索词。搜索结果按包含搜索词的文件分组，并显示每个文件中命中次数及其位置。展开文件可以预览该文件中的所有命中。然后单击其中一个命中以在编辑器中查看它。</p>
 
-<p>!<a href="editing/images/codebasics/search.png">A simple text search across files</a></p>
+<p><img src="images/codebasics/search.png" alt="A simple text search across files"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>VS Code 还支持在搜索框中执行正则表达式搜索。</blockquote>
@@ -632,7 +632,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>高级搜索选项</h3>
 
-<p>!<a href="editing/images/codebasics/searchadvanced-v2.png">Advanced search options</a></p>
+<p><img src="images/codebasics/searchadvanced-v2.png" alt="Advanced search options"></p>
 
 <p>在搜索框下方的两个输入框中，你可以输入要包含在搜索中或从搜索中排除的模式。如果输入 <code>example</code>，它将匹配工作区中每个名为 <code>example</code> 的文件夹和文件。如果输入 <code>./example</code>，它将匹配工作区顶层的 <code>example/</code> 文件夹。使用 <code>,</code> 分隔多个模式。路径必须使用正斜杠。你还可以使用 <a href="../docs/editor/glob-patterns.md">glob 模式</a>语法，例如：</p>
 
@@ -665,11 +665,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你还可以进行跨文件的搜索和替换。展开搜索控件以显示替换文本框。</p>
 
-<p>!<a href="editing/images/codebasics/global-search-replace.png">search and replace</a></p>
+<p><img src="images/codebasics/global-search-replace.png" alt="search and replace"></p>
 
 <p>当你在替换文本框中输入文本时，你将看到待处理更改的差异显示。你可以从替换文本框跨所有文件替换、在一个文件中全部替换或替换单个更改。</p>
 
-<p>!<a href="editing/images/codebasics/search-replace-example.png">search and replace diff view</a></p>
+<p><img src="images/codebasics/search-replace-example.png" alt="search and replace diff view"></p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>你可以使用 <code>kb(history.showNext)</code> 和 <code>kb(history.showPrevious)</code> 快速重用之前的搜索词，在搜索词历史记录中导航。</blockquote>
@@ -680,7 +680,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>示例：</p>
 
-<p>!<a href="editing/images/codebasics/case-change-replace.gif">Changing case while doing find and replace</a></p>
+<p><img src="images/codebasics/case-change-replace.gif" alt="Changing case while doing find and replace"></p>
 
 <p>修饰符也可以叠加——例如，<code>\u\u\u$1</code> 将组的前三个字符大写，或者 <code>\l\U$1</code> 将第一个字符小写，其余部分大写。捕获组在替换字符串中通过 <code>$n</code> 引用，其中 <code>n</code> 是捕获组的顺序。</p>
 
@@ -690,7 +690,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以下是在匹配项前后各显示两行文本作为上下文的 "SearchEditor" 搜索示例：</p>
 
-<p>!<a href="editing/images/codebasics/search-editor-overview.png">Search Editor overview</a></p>
+<p><img src="images/codebasics/search-editor-overview.png" alt="Search Editor overview"></p>
 
 <p><strong>打开搜索编辑器</strong> 命令会打开一个现有的搜索编辑器（如果存在），否则创建一个新的。<strong>新建搜索编辑器</strong> 命令将始终创建一个新的搜索编辑器。</p>
 
@@ -698,7 +698,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你还可以使用搜索视图顶部的 <strong>打开新建搜索编辑器</strong> 按钮，并可以通过结果树顶部的 <strong>在编辑器中打开</strong> 链接或 <strong>搜索编辑器：在编辑器中打开结果</strong> 命令将搜索视图中的现有结果复制到搜索编辑器中。</p>
 
-<p>!<a href="editing/images/codebasics/search-editor-button.png">Search Editor Button</a></p>
+<p><img src="images/codebasics/search-editor-button.png" alt="Search Editor Button"></p>
 
 <p>上面的搜索编辑器是通过选择搜索视图顶部的 <strong>打开新建搜索编辑器</strong> 按钮（第三个按钮）打开的。</p>
 
@@ -779,7 +779,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以使用行号和行首之间装订线上的折叠图标来折叠源代码区域。将鼠标移到装订线上并单击以折叠和展开区域。在折叠图标上使用 <code>kbstyle(Shift + Click)</code> 可折叠或展开该区域及其内部的所有区域。</p>
 
-<p>!<a href="editing/images/codebasics/folding.png">Folding</a></p>
+<p><img src="images/codebasics/folding.png" alt="Folding"></p>
 
 <p>你还可以使用以下操作：</p>
 
@@ -850,11 +850,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 会分析你打开的文件并确定文档中使用的缩进方式。自动检测到的缩进会覆盖你的默认缩进设置。检测到的设置在状态栏右侧显示：</p>
 
-<p>!<a href="editing/images/codebasics/indentation-detection.png">auto detect indentation</a></p>
+<p><img src="images/codebasics/indentation-detection.png" alt="auto detect indentation"></p>
 
 <p>你可以单击状态栏上的缩进显示，弹出一个包含缩进命令的下拉菜单，允许你更改打开文件的默认设置或在制表位和空格之间进行转换。</p>
 
-<p>!<a href="editing/images/codebasics/indentation-commands.png">indentation commands</a></p>
+<p><img src="images/codebasics/indentation-commands.png" alt="indentation commands"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>VS Code 自动检测会检查 2、4、6 或 8 个空格的缩进。如果你的文件使用不同数量的空格，缩进可能无法正确检测到。例如，如果你的惯例是使用 3 个空格缩进，你可能需要关闭 <code>setting(editor.detectIndentation)</code> 并显式设置制表符大小为 3。</blockquote>
@@ -866,19 +866,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>通过在<strong>用户设置</strong>或<strong>工作区设置</strong>中使用 <code>setting(files.encoding)</code> 设置，可以全局或按工作区设置文件编码。</p>
 
-<p>!<a href="editing/images/codebasics/filesencodingsetting.png">files.encoding setting</a></p>
+<p><img src="images/codebasics/filesencodingsetting.png" alt="files.encoding setting"></p>
 
 <p>你可以在状态栏中查看文件编码。</p>
 
-<p>!<a href="editing/images/codebasics/fileencoding.png">Encoding in status bar</a></p>
+<p><img src="images/codebasics/fileencoding.png" alt="Encoding in status bar"></p>
 
 <p>单击状态栏中的编码按钮，以使用不同的编码重新打开或保存活动文件。</p>
 
-<p>!<a href="editing/images/codebasics/encodingclicked.png">Reopen or save with a different encoding</a></p>
+<p><img src="images/codebasics/encodingclicked.png" alt="Reopen or save with a different encoding"></p>
 
 <p>然后选择一种编码。</p>
 
-<p>!<a href="editing/images/codebasics/encodingselection.png">Select an encoding</a></p>
+<p><img src="images/codebasics/encodingselection.png" alt="Select an encoding"></p>
 
 <h2>改写模式</h2>
 
@@ -933,7 +933,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>是的，展开搜索视图文本框以包含替换文本字段。你可以在工作区的所有文件中搜索和替换。请注意，如果你没有在文件夹中打开 VS Code，搜索将仅在当前打开的文件上运行。</p>
 
-<p>!<a href="editing/images/codebasics/global-search-replace.png">global search and replace</a></p>
+<p><img src="images/codebasics/global-search-replace.png" alt="global search and replace"></p>
 
 <h3>如何开启自动换行？</h3>
 

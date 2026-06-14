@@ -452,7 +452,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>然后，Python 扩展会提供快捷方式，使用当前选定的解释器（命令面板中的 <strong>Python: 选择解释器</strong>）来运行 Python 代码。要运行当前的 Python 文件，请点击编辑器右上角的<strong>运行 Python 文件</strong>播放按钮。</p>
 
-<p>!<a href="languages/images/python/run-python-file-in-terminal-button.png">Using the run python file in terminal button</a></p>
+<p><img src="images/python/run-python-file-in-terminal-button.png" alt="Using the run python file in terminal button"></p>
 
 <p>您也可以使用 <strong>Python: 在 Python 终端中运行选中内容/行</strong> 命令 (<code>kbstyle(Shift+Enter)</code>) 来运行单行或某段代码。如果没有选中内容，智能发送将把光标所在行周围的最小可运行代码块发送到 Python 终端 (<code>kbstyle(Shift+Enter)</code>)。编辑器中选定内容的上下文菜单中也提供了一个相同的<strong>运行 Python > 在 Python 终端中运行选中内容/行</strong>命令。每次在终端/REPL 中运行选中内容或某行代码时，都会使用同一个终端，直到该终端被关闭为止。在终端中运行 Python 文件也使用同一个终端。如果该终端仍在运行 REPL，您应该先退出 REPL（<code>exit()</code>）或切换到另一个终端，然后再运行 Python 文件。</p>
 
@@ -468,13 +468,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在您输入时，IntelliSense 会快速显示方法、类成员和文档。您也可以随时使用 <code>kb(editor.action.triggerSuggest)</code> 来触发补全。将鼠标悬停在标识符上会显示更多相关信息。</p>
 
-<p>!<a href="languages/images/python/python-editing.gif">IntelliSense and autocomplete for Python code</a></p>
+<p><img src="images/python/python-editing.gif" alt="IntelliSense and autocomplete for Python code"></p>
 
 <h2>通过 AI 增强补全</h2>
 
 <p><a href="https://copilot.github.com/">GitHub Copilot</a> 是一款 AI 驱动的代码补全工具，可帮助您更快、更智能地编写代码。您可以在 VS Code 中使用 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot">GitHub Copilot 扩展</a>来生成代码，或从它生成的代码中学习。</p>
 
-<p><a href="languages/images/python/copilot-extension.png"><img src="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot" alt="GitHub Copilot extension in the VS Code Marketplace</a>"></p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=GitHub.copilot"><img src="images/python/copilot-extension.png" alt="GitHub Copilot extension in the VS Code Marketplace"></a></p>
 
 <p>GitHub Copilot 为 Python 之外的多种语言及框架提供建议，包括 JavaScript、TypeScript、Ruby、Go、C# 和 C++。</p>
 
@@ -508,17 +508,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当前环境显示在 VS Code 状态栏的右侧：</p>
 
-<p>!<a href="python/images/shared/environment-in-status-bar.png">Status Bar showing a selected interpreter</a></p>
+<p><img src="../python/images/shared/environment-in-status-bar.png" alt="Status Bar showing a selected interpreter"></p>
 
 <p>状态栏还会在未选择解释器时进行提示：</p>
 
-<p>!<a href="languages/images/python/no-interpreter-selected-statusbar.png">Status bar showing no selected Python interpreter</a></p>
+<p><img src="images/python/no-interpreter-selected-statusbar.png" alt="Status bar showing no selected Python interpreter"></p>
 
 <p>选定的环境会用于 IntelliSense、自动补全、代码检查、格式化以及任何其他与语言相关的功能。当您在终端中运行或调试 Python 时，或者使用<strong>终端: 创建新终端</strong>命令创建新终端时，该环境也会被激活。</p>
 
 <p>要更改当前解释器（包括切换到 conda 或虚拟环境），请点击状态栏上的解释器名称，或使用 <strong>Python: 选择解释器</strong>命令。</p>
 
-<p>!<a href="languages/images/python/select-interpreters-command.png">Python: Select Interpreter command</a></p>
+<p><img src="images/python/select-interpreters-command.png" alt="Python: Select Interpreter command"></p>
 
 <p>VS Code 会向您显示一个列表，列出已检测到的环境以及您手动添加到用户设置中的环境（参见<a href="../docs/python/environments.md">配置 Python 环境</a>）。</p>
 
@@ -526,11 +526,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要在 VS Code 中为 <a href="https://jupyter.org/">Jupyter 笔记本</a>文件（<code>.ipynb</code>）启用 Python 支持，您可以安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">Jupyter 扩展</a>。Python 和 Jupyter 扩展协同工作，为您在 VS Code 中提供出色的笔记本体验，允许您直接查看和修改代码单元格，并提供 IntelliSense 支持，以及运行和调试它们。</p>
 
-<p>!<a href="languages/images/python/native-jupyter.png">Jupyter notebook running in VS code in the Notebook Editor</a></p>
+<p><img src="images/python/native-jupyter.png" alt="Jupyter notebook running in VS code in the Notebook Editor"></p>
 
 <p>您还可以通过 <strong>Jupyter: 导出为 Python 脚本</strong>命令将笔记本转换并以 Python 代码文件的形式打开。笔记本的单元格在 Python 文件中以 <code>#%%</code> 注释分隔，Jupyter 扩展会显示<strong>运行单元格</strong>或<strong>运行下方</strong> CodeLens。选择任一 CodeLens 都会启动 Jupyter 服务器并在 Python 交互窗口中运行相应的单元格：</p>
 
-<p>!<a href="languages/images/python/jupyter.png">Jupyter notebook running in VS Code and the Python interactive window</a></p>
+<p><img src="images/python/jupyter.png" alt="Jupyter notebook running in VS Code and the Python interactive window"></p>
 
 <p>您还可以连接到远程 Jupyter 服务器来运行笔记本。有关更多信息，请参阅 <a href="../docs/datascience/jupyter-notebooks.md">Jupyter 支持</a>。</p>
 
@@ -552,7 +552,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您可以通过<strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择配置文件模板：</p>
 
-<p>!<a href="languages/images/python/profile-template-dropdown.png">Create Profile dropdown with profile templates</a></p>
+<p><img src="images/python/profile-template-dropdown.png" alt="Create Profile dropdown with profile templates"></p>
 
 <p>选择配置文件模板后，您可以查看设置和扩展，并移除不想包含在新的配置文件中的个别项目。基于模板创建新配置文件后，对设置、扩展或 UI 所做的更改都会保存在您的配置文件中。</p>
 

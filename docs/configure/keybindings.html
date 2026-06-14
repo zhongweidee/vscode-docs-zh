@@ -437,7 +437,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要打开键盘快捷键编辑器，请选择 <strong>文件（File）</strong> > <strong>首选项（Preferences）</strong> > <strong>键盘快捷键（Keyboard Shortcuts）</strong> 菜单，或在命令面板中使用 <strong>首选项：打开键盘快捷键</strong> 命令（<code>kb(workbench.action.openGlobalKeybindings)</code>）。键盘快捷键编辑器默认以<a href="../docs/editing/userinterface.md#modal-editors">模态覆盖层</a>的形式在编辑器区域顶部打开。</p>
 
-<p>!<a href="configure/images/keybinding/keyboard-shortcuts.gif">Keyboard Shortcuts</a></p>
+<p><img src="images/keybinding/keyboard-shortcuts.gif" alt="Keyboard Shortcuts"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>键盘快捷键会匹配你当前的键盘布局。例如，使用美式键盘布局时快捷键 <code>kbstyle(Cmd+\)</code>，在切换到德语布局时将显示为 <code>kbstyle(Ctrl+Shift+Alt+Cmd+7)</code>。更改键盘快捷键的对话框会根据你的键盘布局分配正确且合适的键盘快捷键。</blockquote>
@@ -474,7 +474,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>右键单击键盘快捷键列表中的项目，并选择 <strong>显示相同键绑定（Show Same Keybindings）</strong>，可查看所有使用相同键盘快捷键的条目。</p>
 
-<p>!<a href="configure/images/keybinding/show-conflicts-menu.png">show keyboard shortcut conflicts menu</a></p>
+<p><img src="images/keybinding/show-conflicts-menu.png" alt="show keyboard shortcut conflicts menu"></p>
 
 <h2>键盘快捷键故障排除</h2>
 
@@ -498,7 +498,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要筛选列表仅显示你已修改的快捷键，请在 <strong>更多操作（More Actions）</strong>（<strong>...</strong>）菜单中选择 <strong>显示用户键绑定（Show User Keybindings）</strong> 命令。这将对 <strong>键盘快捷键</strong> 编辑器应用 <code>@source:user</code> 筛选器（<strong>来源（Source）</strong> 为 'User'）。</p>
 
-<p>!<a href="configure/images/keybinding/user-keyboard-shortcuts.png">Default Keyboard Shortcuts</a></p>
+<p><img src="images/keybinding/user-keyboard-shortcuts.png" alt="Default Keyboard Shortcuts"></p>
 
 <h2>高级自定义</h2>
 
@@ -510,7 +510,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开 <strong>键盘快捷键</strong> 编辑器，然后选择编辑器标题栏右侧的 <strong>打开键盘快捷键 (JSON)</strong> 按钮。
 </li>
 </ul>
-<p>  !<a href="configure/images/keybinding/open-keyboard-shortcuts-json.png">Open Keyboard Shortcuts JSON button</a></p>
+<p>  <img src="images/keybinding/open-keyboard-shortcuts-json.png" alt="Open Keyboard Shortcuts JSON button"></p>
 
 <ul>
 <li>或者，在命令面板（<code>kb(workbench.action.showCommands)</code>）中使用 <strong>打开默认键盘快捷键 (JSON)</strong> 命令。
@@ -725,15 +725,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>所有键盘快捷键在 UI 中都会使用当前系统的键盘布局进行呈现。例如，使用法语（法国）键盘布局时，<code>拆分编辑器（Split Editor）</code> 现在呈现为 <code>kbstyle(Ctrl+*)</code>：</p>
 
-<p>!<a href="configure/images/keybinding/render-key-binding.png">render keyboard shortcut</a></p>
+<p><img src="images/keybinding/render-key-binding.png" alt="render keyboard shortcut"></p>
 
 <p>在编辑 <code>keybindings.json</code> 时，VS Code 会高亮显示可能产生误导的键盘快捷键——这些快捷键在文件中以标准美式键盘布局下产生的字符表示，但在当前系统键盘布局下需要按下带有不同标签的键。例如，以下是使用法语（法国）键盘布局时默认键盘快捷键规则的显示效果：</p>
 
-<p>!<a href="configure/images/keybinding/keybindings-json.png">keybindings.json guidance</a></p>
+<p><img src="images/keybinding/keybindings-json.png" alt="keybindings.json guidance"></p>
 
 <p>还有一个用于在编辑 <code>keybindings.json</code> 时帮助输入键盘快捷键规则的 UI 控件。要启动 <strong>定义键绑定（Define Keybinding）</strong> 控件，请按 <code>kb(editor.action.defineKeybinding)</code>。该控件会监听按键操作，并在文本框中呈现序列化的 JSON 表示形式，并在其下方显示 VS Code 在当前键盘布局下检测到的按键。输入你想要的按键组合后，你可以按 <code>kbstyle(Enter)</code> 键，一条规则片段就会被插入。</p>
 
-<p>!<a href="configure/images/keybinding/key-binding-widget.png">keyboard shortcut widget</a></p>
+<p><img src="images/keybinding/key-binding-widget.png" alt="keyboard shortcut widget"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>在 Linux 上，VS Code 会在启动时检测你当前的键盘布局，然后缓存此信息。我们建议你在更改键盘布局后重启 VS Code。</blockquote>
@@ -763,7 +763,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 会根据 VS Code UI 中哪些元素可见和活动来设置各种上下文键和特定值。例如，内置的 <strong>开始调试（Start Debugging）</strong> 命令的键盘快捷键为 <code>kb(workbench.action.debug.start)</code>，该快捷键仅在有合适的调试器可用时（上下文 <code>debuggersAvailable</code> 为 true）并且编辑器不处于调试模式时（上下文 <code>inDebugMode</code> 为 false）才启用：</p>
 
-<p>!<a href="configure/images/keybinding/start-debugging-when-clause.png">Start Debugging when clause in the Keyboard Shorts editor</a></p>
+<p><img src="images/keybinding/start-debugging-when-clause.png" alt="Start Debugging when clause in the Keyboard Shorts editor"></p>
 
 <p>你也可以在默认的 <code>keybinding.json</code>（<strong>首选项：打开默认键盘快捷键 (JSON)</strong>）中直接查看键盘快捷键的 when 子句：</p>
 
@@ -819,7 +819,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>在键盘快捷键编辑器中，你可以按特定的按键组合进行筛选，以查看哪些命令绑定到哪些键。在以下截图中，你可以看到 <code>kbstyle(Ctrl+Shift+P)</code> 绑定到 <strong>显示所有命令（Show All Commands）</strong> 以打开命令面板。</p>
 
-<p>!<a href="configure/images/keybinding/filter-on-keys.png">Keyboard shortcuts quick outline</a></p>
+<p><img src="images/keybinding/filter-on-keys.png" alt="Keyboard shortcuts quick outline"></p>
 
 <h3>如何为某个操作添加键盘快捷键，例如添加 Ctrl+D 用于删除行</h3>
 

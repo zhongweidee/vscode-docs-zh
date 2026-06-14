@@ -438,17 +438,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><a class="install-extension-btn" href="vscode:extension/ms-vscode-remote.remote-wsl">安装 WSL 扩展</a></blockquote>
 
-<p>!<a href="remote/images/wsl-tutorial/remote-wsl-extension.png">WSL extension</a></p>
+<p><img src="images/wsl-tutorial/remote-wsl-extension.png" alt="WSL extension"></p>
 
 <h3>前提条件检查</h3>
 
 <p>安装 WSL 扩展后，你将在状态栏最左侧看到一个新的状态栏项。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/remote-status-bar.png">Remote Status bar item</a></p>
+<p><img src="images/wsl-tutorial/remote-status-bar.png" alt="Remote Status bar item"></p>
 
 <p>远程状态栏项可以快速显示 VS Code 当前运行在哪个上下文中（本地或远程），点击该项将弹出 WSL 扩展命令。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/wsl-commands.png">WSL extension commands</a></p>
+<p><img src="images/wsl-tutorial/wsl-commands.png" alt="WSL extension commands"></p>
 
 <h2>启用 WSL</h2>
 
@@ -458,7 +458,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在 Windows 搜索栏中输入 'features' 以打开 <strong>启用或关闭 Windows 功能</strong> 对话框。向下滚动并勾选 <strong>Windows Subsystem for Linux</strong>。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/windows-features.png">Turn Windows features on and off dialog</a></p>
+<p><img src="images/wsl-tutorial/windows-features.png" alt="Turn Windows features on and off dialog"></p>
 
 <p>选择 <strong>确定</strong>，系统将提示你重新启动 Windows。</p>
 
@@ -470,13 +470,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>命令运行后，系统将提示你重新启动 Windows。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/powershell-output.png">PowerShell prompt to restart</a></p>
+<p><img src="images/wsl-tutorial/powershell-output.png" alt="PowerShell prompt to restart"></p>
 
 <h3>检查 WSL</h3>
 
 <p>重新启动 Windows 后，你可以通过打开命令提示符并输入 'wsl' 来检查是否已启用 WSL。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/wsl-check.png">WSL check</a></p>
+<p><img src="images/wsl-tutorial/wsl-check.png" alt="WSL check"></p>
 
 <p>WSL 已启用，但你尚未安装 Linux 发行版。</p>
 
@@ -484,15 +484,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你从 Microsoft Store 为 WSL 安装 Linux 发行版。你可以使用商店应用，或在 Windows 搜索栏中搜索 Linux 发行版。选择要安装的 Linux 发行版（例如 Ubuntu）并按照提示操作。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/select-distro.png">select Ubuntu distro</a></p>
+<p><img src="images/wsl-tutorial/select-distro.png" alt="select Ubuntu distro"></p>
 
 <p>选择 <strong>安装</strong>。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/install-ubuntu.png">install Ubuntu</a></p>
+<p><img src="images/wsl-tutorial/install-ubuntu.png" alt="install Ubuntu"></p>
 
 <p>完成后，选择 <strong>启动</strong> 开始使用。这将打开一个 Linux 终端并完成安装。你需要创建用户 ID 和密码，因为你正在设置一个完整的 Linux 实例。现在你正在 Windows 上运行 Linux。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/linux-terminal.png">Linux terminal</a></p>
+<p><img src="images/wsl-tutorial/linux-terminal.png" alt="Linux terminal"></p>
 
 <h2>Python 开发</h2>
 
@@ -513,11 +513,11 @@ python3 hello.py</code></pre>
 
 <p>在远程 Linux 环境中（此 WSL 发行版在技术上是另一台没有 UI 的机器，只是恰好在你计算机本地运行），你的开发工具和体验非常有限。你可以在终端中运行 <a href="https://stackoverflow.blog/2017/05/23/stack-overflow-helping-one-million-developers-exit-vim/">Vim</a> 来编辑文件，或者可以通过 <code>\\wsl$</code> 装载点从 Windows 端编辑源文件：</p>
 
-<p>!<a href="remote/images/wsl-tutorial/wsl$-mount.png">\\wsl$ mount</a></p>
+<p><img src="images/wsl-tutorial/wsl$-mount.png" alt="\\wsl$ mount"></p>
 
 <p>这种模式的问题是 Python 运行时、pip 或任何 conda 包都没有安装在 Windows 上。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/no-python-on-windows.png">no Python on Windows</a></p>
+<p><img src="images/wsl-tutorial/no-python-on-windows.png" alt="no Python on Windows"></p>
 
 <p>请记住，Python 是安装在 Linux 发行版中的，这意味着如果你在 Windows 端编辑 Python 文件，除非你在 Windows 上安装相同的 Python 开发堆栈，否则无法运行或调试它们。而这完全违背了拥有一个安装了所有 Python 工具和运行时的独立 Linux 实例的初衷！</p>
 
@@ -527,29 +527,29 @@ python3 hello.py</code></pre>
 
 <blockquote><strong>注意：</strong> 如果此命令不起作用，你可能需要重启终端，或者你可能在安装时未将 VS Code 添加到你的路径中。</blockquote>
 
-<p>!<a href="remote/images/wsl-tutorial/launch-code.png">launch VS Code</a></p>
+<p><img src="images/wsl-tutorial/launch-code.png" alt="launch VS Code"></p>
 
 <p>你首先会看到一条关于"正在安装 VS Code Server"的消息（c7d83e57… 这个数字是与刚刚安装的客户端工具匹配的 VS Code Server 版本号）。VS Code 正在 Linux 端安装一个小型服务器，桌面端 VS Code 将与之通信。该服务器随后将在 WSL 中安装并托管扩展，以便它们在 WSL 中安装的工具和框架的上下文中运行。换句话说，你的语言扩展将针对 WSL 中安装的工具和框架运行，而不是针对 Windows 端安装的内容运行，这样才能获得正确的开发体验。</p>
 
 <p>接下来发生的事情是 VS Code 将启动并打开 <code>helloWorld</code> 文件夹。你可能会看到一条快速通知，告诉你 VS Code 正在连接到 WSL，并且可能会提示你允许访问基于 Node.js 的服务器。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/installing-vscode-server.png">installing vscode server</a></p>
+<p><img src="images/wsl-tutorial/installing-vscode-server.png" alt="installing vscode server"></p>
 
 <p>现在，当你悬停在 <code>hello.py</code> 上时，你会看到正确的 Linux 路径。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/show-linux-path.png">show hello.py Linux path</a></p>
+<p><img src="images/wsl-tutorial/show-linux-path.png" alt="show hello.py Linux path"></p>
 
 <h3>集成终端</h3>
 
 <p>运行 <strong>终端</strong> > <strong>新建终端</strong>（<code>kb(workbench.action.terminal.toggleTerminal)</code>）以打开一个新的终端实例。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/new-terminal-in-wsl.png">new terminal in WSL</a></p>
+<p><img src="images/wsl-tutorial/new-terminal-in-wsl.png" alt="new terminal in WSL"></p>
 
 <p>你将再次从运行在 Windows 上的 VS Code 中启动一个新的 bash shell 实例。</p>
 
 <p><strong>提示</strong>：在状态栏的左下角，你可以看到你已连接到 <strong>WSL: Ubuntu</strong> 实例。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/wsl-status-bar.png">WSL extension Status bar</a></p>
+<p><img src="images/wsl-tutorial/wsl-status-bar.png" alt="WSL extension Status bar"></p>
 
 <h2>编辑与调试</h2>
 
@@ -557,45 +557,45 @@ python3 hello.py</code></pre>
 
 <p>点击 <code>hello.py</code> 打开它进行编辑。系统会向你推荐扩展，此处是推荐安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Microsoft Python</a> 扩展，它将为你提供丰富的编辑和调试体验。继续选择 <strong>安装</strong>，如果出现提示则重新加载。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/python-extension-recommendation.png">Python extension recommendation</a></p>
+<p><img src="images/wsl-tutorial/python-extension-recommendation.png" alt="Python extension recommendation"></p>
 
 <p>要证明该扩展已安装在 WSL 中，请再次打开扩展视图（<code>kb(workbench.view.extensions)</code>）。你将看到一个标题为 <strong>WSL: Ubuntu – 已安装</strong> 的部分，可以看到所有在 WSL 端安装的扩展。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/wsl-installed-extensions.png">WSL installed extensions</a></p>
+<p><img src="images/wsl-tutorial/wsl-installed-extensions.png" alt="WSL installed extensions"></p>
 
 <p>重新加载后，你还会收到提示，告诉你 pylint 代码检查工具未安装。代码检查工具用于在源代码中显示错误和警告。继续选择 <strong>安装</strong>。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/pylint-not-installed.png">pylint not installed notification</a></p>
+<p><img src="images/wsl-tutorial/pylint-not-installed.png" alt="pylint not installed notification"></p>
 
 <p>现在，当你编辑代码时，你会获得丰富的着色和代码补全功能。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/python-intellisense.png">Python IntelliSense</a></p>
+<p><img src="images/wsl-tutorial/python-intellisense.png" alt="Python IntelliSense"></p>
 
 <p>当你保存文件（<code>kb(workbench.action.files.save)</code>）时，你会在文件上看到代码检查的错误和警告。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/pylint-error.png">pylint error</a></p>
+<p><img src="images/wsl-tutorial/pylint-error.png" alt="pylint error"></p>
 
 <h3>调试</h3>
 
 <p>工具设置好后，让我们更进一步。在 hello.py 的第 1 行设置断点，方法是点击行号左侧的装订线，或将光标放在该行上并按 <code>kb(editor.debug.action.toggleBreakpoint)</code>。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/set-breakpoint.png">set breakpoint</a></p>
+<p><img src="images/wsl-tutorial/set-breakpoint.png" alt="set breakpoint"></p>
 
 <p>现在，按 <code>kb(workbench.action.debug.start)</code> 运行你的应用程序。系统会询问你如何运行该应用程序，由于这是一个简单的文件，只需选择 <strong>Python 文件</strong>。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/select-debug-config.png">select debug configuration</a></p>
+<p><img src="images/wsl-tutorial/select-debug-config.png" alt="select debug configuration"></p>
 
 <p>应用程序将启动，你将在断点处暂停。你可以检查变量、创建监视以及导航调用堆栈。</p>
 
 <p>按 <code>kb(workbench.action.debug.stepOver)</code> 单步执行，你将在调试控制台中看到打印语句的输出。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/debug-view.png">VS Code debug view</a></p>
+<p><img src="images/wsl-tutorial/debug-view.png" alt="VS Code debug view"></p>
 
 <p>你将获得 Visual Studio Code 的完整开发体验，同时使用安装在 WSL 中的 Linux 实例。</p>
 
 <p>如果你想在 WSL 中打开另一个文件夹，请打开 <strong>文件</strong> 菜单并选择 <strong>打开文件夹</strong>。你将看到一个 Linux 文件系统（而非 Windows 文件系统）的简化的文件和文件夹导航器。</p>
 
-<p>!<a href="remote/images/wsl-tutorial/open-folder.png">open folder navigator</a></p>
+<p><img src="images/wsl-tutorial/open-folder.png" alt="open folder navigator"></p>
 
 <p>如果你想切换回 Windows，请选择 <strong>显示本地</strong> 选项，你将看到标准的 Windows 文件打开对话框。</p>
 

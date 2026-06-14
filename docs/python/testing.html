@@ -435,7 +435,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>[!Note]</blockquote>
 <blockquote>文件 glob 模式是一种定义的字符串模式，它基于通配符来匹配包含或不包含的文件或文件夹名称。</blockquote>
 
-<p>!<a href="python/images/testing/test-explorer-no-tests.png">测试尚未配置时，测试资源管理器中显示的“配置 Python 测试”按钮。</a></p>
+<p><img src="images/testing/test-explorer-no-tests.png" alt="测试尚未配置时，测试资源管理器中显示的“配置 Python 测试”按钮。"></p>
 
 <p>你可以随时通过<a href="../docs/editing/userinterface.md#command-palette">命令面板</a>使用 <strong>Python: 配置测试</strong>命令来配置测试，或者按照 VS Code 的<a href="../docs/configure/settings.md">设置</a>文档所述，在设置编辑器或 <code>settings.json</code> 文件中将 <code>python.testing.unittestEnabled</code> 或 <code>python.testing.pytestEnabled</code> 设为启用。每个框架还针对其文件夹和模式有特定的配置设置，请参阅<a href="#test-configuration-settings">测试配置设置</a>中的说明。</p>
 
@@ -464,15 +464,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>如果测试发现成功，你将在测试资源管理器中看到列出的测试：</p>
 
-<p>!<a href="python/images/testing/test-explorer.png">VS Code 中用于 Python 测试的测试资源管理器</a></p>
+<p><img src="images/testing/test-explorer.png" alt="VS Code 中用于 Python 测试的测试资源管理器"></p>
 
 <p>直接从测试资源管理器触发测试发现时，你也可以取消正在进行的测试发现调用。使用<strong>取消</strong>按钮，该按钮在发现过程中会替换<strong>刷新</strong>按钮。</p>
 
-<p>!<a href="python/images/testing/test-cancel-button.png">测试资源管理器中的取消测试发现按钮。</a></p>
+<p><img src="images/testing/test-cancel-button.png" alt="测试资源管理器中的取消测试发现按钮。"></p>
 
 <p>如果发现失败（例如，测试框架未安装或你的测试文件中存在语法错误），你将在测试资源管理器中看到一条错误消息，其中包含指向日志的链接。你可以查看 <strong>Python</strong> 输出面板以查看完整的错误消息（使用<strong>视图</strong> > <strong>输出</strong>菜单命令显示<strong>输出</strong>面板，然后从右侧的下拉菜单中选择 <strong>Python</strong>）。</p>
 
-<p>!<a href="python/images/testing/test-discovery-error.png">测试资源管理器中显示的发现失败错误消息</a></p>
+<p><img src="images/testing/test-discovery-error.png" alt="测试资源管理器中显示的发现失败错误消息"></p>
 
 <h2>运行测试</h2>
 
@@ -482,7 +482,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开测试文件后，选择测试定义行旁边的装订线中显示的绿色运行图标，如上节所示。此命令仅运行那一个方法。
 </li>
 </ul>
-<p>  !<a href="python/images/testing/run-tests-gutter.png">编辑器中打开测试文件时，装订线上显示的“运行测试”图标</a></p>
+<p>  <img src="images/testing/run-tests-gutter.png" alt="编辑器中打开测试文件时，装订线上显示的“运行测试”图标"></p>
 
 <ul>
 <li>从命令面板运行以下任一命令：<ul>
@@ -499,13 +499,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ul>
-<p>      !<a href="python/images/testing/test-explorer-run-all-tests.png">通过测试资源管理器运行所有测试</a></p>
+<p>      <img src="images/testing/test-explorer-run-all-tests.png" alt="通过测试资源管理器运行所有测试"></p>
 
 <ul>
 <li>要运行一组特定的测试或单个测试，请选择文件、类或测试，然后选择该项右侧的播放按钮：
 </li>
 </ul>
-<p>      !<a href="python/images/testing/test-explorer-run-scoped-tests.png">通过测试资源管理器在特定范围内运行测试</a></p>
+<p>      <img src="images/testing/test-explorer-run-scoped-tests.png" alt="通过测试资源管理器在特定范围内运行测试"></p>
 
 <ul>
 <li>你还可以通过测试资源管理器运行所选的一部分测试。方法是：<code>kbstyle(Ctrl+Click)</code>（macOS 上为 <code>kbstyle(Cmd+Click)</code>）选择你想运行的测试，右键单击其中一项，然后选择<strong>运行测试</strong>。
@@ -515,11 +515,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在<strong>测试资源管理器</strong>中，结果显示为单个测试以及包含这些测试的任何类和文件。如果文件夹中的任何测试未通过，该文件夹将显示失败图标。</p>
 
-<p>!<a href="python/images/testing/test-results.png">unittest 类和测试资源管理器中的测试结果</a></p>
+<p><img src="images/testing/test-results.png" alt="unittest 类和测试资源管理器中的测试结果"></p>
 
 <p>VS Code 还会在<strong>测试结果</strong>面板中显示测试结果。</p>
 
-<p>!<a href="python/images/testing/test-result-panel.png">测试结果面板中的测试结果</a></p>
+<p><img src="images/testing/test-result-panel.png" alt="测试结果面板中的测试结果"></p>
 
 <h2>带覆盖率运行测试</h2>
 
@@ -531,7 +531,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>覆盖率运行完成后，编辑器中会高亮显示代码行级别的覆盖率。测试覆盖率结果显示为测试资源管理器中的一个 "Test Coverage" 子选项卡，你还可以使用命令面板中的 <strong>Testing: Focus on Test Coverage View</strong>（<code>kb(workbench.action.showCommands)</code>）导航到该选项卡。在此面板上，你可以查看工作区中每个文件和文件夹的行覆盖率指标，以及分支覆盖率（如果适用）。</p>
 
-<p>!<a href="python/images/testing/python-coverage.gif">展示带覆盖率运行 Python 测试的动态图像。</a></p>
+<p><img src="images/testing/python-coverage.gif" alt="展示带覆盖率运行 Python 测试的动态图像。"></p>
 
 <p>要在使用 pytest 时更精细地控制覆盖率运行，你可以编辑 <code>python.testing.pytestArgs</code> 设置来包含你的规格说明。当 pytest 参数 <code>--cov</code> 存在于 <code>python.testing.pytestArgs</code> 中时，Python 扩展不会对覆盖率参数进行任何额外的修改，以便你的自定义设置生效。如果未找到 <code>--cov</code> 参数，扩展将在运行前向 pytest 参数中添加 <code>--cov=.</code>，以在工作区根目录启用覆盖率。</p>
 
@@ -541,7 +541,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要调试测试，请右键单击函数定义旁边的装订线装饰，然后选择<strong>调试测试</strong>，或在<strong>测试资源管理器</strong>中选择该测试旁边的<strong>调试测试</strong>图标。</p>
 
-<p>!<a href="python/images/testing/debug-test-in-explorer.png">测试资源管理器中的“调试测试”图标</a></p>
+<p><img src="images/testing/debug-test-in-explorer.png" alt="测试资源管理器中的“调试测试”图标"></p>
 
 <blockquote>[!Note]</blockquote>
 <blockquote>运行或调试测试不会自动保存测试文件。在运行测试之前，请务必确保保存对测试的更改，否则你很可能会对结果感到困惑，因为结果仍然反映的是文件的先前版本！</blockquote>

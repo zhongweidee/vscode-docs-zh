@@ -492,7 +492,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>默认行为。</strong> 允许读取工作区文件夹和沙盒运行时临时文件夹。默认拒绝读取你的主目录（<code>$HOME</code>），以保护敏感文件，例如 SSH 密钥、Shell 配置和凭据。写入访问仅限于当前工作目录及其子目录。当某个请求需要额外的权限时，VS Code 会提示你允许在沙盒外运行该命令。
 </li>
 </ul>
-<p>    !<a href="agents/images/trust-and-safety/sandbox-prompt.png">VS Code 提示用户允许命令在沙盒外运行以获取额外权限的截图。</a></p>
+<p>    <img src="../images/trust-and-safety/sandbox-prompt.png" alt="VS Code 提示用户允许命令在沙盒外运行以获取额外权限的截图。"></p>
 
 <ul>
 <li><strong>针对每条命令的读取路径。</strong> 在命令运行之前，VS Code 会解析该命令，并授予该命令所需特定路径的读取权限。这覆盖了常见的开发者工作流，例如 <code>git</code>、<code>node</code>、<code>npm</code>、<code>dotnet</code>、Java 和 Rust。例如，运行 <code>node</code> 命令会自动允许从 Node 版本管理器目录读取，运行 <code>git</code> 命令则允许从 <code>~/.gitconfig</code> 读取。

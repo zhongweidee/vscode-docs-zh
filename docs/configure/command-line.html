@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 内置了一个强大的命令行界面，可让您控制编辑器的启动方式。您可以通过命令行选项（开关参数）打开文件、安装扩展、更改显示语言以及输出诊断信息。</p>
 
-<p>!<a href="configure/images/command-line/hero.png">command line example</a></p>
+<p><img src="images/command-line/hero.png" alt="command line example"></p>
 
 <p>如果您正在寻找如何在 VS Code 中运行命令行工具，请参阅<a href="../docs/terminal/basics.md">集成终端</a>。</p>
 
@@ -436,13 +436,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要获取 VS Code 命令行界面的概览，请打开终端或命令提示符并输入 <code>code --help</code>。您将看到版本、使用示例以及命令行选项列表。</p>
 
-<p>!<a href="configure/images/command-line/command-line-help.png">command line help</a></p>
+<p><img src="images/command-line/command-line-help.png" alt="command line help"></p>
 
 <h2>从命令行启动</h2>
 
 <p>您可以从命令行启动 VS Code，以快速打开文件、文件夹或项目。通常，您在文件夹的上下文中打开 VS Code。为此，请从打开的终端或命令提示符中，导航到您的项目文件夹并输入 <code>code .</code>：</p>
 
-<p>!<a href="configure/images/command-line/launch-vscode.png">launch VS Code</a></p>
+<p><img src="images/command-line/launch-vscode.png" alt="launch VS Code"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>macOS 用户必须先运行一个命令（<strong>Shell 命令：在 PATH 中安装 "code" 命令</strong>），将 VS Code 可执行文件添加到 <code>PATH</code> 环境变量中。请参阅 <a href="../docs/setup/mac.md">macOS 安装指南</a>获取帮助。</blockquote>
@@ -469,7 +469,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><code>-w</code> 或 <code>--wait</code> | 等待文件关闭后才返回。</p>
 <p><code>--locale <locale></code> | 为 VS Code 会话设置<a href="../docs/configure/locales.md">显示语言</a>（区域设置）。（例如 <code>en-US</code> 或 <code>zh-TW</code>）</p>
 
-<p>!<a href="configure/images/command-line/launch-locale.png">launch with locale</a></p>
+<p><img src="images/command-line/launch-locale.png" alt="launch with locale"></p>
 
 <h2>打开文件和文件夹</h2>
 
@@ -490,7 +490,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><code>folder</code> | 要打开的文件夹名称。您可以指定多个文件夹，将创建一个新的<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>。</p>
 <p><code>--skip-add-to-recently-opened</code> | 防止打开的文件和文件夹被添加到最近打开列表中。</p>
 
-<p>!<a href="configure/images/command-line/goto-line-column.png">go to line and column</a></p>
+<p><img src="images/command-line/goto-line-column.png" alt="go to line and column"></p>
 
 <h2>选择配置文件</h2>
 
@@ -514,7 +514,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><code>--enable-proposed-api <ext></code> | 为扩展启用建议的 API 功能。提供完整的扩展名称 <code>publisher.extension</code> 作为参数。</p>
 <p><code>--update-extensions</code> | 更新已安装的扩展并退出。</p>
 
-<p>!<a href="configure/images/command-line/install-extension.png">install extension</a></p>
+<p><img src="images/command-line/install-extension.png" alt="install extension"></p>
 
 <h2>从命令行开始聊天</h2>
 
@@ -602,7 +602,7 @@ code ~/project2 --user-data-dir ~/vscode-data-project2</code></pre>
 
 <p>您可以通过运行 <code>code tunnel -help</code> 查看其他隧道命令：</p>
 
-<p>!<a href="configure/images/command-line/tunnel-help.png">Output of tunnel help CLI command</a></p>
+<p><img src="images/command-line/tunnel-help.png" alt="Output of tunnel help CLI command"></p>
 
 <p>由于您可能需要在无法安装 VS Code Desktop 的远程机器上运行 CLI，该 CLI 也可在 <a href="https://code.visualstudio.com/insiders/">VS Code 下载页面</a>上独立安装。</p>
 
@@ -638,7 +638,7 @@ vscode://settings/editor.wordWrap</code></pre>
 
 <p>您可以在浏览器或文件资源管理器等可以解析并重定向 URL 的应用程序中使用这些 URL。例如，在 Windows 上，您可以将 <code>vscode://</code> URL 直接传递给 Windows 资源管理器，或通过命令行传递，如 <code>start vscode://{完整文件路径}</code>。</p>
 
-<p>!<a href="configure/images/command-line/vscode-url.png">vscode url in Windows Explorer</a></p>
+<p><img src="images/command-line/vscode-url.png" alt="vscode url in Windows Explorer"></p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>如果您使用的是 VS Code <a href="../insiders">Insiders</a> 版本，URL 前缀为 <code>vscode-insiders://</code>。</blockquote>

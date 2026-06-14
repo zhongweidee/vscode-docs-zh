@@ -438,13 +438,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要安装该扩展，请打开扩展视图（<code>kb(workbench.view.extensions)</code>），搜索 <code>container tools</code> 以筛选结果，然后选择由 Microsoft 发布的容器工具扩展。</p>
 
-<p>!<a href="containers/images/overview/installation-extension-search.png">选择容器工具扩展</a> <!-- TODO: 图片需要更新 --></p>
+<p><img src="images/overview/installation-extension-search.png" alt="选择容器工具扩展"> <!-- TODO: 图片需要更新 --></p>
 
 <h2>编辑 Docker 文件</h2>
 
 <p>在编辑 <code>Dockerfile</code> 和 <code>docker-compose.yml</code> 文件时，点击 <code>kb(editor.action.triggerSuggest)</code> 即可获得 <a href="../docs/editing/intellisense.md">IntelliSense</a> 支持，包括常用命令的自动补全和语法帮助。</p>
 
-<p>!<a href="containers/images/overview/dockerfile-intellisense.png">Dockerfile 的 IntelliSense</a></p>
+<p><img src="images/overview/dockerfile-intellisense.png" alt="Dockerfile 的 IntelliSense"></p>
 
 <p>此外，您还可以使用问题面板（<code>kb(workbench.actions.view.problems)</code>）来查看 <code>Dockerfile</code> 和 <code>docker-compose.yml</code> 文件中的常见错误。</p>
 
@@ -460,17 +460,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>右键菜单提供了对每种资产类型常用命令的访问。</p>
 
-<p>!<a href="containers/images/overview/docker-view-context-menu.gif">容器资源管理器上下文菜单</a></p>
+<p><img src="images/overview/docker-view-context-menu.gif" alt="容器资源管理器上下文菜单"></p>
 
 <p>您可以通过鼠标拖拽来重新排列容器资源管理器窗格的位置，并使用上下文菜单来隐藏或显示它们。</p>
 
-<p>!<a href="containers/images/overview/docker-view-rearrange.gif">自定义容器资源管理器</a></p>
+<p><img src="images/overview/docker-view-rearrange.gif" alt="自定义容器资源管理器"></p>
 
 <h2>容器命令</h2>
 
 <p>许多最常用的容器相关命令都直接内置在命令面板中：</p>
 
-<p>!<a href="containers/images/overview/command-palette.png">容器命令</a></p>
+<p><img src="images/overview/command-palette.png" alt="容器命令"></p>
 
 <p>您可以运行命令来管理<a href="https://docs.docker.com/engine/reference/commandline/image/">镜像</a>、<a href="https://docs.docker.com/engine/reference/commandline/network/">网络</a>、<a href="https://docs.docker.com/engine/reference/commandline/volume/">卷</a>、<a href="https://docs.docker.com/engine/reference/commandline/push/">镜像注册表</a>和 <a href="https://docs.docker.com/compose/reference/overview/">Docker Compose</a>。此外，<strong>容器: 清理系统</strong> 命令将移除已停止的容器、悬空镜像以及未使用的网络和卷。</p>
 
@@ -478,25 +478,25 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://docs.docker.com/compose/">Docker Compose</a> 允许您使用 Docker 定义和运行多容器应用程序。容器工具扩展中的 <a href="https://github.com/microsoft/compose-language-service">Compose 语言服务</a> 在编写 <code>docker-compose.yml</code> 文件时为您提供 IntelliSense 和 Tab 自动补全功能。按下 <code>kb(editor.action.triggerSuggest)</code> 即可查看有效的 Compose 指令列表。</p>
 
-<p>!<a href="containers/images/overview/tab-completions.gif">Docker Compose IntelliSense</a></p>
+<p><img src="images/overview/tab-completions.gif" alt="Docker Compose IntelliSense"></p>
 
 <p>当您悬停在 Docker Compose YAML 属性上时，我们还会提供工具提示。</p>
 
-<p>!<a href="containers/images/overview/hover-support.png">Docker Compose 工具提示</a></p>
+<p><img src="images/overview/hover-support.png" alt="Docker Compose 工具提示"></p>
 
 <p><code>Compose Up</code> 允许您一次性运行所有服务，而我们的新功能 <code>Compose Up - 选择服务</code> 则允许您选择任意组合的服务来运行。</p>
 
-<p>!<a href="containers/images/overview/select-subset.gif">Docker Compose Up - 选择子集</a></p>
+<p><img src="images/overview/select-subset.gif" alt="Docker Compose Up - 选择子集"></p>
 
 <p><code>Compose Up</code> 命令完成后，导航到容器资源管理器即可以 Compose 组的形式查看您的服务。这使您可以作为一个组启动、停止和查看每个服务的日志。</p>
 
-<p>!<a href="containers/images/overview/compose-group.png">Docker Compose 组</a></p>
+<p><img src="images/overview/compose-group.png" alt="Docker Compose 组"></p>
 
 <h2>使用镜像注册表</h2>
 
 <p>您可以显示内容，并从 <a href="https://learn.microsoft.com/azure/container-registry">Azure 容器注册表</a>、<a href="https://hub.docker.com/">Docker Hub</a>、<a href="https://github.com/">GitHub</a> 等推送、拉取或删除镜像：</p>
 
-<p>!<a href="containers/images/overview/container-registry.png">Azure 容器注册表内容</a></p>
+<p><img src="images/overview/container-registry.png" alt="Azure 容器注册表内容"></p>
 
 <p>Azure 容器注册表中的镜像可以直接从 VS Code 部署到 Azure App Service 或 Azure 容器应用。请参阅<a href="../docs/containers/app-service.md">部署到 Azure</a> 以开始使用。有关如何对注册表进行身份验证和操作的更多信息，请参阅<a href="../docs/containers/quickstart-container-registries.md">使用容器注册表</a>。</p>
 

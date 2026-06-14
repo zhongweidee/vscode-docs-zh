@@ -446,7 +446,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>自动类型获取需要 <a href="https://www.npmjs.com">npmjs</a>，它是随 <a href="https://nodejs.org">Node.js</a> 运行时一起提供的 Node.js 包管理器。在此图中，您可以看到流行库 <a href="https://lodash.com/">lodash</a> 的 IntelliSense，包括方法签名、参数信息和方法文档。</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/lodash-typings.png">lodash typings</a></p>
+<p><img src="images/working-with-javascript/lodash-typings.png" alt="lodash typings"></p>
 
 <p>类型声明文件由 Visual Studio Code 自动下载和管理，适用于项目 <code>package.json</code> 中列出的包或您导入到 JavaScript 文件中的包。</p>
 
@@ -498,13 +498,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>要将我们的代码定义为 JavaScript 项目，请在 JavaScript 代码的根目录下创建 <code>jsconfig.json</code>，如下所示。JavaScript 项目是项目的源文件，不应包含派生或打包文件（如 <code>dist</code> 目录）。</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/jsconfig_setup.png">jsconfig setup</a></p>
+<p><img src="images/working-with-javascript/jsconfig_setup.png" alt="jsconfig setup"></p>
 
 <p>在更复杂的项目中，您可能在工作区中定义了多个 <code>jsconfig.json</code> 文件。您需要这样做，以便一个项目中的源代码不会出现在另一个项目的 IntelliSense 中。</p>
 
 <p>下图展示了一个包含 <code>client</code> 和 <code>server</code> 文件夹的项目，显示两个独立的 JavaScript 项目：</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/complex_jsconfig_setup.png">multiple jsconfigs</a></p>
+<p><img src="images/working-with-javascript/complex_jsconfig_setup.png" alt="multiple jsconfigs"></p>
 
 <h3>编写 jsconfig.json</h3>
 
@@ -551,7 +551,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 允许您在常规 JavaScript 文件中利用 TypeScript 的一些高级类型检查和错误报告功能。这是捕获常见编程错误的好方法。这些类型检查还为 JavaScript 启用了一些令人兴奋的快速修复，包括 <strong>添加缺少的导入</strong> 和 <strong>添加缺少的属性</strong>。</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/checkjs-example.gif">Using type checking and Quick Fixes in a JavaScript file</a></p>
+<p><img src="images/working-with-javascript/checkjs-example.gif" alt="Using type checking and Quick Fixes in a JavaScript file"></p>
 
 <p>TypeScript 可以在 <code>.js</code> 文件中推断类型，就像在 <code>.ts</code> 文件中一样。当无法推断类型时，可以使用 JSDoc 注释来指定。您可以在 <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">类型检查 JavaScript 文件</a> 中阅读有关 TypeScript 如何使用 JSDoc 进行 JavaScript 类型检查的更多信息。</p>
 
@@ -700,7 +700,7 @@ declare var CAN_NOTIFY: number;</code></pre>
 
 <p>要禁用 JavaScript/TypeScript 支持，请转到扩展视图 (<code>kb(workbench.view.extensions)</code>)，筛选内置扩展（在 <strong>...</strong> <strong>更多操作</strong> 下拉菜单中选择 <strong>显示内置扩展</strong>），然后输入 'typescript'。选择 <strong>TypeScript and JavaScript Language Features</strong> 扩展，然后按下 <strong>禁用</strong> 按钮。VS Code 内置扩展不能卸载，只能禁用，并且可以随时重新启用。</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/disable-TS-language.png">TypeScript and JavaScript Language Features extension</a></p>
+<p><img src="images/working-with-javascript/disable-TS-language.png" alt="TypeScript and JavaScript Language Features extension"></p>
 
 <h2>部分 IntelliSense 模式</h2>
 
@@ -743,7 +743,7 @@ declare var CAN_NOTIFY: number;</code></pre>
 </ul>
 <p>要检查当前文件是否使用部分模式 IntelliSense 而非项目范围 IntelliSense，请将鼠标悬停在状态栏中的 <code>JavaScript</code> 或 <code>TypeScript</code> 语言状态项上：</p>
 
-<p>!<a href="nodejs/images/working-with-javascript/partial-mode-status-item.png">Partial mode status item</a></p>
+<p><img src="images/working-with-javascript/partial-mode-status-item.png" alt="Partial mode status item"></p>
 
 <p>如果当前文件处于部分模式，状态项将显示 <code>Partial mode</code>。</p>
 

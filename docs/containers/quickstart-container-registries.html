@@ -445,13 +445,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>打开容器资源管理器，选择<strong>注册表</strong>视图下的<strong>连接注册表...</strong>图标，然后按照提示操作。选择提供程序（例如 Azure 或 Docker Hub）并提供凭据以连接到注册表。如果出现提示，请安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups">Azure 资源</a>扩展。
 </li>
 </ol>
-<p>    !<a href="containers/images/registries/connect-registry-2.png">连接到注册表</a></p>
+<p>    <img src="images/registries/connect-registry-2.png" alt="连接到注册表"></p>
 
 <ol>
 <li>现在注册表将显示在<strong>注册表</strong>下方。
 </li>
 </ol>
-<p>   !<a href="containers/images/registries/explorer-registries.png">注册表</a></p>
+<p>   <img src="images/registries/explorer-registries.png" alt="注册表"></p>
 
 <ol>
 <li>可选地，为镜像打标签。为了将镜像上传到注册表，镜像需要使用注册表名称打上标签，以便 <code>docker push</code> 将其上传到正确的注册表。如果在尝试推送时镜像尚未打标签，VS Code 会询问你要将镜像关联到哪个注册表。<ul>
@@ -460,27 +460,27 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ol>
-<p>        !<a href="containers/images/registries/explorer-tag-image.png">为镜像打标签</a></p>
+<p>        <img src="images/registries/explorer-tag-image.png" alt="为镜像打标签"></p>
 <ul>
 <li>指定新名称 <code><你的注册表或用户名>/<镜像名称>:<标签></code> 并完成标签操作。例如，ACR 的新镜像名称将是 <code>mainacr.azurecr.io/webapp6:latest</code>，Docker Hub 的将是 <code>myusername/webapp6:latest</code>。
 </li>
 <li>镜像会显示在容器资源管理器的<strong>镜像</strong>视图下，位于镜像标签指向的注册表中。选择此镜像并选择<strong>推送</strong>。如果镜像尚未打标签，系统会提示你选择要推送到的注册表，或创建一个新的注册表，然后根据你的选择为镜像打标签。
 </li>
 </ul>
-<p>    !<a href="containers/images/registries/explorer-push-image.png">推送镜像</a></p>
+<p>    <img src="images/registries/explorer-push-image.png" alt="推送镜像"></p>
 
 <ol>
 <li>推送命令完成后，刷新镜像推送到的注册表节点，上传的镜像将显示出来。
 </li>
 </ol>
-<p>    !<a href="containers/images/registries/explorer-refresh-registry.png">刷新注册表</a></p>
+<p>    <img src="images/registries/explorer-refresh-registry.png" alt="刷新注册表"></p>
 
 <h2>Docker Hub</h2>
 
 <p>此项连接到 <a href="https://hub.docker.com/">Docker Hub</a>，并列出给定账户下的所有仓库和镜像。</p>
 <p>选择此选项后，你需要输入 Docker Hub 凭据。</p>
 
-<p>!<a href="containers/images/registries/docker-hub.png">Docker Hub</a></p>
+<p><img src="images/registries/docker-hub.png" alt="Docker Hub"></p>
 
 <p>对于 Docker Hub 注册表中的每个仓库，可以执行以下操作：</p>
 
@@ -505,11 +505,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>此选项需要安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureresourcegroups">Azure 资源</a>扩展，才能连接到你的 Azure 账户并显示所有不同的订阅和注册表。</p>
 <p>身份验证后，<strong>Azure</strong> 节点将显示订阅及其各自的注册表：</p>
 
-<p>!<a href="containers/images/registries/azure-registries.png">Azure 容器注册表</a></p>
+<p><img src="images/registries/azure-registries.png" alt="Azure 容器注册表"></p>
 
 <p>对于每个注册表，用户可以使用上下文菜单执行不同的操作：</p>
 
-<p>!<a href="containers/images/registries/azure-registry-context-menu.png">Azure 注册表上下文菜单</a></p>
+<p><img src="images/registries/azure-registry-context-menu.png" alt="Azure 注册表上下文菜单"></p>
 
 <ul>
 <li><strong>删除注册表</strong>：永久删除注册表</li>
@@ -520,7 +520,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>对于给定注册表中的每个仓库，可以执行以下操作：</p>
 
-<p>!<a href="containers/images/registries/azure-repository-context-menu.png">Azure 仓库上下文菜单</a></p>
+<p><img src="images/registries/azure-repository-context-menu.png" alt="Azure 仓库上下文菜单"></p>
 
 <ul>
 <li><strong>拉取仓库</strong>：将给定仓库中的所有镜像复制到本地</li>
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>对于仓库中的每个已标记镜像，可以执行以下操作：</p>
 
-<p>!<a href="containers/images/registries/azure-image-context-menu.png">Azure 镜像上下文菜单</a></p>
+<p><img src="images/registries/azure-image-context-menu.png" alt="Azure 镜像上下文菜单"></p>
 
 <ul>
 <li><strong>拉取镜像</strong>：将镜像的最新版本复制到本地</li>
@@ -547,7 +547,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>此项连接到你的 <a href="https://github.com/">GitHub</a> 账户中的容器注册表。选择此选项后，系统会要求你输入 GitHub 账户凭据。</p>
 
-<p>!<a href="containers/images/registries/github.png">GitHub</a></p>
+<p><img src="images/registries/github.png" alt="GitHub"></p>
 
 <p>对于 GitHub 注册表中的每个仓库，可以执行以下操作：</p>
 

@@ -446,17 +446,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><a class="install-extension-btn" href="vscode:extension/ms-vscode-remote.remote-ssh">安装 Remote - SSH 扩展</a></blockquote>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-ssh-extension.png">Remote - SSH extension</a></p>
+<p><img src="images/ssh-tutorial/remote-ssh-extension.png" alt="Remote - SSH extension"></p>
 
 <h3>Remote - SSH</h3>
 
 <p>安装 Remote - SSH 扩展后，你将在状态栏的最左侧看到一个新的状态栏项。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-status-bar.png">Remote Status bar item</a></p>
+<p><img src="images/ssh-tutorial/remote-status-bar.png" alt="Remote Status bar item"></p>
 
 <p>Remote 状态栏项可以快速显示 VS Code 当前运行在哪个上下文（本地或远程），点击该项将弹出 Remote - SSH 命令。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-ssh-commands.png">Remote - SSH commands</a></p>
+<p><img src="images/ssh-tutorial/remote-ssh-commands.png" alt="Remote - SSH commands"></p>
 
 <h2>创建虚拟机</h2>
 
@@ -464,11 +464,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><strong>注意</strong>：在本教程中，我们使用的是 Azure，但你的 Linux VM 可以托管在任何地方，只要 Linux 发行版满足这些<a href="../docs/remote/linux.md#local-linux-prerequisites">先决条件</a>。</blockquote>
 
-<p>!<a href="remote/images/ssh-tutorial/create-vm.png">Create a virtual machine</a></p>
+<p><img src="images/ssh-tutorial/create-vm.png" alt="Create a virtual machine"></p>
 
 <p>现在你可以指定 VM 的详细信息，例如名称、大小和基础映像。本示例选择 Ubuntu Server 18.04 LTS，但你也可以选择其他 Linux 发行版的较新版本，并查看 VS Code 的<a href="../docs/remote/troubleshooting.md#installing-a-supported-ssh-server">受支持的 SSH 服务器</a>。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/vm-instance-details.png">Virtual machine instance details</a></p>
+<p><img src="images/ssh-tutorial/vm-instance-details.png" alt="Virtual machine instance details"></p>
 
 <h2>设置 SSH</h2>
 
@@ -482,7 +482,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>这将生成 SSH 密钥。在以下提示处按 <code>kbstyle(Enter)</code> 将密钥保存在默认位置（在你的用户目录下，文件夹名为 <code>.ssh</code>）。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/ssh-keygen.png">ssh-keygen output</a></p>
+<p><img src="images/ssh-tutorial/ssh-keygen.png" alt="ssh-keygen output"></p>
 
 <p>然后系统会提示你输入安全密码，但你可以留空。现在你应该有一个 <code>id_ed25519.pub</code> 文件，其中包含你新的公钥 SSH 密钥。</p>
 
@@ -492,13 +492,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在上一步中，你生成了一个 SSH 密钥对。在 <strong>SSH 公钥源</strong>下拉列表中选择<strong>使用现有公钥</strong>，以便使用刚刚生成的公钥。复制 <code>id_ed25519.pub</code> 文件的全部内容，将其粘贴到 VM 设置的 <strong>SSH 公钥</strong>字段中。你还需要允许 VM 接收入站 SSH 流量，方法是选择<strong>允许选定的端口</strong>，然后从<strong>选择入站端口</strong>下拉列表中选择 <strong>SSH（22）</strong>。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/add-ssh-public-key.png">Add SSH public key to VM</a></p>
+<p><img src="images/ssh-tutorial/add-ssh-public-key.png" alt="Add SSH public key to VM"></p>
 
 <h3>自动关机</h3>
 
 <p>使用 Azure VM 的一个很酷的功能是能够启用自动关机（因为说实话，我们都忘记关掉我们的 VM……）。如果你转到<strong>管理</strong>选项卡，可以设置每天关闭 VM 的时间。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/vm-auto-shutdown.png">Virtual machine auto-shutdown</a></p>
+<p><img src="images/ssh-tutorial/vm-auto-shutdown.png" alt="Virtual machine auto-shutdown"></p>
 
 <p>选择<strong>查看 + 创建</strong>，然后选择<strong>创建</strong>，Azure 将为你部署 VM！</p>
 
@@ -510,43 +510,43 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你会注意到状态栏左下角有一个指示器。这个指示器告诉你 VS Code 当前运行在哪个上下文（本地或远程）。点击该指示器将弹出 Remote 扩展命令列表。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-commands-simple.png">Remote extension commands</a></p>
+<p><img src="images/ssh-tutorial/remote-commands-simple.png" alt="Remote extension commands"></p>
 
 <p>在 <strong>Remote-SSH</strong> 部分选择<strong>连接到主机...</strong>命令，然后按以下格式输入 VM 的连接信息来连接到主机：<code>user@hostname</code>。</p>
 
 <p><code>user</code> 是你在将 SSH 公钥添加到 VM 时设置的用户名。对于 <code>hostname</code>，请返回 <a href="https://portal.azure.com">Azure 门户</a>，在你创建的 VM 的<strong>概述</strong>窗格中，复制<strong>公共 IP 地址</strong>。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/vm-public-ip-address.png">Virtual machine public IP address</a></p>
+<p><img src="images/ssh-tutorial/vm-public-ip-address.png" alt="Virtual machine public IP address"></p>
 
 <p>在通过 Remote - SSH 连接之前，你可以使用 <code>ssh user@hostname</code> 命令在命令提示符中验证是否能够连接到 VM。</p>
 
 <blockquote>注意：如果你遇到 <code>ssh: connect to host <host ip> port 22: Connection timed out</code> 错误，可能需要从 VM 的"网络"选项卡中删除 NRMS-Rule-106：</blockquote>
 
-<p>   !<a href="remote/images/ssh-tutorial/vm-nrms-rules.png">Virtual machine list of NRMS rules</a></p>
+<p>   <img src="images/ssh-tutorial/vm-nrms-rules.png" alt="Virtual machine list of NRMS rules"></p>
 
 <p>在连接信息文本框中设置用户和主机名。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/set-user-host.png">Set user and host name</a></p>
+<p><img src="images/ssh-tutorial/set-user-host.png" alt="Set user and host name"></p>
 
 <p>VS Code 现在将打开一个新窗口（实例）。然后你会看到一个通知，显示"VS Code Server"正在 SSH 主机上初始化。一旦 VS Code Server 安装在远程主机上，它就可以运行扩展并与你的本地 VS Code 实例通信。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/init-vs-code-server.png">Initializing VS Code Server</a></p>
+<p><img src="images/ssh-tutorial/init-vs-code-server.png" alt="Initializing VS Code Server"></p>
 
 <p>通过查看状态栏中的指示器，你可以知道你已经连接到了 VM。它会显示你的 VM 的主机名。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/ssh-status-bar.png">SSH indicator in Status bar</a></p>
+<p><img src="images/ssh-tutorial/ssh-status-bar.png" alt="SSH indicator in Status bar"></p>
 
 <p>Remote - SSH 扩展还会在活动栏上添加一个新图标，点击它将打开 Remote 资源管理器。在下拉列表中选择 <strong>SSH 目标</strong>，你可以在其中配置你的 SSH 连接。例如，你可以保存最常连接的主机，然后从这里访问它们，而无需输入用户名和主机名。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-on-activity-bar.png">Remote button on Activity bar</a></p>
+<p><img src="images/ssh-tutorial/remote-on-activity-bar.png" alt="Remote button on Activity bar"></p>
 
 <p>连接到 SSH 主机后，你可以与远程计算机上的文件进行交互并打开文件夹。如果你打开集成终端（<code>kb(workbench.action.terminal.toggleTerminal)</code>），你会看到你正在 bash shell 中工作，<strong>尽管你使用的是 Windows</strong>。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/check-uname.png">Checking uname in the terminal</a></p>
+<p><img src="images/ssh-tutorial/check-uname.png" alt="Checking uname in the terminal"></p>
 
 <p>你可以使用 bash shell 浏览 VM 上的文件系统。你还可以通过<strong>文件</strong> > <strong>打开文件夹</strong>浏览并打开远程主目录上的文件夹。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/remote-open-folder.png">Remote open folder</a></p>
+<p><img src="images/ssh-tutorial/remote-open-folder.png" alt="Remote open folder"></p>
 
 <h2>创建你的 Node.js 应用程序</h2>
 
@@ -600,15 +600,15 @@ npm install</code></pre>
 
 <p>要访问远程计算机上可能未公开暴露的端口，你需要在本地计算机上的端口和服务器之间建立连接或隧道。在应用仍在运行的情况下，打开 SSH 资源管理器并找到<strong>已转发的端口</strong>视图。点击<strong>转发端口</strong>链接并指定你要转发端口 3000：</p>
 
-<p>!<a href="remote/images/ssh-tutorial/enter-port.png">Enter the port to forward</a></p>
+<p><img src="images/ssh-tutorial/enter-port.png" alt="Enter the port to forward"></p>
 
 <p>将连接命名为"browser"：</p>
 
-<p>!<a href="remote/images/ssh-tutorial/name-port.png">Name the port</a></p>
+<p><img src="images/ssh-tutorial/name-port.png" alt="Name the port"></p>
 
 <p>服务器现在将把端口 3000 上的流量转发到你的本地计算机。当你浏览到 <a href="http://localhost:3000">http://localhost:3000</a> 时，你将看到正在运行的 Web 应用。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/express.png">Running Express Application</a></p>
+<p><img src="images/ssh-tutorial/express.png" alt="Running Express Application"></p>
 
 <h2>编辑和调试</h2>
 
@@ -618,17 +618,17 @@ npm install</code></pre>
 
 <p>你对 JavaScript 文件有语法高亮以及带悬停提示的 IntelliSense，就像源代码在本地计算机上一样。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/express-hover.png">Express app.js hover</a></p>
+<p><img src="images/ssh-tutorial/express-hover.png" alt="Express app.js hover"></p>
 
 <p>当你开始输入时，你将获得对象方法和属性的智能补全。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/express-completions.png">Express app.js smart completions</a></p>
+<p><img src="images/ssh-tutorial/express-completions.png" alt="Express app.js smart completions"></p>
 
 <h3>调试</h3>
 
 <p>在 <code>app.js</code> 的第 10 行设置一个断点，方法是点击行号左侧的装订线，或者将光标放在该行上并按 <code>kb(editor.debug.action.toggleBreakpoint)</code>。断点将显示为一个红色圆圈。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/set-breakpoint.png">set breakpoint</a></p>
+<p><img src="images/ssh-tutorial/set-breakpoint.png" alt="set breakpoint"></p>
 
 <p>现在，按 <code>kb(workbench.action.debug.start)</code> 运行你的应用程序。如果系统询问你如何运行该应用程序，请选择 <strong>Node.js</strong>。</p>
 
@@ -636,7 +636,7 @@ npm install</code></pre>
 
 <p>按 <code>kb(workbench.action.debug.stepOver)</code> 逐步执行，或再次按 <code>kb(workbench.action.debug.start)</code> 完成调试会话。</p>
 
-<p>!<a href="remote/images/ssh-tutorial/debug-view.png">VS Code debug view</a></p>
+<p><img src="images/ssh-tutorial/debug-view.png" alt="VS Code debug view"></p>
 
 <p>你将获得通过 SSH 连接的 Visual Studio Code 的完整体开发体验。</p>
 

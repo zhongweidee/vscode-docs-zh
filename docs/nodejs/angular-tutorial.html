@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://angular.io/">Angular</a> 是一个流行的网络开发平台，由 Google 开发和维护。Angular 使用 <a href="../docs/languages/typescript.md">TypeScript</a> 作为其主要编程语言。Visual Studio Code 开箱即支持 TypeScript 智能感知和代码导航，因此你无需安装任何其他扩展即可进行 Angular 开发。</p>
 
-<p>!<a href="nodejs/images/angular/Welcome-to-app.png">Welcome to app</a></p>
+<p><img src="images/angular/Welcome-to-app.png" alt="Welcome to app"></p>
 
 <p>><strong>注意</strong>：为了帮助你开始 Angular 开发，你可以使用 <a href="../docs/configure/profiles.md#angular-profile-template">Angular 配置文件模板</a>，其中包含有用的扩展、设置和代码片段。</p>
 
@@ -464,21 +464,21 @@ code .</code></pre>
 
 <p>现在展开 <code>src\app</code> 文件夹并选择 <code>app.component.ts</code> 文件。你会注意到 VS Code 对各种源代码元素具有语法高亮，并且如果你将光标放在括号上，匹配的括号也会被选中。</p>
 
-<p>!<a href="nodejs/images/angular/bracket-matching.png">angular bracket matching</a></p>
+<p><img src="images/angular/bracket-matching.png" alt="angular bracket matching"></p>
 
 <h3>智能感知</h3>
 
 <p>当你将鼠标悬停在文件中的文本上时，你会看到 VS Code 为你提供有关源代码中关键项的信息。变量、类和 Angular 装饰器等项目是你会获得此类信息的几个例子。</p>
 
-<p>!<a href="nodejs/images/angular/decorator-hover.png">angular decorator hover</a></p>
+<p><img src="images/angular/decorator-hover.png" alt="angular decorator hover"></p>
 
 <p>当你在 <code>app.component.ts</code> 中开始键入时，你会看到智能建议和代码片段。</p>
 
-<p>!<a href="nodejs/images/angular/suggestions.png">angular suggestions</a></p>
+<p><img src="images/angular/suggestions.png" alt="angular suggestions"></p>
 
 <p>你可以点击信息按钮（<code>i</code>）来查看包含更多文档的弹出窗口。</p>
 
-<p>!<a href="nodejs/images/angular/intellisense.png">angular intellisense</a></p>
+<p><img src="images/angular/intellisense.png" alt="angular intellisense"></p>
 
 <p>VS Code 使用 TypeScript 语言服务来实现代码智能（<a href="../docs/editing/intellisense.md">智能感知</a>），并且它具有一个名为 <a href="../docs/nodejs/working-with-javascript.md#typings-and-automatic-type-acquisition">自动类型获取</a>（ATA）的功能。ATA 会为 <code>package.json</code> 中引用的 npm 模块下载 npm Type 声明文件（<code>*.d.ts</code>）。</p>
 
@@ -486,7 +486,7 @@ code .</code></pre>
 
 <p>通过 TypeScript 语言服务，VS Code 还可以通过 <strong>转到定义</strong>（<code>kb(editor.action.revealDefinition)</code>）或 <strong>速览定义</strong>（<code>kb(editor.action.peekDefinition)</code>）在编辑器中提供类型定义信息。打开 <code>app.module.ts</code> 文件，将光标放在 <code>bootstrap</code> 属性声明中的 <code>AppComponent</code> 上，右键单击并选择 <strong>速览定义</strong>。一个 <a href="../docs/editing/editingevolved.md#peek">速览窗口</a> 将打开，显示来自 <code>app.component.ts</code> 的 <code>AppComponent</code> 定义。</p>
 
-<p>!<a href="nodejs/images/angular/peek-definition.png">angular peek definition</a></p>
+<p><img src="images/angular/peek-definition.png" alt="angular peek definition"></p>
 
 <p>按 <code>kbstyle(Escape)</code> 关闭速览窗口。</p>
 
@@ -509,7 +509,7 @@ export class AppComponent {
 
 <p>><strong>提示</strong>：VS Code 支持自动保存，默认情况下会在延迟后保存你的文件。在 <strong>文件</strong> 菜单中勾选 <strong>自动保存</strong> 选项以启用自动保存，或直接配置 <code>files.autoSave</code> 用户 <a href="../docs/configure/settings.md">设置</a>。</p>
 
-<p>!<a href="nodejs/images/angular/hello-world.png">hello world</a></p>
+<p><img src="images/angular/hello-world.png" alt="hello world"></p>
 
 <h2>调试 Angular</h2>
 
@@ -521,7 +521,7 @@ export class AppComponent {
 
 <p>要在 <code>app.component.ts</code> 中设置断点，请单击行号左侧的装订线区域。这将设置一个断点，显示为一个红色圆圈。</p>
 
-<p>!<a href="nodejs/images/angular/breakpoint.png">set a breakpoint</a></p>
+<p><img src="images/angular/breakpoint.png" alt="set a breakpoint"></p>
 
 <h3>配置调试器</h3>
 
@@ -544,11 +544,11 @@ export class AppComponent {
 
 <p>按 <code>kb(workbench.action.debug.start)</code> 或绿色箭头启动调试器并打开一个新的浏览器实例。设置断点的源代码在调试器附加之前就在启动时运行了，因此我们需要刷新网页才能触发断点。刷新页面，你应该会触发你的断点。</p>
 
-<p>!<a href="nodejs/images/angular/hit-breakpoint.png">hit breakpoint</a></p>
+<p><img src="images/angular/hit-breakpoint.png" alt="hit breakpoint"></p>
 
 <p>你可以逐步执行源代码（<code>kb(workbench.action.debug.stepOver)</code>）、检查变量（如 <code>AppComponent</code>），以及查看客户端 Angular 应用程序的调用堆栈。</p>
 
-<p>!<a href="nodejs/images/angular/debug-variable.png">debug variable</a></p>
+<p><img src="images/angular/debug-variable.png" alt="debug variable"></p>
 
 <p>有关调试器及其可用选项的更多信息，请查看我们的 <a href="../docs/nodejs/browser-debugging.md">浏览器调试</a> 文档。</p>
 
@@ -558,7 +558,7 @@ export class AppComponent {
 
 <p>你通过 <strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择配置文件模板：</p>
 
-<p>!<a href="nodejs/images/angular/profile-template-dropdown.png">Create Profile dropdown with profile templates</a></p>
+<p><img src="images/angular/profile-template-dropdown.png" alt="Create Profile dropdown with profile templates"></p>
 
 <p>选择配置文件模板后，你可以查看设置和扩展，如果不想包含某些项目，可以逐个移除以将它们排除在新配置文件之外。基于模板创建新配置文件后，对设置、扩展或用户界面的更改将持久保存在你的配置文件中。</p>
 
@@ -588,7 +588,7 @@ export class AppComponent {
 
 <p>要查找其他 Angular 扩展，请打开扩展视图（<code>kb(workbench.view.extensions)</code>）并键入 'angular' 以查看经过筛选的 Angular 扩展列表。</p>
 
-<p>!<a href="nodejs/images/angular/angular-extensions.png">angular extensions</a></p>
+<p><img src="images/angular/angular-extensions.png" alt="angular extensions"></p>
 
 <p>社区还创建了"扩展包"，将有用的扩展（例如 linter、调试器和代码片段）打包到一个下载中。要查看可用的 Angular 扩展包，请在筛选条件中添加 "extension packs" 类别（angular @category:"extension packs"）。</p>
 

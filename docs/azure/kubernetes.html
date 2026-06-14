@@ -440,7 +440,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要安装 Kubernetes 扩展，请打开扩展视图（<code>kb(workbench.view.extensions)</code>）并搜索"kubernetes"。选择 Microsoft 的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-kubernetes-tools.vscode-kubernetes-tools">Kubernetes</a> 扩展。</p>
 
-<p>!<a href="azure/images/kubernetes/install-kubernetes.png">Install Kubernetes</a></p>
+<p><img src="images/kubernetes/install-kubernetes.png" alt="Install Kubernetes"></p>
 
 <h2>容器化并发布应用程序</h2>
 
@@ -450,37 +450,37 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以使用 VS Code 中的 Kubernetes 扩展在 Azure 上创建 Kubernetes 集群。安装 Kubernetes 扩展后，你将在资源管理器中看到 <strong>KUBERNETES</strong>。点击<strong>更多</strong>并选择<strong>创建集群</strong>。按照说明选择集群类型（此处我们选择 <strong>Azure Kubernetes Service</strong>），选择你的订阅，并设置 Azure 集群和 Azure 代理设置。完成整个工作流需要几分钟时间。</p>
 
-<p>!<a href="azure/images/kubernetes/create-k8s.gif">Create Kubernetes</a></p>
+<p><img src="images/kubernetes/create-k8s.gif" alt="Create Kubernetes"></p>
 
 <p><strong>重要</strong>：要在 Azure 上创建 Kubernetes 集群，你需要安装 <a href="https://learn.microsoft.com/cli/azure/get-started-with-azure-cli">Azure CLI</a> 并登录。</p>
 
 <p><strong>提示</strong>：如果你没有可用的 RSA 密钥文件，将会遇到错误。在创建 Azure Kubernetes 集群之前，请按照<a href="https://learn.microsoft.com/azure/virtual-machines/linux/mac-create-ssh-keys">创建 SSH 公私钥</a>的说明创建你的密钥。</p>
 
-<p>!<a href="azure/images/kubernetes/error-creating-clusters-RSA.png">Error with RSA</a></p>
+<p><img src="images/kubernetes/error-creating-clusters-RSA.png" alt="Error with RSA"></p>
 
 <p><strong>提示</strong>：在创建 Azure Kubernetes 集群时，你可能会遇到指示位置和虚拟机大小冲突的错误。请注意选择合适的位置和虚拟机大小。</p>
 
-<p>!<a href="azure/images/kubernetes/error-creating-clusters.png">Error creating cluster</a></p>
+<p><img src="images/kubernetes/error-creating-clusters.png" alt="Error creating cluster"></p>
 
 <h2>将应用程序部署到 Azure Kubernetes Service</h2>
 
 <p>Kubernetes 扩展为 Kubernetes 清单文件提供了自动补全、代码片段和验证功能。例如，一旦你在空的 YAML 文件中输入 'Deployment'，系统会自动为你生成一个具有基本结构的清单文件。你只需要手动输入你的应用名称、镜像和端口即可。</p>
 
-<p>!<a href="azure/images/kubernetes/create-manifest.gif">Create manifest</a></p>
+<p><img src="images/kubernetes/create-manifest.gif" alt="Create manifest"></p>
 
 <p>以下是清单文件示例：</p>
 
-<p>!<a href="azure/images/kubernetes/manifest-example.png">Manifest example</a></p>
+<p><img src="images/kubernetes/manifest-example.png" alt="Manifest example"></p>
 
 <p>清单文件准备好后，你只需要一个命令即可启动部署。打开<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）并运行 <strong>Kubernetes: Create</strong>。它将把应用程序部署到你的 Kubernetes 集群，并根据打开的 Kubernetes 清单文件中的配置创建相应对象。</p>
 
-<p>!<a href="azure/images/kubernetes/start-deployment.gif">Start deployment</a></p>
+<p><img src="images/kubernetes/start-deployment.gif" alt="Start deployment"></p>
 
 <h3>检查部署状态</h3>
 
 <p>部署完成后，Kubernetes 扩展可以帮助你检查应用程序的状态。在资源管理器中，点击<strong>工作负载</strong>，右键点击 <strong>Pod</strong>，然后选择<strong>获取</strong>以查看应用程序是否已启动。要查看应用的状态，请选择<strong>服务</strong>，右键点击你的应用，然后点击<strong>获取</strong>。状态将输出到集成终端。一旦你的应用程序获得了 <code>EXTERNAL_IP</code>，你就可以打开浏览器查看你的 Web 应用运行情况。</p>
 
-<p>!<a href="azure/images/kubernetes/check-status.gif">Check status</a></p>
+<p><img src="images/kubernetes/check-status.gif" alt="Check status"></p>
 
 <p>恭喜！现在你的应用已成功在 Azure Kubernetes Service 中运行！</p>
 

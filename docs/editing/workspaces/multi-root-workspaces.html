@@ -428,7 +428,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>通过多根工作区，你可以在 Visual Studio Code 中处理多个项目文件夹。当你同时处理多个相关项目时，这非常有用。例如，你可能有一个包含产品文档的仓库，当你在更新产品源代码时，希望保持文档为最新状态。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/hero.png">multi-root hero</a></p>
+<p><img src="images/multi-root-workspaces/hero.png" alt="multi-root hero"></p>
 
 <p>><strong>注意</strong>：如果你想进一步了解 VS Code 的"工作区"概念，可以参阅<a href="../docs/editing/workspaces/workspaces.md">什么是 VS Code"工作区"？</a>除非你显式地创建了多根工作区，否则"工作区"就是指你的项目所在的单个根文件夹。</p>
 
@@ -440,11 +440,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>文件</strong> > <strong>将文件夹添加到工作区</strong> 命令会弹出一个打开文件夹对话框，用于选择新文件夹。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/add-root-folder.png">Add Root Folder</a></p>
+<p><img src="images/multi-root-workspaces/add-root-folder.png" alt="Add Root Folder"></p>
 
 <p>添加根文件夹后，资源管理器将在文件资源管理器中显示新文件夹作为根目录。你可以右键单击任意根文件夹，使用上下文菜单来添加或删除文件夹。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/explorer-context.png">Remove Root Folder</a></p>
+<p><img src="images/multi-root-workspaces/explorer-context.png" alt="Remove Root Folder"></p>
 
 <p>文件资源管理器应像以前一样工作和运行。你可以在根文件夹之间移动文件，并使用上下文菜单和资源管理器视图中提供的任何典型文件操作。</p>
 
@@ -476,7 +476,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你添加多个文件夹时，它们最初会放在一个标题为 <strong>UNTITLED WORKSPACE</strong> 的工作区中，该名称将一直保留，直到你保存工作区。在你想要将工作区保存到永久位置（例如桌面上）之前，你不需要保存它。只要 VS Code 实例处于打开状态，未命名工作区就会一直存在。一旦你完全关闭了带有未命名工作区的实例，系统会询问你是否保存它（如果你打算将来再次打开它）：</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/save-workspace.png">save workspace dialog</a></p>
+<p><img src="images/multi-root-workspaces/save-workspace.png" alt="save workspace dialog"></p>
 
 <p>保存工作区时，将创建一个 <code>.code-workspace</code> 文件，文件名将显示在文件资源管理器中。</p>
 
@@ -497,7 +497,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 </li>
 </ul>
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/open-recent.png">open recent workspace list</a></p>
+<p><img src="images/multi-root-workspaces/open-recent.png" alt="open recent workspace list"></p>
 
 <p>就像在 VS Code 中打开单个文件夹时有 <strong>关闭文件夹</strong> 命令一样，也有一个 <strong>关闭工作区</strong> (<code>kb(workbench.action.closeFolder)</code>) 命令用于关闭活动工作区。</p>
 
@@ -529,13 +529,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>这会在资源管理器中产生如下显示效果：</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/named-folders.png">named folders</a></p>
+<p><img src="images/multi-root-workspaces/named-folders.png" alt="named folders"></p>
 
 <p>从上面的示例可以看出，你可以向工作区文件中添加注释。</p>
 
 <p>工作区文件还可以包含 <code>settings</code> 下的工作区<a href="#settings">全局设置</a>和 <code>extensions</code> 下的<a href="#extensions">扩展推荐</a>，我们将在下文讨论。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/workspace-file-schema.png">workspace file schema</a></p>
+<p><img src="images/multi-root-workspaces/workspace-file-schema.png" alt="workspace file schema"></p>
 
 <h2>通用用户界面</h2>
 
@@ -543,7 +543,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用多根工作区时，VS Code 用户界面只有少量变化，主要是为了区分不同文件夹中的文件。例如，如果多个文件夹中存在文件名冲突，VS Code 将在选项卡标题中包含文件夹名称。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/tabbed-headers.png">tabbed headers</a></p>
+<p><img src="images/multi-root-workspaces/tabbed-headers.png" alt="tabbed headers"></p>
 
 <p>如果你希望始终在选项卡标题中显示文件夹，可以使用 <code>setting(workbench.editor.labelFormat)</code> <a href="../docs/configure/settings.md">设置</a>的 "medium" 或 "long" 值来显示文件夹或完整路径。</p>
 
@@ -551,19 +551,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 用户界面中的 <strong>打开的编辑器</strong> 和 <strong>快速打开</strong> (<code>kb(workbench.action.quickOpen)</code>) 等列表会包含文件夹名称。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/quick-open-list.png">quick pick has folder name</a></p>
+<p><img src="images/multi-root-workspaces/quick-open-list.png" alt="quick pick has folder name"></p>
 
 <p>如果你正在使用<a href="../docs/configure/themes.md#file-icon-themes">文件图标主题</a>并且活动主题支持，你将看到一个特殊的工作区图标。</p>
 
 <p>下面你可以看到内置的 <strong>Minimal (Visual Studio Code)</strong> 文件图标主题中的工作区图标：</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/workspace-icon.png">custom workspace icon</a></p>
+<p><img src="images/multi-root-workspaces/workspace-icon.png" alt="custom workspace icon"></p>
 
 <h3>搜索</h3>
 
 <p>VS Code 功能（如全局搜索）可跨所有文件夹工作，并按文件夹对搜索结果进行分组。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/search.png">multi-root search results</a></p>
+<p><img src="images/multi-root-workspaces/search.png" alt="multi-root search results"></p>
 
 <p>当你打开多根工作区时，可以通过在 <strong>要包含的文件</strong> 框中输入 <code>./</code> 语法来选择在单个根文件夹中进行搜索。例如，如果输入 <code>./project1/<em>*/</em>.txt</code>，则会在 <code>project1/</code> 根文件夹下搜索所有 <code>.txt</code> 文件。</p>
 
@@ -595,7 +595,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以通过设置编辑器轻松查看和修改不同的设置文件。设置编辑器选项卡允许你选择用户设置、全局工作区设置和各个文件夹的设置。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/settings-dropdown.png">settings dropdown</a></p>
+<p><img src="images/multi-root-workspaces/settings-dropdown.png" alt="settings dropdown"></p>
 
 <p>你还可以使用以下命令打开特定的设置文件：</p>
 
@@ -611,19 +611,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>不受支持的编辑器范围文件夹设置将在文件夹设置中显示为灰色，并会从 <strong>DEFAULT FOLDER SETTINGS</strong> 列表中过滤掉。你还将在设置前面看到一个信息图标。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/unsupported-setting-info.png">unsupported setting information</a></p>
+<p><img src="images/multi-root-workspaces/unsupported-setting-info.png" alt="unsupported setting information"></p>
 
 <h2>调试</h2>
 
 <p>使用多根工作区时，VS Code 会在所有文件夹中搜索 <code>launch.json</code> 调试配置文件，并显示时带有文件夹名称作为后缀。此外，VS Code 还会显示工作区配置文件中定义的启动配置。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/debugging-dropdown.png">debugging dropdown</a></p>
+<p><img src="images/multi-root-workspaces/debugging-dropdown.png" alt="debugging dropdown"></p>
 
 <p>上面的示例显示了 <a href="https://marketplace.visualstudio.com/items?itemName=eg2.tslint">TSLint 扩展</a>的调试配置。其中有一个来自 <code>tslint</code> 扩展文件夹的 <code>setting(launch)</code> 配置，用于在 VS Code 扩展主机中启动该扩展，还有一个来自 <code>tslint-server</code> 文件夹的 <code>attach</code> 配置，用于将调试器附加到正在运行的 TSLint 服务器。</p>
 
 <p>你还可以在 vscode-tslint <a href="https://github.com/microsoft/vscode-tslint/blob/main/vscode-tslint.code-workspace">工作区</a>中看到三个文件夹 <code>tslint</code>、<code>tslint-server</code> 和 <code>tslint-tests</code> 的 <strong>添加配置</strong> 命令。<strong>添加配置</strong> 命令将打开文件夹 <code>.vscode</code> 子文件夹中现有的 <code>launch.json</code> 文件，或创建一个新的文件并显示调试配置模板下拉菜单。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/add-launch-config.png">debugging template dropdown</a></p>
+<p><img src="images/multi-root-workspaces/add-launch-config.png" alt="debugging template dropdown"></p>
 
 <p>配置中使用的<a href="../docs/reference/variables-reference.md">变量</a>（例如 <code>${workspaceFolder}</code> 或已弃用的 <code>${workspaceRoot}</code>）将相对于它们所属的文件夹进行解析。可以通过在变量后附加根文件夹名称（用冒号分隔）来将变量作用域限定到每个工作区文件夹。</p>
 
@@ -631,11 +631,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>工作区作用域的启动配置位于工作区配置文件的 <code>"launch"</code> 部分（命令面板中的 <strong>工作区: 打开工作区配置文件</strong>）：</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/workspace-settings.png">Workspace Settings</a></p>
+<p><img src="images/multi-root-workspaces/workspace-settings.png" alt="Workspace Settings"></p>
 
 <p>或者，可以通过启动配置下拉菜单中的"添加配置(工作区)"条目添加新的启动配置：</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/add-config.png">Add Config</a></p>
+<p><img src="images/multi-root-workspaces/add-config.png" alt="Add Config"></p>
 
 <p>复合启动配置可以按名称引用各个启动配置，只要这些名称在工作区中是唯一的，例如：</p>
 
@@ -684,7 +684,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>与 VS Code 搜索调试配置的方式类似，VS Code 也会尝试从工作区中所有文件夹的 gulp、grunt、npm 和 TypeScript 项目文件中自动检测任务，并搜索 <code>tasks.json</code> 文件中定义的任务。任务的位置通过文件夹名称后缀来指示。请注意，<code>tasks.json</code> 中定义的任务必须为 2.0.0 版本。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/tasks-dropdown.png">tasks dropdown</a></p>
+<p><img src="images/multi-root-workspaces/tasks-dropdown.png" alt="tasks dropdown"></p>
 
 <p>从上面的 TSLint 扩展<a href="https://github.com/microsoft/vscode-tslint/blob/main/vscode-tslint.code-workspace">工作区</a>示例中，你可以看到有两个来自 <code>tslint</code> 和 <code>tslint-tests</code> 文件夹中 <code>tasks.json</code> 文件的 <strong>已配置任务</strong>，以及许多自动检测到的 npm 和 TypeScript 编译器 <strong>检测到的任务</strong>。</p>
 
@@ -696,7 +696,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用多根工作区时，有一个 <strong>SOURCE CONTROL PROVIDERS</strong> 部分，当你有多个活动仓库时，它会为你提供概览。这些仓库可以由多个 SCM 提供程序提供；例如，你可以将 Git 仓库与 Azure DevOps Server 工作区并排放置。当你在此视图中选择仓库时，你可以在下方看到源代码管理的详细信息。</p>
 
-<p>!<a href="editing/workspaces/images/multi-root-workspaces/multiple-scm-providers.png">multiple scm providers</a></p>
+<p><img src="images/multi-root-workspaces/multiple-scm-providers.png" alt="multiple scm providers"></p>
 
 <p>你可以使用 <code>kbstyle(Ctrl+Click)</code> 或 <code>kbstyle(Shift+Click)</code> 选择多个仓库。它们的详细信息将作为单独的区域显示在下方。</p>
 

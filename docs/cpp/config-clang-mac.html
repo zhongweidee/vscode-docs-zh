@@ -442,7 +442,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">VS Code 的 C++ 扩展</a>。你可以在扩展视图 (<code>kb(workbench.view.extensions)</code>) 中搜索 'C++' 来安装 C/C++ 扩展。
 </li>
 </ol>
-<p>    !<a href="cpp/images/cpp/cpp-extension.png">C/C++ 扩展</a></p>
+<p>    <img src="images/cpp/cpp-extension.png" alt="C/C++ 扩展"></p>
 
 <h3>确保已安装 Clang</h3>
 
@@ -476,7 +476,7 @@ code .</code></pre>
 </ul>
 <p>在文件资源管理器标题栏中，选择<strong>新建文件</strong>按钮并将文件命名为 <code>helloworld.cpp</code>。</p>
 
-<p>!<a href="cpp/images/msvc/new-file-button.png">新建文件标题栏按钮</a></p>
+<p><img src="images/msvc/new-file-button.png" alt="新建文件标题栏按钮"></p>
 
 <p>粘贴以下源代码：</p>
 
@@ -499,7 +499,7 @@ int main()
 
 <p>现在按下 <code>kb(workbench.action.files.save)</code> 保存文件。请注意，你的文件会显示在 VS Code 侧边栏的<strong>文件资源管理器</strong>视图 (<code>kb(workbench.view.explorer)</code>) 中：</p>
 
-<p>!<a href="cpp/images/msvc/file-explorer.png">文件资源管理器</a></p>
+<p><img src="images/msvc/file-explorer.png" alt="文件资源管理器"></p>
 
 <p>你也可以通过选择<strong>文件</strong> > <strong>自动保存</strong>来启用<a href="../docs/editing/codebasics.md#save-auto-save">自动保存</a>功能，以自动保存文件更改。你可以在 VS Code 的<a href="../docs/editing/userinterface.md">用户界面文档</a>中详细了解其他视图。</p>
 
@@ -511,7 +511,7 @@ int main()
 
 <p>要查看 IntelliSense 的实际效果，请将鼠标悬停在 <code>vector</code> 或 <code>string</code> 上以查看其类型信息。如果你在第 10 行输入 <code>msg.</code>，你可以看到一个推荐成员函数的补全列表，这些全部由 IntelliSense 生成：</p>
 
-<p>!<a href="cpp/images/wsl/msg-intellisense.png">语句补全 IntelliSense</a></p>
+<p><img src="images/wsl/msg-intellisense.png" alt="语句补全 IntelliSense"></p>
 
 <p>你可以按 <code>kbstyle(Tab)</code> 键插入选中的成员。然后，当你添加左括号时，会显示该函数所需参数的信息。</p>
 
@@ -526,13 +526,13 @@ int main()
 <li>按下编辑器右上角的播放按钮。
 </li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/run-play-button.png">helloworld.cpp 和播放按钮截图</a></p>
+<p>   <img src="images/playbutton/run-play-button.png" alt="helloworld.cpp 和播放按钮截图"></p>
 
 <ol>
 <li>从系统检测到的编译器列表中选择 <strong>C/C++: clang++ build and debug active file</strong>。
 </li>
 </ol>
-<p>   !<a href="cpp/images/clang-mac/build-and-debug-active-file.png">构建和调试任务</a></p>
+<p>   <img src="images/clang-mac/build-and-debug-active-file.png" alt="构建和调试任务"></p>
 
 <p>系统只会在你第一次运行 <code>helloworld.cpp</code> 时要求你选择编译器。该编译器将成为 <code>tasks.json</code> 文件中设置的"默认"编译器。</p>
 
@@ -540,7 +540,7 @@ int main()
 <li>构建成功后，你的程序输出将显示在集成<strong>调试控制台</strong>中。
 </li>
 </ol>
-<p>    !<a href="cpp/images/clang-mac/helloworld-debug-console-output.png">程序输出截图</a></p>
+<p>    <img src="images/clang-mac/helloworld-debug-console-output.png" alt="程序输出截图"></p>
 
 <p>恭喜！你刚刚在 VS Code 中运行了你的第一个 C++ 程序！</p>
 
@@ -621,25 +621,25 @@ int main()
 <li>通过单击编辑器边栏或对当前行使用 F9 来设置断点。
 </li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/cpp-breakpoint.png">helloworld.cpp 中的断点截图</a></p>
+<p>   <img src="images/playbutton/cpp-breakpoint.png" alt="helloworld.cpp 中的断点截图"></p>
 
 <ol>
 <li>从播放按钮旁边的下拉菜单中选择 <strong>Debug C/C++ File</strong>。
 </li>
 </ol>
-<p>   !<a href="cpp/images/playbutton/debug-cpp-file-play-button.png">播放按钮下拉菜单截图</a></p>
+<p>   <img src="images/playbutton/debug-cpp-file-play-button.png" alt="播放按钮下拉菜单截图"></p>
 
 <ol>
 <li>从系统检测到的编译器列表中选择 <strong>C/C++: clang++ build and debug active file</strong>（你只会在第一次运行或调试 <code>helloworld.cpp</code> 时被要求选择编译器）。
 </li>
 </ol>
-<p>   !<a href="cpp/images/clang-mac/build-and-debug-active-file.png">构建和调试任务</a></p>
+<p>   <img src="images/clang-mac/build-and-debug-active-file.png" alt="构建和调试任务"></p>
 
 <ol>
 <li>你将看到任务执行并将输出打印到<strong>终端</strong>窗口。
 </li>
 </ol>
-<p>    !<a href="cpp/images/clang-mac/helloworld-terminal-output.png">Hello World 终端输出</a></p>
+<p>    <img src="images/clang-mac/helloworld-terminal-output.png" alt="Hello World 终端输出"></p>
 
 <p>播放按钮有两种模式：<strong>Run C/C++ File</strong> 和 <strong>Debug C/C++ File</strong>。默认模式是上次使用的模式。如果你在播放按钮中看到调试图标，你可以直接选择播放按钮进行调试，而不需要选择下拉菜单项。</p>
 
@@ -652,7 +652,7 @@ int main()
 <li>编辑器高亮显示你在启动调试器之前设置断点的行：
 </li>
 </ul>
-<p>   !<a href="cpp/images/playbutton/breakpoint-debug.png">初始断点</a></p>
+<p>   <img src="images/playbutton/breakpoint-debug.png" alt="初始断点"></p>
 
 <ul>
 <li>活动栏中的<strong>运行和调试</strong>视图显示调试信息。
@@ -660,7 +660,7 @@ int main()
 <li>在代码编辑器的顶部，会出现一个调试控制面板。你可以通过拖拽左侧的圆点来在屏幕上移动它。
 </li>
 </ul>
-<p>    !<a href="cpp/images/cpp/debug-controls.png">调试控件</a></p>
+<p>    <img src="images/cpp/debug-controls.png" alt="调试控件"></p>
 
 <h2>逐步调试代码</h2>
 
@@ -670,7 +670,7 @@ int main()
 <li>在调试控制面板中选择<strong>单步跳过</strong>图标，使 <code>for (const string& word : msg)</code> 语句被高亮显示。
 </li>
 </ol>
-<p>    !<a href="cpp/images/cpp/step-over-button.png">单步跳过按钮</a></p>
+<p>    <img src="images/cpp/step-over-button.png" alt="单步跳过按钮"></p>
 
 <p>    <strong>单步跳过</strong>命令会跳过在创建和初始化 <code>msg</code> 变量时调用的 <code>vector</code> 和 <code>string</code> 类中的所有内部函数调用。注意<strong>变量</strong>窗口中的变化。<code>msg</code> 的内容是可见的，因为该语句已经完成。</p>
 <ol>
@@ -687,7 +687,7 @@ int main()
 <li>在<strong>监视</strong>窗口中，选择加号并在文本框中输入 <code>word</code>。这是循环变量的名称。现在，在你逐步执行循环时查看<strong>监视</strong>窗口。
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/watch-window.png">监视窗口</a></p>
+<p>   <img src="images/cpp/watch-window.png" alt="监视窗口"></p>
 
 <p>    <strong>注意</strong>：监视变量的值仅在程序执行处于该变量的作用域内时可用。例如，对于循环变量，该值仅在程序正在执行循环时可用。</p>
 
@@ -697,7 +697,7 @@ int main()
 <li>你可以在执行暂停时将鼠标指针悬停在任何变量上，以快速查看其值。
 </li>
 </ol>
-<p>   !<a href="cpp/images/cpp/mouse-hover.png">鼠标悬停</a></p>
+<p>   <img src="images/cpp/mouse-hover.png" alt="鼠标悬停"></p>
 
 <h2>使用 launch.json 自定义调试</h2>
 
@@ -707,10 +707,10 @@ int main()
 
 <p>要创建 <code>launch.json</code>，请从播放按钮下拉菜单中选择<strong>添加调试配置</strong>。</p>
 
-<p>!<a href="cpp/images/playbutton/add-debug-configuration.png">添加调试配置播放按钮菜单</a></p>
+<p><img src="images/playbutton/add-debug-configuration.png" alt="添加调试配置播放按钮菜单"></p>
 
 <p>然后你会看到一个用于选择各种预定义调试配置的下拉菜单。选择 <strong>C/C++: clang++ build and debug active file</strong>。</p>
-<p>!<a href="cpp/images/clang-mac/build-and-debug-active-file.png">C++ 调试配置下拉菜单</a></p>
+<p><img src="images/clang-mac/build-and-debug-active-file.png" alt="C++ 调试配置下拉菜单"></p>
 
 <p>VS Code 会创建一个 <code>launch.json</code> 文件，其内容大致如下：</p>
 
@@ -749,11 +749,11 @@ int main()
 
 <p>通过在命令面板 (<code>kb(workbench.action.showCommands)</code>) 中运行 <strong>C/C++: Edit Configurations (UI)</strong> 命令来查看 C/C++ 配置用户界面。</p>
 
-<p>!<a href="cpp/images/clang-mac/mac-command-palette-configurations.png">命令面板</a></p>
+<p><img src="images/clang-mac/mac-command-palette-configurations.png" alt="命令面板"></p>
 
 <p>这将打开 <strong>C/C++ 配置</strong>页面。</p>
 
-<p>!<a href="cpp/images/clang-mac/intellisense-configurations-mac-clang.png">C++ 配置</a></p>
+<p><img src="images/clang-mac/intellisense-configurations-mac-clang.png" alt="C++ 配置"></p>
 
 <p>Visual Studio Code 将这些设置保存在 <code>.vscode/c_cpp_properties.json</code> 中。如果你直接打开该文件，它应该类似于以下内容：</p>
 

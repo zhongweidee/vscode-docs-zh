@@ -434,15 +434,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要访问数据查看器，您可以从笔记本变量资源管理器中打开它，方法是单击任何张量变量旁边显示的数据查看器图标。您还会注意到变量资源管理器也显示了张量的形状/维度。</p>
 
-<p>!<a href="datascience/images/pytorch-support/variable-explorer-data-viewer.png">从变量资源管理器访问数据查看器</a></p>
+<p><img src="images/pytorch-support/variable-explorer-data-viewer.png" alt="从变量资源管理器访问数据查看器"></p>
 
 <p>或者，您也可以在 Python 调试会话中打开它，方法是在调试器中右键单击任何张量变量，然后选择<strong>在数据查看器中查看值</strong>。</p>
 
-<p>!<a href="datascience/images/pytorch-support/debugger-data-viewer.png">从 Python 调试器访问数据查看器</a></p>
+<p><img src="images/pytorch-support/debugger-data-viewer.png" alt="从 Python 调试器访问数据查看器"></p>
 
 <p>如果您有三维或更高维的数据（numpy <code>ndarray</code>、PyTorch <code>Tensor</code> 或 TensorFlow <code>EagerTensor</code> 类型），数据查看器中默认会打开一个数据切片面板。使用该面板，您可以通过输入框使用 Python 切片语法以编程方式指定切片，也可以使用交互式的<strong>轴</strong>和<strong>索引</strong>下拉菜单进行切片。</p>
 
-<p>!<a href="datascience/images/pytorch-support/data-slicing.png">带数据切片和张量的数据查看器</a></p>
+<p><img src="images/pytorch-support/data-slicing.png" alt="带数据切片和张量的数据查看器"></p>
 
 <p>除了切片之外，您还可以通过在每个列名下方的筛选器中搜索 "inf" 或 "NaN" 等关键词来查找感兴趣的值。</p>
 
@@ -450,7 +450,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><a href="https://www.tensorflow.org/tensorboard">TensorBoard</a> 是一个数据科学配套仪表板，可帮助 <a href="https://pytorch.org/">PyTorch</a> 和 <a href="https://www.tensorflow.org/">TensorFlow</a> 开发者可视化数据集和模型训练。通过将 TensorBoard 直接集成到 VS Code 中，您可以抽查模型预测、查看模型架构、分析模型随时间的损失和准确率变化，以及分析代码性能以找出最慢的部分。</p>
 
-<p>!<a href="datascience/images/pytorch-support/tensorboard-integration.png">TensorBoard 与 VS Code 的集成</a></p>
+<p><img src="images/pytorch-support/tensorboard-integration.png" alt="TensorBoard 与 VS Code 的集成"></p>
 
 <p>要启动 TensorBoard 会话，请打开<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）并搜索命令 <strong>Python: Launch TensorBoard</strong>。之后，系统会提示您选择 TensorBoard 日志文件所在的文件夹。默认情况下，VS Code 使用您当前的工作目录，并自动检测所有子目录中的 TensorBoard 日志文件。不过，您也可以指定自己的目录。然后，VS Code 将打开一个包含 TensorBoard 的新选项卡，并在您工作时管理其生命周期。</p>
 
@@ -460,13 +460,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>除了 TensorBoard，VS Code 和 Python 扩展还集成了 PyTorch Profiler，使您能够在一个地方更好地分析您的 PyTorch 模型。有关性能分析器的更多信息，请参阅 <a href="https://pytorch.org/blog/introducing-pytorch-profiler-the-new-and-improved-performance-tool/">PyTorch Profiler 文档</a>。</p>
 
-<p>!<a href="datascience/images/pytorch-support/pytorch-profiler.png">PyTorch Profiler 与 VS Code 的集成</a></p>
+<p><img src="images/pytorch-support/pytorch-profiler.png" alt="PyTorch Profiler 与 VS Code 的集成"></p>
 
 <h2>通过 Pylance 语言服务器提供 IntelliSense</h2>
 
 <p>VS Code 中的 Python 编辑体验在 Pylance 的强大功能加持下，为 PyTorch 提供了代码补全和其他丰富的功能。为获得最佳体验，请将 PyTorch 更新到 1.10.1 版本，以获得对 nn、cuda 和 optim 等子模块的改进代码补全。</p>
 
-<p>!<a href="datascience/images/pytorch-support/pytorch-pylance.gif">Pylance 对 PyTorch 的支持</a></p>
+<p><img src="images/pytorch-support/pytorch-pylance.gif" alt="Pylance 对 PyTorch 的支持"></p>
 
   </div>
 </div>
