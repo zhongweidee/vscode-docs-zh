@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Studio Code 是一款一流的编辑器——但它远不止于此，它还拥有 IntelliSense 和智能代码导航等功能。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / editing / editingevolved</div>
+<h1>代码导航</h1>
+
+<p>Visual Studio Code 拥有高效能的代码编辑器，结合编程语言服务，为您提供 IDE 的强大功能和文本编辑器的速度。在本主题中，我们将首先介绍 VS Code 的语言智能功能（建议、参数提示、智能代码导航），然后展示核心文本编辑器的强大之处。</p>
+
+<h2>快速文件导航</h2>
+
+<p>><strong>提示：</strong> 您可以通过输入 <code>kb(workbench.action.quickOpen)</code>（<strong>快速打开</strong>）按名称打开任何文件。</p>
+
+<p>资源管理器非常适合在浏览项目时在文件之间导航。但是，当您执行某项任务时，您会发现自己需要在同一组文件之间快速跳转。VS Code 提供了两个强大的命令，可通过易于使用的键盘快捷键在文件内部和文件之间导航。</p>
+
+<p>按住 <code>kbstyle(Ctrl)</code> 并按下 <code>kbstyle(Tab)</code> 可查看编辑器组中所有已打开文件的列表。要打开其中一个文件，请再次使用 <code>kbstyle(Tab)</code> 选择要导航到的文件，然后松开 <code>kbstyle(Ctrl)</code> 将其打开。</p>
+
+<p>!<a href="editing/images/editingevolved/quicknav.png">Quick Navigation</a></p>
+
+<p>或者，您可以使用 <code>kb(workbench.action.navigateBack)</code> 和 <code>kb(workbench.action.navigateForward)</code> 在文件和编辑位置之间导航。如果您在同一文件的不同行之间跳转，这些快捷键可以让您轻松地在这些位置之间导航。</p>
+
+<h2>面包屑导航</h2>
+
+<p>编辑器内容上方有一个导航栏，称为<a href="https://en.wikipedia.org/wiki/Breadcrumb_(navigation">面包屑导航</a>)。它显示当前位置，并允许您在文件夹、文件和符号之间快速导航。</p>
+
+<p>!<a href="editing/images/editingevolved/breadcrumbs.png">Breadcrumbs</a></p>
+
+<p>面包屑导航始终显示文件路径，并借助语言扩展显示光标位置之前的符号路径。显示的符号与大纲视图和转到符号中的符号相同。</p>
+
+<p>在路径中选择一个面包屑会显示一个包含该层级同级项的下拉菜单，以便您可以快速导航到其他文件夹和文件。</p>
+
+<p>!<a href="editing/images/editingevolved/breadcrumb-folder-dropdown.png">breadcrumb folder dropdown</a></p>
+
+<p>如果当前文件类型支持符号语言，您将看到当前符号路径以及同层级和下级其他符号的下拉菜单。</p>
+
+<p>!<a href="editing/images/editingevolved/breadcrumb-symbol-dropdown.png">breadcrumb symbol dropdown</a></p>
+
+<p>您可以通过 <strong>视图</strong> > <strong>显示面包屑</strong> 切换开关或 <code>setting(breadcrumbs.enabled)</code> <a href="../docs/configure/settings.md">设置</a>来关闭面包屑导航。</p>
+
+<h3>面包屑导航自定义</h3>
+
+<p>可以自定义面包屑导航的外观。如果路径非常长，或者您只对文件路径或符号路径感兴趣，可以使用 <code>setting(breadcrumbs.filePath)</code> 和 <code>setting(breadcrumbs.symbolPath)</code> 设置。两者都支持 <code>on</code>、<code>off</code> 和 <code>last</code>，用于定义是否显示路径以及显示路径的哪一部分。默认情况下，面包屑导航在面包屑左侧显示文件和符号图标，但您可以将 <code>setting(breadcrumbs.icons)</code> 设置为 false 来移除图标。</p>
+
+<h3>面包屑导航中的符号排序</h3>
+
+<p>您可以使用 <code>setting(breadcrumbs.symbolSortOrder)</code> 设置来控制符号在面包屑下拉菜单中的排序方式。</p>
+
+<p>允许的值包括：</p>
+
+<ul>
+<li><code>position</code> - 按文件中的位置排序（默认）</li>
+<li><code>name</code> - 按字母顺序排序</li>
+<li><code>type</code> - 按符号类型排序
+<h3>面包屑路径复制</h3>
+
+</li>
+</ul>
+<p>您可以通过右键单击编辑器标签页并选择 <strong>复制面包屑路径</strong> 来复制完整的面包屑路径。这将把包含文件和符号名称的完整路径复制到剪贴板。</p>
+
+<p>您可以使用 <code>setting(breadcrumbs.symbolPathSeparator)</code> 设置配置符号路径分隔符。默认值为 <code>.</code>。</p>
+
+<h3>面包屑键盘导航</h3>
+
+<p>要与面包屑导航交互，请使用 <strong>聚焦面包屑</strong> 命令或按下 <code>kb(breadcrumbs.focusAndSelect)</code>。它将选择最后一个元素并打开一个下拉菜单，允许您导航到同级文件或符号。使用 <code>kb(breadcrumbs.focusPrevious)</code> 和 <code>kb(breadcrumbs.focusNext)</code> 键盘快捷键可以转到当前元素之前或之后的元素。当下拉菜单出现时，开始输入——所有匹配的元素将被高亮显示，最佳匹配项将被选中以便快速导航。</p>
+
+<p>您也可以在不使用下拉菜单的情况下与面包屑导航交互。按下 <code>kb(breadcrumbs.focus)</code> 聚焦最后一个元素，使用 <code>kb(breadcrumbs.focusPrevious)</code> 和 <code>kb(breadcrumbs.focusNext)</code> 进行导航，并使用 <code>kb(breadcrumbs.revealFocused)</code> 在编辑器中显示该元素。</p>
+
+<h2>转到定义</h2>
+
+<p>如果某种<a href="../docs/languages/overview.md">语言</a>支持，您可以通过按下 <code>kb(editor.action.revealDefinition)</code> 转到符号的定义。</p>
+
+<p>如果您按下 <code>kbstyle(Ctrl)</code> 并将鼠标悬停在符号上，将显示声明的预览：</p>
+
+<p>!<a href="editing/images/editingevolved/ctrlhover.png">Ctrl Hover</a></p>
+
+<blockquote><strong>提示：</strong> 您可以使用 <code>kbstyle(Ctrl+Click)</code> 跳转到定义，或使用 <code>kbstyle(Ctrl+Alt+Click)</code> 在侧边打开定义。</blockquote>
+
+<h2>转到类型定义</h2>
+
+<p>某些<a href="../docs/languages/overview.md">语言</a>还支持通过从编辑器上下文菜单或<strong>命令面板</strong>运行<strong>转到类型定义</strong>命令来跳转到符号的类型定义。这将带您转到符号类型的定义。命令 <code>editor.action.goToTypeDefinition</code> 默认没有绑定键盘快捷键，但您可以添加自己的自定义<a href="../docs/configure/keybindings.md">按键绑定</a>。</p>
+
+<h2>转到实现</h2>
+
+<p><a href="../docs/languages/overview.md">语言</a>还可以支持通过按下 <code>kb(editor.action.goToImplementation)</code> 跳转到符号的实现。对于接口，这会显示该接口的所有实现者；对于抽象方法，这会显示该方法的所有具体实现。</p>
+
+<h2>转到符号</h2>
+
+<p>您可以使用 <code>kb(workbench.action.gotoSymbol)</code> 在文件内部导航符号。通过输入 <code>kbstyle(:)</code>，符号将按类别分组。按下 <code>kbstyle(Up)</code> 或 <code>kbstyle(Down)</code> 并导航到您想要的位置。</p>
+
+<p>!<a href="editing/images/editingevolved/gotosymbol.png">Go to Symbol</a></p>
+
+<h2>按名称打开符号</h2>
+
+<p>某些语言支持使用 <code>kb(workbench.action.showAllSymbols)</code> 跨文件跳转到符号。输入您想要导航到的类型的首字母（无论它包含在哪个文件中），然后按下 <code>kbstyle(Enter)</code>。</p>
+
+<p>!<a href="editing/images/editingevolved/symbol.png">Open symbol by name</a></p>
+
+<h2>速览</h2>
+
+<p>我们认为，当您只想快速查看某些内容时，没有什么比大幅度的上下文切换更糟糕的了。这就是我们支持速览编辑器的原因。当您执行<strong>转到引用</strong>搜索（通过 <code>kb(editor.action.goToReferences)</code>）或<strong>速览定义</strong>（通过 <code>kb(editor.action.peekDefinition)</code>）时，我们会将结果以内联方式嵌入：</p>
+
+<p>!<a href="editing/images/editingevolved/references.png">Peek References</a></p>
+
+<p>您可以在速览编辑器中浏览不同的引用，并直接进行快速编辑。单击速览编辑器文件名或双击结果列表将在外部编辑器中打开引用。</p>
+
+<blockquote><strong>提示：</strong> 此外，如果您按下 <code>kbstyle(Escape)</code> 或双击速览编辑器区域，速览窗口将关闭。您可以使用 <code>setting(editor.stablePeek)</code> <a href="../docs/configure/settings.md">设置</a>禁用此行为。</blockquote>
+
+<h2>括号匹配</h2>
+
+<p>当光标靠近匹配的括号之一时，匹配的括号将被高亮显示。</p>
+
+<p>!<a href="editing/images/editingevolved/brackets.png">Bracket Matching</a></p>
+
+<blockquote><strong>提示：</strong> 您可以使用 <code>kb(editor.action.jumpToBracket)</code> 跳转到匹配的括号</blockquote>
+
+<h3>括号对着色</h3>
+
+<p>也可以通过将 <code>setting(editor.bracketPairColorization.enabled)</code> 设置为 <code>true</code> 来对匹配的括号对进行着色。</p>
+
+<p>!<a href="editing/images/editingevolved/bracket-pair-colorization-on-off.drawio.png">Bracket Pair Colorization</a></p>
+
+<p>所有颜色都是可主题化的，最多可以配置六种颜色。</p>
+
+<p>您可以在设置中使用 <code>setting(workbench.colorCustomizations)</code> 来覆盖这些由主题提供的颜色：</p>
+
+<pre><code class="language-json">"workbench.colorCustomizations": {
+    "editorBracketHighlight.foreground1": "#FFD700",
+    "editorBracketHighlight.foreground2": "#DA70D6",
+    "editorBracketHighlight.foreground3": "#179fff",
+},</code></pre>
+
+<h2>引用信息</h2>
+
+<p>某些语言（如 C#）支持内联引用信息，并且会实时更新。这使您可以快速分析编辑的影响，或特定方法或属性在整个项目中的使用热度：</p>
+
+<p>!<a href="editing/images/editingevolved/referenceinfo.png">Reference information</a></p>
+
+<blockquote><strong>提示：</strong> 单击这些注释可直接调用<strong>速览引用</strong>操作。</blockquote>
+
+<blockquote><strong>提示：</strong> 可以通过 <code>setting(editor.codeLens)</code> <a href="../docs/configure/settings.md">设置</a>打开或关闭 CodeLens 中显示的引用信息。</blockquote>
+
+<h2>重命名符号</h2>
+
+<p>某些语言支持跨文件重命名符号。按下 <code>kb(editor.action.rename)</code>，然后输入所需的新名称并按下 <code>kbstyle(Enter)</code>。该符号的所有使用处都将被跨文件重命名。</p>
+
+<p>!<a href="editing/images/editingevolved/rename.png">Rename</a></p>
+
+<h2>错误和警告</h2>
+
+<p>警告或错误可以通过<a href="../docs/debugtest/tasks.md">配置的任务</a>、丰富的语言服务或代码检查工具（linter）生成，这些工具会在后台持续分析您的代码。由于我们热衷于无缺陷的代码，警告和错误会显示在多个位置：</p>
+
+<ul>
+<li>在状态栏中，有一个所有错误和警告数量的摘要。</li>
+<li>您可以单击摘要或按下 <code>kb(workbench.actions.view.problems)</code> 来显示<strong>问题</strong>面板，其中列出所有当前的错误。</li>
+<li>如果您打开一个包含错误或警告的文件，它们将以内联方式呈现并与文本和概览标尺一起显示。
+</li>
+</ul>
+<p>!<a href="editing/images/editingevolved/errors.png">errors in problems panel</a></p>
+
+<blockquote><strong>提示：</strong> 要循环浏览当前文件中的错误或警告，您可以按下 <code>kb(editor.action.marker.next)</code> 或 <code>kb(editor.action.marker.prev)</code>，这将显示一个内联区域，详细说明问题以及可能的代码操作（如果可用）：</blockquote>
+
+<p>!<a href="editing/images/editingevolved/errorsinline.png">Errors and Warnings Inline</a></p>
+
+<h2>代码操作</h2>
+
+<p>警告和错误可以提供代码操作（也称为快速修复）以帮助修复问题。这些将作为灯泡图标显示在编辑器的左边距中。单击灯泡图标将显示代码操作选项或执行该操作。</p>
+
+<h2>内联提示</h2>
+
+<p>某些语言提供内联提示：即以内联方式呈现的关于源代码的附加信息。这通常用于显示推断的类型。下面的示例显示了内联提示，这些提示显示了 JavaScript 变量和函数返回类型的推断类型。</p>
+
+<p>!<a href="editing/images/editingevolved/inlay-hints.png">Inlay hints for inferred types in TypeScript</a></p>
+
+<p>内联提示可以通过 <code>setting(editor.inlayHints.enabled)</code> 设置启用/禁用，默认情况下是启用的。需要扩展（如 TypeScript 或 Rust）来提供实际的内联提示信息。</p>
+
+<h2>外部链接保护</h2>
+
+<p>为了您的安全，VS Code 在从编辑器打开外部网站链接之前会显示提示。</p>
+
+<p>!<a href="editing/images/editingevolved/outgoing-link-prompt.png">Outgoing link prompt</a></p>
+
+<p>您可以在浏览器中继续访问外部网站，或者选择复制链接或取消请求。如果您选择<strong>配置受信任的域</strong>，会出现一个下拉菜单，让您可以信任确切的 URL、信任 URL 域及其子域，或信任所有域以禁用外部链接保护。</p>
+
+<p>!<a href="editing/images/editingevolved/trusted-domain-dropdown.png">Configure Trusted Domains dropdown</a></p>
+
+<p><strong>管理受信任的域</strong>选项也可随时从命令面板中使用，它会打开<strong>受信任的域</strong> JSON 文件，您可以在其中添加、删除或修改受信任的域。</p>
+
+<pre><code class="language-jsonc">// 您可以使用"管理受信任的域"命令打开此文件。
+// 保存此文件以应用受信任的域规则。
+[
+  "*.twitter.com"
+]</code></pre>
+
+<p><strong>受信任的域</strong> JSON 文件还包含注释，其中包含支持的域格式示例以及默认受信任的域列表，例如 <code>https://<em>.visualstudio.com</code> 和 <code>https://</em>.microsoft.com</code>。</p>
+
+<h2>后续步骤</h2>
+
+<p>现在您已经了解了编辑器的工作原理，是时候尝试其他一些功能了……</p>
+
+<ul>
+<li><a href="../docs/introvideos/codeediting.md">介绍视频 - 代码编辑</a> - 观看关于代码编辑功能的介绍视频。</li>
+<li><a href="../docs/editing/userinterface.md">用户界面</a> - 以防您错过了 VS Code 的基本导航。</li>
+<li><a href="../docs/configure/keybindings.md">按键绑定</a> - 了解如何根据自己的喜好修改键盘快捷键。</li>
+<li><a href="../docs/debugtest/debugging.md">调试</a> - 这是 VS Code 真正出彩的地方。
+<h2>常见问题</h2>
+
+<h3>如何自动选择快速打开中的第二个条目而不是第一个？</h3>
+
+</li>
+</ul>
+<p>通过命令 <code>workbench.action.quickOpenPreviousEditor</code>，您可以在快速打开中自动选择第二个条目。当您想从列表中选择上一个条目而无需调用其他键盘快捷键时，这会很有用：</p>
+
+<pre><code class="language-json">[
+    {
+        "key": "ctrl+p",
+        "command": "workbench.action.quickOpenPreviousEditor"
+    },
+    {
+        "key": "ctrl+p",
+        "command": "-workbench.action.quickOpen"
+    }
+]</code></pre>
+
+<h3>如何配置 Ctrl+Tab 以在所有组的编辑器之间导航</h3>
+
+<p>默认情况下，<code>kbstyle(Ctrl+Tab)</code> 在同一编辑器组的编辑器之间导航。如果您想在所有组中所有已打开的编辑器之间导航，可以为 <code>workbench.action.quickOpenPreviousRecentlyUsedEditor</code> 和 <code>workbench.action.quickOpenLeastRecentlyUsedEditor</code> 命令创建键盘快捷键：</p>
+
+<pre><code class="language-json">[
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.quickOpenPreviousRecentlyUsedEditor",
+        "when": "!inEditorsPicker"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.quickOpenLeastRecentlyUsedEditor",
+        "when": "!inEditorsPicker"
+    }
+]</code></pre>
+
+<h3>如何在不使用选择器的情况下在最近使用的编辑器之间导航</h3>
+
+<p>以下是可以用来在编辑器中导航而无需打开选择器的命令列表：</p>
+
+<p>键|命令|命令 ID</p>
+<p>---|-------|----------</p>
+<p><code>kb(workbench.action.openNextRecentlyUsedEditor)</code>|打开下一个最近使用的编辑器|<code>workbench.action.openNextRecentlyUsedEditor</code></p>
+<p><code>kb(workbench.action.openPreviousRecentlyUsedEditor)</code>|打开上一个最近使用的编辑器|<code>workbench.action.openPreviousRecentlyUsedEditor</code></p>
+<p><code>kb(workbench.action.openNextRecentlyUsedEditorInGroup)</code>|打开组中下一个最近使用的编辑器|<code>workbench.action.openNextRecentlyUsedEditorInGroup</code></p>
+<p><code>kb(workbench.action.openPreviousRecentlyUsedEditorInGroup)</code>|打开组中上一个最近使用的编辑器|<code>workbench.action.openPreviousRecentlyUsedEditorInGroup</code></p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

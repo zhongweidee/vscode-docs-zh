@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>了解如何在 VS Code 中使用钩子（hooks），在代理会话的关键生命周期节点执行自定义 Shell 命令，实现自动化、验证和策略执行。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / agent-customization / hooks</div>
+<h1>Visual Studio Code 中的代理钩子（预览版）</h1>
+
+<p>钩子（Hooks）使您能够在代理会话的关键生命周期节点执行自定义 Shell 命令。使用钩子可以自动化工作流程、强制执行安全策略、验证操作以及集成外部工具。</p>
+
+<p>有关钩子在 AI 自定义框架中的定位，请参阅<a href="../docs/agents/concepts/customization.md">自定义概念</a>。</p>
+
+<p>本文介绍了如何在 VS Code 中配置和使用钩子。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>代理钩子目前处于预览阶段。配置格式和行为在未来的版本中可能会发生变化。</blockquote>
+
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>您的组织可能已禁用 VS Code 中的钩子功能。请联系您的管理员获取更多信息。有关详细信息，请参阅<a href="../docs/enterprise/policies.md">企业策略</a>。</blockquote>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>使用<a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">代理自定义编辑器</a>（预览版）在一个地方发现、创建和管理所有代理自定义配置。通过命令面板运行 <strong>Chat: Open Customizations</strong>。</blockquote>
+
+<p>钩子被设计为跨代理类型工作，包括本地代理、后台代理和云端代理。每个钩子接收结构化的 JSON 输入，并可返回 JSON 输出来影响代理行为。</p>
+
+<h2>为什么使用钩子？</h2>
+
+<p>钩子提供了确定性的、代码驱动的自动化。与引导代理行为的指令或自定义提示不同，钩子在特定的生命周期节点执行您的代码，并保证结果：</p>
+
+<ul>
+<li><strong>强制执行安全策略</strong>：在执行之前阻止诸如 <code>rm -rf</code> 或 <code>DROP TABLE</code> 等危险命令，无论代理受到何种提示。
+</li>
+<li><strong>自动化代码质量</strong>：在文件修改后自动运行格式化工具、代码检查工具或测试。
+</li>
+<li><strong>创建审计跟踪</strong>：记录每个工具调用、命令执行或文件变更，用于合规性和调试。
+</li>
+<li><strong>注入上下文</strong>：添加项目特定信息、API 密钥或环境详细信息，帮助代理做出更好的决策。
+</li>
+<li><strong>控制审批</strong>：自动批准安全操作，同时对敏感操作要求确认。
+<h2>快速入门：您的第一个钩子</h2>
+
+</li>
+</ul>
+<p>以下示例创建一个在每个文件编辑后运行 Prettier 的钩子。在工作区中创建一个 <code>.github/hooks/format.json</code> 文件：</p>
+
+<pre><code class="language-json">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "npx prettier --write \"$TOOL_INPUT_FILE_PATH\""
+      }
+    ]
+  }
+}</code></pre>
+
+<p>保存此文件后，VS Code 会自动加载该钩子。下次代理编辑文件时，Prettier 将在更改的文件上运行。检查 <strong>GitHub Copilot Chat Hooks</strong> 输出通道以验证钩子已执行。</p>
+
+<p>有关使用自定义脚本的更复杂钩子，请参阅<a href="#usage-scenarios">使用场景</a>。</p>
+
+<h2>钩子生命周期事件</h2>
+
+<p>VS Code 支持八个钩子事件，它们在代理会话期间的特定时间点触发：</p>
+
+<table>
+  <thead><tr><th></th><th>钩子事件</th><th>触发时机</th><th>常见用例</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>------------</td><td>---------------</td><td>------------------</td><td></td></tr>
+  <tr><td></td><td><code>SessionStart</code></td><td>用户提交新会话的第一个提示时</td><td>初始化资源、记录会话开始、验证项目状态</td><td></td></tr>
+  <tr><td></td><td><code>UserPromptSubmit</code></td><td>用户提交提示时</td><td>审计用户请求、注入系统上下文</td><td></td></tr>
+  <tr><td></td><td><code>PreToolUse</code></td><td>代理调用任何工具之前</td><td>阻止危险操作、要求审批、修改工具输入</td><td></td></tr>
+  <tr><td></td><td><code>PostToolUse</code></td><td>工具成功完成后</td><td>运行格式化工具、记录结果、触发后续操作</td><td></td></tr>
+  <tr><td></td><td><code>PreCompact</code></td><td>会话上下文被压缩之前</td><td>导出重要上下文、在截断之前保存状态</td><td></td></tr>
+  <tr><td></td><td><code>SubagentStart</code></td><td>子代理被创建时</td><td>跟踪嵌套代理使用情况、初始化子代理资源</td><td></td></tr>
+  <tr><td></td><td><code>SubagentStop</code></td><td>子代理完成时</td><td>聚合结果、清理子代理资源</td><td></td></tr>
+  <tr><td></td><td><code>Stop</code></td><td>代理会话结束时</td><td>生成报告、清理资源、发送通知</td><td></td></tr>
+</tbody>
+</table>
+<h2>配置钩子</h2>
+
+<p>钩子通过存储在工作区或用户目录中的 JSON 文件进行配置。</p>
+
+<h3>钩子文件位置</h3>
+
+<p>VS Code 在以下位置搜索钩子配置文件：</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>在单体仓库（monorepo）中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 来发现来自父仓库根目录的钩子。了解更多关于<a href="../docs/agent-customization/overview.md#use-customizations-in-a-monorepo">父仓库发现</a>的信息。</blockquote>
+
+<table>
+  <thead><tr><th></th><th>作用域</th><th>默认文件位置</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>-----------------------</td><td></td></tr>
+  <tr><td></td><td>工作区</td><td><code>.github/hooks/*.json</code></td><td></td></tr>
+  <tr><td></td><td>工作区（Claude 格式）</td><td><code>.claude/settings.json</code>、<code>.claude/settings.local.json</code></td><td></td></tr>
+  <tr><td></td><td>用户</td><td><code>~/.copilot/hooks</code>、<code>~/.claude/settings.json</code></td><td></td></tr>
+  <tr><td></td><td>自定义代理</td><td><code>.agent.md</code> 前言中的 <code>hooks</code> 字段（请参阅<a href="#agentscoped-hooks">代理作用域钩子</a>）</td><td></td></tr>
+  <tr><td></td><td>插件</td><td><code>hooks.json</code> 或 <code>hooks/hooks.json</code>，具体取决于插件格式（请参阅<a href="../docs/agent-customization/agent-plugins.md#hooks-in-plugins">插件中的钩子</a>）</td><td></td></tr>
+</tbody>
+</table>
+<p>对于同一事件类型，工作区钩子优先于用户钩子。</p>
+
+<p>使用 <code>setting(chat.hookFilesLocations)</code> 设置来自定义加载哪些钩子文件。您可以指定文件夹路径（VS Code 加载该文件夹中的所有 <code>*.json</code> 文件）或直接指向单个 <code>.json</code> 文件的路径。仅支持相对路径和波浪号（<code>~</code>）路径。</p>
+
+<p>默认值包含以下位置：</p>
+
+<pre><code class="language-json">"chat.hookFilesLocations": {
+  ".github/hooks": true,
+  ".claude/settings.local.json": true,
+  ".claude/settings.json": true,
+  "~/.claude/settings.json": true
+}</code></pre>
+
+<p>要添加自定义位置，请向此设置添加条目：</p>
+
+<pre><code class="language-json">"chat.hookFilesLocations": {
+  "custom/hooks": true,
+  "~/my-hooks/security.json": true
+}</code></pre>
+
+<p>将路径设置为 <code>false</code> 可禁用从该位置加载钩子，包括默认位置。例如，要停止从 Claude Code 配置文件加载钩子：</p>
+
+<pre><code class="language-json">"chat.hookFilesLocations": {
+  ".claude/settings.json": false,
+  ".claude/settings.local.json": false,
+  "~/.claude/settings.json": false
+}</code></pre>
+
+<h3>代理作用域钩子</h3>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>代理作用域钩子目前处于预览阶段。</blockquote>
+
+<p>您可以直接在<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>的 YAML 前言中定义钩子。代理作用域钩子仅在该自定义代理处于活动状态时运行，无论是用户选择还是作为子代理调用。代理作用域钩子会与针对同一事件配置的任何工作区或用户级别钩子一起运行。</p>
+
+<p>要启用代理作用域钩子，请将 <code>setting(chat.useCustomAgentHooks)</code> 设置为 <code>true</code>。</p>
+
+<p>在代理前言中添加一个 <code>hooks</code> 字段，其结构与钩子配置文件相同：事件名称映射到钩子命令对象数组。</p>
+
+<pre><code class="language-markdown">---
+name: "Strict Formatter"
+description: "每次编辑后自动格式化代码的代理"
+hooks:
+  PostToolUse:
+    - type: command
+      command: "./scripts/format-changed-files.sh"
+---
+
+您是一个代码编辑代理。进行更改后，文件会自动格式化。</code></pre>
+
+<h3>钩子配置格式</h3>
+
+<p>创建一个 JSON 文件，其中包含一个 <code>hooks</code> 对象，该对象包含每个事件类型的钩子命令数组。VS Code 使用与 Claude Code 和 Copilot CLI 相同的钩子格式，以实现兼容性：</p>
+
+<pre><code class="language-json">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/validate-tool.sh",
+        "timeout": 15
+      }
+    ],
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "npx prettier --write \"$TOOL_INPUT_FILE_PATH\""
+      }
+    ]
+  }
+}</code></pre>
+
+<h3>钩子命令属性</h3>
+
+<p>每个钩子条目必须包含 <code>type: "command"</code> 和至少一个命令属性：</p>
+
+<table>
+  <thead><tr><th></th><th>属性</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>----------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>type</code></td><td>string</td><td>必须为 <code>"command"</code></td><td></td></tr>
+  <tr><td></td><td><code>command</code></td><td>string</td><td>默认运行的命令（跨平台）</td><td></td></tr>
+  <tr><td></td><td><code>windows</code></td><td>string</td><td>Windows 特定的命令覆盖</td><td></td></tr>
+  <tr><td></td><td><code>linux</code></td><td>string</td><td>Linux 特定的命令覆盖</td><td></td></tr>
+  <tr><td></td><td><code>osx</code></td><td>string</td><td>macOS 特定的命令覆盖</td><td></td></tr>
+  <tr><td></td><td><code>cwd</code></td><td>string</td><td>工作目录（相对于仓库根目录）</td><td></td></tr>
+  <tr><td></td><td><code>env</code></td><td>object</td><td>额外的环境变量</td><td></td></tr>
+  <tr><td></td><td><code>timeout</code></td><td>number</td><td>超时时间，单位为秒（默认：30）</td><td></td></tr>
+</tbody>
+</table>
+<blockquote>[!NOTE]</blockquote>
+<blockquote>特定操作系统的命令是根据扩展主机平台选择的。在远程开发场景中（SSH、容器、WSL），这可能与您本地的操作系统不同。</blockquote>
+
+<h3>特定操作系统的命令</h3>
+
+<p>为每个操作系统指定不同的命令：</p>
+
+<pre><code class="language-json">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/format.sh",
+        "windows": "powershell -File scripts\\format.ps1",
+        "linux": "./scripts/format-linux.sh",
+        "osx": "./scripts/format-mac.sh"
+      }
+    ]
+  }
+}</code></pre>
+
+<p>执行服务会根据您的操作系统选择适当的命令。如果未定义特定操作系统的命令，则会回退到 <code>command</code> 属性。</p>
+
+<h2>钩子输入和输出</h2>
+
+<p>钩子通过 stdin（输入）和 stdout（输出）使用 JSON 与 VS Code 通信。</p>
+
+<h3>通用输入字段</h3>
+
+<p>每个钩子通过 stdin 接收一个 JSON 对象，其中包含以下通用字段：</p>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>timestamp</code></td><td>string</td><td>钩子触发时的 ISO 8601 时间戳</td><td></td></tr>
+  <tr><td></td><td><code>cwd</code></td><td>string</td><td>（可选）代理会话的工作目录</td><td></td></tr>
+  <tr><td></td><td><code>session_id</code></td><td>string</td><td>（可选）当前代理会话的唯一标识符</td><td></td></tr>
+  <tr><td></td><td><code>hook_event_name</code></td><td>string</td><td>钩子事件的名称（例如 <code>PreToolUse</code>）</td><td></td></tr>
+  <tr><td></td><td><code>transcript_path</code></td><td>string</td><td>（可选）包含会话对话记录的文件的绝对路径</td><td></td></tr>
+</tbody>
+</table>
+<blockquote>[!NOTE]</blockquote>
+<blockquote><code>transcript_path</code> 是为了方便而提供的——例如用于日志记录、审计或轻量级检查，如检查会话期间是否读取了某个文件。记录文件格式不是稳定的钩子 API，在未来的 VS Code 版本中可能会发生变化。请尽可能优先使用文档化的钩子输入字段（<code>tool_name</code>、<code>tool_input</code>、<code>prompt</code> 等）。</blockquote>
+
+<h3>通用输出格式</h3>
+
+<p>钩子可以通过 stdout 返回 JSON 来影响代理行为。所有钩子都支持以下输出字段：</p>
+
+<pre><code class="language-json">{
+  "continue": true,
+  "stopReason": "违反安全策略",
+  "systemMessage": "单元测试失败"
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>continue</code></td><td>boolean</td><td>设置为 <code>false</code> 以停止处理（默认：<code>true</code>）</td><td></td></tr>
+  <tr><td></td><td><code>stopReason</code></td><td>string</td><td>当 <code>continue</code> 为 <code>false</code> 时的停止原因（显示给用户）</td><td></td></tr>
+  <tr><td></td><td><code>systemMessage</code></td><td>string</td><td>显示给用户的警告消息</td><td></td></tr>
+</tbody>
+</table>
+<h3>退出代码</h3>
+
+<p>钩子的退出代码决定了 VS Code 如何处理结果：</p>
+
+<table>
+  <thead><tr><th></th><th>退出代码</th><th>行为</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-----------</td><td>----------</td><td></td></tr>
+  <tr><td></td><td><code>0</code></td><td>成功：将 stdout 解析为 JSON</td><td></td></tr>
+  <tr><td></td><td><code>2</code></td><td>阻止错误：停止处理并显示错误给模型</td><td></td></tr>
+  <tr><td></td><td>其他</td><td>非阻止警告：显示警告给用户，继续处理</td><td></td></tr>
+</tbody>
+</table>
+<h3>选择如何返回数据</h3>
+
+<p>钩子有多种方式来控制代理行为：退出代码、顶层输出字段（<code>continue</code>、<code>stopReason</code>）和钩子特定的输出字段（<code>hookSpecificOutput</code>）。按以下方式组合使用它们：</p>
+
+<ul>
+<li><strong>退出代码 2</strong> 是阻止操作的最简单方式。钩子的 stderr 作为上下文显示给模型。不需要 JSON 输出。</li>
+<li><strong>JSON 输出中的 <code>continue: false</code></strong> 会停止整个代理会话。使用 <code>stopReason</code> 告诉用户原因。这比阻止单个工具调用更严格。</li>
+<li><strong><code>hookSpecificOutput</code></strong> 提供了针对每个钩子事件的细粒度控制。例如，<code>PreToolUse</code> 钩子使用 <code>permissionDecision</code> 来允许、拒绝或提示单个工具调用，而不会停止会话。</li>
+<li><strong><code>systemMessage</code></strong> 在聊天中向用户显示警告，无论其他决策如何。
+</li>
+</ul>
+<p>当多种控制机制一起使用时，最严格的获胜。例如，如果钩子返回 <code>continue: false</code> 和 <code>permissionDecision: "allow"</code>，会话仍然会停止。</p>
+
+<h2>PreToolUse</h2>
+
+<p><code>PreToolUse</code> 钩子在代理调用工具之前触发。</p>
+
+<h3>PreToolUse 输入</h3>
+
+<p>除了通用字段外，<code>PreToolUse</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "tool_name": "editFiles",
+  "tool_input": { "files": ["src/main.ts"] },
+  "tool_use_id": "tool-123"
+}</code></pre>
+
+<h3>PreToolUse 输出</h3>
+
+<p><code>PreToolUse</code> 钩子可以通过 <code>hookSpecificOutput</code> 对象控制工具执行：</p>
+
+<pre><code class="language-json">{
+  "hookSpecificOutput": {
+    "hookEventName": "PreToolUse",
+    "permissionDecision": "deny",
+    "permissionDecisionReason": "策略阻止了破坏性命令",
+    "updatedInput": { "files": ["src/safe.ts"] },
+    "additionalContext": "用户对生产文件只有只读权限"
+  }
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>值</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>--------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>permissionDecision</code></td><td><code>"allow"</code>、<code>"deny"</code>、<code>"ask"</code></td><td>控制工具审批</td><td></td></tr>
+  <tr><td></td><td><code>permissionDecisionReason</code></td><td>string</td><td>显示给用户的原因</td><td></td></tr>
+  <tr><td></td><td><code>updatedInput</code></td><td>object</td><td>修改后的工具输入（可选）</td><td></td></tr>
+  <tr><td></td><td><code>additionalContext</code></td><td>string</td><td>为模型提供的额外上下文</td><td></td></tr>
+</tbody>
+</table>
+<p><strong>权限决策优先级</strong>：当同一工具调用运行多个钩子时，最严格的决策获胜：</p>
+
+<ol>
+<li><code>deny</code>（最严格）：阻止工具执行</li>
+<li><code>ask</code>：需要用户确认</li>
+<li><code>allow</code>（最宽松）：自动批准执行
+</li>
+</ol>
+<p><strong><code>updatedInput</code> 格式</strong>：要确定 <code>updatedInput</code> 的格式，请打开<a href="../docs/agents/agent-troubleshooting/chat-debug-view.md#agent-debug-log-panel">代理日志</a>并找到记录的工具模式。如果 <code>updatedInput</code> 与预期的模式不匹配，它将被忽略。</p>
+
+<h2>PostToolUse</h2>
+
+<p><code>PostToolUse</code> 钩子在工具成功完成后触发。</p>
+
+<h3>PostToolUse 输入</h3>
+
+<p>除了通用字段外，<code>PostToolUse</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "tool_name": "editFiles",
+  "tool_input": { "files": ["src/main.ts"] },
+  "tool_use_id": "tool-123",
+  "tool_response": "文件编辑成功"
+}</code></pre>
+
+<h3>PostToolUse 输出</h3>
+
+<p><code>PostToolUse</code> 钩子可以为模型提供额外的上下文，或阻止进一步处理：</p>
+
+<pre><code class="language-json">{
+  "decision": "block",
+  "reason": "后处理验证失败",
+  "hookSpecificOutput": {
+    "hookEventName": "PostToolUse",
+    "additionalContext": "已编辑的文件存在需要修复的 lint 错误"
+  }
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>值</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>--------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>decision</code></td><td><code>"block"</code></td><td>阻止进一步处理（可选）</td><td></td></tr>
+  <tr><td></td><td><code>reason</code></td><td>string</td><td>阻止的原因（显示给模型）</td><td></td></tr>
+  <tr><td></td><td><code>hookSpecificOutput.additionalContext</code></td><td>string</td><td>注入到对话中的额外上下文</td><td></td></tr>
+</tbody>
+</table>
+<h2>UserPromptSubmit</h2>
+
+<p><code>UserPromptSubmit</code> 钩子在用户提交提示时触发。</p>
+
+<h3>UserPromptSubmit 输入</h3>
+
+<p>除了通用字段外，<code>UserPromptSubmit</code> 钩子还会接收一个 <code>prompt</code> 字段，其中包含用户提交的文本。</p>
+
+<p><code>UserPromptSubmit</code> 钩子仅使用通用输出格式。</p>
+
+<h2>SessionStart</h2>
+
+<p><code>SessionStart</code> 钩子在新代理会话开始时触发。</p>
+
+<h3>SessionStart 输入</h3>
+
+<p>除了通用字段外，<code>SessionStart</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "source": "new"
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>source</code></td><td>string</td><td>会话的启动方式。目前始终为 <code>"new"</code>。</td><td></td></tr>
+</tbody>
+</table>
+<h3>SessionStart 输出</h3>
+
+<p><code>SessionStart</code> 钩子可以向代理的对话中注入额外的上下文：</p>
+
+<pre><code class="language-json">{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "项目：my-app v2.1.0 | 分支：main | Node：v20.11.0"
+  }
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>additionalContext</code></td><td>string</td><td>添加到代理对话中的上下文</td><td></td></tr>
+</tbody>
+</table>
+<h2>Stop</h2>
+
+<p><code>Stop</code> 钩子在代理会话结束时触发。当作用域为自定义代理时，<code>Stop</code> 钩子也会被视为 <code>SubagentStop</code>。</p>
+
+<h3>Stop 输入</h3>
+
+<p>除了通用字段外，<code>Stop</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "stop_hook_active": false
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>stop_hook_active</code></td><td>boolean</td><td>当代理因前一个 stop 钩子而继续运行时为 <code>true</code>。检查此值以防止代理无限运行。</td><td></td></tr>
+</tbody>
+</table>
+<h3>Stop 输出</h3>
+
+<p><code>Stop</code> 钩子可以阻止代理停止：</p>
+
+<pre><code class="language-json">{
+  "hookSpecificOutput": {
+    "hookEventName": "Stop",
+    "decision": "block",
+    "reason": "在完成之前运行测试套件"
+  }
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>值</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>--------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>decision</code></td><td><code>"block"</code></td><td>阻止代理停止</td><td></td></tr>
+  <tr><td></td><td><code>reason</code></td><td>string</td><td>当 decision 为 <code>"block"</code> 时必需。告知代理为什么应该继续。</td><td></td></tr>
+</tbody>
+</table>
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>当 <code>Stop</code> 钩子阻止代理停止时，代理会继续运行，额外的轮次将消耗 <a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals">AI 积分</a>。始终检查 <code>stop_hook_active</code> 字段以防止代理无限运行。</blockquote>
+
+<h2>SubagentStart</h2>
+
+<p><code>SubagentStart</code> 钩子在子代理被创建时触发。</p>
+
+<h3>SubagentStart 输入</h3>
+
+<p>除了通用字段外，<code>SubagentStart</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "agent_id": "subagent-456",
+  "agent_type": "Plan"
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>agent_id</code></td><td>string</td><td>子代理的唯一标识符</td><td></td></tr>
+  <tr><td></td><td><code>agent_type</code></td><td>string</td><td>代理名称（例如，内置代理的 <code>"Plan"</code> 或自定义代理名称）</td><td></td></tr>
+</tbody>
+</table>
+<h3>SubagentStart 输出</h3>
+
+<p><code>SubagentStart</code> 钩子可以向子代理的对话中注入额外的上下文：</p>
+
+<pre><code class="language-json">{
+  "hookSpecificOutput": {
+    "hookEventName": "SubagentStart",
+    "additionalContext": "此子代理应遵循项目编码指南"
+  }
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>additionalContext</code></td><td>string</td><td>添加到子代理对话中的上下文</td><td></td></tr>
+</tbody>
+</table>
+<h2>SubagentStop</h2>
+
+<p><code>SubagentStop</code> 钩子在子代理完成时触发。</p>
+
+<h3>SubagentStop 输入</h3>
+
+<p>除了通用字段外，<code>SubagentStop</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "agent_id": "subagent-456",
+  "agent_type": "Plan",
+  "stop_hook_active": false
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>agent_id</code></td><td>string</td><td>子代理的唯一标识符</td><td></td></tr>
+  <tr><td></td><td><code>agent_type</code></td><td>string</td><td>代理名称（例如，内置代理的 <code>"Plan"</code> 或自定义代理名称）</td><td></td></tr>
+  <tr><td></td><td><code>stop_hook_active</code></td><td>boolean</td><td>当子代理因前一个 stop 钩子而继续运行时为 <code>true</code>。检查此值以防止子代理无限运行。</td><td></td></tr>
+</tbody>
+</table>
+<h3>SubagentStop 输出</h3>
+
+<p><code>SubagentStop</code> 钩子可以阻止子代理停止：</p>
+
+<pre><code class="language-json">{
+  "decision": "block",
+  "reason": "在完成之前验证子代理结果"
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>值</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>--------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>decision</code></td><td><code>"block"</code></td><td>阻止子代理停止</td><td></td></tr>
+  <tr><td></td><td><code>reason</code></td><td>string</td><td>当 decision 为 <code>"block"</code> 时必需。告知子代理为什么应该继续。</td><td></td></tr>
+</tbody>
+</table>
+<h2>PreCompact</h2>
+
+<p><code>PreCompact</code> 钩子在对话上下文被压缩之前触发。</p>
+
+<h3>PreCompact 输入</h3>
+
+<p>除了通用字段外，<code>PreCompact</code> 钩子还会接收：</p>
+
+<pre><code class="language-json">{
+  "trigger": "auto"
+}</code></pre>
+
+<table>
+  <thead><tr><th></th><th>字段</th><th>类型</th><th>描述</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>-------</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td><code>trigger</code></td><td>string</td><td>压缩的触发方式。当对话超出提示预算时，为 <code>"auto"</code>。</td><td></td></tr>
+</tbody>
+</table>
+<p><code>PreCompact</code> 钩子仅使用通用输出格式。</p>
+
+<h2>通过 UI 配置钩子</h2>
+
+<p>您可以通过多种方式通过交互式 UI 配置钩子：</p>
+
+<ul>
+<li>在聊天输入中键入 <code>/hooks</code> 并按 <code>kbstyle(Enter)</code>。</li>
+<li>打开命令面板（<code>kb(workbench.action.showCommands)</code>）并运行 <strong>Chat: Configure Hooks</strong>。</li>
+<li>选择聊天视图顶部的 <strong>设置</strong> 图标（<i class="codicon codicon-gear"></i>），然后选择 <strong>Hooks</strong>。
+</li>
+</ul>
+<p>在配置钩子菜单中：</p>
+
+<ol>
+<li>从列表中选择一个钩子事件类型。
+</li>
+<li>选择现有钩子进行编辑，或选择 <strong>添加新钩子</strong> 来创建一个。
+</li>
+<li>选择或创建一个钩子配置文件。
+</li>
+</ol>
+<p>该命令会在编辑器中打开钩子文件，并将光标定位在命令字段上，准备进行编辑。</p>
+
+<h3>使用 AI 生成钩子</h3>
+
+<p>您可以使用 AI 生成钩子配置。在聊天中键入 <code>/create-hook</code> 并描述您想要的自动化（例如，"每次文件编辑后运行 ESLint"）。代理会提出澄清性问题，并生成具有适当事件类型、命令和设置的钩子配置文件。</p>
+
+<h2>使用场景</h2>
+
+<p>以下示例演示了常见的钩子模式。</p>
+
+<p><details></p>
+<p><summary>阻止危险的终端命令</summary></p>
+
+<p>创建一个 <code>PreToolUse</code> 钩子来阻止破坏性命令：</p>
+
+<p><strong>.github/hooks/security.json</strong>：</p>
+<pre><code class="language-json">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/block-dangerous.sh",
+        "timeoutSec": 5
+      }
+    ]
+  }
+}</code></pre>
+
+<p><strong>scripts/block-dangerous.sh</strong>：</p>
+<pre><code class="language-bash">#!/bin/bash
+INPUT=$(cat)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name')
+TOOL_INPUT=$(echo "$INPUT" | jq -r '.tool_input')
+
+if [ "$TOOL_NAME" = "runTerminalCommand" ]; then
+  COMMAND=$(echo "$TOOL_INPUT" | jq -r '.command // empty')
+
+  if echo "$COMMAND" | grep -qE '(rm\s+-rf|DROP\s+TABLE|DELETE\s+FROM)'; then
+    echo '{"hookSpecificOutput":{"permissionDecision":"deny","permissionDecisionReason":"安全策略阻止了破坏性命令"}}'
+    exit 0
+  fi
+fi
+
+echo '{"continue":true}'</code></pre>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary>编辑后自动格式化代码</summary></p>
+
+<p>在任何文件修改后自动运行 Prettier：</p>
+
+<p><strong>.github/hooks/formatting.json</strong>：</p>
+<pre><code class="language-json">{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/format-changed-files.sh",
+        "windows": "powershell -File scripts\\format-changed-files.ps1",
+        "timeout": 30
+      }
+    ]
+  }
+}</code></pre>
+
+<p><strong>scripts/format-changed-files.sh</strong>：</p>
+<pre><code class="language-bash">#!/bin/bash
+INPUT=$(cat)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name')
+
+if [ "$TOOL_NAME" = "editFiles" ] || [ "$TOOL_NAME" = "createFile" ]; then
+  FILES=$(echo "$INPUT" | jq -r '.tool_input.files[]? // .tool_input.path // empty')
+
+  for FILE in $FILES; do
+    if [ -f "$FILE" ]; then
+      npx prettier --write "$FILE" 2&gt;/dev/null
+    fi
+  done
+fi
+
+echo '{"continue":true}'</code></pre>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary>记录工具使用情况用于审计</summary></p>
+
+<p>创建所有工具调用的审计跟踪：</p>
+
+<p><strong>.github/hooks/audit.json</strong>：</p>
+<pre><code class="language-json">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/log-tool-use.sh",
+        "env": {
+          "AUDIT_LOG": ".github/hooks/audit.log"
+        }
+      }
+    ]
+  }
+}</code></pre>
+
+<p><strong>scripts/log-tool-use.sh</strong>：</p>
+<pre><code class="language-bash">#!/bin/bash
+INPUT=$(cat)
+TIMESTAMP=$(echo "$INPUT" | jq -r '.timestamp')
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name')
+SESSION_ID=$(echo "$INPUT" | jq -r '.sessionId')
+
+echo "[$TIMESTAMP] Session: $SESSION_ID, Tool: $TOOL_NAME" &gt;&gt; "${AUDIT_LOG:-audit.log}"
+echo '{"continue":true}'</code></pre>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary>对特定工具要求审批</summary></p>
+
+<p>强制对修改基础设施的工具进行手动确认：</p>
+
+<p><strong>.github/hooks/approval.json</strong>：</p>
+<pre><code class="language-json">{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "type": "command",
+        "command": "./scripts/require-approval.sh"
+      }
+    ]
+  }
+}</code></pre>
+
+<p><strong>scripts/require-approval.sh</strong>：</p>
+<pre><code class="language-bash">#!/bin/bash
+INPUT=$(cat)
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name')
+
+# 应始终要求审批的工具
+SENSITIVE_TOOLS="runTerminalCommand|deleteFile|pushToGitHub"
+
+if echo "$TOOL_NAME" | grep -qE "^($SENSITIVE_TOOLS)$"; then
+  echo '{"hookSpecificOutput":{"permissionDecision":"ask","permissionDecisionReason":"此操作需要手动审批"}}'
+else
+  echo '{"hookSpecificOutput":{"permissionDecision":"allow"}}'
+fi</code></pre>
+
+<p></details></p>
+
+<p><details></p>
+<p><summary>在会话开始时注入项目上下文</summary></p>
+
+<p>在会话开始时提供项目特定信息：</p>
+
+<p><strong>.github/hooks/context.json</strong>：</p>
+<pre><code class="language-json">{
+  "hooks": {
+    "SessionStart": [
+      {
+        "type": "command",
+        "command": "./scripts/inject-context.sh"
+      }
+    ]
+  }
+}</code></pre>
+
+<p><strong>scripts/inject-context.sh</strong>：</p>
+<pre><code class="language-bash">#!/bin/bash
+PROJECT_INFO=$(cat package.json 2&gt;/dev/null | jq -r '.name + " v" + .version' || echo "未知项目")
+BRANCH=$(git branch --show-current 2&gt;/dev/null || echo "未知")
+
+cat &lt;&lt;EOF
+{
+  "hookSpecificOutput": {
+    "hookEventName": "SessionStart",
+    "additionalContext": "项目：$PROJECT_INFO | 分支：$BRANCH | Node：$(node -v 2&gt;/dev/null || echo '未安装')"
+  }
+}
+EOF</code></pre>
+
+<p></details></p>
+
+<h2>安全性</h2>
+
+<p>如果代理有权编辑钩子运行的脚本，那么它有能力在自己的运行期间修改这些脚本，并执行它编写的代码。我们建议使用 <code>chat.tools.edits.autoApprove</code> 来禁止代理在未经手动审批的情况下编辑钩子脚本。</p>
+
+<h2>故障排除</h2>
+
+<h3>查看钩子诊断信息</h3>
+
+<p>要查看已加载的钩子并检查配置错误：</p>
+
+<ol>
+<li>选择 <strong>查看日志</strong> 以查看所有日志。
+</li>
+<li>查找 "Load Hooks" 以查看已加载的钩子及其加载来源。
+<h3>查看钩子输出</h3>
+
+</li>
+</ol>
+<p>要查看钩子的输出和错误：</p>
+
+<ol>
+<li>打开 <strong>输出</strong> 面板。
+</li>
+<li>从频道列表中选择 <strong>GitHub Copilot Chat Hooks</strong>。
+<h3>常见问题</h3>
+
+</li>
+</ol>
+<p><strong>钩子未执行</strong>：验证钩子文件位于 <code>.github/hooks/</code> 中且具有 <code>.json</code> 扩展名。检查 <code>type</code> 属性是否设置为 <code>"command"</code>。</p>
+
+<p><strong>权限被拒绝错误</strong>：确保您的钩子脚本具有执行权限（<code>chmod +x script.sh</code>）。</p>
+
+<p><strong>超时错误</strong>：增加 <code>timeout</code> 值或优化您的钩子脚本。默认值为 30 秒。</p>
+
+<p><strong>JSON 解析错误</strong>：验证您的钩子脚本向 stdout 输出有效的 JSON。使用 <code>jq</code> 或 JSON 库来构造输出。</p>
+
+<h2>常见问题</h2>
+
+<h3>VS Code 如何处理 Claude Code 钩子配置？</h3>
+
+<p>默认情况下，VS Code 从 <code>.claude/settings.json</code>、<code>.claude/settings.local.json</code> 和 <code>~/.claude/settings.json</code> 读取钩子配置。VS Code 解析 Claude Code 的钩子配置格式，包括匹配器语法。目前，VS Code 忽略匹配器值，因此钩子会在所有工具调用上运行，无论匹配器如何。</p>
+
+<p>如果您正在将 Claude Code 钩子适配到 VS Code，请注意以下差异：</p>
+
+<ul>
+<li><strong>工具输入属性名称</strong>：Claude Code 对工具输入属性使用 snake_case（例如 <code>tool_input.file_path</code>），而 VS Code 工具使用 camelCase（例如 <code>tool_input.filePath</code>）。更新您的钩子脚本以读取正确的属性名称。</li>
+<li><strong>工具名称</strong>：Claude Code 和 VS Code 使用不同的工具名称。例如，Claude Code 对文件操作使用 <code>Write</code> 和 <code>Edit</code>，而 VS Code 使用诸如 <code>create_file</code> 和 <code>replace_string_in_file</code> 等工具名称。检查 <code>tool_name</code> 输入字段中的工具名称，并相应更新您的钩子逻辑。</li>
+<li><strong>匹配器被忽略</strong>：诸如 <code>"Edit|Write"</code> 这样的钩子匹配器会被解析但不会应用。所有钩子都会在每个匹配的事件上运行，无论匹配器中的工具名称是什么。
+<h3>VS Code 如何处理 Copilot CLI 钩子配置？</h3>
+
+</li>
+</ul>
+<p>VS Code 解析 Copilot CLI 钩子配置，并将 lowerCamelCase 钩子事件名称（如 <code>preToolUse</code>）转换为 VS Code 使用的 PascalCase 格式（<code>PreToolUse</code>）。<code>bash</code> 和 <code>powershell</code> 命令属性映射到特定操作系统的命令：<code>powershell</code> 映射到 <code>windows</code>，<code>bash</code> 映射到 <code>osx</code> 和 <code>linux</code>。</p>
+
+<h2>安全注意事项</h2>
+
+<blockquote>[!CAUTION]</blockquote>
+<blockquote>钩子以与 VS Code 相同的权限执行 Shell 命令。请仔细审查钩子配置，尤其是在使用来自不受信任来源的钩子时。</blockquote>
+
+<ul>
+<li><strong>审查钩子脚本</strong>：在启用之前检查所有钩子脚本，尤其是在共享仓库中。
+</li>
+<li><strong>限制钩子权限</strong>：使用最小权限原则。钩子只应拥有它们所需的访问权限。
+</li>
+<li><strong>验证输入</strong>：钩子脚本接收来自代理的输入。验证并清理所有输入以防止注入攻击。
+</li>
+<li><strong>保护凭据安全</strong>：切勿在钩子脚本中硬编码密钥。使用环境变量或安全的凭据存储。
+<h2>相关资源</h2>
+
+</li>
+<li><a href="../docs/chat/chat-tools.md">在聊天中使用工具</a> - 了解工具审批和执行</li>
+<li><a href="../docs/agent-customization/custom-agents.md">自定义代理</a> - 创建专门的代理配置</li>
+<li><a href="../docs/agents/subagents.md">子代理</a> - 将任务委派给上下文隔离的子代理</li>
+<li><a href="../docs/agents/security.md">安全注意事项</a> - VS Code 中 AI 安全的最佳实践</li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

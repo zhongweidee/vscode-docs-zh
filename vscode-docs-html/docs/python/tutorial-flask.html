@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python Flask 教程，展示了 Visual Studio Code（最好的 Python IDE）中的 IntelliSense、调试和代码导航支持。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / python / tutorial-flask</div>
+<h1>Visual Studio Code 中的 Flask 教程</h1>
+
+<p>Flask 是一个轻量级的 Python Web 框架，提供了 URL 路由和页面渲染的基础功能。</p>
+
+<p>Flask 被称为"微型"框架，因为它不直接提供表单验证、数据库抽象、认证等功能。这些功能由名为 Flask 扩展的特殊 Python 包提供。这些扩展与 Flask 无缝集成，看起来就像是 Flask 本身的一部分。例如，Flask 不提供页面模板引擎，但安装 Flask 会默认包含 Jinja 模板引擎。为了方便，我们通常将这些默认功能视为 Flask 的一部分。</p>
+
+<p>在本 Flask 教程中，你将创建一个包含三个页面的简单 Flask 应用，这些页面使用一个通用的基础模板。在此过程中，你将体验 Visual Studio Code 的多项功能，包括使用终端、编辑器、调试器、代码片段等。</p>
+
+<p>本 Flask 教程的完整代码项目可以在 GitHub 上找到：<a href="https://github.com/microsoft/python-sample-vscode-flask-tutorial">python-sample-vscode-flask-tutorial</a>。</p>
+
+<p>如果遇到任何问题，你可以在 <a href="https://github.com/microsoft/vscode-python/discussions/categories/q-a">Python 扩展讨论 Q&A</a> 中搜索答案或提问。</p>
+
+<h2>先决条件</h2>
+
+<p>要成功完成本 Flask 教程，你必须完成以下步骤（与 <a href="../docs/python/python-tutorial.md">通用 Python 教程</a> 中的步骤相同）：</p>
+
+<ol>
+<li>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>。
+</li>
+<li>安装 Python 3 版本（本教程基于此版本编写）。选项包括：<ul>
+<li>（所有操作系统）从 <a href="https://www.python.org/downloads/">python.org</a> 下载；通常使用页面上首先出现的 <strong>Download</strong> 按钮。</li>
+<li>（Linux）内置的 Python 3 安装即可正常工作，但要安装其他 Python 包，你必须在终端中运行 <code>sudo apt install python3-pip</code>。</li>
+<li>（macOS）通过 <a href="https://brew.sh/">Homebrew</a> 在 macOS 上安装，使用 <code>brew install python3</code>。</li>
+<li>（所有操作系统）从 <a href="https://www.anaconda.com/download/">Anaconda</a> 下载（用于数据科学目的）。
+</li>
+</ol>
+</li>
+<li>在 Windows 上，确保 Python 解释器的位置已包含在 PATH 环境变量中。你可以在命令提示符下运行 <code>path</code> 来检查位置。如果 Python 解释器的文件夹未包含在内，请打开 Windows 设置，搜索"环境"，选择<strong>编辑账户的环境变量</strong>，然后编辑 <strong>Path</strong> 变量以包含该文件夹。
+<h2>为 Flask 教程创建项目环境</h2>
+
+</li>
+</ol>
+<p>在本节中，你将创建一个虚拟环境并在其中安装 Flask。使用虚拟环境可以避免将 Flask 安装到全局 Python 环境中，并让你精确控制应用所使用的库。</p>
+
+<p><a href="../docs/python/environments.md">Python 环境扩展</a> 支持多种环境类型，包括 venv、conda、poetry 等。本教程使用 <strong>venv</strong>，因为它是 Python 内置的，不需要额外工具。其他环境类型的步骤类似——详见<a href="../docs/python/environments.md#creating-environments">创建环境</a>。</p>
+
+<ol>
+<li>在文件系统中，为本教程创建一个文件夹，例如 <code>hello_flask</code>。
+</li>
+<li>在 VS Code 中打开此文件夹，方法是在终端中导航到该文件夹并运行 <code>code .</code>，或者运行 VS Code 并使用 <strong>File</strong> > <strong>Open Folder</strong> 命令。
+</li>
+<li>使用 <strong>Python: Create Environment</strong> 命令创建虚拟环境：
+<ol>
+<li>打开命令面板（<code>kb(workbench.action.showCommands)</code>）<ol>
+<li>搜索并选择 <strong>Python: Create Environment</strong></li>
+<li>选择 <strong>Venv</strong> 创建 venv 环境</li>
+<li>选择一个 Python 解释器用于该环境
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>    VS Code 会在工作区中创建一个 <code>.venv</code> 文件夹，并自动选择新环境。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你也可以使用 <strong>Python</strong> 侧边栏创建环境。展开 <strong>Environment Managers</strong> 并选择 <strong>+</strong> 按钮进行快速创建，该功能使用合理的默认设置。</blockquote>
+
+<p>    !<a href="python/images/flask-tutorial/command-palette.png">Flask 教程：在 VS Code 中打开命令面板</a></p>
+
+<ol>
+<li>使用以下方法之一在虚拟环境中安装 Flask：
+</li>
+</ol>
+<p>    <strong>使用包管理界面：</strong></p>
+
+<ol>
+<li>在 <strong>Python</strong> 侧边栏中，展开 <strong>Environment Managers</strong><ol>
+<li>右键单击你的 <code>.venv</code> 环境并选择 <strong>Manage Packages</strong><ol>
+<li>搜索 <code>flask</code> 并选择 <strong>Install</strong>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p>    <strong>使用终端：</strong></p>
+
+<p>    运行 <a href="../docs/terminal/basics.md"><strong>Terminal: Create New Terminal</strong></a>（<code>kb(workbench.action.terminal.new)</code>）从命令面板，这会创建一个终端并自动激活虚拟环境。然后运行：</p>
+
+<pre><code class="language-bash">    python -m pip install flask</code></pre>
+
+<p>你现在有了一个自包含的环境，可以开始编写 Flask 代码了。VS Code 会在你打开新终端时自动激活环境。如果你在 VS Code 外打开单独的命令提示符或终端，可以通过运行 <code>source .venv/bin/activate</code>（Linux/macOS）或 <code>.venv\Scripts\Activate.ps1</code>（Windows）来激活环境。当命令提示符开头显示 <strong>(.venv)</strong> 时，说明环境已激活。</p>
+
+<h2>创建并运行一个最小的 Flask 应用</h2>
+
+<ol>
+<li>在 VS Code 中，在项目文件夹中创建一个名为 <code>app.py</code> 的新文件，可以使用菜单中的 <strong>File</strong> > <strong>New</strong>，按 <code>kbstyle(Ctrl+N)</code>，或使用资源管理器视图中的新文件图标（如下所示）。
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/new-file-icon.png">Flask 教程：资源管理器视图中的新文件图标</a></p>
+
+<ol>
+<li>在 <code>app.py</code> 中，添加代码以导入 Flask 并创建 Flask 对象的实例。如果你手动输入以下代码（而不是复制粘贴），可以观察到 VS Code 的 <a href="../docs/python/editing.md#autocomplete-and-intellisense">IntelliSense 和自动补全</a>：
+<pre><code class="language-python">    from flask import Flask
+    app = Flask(__name__)</code></pre>
+
+</li>
+<li>同样在 <code>app.py</code> 中，添加一个返回内容（本例中为一个简单字符串）的函数，并使用 Flask 的 <code>app.route</code> 装饰器将 URL 路由 <code>/</code> 映射到该函数：
+<pre><code class="language-python">    @app.route("/")
+    def home():
+        return "Hello, Flask!"</code></pre>
+
+<blockquote><strong>Tip</strong>: 你可以根据需要在同一个函数上使用多个装饰器，每行一个，以将多个不同路由映射到同一个函数。</blockquote>
+
+</li>
+<li>保存 <code>app.py</code> 文件（<code>kb(workbench.action.files.save)</code>）。
+</li>
+<li>在集成终端中，通过输入 <code>python -m flask run</code> 运行应用，这将启动 Flask 开发服务器。开发服务器默认查找 <code>app.py</code>。运行 Flask 时，你应该会看到类似以下的输出：
+<pre><code class="language-bash">    (.venv) D:\py\\hello_flask&gt;python -m flask run
+     * Environment: production
+       WARNING: Do not use the development server in a production environment.
+       Use a production WSGI server instead.
+     * Debug mode: off
+     * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)</code></pre>
+
+</li>
+</ol>
+<p>    如果出现找不到 Flask 模块的错误，请确保已在虚拟环境中运行 <code>python -m pip install flask</code>，如上一节末尾所述。</p>
+
+<p>    另外，如果要在不同的 IP 地址或端口上运行开发服务器，请使用 host 和 port 命令行参数，例如 <code>--host=0.0.0.0 --port=80</code>。</p>
+
+<ol>
+<li>要在默认浏览器中打开渲染后的页面，请 <code>kbstyle(Ctrl+click)</code> 终端中的 <code>http://127.0.0.1:5000/</code> URL。
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/app-in-browser-01.png">Flask 教程：浏览器中运行的应用</a></p>
+
+<ol>
+<li>注意，当你访问像 / 这样的 URL 时，调试终端中会显示一条消息，显示 HTTP 请求：
+<pre><code class="language-bash">    127.0.0.1 - - [11/Jul/2018 08:40:15] "GET / HTTP/1.1" 200 -</code></pre>
+
+</li>
+<li>在终端中使用 <code>kbstyle(Ctrl+C)</code> 停止应用。
+<blockquote><strong>Tip</strong>: 当使用不同于 <code>app.py</code> 的文件名（如 <code>webapp.py</code>）时，你需要定义一个名为 FLASK_APP 的环境变量，并将其值设置为你选择的文件。Flask 的开发服务器会使用 FLASK_APP 的值而不是默认的 <code>app.py</code>。更多信息，请参阅 <a href="https://flask.palletsprojects.com/en/1.1.x/cli/">Flask 命令行界面</a>。</blockquote>
+
+<h2>在调试器中运行应用</h2>
+
+</li>
+</ol>
+<p>调试让你有机会在特定代码行暂停正在运行的程序。当程序暂停时，你可以检查变量、在 Debug Console 面板中运行代码，以及利用<a href="../docs/python/debugging.md">调试</a>中描述的其他功能。运行调试器还会在调试会话开始前自动保存所有已修改的文件。</p>
+
+<p><strong>开始之前</strong>：确保已使用终端中的 <code>kbstyle(Ctrl+C)</code> 停止了上一节末尾运行的应用。如果你在一个终端中让应用继续运行，它会继续占用端口。因此，当你使用同一端口在调试器中运行应用时，原始运行的应用会处理所有请求，你将在被调试的应用中看不到任何活动，程序也不会在断点处停止。换句话说，如果调试器似乎不工作，请确保没有其他应用实例仍在运行。</p>
+
+<ol>
+<li>将 <code>app.py</code> 的内容替换为以下代码，该代码添加了第二个路由和函数，你可以在调试器中单步执行：
+<pre><code class="language-python">    import re
+    from datetime import datetime
+
+    from flask import Flask
+
+    app = Flask(__name__)
+
+
+    @app.route("/")
+    def home():
+        return "Hello, Flask!"
+
+
+    @app.route("/hello/&lt;name&gt;")
+    def hello_there(name):
+        now = datetime.now()
+        formatted_now = now.strftime("%A, %d %B, %Y at %X")
+
+        # Filter the name argument to letters only using regular expressions. URL arguments
+        # can contain arbitrary text, so we restrict to safe characters only.
+        match_object = re.match("[a-zA-Z]+", name)
+
+        if match_object:
+            clean_name = match_object.group(0)
+        else:
+            clean_name = "Friend"
+
+        content = "Hello there, " + clean_name + "! It's " + formatted_now
+        return content</code></pre>
+
+</li>
+</ol>
+<p>    新 URL 路由 <code>/hello/<name></code> 使用的装饰器定义了一个端点 /hello/，它可以接受任何附加值。路由中 <code><</code> 和 <code>></code> 内的标识符定义了传递给函数并可在代码中使用的变量。</p>
+
+<p>    URL 路由区分大小写。例如，路由 <code>/hello/<name></code> 与 <code>/Hello/<name></code> 不同。如果你希望同一个函数处理两者，请为每个变体使用装饰器。</p>
+
+<p>    如代码注释中所述，始终过滤用户提供的任意信息，以避免对你的应用进行各种攻击。在本例中，代码将 name 参数过滤为仅包含字母，这可以避免注入控制字符、HTML 等。（在下一节使用模板时，Flask 会自动过滤，你不需要此代码。）</p>
+
+<ol>
+<li>在 <code>hello_there</code> 函数的第一行代码（<code>now = datetime.now()</code>）设置断点，可以通过以下任一方式：<ul>
+<li>将光标放在该行上，按 <code>kb(editor.debug.action.toggleBreakpoint)</code>，或<ul>
+<li>将光标放在该行上，选择 <strong>Run</strong> > <strong>Toggle Breakpoint</strong> 菜单命令，或</li>
+<li>直接单击行号左侧的边距（悬停时会显示一个淡红色圆点）。
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>    断点在左边距中显示为红色圆点：</p>
+
+<p>    !<a href="python/images/flask-tutorial/debug-breakpoint-set.png">Flask 教程：在 hello_there 函数的第一行设置断点</a></p>
+
+<ol>
+<li>切换到 VS Code 中的 <strong>Run and Debug</strong> 视图（使用左侧活动栏或 <code>kb(workbench.view.debug)</code>）。你可能会看到消息 "To customize Run and Debug create a launch.json file"。这意味着你还没有包含调试配置的 <code>launch.json</code> 文件。如果你单击 <strong>create a launch.json file</strong> 链接，VS Code 可以为你创建该文件：
+</li>
+</ol>
+<p>    !<a href="python/images/shared/debug-panel-initial-view.png">Flask 教程：调试面板的初始视图</a></p>
+
+<ol>
+<li>选择该链接，VS Code 将提示你选择调试配置。从下拉菜单中选择 <strong>Flask</strong>，VS Code 会用一个 Flask 运行配置填充一个新的 <code>launch.json</code> 文件。<code>launch.json</code> 文件包含多个调试配置，每个配置都是 <code>configuration</code> 数组中的一个独立 JSON 对象。
+</li>
+<li>向下滚动并检查配置，其名称为 "Python: Flask"。此配置包含 <code>"module": "flask",</code>，告诉 VS Code 在启动调试器时使用 <code>-m flask</code> 运行 Python。它还在 <code>env</code> 属性中定义了 FLASK_APP 环境变量来标识启动文件，默认为 <code>app.py</code>，但允许你轻松指定不同的文件。如果要更改主机和/或端口，可以使用 <code>args</code> 数组。
+<pre><code class="language-json">    {
+        "name": "Python Debugger: Flask",
+        "type": "debugpy",
+        "request": "launch",
+        "module": "flask",
+        "env": {
+            "FLASK_APP": "app.py",
+            "FLASK_DEBUG": "1"
+        },
+        "args": [
+            "run",
+            "--no-debugger",
+            "--no-reload"
+        ],
+        "jinja": true,
+        "justMyCode": true
+    },</code></pre>
+
+<blockquote><strong>Note</strong>: 如果配置中的 <code>env</code> 条目包含 <code>"FLASK_APP": "${workspaceFolder}/app.py"</code>，请按上述方式将其更改为 <code>"FLASK_APP": "app.py"</code>。否则，你可能会遇到类似 "Cannot import module C" 的错误消息，其中 C 是你的项目文件夹所在的驱动器号。</blockquote>
+
+<blockquote><strong>Note</strong>: 创建 <code>launch.json</code> 后，编辑器中会出现一个 <strong>Add Configuration</strong> 按钮。该按钮显示一个附加配置列表，可以添加到配置列表的开头。（<strong>Run</strong> > <strong>Add Configuration</strong> 菜单命令执行相同操作。）</blockquote>
+
+</li>
+<li>保存 <code>launch.json</code>（<code>kb(workbench.action.files.save)</code>）。在调试配置下拉列表中选择 <strong>Python: Flask</strong> 配置。
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/debug-select-configuration.png">Flask 教程：选择 Flask 调试配置</a></p>
+
+<ol>
+<li>通过选择 <strong>Run</strong> > <strong>Start Debugging</strong> 菜单命令，或选择列表旁边的绿色 <strong>Start Debugging</strong> 箭头（<code>kb(workbench.action.debug.continue)</code>）来启动调试器：
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/debug-continue-arrow.png">Flask 教程：调试工具栏上的开始调试/继续箭头</a></p>
+
+<p>    注意状态栏颜色变化以指示正在调试：</p>
+
+<p>    !<a href="python/images/flask-tutorial/debug-status-bar.png">Flask 教程：调试状态栏的外观</a></p>
+
+<p>    VS Code 中还会出现一个调试工具栏（如下所示），包含以下顺序的命令：Pause（或 Continue，<code>kb(workbench.action.debug.continue)</code>）、Step Over（<code>kb(workbench.action.debug.stepOver)</code>）、Step Into（<code>kb(workbench.action.debug.stepInto)</code>）、Step Out（<code>kb(workbench.action.debug.stepOut)</code>）、Restart（<code>kb(workbench.action.debug.restart)</code>）和 Stop（<code>kb(workbench.action.debug.stop)</code>）。有关每个命令的说明，请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>。</p>
+
+<p>    !<a href="python/images/flask-tutorial/debug-toolbar.png">Flask 教程：VS Code 调试工具栏</a></p>
+
+<ol>
+<li>输出出现在 "Python Debug Console" 终端中。<code>kbstyle(Ctrl+click)</code> 该终端中的 <code>http://127.0.0.1:5000/</code> 链接，在浏览器中打开该 URL。在浏览器的地址栏中，导航到 <code>http://127.0.0.1:5000/hello/VSCode</code>。在页面渲染之前，VS Code 在你设置的断点处暂停程序。断点上的小黄色箭头表示这是要运行的下一行代码。
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/debug-program-paused.png">Flask 教程：VS Code 在断点处暂停</a></p>
+
+<ol>
+<li>使用 Step Over 执行 <code>now = datetime.now()</code> 语句。
+</li>
+<li>在 VS Code 窗口的左侧，你会看到 <strong>Variables</strong> 窗格，其中显示局部变量（如 <code>now</code>）以及参数（如 <code>name</code>）。下面是 <strong>Watch</strong>、<strong>Call Stack</strong> 和 <strong>Breakpoints</strong> 窗格（详情请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>）。在 <strong>Locals</strong> 部分，尝试展开不同的值。你还可以双击值（或使用 <code>kb(debug.setVariable)</code>）来修改它们。然而，修改变量如 <code>now</code> 可能会破坏程序。开发人员通常只在代码一开始没有产生正确值时才会进行更改。
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/debug-local-variables.png">Flask 教程：调试期间 VS Code 中的局部变量和参数</a></p>
+
+<ol>
+<li>当程序暂停时，<strong>Debug Console</strong> 面板（不同于终端面板中的 "Python Debug Console"）允许你使用程序的当前状态试验表达式和尝试代码片段。例如，一旦你单步跳过 <code>now = datetime.now()</code> 这一行，你可以尝试不同的日期/时间格式。在编辑器中，选择读取 <code>now.strftime("%A, %d %B, %Y at %X")</code> 的代码，然后右键单击并选择 <strong>Evaluate in Debug Console</strong>，将该代码发送到调试控制台，在那里运行：
+<pre><code class="language-bash">    now.strftime("%A, %d %B, %Y at %X")
+    'Wednesday, 31 October, 2018 at 18:13:39'</code></pre>
+
+<blockquote><strong>Tip</strong>: <strong>Debug Console</strong> 还会显示应用中可能不会出现在终端中的异常。例如，如果在 <strong>Run and Debug</strong> 视图的 <strong>Call Stack</strong> 区域看到 "Paused on exception" 消息，请切换到 <strong>Debug Console</strong> 查看异常消息。</blockquote>
+
+</li>
+<li>将该行复制到调试控制台底部的 > 提示符处，并尝试更改格式：
+<pre><code class="language-bash">    now.strftime("%a, %d %B, %Y at %X")
+    'Wed, 31 October, 2018 at 18:13:39'
+    now.strftime("%a, %d %b, %Y at %X")
+    'Wed, 31 Oct, 2018 at 18:13:39'
+    now.strftime("%a, %d %b, %y at %X")
+    'Wed, 31 Oct, 18 at 18:13:39'</code></pre>
+
+</li>
+<li>如果需要，再单步执行几行代码，然后选择 Continue（<code>kb(workbench.action.debug.continue)</code>）让程序运行。浏览器窗口会显示结果：
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/debug-run-result.png">Flask 教程：修改后程序的结果</a></p>
+
+<ol>
+<li>更改代码中的行以使用不同的日期时间格式，例如 <code>now.strftime("%a, %d %b, %y at %X")</code>，然后保存文件。Flask 服务器会自动重新加载，这意味着无需重启调试器即可应用更改。刷新浏览器页面以查看更新。
+</li>
+<li>完成时关闭浏览器并停止调试器。要停止调试器，请使用 Stop 工具栏按钮（红色方块）或 <strong>Run</strong> > <strong>Stop Debugging</strong> 命令（<code>kb(workbench.action.debug.stop)</code>）。
+<blockquote><strong>Tip</strong>: 为了更容易反复导航到特定 URL（如 <code>http://127.0.0.1:5000/hello/VSCode</code>），可以使用 <code>print</code> 语句输出该 URL。该 URL 会出现在终端中，你可以使用 <code>kbstyle(Ctrl+click)</code> 在浏览器中打开它。</blockquote>
+
+<h2>Go to Definition 和 Peek Definition 命令</h2>
+
+</li>
+</ol>
+<p>在使用 Flask 或任何其他库时，你可能想要检查这些库本身的代码。VS Code 提供了两个方便的快捷命令，可以直接导航到任何代码中类和其他对象的定义：</p>
+
+<ul>
+<li><strong>Go to Definition</strong> 从你的代码跳转到定义对象的代码。例如，在 <code>app.py</code> 中，右键单击 <code>Flask</code> 类（在行 <code>app = Flask(__name__)</code> 中）并选择 <strong>Go to Definition</strong>（或使用 <code>kb(editor.action.revealDefinition)</code>），这会导航到 Flask 库中的类定义。
+</li>
+<li><strong>Peek Definition</strong>（<code>kb(editor.action.peekDefinition)</code>，也在右键上下文菜单中）类似，但直接在编辑器中显示类定义（在编辑器窗口中腾出空间以避免遮挡任何代码）。按 <code>kbstyle(Escape)</code> 关闭速览窗口或使用右上角的 <strong>x</strong>。
+</li>
+</ul>
+<p>    !<a href="python/images/flask-tutorial/peek-definition.png">Flask 教程：Peek Definition 显示 Flask 类内联显示</a></p>
+
+<h2>使用模板渲染页面</h2>
+
+<p>到目前为止，你在本教程中创建的应用仅从 Python 代码生成纯文本网页。虽然可以直接在代码中生成 HTML，但开发人员通常避免这种做法，因为它会使应用面临<a href="https://flask.palletsprojects.com/en/stable/web-security/#cross-site-scripting-xss">跨站脚本攻击（XSS）</a>。例如，在本教程的 <code>hello_there</code> 函数中，人们可能会考虑在代码中格式化输出，如 <code>content = "<h1>Hello there, " + clean_name + "!</h1>"</code>，其中 <code>content</code> 的结果直接提供给浏览器。这为攻击者提供了机会，可以在 URL 中放置恶意 HTML（包括 JavaScript 代码），这些代码最终出现在 <code>clean_name</code> 中，从而在浏览器中运行。</p>
+
+<p>更好的做法是使用 <strong>templates</strong> 将 HTML 完全排除在代码之外，这样你的代码只关心数据值，而不关心渲染。</p>
+
+<ul>
+<li>模板是一个 HTML 文件，包含代码在运行时提供的值的占位符。模板引擎负责在渲染页面时进行替换。因此，代码只关心数据值，而模板只关心标记。</li>
+<li>Flask 的默认模板引擎是 <a href="https://jinja.palletsprojects.com">Jinja</a>，它在安装 Flask 时会自动安装。该引擎提供灵活的选项，包括自动转义（以防止 XSS 攻击）和模板继承。通过继承，你可以定义一个包含通用标记的基础页面，然后在此基础上添加特定于页面的内容。
+</li>
+</ul>
+<p>在本节中，你将使用模板创建单个页面。在接下来的部分中，你将配置应用以提供静态文件，然后为应用创建多个页面，每个页面都包含来自基础模板的导航栏。</p>
+
+<ol>
+<li>在 <code>hello_flask</code> 文件夹中，创建一个名为 <code>templates</code> 的文件夹，这是 Flask 默认查找模板的位置。
+</li>
+<li>在 <code>templates</code> 文件夹中，创建一个名为 <code>hello_there.html</code> 的文件，内容如下。此模板包含两个名为 "name" 和 "date" 的占位符，由花括号对 <code>\{{</code> 和 <code>}}</code> 界定。如你所见，你也可以直接在模板中包含格式代码：
+<pre><code class="language-html">    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8" /&gt;
+            &lt;title&gt;Hello, Flask&lt;/title&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            {%if name %}
+                &lt;strong&gt;Hello there, \{{ name }}!&lt;/strong&gt; It's \{{ date.strftime("%A, %d %B, %Y at %X") }}.
+            {% else %}
+                What's your name? Provide it after /hello/ in the URL.
+            {% endif %}
+        &lt;/body&gt;
+    &lt;/html&gt;</code></pre>
+
+<blockquote><strong>Tip</strong>: Flask 开发人员经常使用 <a href="https://pythonhosted.org/Flask-Babel/">flask-babel</a> 扩展进行日期格式化，而不是 <code>strftime</code>，因为 flask-babel 会考虑区域设置和时区。</blockquote>
+
+</li>
+<li>在 <code>app.py</code> 中，在文件顶部附近导入 Flask 的 <code>render_template</code> 函数：
+<pre><code class="language-python">    from flask import render_template</code></pre>
+
+</li>
+<li>同样在 <code>app.py</code> 中，修改 <code>hello_there</code> 函数以使用 <code>render_template</code> 加载模板并应用命名值（并添加一个路由以识别没有名称的情况）。<code>render_template</code> 假定第一个参数是相对于 <code>templates</code> 文件夹的。通常，开发人员将模板命名为与使用它们的函数相同的名称，但匹配名称不是必需的，因为你总是在代码中引用确切的文件名。
+<pre><code class="language-python">    @app.route("/hello/")
+    @app.route("/hello/&lt;name&gt;")
+    def hello_there(name = None):
+        return render_template(
+            "hello_there.html",
+            name=name,
+            date=datetime.now()
+        )</code></pre>
+
+</li>
+</ol>
+<p>    你可以看到代码现在简单多了，只关心数据值，因为标记和格式都包含在模板中。</p>
+
+<ol>
+<li>启动程序（在调试器内部或外部，使用 <code>kb(workbench.action.debug.run)</code>），导航到 /hello/name URL，并观察结果。
+</li>
+<li>还尝试导航到 /hello/name URL，使用类似 <code><a%20value%20that%20could%20be%20HTML></code> 的名称，以查看 Flask 的自动转义效果。"name"值在浏览器中显示为纯文本，而不是渲染为实际元素。
+<h2>提供静态文件</h2>
+
+</li>
+</ol>
+<p>静态文件有两种类型。首先是页面模板可以直接引用的文件，如样式表。这些文件可以放在应用的任何文件夹中，但通常放在 <code>static</code> 文件夹中。</p>
+
+<p>第二种类型是你希望在代码中引用的文件，例如当你想实现一个返回静态文件的 API 端点时。为此，Flask 对象包含一个内置方法 <code>send_static_file</code>，它会生成一个响应，其中包含应用 <code>static</code> 文件夹中的静态文件。</p>
+
+<p>以下部分演示了两种类型的静态文件。</p>
+
+<h3>在模板中引用静态文件</h3>
+
+<ol>
+<li>在 <code>hello_flask</code> 文件夹中，创建一个名为 <code>static</code> 的文件夹。
+</li>
+<li>在 <code>static</code> 文件夹中，创建一个名为 <code>site.css</code> 的文件，内容如下。输入此代码后，还可以观察 VS Code 为 CSS 文件提供的语法高亮，包括颜色预览：
+<pre><code class="language-css">    .message {
+        font-weight: 600;
+        color: blue;
+    }</code></pre>
+
+</li>
+<li>在 <code>templates/hello_there.html</code> 中，在 <code></head></code> 标签之前添加以下行，这将创建对样式表的引用。
+<pre><code class="language-html">    &lt;link rel="stylesheet" type="text/css" href="\{{ url_for('static', filename='site.css')}}" /&gt;</code></pre>
+
+</li>
+</ol>
+<p>    这里使用的 Flask 的 <a href="https://flask.palletsprojects.com/api/#flask.url_for">url_for</a> 标签会创建文件的适当路径。因为它可以接受变量作为参数，<code>url_for</code> 允许你以编程方式控制生成的路径（如果需要）。</p>
+
+<ol>
+<li>同样在 <code>templates/hello_there.html</code> 中，将 <code><body></code> 元素的内容替换为以下标记，该标记使用 <code>message</code> 样式而不是 <code><strong></code> 标签（并且如果仅使用 hello/ URL 而没有名称，也会显示消息）：
+<pre><code class="language-html">    {%if name %}
+        &lt;span class="message"&gt;Hello there, \{{ name }}!&lt;/span&gt; It's \{{ date.strftime("%A, %d %B, %Y at %X") }}.
+    {% else %}
+        &lt;span class="message"&gt;What's your name? Provide it after /hello/ in the URL.&lt;/span&gt;
+    {% endif %}</code></pre>
+
+</li>
+<li>运行应用，导航到 /hello/name URL，并观察消息以蓝色渲染。完成时停止应用。
+<h3>从代码提供静态文件</h3>
+
+</li>
+<li>在 <code>static</code> 文件夹中，创建一个名为 <code>data.json</code> 的 JSON 数据文件，内容如下（这些是无意义的示例数据）：
+<pre><code class="language-json">    {
+        "01": {
+            "note" : "This data is very simple because we're demonstrating only the mechanism."
+        }
+    }</code></pre>
+
+</li>
+<li>在 <code>app.py</code> 中，添加一个带有路由 /api/data 的函数，使用 <code>send_static_file</code> 方法返回静态数据文件：
+<pre><code class="language-python">    @app.route("/api/data")
+    def get_data():
+        return app.send_static_file("data.json")</code></pre>
+
+</li>
+<li>运行应用并导航到 /api/data 端点，查看返回的静态文件。完成时停止应用。
+<h2>创建扩展基础模板的多个模板</h2>
+
+</li>
+</ol>
+<p>由于大多数 Web 应用有多个页面，并且这些页面通常共享许多公共元素，开发人员会将这些公共元素分离到一个基础页面模板中，其他页面模板可以扩展该模板（这也称为模板继承）。</p>
+
+<p>此外，由于你可能会创建许多扩展同一模板的页面，因此在 VS Code 中创建一个代码片段会很有帮助，你可以用它快速初始化新的页面模板。代码片段有助于避免繁琐且容易出错的复制粘贴操作。</p>
+
+<p>以下各节将逐步介绍此过程的不同部分。</p>
+
+<h3>创建基础页面模板和样式</h3>
+
+<p>Flask 中的基础页面模板包含一组页面的所有共享部分，包括 CSS 文件、脚本文件等的引用。基础模板还定义一个或多个 <strong>block</strong> 标签，扩展基础模板的模板应覆盖这些标签。在基础模板和扩展模板中，block 标签由 <code>{% block <name> %}</code> 和 <code>{% endblock %}</code> 界定。</p>
+
+<p>以下步骤演示了创建基础模板。</p>
+
+<ol>
+<li>在 <code>templates</code> 文件夹中，创建一个名为 <code>layout.html</code> 的文件，内容如下，其中包含名为 "title" 和 "content" 的块。如你所见，标记定义了一个简单的导航栏结构，包含指向 Home、About 和 Contact 页面的链接，你将在后面的部分中创建这些页面。每个链接再次使用 Flask 的 <code>url_for</code> 标签在运行时为匹配的路由生成链接。
+<pre><code class="language-html">    &lt;!DOCTYPE html&gt;
+    &lt;html&gt;
+        &lt;head&gt;
+            &lt;meta charset="utf-8" /&gt;
+            &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;
+            &lt;link rel="stylesheet" type="text/css" href="\{{ url_for('static', filename='site.css')}}" /&gt;
+        &lt;/head&gt;
+
+        &lt;body&gt;
+            &lt;div class="navbar"&gt;
+                &lt;a href="\{{ url_for('home') }}" class="navbar-brand"&gt;Home&lt;/a&gt;
+                &lt;a href="\{{ url_for('about') }}" class="navbar-item"&gt;About&lt;/a&gt;
+                &lt;a href="\{{ url_for('contact') }}" class="navbar-item"&gt;Contact&lt;/a&gt;
+            &lt;/div&gt;
+
+            &lt;div class="body-content"&gt;
+                {% block content %}
+                {% endblock %}
+                &lt;hr/&gt;
+                &lt;footer&gt;
+                    &lt;p&gt;&amp;copy; 2018&lt;/p&gt;
+                &lt;/footer&gt;
+            &lt;/div&gt;
+        &lt;/body&gt;
+    &lt;/html&gt;</code></pre>
+
+</li>
+<li>将以下样式添加到 <code>static/site.css</code> 中现有 "message" 样式下方，并保存文件。请注意，本教程不尝试演示响应式设计；这些样式只是为了生成一个相当有趣的结果。
+<pre><code class="language-css">    .navbar {
+        background-color: lightslategray;
+        font-size: 1em;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        color: white;
+        padding: 8px 5px 8px 5px;
+    }
+
+    .navbar a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .navbar-brand {
+        font-size: 1.2em;
+        font-weight: 600;
+    }
+
+    .navbar-item {
+        font-variant: small-caps;
+        margin-left: 30px;
+    }
+
+    .body-content {
+        padding: 5px;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }</code></pre>
+
+</li>
+</ol>
+<p>你现在可以运行应用，但由于你尚未在任何地方使用基础模板，也未更改任何代码文件，结果与上一步相同。完成其余部分以查看最终效果。</p>
+
+<h3>创建代码片段</h3>
+
+<p>由于你将在下一节中创建的三个页面扩展 <code>layout.html</code>，创建一个 <strong>代码片段</strong> 来初始化新的模板文件，其中包含对基础模板的适当引用，可以节省时间。代码片段从单一来源提供一致的代码，避免了从现有代码复制粘贴可能出现的错误。</p>
+
+<ol>
+<li>在 VS Code 中，选择 <strong>File</strong> > <strong>Preferences</strong> > <strong>Configure Snippets</strong>。
+</li>
+<li>在出现的列表中，选择 <strong>html</strong>。如果你之前创建过代码片段，该选项可能会显示为列表 <strong>Existing Snippets</strong> 部分中的 "html.json"。
+</li>
+<li>VS Code 打开 <code>html.json</code> 后，在现有花括号内添加以下条目（未显示的说明性注释描述了详细信息，例如 <code>$0</code> 行指示 VS Code 在插入代码片段后将光标放在何处）：
+<pre><code class="language-json">    "Flask Tutorial: template extending layout.html": {
+        "prefix": "flextlayout",
+        "body": [
+            "{% extends \"layout.html\" %}",
+            "{% block title %}",
+            "$0",
+            "{% endblock %}",
+            "{% block content %}",
+            "{% endblock %}"
+        ],
+
+        "description": "Boilerplate template that extends layout.html"
+    },</code></pre>
+
+</li>
+<li>保存 <code>html.json</code> 文件（<code>kb(workbench.action.files.save)</code>）。
+</li>
+<li>现在，每当你开始输入代码片段的前缀（如 <code>flext</code>）时，VS Code 会将代码片段作为自动补全选项提供，如下一节所示。你也可以使用 <strong>Insert Snippet</strong> 命令从菜单中选择代码片段。
+</li>
+</ol>
+<p>有关代码片段的更多信息，请参阅<a href="../docs/editing/userdefinedsnippets.md">创建代码片段</a>。</p>
+
+<h3>使用代码片段添加页面</h3>
+
+<p>有了代码片段，你可以快速创建 Home、About 和 Contact 页面的模板。</p>
+
+<ol>
+<li>在 <code>templates</code> 文件夹中，创建一个名为 <code>home.html</code> 的新文件。然后开始输入 <code>flext</code>，代码片段会作为补全出现：
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/autocomplete-for-code-snippet.png">Flask 教程：flextlayout 代码片段的自动补全</a></p>
+
+<p>    选择补全后，代码片段的代码会出现，光标位于代码片段的插入点：</p>
+
+<p>    !<a href="python/images/flask-tutorial/code-snippet-inserted.png">Flask 教程：插入 flextlayout 代码片段</a></p>
+
+<ol>
+<li>在 "title" 块的插入点写入 <code>Home</code>，在 "content" 块中写入 <code><p>Home page for the Visual Studio Code Flask tutorial.</p></code>，然后保存文件。这些行是扩展页面模板中唯一独特的部分。
+</li>
+<li>在 <code>templates</code> 文件夹中，创建 <code>about.html</code>，使用代码片段插入样板标记，分别在 "title" 和 "content" 块中插入 <code>About us</code> 和 <code><p>About page for the Visual Studio Code Flask tutorial.</p></code>，然后保存文件。
+</li>
+<li>重复上一步创建 <code>templates/contact.html</code>，在两个内容块中使用 <code>Contact us</code> 和 <code><p>Contact page for the Visual Studio Code Flask tutorial.</p></code>。
+</li>
+<li>在 <code>app.py</code> 中，为 /about/ 和 /contact/ 路由添加引用各自页面模板的函数。同时修改 <code>home</code> 函数以使用 <code>home.html</code> 模板。
+<pre><code class="language-python">    # Replace the existing home function with the one below
+    @app.route("/")
+    def home():
+        return render_template("home.html")
+
+    # New functions
+    @app.route("/about/")
+    def about():
+        return render_template("about.html")
+
+    @app.route("/contact/")
+    def contact():
+        return render_template("contact.html")</code></pre>
+
+<h3>运行应用</h3>
+
+</li>
+</ol>
+<p>所有页面模板就位后，保存 <code>app.py</code>，运行应用，并打开浏览器查看结果。在页面之间导航，验证页面模板是否正确扩展了基础模板。</p>
+
+<p>!<a href="python/images/flask-tutorial/full-app.png">Flask 教程：应用从基础模板渲染通用导航栏</a></p>
+
+<p>><strong>Note</strong>: 如果看不到最新更改，你可能需要对页面进行硬刷新以避免看到缓存文件。</p>
+
+<h2>可选活动</h2>
+
+<p>以下部分描述了在你的 Python 和 Visual Studio Code 工作中可能有帮助的额外步骤。</p>
+
+<h3>为环境创建 requirements.txt 文件</h3>
+
+<p>当你通过源代码控制或其他方式共享应用代码时，复制虚拟环境中的所有文件是不合理的，因为接收者总是可以自己重新创建环境。</p>
+
+<p>因此，开发人员通常从源代码控制中忽略虚拟环境文件夹，而是使用 <code>requirements.txt</code> 文件来描述应用的依赖项。</p>
+
+<p>虽然你可以手动创建该文件，但也可以使用 <code>pip freeze</code> 命令根据激活环境中安装的确切库生成该文件：</p>
+
+<ol>
+<li>使用 <strong>Python: Select Interpreter</strong> 命令选择你选择的环境后，运行 <strong>Terminal: Create New Terminal</strong> 命令（<code>kb(workbench.action.terminal.new)</code>）打开一个终端，该环境已激活。
+</li>
+<li>在终端中，运行 <code>pip freeze > requirements.txt</code> 在项目文件夹中创建 <code>requirements.txt</code> 文件。
+</li>
+</ol>
+<p>任何接收项目副本的人（或任何构建服务器）只需要运行 <code>pip install -r requirements.txt</code> 命令即可重新安装原始环境中的包。（但接收者仍然需要创建自己的虚拟环境。）</p>
+
+<blockquote><strong>Note</strong>: <code>pip freeze</code> 会列出你当前环境中安装的所有 Python 包，包括你当前未使用的包。该命令还会列出具有精确版本号的包，你可能希望将其转换为范围以获得更大的灵活性。更多信息，请参阅 pip 命令文档中的<a href="https://pip.pypa.io/en/stable/user_guide/#requirements-files">需求文件</a>。</blockquote>
+
+<h3>重构项目以支持进一步开发</h3>
+
+<p>在本 Flask 教程中，所有应用代码都包含在单个 <code>app.py</code> 文件中。为了支持进一步开发并分离关注点，将 <code>app.py</code> 的各个部分重构到单独的文件中是很有帮助的。</p>
+
+<ol>
+<li>在项目文件夹中，为应用创建一个文件夹，例如 <code>hello_app</code>，以将其文件与其他项目级文件（如 <code>requirements.txt</code> 和 VS Code 存储设置和调试配置文件的 <code>.vscode</code> 文件夹）分开。
+</li>
+<li>将 <code>static</code> 和 <code>templates</code> 文件夹移动到 <code>hello_app</code> 中，因为这些文件夹肯定包含应用代码。
+</li>
+<li>在 <code>hello_app</code> 文件夹中，创建一个名为 <code>views.py</code> 的文件，包含路由和视图函数：
+<pre><code class="language-python">    from flask import Flask
+    from flask import render_template
+    from datetime import datetime
+    from . import app
+
+    @app.route("/")
+    def home():
+        return render_template("home.html")
+
+    @app.route("/about/")
+    def about():
+        return render_template("about.html")
+
+    @app.route("/contact/")
+    def contact():
+        return render_template("contact.html")
+
+    @app.route("/hello/")
+    @app.route("/hello/&lt;name&gt;")
+    def hello_there(name = None):
+        return render_template(
+            "hello_there.html",
+            name=name,
+            date=datetime.now()
+        )
+
+    @app.route("/api/data")
+    def get_data():
+        return app.send_static_file("data.json")</code></pre>
+
+</li>
+<li>在 <code>hello_app</code> 文件夹中，创建一个文件 <code>__init__.py</code>，内容如下：
+<pre><code class="language-python">    import flask
+    app = flask.Flask(__name__)</code></pre>
+
+</li>
+<li>在 <code>hello_app</code> 文件夹中，创建一个文件 <code>webapp.py</code>，内容如下：
+<pre><code class="language-python">    # Entry point for the application.
+    from . import app    # For application discovery by the 'flask' command.
+    from . import views  # For import side-effects of setting up routes.</code></pre>
+
+</li>
+<li>打开调试配置文件 <code>launch.json</code> 并按如下方式更新 <code>env</code> 属性以指向启动对象：
+<pre><code class="language-json">    "env": {
+        "FLASK_APP": "hello_app.webapp"
+    },</code></pre>
+
+</li>
+<li>删除项目根目录中的原始 <code>app.py</code> 文件，因为其内容已移入其他应用文件。
+</li>
+<li>你的项目结构现在应类似于以下结构：
+</li>
+</ol>
+<p>    !<a href="python/images/flask-tutorial/project-structure.png">Flask 教程：修改后的项目结构，将应用的各个部分放在单独的文件和文件夹中</a></p>
+
+<ol>
+<li>再次在调试器中运行应用以确保一切正常。要在 VS Code 调试器外部运行应用，请在终端中执行以下步骤：<ol>
+<li>为 <code>FLASK_APP</code> 设置环境变量。在 Linux 和 macOS 上，使用 <code>export set FLASK_APP=webapp</code>；在 Windows 上，如果使用 PowerShell，使用 <code>$env:FLASK_APP=webapp</code>；如果使用命令提示符，使用 <code>set FLASK_APP=webapp</code>。<ol>
+<li>导航到 <code>hello_app</code> 文件夹，然后使用 <code>python -m flask run</code> 启动程序。
+<h3>使用容器工具扩展为 Flask 应用创建容器</h3>
+
+</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a>使得从 Visual Studio Code 构建、管理和部署容器化应用变得容易。如果你有兴趣学习如何为本教程中开发的 Flask 应用创建 Python 容器，请查看 <a href="../docs/containers/quickstart-python.md">容器中的 Python</a> 教程，它将指导你如何：</p>
+
+<ul>
+<li>创建一个描述简单 Python 容器的 <code>Dockerfile</code> 文件。</li>
+<li>构建、运行和验证 <a href="https://flask.palletsprojects.com">Flask</a> 应用的功能。</li>
+<li>调试在容器中运行的应用。
+</li>
+</ul>
+<p>如果遇到任何问题，你可以在 <a href="https://github.com/microsoft/vscode-python/discussions/categories/q-a">Python 扩展讨论 Q&A</a> 中搜索答案或提问。</p>
+
+<h2>后续步骤</h2>
+
+<p>恭喜你完成了在 Visual Studio Code 中使用 Flask 的演练！</p>
+
+<p>本教程的完整代码项目可以在 GitHub 上找到：<a href="https://github.com/microsoft/python-sample-vscode-flask-tutorial">python-sample-vscode-flask-tutorial</a>。</p>
+
+<p>由于本教程仅触及了页面模板的皮毛，请参阅 <a href="https://jinja.palletsprojects.com">Jinja2 文档</a>了解有关模板的更多信息。<a href="https://jinja.palletsprojects.com/templates/#synopsis">模板设计者文档</a>包含模板语言的所有详细信息。你可能还想查看<a href="https://flask.palletsprojects.com/tutorial">官方 Flask 教程</a>以及 Flask <a href="https://flask.palletsprojects.com/extensions/">扩展</a>的文档。</p>
+
+<p>要在生产网站上测试你的应用，请查看教程<a href="https://learn.microsoft.com/azure/developer/python/tutorial-deploy-containers-01">使用 Docker 容器将 Python 应用部署到 Azure App Service</a>。Azure 还提供了一个标准容器 <a href="https://learn.microsoft.com/azure/developer/python/configure-python-web-app-local-environment">App Service on Linux</a>，你可以从 VS Code 内部将 Web 应用部署到其中。</p>
+
+<p>你可能还想查看 VS Code 文档中与 Python 相关的以下文章：</p>
+
+<ul>
+<li><a href="../docs/python/editing.md">编辑 Python 代码</a></li>
+<li><a href="../docs/python/linting.md">代码检查</a></li>
+<li><a href="../docs/python/environments.md">管理 Python 环境</a></li>
+<li><a href="../docs/python/debugging.md">调试 Python</a></li>
+<li><a href="../docs/python/testing.md">测试</a></li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

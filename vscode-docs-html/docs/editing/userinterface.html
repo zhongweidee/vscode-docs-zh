@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Studio Code 用户界面的快速概览。了解编辑器、窗口管理，以及用于处理源代码管理、扩展管理、全文搜索等的特殊 UI。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / editing / userinterface</div>
+<h1>用户界面</h1>
+
+<p>从根本上说，Visual Studio Code 是一个代码编辑器。与许多其他代码编辑器一样，VS Code 采用了通用的用户界面和布局：左侧是资源管理器，显示你可以访问的所有文件和文件夹；右侧是编辑器，显示你已打开的文件的内容。</p>
+
+<p><iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nORT3-kONgA" title="Transform your VS Code user interface" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
+<p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="Get started with AI"></p>
+<p>动手实践教程，在 VS Code 中使用 AI 构建你的第一个应用。</p>
+
+<ul>
+<li><a href="../docs/getstarted/getting-started.md">开始教程</a>
+</li>
+</ul>
+<p></div></p>
+
+<p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="Watch the introduction video"></p>
+<p>在我们的介绍视频中了解 Visual Studio Code 的关键功能。</p>
+
+<ul>
+<li><a href="https://www.youtube.com/watch?v=f8_uF_IDV50">观看视频</a>
+</li>
+</ul>
+<p></div></p>
+
+<h2>基本布局</h2>
+
+<p>VS Code 采用简单直观的布局，最大化编辑器的可用空间，同时留出充足的空间来浏览和访问文件夹或项目的完整上下文。用户界面分为六个主要区域：</p>
+
+<ul>
+<li><strong>编辑器</strong> - 编辑文件的主要区域。你可以垂直和水平并排打开任意数量的编辑器。</li>
+<li><strong>主侧边栏</strong> - 包含不同的视图，如资源管理器，帮助你处理项目。</li>
+<li><strong>辅助侧边栏</strong> - 位于主侧边栏对面。默认包含聊天视图。将视图从主侧边栏拖放到辅助侧边栏即可移动它们。</li>
+<li><strong>状态栏</strong> - 关于已打开项目和正在编辑的文件的信息。</li>
+<li><strong>活动栏</strong> - 位于最左侧。让你在视图之间切换，并提供额外的上下文相关指示器，例如启用 Git 时的传出更改数量。你可以更改活动栏的位置。</li>
+<li><strong>面板</strong> - 编辑器区域下方用于视图的额外空间。默认包含输出、调试信息、错误和警告以及集成终端。面板也可以移动到左侧或右侧以获得更多垂直空间。
+</li>
+</ul>
+<p>!<a href="editing/images/userinterface/hero.png">Screenshot of the VS Code user interface, highlighting the main areas.</a></p>
+
+<p>每次启动 VS Code 时，它都会以上次关闭时的状态打开。文件夹、布局和已打开的文件都会保留。</p>
+
+<p>每个编辑器中打开的文件会以选项卡标题（标签页）的形式显示在编辑器区域顶部。要了解有关选项卡标题的更多信息，请参阅<a href="../docs/editing/userinterface.md#标签页">标签页</a>部分。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以通过右键单击活动栏并选择<strong>将主侧边栏移到右侧</strong>来将主侧边栏移到右侧，或切换其可见性 (<code>kb(workbench.action.toggleSidebarVisibility)</code>)。</blockquote>
+
+<p>了解有关使用<a href="../docs/configure/custom-layout.md#workbench">主侧边栏和辅助侧边栏</a>的更多信息。</p>
+
+<h2>并排编辑</h2>
+
+<p>你可以垂直和水平并排打开任意数量的编辑器。如果已有一个编辑器打开，有多种方式可以在旁边打开另一个编辑器：</p>
+
+<ul>
+<li>按住 <code>kbstyle(Alt)</code> 并在资源管理器视图中选择文件。</li>
+<li>按 <code>kb(workbench.action.splitEditor)</code> 将活动编辑器拆分为两个。</li>
+<li>从文件的资源管理器上下文菜单中选择<strong>在侧边打开</strong> (<code>kb(explorer.openToSide)</code>)。</li>
+<li>选择编辑器右上角的<strong>拆分编辑器</strong>按钮。</li>
+<li>将文件拖放到编辑器区域的任意一侧。拖放时按住 <code>kbstyle(Ctrl)</code>（macOS 上为 <code>kbstyle(Option)</code>）可复制标签页而不是移动它。</li>
+<li>在<strong>快速打开</strong> (<code>kb(workbench.action.quickOpen)</code>) 文件列表中按 <code>kb(explorer.openToSide)</code>。
+</li>
+</ul>
+<p>!<a href="editing/images/userinterface/sidebyside.png">Side by Side editing</a></p>
+
+<p>当你打开另一个文件时，活动编辑器将显示该文件的内容。如果你有两个并排的编辑器，并希望在右侧编辑器中打开文件 'foo.cs'，请确保该编辑器是活动的（通过单击其内部），然后再打开文件 'foo.cs'。</p>
+
+<p>默认情况下，编辑器在活动编辑器的右侧打开。你可以通过 <code>setting(workbench.editor.openSideBySideDirection)</code> 设置更改此行为，使新编辑器改为在活动编辑器的下方打开。</p>
+
+<p>当你打开多个编辑器时，可以通过按住 <code>kbstyle(Ctrl)</code> 键（macOS 上为 <code>kbstyle(Cmd)</code> 键）并按 <code>kbstyle(1)</code>、<code>kbstyle(2)</code> 或 <code>kbstyle(3)</code> 来快速切换。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以调整编辑器大小并重新排序。拖放编辑器标题区域来重新定位或调整编辑器大小。</blockquote>
+
+<h3>编辑器组</h3>
+
+<p>当你拆分编辑器时（使用<strong>拆分编辑器</strong>或<strong>在侧边打开</strong>命令），会创建一个新的编辑器区域（编辑组），其中可以容纳一组项目。你可以垂直和水平并排打开任意数量的编辑器组。</p>
+
+<p>你可以在资源管理器视图顶部的<strong>打开的编辑器</strong>部分清楚地看到这些组（在资源管理器视图中切换 <strong>...</strong> > <strong>打开的编辑器</strong>）。</p>
+
+<p>!<a href="editing/images/userinterface/tabs-editor-groups.png">tabs editor groups</a></p>
+
+<p>你可以在工作台上拖放编辑器组，在组之间移动单个标签页，并快速关闭整个组（<strong>全部关闭</strong>）。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>无论是否启用了标签页，VS Code 都使用编辑器组。没有标签页时，编辑器组是你打开项目的堆栈，最近选择的项目在编辑器窗格中可见。</blockquote>
+
+<h3>组内拆分</h3>
+
+<p>你可以使用<strong>视图：在组中拆分编辑器</strong>命令 (<code>kb(workbench.action.splitEditorInGroup)</code>) 拆分当前编辑器而无需创建新的编辑器组。要了解有关此编辑器模式以及用于在两侧之间导航的特定命令的更多信息，可以阅读<a href="../docs/configure/custom-layout.md#split-in-group">自定义布局</a>文章中的相关部分。</p>
+
+<h3>浮动窗口</h3>
+
+<p>你可以将编辑器、终端或特定视图移动到它们自己的浮动窗口中。如果你有多显示器设置，并希望在另一个显示器上保持文件打开，这将非常有用。</p>
+
+<p>!<a href="editing/images/userinterface/floating-editor.png">Screenshot that shows the OS desktop with VS Code window and a CSV file opened in a floating window.</a></p>
+
+<p>将编辑器标签页拖出当前 VS Code 窗口即可在浮动窗口中打开它。或者，使用编辑器标签页上下文菜单中的<strong>移入新窗口</strong>或<strong>复制到新窗口</strong>选项。</p>
+
+<p>要将浮动窗口固定在屏幕顶部，请从其标题栏中选择<strong>设置始终置顶</strong>选项（图钉图标）。</p>
+
+<p>要了解有关浮动窗口的更多信息，请阅读<a href="../docs/configure/custom-layout.md#floating-windows">自定义布局</a>文章中的相关部分。</p>
+
+<h3>模态编辑器</h3>
+
+<p>VS Code 中的某些配置编辑器会在编辑器区域上以居中模态叠加层的形式打开，而不是作为常规的编辑器标签页。这些模态编辑器包括：</p>
+
+<ul>
+<li><strong>设置</strong>编辑器</li>
+<li><strong>键盘快捷方式</strong>编辑器</li>
+<li><strong>配置文件</strong>编辑器</li>
+<li><strong>工作区信任</strong>编辑器</li>
+<li><strong>语言模型</strong>编辑器</li>
+<li><strong>扩展</strong>编辑器
+</li>
+</ul>
+<p>你可以通过单击模态编辑器外部、按 <code>kbstyle(Escape)</code> 或选择关闭按钮来关闭它。你还可以将其最大化以填满编辑器区域，或将其移回主窗口作为常规编辑器标签页。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>你可以通过 <code>setting(workbench.editor.useModal)</code> 设置控制此行为。将其设置为 <code>off</code> 以始终将编辑器作为常规标签页打开，设置为 <code>some</code> 以仅将配置编辑器作为模态叠加层打开（默认），或设置为 <code>all</code> 以将所有编辑器在模态叠加层中打开。</blockquote>
+
+<h2>迷你地图</h2>
+
+<p>迷你地图（代码概览）提供源代码的高级概览，有助于快速导航和代码理解。文件的迷你地图显示在编辑器的右侧。你可以选择或拖动阴影区域来快速跳转到文件中的不同部分。</p>
+
+<p>如果编辑器中有<a href="../docs/editing/codebasics.md#folding">折叠标记</a>，例如 <code>//#region</code> 注释，则迷你地图会显示折叠标记名称。折叠标记因语言而异，请检查适用于你所用语言的标记。</p>
+
+<p>!<a href="editing/images/userinterface/minimap.png">minimap</a></p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以将迷你地图移到左侧或完全禁用它，方法是在用户或工作区<a href="../docs/configure/settings.md">设置</a>中分别设置 <code>"editor.minimap.side": "left"</code> 或 <code>"editor.minimap.enabled": false</code>。</blockquote>
+
+<h2>粘性滚动</h2>
+
+<p>粘性滚动在编辑器顶部显示当前可见嵌套范围的起始行。它通过指示你在文件中的位置来帮助你导航，并让你快速跳回当前范围的顶部。</p>
+
+<p>!<a href="editing/images/userinterface/sticky-scroll.png">stickyScroll</a></p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以使用 <code>setting(editor.stickyScroll.enabled)</code> 设置启用/禁用粘性滚动。</blockquote>
+
+<p>粘性滚动使用多种不同的内容模型来创建其标题。你可以选择大纲提供程序模型、折叠提供程序模型和缩进模型来确定在粘性滚动区域中显示哪些行。如果当前语言没有可用的模型，VS Code 会按以上顺序回退到下一个模型。初始使用的默认模型来自 <code>setting(editor.stickyScroll.defaultModel)</code> 设置。</p>
+
+<h3>缩进参考线</h3>
+
+<p>编辑器显示缩进参考线（垂直线），帮助你快速看到匹配的缩进级别。如果你想禁用缩进参考线，可以在用户或工作区<a href="../docs/configure/settings.md">设置</a>中将 <code>setting(editor.guides.indentation)</code> 设置为 <code>false</code>。</p>
+
+<h2>面包屑导航</h2>
+
+<p>编辑器顶部有一个导航栏，也称为<a href="https://en.wikipedia.org/wiki/Breadcrumb_(navigation">面包屑导航</a>)。面包屑导航始终显示文件路径，如果当前文件类型支持符号，还会显示到光标位置的符号路径。面包屑导航使你能够在文件夹、文件和符号之间快速导航。</p>
+
+<p>!<a href="editing/images/userinterface/breadcrumbs.png">Breadcrumbs</a></p>
+
+<p>你可以通过<strong>视图</strong> > <strong>外观</strong> > <strong>切换面包屑导航</strong>菜单项或<strong>视图：切换面包屑导航</strong>命令来禁用面包屑导航。有关面包屑导航功能的更多信息，例如如何自定义其外观，请参阅<a href="../docs/editing/editingevolved.md">代码导航</a>文章中的<a href="../docs/editing/editingevolved.md#breadcrumbs">面包屑导航</a>部分。</p>
+
+<h2>资源管理器视图</h2>
+
+<p>资源管理器视图用于浏览、打开和管理项目中的文件和文件夹。VS Code 基于文件和文件夹工作，你可以通过在 VS Code 中打开文件或文件夹立即开始使用。</p>
+
+<p>在 VS Code 中打开文件夹后，文件夹的内容会显示在资源管理器视图中。你可以从这里执行许多操作：</p>
+
+<ul>
+<li>创建、删除和重命名文件和文件夹。</li>
+<li>通过拖放移动文件和文件夹。</li>
+<li>使用上下文菜单探索所有选项。
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以将文件从 VS Code 外部拖放到资源管理器视图中以复制它们。如果资源管理器为空，VS Code 会改为打开这些文件。你也可以将文件从 VS Code 外部复制粘贴到资源管理器视图中。使用 <code>setting(explorer.autoOpenDroppedFile)</code> 设置，你可以配置是否自动打开文件。</blockquote>
+
+</li>
+</ul>
+<p>VS Code 与你可能使用的其他工具配合良好，尤其是命令行工具。如果你想在 VS Code 当前打开的文件夹上下文中运行命令行工具，请右键单击该文件夹并选择<strong>在集成终端中打开</strong>。</p>
+
+<p>你还可以通过在文件或文件夹上右键单击并选择<strong>在文件资源管理器中显示</strong>（Windows）、<strong>在 Finder 中显示</strong>（macOS）或<strong>打开包含文件夹</strong>（Linux），在本机操作系统文件资源管理器中导航到文件或文件夹的位置。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>输入 <code>kb(workbench.action.quickOpen)</code>（<strong>快速打开</strong>）可以通过名称快速搜索和打开文件。</blockquote>
+
+<p>默认情况下，VS Code 会排除某些文件夹不在资源管理器视图中显示，例如 <code>.git</code>。使用 <code>setting(files.exclude)</code> 设置来配置从资源管理器视图中隐藏文件和文件夹的规则。此设置中的 glob 模式遵循操作系统的区分大小写规则（Windows/macOS 上不区分大小写，Linux 上区分大小写）。了解有关 <a href="../docs/editor/glob-patterns.md">glob 模式</a>的更多信息。</p>
+
+<p>你还可以通过启用 <code>setting(explorer.excludeGitIgnore)</code> 设置来隐藏 <code>.gitignore</code> 文件中指定的文件和文件夹。启用后，<code>.gitignore</code> 模式在 Windows 和 macOS 上以不区分大小写的方式匹配，在 Linux 上以区分大小写的方式匹配。例如，<code>.gitignore</code> 中的 <code>node_modules</code> 模式在 Windows 和 macOS 上将匹配 <code>node_modules/</code>、<code>Node_Modules/</code>、<code>NODE_MODULES/</code> 和其他大小写变体，但在 Linux 上仅匹配精确的大小写。</p>
+
+<p>启用 <code>setting(imageCarousel.explorerContextMenu.enabled)</code> _（实验性）_ 后，你可以在资源管理器中右键单击图片或视频文件或文件夹，并选择<strong>在轮播中打开图片</strong>，以在专用的轮播视图中浏览媒体文件。这同样适用于多选操作。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以隐藏派生资源文件，例如 Unity 中的 <code><em>.meta</code>，或 TypeScript 项目中的 <code></em>.js</code>。对于 Unity，要排除 <code><em>.cs.meta</code> 文件，可以选择以下模式：<code>"<strong>/</em>.cs.meta": true</code>。对于 TypeScript，你可以使用以下方式排除 TypeScript 文件生成的 JavaScript：<code>"</strong>/*.js": {"when": "$(basename).ts"}</code>。</blockquote>
+
+<h3>多选</h3>
+
+<p>你可以在资源管理器视图和"打开的编辑器"部分中选择多个文件，以便对多个项目执行操作（删除、拖放或在侧边打开）。按住 <code>kbstyle(Ctrl)</code>（macOS 上为 <code>kbstyle(Cmd)</code>）并选择单个文件，或按住 <code>kbstyle(Shift)</code> 选择一系列文件。如果选择了两个项目，你还可以使用上下文菜单中的<strong>比较选定项</strong>命令来快速比较两个文件。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>在早期的 VS Code 版本中，按住 <code>kbstyle(Ctrl)</code>（macOS 上为 <code>kbstyle(Cmd)</code>）键单击会在旁边的新编辑器组中打开文件。如果你仍想要此行为，可以使用 <code>setting(workbench.list.multiSelectModifier)</code> 设置将多选更改为使用 <code>kbstyle(Alt)</code> 键。</blockquote>
+
+<pre><code class="language-json">"workbench.list.multiSelectModifier": "alt"</code></pre>
+
+<h3>高级树形导航</h3>
+
+<p>你可以筛选资源管理器视图中的文件和文件夹。将焦点放在资源管理器视图上，按 <code>kb(list.find)</code> 打开查找控件，然后输入要匹配的文件或文件夹名称的一部分。此导航功能适用于 VS Code 中的所有树形视图。</p>
+
+<p>按<strong>筛选</strong>按钮可在两种模式之间切换：高亮显示和筛选。按 <code>kbstyle(Down)</code> 可以聚焦第一个匹配的元素并导航到后续匹配的元素。在高亮显示模式下，文件夹上会显示标记，指示它们包含匹配的文件。</p>
+
+<p>按<strong>模糊匹配</strong>按钮可在精确匹配和模糊匹配之间切换，在模糊匹配模式下，你可以输入字符序列来匹配文件或文件夹名称的任何部分。</p>
+
+<p>!<a href="editing/images/userinterface/file-explorer-filter.png">Filtering files in the File Explorer</a></p>
+
+<h3>大纲视图</h3>
+
+<p>大纲视图是资源管理器视图底部的一个单独部分。展开后，它显示当前活动编辑器的符号树。</p>
+
+<p>!<a href="editing/images/userinterface/outline-view.png">Outline view</a></p>
+
+<p>大纲视图具有不同的<strong>排序方式</strong>模式、可选的光标跟踪，并支持常用的打开手势。它还包括一个用于查找或筛选的输入框。错误和警告也会在大纲视图中显示，让你一目了然地看到问题的位置。</p>
+
+<p>对于符号，该视图依赖于已安装的扩展为不同文件类型计算的信息。例如，内置的 Markdown 支持返回 Markdown 文件符号的 Markdown 标题层次结构。</p>
+
+<p>!<a href="editing/images/userinterface/markdown-outline-view.png">Markdown Outline view</a></p>
+
+<p>大纲视图有几个<a href="../docs/configure/settings.md">设置</a>。搜索以 <code>outline.</code> 开头的设置来配置大纲视图中显示的信息。</p>
+
+<h3>时间线视图</h3>
+
+<p>时间线视图位于文件资源管理器底部，是一个用于可视化文件事件历史的统一视图。例如，你可以在时间线视图中查看 Git 提交或本地文件保存。</p>
+
+<p>!<a href="editing/images/userinterface/timeline-view.png">Timeline view</a></p>
+
+<p>时间线视图工具栏中的筛选操作使你能够在源代码管理事件和本地文件事件之间进行筛选：</p>
+
+<p>!<a href="editing/images/userinterface/timeline-filter.png">Timeline filter drop down with Git History unchecked and Local History checked</a></p>
+
+<h4>本地文件历史记录</h4>
+
+<p>根据你的设置，每次保存编辑器时，都会向列表中添加一个新条目。每个本地历史条目包含条目创建时文件的完整内容，并且在某些情况下，可以提供更多的语义信息（例如，指示重构）。</p>
+
+<p>从条目中，你可以：</p>
+
+<ul>
+<li>将更改与本地文件或上一个条目进行比较。</li>
+<li>还原内容。</li>
+<li>删除或重命名条目。
+<blockquote>[!TIP]</blockquote>
+<blockquote>如果你不小心删除了一个文件，可以通过在时间线视图中使用 <strong>...</strong> > <strong>本地历史记录：查找要还原的条目</strong>操作从本地历史记录中还原它，然后从快速选择中选择你的文件。</blockquote>
+
+</li>
+</ul>
+<p>你可以配置以下设置来处理本地历史记录：</p>
+
+<ul>
+<li><code>setting(workbench.localHistory.enabled)</code> - 启用或禁用本地历史记录（默认：true）</li>
+<li><code>setting(workbench.localHistory.maxFileSize)</code> - 创建本地历史记录条目时的文件大小限制（默认：256 KB）</li>
+<li><code>setting(workbench.localHistory.maxFileEntries)</code> - 每个文件的本地历史记录条目限制（默认：50）</li>
+<li><code>setting(workbench.localHistory.exclude)</code> - 用于从本地历史记录中排除特定文件的 glob 模式</li>
+<li><code>setting(workbench.localHistory.mergeWindow)</code> - 在此时间间隔（秒）内，进一步的更改将添加到本地文件历史记录中的最后一个条目（默认：10 秒）
+<h4>提交历史记录</h4>
+
+</li>
+</ul>
+<p>VS Code 的内置 Git 支持提供指定文件的 Git 提交历史记录。选择一个提交会打开该提交引入的更改的比较视图。右键单击提交时，你会看到<strong>复制提交 ID</strong> 和<strong>复制提交消息</strong>选项。</p>
+
+<p>右键单击历史记录中的提交时，你可以：</p>
+
+<ul>
+<li><strong>打开更改</strong> - 打开文件中更改的比较视图。</li>
+<li><strong>查看提交</strong> - 打开多个文件的比较视图，查看提交中所有文件的更改。</li>
+<li><strong>选择以进行比较</strong> - 选择一个条目与另一个条目进行比较。</li>
+<li><strong>复制提交 ID</strong> - 将提交 ID 复制到剪贴板。</li>
+<li><strong>复制提交消息</strong> - 将提交消息复制到剪贴板。
+</li>
+</ul>
+<p>你可以配置此设置来处理 Git 历史记录：</p>
+
+<ul>
+<li><code>setting(git.timeline.date)</code> - 显示文件提交的提交日期或创作日期
+<h2>视图</h2>
+
+</li>
+</ul>
+<p>资源管理器视图只是 VS Code 中可用的视图之一。还有其他视图用于：</p>
+
+<ul>
+<li><strong>搜索</strong> - 提供跨打开文件夹的全局搜索和替换。</li>
+<li><strong>源代码管理</strong> - VS Code 默认包含 Git 源代码管理。</li>
+<li><strong>运行</strong> - VS Code 的运行和调试视图显示变量、调用堆栈和断点。</li>
+<li><strong>扩展</strong> - 在 VS Code 中安装和管理你的扩展。</li>
+<li><strong>自定义视图</strong> - 由扩展提供的视图。
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以使用<strong>视图：打开视图</strong>命令打开任何视图。</blockquote>
+
+</li>
+</ul>
+<p>!<a href="editing/images/userinterface/views.png">views</a></p>
+
+<p>你可以通过右键单击活动栏来显示或隐藏视图，并使用拖放重新排序它们。在资源管理器视图中，你可以通过"..."菜单显示或隐藏各个部分，或拖放各个部分以重新排序。</p>
+
+<p><video src="images/userinterface/view-management.mp4" autoplay loop controls muted title="View Management"></video></p>
+
+<h2>命令面板</h2>
+
+<p>VS Code 同样可以通过键盘轻松访问。最重要的组合键是 <code>kb(workbench.action.showCommands)</code>，它可以调出<strong>命令面板</strong>。从这里，你可以访问 VS Code 中的所有功能，包括最常用操作的键盘快捷方式。</p>
+
+<p>!<a href="editing/images/userinterface/commands.png">Command Palette</a></p>
+
+<p><strong>命令面板</strong>提供对许多命令的访问。你可以运行编辑器命令、打开文件、搜索符号以及查看文件的快速大纲，所有这些都使用同一个交互式窗口。以下是一些提示：</p>
+
+<ul>
+<li><code>kb(workbench.action.quickOpen)</code> 使你能够通过输入名称导航到任何文件或符号</li>
+<li><code>kb(workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup)</code> 在最近打开的一组文件中循环切换</li>
+<li><code>kb(workbench.action.showCommands)</code> 直接进入编辑器命令</li>
+<li><code>kb(workbench.action.gotoSymbol)</code> 使你能够导航到文件中的特定符号</li>
+<li><code>kb(workbench.action.gotoLine)</code> 使你能够导航到文件中的特定行
+</li>
+</ul>
+<p>在输入字段中输入 <code>?</code> 以获取可从命令面板运行的可用命令列表。</p>
+
+<p>!<a href="editing/images/userinterface/quickopenhelp.png">Quick Open Help</a></p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>你可以通过用鼠标光标抓住命令面板的顶部边缘并将其拖到其他位置来移动它。你还可以选择标题栏中的<strong>自定义布局</strong>控件，然后选择一个预配置的<strong>快速输入位置</strong>。</blockquote>
+
+<p>!<a href="editing/images/userinterface/command-palette-position.png">Screenshot that shows the Command Palette in a different location, highlighting the Customize Layout control in the title bar and the preconfigured position options.</a></p>
+
+<h2>配置编辑器</h2>
+
+<p>VS Code 为你提供了许多配置编辑器的选项。从<strong>视图</strong> > <strong>外观</strong>菜单中，你可以隐藏或切换用户界面的各个部分，例如<strong>侧边栏</strong>、<strong>状态栏</strong>和<strong>活动栏</strong>。</p>
+
+<h3>隐藏菜单栏（Windows、Linux）</h3>
+
+<p>你可以通过将设置 <code>setting(window.menuBarVisibility)</code> 从 <code>classic</code> 更改为 <code>toggle</code> 或 <code>hidden</code> 来在 Windows 和 Linux 上隐藏菜单栏。设置为 <code>toggle</code> 意味着按一下 <code>kbstyle(Alt)</code> 键即可再次显示菜单栏。</p>
+
+<p>你还可以使用<strong>视图：切换菜单栏</strong>命令在 Windows 和 Linux 上隐藏菜单栏。此命令将 <code>setting(window.menuBarVisibility)</code> 从 <code>classic</code> 设置为 <code>compact</code>，使菜单栏移入活动栏中。要将菜单栏恢复到 <code>classic</code> 位置，可以再次运行<strong>视图：切换菜单栏</strong>命令。</p>
+
+<h3>设置</h3>
+
+<p>大多数编辑器配置都在设置中管理，你可以直接修改设置。你可以通过用户设置全局设置选项，也可以通过工作区设置按项目/文件夹设置选项。设置值存储在 <a href="../docs/configure/settings.md#settings-json-file"><code>settings.json</code> 文件</a>中。</p>
+
+<p>你可以在设置编辑器中查看和编辑设置（选择<strong>文件</strong> > <strong>首选项</strong> > <strong>设置</strong>，或按 <code>kb(workbench.action.openSettings)</code>）。使用<strong>用户</strong>和<strong>工作区</strong>标签页在用户设置和工作区设置之间切换。你可以使用顶部的搜索框筛选设置。</p>
+
+<p>或者，你可以直接在 <code>settings.json</code> 文件中修改用户设置。使用<strong>首选项：打开用户设置 (JSON)</strong> 命令打开 <code>settings.json</code> 文件。对于工作区设置，请打开工作区中 <code>.vscode</code> 文件夹内的 <code>settings.json</code> 文件。</p>
+
+<p>!<a href="editing/images/userinterface/workspace-settings.png">workspace settings</a></p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>工作区设置会覆盖用户设置，对于跨团队共享项目特定的设置非常有用。</blockquote>
+
+<h3>禅模式</h3>
+
+<p>禅模式让你通过隐藏除编辑器之外的所有 UI 元素来专注于代码，将 VS Code 切换为全屏，并使编辑器居中。可以通过<strong>视图</strong> > <strong>外观</strong> > <strong>禅模式</strong>菜单、<strong>命令面板</strong>中的<strong>视图：切换禅模式</strong>或快捷键 <code>kb(workbench.action.toggleZenMode)</code> 来切换禅模式。双击 <code>kbstyle(Esc)</code> 退出禅模式。可以通过 <code>setting(zenMode.fullScreen)</code> 禁用切换到全屏。</p>
+
+<p>禅模式可以通过以下设置进一步调整：</p>
+
+<ul>
+<li><code>setting(zenMode.hideActivityBar)</code> - 隐藏活动栏。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.hideStatusBar)</code> - 隐藏状态栏。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.hideLineNumbers)</code> - 隐藏行号。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.showTabs)</code> - 控制是否显示多个、单个或不显示编辑器标签页。默认 <code>multiple</code>。</li>
+<li><code>setting(zenMode.fullScreen)</code> - 将工作台置于全屏显示。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.restore)</code> - 重新启动时还原禅模式。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.centerLayout)</code> - 使用<a href="#居中编辑器布局">居中编辑器布局</a>。默认 <code>true</code>。</li>
+<li><code>setting(zenMode.silentNotifications)</code> - 不显示通知。默认 <code>true</code>。
+<h3>使用请勿打扰模式减少通知</h3>
+
+</li>
+</ul>
+<p>如果你被弹出的通知困扰，有一种方法可以减少通知，无论是针对所有通知，还是针对特定扩展的通知。</p>
+
+<p>选择状态栏中的铃铛图标（或者如果通知位于右上角，则在标题栏中）打开通知区域。这是一个你可以随时访问所有通知的地方，即使你启用了请勿打扰模式。你可以通过 <code>setting(workbench.notifications.position)</code> 设置更改通知位置。了解有关<a href="../docs/configure/custom-layout.md#notifications">通知位置</a>的更多信息。</p>
+
+<p>!<a href="editing/images/userinterface/notifications-center.png">Notifications center</a></p>
+
+<p>找到带叉的铃铛图标可以访问一个菜单，你可以在其中选择性地禁用扩展的通知，或启用全局请勿打扰模式以禁用所有通知。</p>
+
+<p>!<a href="editing/images/userinterface/notifications-dnd.png">Notifications do not disturb menu</a></p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>全局请勿打扰模式也会隐藏错误通知，而扩展特定筛选器仍允许显示错误通知。</blockquote>
+
+<h3>居中编辑器布局</h3>
+
+<p>居中编辑器布局允许你居中对齐编辑器区域。当你在大型显示器上使用单个编辑器时，这非常有用。你可以使用侧边框来调整视图大小（按住 <code>Alt</code> 键可独立移动两侧）。</p>
+
+<h2>标签页</h2>
+
+<p>VS Code 在编辑器上方的标题区域中以标签页（选项卡标题）的形式显示打开的项目。当你打开一个文件时，会为该文件添加一个新标签页。标签页让你可以快速在项目之间导航。</p>
+
+<p>!<a href="editing/images/userinterface/tabs-hero.png">tabs hero</a></p>
+
+<p>你可以拖放标签页来重新排序。要一次对多个标签页执行操作，请按住 <code>kbstyle(Ctrl)</code> 键（macOS 上为 <code>kbstyle(Cmd)</code>）并选择要操作的标签页。要选择一系列标签页，请按住 <code>kbstyle(Shift)</code> 键并选择范围中的第一个和最后一个标签页。</p>
+
+<p>当你打开的项目超过标题区域所能容纳的数量时，你可以使用资源管理器视图中的<strong>打开的编辑器</strong>部分（通过 <code>...</code> 按钮访问）来显示选项卡项目的下拉列表。</p>
+
+<p>标签页和编辑器区域之间还有一个滚动条，用于将编辑器拖入视图。你可以通过将 <strong>Workbench > Editor: Title Scrollbar Sizing</strong> (<code>setting(workbench.editor.titleScrollbarSizing)</code>) 设置为 <code>large</code> 来增加滚动条的高度，使其更容易拖动。使用 <code>setting(workbench.editor.titleScrollbarVisibility)</code> 设置来控制滚动条的可见性。</p>
+
+<p>如果你不想使用标签页，可以通过将 <code>setting(workbench.editor.showTabs)</code> 设置设置为 <code>single</code> 来禁用此功能：</p>
+
+<pre><code class="language-json">    "workbench.editor.showTabs": "single"</code></pre>
+
+<p>请参阅下面的部分以优化 VS Code 用于<a href="../docs/editing/userinterface.md#不使用标签页工作">不使用标签页工作</a>。</p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>在编辑器标题区域中双击可快速创建新标签页。</blockquote>
+
+<h3>标签页排序</h3>
+
+<p>默认情况下，新标签页会添加到现有标签页的右侧。你可以使用 <code>setting(workbench.editor.openPositioning)</code> 设置来控制新标签页出现的位置。</p>
+
+<p>例如，你可能希望新的选项卡项目显示在左侧：</p>
+
+<pre><code class="language-json">    "workbench.editor.openPositioning": "left"</code></pre>
+
+<p>你可以通过拖放来重新排序标签页。</p>
+
+<p>如果你希望某个编辑器标签页始终可见，可以将其固定到编辑器标签栏上。在<a href="../docs/configure/custom-layout.md#pinned-tabs">自定义布局</a>文章中了解有关固定标签页的更多信息。</p>
+
+<p><code>setting(workbench.editor.showTabIndex)</code> 设置使你可以显示每个标签页在标签页标题中的索引。这样可以轻松查看与 <code>kbstyle(Ctrl)</code>（macOS 上为 <code>kbstyle(Cmd)</code>）+ 数字键盘快捷方式配合使用的数字，以快速切换到特定标签页。</p>
+
+<h3>预览模式</h3>
+
+<p>当你单击或选择资源管理器视图中的文件时，它会以预览模式显示并重用现有标签页（预览标签页）。如果你正在快速浏览文件，且不希望每个访问的文件都有自己的标签页，这将非常有用。当你开始编辑文件或使用双击从资源管理器打开文件时，会为该文件创建一个新的专用标签页。</p>
+
+<p>预览模式由标签页标题中的斜体表示：</p>
+
+<p>!<a href="editing/images/userinterface/preview-tab.png">preview mode</a></p>
+
+<p>如果你不想使用预览模式并始终创建新标签页，可以通过以下设置控制此行为：</p>
+
+<ul>
+<li><code>setting(workbench.editor.enablePreview)</code> - 全局启用或禁用预览编辑器</li>
+<li><code>setting(workbench.editor.enablePreviewFromQuickOpen)</code> - 启用或禁用在从<strong>快速打开</strong>打开时的预览编辑器
+<h3>换行标签页</h3>
+
+</li>
+</ul>
+<p>要查看更多编辑器标签页，可以使用<strong>换行标签页</strong>布局，在该布局中，编辑器标签页换行以填充编辑器区域上方的多行。通过 <strong>Workbench > Editor: Wrap Tabs</strong> (<code>setting(workbench.editor.wrapTabs)</code>) 设置启用换行标签页。</p>
+
+<p>!<a href="editing/images/userinterface/wrapped-tabs.png">Wrapped editor tabs filling two rows about the editor region</a></p>
+
+<h3>自定义标签页标签</h3>
+
+<p>当同时打开多个同名文件时，很难区分不同的标签页。为了解决这个问题，你可以为标签页应用自定义显示标签。你可以选择为工作区中的哪些文件应用自定义标签页标签。</p>
+
+<p>要启用标签页的自定义显示标签，请设置 <code>setting(workbench.editor.customLabels.enabled)</code> 设置：</p>
+
+<pre><code class="language-json">    "workbench.editor.customLabels.enabled": true</code></pre>
+
+<p>你可以使用 <code>setting(workbench.editor.customLabels.patterns)</code> 设置为标签页显示标签指定一个或多个命名模式。命名模式由两个部分组成：</p>
+
+<ul>
+<li><strong>项目</strong> - 一个用于匹配文件路径的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>，对其应用自定义标签。例如，<code><strong>/static/</strong>/*.html</code>。</li>
+<li><strong>值</strong> - 自定义标签的模板。模板可以使用变量，例如 <code>${filename}</code>、<code>${extname}</code>、<code>${extname(N)}</code>、<code>${dirname}</code> 和 <code>${dirname(N)}</code>，这些变量会动态替换为文件路径中的值。
+</li>
+</ul>
+<p>以下示例显示 <code>/src/orders/index.html</code> 文件的标签页标签为 <code>orders/index</code>：</p>
+
+<pre><code class="language-json">    "workbench.editor.customLabels.patterns": {
+        "**/src/**/index.html": "${dirname}/${filename}"
+    }</code></pre>
+
+<p>!<a href="editing/images/userinterface/tabs-custom-labels.png">Screenshot of Setting editor to enable and specify custom labels for tabs</a></p>
+
+<p>以下示例对文件 <code>tests/editor.test.ts</code> 使用了 <code>${extname}</code> 变量：</p>
+
+<ul>
+<li><code>${filename}</code> => editor</li>
+<li><code>${extname}</code> => test.ts</li>
+<li><code>${extname(0)}</code> => ts</li>
+<li><code>${extname(1)}</code> => test</li>
+<li><code>${extname(-1)}</code> => test</li>
+<li><code>${extname(-2)}</code> => ts
+<blockquote>[!NOTE]</blockquote>
+<blockquote>自定义标签页标签也适用于"打开的编辑器"视图和<a href="../docs/editing/tips-and-tricks.md#quick-open">快速打开</a> (<code>kb(workbench.action.quickOpen)</code>)。</blockquote>
+
+<h2>网格编辑器布局</h2>
+
+</li>
+</ul>
+<p>默认情况下，编辑器组以垂直列布局。例如，当你拆分编辑器时，它会在旁边打开编辑器。你可以按任何你喜欢的布局（垂直和水平）排列编辑器组：</p>
+
+<p><video src="images/userinterface/grid-layout.mp4" autoplay loop controls muted title="Grid Editor Layout"></video></p>
+
+<p>为了支持灵活的布局，你可以创建空的编辑器组。默认情况下，关闭编辑器组的最后一个编辑器也会关闭该组本身，但你可以通过将设置 <code>workbench.editor.closeEmptyGroups</code> 设为 <code>false</code> 来更改此行为：</p>
+
+<p>!<a href="editing/images/userinterface/grid-empty.png">Grid Empty</a></p>
+
+<p>在<strong>视图</strong> > <strong>编辑器布局</strong>菜单中有一组预定义的编辑器布局：</p>
+
+<p>!<a href="editing/images/userinterface/grid-layout-menu.png">Grid Editor Layout Menu</a></p>
+
+<p>默认情况下，在侧边打开的编辑器（例如，通过选择编辑器工具栏的<strong>拆分编辑器</strong>操作）会在活动编辑器的右侧打开。如果你更希望编辑器在活动编辑器的下方打开，请将 <code>setting(workbench.editor.openSideBySideDirection)</code> 设置为 <code>down</code>。</p>
+
+<p>有许多用于通过键盘调整编辑器布局的键盘命令。如果你更习惯使用鼠标，可以使用拖放将编辑器拆分为任意方向：</p>
+
+<p><video src="images/userinterface/grid-dnd.mp4" autoplay loop controls muted title="Grid Editor Drag and Drop"></video></p>
+
+<blockquote>[!TIP]</blockquote>
+<blockquote>如果你在悬停于拆分编辑器的工具栏操作上时按住 <code>kbstyle(Alt)</code> 键，它会提供拆分到另一个方向的选项。这是快速拆分到右侧或底部的方法。</blockquote>
+
+<p>!<a href="editing/images/userinterface/grid-alt.gif">Grid Alt Click</a></p>
+
+<h3>键盘快捷方式</h3>
+
+<p>以下是一些方便的键盘快捷方式，用于在编辑器和编辑器组之间快速导航。</p>
+
+<ul>
+<li><code>kb(workbench.action.nextEditor)</code> - 转到右侧编辑器。</li>
+<li><code>kb(workbench.action.previousEditor)</code> - 转到左侧编辑器。</li>
+<li><code>kb(workbench.action.quickOpenPreviousRecentlyUsedEditorInGroup)</code> - 在编辑器组的最近使用列表中打开上一个编辑器。</li>
+<li><code>kb(workbench.action.focusFirstEditorGroup)</code> - 转到最左侧的编辑器组。</li>
+<li><code>kb(workbench.action.focusSecondEditorGroup)</code> - 转到中间的编辑器组。</li>
+<li><code>kb(workbench.action.focusThirdEditorGroup)</code> - 转到最右侧的编辑器组。</li>
+<li><code>kb(workbench.action.closeActiveEditor)</code> - 关闭活动编辑器。</li>
+<li><code>kb(workbench.action.closeEditorsInGroup)</code> - 关闭编辑器组中的所有编辑器。</li>
+<li><code>kb(workbench.action.closeAllEditors)</code> - 关闭所有编辑器。
+</li>
+</ul>
+<p>>如果你想修改默认的键盘快捷方式，请参阅<a href="../docs/configure/keybindings.md">键绑定</a>了解详细信息。</p>
+
+<h2>不使用标签页工作</h2>
+
+<p>如果你不想使用标签页（选项卡标题），可以通过将 <code>setting(workbench.editor.showTabs)</code> 设置为 <code>single</code> 或 <code>none</code> 来完全禁用标签页。</p>
+
+<h3>禁用预览模式</h3>
+
+<p>没有标签页时，资源管理器视图中的<strong>打开的编辑器</strong>部分是进行文件导航的快捷方式。但是，启用<a href="../docs/editing/userinterface.md#预览模式">预览编辑器模式</a>后，文件不会添加到"打开的编辑器"部分。你可以通过 <code>setting(workbench.editor.enablePreview)</code> 和 <code>setting(workbench.editor.enablePreviewFromQuickOpen)</code> 设置禁用此功能。</p>
+
+<h3>使用键盘快捷方式导航编辑器历史记录</h3>
+
+<p>你可以更改 <code>kbstyle(Ctrl+Tab)</code> 的行为，使其显示历史记录中所有已打开编辑器的列表，而不依赖于活动编辑器组。</p>
+
+<p>编辑你的<a href="../docs/configure/keybindings.md">键盘快捷方式</a>并添加以下内容：</p>
+
+<pre><code class="language-json">{ "key": "ctrl+tab", "command": "workbench.action.openPreviousEditorFromHistory" },
+{ "key": "ctrl+tab", "command": "workbench.action.quickOpenNavigateNext", "when": "inQuickOpen" },</code></pre>
+
+<h3>关闭整个组而不是单个编辑器</h3>
+
+<p>如果你喜欢 VS Code 在关闭一个编辑器时关闭整个组的行为，可以在<a href="../docs/configure/keybindings.md">键绑定</a>中绑定以下内容。</p>
+
+<p>macOS：</p>
+
+<pre><code class="language-json">{ "key": "cmd+w", "command": "workbench.action.closeEditorsInGroup" }</code></pre>
+
+<p>Windows/Linux：</p>
+
+<pre><code class="language-json">{ "key": "ctrl+w", "command": "workbench.action.closeEditorsInGroup" }</code></pre>
+
+<h2>窗口管理</h2>
+
+<p>VS Code 提供了各种选项来控制如何在会话之间打开或还原 VS Code 窗口（实例）。</p>
+
+<p>提供了 <code>setting(window.openFoldersInNewWindow)</code> 和 <code>setting(window.openFilesInNewWindow)</code> 设置来配置文件或文件夹是打开新窗口还是重用最后的活动窗口，可能的值为 <code>default</code>、<code>on</code> 和 <code>off</code>。</p>
+
+<p>如果配置为 <code>default</code>，VS Code 会根据打开请求的来源来决定是重用还是打开新窗口。将其设置为 <code>on</code> 或 <code>off</code> 以始终保持相同的行为。例如，如果你觉得从<strong>文件</strong>菜单中选择文件或文件夹应始终在新窗口中打开，请将此设置为 <code>on</code>。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>在某些情况下会忽略此设置，例如当你使用 <code>-new-window</code> 或 <code>-reuse-window</code> 命令行选项时。</blockquote>
+
+<p><code>setting(window.restoreWindows)</code> 设置告知 VS Code 如何还原上一会话中打开的窗口。默认情况下，VS Code 会还原上一会话中工作的所有窗口（设置：<code>all</code>）。将此设置更改为 <code>none</code> 以永远不重新打开任何窗口，并始终以一个空的 VS Code 实例开始。将其更改为 <code>one</code> 以仅重新打开上一个工作的窗口，或更改为 <code>folders</code> 以仅还原已打开文件夹的窗口。</p>
+
+<h2>后续步骤</h2>
+
+<p>现在你已经了解了 VS Code 的整体布局，可以开始自定义编辑器以适应你的工作方式，请查看以下文章：</p>
+
+<ul>
+<li><a href="../docs/configure/themes.md">更改主题</a> - 根据你的偏好设置颜色和/或文件图标主题。</li>
+<li><a href="../docs/configure/custom-layout.md">使用自定义布局</a> - 了解有关 VS Code 工作台和编辑器布局自定义的更多信息。
+<h2>常见问题</h2>
+
+<h3>如何更改缩进参考线的颜色？</h3>
+
+</li>
+</ul>
+<p>缩进参考线颜色是可自定义的，就像大多数 VS Code 用户界面元素一样。要为你活动的颜色主题<a href="../api/references/theme-color.md">自定义</a>缩进参考线颜色，请使用 <code>setting(workbench.colorCustomizations)</code> 设置并修改 <code>editorIndentGuide.background</code> 值。</p>
+
+<p>例如，要使缩进参考线变为亮蓝色，请在 <code>settings.json</code> 中添加以下内容：</p>
+
+<pre><code class="language-json">"workbench.colorCustomizations": {
+    "editorIndentGuide.background": "#0000ff"
+}</code></pre>
+
+<h3>我可以隐藏资源管理器视图中的"打开的编辑器"部分吗？</h3>
+
+<p>可以，你可以通过使用资源管理器中的"视图"菜单并切换<strong>打开的编辑器</strong>菜单项来显示或隐藏"打开的编辑器"部分。</p>
+
+<p>!<a href="editing/images/userinterface/explorer-menu.png">Explorer menu to enable or disable views in the Explorer</a></p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

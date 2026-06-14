@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Python 数据科学教程，演示如何在 Visual Studio Code 中使用常见数据科学和机器学习库，并支持 Jupyter Notebook。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / datascience / data-science-tutorial</div>
+<h1>VS Code 中的数据科学教程</h1>
+
+<p>本教程演示如何使用 Visual Studio Code 和 Microsoft Python 扩展，结合常见的数据科学库来探索一个基本的数据科学场景。具体来说，你将使用泰坦尼克号的乘客数据，学习如何设置数据科学环境、导入和清理数据、创建一个用于预测泰坦尼克号生存情况的机器学习模型，并评估所生成模型的准确性。</p>
+
+<h2>先决条件</h2>
+
+<p>完成本教程需要安装以下软件。如果尚未安装，请务必安装。</p>
+
+<ul>
+<li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
+<li>来自 Visual Studio Marketplace 的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python 扩展</a>和 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">VS Code Jupyter 扩展</a>。有关安装扩展的更多详细信息，请参阅<a href="../docs/configure/extensions/extension-marketplace.md">扩展市场</a>。这两个扩展均由 Microsoft 发布。
+</li>
+<li><a href="https://docs.anaconda.com/miniconda/">Miniconda 与最新版 Python</a>
+<blockquote><strong>注意</strong>：如果你已经安装了完整的 Anaconda 发行版，则无需安装 Miniconda。或者，如果你不希望使用 Anaconda 或 Miniconda，可以创建一个 Python 虚拟环境并使用 pip 安装本教程所需的包。如果选择这种方式，你需要安装以下包：pandas、jupyter、seaborn、scikit-learn、keras 和 tensorflow。</blockquote>
+<blockquote>```sh</blockquote>
+<blockquote>python -m pip install pandas jupyter seaborn scikit-learn keras tensorflow</blockquote>
+<blockquote>```</blockquote>
+
+<h2>设置数据科学环境</h2>
+
+</li>
+</ul>
+<p>Visual Studio Code 和 Python 扩展为数据科学场景提供了出色的编辑器。凭借对 Jupyter notebook 的原生支持以及与 Anaconda 的结合，你可以轻松上手。在本节中，你将为本教程创建工作区，创建一个包含所需数据科学模块的 Anaconda 环境，并创建一个用于构建机器学习模型的 Jupyter notebook。</p>
+
+<ol>
+<li>首先，为本数据科学教程创建一个 Anaconda 环境。打开 Anaconda 命令提示符，运行 <code>conda create -n myenv python=3.10 pandas jupyter seaborn scikit-learn keras tensorflow</code> 来创建一个名为 <strong>myenv</strong> 的环境。有关创建和管理 Anaconda 环境的更多信息，请参阅 <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html">Anaconda 文档</a>。
+</li>
+<li>接下来，在一个方便的位置创建一个文件夹，作为本教程的 VS Code 工作区，将其命名为 <code>hello_ds</code>。
+</li>
+<li>通过运行 VS Code 并使用 <strong>文件</strong> > <strong>打开文件夹</strong> 命令在 VS Code 中打开项目文件夹。由于文件夹是你自己创建的，你可以安全地信任并打开该文件夹。
+</li>
+<li>VS Code 启动后，创建将用于本教程的 Jupyter notebook。打开命令面板 (<code>kb(workbench.action.showCommands)</code>) 并选择 <strong>Create: New Jupyter Notebook</strong>。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/create-notebook.png">Creating a new Jupyter Notebook</a></p>
+
+<blockquote><strong>注意</strong>：或者，你也可以从 VS Code 文件资源管理器中使用新建文件图标来创建一个名为 <code>hello.ipynb</code> 的 Notebook 文件。</blockquote>
+
+<ol>
+<li>使用 <strong>文件</strong> > <strong>另存为...</strong> 将文件保存为 <code>hello.ipynb</code>。
+</li>
+<li>文件创建后，你应该能在 notebook 编辑器中看到打开的 <a href="https://jupyter.org/">Jupyter notebook</a>。有关原生 Jupyter notebook 支持的更多信息，你可以阅读 <a href="../docs/datascience/jupyter-notebooks.md">Jupyter Notebooks</a> 主题。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/notebook-editor.png">Viewing a new Jupyter Notebook</a></p>
+
+<ol>
+<li>现在选择 notebook 右上角的 <strong>选择内核</strong>。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/select-kernel.png">Selecting a Jupyter Notebook Kernel</a></p>
+
+<ol>
+<li>选择你在上面创建的 Python 环境来运行内核。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/choose-myenv.png">Choose a kernel from created environment</a></p>
+
+<ol>
+<li>若要通过 VS Code 的集成终端管理你的环境，请使用 (<code>kb(workbench.action.terminal.toggleTerminal)</code>) 打开终端。如果你的环境尚未激活，你可以像在终端中一样进行激活 (<code>conda activate myenv</code>)。
+<h2>准备数据</h2>
+
+</li>
+</ol>
+<p>本教程使用的是 <a href="https://www.openml.org/d/40945">OpenML.org</a> 上提供的<a href="https://hbiostat.org/data/repo/titanic.html">泰坦尼克号数据集</a>，该数据集来自范德堡大学生物统计系（<a href="https://hbiostat.org/data">https://hbiostat.org/data</a>）。泰坦尼克号数据提供了关于泰坦尼克号上乘客的生存信息以及乘客的特征，如年龄和舱位等级。使用这些数据，本教程将建立一个模型来预测某位乘客是否会在泰坦尼克号沉没事件中幸存。本节将展示如何在 Jupyter notebook 中加载和操作数据。</p>
+
+<ol>
+<li>首先，从 <a href="https://hbiostat.org/data/repo/titanic3.csv">hbiostat.org</a> 下载泰坦尼克号数据为一个 CSV 文件（下载链接在右上角），文件名为 <code>titanic3.csv</code>，并将其保存到你上一节中创建的 <code>hello_ds</code> 文件夹中。</li>
+<li>如果尚未在 VS Code 中打开文件，请通过 <strong>文件</strong> > <strong>打开文件夹</strong> 打开 <code>hello_ds</code> 文件夹和 Jupyter notebook（<code>hello.ipynb</code>）。</li>
+<li>在你的 Jupyter notebook 中，首先导入 <a href="https://pandas.pydata.org/">pandas</a> 和 <a href="https://numpy.org/">numpy</a> 这两个常用的数据处理库，并将泰坦尼克号数据加载到 pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">DataFrame</a> 中。为此，请将下面的代码复制到 notebook 的第一个单元格中。有关在 VS Code 中使用 Jupyter notebook 的更多指导，请参阅<a href="../docs/datascience/jupyter-notebooks.md">使用 Jupyter Notebooks</a> 文档。
+<pre><code class="language-python">   import pandas as pd
+   import numpy as np
+   data = pd.read_csv('titanic3.csv')</code></pre>
+
+</li>
+<li>现在，使用运行单元格图标或 <code>kbstyle(Shift+Enter)</code> 快捷键运行该单元格。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-01.png">Running a Jupyter notebook cell</a></p>
+
+<ol>
+<li>单元格运行完成后，你可以使用变量资源管理器和数据查看器来查看已加载的数据。首先选择 notebook 上方工具栏中的 <strong>变量</strong> 图标。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/variable-explorer-1.png">Select Variables icon</a></p>
+
+<ol>
+<li>VS Code 底部将打开一个 <strong>JUPYTER: VARIABLES</strong> 窗格。它包含了你当前运行内核中已定义的变量列表。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/variable-explorer-2.png">Variables pane</a></p>
+
+<ol>
+<li>若要查看之前加载的 Pandas DataFrame 中的数据，请选择 <code>data</code> 变量左侧的数据查看器图标。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/variable-explorer-3.png">Select Data Viewer icon</a></p>
+
+<ol>
+<li>使用数据查看器可以查看、排序和筛选数据行。查看数据后，绘制数据的某些方面的图表可以帮助你可视化不同变量之间的关系。
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/dataviewer.png">Data viewer and variable explorer</a></p>
+
+<p>   或者，你也可以使用其他扩展（如 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler">Data Wrangler</a>）提供的数据查看体验。Data Wrangler 扩展提供了丰富的用户界面来展示有关你数据的见解，并帮助你执行数据概要分析、质量检查、转换等操作。请在我们的文档中了解更多关于 <a href="../docs/datascience/data-wrangler.md">Data Wrangler 扩展</a> 的信息。</p>
+
+<ol>
+<li>在绘制数据图表之前，你需要确保数据没有任何问题。如果你查看泰坦尼克号 CSV 文件，你会注意到的第一件事是问号（"?"）被用来标识数据不可用的单元格。
+</li>
+</ol>
+<p>   虽然 Pandas 可以将此值读入 DataFrame，但对于 <strong>age</strong> 这样的列，其结果将是其数据类型会被设置为 <strong>object</strong> 而不是数值数据类型，这会给绘图带来问题。</p>
+
+<p>   可以通过将问号替换为 pandas 能够理解的缺失值来纠正此问题。在 notebook 的下一个单元格中添加以下代码，将 <strong>age</strong> 和 <strong>fare</strong> 列中的问号替换为 <a href="https://docs.scipy.org/doc/numpy/reference/constants.html?highlight=nan#numpy.nan">numpy NaN</a> 值。请注意，在替换值之后，我们还需要更新列的数据类型。</p>
+
+<blockquote><strong>提示</strong>：若要添加新单元格，你可以使用现有单元格左下角的插入单元格图标。或者，你也可以使用 <code>kbstyle(Esc)</code> 进入命令模式，然后按 <code>kbstyle(B)</code> 键。</blockquote>
+
+<pre><code class="language-python">   data.replace('?', np.nan, inplace= True)
+   data = data.astype({"age": np.float64, "fare": np.float64})</code></pre>
+
+<blockquote><strong>注意</strong>：如果你需要查看某列所使用的数据类型，可以使用 <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dtypes.html#pandas.DataFrame.dtypes">DataFrame dtypes</a> 属性。</blockquote>
+
+<ol>
+<li>现在数据已经就绪，你可以使用 <a href="https://seaborn.pydata.org/">seaborn</a> 和 <a href="https://matplotlib.org">matplotlib</a> 来查看数据集中某些列与生存率的关系。在 notebook 的下一个单元格中添加以下代码并运行，以查看生成的图表。
+<pre><code class="language-python">   import seaborn as sns
+   import matplotlib.pyplot as plt
+
+   fig, axs = plt.subplots(ncols=5, figsize=(30,5))
+   sns.violinplot(x="survived", y="age", hue="sex", data=data, ax=axs[0])
+   sns.pointplot(x="sibsp", y="survived", hue="sex", data=data, ax=axs[1])
+   sns.pointplot(x="parch", y="survived", hue="sex", data=data, ax=axs[2])
+   sns.pointplot(x="pclass", y="survived", hue="sex", data=data, ax=axs[3])
+   sns.violinplot(x="survived", y="fare", hue="sex", data=data, ax=axs[4])</code></pre>
+
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-02.png">Graphing the titanic data</a></p>
+
+<blockquote><strong>提示</strong>：若要快速复制你的图表，你可以将鼠标悬停在图表的右上角，点击出现的 <strong>复制到剪贴板</strong> 按钮。你还可以通过点击 <strong>展开图像</strong> 按钮来更好地查看图表的详细信息。</blockquote>
+
+<p>      !<a href="datascience/images/data-science-tutorial/plot-viewer-buttons.png">Plot Viewer Buttons</a></p>
+
+<ol>
+<li>这些图表有助于你了解生存率与数据输入变量之间的一些关系，但你也可以使用 <strong>pandas</strong> 来计算相关性。为此，所有使用的变量都需要是数值型的以便进行相关性计算，而目前 gender（性别）存储为字符串。若要将这些字符串值转换为整数，请添加并运行以下代码。
+<pre><code class="language-python">   data.replace({'male': 1, 'female': 0}, inplace=True)</code></pre>
+
+</li>
+<li>现在，你可以分析所有输入变量之间的相关性，以确定哪些特征将是机器学习模型的最佳输入。值越接近 1，表示该值与结果之间的相关性越高。使用以下代码来关联所有变量与生存率之间的关系。
+<pre><code class="language-python">   data.corr(numeric_only=True).abs()[["survived"]]</code></pre>
+
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-03.png">Determining the correlation between input variables and survival</a></p>
+
+<ol>
+<li>查看相关性结果，你会注意到一些变量（如 gender）与生存率有相当高的相关性，而其他变量（如 relatives，即 sibsp = 兄弟姐妹或配偶，parch = 父母或子女）似乎相关性较低。
+</li>
+</ol>
+<p>   让我们假设 <strong>sibsp</strong> 和 <strong>parch</strong> 在影响生存率方面是相关的，并将它们合并到一个名为 "relatives" 的新列中，看看它们的组合是否与生存率有更高的相关性。为此，你将检查给定乘客的 <strong>sibsp</strong> 和 <strong>parch</strong> 数量是否大于 0，如果是，那么你可以说他们船上有亲属。</p>
+
+<p>   使用以下代码在数据集中创建一个名为 <code>relatives</code> 的新变量和列，并再次检查相关性。</p>
+
+<pre><code class="language-python">   data['relatives'] = data.apply (lambda row: int((row['sibsp'] + row['parch']) &gt; 0), axis=1)
+   data.corr(numeric_only=True).abs()[["survived"]]</code></pre>
+
+<p>      !<a href="datascience/images/data-science-tutorial/jupyter-cell-04.png">Determining the correlation between having relatives and survival</a></p>
+
+<ol>
+<li>你会注意到，事实上，从一个人是否有亲属而非有多少亲属的角度来看，与生存率的相关性更高。掌握了这一信息后，你现在可以从数据集中删除低价值的 <strong>sibsp</strong> 和 <strong>parch</strong> 列，以及任何包含 <strong>NaN</strong> 值的行，从而得到一个可以用于训练模型的数据集。
+<pre><code class="language-python">   data = data[['sex', 'pclass','age','relatives','fare','survived']].dropna()</code></pre>
+
+<blockquote><strong>注意</strong>：虽然 age（年龄）的直接相关性较低，但仍予以保留，因为它似乎合理地可能与其他输入结合时仍具有相关性。</blockquote>
+
+<h2>训练和评估模型</h2>
+
+</li>
+</ol>
+<p>数据集准备就绪后，你现在可以开始创建模型了。在本节中，你将使用 <a href="https://scikit-learn.org/stable/">scikit-learn</a> 库（因为它提供了一些有用的辅助函数）来对数据集进行预处理，训练一个分类模型以确定泰坦尼克号上的生存情况，然后使用测试数据对该模型进行评估，以确定其准确性。</p>
+
+<ol>
+<li>训练模型的一个常见的第一步是将数据集分为训练数据和验证数据。这样你可以使用一部分数据来训练模型，另一部分数据来测试模型。如果你使用所有数据来训练模型，你将无法估计模型在面对尚未见过的数据时的实际表现。scikit-learn 库的一个优势是它提供了一个专门用于将数据集拆分为训练数据和测试数据的方法。
+</li>
+</ol>
+<p>   在 notebook 中添加并运行一个包含以下代码的单元格来拆分数据。</p>
+
+<pre><code class="language-python">   from sklearn.model_selection import train_test_split
+   x_train, x_test, y_train, y_test = train_test_split(data[['sex','pclass','age','relatives','fare']], data.survived, test_size=0.2, random_state=0)</code></pre>
+
+<ol>
+<li>接下来，你需要对输入进行归一化，使所有特征得到平等对待。例如，在数据集中，年龄的取值范围大约为 0-100，而性别只有 1 或 0。通过归一化所有变量，你可以确保所有值的范围都相同。在一个新的代码单元格中使用以下代码来缩放输入值。
+<pre><code class="language-python">   from sklearn.preprocessing import StandardScaler
+   sc = StandardScaler()
+   X_train = sc.fit_transform(x_train)
+   X_test = sc.transform(x_test)</code></pre>
+
+</li>
+<li>你可以选择许多不同的机器学习算法来对数据建模。scikit-learn 库也提供了对其中许多<a href="https://scikit-learn.org/stable/user_guide.html">算法</a>的支持，以及一个<a href="https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html">图表</a>来帮助选择适合你场景的算法。现在，使用<a href="https://scikit-learn.org/stable/modules/naive_bayes.html">朴素贝叶斯算法</a>，这是一种常用的分类问题算法。添加一个包含以下代码的单元格来创建和训练该算法。
+<pre><code class="language-python">   from sklearn.naive_bayes import GaussianNB
+   model = GaussianNB()
+   model.fit(X_train, y_train)</code></pre>
+
+</li>
+<li>有了训练好的模型，你现在可以将其应用于训练时保留的测试数据集。添加并运行以下代码来预测测试数据的结果并计算模型的准确性。
+<pre><code class="language-python">   from sklearn import metrics
+   predict_test = model.predict(X_test)
+   print(metrics.accuracy_score(y_test, predict_test))</code></pre>
+
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-05.png">Running the trained model against test data</a></p>
+
+<p>   查看测试数据的结果，你会看到训练好的算法在估算生存率方面有约 75% 的成功率。</p>
+
+<h2>（可选）使用神经网络</h2>
+
+<p>神经网络是一种使用权重和激活函数、模拟人类神经元某些方面的模型，它根据提供的输入来确定结果。与你之前了解的机器学习算法不同，神经网络是一种深度学习形式，你无需提前知道适合你问题集的理想算法。它可以用于许多不同的场景，分类就是其中之一。在本节中，你将使用带有 <a href="https://www.tensorflow.org/">TensorFlow</a> 的 <a href="https://keras.io/">Keras</a> 库来构建神经网络，并探索它如何处理泰坦尼克号数据集。</p>
+
+<ol>
+<li>第一步是导入所需的库并创建模型。在这种情况下，你将使用<a href="https://keras.io/getting-started/sequential-model-guide/">顺序</a>神经网络，这是一种分层神经网络，其中有多个层按顺序相互输入。
+<pre><code class="language-python">   from keras.models import Sequential
+   from keras.layers import Dense
+
+   model = Sequential()</code></pre>
+
+</li>
+<li>定义模型后，下一步是添加神经网络的层。现在，让我们保持简单，只使用三层。添加以下代码来创建神经网络的层。
+<pre><code class="language-python">   model.add(Dense(5, kernel_initializer = 'uniform', activation = 'relu', input_dim = 5))
+   model.add(Dense(5, kernel_initializer = 'uniform', activation = 'relu'))
+   model.add(Dense(1, kernel_initializer = 'uniform', activation = 'sigmoid'))</code></pre>
+
+<ul>
+<li>第一层将设置为维度为 5，因为你拥有五个输入：sex、pclass、age、relatives 和 fare。</li>
+<li>最后一层必须输出 1，因为你希望得到一个一维输出，指示乘客是否会幸存。</li>
+<li>为了简单起见，中间层保持为 5，尽管该值可以不同。
+</li>
+</ul>
+</li>
+</ol>
+<p>   修正线性单元（relu）激活函数被用作前两层的良好通用激活函数，而 sigmoid 激活函数是最后一层所必需的，因为你想要的输出（乘客是否幸存）需要缩放到 0-1 的范围内（乘客存活的概率）。</p>
+
+<p>   你还可以使用以下代码行查看你构建的模型的摘要：</p>
+
+<pre><code class="language-python">   model.summary()</code></pre>
+
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-06.png">Viewing a summary of the sequential neural network</a></p>
+
+<ol>
+<li>模型创建后，需要对其进行编译。作为编译的一部分，你需要定义将使用哪种优化器、如何计算损失以及应优化哪个指标。添加以下代码来构建和训练模型。你会注意到，训练后，准确率约为 61%。
+<blockquote><strong>注意</strong>：此步骤可能需要几秒到几分钟的时间，具体取决于你的机器。</blockquote>
+
+<pre><code class="language-python">   model.compile(optimizer="adam", loss='binary_crossentropy', metrics=['accuracy'])
+   model.fit(X_train, y_train, batch_size=32, epochs=50)</code></pre>
+
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-07.png">Build and train the neural network</a></p>
+
+<ol>
+<li>现在模型已构建并训练完成，我们可以看看它在测试数据上的表现如何。
+<pre><code class="language-python">   y_pred = np.rint(model.predict(X_test).flatten())
+   print(metrics.accuracy_score(y_test, y_pred))</code></pre>
+
+</li>
+</ol>
+<p>   !<a href="datascience/images/data-science-tutorial/jupyter-cell-08.png">Evaluate the neural network</a></p>
+
+<p>   与训练类似，你会注意到现在预测乘客生存率的准确率达到了 79%。使用这个简单的神经网络，其结果优于之前尝试的朴素贝叶斯分类器的 75% 准确率。</p>
+
+<h2>后续步骤</h2>
+
+<p>现在你已经熟悉了在 Visual Studio Code 中进行机器学习的基础知识，以下是一些你可以查看的其他 Microsoft 资源和教程。</p>
+
+<ul>
+<li><a href="../docs/configure/profiles.md#data-science-profile-template">数据科学配置文件模板</a> - 使用一组精选的扩展、设置和代码片段创建一个新的<a href="../docs/configure/profiles">配置文件</a>。</li>
+<li>了解更多关于<a href="https://youtu.be/FSdIoJdSnig">在 Visual Studio Code 中使用 Jupyter Notebooks</a>（视频）。</li>
+<li><a href="https://learn.microsoft.com/azure/machine-learning/how-to-setup-vs-code">开始使用 Azure Machine Learning for VS Code</a> 来利用 Azure 的强大功能部署和优化你的模型。</li>
+<li>在 <a href="https://azure.microsoft.com/services/open-datasets/">Azure 开放数据集</a>上找到更多可供探索的数据。</li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

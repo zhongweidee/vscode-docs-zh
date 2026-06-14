@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Visual Studio Code 远程开发常见问题解答（FAQ），涵盖 SSH、容器和 WSL - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / remote / faq</div>
+<h1>远程开发 FAQ</h1>
+
+<p>本文涵盖了每个 <strong>Visual Studio Code 远程开发</strong>扩展的常见问题。有关设置和使用各项功能的更多详细信息，请参阅 <a href="../docs/remote/ssh.md">SSH</a>、<a href="../docs/devcontainers/containers.md">容器</a> 和 <a href="../docs/remote/wsl.md">WSL</a> 文章。或尝试入门<a href="../docs/remote/ssh-tutorial.md">教程</a>，帮助你在远程环境中快速上手。</p>
+
+<p>有关 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 的问题，请参阅 <a href="https://docs.github.com/github/developing-online-with-codespaces">GitHub Codespaces 文档</a>。</p>
+
+<h2>通用</h2>
+
+<h3>什么是 Visual Studio Code 远程开发？</h3>
+
+<p>Visual Studio Code <a href="https://aka.ms/vscode-remote/download/extension">远程开发扩展包</a> 允许你在容器中、在远程计算机上（通过 SSH）或在 Windows Subsystem for Linux 中打开任何文件夹，并利用 VS Code 的完整功能集。这意味着 VS Code 可以提供本地质量的开发体验——包括完整的 IntelliSense（自动补全）、调试等功能——无论你的代码位于何处或托管在哪里。</p>
+
+<h3>VS Code 远程开发相比本地编辑有哪些优势？</h3>
+
+<p>远程开发的一些优势包括：</p>
+
+<ul>
+<li>能够在你本地运行环境之外的不同操作系统上进行编辑、构建或调试。</li>
+<li>能够在与目标部署环境匹配的环境中进行开发。</li>
+<li>使用比本地计算机更大或更专业的硬件进行开发。</li>
+<li>能够编辑存储在其他位置（如云端或客户现场）的代码。</li>
+<li>分离开发人员环境以避免冲突、提高安全性并加快上手速度。
+</li>
+</ul>
+<p>与使用网络共享或同步文件相比，VS Code 远程开发提供了显著更好的性能，以及对开发环境和工具的更好控制。</p>
+
+<h3>远程开发扩展与 GitHub Codespaces 有何关系？</h3>
+
+<p><a href="https://github.com/features/codespaces">GitHub Codespaces</a> 是一项服务，提供托管在云端的托管开发环境，可从 VS Code 和新的基于浏览器的编辑器访问。该服务还允许 VS Code 和基于浏览器的编辑器访问自托管环境（桌面或服务器），而无需 SSH 服务器甚至直接网络路由。你可以在 <a href="https://docs.github.com/github/developing-online-with-codespaces">GitHub Codespaces 文档</a> 中了解更多信息。</p>
+
+<p>虽然远程开发和 Codespaces 扩展共享技术和功能，但远程开发扩展是单独发布的，可以独立于 GitHub Codespaces 运行。</p>
+
+<h3>远程开发扩展如何工作？</h3>
+
+<p>Visual Studio Code 远程开发允许你的本地 VS Code 安装通过将某些命令的执行移至"远程服务器"，从而透明地与远程计算机（无论是虚拟的还是物理的）上的源代码和运行时环境进行交互。当你连接到远程终结点时，<strong>VS Code Server</strong> 会被 VS Code 快速安装，并且可以托管直接与远程工作区、计算机和文件系统交互的扩展。</p>
+
+<p>!<a href="remote/images/troubleshooting/architecture.png">架构概览</a></p>
+
+<p>有关扩展的更多详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+
+<h3>远程开发扩展如何保证对远程计算机、虚拟机或容器的安全访问？</h3>
+
+<p>Visual Studio Code 远程开发使用现有的、众所周知的传输协议（如<a href="https://en.wikipedia.org/wiki/Secure_Shell">安全外壳协议</a>）来验证和保护流量。除了这些众所周知的安全传输所使用的端口外，无需公开开放任何端口。</p>
+
+<p>注入的 VS Code Server 以你登录计算机时使用的同一用户身份运行，确保 VS Code 及其扩展在没有权限的情况下不会被赋予不当的提升访问权限。该服务器由 VS Code 启动和停止，不会嵌入任何用户或全局登录或启动脚本中。VS Code 管理服务器的生命周期，因此你无需担心它是否在运行。</p>
+
+<h3>VS Code Server 可以单独安装或使用吗？</h3>
+
+<p>不可以。VS Code Server 是远程开发扩展的一个组件，由 VS Code 客户端管理。它在 VS Code 连接到终结点时由 VS Code 自动安装和更新，如果单独安装可能会很快过时。它<strong>不</strong>供其他客户端<a href="#许可和隐私">使用或许可</a>。</p>
+
+<h3>VS Code Server 的连接要求是什么？</h3>
+
+<p>安装 VS Code Server 要求你的本地计算机对以下地址具有出站 HTTPS（端口 443）连接：</p>
+
+<ul>
+<li><code>update.code.visualstudio.com</code></li>
+<li><code>vscode.download.prss.microsoft.com</code>
+</li>
+</ul>
+<p>默认情况下，Remote - SSH 将尝试在远程主机上下载，如果失败，则在建立连接后在本地下载 VS Code Server 并将其传输到远程。你可以通过 <code>setting(remote.SSH.localServerDownload)</code> 设置更改此行为，设置为始终在本地下载然后传输，或者从不本地下载。</p>
+
+<p>Dev Containers 扩展始终在本地下载并传输到容器中。</p>
+
+<p>你可以使用<strong>扩展：从 VSIX 安装...</strong> 命令在没有互联网连接的情况下手动安装扩展，但如果你使用扩展面板或 <code>devcontainer.json</code> 来安装扩展，你的本地计算机和 VS Code Server 将需要对以下地址具有出站 HTTPS（端口 443）访问权限：</p>
+
+<ul>
+<li><code>marketplace.visualstudio.com</code></li>
+<li><code>*.gallerycdn.vsassets.io</code>（Azure CDN）
+</li>
+</ul>
+<p>最后，某些扩展（如 C#）会从 <code>download.microsoft.com</code> 或 <code>download.visualstudio.microsoft.com</code> 下载辅助依赖项。其他扩展（如 <a href="https://learn.microsoft.com/visualstudio/liveshare/reference/connectivity#requirements-for-connection-modes">Visual Studio Live Share</a>）可能还有其他的连接要求。如果遇到问题，请查阅扩展的文档以了解详细信息。</p>
+
+<p>服务器和 VS Code 客户端之间的所有其他通信根据扩展通过以下传输通道完成：</p>
+
+<ul>
+<li>SSH：经身份验证的安全 SSH 隧道。</li>
+<li>容器：Docker 配置的通信通道（通过 <code>docker exec</code>）。</li>
+<li>WSL：一个随机本地端口。
+</li>
+</ul>
+<p>你可以在<a href="../docs/setup/network.md#common-hostnames">网络连接文章</a>中找到 VS Code 本身需要访问的位置列表。</p>
+
+<h3>为什么在使用 Remote - 扩展时，我在容器工具扩展中看不到本地容器？</h3>
+
+<p>默认情况下，容器工具扩展将远程运行。虽然这在某些情况下是一个合理的默认设置，但这意味着当 VS Code 连接到远程 SSH 主机、容器或 WSL 时，该扩展可能不会显示本地容器。</p>
+
+<p>你可以使用以下解决方案之一来解决此问题：</p>
+
+<ul>
+<li>打开一个新的本地窗口（<strong>文件 > 新建窗口</strong>）并用它来处理本地容器。
+</li>
+<li>安装 <a href="https://aka.ms/vscode-remote/download/containers">Dev Containers</a> 扩展，并在需要查看本地容器时使用<a href="../docs/devcontainers/containers.md#managing-containers">远程资源管理器</a>。
+</li>
+<li><strong>仅限 WSL</strong>：使用 <a href="https://docs.docker.com/docker-for-windows/wsl-tech-preview/">Docker Technical Preview for WSL 2</a> 或<a href="https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly">配置 Docker Desktop 以在 WSL 1 中使用</a>。
+</li>
+<li><strong>仅限 Dev Containers</strong>：在容器中转发 <a href="https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker">Docker 套接字并安装 Docker CLI</a>（仅限）。
+</li>
+<li>使用 <a href="../docs/devcontainers/containers.md#advanced-forcing-an-extension-to-run-locally-or-remotely">extensionKind 属性</a> 强制扩展为 <code>ui</code>。但是，这将导致某些命令无法正常工作。
+<h3>在主机上使用远程开发需要安装哪些 Linux 软件包或库？</h3>
+
+</li>
+</ul>
+<p>远程开发需要内核 >= 4.18、glibc >=2.28 和 libstdc++ >= 3.4.25。最新的 x86_64 基于 glibc 的发行版具有最佳支持，但确切要求可能因发行版而异。</p>
+
+<p>基于 musl 的 <a href="https://alpinelinux.org">Alpine Linux</a> 支持适用于 Dev Containers 和 WSL 扩展，而 ARMv7l（AArch32）/ ARMv8l（AArch64）在 Remote - SSH 中可用。但是，某些扩展中的原生依赖项可能导致它们在非 x86_64 glibc 发行版上无法运行。请注意，实验性 ARMv8l（AArch64）仅在 <a href="https://code.visualstudio.com/insiders/">VS Code Insiders</a> 中可用。</p>
+
+<p>有关更多详细信息，请参阅<a href="../docs/remote/linux.md">使用 Linux 进行远程开发</a>。</p>
+
+<h3>我可以在较旧的 Linux 发行版上运行 VS Code Server 吗？</h3>
+
+<p>从 VS Code 版本 1.99（2025 年 3 月）开始，VS Code 分发的预构建服务器仅兼容基于 glibc 2.28 或更高版本的 Linux 发行版。例如，包括 Debian 10、RHEL 8 或 Ubuntu 20.04。</p>
+
+<p>如果提供了包含这些必需库版本的 sysroot，VS Code 仍将允许用户通过 <a href="https://aka.ms/vscode-remote/download/ssh">Remote - SSH</a> 扩展连接到 VS Code 不支持的 OS（没有 glibc >= 2.28 和 libstdc++ >= 3.4.25 的 OS）。这种方法为你和你的组织提供了更多时间来迁移到较新的 Linux 发行版。</p>
+
+<table>
+  <thead><tr><th></th><th>VS Code 版本</th><th>基本要求</th><th>备注</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>--------------</td><td>-------------------</td><td>-------</td><td></td></tr>
+  <tr><td></td><td>>= 1.99.x</td><td>内核 >= 4.18, glibc >=2.28, libstdc++ >= 3.4.25, binutils >= 2.29</td><td>&lt;none&gt;</td><td></td></tr>
+</tbody>
+</table>
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>此方法是一种技术变通方案，并非官方支持的使用场景。</blockquote>
+
+<p>按照以下步骤为这种变通方案配置你的环境：</p>
+
+<ol>
+<li>构建 sysroot
+</li>
+</ol>
+<p>    我们建议使用 <a href="https://crosstool-ng.github.io/docs/">Crosstool-ng</a> 来构建 sysroot。以下是一些你可以用作起点的示例配置：</p>
+
+<ul>
+<li><a href="https://github.com/microsoft/vscode-linux-build-agent/blob/main/x86_64-gcc-8.5.0-glibc-2.28.config">x86_64-gcc-8.5.0-glibc-2.28</a><ul>
+<li><a href="https://github.com/microsoft/vscode-linux-build-agent/blob/main/aarch64-gcc-8.5.0-glibc-2.28.config">aarch64-gcc-8.5.0-glibc-2.28</a><ul>
+<li><a href="https://github.com/microsoft/vscode-linux-build-agent/blob/main/armhf-gcc-8.5.0-glibc-2.28.config">armhf-gcc-8.5.0-glibc-2.28</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>    以下示例容器也可用于创建安装了 <a href="https://crosstool-ng.github.io/docs/">Crosstool-ng</a> 的环境：</p>
+
+<pre><code class="language-docker">    FROM ubuntu:latest
+
+    RUN apt-get update
+    RUN apt-get install -y gcc g++ gperf bison flex texinfo help2man make libncurses5-dev \
+    python3-dev autoconf automake libtool libtool-bin gawk wget bzip2 xz-utils unzip \
+    patch rsync meson ninja-build
+
+    # 安装 crosstool-ng
+    RUN wget http://crosstool-ng.org/download/crosstool-ng/crosstool-ng-1.26.0.tar.bz2
+    RUN tar -xjf crosstool-ng-1.26.0.tar.bz2
+    RUN cd crosstool-ng-1.26.0 &amp;&amp; ./configure --prefix=/crosstool-ng-1.26.0/out &amp;&amp; make &amp;&amp; make install
+    ENV PATH=$PATH:/crosstool-ng-1.26.0/out/bin</code></pre>
+
+<p>    一旦你拥有安装了 <a href="https://crosstool-ng.github.io/docs/">Crosstool-ng</a> 的环境并准备好了相关配置，运行以下命令来生成 sysroot：</p>
+
+<pre><code class="language-sh">    mkdir toolchain-dir
+    cd toolchain-dir
+    cp &lt;配置文件路径&gt; .config
+    ct-ng build</code></pre>
+
+<ol>
+<li>VS Code Server 在安装过程中使用 <a href="https://github.com/NixOS/patchelf">patchelf</a> 从 sysroot 中读取所需的库。
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>已知 patchelf <code>v0.17.x</code> 会导致远程服务器发生段错误，我们建议使用 patchelf <code>>=v0.18.x</code></blockquote>
+
+</li>
+<li>在远程主机上安装 patchelf 二进制文件和 sysroot
+</li>
+<li>创建以下 3 个环境变量：
+<ul>
+<li><strong>VSCODE_SERVER_CUSTOM_GLIBC_LINKER</strong>：sysroot 中动态链接器的路径（用于 <a href="https://github.com/NixOS/patchelf">patchelf</a> 的 <code>--set-interpreter</code> 选项）<ul>
+<li><strong>VSCODE_SERVER_CUSTOM_GLIBC_PATH</strong>：sysroot 中库位置的路径（用作 <a href="https://github.com/NixOS/patchelf">patchelf</a> 的 <code>--set-rpath</code> 选项）</li>
+<li><strong>VSCODE_SERVER_PATCHELF_PATH</strong>：远程主机上 <a href="https://github.com/NixOS/patchelf">patchelf</a> 二进制文件的路径
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<p>现在，你可以使用 <a href="https://aka.ms/vscode-remote/download/ssh">Remote - SSH</a> 扩展连接到远程设备。成功连接后，VS Code 将显示一个对话框和横幅消息，提示连接不受支持。</p>
+
+<h3>我可以在 32 位 ARM Linux 主机上运行 VS Code Server 吗？</h3>
+
+<p>VS Code 版本 1.122 是最后一个支持在 32 位 ARM Linux 主机上运行预构建服务器的版本。从 VS Code 版本 1.123 开始，你将需要使用受支持的 x86_64 或 ARM64 Linux 主机进行远程开发。</p>
+
+<h3>我可以安装单独的扩展而不是扩展包吗？</h3>
+
+<p>可以。<a href="https://aka.ms/vscode-remote/download/extension">远程开发扩展包</a> 为你提供了一种便捷的方式来访问所有最新的远程功能。但是，你始终可以从 Marketplace 或 VS Code 扩展视图中安装单独的扩展。</p>
+
+<ul>
+<li><a href="https://aka.ms/vscode-remote/download/ssh">Remote - SSH</a></li>
+<li><a href="https://aka.ms/vscode-remote/download/containers">Dev Containers</a></li>
+<li><a href="https://aka.ms/vscode-remote/download/wsl">WSL</a>
+<h2>如何查看和配置扩展设置？</h2>
+
+</li>
+</ul>
+<p>与 <a href="../docs/configure/settings.md">Visual Studio Code 的其他部分</a> 一样，你可以通过扩展的设置来自定义每个远程开发扩展。以 Dev Containers 为例，你可以通过在扩展视图中打开扩展（<code>kb(workbench.view.extensions)</code>），然后导航到<strong>功能贡献</strong>来查看所有 Dev Containers 设置的列表：</p>
+
+<p>!<a href="remote/images/faq/feature-contributions.png">功能贡献中的设置列表</a></p>
+
+<h2>WSL</h2>
+
+<h3>与将 WSL 用作终端相比，该扩展有何优势？</h3>
+
+<p>你可以将 WSL 视为在 Windows 上运行的 Linux 计算机，你可以在其中安装 Linux 特定的框架/工具（例如 Python、Go、Rust 等），而不会影响你的 Windows 设置。然后，你可以使用 VS Code 和 WSL 扩展在 WSL 中已安装内容的上下文中进行开发，与 Windows 上安装的内容隔离开来。</p>
+
+<p>例如，你可以在 WSL 中安装 Go 技术栈（编译器、调试器、代码检查器等）。如果你只在 Windows 上运行 VS Code，你还必须在 Windows 上安装相同的 Go 技术栈才能获得智能补全、调试、转到定义导航等功能。而且由于语言服务在 Windows 上运行，它们不知道 WSL 中有什么。</p>
+
+<p>确实，你可以从 Windows 运行 WSL 中的二进制文件，反之亦然，但常规的 VS Code 扩展不知道如何做到这一点。我们最初就是这样开始在 WSL 中支持调试的，但很快意识到我们必须更新所有扩展以了解 WSL。</p>
+
+<p>我们决定改为让 VS Code 的一部分在 WSL 中运行，并让 Windows 上运行的 UI 与 WSL 中运行的 VS Code Server 进行通信。这就是 WSL 扩展所实现的功能，有了它，Go 扩展与其余 Go 工具（编译器、调试器、代码检查器）一起在 WSL 中运行，而 VS Code 在 Windows 上运行。</p>
+
+<p>通过这种方法，智能补全等语言功能可以直接针对 WSL 中的内容正常工作，而无需在 Windows 上设置任何内容。你无需担心路径问题或在 Windows 上设置不同版本的开发技术栈。如果你要将应用程序部署到 Linux，你可以设置你的 WSL 实例，使其看起来像你的运行时环境，同时仍在 Windows 上获得丰富的编辑体验。</p>
+
+<h2>扩展作者</h2>
+
+<h3>作为扩展作者，我需要做什么？</h3>
+
+<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。但是，由于扩展可以使用任何 node 模块或运行时，因此可能存在需要调整的情况。我们建议你测试你的扩展（特别是在容器中），以确保不需要任何更新。有关详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+
+<h3>当用户远程连接时，扩展可以访问本地资源或 API 吗？</h3>
+
+<p>当 VS Code 连接到远程环境时，扩展被分类为 <strong>UI</strong> 或<strong>工作区</strong>扩展。UI 扩展在<strong>本地扩展主机</strong>中运行，可以提供 UI 或个性化功能（例如主题），并且可以访问本地文件或 API。工作区扩展在<strong>远程扩展主机</strong>中与工作区一起运行，并且可以完全访问源代码、远程文件系统和远程 API。虽然工作区扩展不专注于 UI 自定义，但它们也可以提供资源管理器、视图和其他 UI 元素。</p>
+
+<p>当用户安装扩展时，VS Code 会尝试推断正确的位置，并根据其类型进行安装。不需要远程运行的扩展（如主题和其他 UI 自定义）会自动安装在 UI 端。所有其他扩展都被视为工作区扩展，因为它们功能最全面。但是，扩展作者也可以通过 <code>package.json</code> 中的 <code>extensionKind</code> 属性来覆盖此位置。</p>
+
+<p>如果你的扩展未按预期工作，<a href="../api/advanced-topics/remote-extensions#incorrect-execution-location">有一些步骤可以检查</a> 它是否在正确的位置运行，或者是否应该具有不同的 <code>extensionKind</code>。另请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>，了解扩展作者需要了解的有关远程开发和 Codespaces 的更多详细信息。</p>
+
+<h2>许可和隐私</h2>
+
+<h3>位置</h3>
+
+<p>你可以在此处找到 VS Code 远程开发扩展的许可证：</p>
+
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items/ms-vscode-remote.remote-ssh/license">Remote-SSH 许可证</a></li>
+<li><a href="https://marketplace.visualstudio.com/items/ms-vscode-remote.remote-wsl/license">WSL 许可证</a></li>
+<li><a href="https://marketplace.visualstudio.com/items/ms-vscode-remote.remote-containers/license">Dev Containers 许可证</a>
+<h3>为什么远程开发扩展或其组件不开源？</h3>
+
+</li>
+</ul>
+<p>Visual Studio Code 远程开发扩展及其相关组件使用<a href="https://aka.ms/vscode-remote/feedback">开放的规划、问题和功能请求流程</a>，但目前不开源。这些扩展共享的源代码也用于完全托管的远程开发服务中，如 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 及其相关扩展。</p>
+
+<p>有关更多信息，请参阅 <a href="https://github.com/microsoft/vscode/wiki/Differences-between-the-repository-and-Visual-Studio-Code">Visual Studio Code 与 'Code - OSS' 的差异</a> 和 <a href="../docs/supporting/oss-extensions.md">Microsoft 扩展开源许可</a> 文章。</p>
+
+<h3>远程开发扩展可以连接到哪里有什么限制吗？</h3>
+
+<p>你可以自由地将扩展用于个人或企业用途，连接到自己的物理计算机、虚拟机或容器。这些可以在本地、你自己的私有云或数据中心、Azure 或其他云/非云托管提供商中。你不能基于扩展或其相关组件构建公共产品或服务（见下一个问题）。</p>
+
+<h3>我可以使用 VS Code 远程开发扩展来构建我自己的产品或服务吗？</h3>
+
+<p>你可以将扩展与你自己的内部或私有服务一起使用。你不能基于 VS Code 远程开发扩展或其相关组件（例如 VS Code Server）构建公共或商业服务。你不能创建扩展或操作远程开发扩展的其他扩展。虽然许可证声明你不得"将软件作为独立或集成的产品提供，或将其与你自己的任何应用程序结合供他人使用"，但你可以说明如何将扩展与你的服务结合使用。</p>
+
+<h3>我可以在自己的公共服务产品中重新打包或重用 VS Code Server 吗？</h3>
+
+<p>不可以。许可证规定你不得"将软件作为独立或集成的产品提供，或将其与你自己的任何应用程序结合供他人使用"，这意味着你不能基于 VS Code Server 构建公共产品或服务。</p>
+
+<h3>我是否可以将扩展用于 X，对此我有疑问，应该联系谁？</h3>
+
+<p>请提交一个 <a href="https://github.com/microsoft/vscode-remote-release/issues">issue</a>。</p>
+
+<h3>GDPR 和 VS Code 远程开发</h3>
+
+<p>VS Code 远程开发扩展遵循与 Visual Studio Code 自身相同的 GDPR 政策。有关更多详细信息，请参阅<a href="../docs/supporting/faq.md#gdpr-and-vs-code">通用 FAQ</a>。</p>
+
+<h2>问题或反馈</h2>
+
+<p>有问题或反馈？</p>
+
+<ul>
+<li>请参阅<a href="../docs/remote/troubleshooting.md">提示和技巧</a>。</li>
+<li>在 <a href="https://stackoverflow.com/questions/tagged/vscode-remote">Stack Overflow</a> 上搜索。</li>
+<li>添加<a href="https://aka.ms/vscode-remote/feature-requests">功能请求</a> 或<a href="https://aka.ms/vscode-remote/issues/new">报告问题</a>。</li>
+</ul>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>

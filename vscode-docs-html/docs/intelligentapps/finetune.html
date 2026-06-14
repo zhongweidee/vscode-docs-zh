@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>了解如何在 Azure 中使用自定义数据集微调 Phi Silica 模型，下载生成的 LoRA 适配器，并使用该适配器进行推理。 - VS Code 中文文档</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; color:#333; line-height:1.6; background:#f5f5f5; }
+.layout { display:flex; min-height:100vh; }
+.sidebar { width:280px; background:#2c2c32; color:#ccc; padding:0 0 20px 0; position:fixed; top:0; left:0; height:100vh; overflow-y:auto; flex-shrink:0; }
+.sidebar-header { padding:16px 20px 8px; border-bottom:1px solid #444; margin-bottom:8px; }
+.sidebar-header h2 { color:#fff; font-size:16px; }
+.sidebar-header a { color:#fff; text-decoration:none; }
+.sidebar-section { border-bottom:1px solid #3a3a42; }
+.sidebar-section-title { color:#e0e0e0; font-weight:600; font-size:12.5px; padding:8px 20px; cursor:pointer; user-select:none; display:flex; justify-content:space-between; align-items:center; text-transform:uppercase; letter-spacing:0.5px; }
+.sidebar-section-title:hover { background:#3a3a42; }
+.sidebar-section-title .toggle { color:#888; font-size:10px; transition:transform 0.2s; }
+.sidebar-section-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-section-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-section-content.collapsed { max-height:0 !important; }
+.sidebar a { color:#9ba3b4; text-decoration:none; font-size:12.5px; display:block; padding:3px 20px 3px 28px; }
+.sidebar a:hover { color:#fff; background:#3a3a42; }
+.sidebar a.active { color:#fff; font-weight:500; background:#3a3a42; }
+.sidebar-group-label { color:#888; font-size:11px; padding:6px 20px 2px 24px; text-transform:uppercase; letter-spacing:0.3px; }
+.sidebar-sub-title { color:#bbb; font-size:12px; padding:5px 20px 5px 24px; cursor:pointer; user-select:none; }
+.sidebar-sub-title:hover { color:#fff; }
+.sidebar-sub-title .toggle { font-size:8px; margin-right:4px; transition:transform 0.2s; display:inline-block; }
+.sidebar-sub-title.collapsed .toggle { transform:rotate(-90deg); }
+.sidebar-sub-content { overflow:hidden; transition:max-height 0.2s ease; }
+.sidebar-sub-content.collapsed { max-height:0 !important; }
+.content { margin-left:280px; flex:1; max-width:960px; padding:40px 60px; background:#fff; min-height:100vh; }
+.content h1 { font-size:32px; font-weight:700; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #eee; color:#1a1a1a; }
+.content h2 { font-size:24px; font-weight:600; margin:32px 0 12px; color:#1a1a1a; }
+.content h3 { font-size:20px; font-weight:600; margin:24px 0 10px; color:#2a2a2a; }
+.content h4 { font-size:16px; font-weight:600; margin:20px 0 8px; }
+.content p { margin:0 0 14px; font-size:15px; }
+.content a { color:#0078d4; text-decoration:none; }
+.content a:hover { text-decoration:underline; }
+.content code { font-family:'Cascadia Code','Fira Code','Consolas',monospace; background:#f0f0f0; padding:2px 6px; border-radius:3px; font-size:13px; }
+.content pre { background:#1e1e1e; color:#d4d4d4; padding:16px; border-radius:6px; overflow-x:auto; margin:14px 0; }
+.content pre code { background:none; padding:0; color:inherit; font-size:13px; line-height:1.5; }
+.content table { border-collapse:collapse; margin:14px 0; width:100%; font-size:14px; }
+.content th, .content td { border:1px solid #ddd; padding:8px 12px; text-align:left; }
+.content th { background:#f8f8f8; font-weight:600; }
+.content tr:nth-child(even) td { background:#fafafa; }
+.content blockquote { border-left:4px solid #0078d4; padding:8px 16px; margin:14px 0; background:#f0f7ff; border-radius:0 4px 4px 0; }
+.content blockquote p { margin:0; }
+.content img { max-width:100%; border-radius:4px; margin:14px 0; border:1px solid #e0e0e0; }
+.content hr { border:none; border-top:1px solid #eee; margin:24px 0; }
+.content ul, .content ol { margin:0 0 14px; padding-left:24px; font-size:15px; }
+.content li { margin-bottom:4px; }
+.content kbd { background:#f0f0f0; border:1px solid #ccc; border-radius:3px; padding:1px 5px; font-size:12px; font-family:monospace; }
+.content .setting { color:#c7254e; background:#f9f2f4; }
+.breadcrumb { font-size:13px; color:#888; margin-bottom:16px; }
+.breadcrumb a { color:#0078d4; }
+@media (max-width:768px) { .sidebar { display:none; } .content { margin-left:0; padding:20px; } }
+.status-card { background:#f0f7ff; border:1px solid #0078d4; border-radius:8px; padding:20px; margin:20px 0; }
+.status-card h3 { margin:0 0 12px; color:#0078d4; }
+.status-item { display:flex; align-items:center; margin:6px 0; font-size:14px; }
+.status-dot { width:10px; height:10px; border-radius:50%; margin-right:10px; flex-shrink:0; }
+.status-dot.done { background:#28a745; }
+.status-dot.pending { background:#dc3545; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="sidebar"><div class="sidebar-header"><h2><a href="../../index.html">📖 VS Code 中文文档</a></h2></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-get-started')"><span>Get Started</span><span class="toggle">▼</span></div><div id="s-get-started" class="sidebar-section-content collapsed"><a href="../../docs/getstarted/overview.html" class="">Overview</a>
+<a href="../../docs/getstarted/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/getstarted/introvideos.html" class="">Intro Videos</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-agents')"><span>Agents</span><span class="toggle">▼</span></div><div id="s-agents" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Agents</div>
+<a href="../../docs/agents/agents-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/agents/agents-window.html" class="">Agents Window</a>
+<a href="../../docs/agents/chat-view.html" class="">Chat View</a>
+<a href="../../docs/agents/remote-agent-sessions.html" class="">Remote Agent Sessions</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-sessions')"><span class="toggle">▶</span> Sessions</div><div id="sub-sessions" class="sidebar-sub-content collapsed"><a href="../../docs/agents/sessions/session-insights.html" class="">Session Insights</a>
+<a href="../../docs/agents/sessions/session-sync.html" class="">Sync Sessions</a>
+</div></div>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-agent-types')"><span class="toggle">▶</span> Agent Types</div><div id="sub-agent-types" class="sidebar-sub-content collapsed"><a href="../../docs/agents/agent-types/local-agents.html" class="">Local Agents</a>
+<a href="../../docs/agents/agent-types/copilot-cli.html" class="">Copilot CLI</a>
+<a href="../../docs/agents/agent-types/cloud-agents.html" class="">Cloud Agents</a>
+<a href="../../docs/agents/agent-types/third-party-agents.html" class="">Third-Party Agents</a>
+</div></div>
+<a href="../../docs/agents/approvals.html" class="">Approvals & Permissions</a>
+<a href="../../docs/agents/planning.html" class="">Planning</a>
+<a href="../../docs/agents/memory.html" class="">Memory</a>
+<a href="../../docs/agents/subagents.html" class="">Subagents</a>
+<a href="../../docs/agents/best-practices.html" class="">Best Practices</a>
+<a href="../../docs/agents/security.html" class="">Security</a>
+<div class="sidebar-group-label">Agent Customization</div>
+<a href="../../docs/agent-customization/overview.html" class="">Overview</a>
+<a href="../../docs/agent-customization/custom-instructions.html" class="">Instructions</a>
+<a href="../../docs/agent-customization/agent-skills.html" class="">Agent Skills</a>
+<a href="../../docs/agent-customization/custom-agents.html" class="">Custom Agents</a>
+<a href="../../docs/agent-customization/language-models.html" class="">Language Models</a>
+<a href="../../docs/agent-customization/mcp-servers.html" class="">MCP</a>
+<a href="../../docs/agent-customization/hooks.html" class="">Hooks</a>
+<a href="../../docs/agent-customization/agent-plugins.html" class="">Plugins</a>
+<a href="../../docs/agent-customization/prompt-files.html" class="">Prompt Files</a>
+<div class="sidebar-group-label">Using Chat</div>
+<a href="../../docs/chat/chat-overview.html" class="">Overview</a>
+<a href="../../docs/chat/chat-sessions.html" class="">Chat Sessions</a>
+<a href="../../docs/chat/copilot-chat-context.html" class="">Add Context</a>
+<a href="../../docs/chat/chat-tools.html" class="">Tools</a>
+<a href="../../docs/chat/inline-chat.html" class="">Inline Chat</a>
+<a href="../../docs/chat/review-code-edits.html" class="">Review Edits</a>
+<a href="../../docs/chat/chat-checkpoints.html" class="">Checkpoints</a>
+<a href="../../docs/chat/chat-artifacts.html" class="">Artifacts Panel</a>
+<div class="sidebar-group-label">Concepts</div>
+<a href="../../docs/agents/concepts/overview.html" class="">Overview</a>
+<a href="../../docs/agents/concepts/language-models.html" class="">Language Models</a>
+<a href="../../docs/agents/concepts/context.html" class="">Context</a>
+<a href="../../docs/agents/concepts/tools.html" class="">Tools</a>
+<a href="../../docs/agents/concepts/agents.html" class="">Agents</a>
+<a href="../../docs/agents/concepts/customization.html" class="">Customization</a>
+<a href="../../docs/agents/concepts/trust-and-safety.html" class="">Trust & Safety</a>
+<div class="sidebar-group-label">Guides</div>
+<a href="../../docs/agents/guides/prompt-examples.html" class="">Prompt Examples</a>
+<a href="../../docs/agents/guides/context-engineering-guide.html" class="">Context Engineering</a>
+<a href="../../docs/agents/guides/optimize-usage.html" class="">Optimize AI Credit Usage</a>
+<a href="../../docs/agents/guides/customize-copilot-guide.html" class="">Customize AI</a>
+<a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/notebooks-with-ai.html" class="">Edit Notebooks with AI</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+<a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+<a href="../../docs/agents/guides/mcp-developer-guide.html" class="">MCP Dev Guide</a>
+<a href="../../docs/agents/guides/monitoring-agents.html" class="">OpenTelemetry Monitoring</a>
+<div class="sidebar-group-label">Troubleshooting</div>
+<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html" class="">Debug Chat Interactions</a>
+<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/agents/agent-troubleshooting/faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/agents/reference/ai-features-cheat-sheet.html" class="">Cheat Sheet</a>
+<a href="../../docs/agents/reference/ai-settings.html" class="">Settings Reference</a>
+<a href="../../docs/agents/reference/mcp-configuration.html" class="">MCP Configuration</a>
+<a href="../../docs/agents/reference/workspace-context.html" class="">Workspace Context</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-editor')"><span>Editor</span><span class="toggle">▼</span></div><div id="s-editor" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Write code</div>
+<a href="../../docs/editing/getting-started.html" class="">Tutorial</a>
+<a href="../../docs/editing/userinterface.html" class="">User Interface</a>
+<a href="../../docs/editing/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/editing/codebasics.html" class="">Basic Editing</a>
+<a href="../../docs/editing/intellisense.html" class="">IntelliSense</a>
+<a href="../../docs/editing/ai-powered-suggestions.html" class="">Inline Suggestions</a>
+<a href="../../docs/editing/copilot-smart-actions.html" class="">Smart Actions</a>
+<a href="../../docs/editing/editingevolved.html" class="">Code Navigation</a>
+<a href="../../docs/editing/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/editing/userdefinedsnippets.html" class="">Snippets</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-workspaces')"><span class="toggle">▶</span> Workspaces</div><div id="sub-workspaces" class="sidebar-sub-content collapsed"><a href="../../docs/editing/workspaces/workspaces.html" class="">Overview</a>
+<a href="../../docs/editing/workspaces/multi-root-workspaces.html" class="">Multi-Root Workspaces</a>
+<a href="../../docs/editing/workspaces/workspace-trust.html" class="">Workspace Trust</a>
+</div></div>
+<div class="sidebar-group-label">Configure the editor</div>
+<a href="../../docs/configure/locales.html" class="">Display Language</a>
+<a href="../../docs/configure/custom-layout.html" class="">Layout</a>
+<a href="../../docs/configure/keybindings.html" class="">Keyboard Shortcuts</a>
+<a href="../../docs/configure/settings.html" class="">Settings</a>
+<a href="../../docs/configure/settings-sync.html" class="">Settings Sync</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-extensions')"><span class="toggle">▶</span> Extensions</div><div id="sub-extensions" class="sidebar-sub-content collapsed"><a href="../../docs/configure/extensions/extensions.html" class="">Overview</a>
+<a href="../../docs/configure/extensions/extension-marketplace.html" class="">Extension Marketplace</a>
+<a href="../../docs/configure/extensions/extension-runtime-security.html" class="">Extension Runtime Security</a>
+</div></div>
+<a href="../../docs/configure/themes.html" class="">Themes</a>
+<a href="../../docs/configure/profiles.html" class="">Profiles</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-accessibility')"><span class="toggle">▶</span> Accessibility</div><div id="sub-accessibility" class="sidebar-sub-content collapsed"><a href="../../docs/configure/accessibility/accessibility.html" class="">Overview</a>
+<a href="../../docs/configure/accessibility/voice.html" class="">Voice Interactions</a>
+</div></div>
+<a href="../../docs/configure/command-line.html" class="">Command Line Interface</a>
+<a href="../../docs/configure/telemetry.html" class="">Telemetry</a>
+<div class="sidebar-group-label">Reference</div>
+<a href="../../docs/reference/default-keybindings.html" class="">Default Keyboard Shortcuts</a>
+<a href="../../docs/reference/default-settings.html" class="">Default Settings</a>
+<a href="../../docs/reference/variables-reference.html" class="">Substitution Variables</a>
+<a href="../../docs/reference/tasks-appendix.html" class="">Tasks Schema</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-source-control')"><span>Source Control</span><span class="toggle">▼</span></div><div id="s-source-control" class="sidebar-section-content collapsed"><a href="../../docs/sourcecontrol/overview.html" class="">Overview</a>
+<a href="../../docs/sourcecontrol/quickstart.html" class="">Quickstart</a>
+<a href="../../docs/sourcecontrol/staging-commits.html" class="">Staging & Committing</a>
+<a href="../../docs/sourcecontrol/branches-worktrees.html" class="">Branches & Worktrees</a>
+<a href="../../docs/sourcecontrol/repos-remotes.html" class="">Repositories & Remotes</a>
+<a href="../../docs/sourcecontrol/merge-conflicts.html" class="">Merge Conflicts</a>
+<a href="../../docs/sourcecontrol/github.html" class="">Collaborate on GitHub</a>
+<a href="../../docs/sourcecontrol/troubleshooting.html" class="">Troubleshooting</a>
+<a href="../../docs/sourcecontrol/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-terminal')"><span>Terminal</span><span class="toggle">▼</span></div><div id="s-terminal" class="sidebar-section-content collapsed"><a href="../../docs/terminal/getting-started.html" class="">Get Started</a>
+<a href="../../docs/terminal/basics.html" class="">Terminal Basics</a>
+<a href="../../docs/terminal/profiles.html" class="">Terminal Profiles</a>
+<a href="../../docs/terminal/shell-integration.html" class="">Shell Integration</a>
+<a href="../../docs/terminal/appearance.html" class="">Appearance</a>
+<a href="../../docs/terminal/advanced.html" class="">Advanced</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-debugging')"><span>Debugging</span><span class="toggle">▼</span></div><div id="s-debugging" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/debugging.html" class="">Debugging</a>
+<a href="../../docs/debugtest/debugging-configuration.html" class="">Debug Configuration</a>
+<a href="../../docs/debugtest/tasks.html" class="">Tasks</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/debug-with-copilot.html" class="">Debug with AI</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-testing')"><span>Testing</span><span class="toggle">▼</span></div><div id="s-testing" class="sidebar-section-content collapsed"><a href="../../docs/debugtest/testing.html" class="">Testing</a>
+<a href="../../docs/debugtest/integrated-browser.html" class="">Integrated Browser</a>
+<a href="../../docs/debugtest/port-forwarding.html" class="">Port Forwarding</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-guides---tutorials')"><span class="toggle">▶</span> Guides & Tutorials</div><div id="sub-guides---tutorials" class="sidebar-sub-content collapsed"><a href="../../docs/agents/guides/test-driven-development-guide.html" class="">Test-Driven Development</a>
+<a href="../../docs/agents/guides/test-with-copilot.html" class="">Test with AI</a>
+<a href="../../docs/agents/guides/browser-agent-testing-guide.html" class="">Test Web Apps with Browser Tools</a>
+</div></div>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-enterprise')"><span>Enterprise</span><span class="toggle">▼</span></div><div id="s-enterprise" class="sidebar-section-content collapsed"><a href="../../docs/enterprise/overview.html" class="">Overview</a>
+<a href="../../docs/enterprise/policies.html" class="">Enterprise Policies</a>
+<a href="../../docs/enterprise/ai-settings.html" class="">AI Settings</a>
+<a href="../../docs/enterprise/extensions.html" class="">Extensions</a>
+<a href="../../docs/enterprise/telemetry.html" class="">Telemetry</a>
+<a href="../../docs/enterprise/updates.html" class="">Updates</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-remote')"><span>Remote</span><span class="toggle">▼</span></div><div id="s-remote" class="sidebar-section-content collapsed"><a href="../../docs/remote/remote-overview.html" class="">Overview</a>
+<a href="../../docs/remote/vscode-web.html" class="">VS Code for the Web</a>
+<a href="../../docs/remote/ssh.html" class="">SSH</a>
+<a href="../../docs/remote/ssh-tutorial.html" class="">SSH Tutorial</a>
+<a href="../../docs/remote/tunnels.html" class="">Tunnels</a>
+<a href="../../docs/remote/dev-containers.html" class="">Dev Containers</a>
+<a href="../../docs/remote/wsl.html" class="">WSL</a>
+<a href="../../docs/remote/wsl-tutorial.html" class="">WSL Tutorial</a>
+<a href="../../docs/remote/codespaces.html" class="">GitHub Codespaces</a>
+<a href="../../docs/remote/vscode-server.html" class="">VS Code Server</a>
+<a href="../../docs/remote/linux.html" class="">Linux Prerequisites</a>
+<a href="../../docs/remote/troubleshooting.html" class="">Tips and Tricks</a>
+<a href="../../docs/remote/faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-advanced-setup')"><span>Advanced Setup</span><span class="toggle">▼</span></div><div id="s-advanced-setup" class="sidebar-section-content collapsed"><a href="../../docs/setup/copilot.html" class="">GitHub Copilot Setup</a>
+<a href="../../docs/setup/linux.html" class="">Linux</a>
+<a href="../../docs/setup/mac.html" class="">macOS</a>
+<a href="../../docs/setup/windows.html" class="">Windows</a>
+<a href="../../docs/setup/raspberry-pi.html" class="">Raspberry Pi</a>
+<a href="../../docs/setup/network.html" class="">Network</a>
+<a href="../../docs/setup/portable.html" class="">Portable Mode</a>
+<a href="../../docs/setup/additional-components.html" class="">Additional Components</a>
+<a href="../../docs/setup/uninstall.html" class="">Uninstall</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-languages---runtimes')"><span>Languages & Runtimes</span><span class="toggle">▼</span></div><div id="s-languages---runtimes" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Language Support</div>
+<a href="../../docs/languages/javascript.html" class="">JavaScript</a>
+<a href="../../docs/languages/json.html" class="">JSON</a>
+<a href="../../docs/languages/html.html" class="">HTML</a>
+<a href="../../docs/languages/emmet.html" class="">Emmet</a>
+<a href="../../docs/languages/css.html" class="">CSS, SCSS and Less</a>
+<a href="../../docs/languages/typescript.html" class="">TypeScript</a>
+<a href="../../docs/languages/markdown.html" class="">Markdown</a>
+<a href="../../docs/languages/powershell.html" class="">PowerShell</a>
+<a href="../../docs/languages/cpp.html" class="">C++</a>
+<a href="../../docs/languages/java.html" class="">Java</a>
+<a href="../../docs/languages/php.html" class="">PHP</a>
+<a href="../../docs/languages/python.html" class="">Python</a>
+<a href="../../docs/languages/julia.html" class="">Julia</a>
+<a href="../../docs/languages/r.html" class="">R</a>
+<a href="../../docs/languages/ruby.html" class="">Ruby</a>
+<a href="../../docs/languages/rust.html" class="">Rust</a>
+<a href="../../docs/languages/go.html" class="">Go</a>
+<a href="../../docs/languages/tsql.html" class="">T-SQL</a>
+<a href="../../docs/languages/csharp.html" class="">C#</a>
+<a href="../../docs/languages/dotnet.html" class="">.NET</a>
+<a href="../../docs/languages/swift.html" class="">Swift</a>
+<div class="sidebar-group-label">Node.js / JavaScript</div>
+<a href="../../docs/nodejs/working-with-javascript.html" class="">Working with JavaScript</a>
+<a href="../../docs/nodejs/nodejs-tutorial.html" class="">Node.js Tutorial</a>
+<a href="../../docs/nodejs/nodejs-debugging.html" class="">Node.js Debugging</a>
+<a href="../../docs/nodejs/nodejs-deployment.html" class="">Deploy Node.js Apps</a>
+<a href="../../docs/nodejs/browser-debugging.html" class="">Browser Debugging</a>
+<a href="../../docs/nodejs/angular-tutorial.html" class="">Angular Tutorial</a>
+<a href="../../docs/nodejs/reactjs-tutorial.html" class="">React Tutorial</a>
+<a href="../../docs/nodejs/vuejs-tutorial.html" class="">Vue Tutorial</a>
+<a href="../../docs/nodejs/debugging-recipes.html" class="">Debugging Recipes</a>
+<a href="../../docs/nodejs/profiling.html" class="">Performance Profiling</a>
+<a href="../../docs/nodejs/extensions.html" class="">Extensions</a>
+<div class="sidebar-group-label">TypeScript</div>
+<a href="../../docs/typescript/typescript-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/typescript/typescript-transpiling.html" class="">Transpiling</a>
+<a href="../../docs/typescript/typescript-editing.html" class="">Editing</a>
+<a href="../../docs/typescript/typescript-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/typescript/typescript-debugging.html" class="">Debugging</a>
+<div class="sidebar-group-label">Python</div>
+<a href="../../docs/python/python-quick-start.html" class="">Quick Start</a>
+<a href="../../docs/python/python-tutorial.html" class="">Tutorial</a>
+<a href="../../docs/python/run.html" class="">Run Python Code</a>
+<a href="../../docs/python/editing.html" class="">Editing</a>
+<a href="../../docs/python/linting.html" class="">Linting</a>
+<a href="../../docs/python/formatting.html" class="">Formatting</a>
+<a href="../../docs/python/debugging.html" class="">Debugging</a>
+<a href="../../docs/python/environments.html" class="">Environments</a>
+<a href="../../docs/python/testing.html" class="">Testing</a>
+<a href="../../docs/python/jupyter-support-py.html" class="">Python Interactive</a>
+<a href="../../docs/python/tutorial-django.html" class="">Django Tutorial</a>
+<a href="../../docs/python/tutorial-fastapi.html" class="">FastAPI Tutorial</a>
+<a href="../../docs/python/tutorial-flask.html" class="">Flask Tutorial</a>
+<a href="../../docs/python/tutorial-create-containers.html" class="">Create Containers</a>
+<a href="../../docs/python/python-on-azure.html" class="">Deploy Python Apps</a>
+<a href="../../docs/python/python-web.html" class="">Python in the Web</a>
+<a href="../../docs/python/settings-reference.html" class="">Settings Reference</a>
+<div class="sidebar-group-label">Java</div>
+<a href="../../docs/java/java-tutorial.html" class="">Getting Started</a>
+<a href="../../docs/java/java-editing.html" class="">Navigate and Edit</a>
+<a href="../../docs/java/java-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/java/java-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/java/java-project.html" class="">Project Management</a>
+<a href="../../docs/java/java-build.html" class="">Build Tools</a>
+<a href="../../docs/java/java-debugging.html" class="">Run and Debug</a>
+<a href="../../docs/java/java-testing.html" class="">Testing</a>
+<a href="../../docs/java/java-spring-boot.html" class="">Spring Boot</a>
+<a href="../../docs/java/java-app-mod.html" class="">Modernizing Java Apps</a>
+<a href="../../docs/java/java-tomcat-jetty.html" class="">Application Servers</a>
+<a href="../../docs/java/java-on-azure.html" class="">Deploy Java Apps</a>
+<a href="../../docs/java/java-gui.html" class="">GUI Applications</a>
+<a href="../../docs/java/extensions.html" class="">Extensions</a>
+<a href="../../docs/java/java-faq.html" class="">FAQ</a>
+<div class="sidebar-group-label">C++</div>
+<a href="../../docs/cpp/introvideos-cpp.html" class="">Intro Videos</a>
+<a href="../../docs/cpp/config-linux.html" class="">GCC on Linux</a>
+<a href="../../docs/cpp/config-mingw.html" class="">GCC on Windows</a>
+<a href="../../docs/cpp/config-wsl.html" class="">GCC on Windows Subsystem for Linux</a>
+<a href="../../docs/cpp/config-clang-mac.html" class="">Clang on macOS</a>
+<a href="../../docs/cpp/config-msvc.html" class="">Microsoft C++ on Windows</a>
+<a href="../../docs/cpp/build-with-cmake.html" class="">Build with CMake</a>
+<a href="../../docs/cpp/cmake-linux.html" class="">CMake Tools on Linux</a>
+<a href="../../docs/cpp/cmake-quickstart.html" class="">CMake Quick Start</a>
+<a href="../../docs/cpp/cpp-devtools.html" class="">C++ Dev Tools for Copilot</a>
+<a href="../../docs/cpp/cpp-ide.html" class="">Editing and Navigating</a>
+<a href="../../docs/cpp/cpp-debug.html" class="">Debugging</a>
+<a href="../../docs/cpp/launch-json-reference.html" class="">Configure Debugging</a>
+<a href="../../docs/cpp/cpp-refactoring.html" class="">Refactoring</a>
+<a href="../../docs/cpp/customize-cpp-settings.html" class="">Settings Reference</a>
+<a href="../../docs/cpp/configure-intellisense.html" class="">Configure IntelliSense</a>
+<a href="../../docs/cpp/configure-intellisense-crosscompilation.html" class="">Configure IntelliSense for Cross-Compiling</a>
+<a href="../../docs/cpp/faq-cpp.html" class="">FAQ</a>
+<div class="sidebar-group-label">C#</div>
+<a href="../../docs/csharp/introvideos-csharp.html" class="">Intro Videos</a>
+<a href="../../docs/csharp/get-started.html" class="">Get Started</a>
+<a href="../../docs/csharp/navigate-edit.html" class="">Navigate and Edit</a>
+<a href="../../docs/csharp/intellicode.html" class="">IntelliCode</a>
+<a href="../../docs/csharp/refactoring.html" class="">Refactoring</a>
+<a href="../../docs/csharp/formatting-linting.html" class="">Formatting and Linting</a>
+<a href="../../docs/csharp/project-management.html" class="">Project Management</a>
+<a href="../../docs/csharp/build-tools.html" class="">Build Tools</a>
+<a href="../../docs/csharp/package-management.html" class="">Package Management</a>
+<a href="../../docs/csharp/debugging.html" class="">Run and Debug</a>
+<a href="../../docs/csharp/testing.html" class="">Testing</a>
+<a href="../../docs/csharp/cs-dev-kit-faq.html" class="">FAQ</a>
+</div></div>
+<div class="sidebar-section"><div class="sidebar-section-title collapsed" onclick="ts('s-extension-docs')"><span>Extension Docs</span><span class="toggle">▼</span></div><div id="s-extension-docs" class="sidebar-section-content collapsed"><div class="sidebar-group-label">Container Tools</div>
+<a href="../../docs/containers/overview.html" class="">Overview</a>
+<a href="../../docs/containers/quickstart-node.html" class="">Node.js</a>
+<a href="../../docs/containers/quickstart-python.html" class="">Python</a>
+<a href="../../docs/containers/quickstart-aspnet-core.html" class="">ASP.NET Core</a>
+<a href="../../docs/containers/debug-common.html" class="">Debug</a>
+<a href="../../docs/containers/docker-compose.html" class="">Docker Compose</a>
+<a href="../../docs/containers/quickstart-container-registries.html" class="">Registries</a>
+<a href="../../docs/containers/app-service.html" class="">Deploy to Azure</a>
+<a href="../../docs/containers/choosing-dev-environment.html" class="">Choose a Dev Environment</a>
+<a href="../../docs/containers/reference.html" class="">Customize</a>
+<a href="../../docs/containers/bridge-to-kubernetes.html" class="">Develop with Kubernetes</a>
+<a href="../../docs/containers/troubleshooting.html" class="">Tips and Tricks</a>
+<div class="sidebar-group-label">Data Science</div>
+<a href="../../docs/datascience/overview.html" class="">Overview</a>
+<a href="../../docs/datascience/jupyter-notebooks.html" class="">Jupyter Notebooks</a>
+<a href="../../docs/datascience/data-science-tutorial.html" class="">Data Science Tutorial</a>
+<a href="../../docs/datascience/python-interactive.html" class="">Python Interactive</a>
+<a href="../../docs/datascience/data-wrangler-quick-start.html" class="">Data Wrangler Quick Start</a>
+<a href="../../docs/datascience/data-wrangler.html" class="">Data Wrangler</a>
+<a href="../../docs/datascience/pytorch-support.html" class="">PyTorch Support</a>
+<a href="../../docs/datascience/azure-machine-learning.html" class="">Azure Machine Learning</a>
+<a href="../../docs/datascience/jupyter-kernel-management.html" class="">Manage Jupyter Kernels</a>
+<a href="../../docs/datascience/notebooks-web.html" class="">Jupyter Notebooks on the Web</a>
+<a href="../../docs/datascience/microsoft-fabric-quickstart.html" class="">Data Science in Microsoft Fabric</a>
+<div class="sidebar-group-label">Intelligent Apps</div>
+<a href="../../docs/intelligentapps/overview.html" class="">Foundry Toolkit Overview</a>
+<a href="../../docs/intelligentapps/copilot-tools.html" class="">Foundry Toolkit Copilot Tools</a>
+<a href="../../docs/intelligentapps/create-agents.html" class="">Create Agents</a>
+<a href="../../docs/intelligentapps/models.html" class="">Models</a>
+<a href="../../docs/intelligentapps/playground.html" class="">Playground</a>
+<a href="../../docs/intelligentapps/agentbuilder.html" class="">Agent Builder</a>
+<a href="../../docs/intelligentapps/agent-inspector.html" class="">Agent Inspector</a>
+<a href="../../docs/intelligentapps/hosted-agents.html" class="">Hosted Agents (Preview)</a>
+<a href="../../docs/intelligentapps/evaluation.html" class="">Evaluation</a>
+<a href="../../docs/intelligentapps/tool-catalog.html" class="">Tool Catalog</a>
+<a href="../../docs/intelligentapps/finetune.html" class="">Fine-Tuning (Automated Setup)</a>
+<a href="../../docs/intelligentapps/finetune-legacy.html" class="">Fine-Tuning (Project Template)</a>
+<a href="../../docs/intelligentapps/modelconversion.html" class="">Model Conversion</a>
+<a href="../../docs/intelligentapps/tracing.html" class="">Tracing</a>
+<a href="../../docs/intelligentapps/profiling.html" class="">Profiling (Windows ML)</a>
+<a href="../../docs/intelligentapps/faq.html" class="">FAQ</a>
+<div class="sidebar-subsection"><div class="sidebar-sub-title collapsed" onclick="ts('sub-reference')"><span class="toggle">▶</span> Reference</div><div id="sub-reference" class="sidebar-sub-content collapsed"><a href="../../docs/intelligentapps/reference/FileStructure.html" class="">File Structure</a>
+<a href="../../docs/intelligentapps/reference/ManualModelConversion.html" class="">Manual Model Conversion</a>
+<a href="../../docs/intelligentapps/reference/ManualConversionOnGPU.html" class="">Manual Model Conversion on GPU</a>
+<a href="../../docs/intelligentapps/reference/SetupWithoutAITK.html" class="">Setup Environment Without Foundry Toolkit</a>
+<a href="../../docs/intelligentapps/reference/UpdateModelProject.html" class="">Update Project</a>
+<a href="../../docs/intelligentapps/reference/TemplateProject.html" class="">Template Project</a>
+<a href="../../docs/intelligentapps/reference/migrate-from-visualizer.html" class="">Migrating from Visualizer to Agent Inspector</a>
+</div></div>
+<div class="sidebar-group-label">Azure</div>
+<a href="../../docs/azure/overview.html" class="">Overview</a>
+<a href="../../docs/azure/gettingstarted.html" class="">Getting Started</a>
+<a href="../../docs/azure/resourcesextension.html" class="">Resources View</a>
+<a href="../../docs/azure/deployment.html" class="">Deployment</a>
+<a href="../../docs/azure/vscodeforweb.html" class="">VS Code for the Web - Azure</a>
+<a href="../../docs/azure/containers.html" class="">Containers</a>
+<a href="../../docs/azure/aksextensions.html" class="">Azure Kubernetes Service</a>
+<a href="../../docs/azure/kubernetes.html" class="">Kubernetes</a>
+<a href="../../docs/azure/mongodb.html" class="">MongoDB</a>
+<a href="../../docs/azure/remote-debugging.html" class="">Remote Debugging for Node.js</a>
+<div class="sidebar-group-label">Dev Containers</div>
+<a href="../../docs/devcontainers/containers.html" class="">Overview</a>
+<a href="../../docs/devcontainers/tutorial.html" class="">Tutorial</a>
+<a href="../../docs/devcontainers/attach-container.html" class="">Attach to Container</a>
+<a href="../../docs/devcontainers/create-dev-container.html" class="">Create Dev Container</a>
+<a href="../../docs/devcontainers/containers-advanced.html" class="">Advanced Containers</a>
+<a href="../../docs/devcontainers/devcontainerjson-reference.html" class="">devcontainer.json</a>
+<a href="../../docs/devcontainers/devcontainer-cli.html" class="">Dev Container CLI</a>
+<a href="../../docs/devcontainers/tips-and-tricks.html" class="">Tips and Tricks</a>
+<a href="../../docs/devcontainers/faq.html" class="">FAQ</a>
+</div></div>
+</div>
+  <div class="content">
+    <div class="breadcrumb"><a href="../../index.html">首页</a> / intelligentapps / finetune</div>
+<h1>Phi Silica 的 LoRA 微调</h1>
+
+<p>你可以使用低秩适配（LoRA）来微调 <a href="https://learn.microsoft.com/en-us/windows/ai/apis/phi-silica">Phi Silica 模型</a>，以提升其在特定场景下的性能。通过使用 LoRA 优化 Phi Silica（Microsoft Windows 本地语言模型），你可以获得更准确的结果。此过程包括训练一个 LoRA 适配器，然后在推理时应用它来提高模型的准确性。</p>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>Phi Silica 功能在中国地区不可用。</blockquote>
+
+<h2>先决条件</h2>
+
+<ul>
+<li>你已确定了增强 Phi Silica 回复的用例。</li>
+<li>你已选择了评估标准来决定什么是“好的回复”。</li>
+<li>你已尝试使用 Phi Silica API，但发现它们未达到你的评估标准。
+<h2>训练适配器</h2>
+
+</li>
+</ul>
+<p>若要训练用于在 Windows 11 上微调 Phi Silica 模型的 LoRA 适配器，必须先生成训练过程将使用的数据集。</p>
+
+<h3>生成用于 LoRA 适配器的数据集</h3>
+
+<p>要生成数据集，你需要将数据拆分为两个文件：</p>
+
+<ul>
+<li><code>train.json</code>：用于训练适配器。</li>
+<li><code>test.json</code>：用于在训练期间和训练后评估适配器的性能。
+</li>
+</ul>
+<p>这两个文件必须使用 JSON 格式，其中每一行都是一个独立的 JSON 对象，代表一个单独的样本。每个样本应包含用户与助手之间交换的消息列表。</p>
+
+<p>每个消息对象需要两个字段：</p>
+
+<ul>
+<li><code>content</code>：消息文本。</li>
+<li><code>role</code>：<code>"user"</code> 或 <code>"assistant"</code>，表示发送者。
+</li>
+</ul>
+<p>请参见以下示例：</p>
+
+<pre><code class="language-json">{"messages": [{"content": "Hello, how do I reset my password?", "role": "user"}, {"content": "To reset your password, go to the settings page and click 'Reset Password'.", "role": "assistant"}]}
+
+{"messages": [{"content": "Can you help me find nearby restaurants?", "role": "user"}, {"content": "Sure! Here are some restaurants near your location: ...", "role": "assistant"}]}
+
+{"messages": [{"content": "What is the weather like today?", "role": "user"}, {"content": "Today's forecast is sunny with a high of 25°C.", "role": "assistant"}]}</code></pre>
+
+<p>训练提示：</p>
+
+<ul>
+<li>每条样本行的末尾不需要逗号。</li>
+<li>尽可能包含高质量且多样化的示例。为了获得最佳效果，请在 <code>train.json</code> 文件中至少收集数千个训练样本。</li>
+<li><code>test.json</code> 文件可以小一些，但应涵盖你希望模型处理的交互类型。</li>
+<li>创建 <code>train.json</code> 和 <code>test.json</code> 文件时，每行一个 JSON 对象，每个对象包含一段简短的用户与助手之间的来回对话。数据的质量和数量将极大地影响 LoRA 适配器的效果。
+<h3>训练 LoRA 适配器</h3>
+
+</li>
+</ul>
+<p>要训练 LoRA 适配器，你需要以下必需前提条件：</p>
+
+<ul>
+<li>具有 <a href="https://learn.microsoft.com/en-us/azure/container-apps/overview">Azure Container Apps</a> 中可用配额的 <a href="https://azure.microsoft.com/">Azure 订阅</a>。<ul>
+<li>我们建议使用 A100 GPU 或更高级别的 GPU 来高效运行微调作业。<ul>
+<li><a href="https://portal.azure.com/">在 Azure 门户中检查你是否有可用的配额</a>。如果你需要帮助查找配额，请参见<a href="https://learn.microsoft.com/en-us/azure/quotas/view-quotas#view-quota-details">查看配额</a>。
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>按照以下步骤创建工作区并启动微调作业：</p>
+
+<ol>
+<li>导航到<strong>模型工具 > 微调</strong>，然后选择<strong>新建项目</strong>。
+</li>
+<li>从模型目录中选择 "microsoft/phi-silica"，然后选择<strong>下一步</strong>。
+</li>
+<li>在对话框中，选择一个项目文件夹并输入项目名称。此时将打开一个新的 VS Code 窗口用于此项目。
+</li>
+</ol>
+<p>    !<a href="intelligentapps/images/finetune/create-finetuning-project.png">在 AITK 中创建微调项目的截图。</a></p>
+
+<ol>
+<li>从方法列表中选择 "LoRA"。
+</li>
+</ol>
+<p>    !<a href="intelligentapps/images/finetune/select-finetuning-method-lora.png">选择 LoRA 方法的截图。</a></p>
+
+<ol>
+<li>在<strong>数据 > 训练数据集名称</strong>和<strong>测试数据集名称</strong>下，选择你的 <code>train.json</code> 和 <code>test.json</code> 文件。
+</li>
+<li>选择<strong>在云端运行</strong>。
+</li>
+</ol>
+<p>    !<a href="intelligentapps/images/finetune/fill-finetuning-job-parameters.png">填写微调作业参数的截图。</a></p>
+
+<ol>
+<li>在对话框中，选择用于访问 Azure 订阅的 Microsoft 帐户。
+</li>
+<li>选择帐户后，从订阅下拉菜单中选择一个资源组。
+</li>
+<li>请注意，你的微调作业已成功启动并显示作业状态。
+</li>
+</ol>
+<p>    使用<strong>刷新</strong>按钮手动更新状态。微调作业通常平均需要 45 - 60 分钟才能完成。</p>
+
+<ol>
+<li>作业完成后，你可以选择<strong>下载</strong>来下载新训练的 LoRA 适配器，并选择<strong>显示指标</strong>来查看微调指标。
+</li>
+</ol>
+<p>    !<a href="intelligentapps/images/finetune/download-adapter-and-show-metrics.png">下载适配器并显示指标的截图</a></p>
+
+<h2>LoRA 微调建议</h2>
+
+<h3>超参数选择</h3>
+
+<p>为 LoRA 微调设置的默认超参数应能提供一个合理的基线微调结果以供比较。我们已尽力找到了适用于大多数场景和数据集的默认值。</p>
+
+<p>不过，我们也为你保留了自定义参数搜索的灵活性。</p>
+
+<h3>训练超参数</h3>
+
+<p>我们的标准参数搜索空间如下：</p>
+
+<table>
+  <thead><tr><th></th><th>参数名称</th><th>最小值</th><th>最大值</th><th>分布类型</th><th></th></tr></thead>
+<tbody>
+  <tr><td></td><td>--------------</td><td>-----</td><td>------</td><td>-------------</td><td></td></tr>
+  <tr><td></td><td>learning_rate</td><td>1e-4</td><td>1e-2</td><td>对数均匀分布</td><td></td></tr>
+  <tr><td></td><td>weight_decay</td><td>1e-5</td><td>1e-1</td><td>对数均匀分布</td><td></td></tr>
+  <tr><td></td><td>adam_beta1</td><td>0.9</td><td>0.99</td><td>均匀分布</td><td></td></tr>
+  <tr><td></td><td>adam_beta2</td><td>0.9</td><td>0.999</td><td>均匀分布</td><td></td></tr>
+  <tr><td></td><td>adam_epsilon</td><td>1e-9</td><td>1e-6</td><td>对数均匀分布</td><td></td></tr>
+  <tr><td></td><td>num_warmup_steps</td><td>0</td><td>10000</td><td>均匀分布</td><td></td></tr>
+  <tr><td></td><td>lora_dropout</td><td>0</td><td>0.5</td><td>均匀分布</td><td></td></tr>
+</tbody>
+</table>
+<p>我们还对学习率调度器进行了搜索，可选择 <code>linear_with_warmup</code> 或 <code>cosine_with_warmup</code>。如果 <code>num_warmup_steps</code> 参数设置为 <code>0</code>，则你可以等效地使用 linear 或 cosine 选项。</p>
+
+<p>学习率、学习率调度器和预热步数三者之间相互影响。保持其中两个固定而改变第三个，可以帮助你更好地了解它们如何改变在数据集上训练的输出结果。</p>
+
+<p>权重衰减和 LoRA dropout 参数有助于控制过拟合。如果你发现适配器在训练集到评估集上的泛化效果不佳，可以尝试增加这些参数的值。</p>
+
+<p><code>adam_</code> 参数影响 Adam 优化器在训练步骤中的行为。有关该优化器的更多信息，请参见 PyTorch 文档。</p>
+
+<p>许多其他暴露的参数与 PEFT 库中的同名参数类似。有关这些参数的更多信息，请参见 transformers 文档。</p>
+
+<h3>数据超参数</h3>
+
+<p>数据超参数 <code>train_nsamples</code> 和 <code>test_nsamples</code> 分别控制用于训练和测试的样本数量。通常，使用更多训练集样本是一个好主意。使用更多测试样本可以让测试指标的噪声更少，但每次评估运行会花费更长的时间。</p>
+
+<p><code>train_batch_size</code> 和 <code>test_batch_size</code> 参数分别控制训练和测试中每个批次的样本数量。通常测试可以使用比训练更多的批次，因为运行测试示例比训练示例消耗更少的 GPU 内存。</p>
+
+<p><code>train_seqlen</code> 和 <code>test_seqlen</code> 参数控制训练和测试序列的长度。一般来说，在达到 GPU 内存限制之前，序列越长越好。默认值应能提供一个良好的平衡。</p>
+
+<h3>选择系统提示</h3>
+
+<p>我们发现，在选择用于训练的系统提示时，一个有效的策略是保持其相当简洁（1 或 2 句话），同时仍然鼓励模型生成你想要的输出格式。我们还发现，在训练和推理时使用略微不同的系统提示可以改善结果。</p>
+
+<p>你期望的输出与基础模型的差异越大，系统提示能提供的帮助就越多。</p>
+
+<p>例如，如果你只是训练模型进行轻微的风格变化，比如使用简化语言来吸引年轻读者，你可能根本不需要系统提示。</p>
+
+<p>然而，如果你期望的输出具有更多结构，那么你将希望使用系统提示来让模型部分达到目标。所以，如果你需要一个包含特定键的 JSON 表格，系统提示的第一句话可以描述如果模型以自然语言回复应该是怎样的。第二句话可以更具体地说明 JSON 表格格式应该是什么样子。在训练中使用第一句话，然后在推理时使用两句话，可能会带给你期望的结果。</p>
+
+<h3>参数</h3>
+
+<p>以下是所有可微调的参数列表。如果某个参数未出现在工作流程页面 UI 中，请手动将其添加到 <code><your_project_path>/<model_name>/lora/lora.yaml</code>。</p>
+
+<pre><code class="language-json">[
+
+################## 基本配置设置 ##################
+  {
+    "groupId": "data",
+    "fields": [
+      {
+        "name": "system_prompt",
+        "type": "Optional",
+        "defaultValue": null,
+        "info": "可选的系统提示。如果指定，此处给出的系统提示将在训练 LoRA 适配器时作为系统提示追加到数据集的每个示例之前。运行推理时应使用相同（或非常相似）的系统提示。注意：如果训练数据中已指定了系统提示，则在此处提供系统提示将覆盖数据集中的系统提示。",
+        "label": "系统提示"
+      },
+      {
+        "name": "varied_seqlen",
+        "type": "bool",
+        "defaultValue": false,
+        "info": "校准数据中的可变序列长度。如果为 False（默认），训练示例将被拼接在一起，直到达到 finetune_[train/test]_seqlen 个 token。这使内存使用更加一致和可预测。如果为 True，每个单独的示例将被截断为 finetune_[train/test]_seqlen 个 token。这有时可以提供更好的训练性能，但也会导致不可预测的内存使用。如果数据集中有很长的训练示例，它可能会导致训练中途出现 `out of memory` 错误。",
+        "label": "允许数据中的可变序列长度"
+      },
+      {
+        "name": "finetune_dataset",
+        "type": "str",
+        "defaultValue": "wikitext2",
+        "info": "用于微调的数据集。",
+        "label": "数据集名称或路径"
+      },
+      {
+        "name": "finetune_train_nsamples",
+        "type": "int",
+        "defaultValue": 4096,
+        "info": "从训练集中加载用于微调的样本数量。",
+        "label": "微调样本数量"
+      },
+      {
+        "name": "finetune_test_nsamples",
+        "type": "int",
+        "defaultValue": 128,
+        "info": "从测试集中加载用于微调的样本数量。",
+        "label": "测试样本数量"
+      },
+      {
+        "name": "finetune_train_batch_size",
+        "type": "int",
+        "defaultValue": 4,
+        "info": "微调训练的批次大小。",
+        "label": "训练批次大小"
+      },
+      {
+        "name": "finetune_test_batch_size",
+        "type": "int",
+        "defaultValue": 8,
+        "info": "微调测试的批次大小。",
+        "label": "测试批次大小"
+      },
+      {
+        "name": "finetune_train_seqlen",
+        "type": "int",
+        "defaultValue": 2048,
+        "info": "微调训练的最大序列长度。更长的序列将被截断。",
+        "label": "最大训练序列长度"
+      },
+      {
+        "name": "finetune_test_seqlen",
+        "type": "int",
+        "defaultValue": 2048,
+        "info": "微调测试的最大序列长度。更长的序列将被截断。",
+        "label": "最大测试序列长度"
+      }
+    ]
+  },
+  {
+    "groupId": "finetuning",
+    "fields": [
+      {
+        "name": "early_stopping_patience",
+        "type": "int",
+        "defaultValue": 5,
+        "info": "连续多次评估没有改善后训练将停止的次数。",
+        "label": "早停耐心值"
+      },
+      {
+        "name": "epochs",
+        "type": "float",
+        "defaultValue": 1,
+        "info": "要运行的训练总轮数。",
+        "label": "训练轮数"
+      },
+      {
+        "name": "eval_steps",
+        "type": "int",
+        "defaultValue": 64,
+        "info": "每次评估之前要执行的训练步数。",
+        "label": "评估间隔步数"
+      },
+      {
+        "name": "save_steps",
+        "type": "int",
+        "defaultValue": 64,
+        "info": "保存模型检查点所需的步数间隔。此值必须为评估间隔步数的倍数。",
+        "label": "检查点间隔步数"
+      },
+      {
+        "name": "learning_rate",
+        "type": "float",
+        "defaultValue": 0.0002,
+        "info": "训练的学习率。",
+        "label": "学习率"
+      },
+      {
+        "name": "lr_scheduler_type",
+        "type": "str",
+        "defaultValue": "linear",
+        "info": "学习率调度器类型。",
+        "label": "学习率调度器",
+        "optionValues": [
+          "linear",
+          "linear_with_warmup",
+          "cosine",
+          "cosine_with_warmup"
+        ]
+      },
+      {
+        "name": "num_warmup_steps",
+        "type": "int",
+        "defaultValue": 400,
+        "info": "学习率调度器的预热步数。仅适用于 _with_warmup 类型的调度器。",
+        "label": "调度器预热步数（如支持）"
+      }
+    ]
+  }
+
+
+
+################## 高级配置设置 ##################
+
+
+
+  {
+    "groupId": "advanced",
+    "fields": [
+      {
+        "name": "seed",
+        "type": "int",
+        "defaultValue": 42,
+        "info": "数据采样的随机种子。",
+        "label": "随机种子"
+      },
+      {
+        "name": "evaluation_strategy",
+        "type": "str",
+        "defaultValue": "steps",
+        "info": "要使用的评估策略。",
+        "label": "评估策略",
+        "optionValues": [
+          "steps",
+          "epoch",
+          "no"
+        ]
+      },
+      {
+        "name": "lora_dropout",
+        "type": "float",
+        "defaultValue": 0.1,
+        "info": "LoRA 的 dropout 率。",
+        "label": "LoRA dropout"
+      },
+      {
+        "name": "adam_beta1",
+        "type": "float",
+        "defaultValue": 0.9,
+        "info": "Adam 优化器的 Beta1 超参数。",
+        "label": "Adam beta 1"
+      },
+      {
+        "name": "adam_beta2",
+        "type": "float",
+        "defaultValue": 0.95,
+        "info": "Adam 优化器的 Beta2 超参数。",
+        "label": "Adam beta 2"
+      },
+      {
+        "name": "adam_epsilon",
+        "type": "float",
+        "defaultValue": 1e-08,
+        "info": "Adam 优化器的 Epsilon 超参数。",
+        "label": "Adam epsilon"
+      },
+      {
+        "name": "num_training_steps",
+        "type": "Optional",
+        "defaultValue": null,
+        "info": "训练步数。如果未设置（推荐），将在内部自动计算。",
+        "label": "训练步数"
+      },
+      {
+        "name": "gradient_accumulation_steps",
+        "type": "int",
+        "defaultValue": 1,
+        "info": "执行反向/更新传递之前要累积的更新步数。",
+        "label": "梯度累积步数"
+      },
+      {
+        "name": "eval_accumulation_steps",
+        "type": "Optional",
+        "defaultValue": null,
+        "info": "在将张量移至 CPU 之前要累积的预测步数。",
+        "label": "评估累积步数"
+      },
+      {
+        "name": "eval_delay",
+        "type": "Optional",
+        "defaultValue": 0,
+        "info": "根据评估策略，在第一次评估执行之前需要等待的轮数或步数。",
+        "label": "评估延迟"
+      },
+      {
+        "name": "weight_decay",
+        "type": "float",
+        "defaultValue": 0.0,
+        "info": "如果应用 AdamW 时的权重衰减。",
+        "label": "权重衰减"
+      },
+      {
+        "name": "max_grad_norm",
+        "type": "float",
+        "defaultValue": 1.0,
+        "info": "最大梯度范数。",
+        "label": "最大梯度范数"
+      },
+      {
+        "name": "gradient_checkpointing",
+        "type": "bool",
+        "defaultValue": false,
+        "info": "如果为 True，使用梯度检查点来节省内存，但会减慢反向传递。",
+        "label": "梯度检查点"
+      }
+    ]
+  }
+]</code></pre>
+
+
+<h2>修改 Azure 订阅和资源组</h2>
+
+<p>如果你想要修改之前设置的 Azure 订阅和资源组，可以在 <code><your_project_path>/model_lab.workspace.provision.config</code> 文件中更新或删除它们。</p>
+
+<h2>使用 Phi Silica LoRA 适配器进行推理</h2>
+
+<blockquote>[!IMPORTANT]</blockquote>
+<blockquote>Phi Silica API 属于受限访问功能的一部分（请参见 <a href="../uwp/api/windows.applicationmodel.limitedaccessfeatures">LimitedAccessFeatures 类</a>）。有关更多信息或申请解锁令牌，请使用 <a href="https://go.microsoft.com/fwlink/?linkid=2271232&c1cid=04x409">LAF 访问令牌申请表</a>。</blockquote>
+
+<blockquote>[!NOTE]</blockquote>
+<blockquote>目前仅支持在搭载 ARM 处理器的 Copilot+ PC 上使用 Phi Silica LoRA 适配器进行推理。</blockquote>
+
+<p>使用 Windows AI API 进行推理：<a href="https://github.com/MicrosoftDocs/windows-ai-docs/blob/docs/docs/apis/phi-silica-lora.md#c">Phi Silica with LoRA adapter</a></p>
+
+  </div>
+</div>
+<script>function ts(id){var e=document.getElementById(id),t=e.previousElementSibling;e.classList.contains("collapsed")?(e.classList.remove("collapsed"),t.classList.remove("collapsed")):(e.classList.add("collapsed"),t.classList.add("collapsed"))}</script>
+</body>
+</html>
