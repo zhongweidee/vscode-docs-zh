@@ -79,6 +79,7 @@ function mdToHtml(md, filePath) {
     }
     // Image: keep path relative to markdown (HTML at same relative path)
     if (url.match(/\.(png|jpg|jpeg|gif|svg)$/i)) return rel;
+    if (url.match(/\.webp$/i)) return rel;
     // Markdown link: convert to .html, keep relative
     return rel.replace(/\.md$/, '.html');
   }
@@ -295,6 +296,12 @@ SOURCE_DIRS.forEach(function(sd) {
         if (src.indexOf('http') === 0) return m;
         var resolved = path.join(path.dirname(rp), src).replace(/\\/g, '/');
         return 'src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/' + resolved + '"';
+      });
+      // Rewrite webp images to upstream GitHub raw (GitHub Pages doesn't serve .webp)
+      body = body.replace(/src="([^"]+\.webp)"/gi, function(m, src) {
+        if (src.indexOf('http') === 0) return m;
+        var resolved = path.join(path.dirname(rp), src).replace(/\\/g, '/');
+        return 'src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/' + resolved + '"';
       });
       var depth = base ? base.split('/').length : 0;
       var sb = sidebarHtml(sections, rp.replace(/\.md$/, '.html'), depth);

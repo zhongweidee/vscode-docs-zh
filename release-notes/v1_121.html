@@ -520,7 +520,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>智能体窗口现已实验性支持在你拥有且可通过 SSH 或 dev tunnel 连接的远程机器上运行智能体会话。在我们的文档中了解更多关于<a href="https://code.visualstudio.com/docs/agents/concepts/agents#_remote-agent-sessions">远程智能体会话</a>的信息。</p>
 
-<p><img src="images/1_121/remote-tab.webp" alt="显示智能体窗口远程选项卡用于连接远程机器的截图。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/remote-tab.webp" alt="显示智能体窗口远程选项卡用于连接远程机器的截图。"></p>
 
 <h4>连接到远程</h4>
 
@@ -551,7 +551,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>请参阅<a href="https://learn.microsoft.com/azure/managed-grafana/grafana-opentelemetry-app-insights#github-copilot">使用 Grafana 监控 AI 编码智能体</a>了解端到端设置，以及<a href="https://code.visualstudio.com/docs/agents/guides/monitoring-agents">使用 OpenTelemetry 监控智能体使用情况</a>了解如何从 VS Code 启用导出。</p>
 
-<p><img src="images/1_121/grafana-copilot-dashboard.webp" alt="显示 GitHub Copilot Grafana 仪表板的截图，其中包含操作、token、聊天会话、工具调用和每个模型延迟的面板。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/grafana-copilot-dashboard.webp" alt="显示 GitHub Copilot Grafana 仪表板的截图，其中包含操作、token、聊天会话、工具调用和每个模型延迟的面板。"></p>
 
 <h3>Claude 智能体自动权限模式（预览）</h3>
 
@@ -559,7 +559,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Claude 智能体现在支持<a href="https://code.claude.com/docs/en/permission-modes#eliminate-prompts-with-auto-mode">自动模式</a>，允许 Claude 在没有权限提示的情况下执行操作。在执行操作之前，一个单独的分类器请求会审查这些操作，阻止任何超出你请求范围、针对未识别的基础设施或由 Claude 读取的恶意内容驱动的操作。这对于长时间运行的任务非常有用，因为你希望减少提示疲劳，同时保持后台安全检查。</p>
 
-<p><img src="images/1_121/claude-agent-auto.webp" alt="Claude 智能体自动模式"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/claude-agent-auto.webp" alt="Claude 智能体自动模式"></p>
 
 <p>要在权限模式选择器中看到自动选项，请启用 <code>setting(github.copilot.chat.claudeAgent.allowAutoPermissions)</code>。</p>
 
@@ -588,11 +588,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>我们现在提供了一个新的 BYOK 提供程序——自定义端点提供程序，它允许你通过单一配置将任何与 Chat Completions、Responses 或 Messages 兼容的端点接入 Copilot Chat。它取代了旧版 OpenAI 兼容（<code>customoai</code>）提供程序，后者仅支持 Chat Completions，现已被标记为弃用。</p>
 
-<p><img src="images/1_121/custom-endpoint-provider.webp" alt="显示语言模型编辑器中添加新模型的下拉选项截图，其中包含新的自定义端点选项。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/custom-endpoint-provider.webp" alt="显示语言模型编辑器中添加新模型的下拉选项截图，其中包含新的自定义端点选项。"></p>
 
 <p>从此提供程序添加模型时，你可以选择它属于哪个 API 系列（<code>chat-completions</code>、<code>responses</code> 或 <code>messages</code>）。</p>
 
-<p><img src="images/1_121/custom-endpoint-provider-api-types.webp" alt="显示自定义端点模型配置表单的截图，其中包含 API 类型下拉菜单。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/custom-endpoint-provider-api-types.webp" alt="显示自定义端点模型配置表单的截图，其中包含 API 类型下拉菜单。"></p>
 
 <blockquote><strong>注意</strong>：自定义端点提供程序目前为预览版，仅在 VS Code Insiders 中可用。</blockquote>
 
@@ -602,7 +602,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以前，预览 HTML 文件需要安装扩展，这对于如此常见的操作来说是不必要的障碍。现在，你可以通过在文件资源管理器中右键点击文件或右键点击已打开文件的编辑器选项卡，选择<strong>在集成浏览器中打开</strong>选项来轻松打开本地 HTML 文件。当 HTML 文件处于活动状态时，你也可以在编辑器标题栏中选择<strong>预览</strong>图标。</p>
 
-<p><img src="images/1_121/browser-open-html.webp" alt="显示编辑器标题栏的截图，其中打开了一个 HTML 文件并显示了在集成浏览器中打开图标。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/browser-open-html.webp" alt="显示编辑器标题栏的截图，其中打开了一个 HTML 文件并显示了在集成浏览器中打开图标。"></p>
 
 <h3>改进的向聊天中添加元素的体验</h3>
 
@@ -618,7 +618,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你现在可以在页面中任意位置右键点击，快速将元素附加到聊天中。</p>
 
-<p><img src="images/1_121/browser-add-context.webp" alt="显示在元素上打开的上下文菜单的截图，其中包含"将元素添加到聊天"项。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/browser-add-context.webp" alt="显示在元素上打开的上下文菜单的截图，其中包含"将元素添加到聊天"项。"></p>
 
 <h2>终端</h2>
 
@@ -702,7 +702,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>以下是在 Markdown 预览中图表的样子：</p>
 
-<p><img src="images/1_121/md-diagram-preview.webp" alt="显示在 Markdown 预览中渲染的 Mermaid 图表的截图。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/md-diagram-preview.webp" alt="显示在 Markdown 预览中渲染的 Mermaid 图表的截图。"></p>
 
 <p>渲染的 Mermaid 图表还支持平移和缩放，这使得更大的图表更容易在不离开预览的情况下进行检查。你还可以右键点击图表来复制其 Mermaid 源代码。</p>
 
@@ -712,7 +712,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>我们添加了选项来控制如何在 Markdown 预览中渲染 <a href="https://docs.github.com/en/contributing/writing-for-github-docs/using-yaml-frontmatter">YAML front matter</a>。默认情况下，VS Code 不再隐藏前言，而是在预览顶部将 front matter 显示为一个表格。</p>
 
-<p><img src="images/1_121/md-frontmatter.webp" alt="显示 Markdown frontmatter 在预览中作为表格渲染的截图。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_121/md-frontmatter.webp" alt="显示 Markdown frontmatter 在预览中作为表格渲染的截图。"></p>
 
 <p>你可以使用 <code>setting(markdown.preview.frontMatter)</code> 设置来选择 front matter 的显示方式：</p>
 

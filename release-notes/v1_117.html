@@ -526,13 +526,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>当你积累了许多代理会话时，找到正确的会话可能会很困难。<strong>代理会话</strong> 视图支持按创建时间或最后更新时间对会话进行排序，让你可以快速回到上次的工作进度。</p>
 
-<p><img src="images/1_117/sort-by-filter.webp" alt="聊天视图的截图，筛选上下文菜单已打开，显示按更新时间/创建时间排序的操作。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_117/sort-by-filter.webp" alt="聊天视图的截图，筛选上下文菜单已打开，显示按更新时间/创建时间排序的操作。"></p>
 
 <h3>后台终端命令的系统通知</h3>
 
 <p>当代理在后台运行长时间终端命令时，很容易忘记其进度。这些命令现在会在聊天响应中显示为<strong>系统通知</strong>，让你无需切换到终端即可监控其状态。</p>
 
-<p><img src="images/1_117/system-notification-terminal.webp" alt="聊天响应中出现系统通知的截图。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_117/system-notification-terminal.webp" alt="聊天响应中出现系统通知的截图。"></p>
 
 <h2>代理体验</h2>
 
@@ -551,7 +551,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>主题、聊天响应和用户体验优化</strong>：持续优化主题、会话列表和响应渲染以及整个应用的用户体验。
 </li>
 </ul>
-<p><img src="images/1_117/Agents-117.webp" alt="Visual Studio Code Agents - Insiders 应用截图，显示建议的更改。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_117/Agents-117.webp" alt="Visual Studio Code Agents - Insiders 应用截图，显示建议的更改。"></p>
 
 <p>与之前版本相同，你可以通过以下方式打开该应用：</p>
 
@@ -573,7 +573,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Copilot CLI、Claude Code 和 Gemini CLI 等代理 CLI 通常以 <code>node</code> 进程运行，这意味着终端标题会显示通用的 <code>node</code> 标签。这使得很难分辨每个终端中运行的是哪个代理。终端现在将这些代理 CLI 检测为独特的 shell 类型，并使用 CLI 发出的 OSC 标题序列作为终端标题，因此每个终端都能清楚地标识其承载的代理。</p>
 
-<p><img src="images/1_117/terminalAiCliTitle.webp" alt="终端标题截图，显示通过 OSC 标题序列反映正在运行的代理 CLI。"></p>
+<p><img src="https://raw.githubusercontent.com/microsoft/vscode-docs/main/release-notes/images/1_117/terminalAiCliTitle.webp" alt="终端标题截图，显示通过 OSC 标题序列反映正在运行的代理 CLI。"></p>
 
 <p>改进的检测功能覆盖 macOS、Linux 和 Windows 上的 Copilot CLI、Claude Code 和 Gemini CLI。Codex 目前在 macOS 上尚未被检测到，因为它目前不会发出 OSC 标题序列。此行为默认启用，可以通过 <code>setting(terminal.integrated.tabs.allowAgentCliTitle)</code> 设置进行切换。</p>
 
