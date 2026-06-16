@@ -232,6 +232,7 @@ function genIndex(secs) {
     ns.forEach(function(n) {
       if (n.type === 'link') h += '<li><a href="' + n.href + '">' + n.name + '</a></li>\n';
       else if (n.type === 'sub') { h += '<li>' + n.name + '<ul>' + tocItems(n.children) + '</ul></li>\n'; }
+      else if (n.type === 'group') { h += tocItems(n.children); }
     });
     return h;
   }
