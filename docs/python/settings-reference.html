@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 的 Python 扩展具有高度可配置性。本页介绍了你可以使用的主要设置。</p>
 
-<p>有关在 VS Code 中使用设置的一般信息，请参阅<a href="../docs/configure/settings.md">用户和工作区设置</a>，以及<a href="../docs/reference/variables-reference.md">变量参考</a>中关于预定义变量支持的说明。</p>
+<p>有关在 VS Code 中使用设置的一般信息，请参阅<a href="../../docs/configure/settings.html">用户和工作区设置</a>，以及<a href="../../docs/reference/variables-reference.html">变量参考</a>中关于预定义变量支持的说明。</p>
 
 <h2>通用 Python 设置</h2>
 
@@ -463,7 +463,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>---</td><td>---</td><td>---</td><td></td></tr>
   <tr><td></td><td>condaPath</td><td><code>"conda"</code></td><td><code>conda</code> 可执行文件的路径。</td><td></td></tr>
   <tr><td></td><td>defaultInterpreterPath</td><td><code>"python"</code></td><td>Python 扩展在首次加载工作区时要使用的默认 Python 解释器的路径，或者包含 Python 解释器的文件夹的路径。可以使用变量，如 <code>${workspaceFolder}</code> 和 <code>${workspaceFolder}/.venv</code>。使用文件夹路径可以让项目中的任何人在 <code>.venv</code> 文件夹中创建适合其操作系统的环境，而不必指定一个与平台相关的确切路径。然后，<code>settings.json</code> 文件可以被包含在源代码仓库中。<strong>注意</strong>：在已为工作区选择了某个解释器之后，对该设置所做的更改不会应用或被 Python 扩展考虑。Python 扩展不会自动添加或更改此设置。</td><td></td></tr>
-  <tr><td></td><td>envFile</td><td><code>"${workspaceFolder}/.env"</code></td><td>包含环境变量定义的文件绝对路径。请参阅<a href="../docs/python/environments.md#env-file-support">.env 文件支持</a>。</td><td></td></tr>
+  <tr><td></td><td>envFile</td><td><code>"${workspaceFolder}/.env"</code></td><td>包含环境变量定义的文件绝对路径。请参阅<a href="../../docs/python/environments.html#env-file-support">.env 文件支持</a>。</td><td></td></tr>
   <tr><td></td><td>experiments.enabled</td><td><code>true</code></td><td>启用 <a href="https://aka.ms/AAjvt9q">Python 扩展中的 A/B 实验</a>。如果启用，你可能会获得提议的增强功能和/或特性的体验。</td><td></td></tr>
   <tr><td></td><td>globalModuleInstallation</td><td><code>false</code></td><td>指定是使用 <code>--user</code> 命令行参数仅为当前用户安装包（默认行为），还是为全局环境中的所有用户安装包（设置为 <code>true</code> 时）。使用虚拟环境时此设置被忽略。有关 <code>--user</code> 参数的更多信息，请参阅 <a href="https://pip.pypa.io/en/stable/user_guide/#user-installs">pip - 用户安装</a>。</td><td></td></tr>
   <tr><td></td><td>interpreter.infoVisibility</td><td><code>"onPythonRelated"</code></td><td>控制何时在状态栏上显示已选择的解释器信息。默认情况下，仅在编辑器中有 Python 相关文件打开时才显示。你可以将其设置为 <code>"always"</code> 使其始终显示在状态栏上，或设置为 <code>"never"</code> 完全隐藏。</td><td></td></tr>
@@ -483,7 +483,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Python 环境扩展在 VS Code 用户界面中提供环境和包管理功能。这些设置控制环境发现、创建和终端激活。</p>
 
-<p>有关环境管理的更多信息，请参阅 <a href="../docs/python/environments.md">Python 环境</a>。</p>
+<p>有关环境管理的更多信息，请参阅 <a href="../../docs/python/environments.html">Python 环境</a>。</p>
 
 <h3>环境管理设置</h3>
 
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>设置 (python.debugpy.)</th><th>默认值</th><th>说明</th><th>另请参阅</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>debugJustMyCode</td><td><code>true</code></td><td>指定调试器是否应仅单步执行用户编写的代码。禁用后，你也可以单步执行库代码。</td><td><a href="../docs/python/debugging.md">调试</a></td><td></td></tr>
+  <tr><td></td><td>debugJustMyCode</td><td><code>true</code></td><td>指定调试器是否应仅单步执行用户编写的代码。禁用后，你也可以单步执行库代码。</td><td><a href="../../docs/python/debugging.html">调试</a></td><td></td></tr>
 </tbody>
 </table>
 <h2>测试设置</h2>
@@ -541,10 +541,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>设置 (python.testing.)</th><th>默认值</th><th>说明</th><th>另请参阅</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>autoTestDiscoverOnSaveEnabled</td><td><code>true</code></td><td>指定在保存测试文件时是否启用或禁用自动运行测试发现。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>cwd</td><td>null</td><td>指定可选的测试工作目录。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>debugPort</td><td><code>3000</code></td><td>用于调试 unittest 测试的端口号。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>promptToConfigure</td><td><code>true</code></td><td>指定当发现潜在的测试时，VS Code 是否提示配置测试框架。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
+  <tr><td></td><td>autoTestDiscoverOnSaveEnabled</td><td><code>true</code></td><td>指定在保存测试文件时是否启用或禁用自动运行测试发现。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>cwd</td><td>null</td><td>指定可选的测试工作目录。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>debugPort</td><td><code>3000</code></td><td>用于调试 unittest 测试的端口号。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>promptToConfigure</td><td><code>true</code></td><td>指定当发现潜在的测试时，VS Code 是否提示配置测试框架。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
 </tbody>
 </table>
 <h3>unittest 框架</h3>
@@ -553,8 +553,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>设置 (python.testing.)</th><th>默认值</th><th>说明</th><th>另请参阅</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>unittestArgs</td><td><code>["-v", "-s", ".", "-p", "<em>test</em>.py"]</code></td><td>传递给 unittest 的参数，其中每个由空格分隔的顶层元素都是列表中的单独项目。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>unittestEnabled</td><td><code>false</code></td><td>指定是否为测试启用 unittest。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
+  <tr><td></td><td>unittestArgs</td><td><code>["-v", "-s", ".", "-p", "<em>test</em>.py"]</code></td><td>传递给 unittest 的参数，其中每个由空格分隔的顶层元素都是列表中的单独项目。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>unittestEnabled</td><td><code>false</code></td><td>指定是否为测试启用 unittest。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
 </tbody>
 </table>
 <h3>pytest 框架</h3>
@@ -563,9 +563,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>设置 (python.testing.)</th><th>默认值</th><th>说明</th><th>另请参阅</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>pytestArgs</td><td><code>[]</code></td><td>传递给 pytest 的参数，其中每个由空格分隔的顶层元素都是列表中的单独项目。当调试安装了 pytest-cov 的测试时，请在这些参数中包含 <code>--no-cov</code>。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>pytestEnabled</td><td><code>false</code></td><td>指定是否为测试启用 pytest。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
-  <tr><td></td><td>pytestPath</td><td><code>"pytest"</code></td><td>pytest 的路径。如果 pytest 位于当前环境之外，请使用完整路径。</td><td><a href="../docs/python/testing.md">测试</a></td><td></td></tr>
+  <tr><td></td><td>pytestArgs</td><td><code>[]</code></td><td>传递给 pytest 的参数，其中每个由空格分隔的顶层元素都是列表中的单独项目。当调试安装了 pytest-cov 的测试时，请在这些参数中包含 <code>--no-cov</code>。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>pytestEnabled</td><td><code>false</code></td><td>指定是否为测试启用 pytest。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
+  <tr><td></td><td>pytestPath</td><td><code>"pytest"</code></td><td>pytest 的路径。如果 pytest 位于当前环境之外，请使用完整路径。</td><td><a href="../../docs/python/testing.html">测试</a></td><td></td></tr>
 </tbody>
 </table>
 <h2>代码分析设置</h2>
@@ -689,7 +689,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>设置 (python.autoComplete.)</th><th>默认值</th><th>说明</th><th>另请参阅</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>extraPaths</td><td><code>[]</code></td><td>指定加载自动完成数据的额外包的位置。</td><td><a href="../docs/python/editing.md#autocomplete-and-intellisense">编辑</a></td><td></td></tr>
+  <tr><td></td><td>extraPaths</td><td><code>[]</code></td><td>指定加载自动完成数据的额外包的位置。</td><td><a href="../../docs/python/editing.html#autocomplete-and-intellisense">编辑</a></td><td></td></tr>
 </tbody>
 </table>
 <h2>预定义变量</h2>
@@ -714,16 +714,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>${execPath}</strong> - 正在运行的 VS Code 可执行文件的路径
 </li>
 </ul>
-<p>有关预定义变量和示例用法的更多信息，请参阅通用 VS Code 文档中的<a href="../docs/reference/variables-reference.md">变量参考</a>。</p>
+<p>有关预定义变量和示例用法的更多信息，请参阅通用 VS Code 文档中的<a href="../../docs/reference/variables-reference.html">变量参考</a>。</p>
 
 <h2>下一步</h2>
 
 <ul>
-<li><a href="../docs/python/environments.md">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
-<li><a href="../docs/python/editing.md">编辑代码</a> - 了解 Python 的自动完成、IntelliSense、格式化和重构。</li>
-<li><a href="../docs/python/linting.md">Linting</a> - 启用、配置和应用各种 Python linter。</li>
-<li><a href="../docs/python/debugging.md">调试</a> - 学习本地和远程调试 Python。</li>
-<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境以及发现、运行和调试测试。</li>
+<li><a href="../../docs/python/environments.html">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
+<li><a href="../../docs/python/editing.html">编辑代码</a> - 了解 Python 的自动完成、IntelliSense、格式化和重构。</li>
+<li><a href="../../docs/python/linting.html">Linting</a> - 启用、配置和应用各种 Python linter。</li>
+<li><a href="../../docs/python/debugging.html">调试</a> - 学习本地和远程调试 Python。</li>
+<li><a href="../../docs/python/testing.html">测试</a> - 配置测试环境以及发现、运行和调试测试。</li>
 </ul>
 
   </div>

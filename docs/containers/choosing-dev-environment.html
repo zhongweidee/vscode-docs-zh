@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以选择在<strong>本地环境</strong>还是在<strong>远程环境</strong>中开发基于容器的服务。本地环境即你开发者工作站的操作系统；使用本地环境意味着你使用安装在工作站上的 Docker 来构建和运行服务容器。Windows、macOS 以及各种 Linux 发行版均支持 Docker；有关系统和硬件要求，请参阅 <a href="https://docs.docker.com/get-docker/">Docker 安装页面</a>。</p>
 
-<p><a href="../docs/remote/remote-overview.md">远程开发环境</a>不同于你的开发者工作站。它可以是通过 SSH 访问的远程机器、运行在开发者工作站上的虚拟机，或者一个开发容器。远程环境相比本地环境具有诸多优势，其中最主要的是能够在开发阶段使用与服务生产运行时相同的操作系统。要使用远程环境，你需要确保 <code>docker</code> 命令（Docker CLI）<a href="#在远程开发环境内启用-docker-cli">在该环境中可用且能正常工作</a>。</p>
+<p><a href="../../docs/remote/remote-overview.html">远程开发环境</a>不同于你的开发者工作站。它可以是通过 SSH 访问的远程机器、运行在开发者工作站上的虚拟机，或者一个开发容器。远程环境相比本地环境具有诸多优势，其中最主要的是能够在开发阶段使用与服务生产运行时相同的操作系统。要使用远程环境，你需要确保 <code>docker</code> 命令（Docker CLI）<a href="#在远程开发环境内启用-docker-cli">在该环境中可用且能正常工作</a>。</p>
 
 <p>第二个重要的选择是：将服务作为普通进程进行调试，还是将服务放在容器内进行调试。</p>
 
@@ -467,7 +467,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 </ol>
 </li>
-<li>如果需要远程环境，请优先考虑使用<a href="../docs/devcontainers/containers.md">开发容器</a>。
+<li>如果需要远程环境，请优先考虑使用<a href="../../docs/devcontainers/containers.html">开发容器</a>。
 <ul>
 <li>在 Windows 上，使用 <a href="#windows-subsystem-for-linux">Windows Subsystem for Linux (WSL)</a> 是一个不错的选择。
 </li>
@@ -542,7 +542,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要使用运行在开发者工作站上的 Linux 虚拟机，你应该按照与在远程机器上安装相同的方式在虚拟机上<a href="https://docs.docker.com/install/">安装 Docker</a>，然后使用 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">VS Code Remote-SSH</a> 扩展连接到该虚拟机。</p>
 
-<p>或者，你可以仅在开发环境内安装 Docker CLI，并使用 <a href="https://docs.docker.com/engine/context/working-with-contexts/">Docker 上下文机制</a> 将该 CLI 指向在开发者工作站上运行的 Docker 主机（引擎）。这种方法的主要问题是确保从虚拟机到主机上 Docker 引擎的网络连通性，并以安全的方式来实现。一种选择是使用 <a href="../docs/containers/ssh.md">SSH 隧道</a> 或 <a href="../docs/remote/tunnels.md">Remote - Tunnels</a> 连接到开发者工作站。另一种选择是<a href="https://docs.docker.com/engine/security/https/">让 Docker 引擎监听 HTTPS 端口</a>。你需要精通 SSH 和公钥基础设施（PKI），才能在虚拟机内运行的 Docker CLI 中使用主机的 Docker 引擎。对于大多数用户，我们建议在虚拟机内完整安装 Docker。</p>
+<p>或者，你可以仅在开发环境内安装 Docker CLI，并使用 <a href="https://docs.docker.com/engine/context/working-with-contexts/">Docker 上下文机制</a> 将该 CLI 指向在开发者工作站上运行的 Docker 主机（引擎）。这种方法的主要问题是确保从虚拟机到主机上 Docker 引擎的网络连通性，并以安全的方式来实现。一种选择是使用 <a href="../../docs/containers/ssh.html">SSH 隧道</a> 或 <a href="../../docs/remote/tunnels.html">Remote - Tunnels</a> 连接到开发者工作站。另一种选择是<a href="https://docs.docker.com/engine/security/https/">让 Docker 引擎监听 HTTPS 端口</a>。你需要精通 SSH 和公钥基础设施（PKI），才能在虚拟机内运行的 Docker CLI 中使用主机的 Docker 引擎。对于大多数用户，我们建议在虚拟机内完整安装 Docker。</p>
 
 <h2>在容器内调试</h2>
 
@@ -557,15 +557,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>鉴于上述顾虑，通常建议使用常规调试，仅在必要时使用容器内调试。</p>
 
-<p>有关如何设置在容器内进行调试的更多信息，请参阅 <a href="../docs/containers/quickstart-aspnet-core.md">ASP.NET Core 快速入门</a>、<a href="../docs/containers/quickstart-node.md">Node.js 快速入门</a> 以及<a href="../docs/containers/reference.md">容器工具扩展任务属性</a>（<code>docker-build</code> 和 <code>docker-run</code> 任务）。</p>
+<p>有关如何设置在容器内进行调试的更多信息，请参阅 <a href="../../docs/containers/quickstart-aspnet-core.html">ASP.NET Core 快速入门</a>、<a href="../../docs/containers/quickstart-node.html">Node.js 快速入门</a> 以及<a href="../../docs/containers/reference.html">容器工具扩展任务属性</a>（<code>docker-build</code> 和 <code>docker-run</code> 任务）。</p>
 
 <h2>后续步骤</h2>
 
 <p>继续阅读以了解更多关于：</p>
 
 <ul>
-<li><a href="../docs/containers/quickstart-node.md">在容器中构建和运行 Node.js 应用</a></li>
-<li><a href="../docs/containers/quickstart-aspnet-core.md">在容器中构建和运行 ASP.NET Core 应用</a></li>
+<li><a href="../../docs/containers/quickstart-node.html">在容器中构建和运行 Node.js 应用</a></li>
+<li><a href="../../docs/containers/quickstart-aspnet-core.html">在容器中构建和运行 ASP.NET Core 应用</a></li>
 </ul>
 
   </div>

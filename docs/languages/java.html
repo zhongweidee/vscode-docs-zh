@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/languages / java</div>
 <h1>在 Visual Studio Code 中使用 Java</h1>
 
-<p>Visual Studio Code 通过丰富的<a href="../docs/java/extensions.md">扩展</a>提供对 Java 的支持。结合 VS Code 核心的强大功能，这些扩展为您提供了一个轻量且高性能的代码编辑器，同时也支持许多最常见的 Java 开发技术。</p>
+<p>Visual Studio Code 通过丰富的<a href="../../docs/java/extensions.html">扩展</a>提供对 Java 的支持。结合 VS Code 核心的强大功能，这些扩展为您提供了一个轻量且高性能的代码编辑器，同时也支持许多最常见的 Java 开发技术。</p>
 
 <p>本文将为 Java 开发者概述 Visual Studio Code 的各类功能。如需快速了解如何使用 Visual Studio Code 编辑、运行和调试 Java 程序，请使用下方的<strong>Java 入门教程</strong>按钮。</p>
 
@@ -495,7 +495,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>或者，您也可以自行安装流行的 Java 扩展来为 VS Code 添加 Java 语言支持。</p>
 
-<blockquote><a href="../download">下载 VS Code</a> - 如果您尚未下载 VS Code，请快速为您的平台（Windows、macOS、Linux）安装。</blockquote>
+<blockquote><a href="../../download">下载 VS Code</a> - 如果您尚未下载 VS Code，请快速为您的平台（Windows、macOS、Linux）安装。</blockquote>
 
 <p>还有其他流行的 Java 扩展可供您根据自身需求选择，包括：</p>
 
@@ -518,11 +518,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>本文档介绍了这些 Java 扩展中包含的一些关键功能。</p>
 
-<p>><strong>注意</strong>：为帮助您入门 Java 开发，您可以使用 <a href="../docs/configure/profiles.md#java-general-profile-template">Java 通用配置文件模板</a>来安装有用的扩展。您可以在 <a href="../docs/configure/profiles.md">VS Code 中的配置文件</a>中了解有关配置文件以及如何快速为不同编程语言和工作流程重新配置编辑器的更多信息。</p>
+<p>><strong>注意</strong>：为帮助您入门 Java 开发，您可以使用 <a href="../../docs/configure/profiles.html#java-general-profile-template">Java 通用配置文件模板</a>来安装有用的扩展。您可以在 <a href="../../docs/configure/profiles.html">VS Code 中的配置文件</a>中了解有关配置文件以及如何快速为不同编程语言和工作流程重新配置编辑器的更多信息。</p>
 
 <h2>入门</h2>
 
-<p><strong>注意：</strong> 如果您在 Windows 上使用 VS Code 并希望利用 Windows Subsystem for Linux，请参阅<a href="../docs/remote/wsl">在 WSL 中进行开发</a>。</p>
+<p><strong>注意：</strong> 如果您在 Windows 上使用 VS Code 并希望利用 Windows Subsystem for Linux，请参阅<a href="../../docs/remote/wsl">在 WSL 中进行开发</a>。</p>
 
 <h3>安装 Java Development Kit (JDK)</h3>
 
@@ -539,7 +539,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><a href="https://www.oracle.com/java/technologies/javase-downloads.html">Oracle Java SE</a></li>
 <li><a href="https://developers.redhat.com/products/openjdk/download">Red Hat build of OpenJDK</a></li>
 <li><a href="https://sapmachine.io">SapMachine</a>
-<blockquote><strong>注意</strong>：如果您安装了多个 JDK 并且需要为项目使用特定的 JDK 版本，请参阅<a href="../docs/java/java-project.md#configure-runtime-for-projects">为项目配置运行时</a>。要启用 Java 预览功能，请参阅<a href="../docs/java/java-faq.md#how-can-i-use-visual-studio-code-with-new-java-versions">如何将 VS Code 与新版 Java 配合使用</a>。</blockquote>
+<blockquote><strong>注意</strong>：如果您安装了多个 JDK 并且需要为项目使用特定的 JDK 版本，请参阅<a href="../../docs/java/java-project.html#configure-runtime-for-projects">为项目配置运行时</a>。要启用 Java 预览功能，请参阅<a href="../../docs/java/java-faq.html#how-can-i-use-visual-studio-code-with-new-java-versions">如何将 VS Code 与新版 Java 配合使用</a>。</blockquote>
 
 </li>
 </ul>
@@ -551,7 +551,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 Java 源文件</h2>
 
-<p>您可以使用 VS Code 读取、写入、运行和调试 Java 源文件，而无需创建项目。VS Code for Java 支持两种模式，轻量模式和标准模式。轻量模式非常适合仅处理源文件的场景。如果您想要处理完整的项目，则需要使用标准模式。需要时，您可以轻松地从轻量模式切换到标准模式。要了解更多信息，请参阅<a href="../docs/java/java-project.md#lightweight-mode">轻量模式</a>。</p>
+<p>您可以使用 VS Code 读取、写入、运行和调试 Java 源文件，而无需创建项目。VS Code for Java 支持两种模式，轻量模式和标准模式。轻量模式非常适合仅处理源文件的场景。如果您想要处理完整的项目，则需要使用标准模式。需要时，您可以轻松地从轻量模式切换到标准模式。要了解更多信息，请参阅<a href="../../docs/java/java-project.html#lightweight-mode">轻量模式</a>。</p>
 
 <h2>使用 Java 项目</h2>
 
@@ -569,7 +569,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当您在 VS Code 中打开一个文件系统文件夹（目录）时，VS Code 会呈现一个"文件夹工作区"。</p>
 
-<p>"多根工作区"可以引用来自文件系统不同位置的多个文件夹（目录），VS Code 会在<a href="../docs/editing/userinterface.md#basic-layout">文件资源管理器</a>中一起显示工作区中所有文件夹的内容。要了解更多信息，请参阅<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>。</p>
+<p>"多根工作区"可以引用来自文件系统不同位置的多个文件夹（目录），VS Code 会在<a href="../../docs/editing/userinterface.html#basic-layout">文件资源管理器</a>中一起显示工作区中所有文件夹的内容。要了解更多信息，请参阅<a href="../../docs/editing/workspaces/multi-root-workspaces.html">多根工作区</a>。</p>
 
 <h3>VS Code 中的 Java 项目</h3>
 
@@ -583,13 +583,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>  <source src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/languages/docs/languages/java/package-viewer.mp4" type="video/mp4"></p>
 <p></video></p>
 
-<p>Visual Studio Code 也支持在 Java 项目之外处理独立的 Java 文件，这在 <a href="../docs/java/java-tutorial.md">Java 入门</a>教程中有介绍。</p>
+<p>Visual Studio Code 也支持在 Java 项目之外处理独立的 Java 文件，这在 <a href="../../docs/java/java-tutorial.html">Java 入门</a>教程中有介绍。</p>
 
 <h3>包含 Java 项目的 VS Code 工作区</h3>
 
 <p>假设已安装必要的 Java 扩展，打开包含 Java 构件的 VS Code 工作区将使这些扩展理解这些构件并提供处理它们的选项。</p>
 
-<p>有关 Java 项目支持的更多详细信息，请参阅 <a href="../docs/java/java-project.md">Visual Studio Code 中的 Java 项目管理</a>和 <a href="../docs/java/java-build.md">Java 构建工具</a>。</p>
+<p>有关 Java 项目支持的更多详细信息，请参阅 <a href="../../docs/java/java-project.html">Visual Studio Code 中的 Java 项目管理</a>和 <a href="../../docs/java/java-build.html">Java 构建工具</a>。</p>
 
 <h2>编辑</h2>
 
@@ -597,11 +597,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 中的 Java 还支持源代码导航功能，例如搜索符号、速览定义和转到定义。<a href="https://marketplace.visualstudio.com/items?itemName=vmware.vscode-spring-boot">Spring Boot Tools</a> 扩展为 <a href="https://projects.spring.io/spring-boot/">Spring Boot</a> 项目提供了增强的导航和代码补全支持。</p>
 
-<p>VS Code 的关键优势之一是速度。当您打开 Java 源文件或文件夹时，几秒钟内，借助<a href="../docs/java/java-project.md#lightweight-mode">轻量模式</a>，您就可以通过大纲视图以及<strong>转到定义</strong>和<strong>转到引用</strong>等命令来浏览代码库。这在您首次打开项目时特别有用。</p>
+<p>VS Code 的关键优势之一是速度。当您打开 Java 源文件或文件夹时，几秒钟内，借助<a href="../../docs/java/java-project.html#lightweight-mode">轻量模式</a>，您就可以通过大纲视图以及<strong>转到定义</strong>和<strong>转到引用</strong>等命令来浏览代码库。这在您首次打开项目时特别有用。</p>
 
 <h3>代码补全</h3>
 
-<p><a href="../docs/editing/intellisense.md">IntelliSense</a> 是语言功能的统称，包括跨所有文件和内置及第三方模块的智能代码补全（上下文方法和变量建议）。VS Code 通过 <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Language Support for Java™ by Red Hat</a> 支持 Java 的代码补全和 IntelliSense。它还提供了被称为 <a href="https://visualstudio.microsoft.com/services/intellicode/">IntelliCode</a> 的 AI 辅助 IntelliSense，将您最可能使用的项目放在补全列表的顶部。</p>
+<p><a href="../../docs/editing/intellisense.html">IntelliSense</a> 是语言功能的统称，包括跨所有文件和内置及第三方模块的智能代码补全（上下文方法和变量建议）。VS Code 通过 <a href="https://marketplace.visualstudio.com/items?itemName=redhat.java">Language Support for Java™ by Red Hat</a> 支持 Java 的代码补全和 IntelliSense。它还提供了被称为 <a href="https://visualstudio.microsoft.com/services/intellicode/">IntelliCode</a> 的 AI 辅助 IntelliSense，将您最可能使用的项目放在补全列表的顶部。</p>
 
 <p><video autoplay loop muted playsinline controls title="Java 行内代码补全和悬停提示"></p>
 <p>  <source src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/languages/docs/languages/java/intellisense.mp4" type="video/mp4"></p>
@@ -615,7 +615,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>GitHub Copilot 为多种语言和广泛的框架提供建议，它在 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++ 方面表现尤为出色。</p>
 
-<p>您可以在 <a href="../docs/editor/github-copilot.md">Copilot 文档</a>中了解有关如何开始使用 Copilot 的更多信息。</p>
+<p>您可以在 <a href="../../docs/editor/github-copilot.html">Copilot 文档</a>中了解有关如何开始使用 Copilot 的更多信息。</p>
 
 <h2>代码片段</h2>
 
@@ -624,7 +624,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>例如，输入 "<strong>sout</strong>" 或 "<strong>sysout</strong>" 将生成 <code>System.out.println()</code> 的代码片段。<br></p>
 <p>类似地，输入 "<strong>main</strong>" 或 "<strong>psvm</strong>" 将生成 <code>public static void main(String[] args) {}</code> 的代码片段。</p>
 
-<p>我们支持丰富的代码片段快捷方式和后缀补全功能。要查看完整列表，请参阅<a href="../docs/java/java-editing.md#code-snippets">代码片段</a>。VS Code 还支持一系列<a href="../docs/java/java-refactoring.md">重构</a>和<a href="../docs/java/java-linting.md">代码检查</a>功能。</p>
+<p>我们支持丰富的代码片段快捷方式和后缀补全功能。要查看完整列表，请参阅<a href="../../docs/java/java-editing.html#code-snippets">代码片段</a>。VS Code 还支持一系列<a href="../../docs/java/java-refactoring.html">重构</a>和<a href="../../docs/java/java-linting.html">代码检查</a>功能。</p>
 
 <p><img src="images/java/code-snippet.png" alt="代码片段"></p>
 
@@ -638,7 +638,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>  <source src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/languages/docs/languages/java/resolve-main.mp4" type="video/mp4"></p>
 <p></video></p>
 
-<p>尽管它是轻量级的，但 Java 调试器支持高级功能，例如表达式求值、条件断点和<a href="../docs/java/java-debugging.md#hot-code-replace">热代码替换</a>。有关更多调试相关信息，请访问 <a href="../docs/java/java-debugging.md">Java 调试</a>。</p>
+<p>尽管它是轻量级的，但 Java 调试器支持高级功能，例如表达式求值、条件断点和<a href="../../docs/java/java-debugging.html#hot-code-replace">热代码替换</a>。有关更多调试相关信息，请访问 <a href="../../docs/java/java-debugging.html">Java 调试</a>。</p>
 
 <h2>测试</h2>
 
@@ -648,40 +648,40 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>  <source src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/languages/docs/languages/java/testng.mp4" type="video/mp4"></p>
 <p></video></p>
 
-<p>有关测试的更多信息，请阅读<a href="../docs/java/java-testing.md">测试 Java</a>。</p>
+<p>有关测试的更多信息，请阅读<a href="../../docs/java/java-testing.html">测试 Java</a>。</p>
 
 <h2>Spring Boot、Tomcat 和 Jetty</h2>
 
 <p>为了进一步提高您在 VS Code 中的 Java 开发效率，社区为最流行的框架和工具创建了扩展，例如 <a href="https://projects.spring.io/spring-boot/">Spring Boot</a>、<a href="https://tomcat.apache.org/">Tomcat</a> 和 <a href="https://www.eclipse.org/jetty/">Jetty</a>。</p>
 
-<p>请参阅<a href="../docs/java/java-tomcat-jetty.md">应用程序服务器</a>以了解有关 VS Code 对 Tomcat 和 Jetty 以及其他应用程序服务器支持的更多信息。</p>
+<p>请参阅<a href="../../docs/java/java-tomcat-jetty.html">应用程序服务器</a>以了解有关 VS Code 对 Tomcat 和 Jetty 以及其他应用程序服务器支持的更多信息。</p>
 
 <p><a href="https://projects.spring.io/spring-boot/">Spring Boot</a> 支持由 <a href="https://marketplace.visualstudio.com/search?term=publisher%3A%22VMware%22&target=VSCode&category=All%20categories&sortBy=Relevance">VMware</a> 提供。还有 Microsoft 提供的 <a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-initializr">Spring Initializr Java Support</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard">Spring Boot Dashboard</a> 扩展，以进一步改善您在 Visual Studio Code 中使用 Spring Boot 的体验。</p>
 
-<p>请参阅<a href="../docs/java/java-spring-boot.md">在 VS Code 中使用 Spring Boot</a> 以了解有关 VS Code 中 Spring Boot 支持的更多信息，以及<a href="../docs/java/java-webapp.md">部署到 Azure Web Apps</a>或<a href="../docs/java/java-spring-apps.md">部署到 Azure Spring Apps</a> 以了解有关从 VS Code 将 Spring 应用部署到 Azure 的更多信息。</p>
+<p>请参阅<a href="../../docs/java/java-spring-boot.html">在 VS Code 中使用 Spring Boot</a> 以了解有关 VS Code 中 Spring Boot 支持的更多信息，以及<a href="../../docs/java/java-webapp.html">部署到 Azure Web Apps</a>或<a href="../../docs/java/java-spring-apps.html">部署到 Azure Spring Apps</a> 以了解有关从 VS Code 将 Spring 应用部署到 Azure 的更多信息。</p>
 
 <h2>后续步骤</h2>
 
 <p>了解更多关于在 VS Code 中使用 Java 的信息：</p>
 
 <ul>
-<li><a href="../docs/java/java-tutorial.md">Java 入门</a></li>
-<li><a href="../docs/java/java-editing.md">代码编辑与导航</a></li>
-<li><a href="../docs/java/java-debugging.md">Java 调试</a></li>
-<li><a href="../docs/java/java-testing.md">Java 测试</a></li>
-<li><a href="../docs/java/java-project.md">Java 项目管理</a></li>
-<li><a href="../docs/java/java-spring-boot.md">在 VS Code 中使用 Spring Boot</a></li>
-<li><a href="../docs/java/java-tomcat-jetty.md">应用程序服务器</a></li>
-<li><a href="../docs/java/java-on-azure.md">在 VS Code 中使用 Azure</a>
+<li><a href="../../docs/java/java-tutorial.html">Java 入门</a></li>
+<li><a href="../../docs/java/java-editing.html">代码编辑与导航</a></li>
+<li><a href="../../docs/java/java-debugging.html">Java 调试</a></li>
+<li><a href="../../docs/java/java-testing.html">Java 测试</a></li>
+<li><a href="../../docs/java/java-project.html">Java 项目管理</a></li>
+<li><a href="../../docs/java/java-spring-boot.html">在 VS Code 中使用 Spring Boot</a></li>
+<li><a href="../../docs/java/java-tomcat-jetty.html">应用程序服务器</a></li>
+<li><a href="../../docs/java/java-on-azure.html">在 VS Code 中使用 Azure</a>
 </li>
 </ul>
 <p>继续阅读以了解更多关于 Visual Studio Code 的信息：</p>
 
 <ul>
-<li><a href="../docs/editing/codebasics.md">基础编辑</a> - 了解强大的 VS Code 编辑器。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a> - 在源代码中快速移动。</li>
-<li><a href="../docs/debugtest/tasks.md">任务</a> - 使用任务来构建您的项目等</li>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 了解如何将调试器与您的项目配合使用</li>
+<li><a href="../../docs/editing/codebasics.html">基础编辑</a> - 了解强大的 VS Code 编辑器。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a> - 在源代码中快速移动。</li>
+<li><a href="../../docs/debugtest/tasks.html">任务</a> - 使用任务来构建您的项目等</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a> - 了解如何将调试器与您的项目配合使用</li>
 </ul>
 
   </div>

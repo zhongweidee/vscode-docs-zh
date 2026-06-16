@@ -457,7 +457,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>了解在 VS Code 中使用 AI 的控制机制和安全注意事项。</p>
 
 <ul>
-<li><a href="../docs/agents/security.md">了解 AI 安全</a>
+<li><a href="../../../docs/agents/security.html">了解 AI 安全</a>
 </li>
 </ul>
 <p></div></p>
@@ -467,14 +467,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>智能体可以读取文件、编辑代码、运行终端命令以及调用外部服务。VS Code 的信任模型多层叠加了控制机制，让你始终掌握哪些内容会进入你的代码库：</p>
 
 <ul>
-<li><strong>应用前先审查。</strong> 所有文件更改都会出现在差异视图（diff view）中，供你做出保留/撤销的决定；此外，<a href="../docs/chat/chat-checkpoints.md">检查点</a>功能允许你回滚整个会话。</li>
+<li><strong>应用前先审查。</strong> 所有文件更改都会出现在差异视图（diff view）中，供你做出保留/撤销的决定；此外，<a href="../../../docs/chat/chat-checkpoints.html">检查点</a>功能允许你回滚整个会话。</li>
 <li><strong>执行前先批准。</strong> 具有副作用（side effect）的工具和终端命令会提示你批准，并且审批范围可以限定为当前会话、当前工作区或当前用户。</li>
-<li><strong>限制自主性。</strong> <a href="../docs/agents/approvals.md#permission-levels">权限级别</a>决定了智能体能够自主运行的程度：从每次都需批准的完全人工控制，到完全自主的 Autopilot 模式。</li>
+<li><strong>限制自主性。</strong> <a href="../../../docs/agents/approvals.html#permission-levels">权限级别</a>决定了智能体能够自主运行的程度：从每次都需批准的完全人工控制，到完全自主的 Autopilot 模式。</li>
 <li><strong>在操作系统层面强制执行边界。</strong> <a href="#agent-sandboxing">智能体沙盒</a>功能限制终端命令的文件系统和网络访问，确保自动批准的操作无法超出预设范围。</li>
 <li><strong>信任边界。</strong> 在将信任授予工作区、扩展、MCP 服务器和网络域名之前，VS Code 会提示你确认。
 </li>
 </ul>
-<p>有关这些控制机制的逐步配置——包括审批规则、敏感文件保护、沙盒设置、组织策略——请参阅 <a href="../docs/agents/security.md">VS Code 中的 AI 安全</a>。</p>
+<p>有关这些控制机制的逐步配置——包括审批规则、敏感文件保护、沙盒设置、组织策略——请参阅 <a href="../../../docs/agents/security.html">VS Code 中的 AI 安全</a>。</p>
 
 <p>在提交之前，请始终审查 AI 生成的代码。确保它能够处理边缘情况、遵循你项目的约定，并且不会引入安全问题。</p>
 
@@ -485,7 +485,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>智能体沙盒利用操作系统级别的隔离来限制智能体在你设备上的访问范围。与其完全依赖于每次操作前的审批提示，沙盒定义了严格的文件系统和网络访问边界，并由操作系统本身强制执行。</p>
 
-<p>VS Code 目前会对智能体会话期间执行的终端命令（<code>runInTerminal</code> 智能体工具）应用沙盒。了解如何<a href="../docs/agents/approvals.md#sandbox-agent-commands">配置智能体沙盒</a>。</p>
+<p>VS Code 目前会对智能体会话期间执行的终端命令（<code>runInTerminal</code> 智能体工具）应用沙盒。了解如何<a href="../../../docs/agents/approvals.html#sandbox-agent-commands">配置智能体沙盒</a>。</p>
 
 <p>启用沙盒后，VS Code 会自动批准命令和工具调用，无需弹出确认提示，因为它们已经在受控环境中运行。</p>
 
@@ -533,7 +533,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当 <code>setting(chat.agent.sandbox.enabled)</code> 设置为 <code>on</code> 时，所有出站网络访问都将被阻止，除非你明确允许特定的域名。如果你只需要文件系统隔离，但需要无限制的网络访问，可以将 <code>setting(chat.agent.sandbox.enabled)</code> 设置为 <code>allowNetwork</code>。在此模式下，命令可以自由地访问外部服务，同时文件系统限制仍然适用。</p>
 
-<p>VS Code 提供了网络域名过滤功能，同时适用于智能体工具（fetch 工具、集成浏览器）和沙盒终端命令。启用 <code>setting(chat.agent.networkFilter)</code> 来激活网络过滤。使用 <code>setting(chat.agent.allowedNetworkDomains)</code> 和 <code>setting(chat.agent.deniedNetworkDomains)</code> 来控制智能体可以访问哪些域名。了解如何<a href="../docs/agents/approvals.md#configure-network-access">配置网络访问</a>。</p>
+<p>VS Code 提供了网络域名过滤功能，同时适用于智能体工具（fetch 工具、集成浏览器）和沙盒终端命令。启用 <code>setting(chat.agent.networkFilter)</code> 来激活网络过滤。使用 <code>setting(chat.agent.allowedNetworkDomains)</code> 和 <code>setting(chat.agent.deniedNetworkDomains)</code> 来控制智能体可以访问哪些域名。了解如何<a href="../../../docs/agents/approvals.html#configure-network-access">配置网络访问</a>。</p>
 
 <ul>
 <li><strong>带网络访问的重试。</strong> 当沙盒命令被网络限制阻止时，智能体首先会请求确认，以便在沙盒内以不受限的网络访问进行重试；如果此方式不可行，则退回到在沙盒外运行该命令。
@@ -570,9 +570,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>[!TIP]</blockquote>
 <blockquote><code>setting(chat.agent.networkFilter)</code> 设置为智能体工具（如 fetch 工具和集成浏览器）提供网络域名过滤，独立于沙盒功能。当沙盒和网络过滤同时启用时，网络规则将应用于所有智能体工具和终端命令。</blockquote>
 
-<p>使用<a href="../docs/chat/review-code-edits.md">审查流程</a>和<a href="../docs/chat/review-code-edits.md#edit-sensitive-files">敏感文件保护</a>来控制这些操作。</p>
+<p>使用<a href="../../../docs/chat/review-code-edits.html">审查流程</a>和<a href="../../../docs/chat/review-code-edits.html#edit-sensitive-files">敏感文件保护</a>来控制这些操作。</p>
 
-<p>要实现完整的环境隔离，可以将沙盒与<a href="../docs/devcontainers/containers.md">开发容器（dev container）</a>搭配使用。开发容器为整个开发环境提供了完整的边界，涵盖所有工具、文件访问和网络访问。</p>
+<p>要实现完整的环境隔离，可以将沙盒与<a href="../../../docs/devcontainers/containers.html">开发容器（dev container）</a>搭配使用。开发容器为整个开发环境提供了完整的边界，涵盖所有工具、文件访问和网络访问。</p>
 
 <p>智能体沙盒目前处于预览阶段，未来将不断演进以覆盖更多工具和场景。</p>
 
@@ -580,18 +580,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>错误输出。</strong> 模型可能会生成看起来正确但实际上包含 Bug、使用了已弃用的 API，或者不能处理边缘情况的代码。请务必测试 AI 生成的代码，尤其是那些会影响安全、数据完整性或关键流程的逻辑。</p>
 
-<p><strong>提示注入。</strong> 文件、工具输出或网页中的恶意内容可能试图重定向智能体的行为。这正是 VS Code 提供工具审批关卡和信任边界的原因。了解有关 <a href="../docs/agents/security.md">AI 安全</a>的更多信息。</p>
+<p><strong>提示注入。</strong> 文件、工具输出或网页中的恶意内容可能试图重定向智能体的行为。这正是 VS Code 提供工具审批关卡和信任边界的原因。了解有关 <a href="../../../docs/agents/security.html">AI 安全</a>的更多信息。</p>
 
-<p>将 AI 生成的输出视为初稿：作为起点很有用，但始终需要你的审查和判断。有关模型工作方式的更多信息，包括非确定性、知识边界和上下文限制，请参阅<a href="../docs/agents/concepts/language-models.md">语言模型</a>。</p>
+<p>将 AI 生成的输出视为初稿：作为起点很有用，但始终需要你的审查和判断。有关模型工作方式的更多信息，包括非确定性、知识边界和上下文限制，请参阅<a href="../../../docs/agents/concepts/language-models.html">语言模型</a>。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agents/security.md">AI 安全注意事项</a></li>
-<li><a href="../docs/agents/approvals.md#sandbox-agent-commands">终端沙盒配置</a></li>
-<li><a href="../docs/chat/review-code-edits.md">审查代码编辑</a></li>
-<li><a href="../docs/chat/chat-checkpoints.md">检查点</a></li>
-<li><a href="../docs/agents/approvals.md#tool-approval">工具审批</a></li>
+<li><a href="../../../docs/agents/security.html">AI 安全注意事项</a></li>
+<li><a href="../../../docs/agents/approvals.html#sandbox-agent-commands">终端沙盒配置</a></li>
+<li><a href="../../../docs/chat/review-code-edits.html">审查代码编辑</a></li>
+<li><a href="../../../docs/chat/chat-checkpoints.html">检查点</a></li>
+<li><a href="../../../docs/agents/approvals.html#tool-approval">工具审批</a></li>
 </ul>
 
   </div>

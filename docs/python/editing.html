@@ -451,9 +451,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/python / editing</div>
 <h1>在 Visual Studio Code 中编辑 Python</h1>
 
-<p>Visual Studio Code 是一款强大的 Python 源代码编辑工具。编辑器包含多种功能，帮助你在编写代码时提高工作效率。有关在 Visual Studio Code 中进行编辑的更多信息，请参阅<a href="../docs/editing/codebasics.md">基本编辑</a>和<a href="../docs/editing/editingevolved.md">代码导航</a>。</p>
+<p>Visual Studio Code 是一款强大的 Python 源代码编辑工具。编辑器包含多种功能，帮助你在编写代码时提高工作效率。有关在 Visual Studio Code 中进行编辑的更多信息，请参阅<a href="../../docs/editing/codebasics.html">基本编辑</a>和<a href="../../docs/editing/editingevolved.html">代码导航</a>。</p>
 
-<p>在本概述中，我们将介绍由 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>提供的特定编辑功能，包括如何通过用户和工作区<a href="../docs/configure/settings.md">设置</a>自定义这些功能的步骤。</p>
+<p>在本概述中，我们将介绍由 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>提供的特定编辑功能，包括如何通过用户和工作区<a href="../../docs/configure/settings.html">设置</a>自定义这些功能的步骤。</p>
 
 <h2>自动补全和 IntelliSense</h2>
 
@@ -467,7 +467,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Pylance 基于微软的 <a href="https://github.com/microsoft/pyright">Pyright</a> 静态类型检查工具，利用<a href="https://typing.readthedocs.io/en/latest/source/stubs.html">类型存根</a>（<code>.pyi</code> 文件）和惰性类型推断来提供高性能的开发体验。</p>
 
-<p>有关 IntelliSense 的更多常规信息，请参阅 <a href="../docs/editing/intellisense.md">IntelliSense</a>。</p>
+<p>有关 IntelliSense 的更多常规信息，请参阅 <a href="../../docs/editing/intellisense.html">IntelliSense</a>。</p>
 
 <blockquote><strong>提示</strong>：查看 <a href="https://go.microsoft.com/fwlink/?linkid=2006060">VS Code 的 IntelliCode 扩展</a>。IntelliCode 为 Python 中的 IntelliSense 提供了一组 AI 辅助功能，例如根据当前代码上下文推断最相关的自动补全项。有关更多信息，请参阅 <a href="https://learn.microsoft.com/visualstudio/intellicode/intellicode-visual-studio-code">IntelliCode for VS Code FAQ</a>。</blockquote>
 
@@ -499,9 +499,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     "~/.local/lib/Google/google_appengine",
     "~/.local/lib/Google/google_appengine/lib/flask-0.12" ]</code></pre>
 
-<p>有关可用的 IntelliSense 控件的完整列表，你可以参考 Python 扩展的<a href="../docs/python/settings-reference.md#code-analysis-settings">代码分析设置</a>和<a href="../docs/python/settings-reference.md#autocomplete-settings">自动补全设置</a>。</p>
+<p>有关可用的 IntelliSense 控件的完整列表，你可以参考 Python 扩展的<a href="../../docs/python/settings-reference.html#code-analysis-settings">代码分析设置</a>和<a href="../../docs/python/settings-reference.html#autocomplete-settings">自动补全设置</a>。</p>
 
-<p>你还可以自定义自动补全和 IntelliSense 的常规行为，甚至可以完全禁用这些功能。你可以在<a href="../docs/editing/intellisense.md#customizing-intellisense">自定义 IntelliSense</a> 中了解更多。</p>
+<p>你还可以自定义自动补全和 IntelliSense 的常规行为，甚至可以完全禁用这些功能。你可以在<a href="../../docs/editing/intellisense.html#customizing-intellisense">自定义 IntelliSense</a> 中了解更多。</p>
 
 <h2>使用 AI 增强补全功能</h2>
 
@@ -511,7 +511,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>GitHub Copilot 为多种语言和各种框架提供建议，尤其适用于 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++。</p>
 
-<p>你可以在 <a href="../docs/editor/github-copilot.md">Copilot 文档</a>中了解更多关于如何开始使用 Copilot 的信息。</p>
+<p>你可以在 <a href="../../docs/editor/github-copilot.html">Copilot 文档</a>中了解更多关于如何开始使用 Copilot 的信息。</p>
 
 <h2>导航</h2>
 
@@ -626,10 +626,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>问题</th><th>原因</th><th>解决方案</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>Pylance 在添加导入时仅提供顶层符号选项。</td><td>默认情况下，仅索引顶层模块（深度=1）。<br>例如，你可能会看到 <code>import matplotlib</code> 作为建议，但默认情况下不会看到 <code>import matplotlib.pyplot</code>。</td><td>尝试通过 <code>python.analysis.packageIndexDepths</code> 增加 Pylance 可以索引已安装库的深度。查看<a href="../docs/python/settings-reference.md#code-analysis-settings">代码分析设置</a>。</td><td></td></tr>
-  <tr><td></td><td>Pylance 未自动添加缺失的导入</td><td>自动导入补全设置可能已禁用。</td><td>查看<a href="../docs/python/editing.md#customize-intellisense-behavior">启用自动导入部分</a>。</td><td></td></tr>
-  <tr><td></td><td>自动导入已启用，但 Pylance 未自动导入工作区其他文件中定义的符号。</td><td>用户定义的符号（那些不来自已安装包或库的符号）仅当它们已在编辑器中打开的文件中使用过时才会被自动导入。<br>否则，它们只能通过<a href="../docs/python/editing.md#quick-fixes">添加导入快速修复</a>使用。</td><td>使用添加导入快速修复，或确保先在编辑器中打开工作区中的相关文件。</td><td></td></tr>
-  <tr><td></td><td>Pylance 在处理大型工作区时似乎很慢或消耗过多内存。</td><td>Pylance 分析是对给定工作区中所有文件进行的。</td><td>如果存在已知可以从 Pylance 分析中排除的子文件夹，你可以将其路径添加到 <code>python.analysis.exclude</code> 设置中。或者，你可以尝试将 <code>python.analysis.indexing</code> 设置为 <code>false</code> 来禁用 Pylance 的索引器（<strong>注意</strong>：这也会影响补全和自动导入的体验。在<a href="../docs/python/settings-reference.md#code-analysis-settings">代码分析设置</a>中了解更多关于索引的信息）。</td><td></td></tr>
+  <tr><td></td><td>Pylance 在添加导入时仅提供顶层符号选项。</td><td>默认情况下，仅索引顶层模块（深度=1）。<br>例如，你可能会看到 <code>import matplotlib</code> 作为建议，但默认情况下不会看到 <code>import matplotlib.pyplot</code>。</td><td>尝试通过 <code>python.analysis.packageIndexDepths</code> 增加 Pylance 可以索引已安装库的深度。查看<a href="../../docs/python/settings-reference.html#code-analysis-settings">代码分析设置</a>。</td><td></td></tr>
+  <tr><td></td><td>Pylance 未自动添加缺失的导入</td><td>自动导入补全设置可能已禁用。</td><td>查看<a href="../../docs/python/editing.html#customize-intellisense-behavior">启用自动导入部分</a>。</td><td></td></tr>
+  <tr><td></td><td>自动导入已启用，但 Pylance 未自动导入工作区其他文件中定义的符号。</td><td>用户定义的符号（那些不来自已安装包或库的符号）仅当它们已在编辑器中打开的文件中使用过时才会被自动导入。<br>否则，它们只能通过<a href="../../docs/python/editing.html#quick-fixes">添加导入快速修复</a>使用。</td><td>使用添加导入快速修复，或确保先在编辑器中打开工作区中的相关文件。</td><td></td></tr>
+  <tr><td></td><td>Pylance 在处理大型工作区时似乎很慢或消耗过多内存。</td><td>Pylance 分析是对给定工作区中所有文件进行的。</td><td>如果存在已知可以从 Pylance 分析中排除的子文件夹，你可以将其路径添加到 <code>python.analysis.exclude</code> 设置中。或者，你可以尝试将 <code>python.analysis.indexing</code> 设置为 <code>false</code> 来禁用 Pylance 的索引器（<strong>注意</strong>：这也会影响补全和自动导入的体验。在<a href="../../docs/python/settings-reference.html#code-analysis-settings">代码分析设置</a>中了解更多关于索引的信息）。</td><td></td></tr>
   <tr><td></td><td>无法将自定义模块安装到 Python 项目中。</td><td>自定义模块位于非标准位置（不是使用 pip 安装的）。</td><td>将位置添加到 <code>python.autoComplete.extraPaths</code> 设置并重启 VS Code。</td><td></td></tr>
 </tbody>
 </table>
@@ -646,7 +646,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>如何修复</strong></p>
 
 <ul>
-<li>如果包已安装在不同的解释器或内核中，请<a href="../docs/python/environments.md#selecting-an-environment">选择正确的解释器</a>。</li>
+<li>如果包已安装在不同的解释器或内核中，请<a href="../../docs/python/environments.html#selecting-an-environment">选择正确的解释器</a>。</li>
 <li>如果包未安装，你可以通过在已激活的终端中运行以下命令来安装它：<code>python -m pip install {package_name}</code>。
 <h4>importResolveFailure</h4>
 
@@ -659,7 +659,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>如果你正在导入一个模块，请确保它存在于你的工作区中，或存在于 <code>python.autoComplete.extraPaths</code> 设置中包含的位置。</li>
 <li>如果你正在导入一个未安装的包，你可以通过在已激活的终端中运行以下命令来安装它：<code>python -m pip install {package_name}</code>。</li>
-<li>如果你正在导入一个已安装在不同解释器或内核中的包，请<a href="../docs/python/environments.md#selecting-an-environment">选择正确的解释器</a>。</li>
+<li>如果你正在导入一个已安装在不同解释器或内核中的包，请<a href="../../docs/python/environments.html#selecting-an-environment">选择正确的解释器</a>。</li>
 <li>如果你正在使用可编辑安装并且当前设置为使用导入钩子，请考虑改用仅包含文件路径的 <code>.pth</code> 文件，以增强兼容性并确保更流畅的导入行为。在 <a href="https://microsoft.github.io/pyright/#/import-resolution?id=editable-installs">Pyright 文档</a>中了解更多。
 <h4>importCycleDetected</h4>
 
@@ -673,19 +673,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <hr>
 
-<p>Pylance 诊断的严重性可以通过 <code>python.analysis.diagnosticSeverityOverrides</code> 设置进行自定义。查看<a href="../docs/python/settings-reference.md">设置参考</a>以获取更多信息。</p>
+<p>Pylance 诊断的严重性可以通过 <code>python.analysis.diagnosticSeverityOverrides</code> 设置进行自定义。查看<a href="../../docs/python/settings-reference.html">设置参考</a>以获取更多信息。</p>
 
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/python/linting.md">Linting</a> - 启用、配置和应用各种 Python linter。</li>
-<li><a href="../docs/python/debugging.md">调试</a> - 学习在本地和远程调试 Python。</li>
-<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
-<li><a href="../docs/editing/codebasics.md">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a> - 在源代码中快速移动。</li>
-<li><a href="../docs/editing/intellisense.md">IntelliSense</a> - 了解 IntelliSense 功能。</li>
-<li><a href="../docs/datascience/jupyter-notebooks.md">Jupyter 支持</a> - 了解如何开始使用 Jupyter Notebooks。</li>
-<li><a href="../api/advanced-topics/python-extension-template.md">Python 扩展模板</a> - 创建扩展以集成你喜爱的 Python 工具。</li>
+<li><a href="../../docs/python/linting.html">Linting</a> - 启用、配置和应用各种 Python linter。</li>
+<li><a href="../../docs/python/debugging.html">调试</a> - 学习在本地和远程调试 Python。</li>
+<li><a href="../../docs/python/testing.html">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
+<li><a href="../../docs/editing/codebasics.html">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a> - 在源代码中快速移动。</li>
+<li><a href="../../docs/editing/intellisense.html">IntelliSense</a> - 了解 IntelliSense 功能。</li>
+<li><a href="../../docs/datascience/jupyter-notebooks.html">Jupyter 支持</a> - 了解如何开始使用 Jupyter Notebooks。</li>
+<li><a href="../../api/advanced-topics/python-extension-template.html">Python 扩展模板</a> - 创建扩展以集成你喜爱的 Python 工具。</li>
 </ul>
 
   </div>

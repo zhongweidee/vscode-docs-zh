@@ -457,7 +457,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>不是。开发容器定义的是你在准备好部署之前开发应用程序的环境。虽然部署容器和开发容器可能彼此相似，但你未必希望在部署镜像中包含在开发过程中使用的工具。</p>
 
-<p><a href="https://github.com/devcontainers/templates">devcontainers/templates 仓库</a>包含了一组适用于常见开发环境的开发容器定义。如果你更倾向于使用其他容器构建或部署工作流，也可以<a href="../docs/devcontainers/attach-container.md">附加到正在运行的容器</a>，而无需设置开发容器定义。</p>
+<p><a href="https://github.com/devcontainers/templates">devcontainers/templates 仓库</a>包含了一组适用于常见开发环境的开发容器定义。如果你更倾向于使用其他容器构建或部署工作流，也可以<a href="../../docs/devcontainers/attach-container.html">附加到正在运行的容器</a>，而无需设置开发容器定义。</p>
 
 <h2>"开发容器定义"是否定义了应用程序的构建方式？例如 Buildpacks？</h2>
 
@@ -467,19 +467,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>右键单击 Docker 任务栏项目。在 Windows 上，选择 <strong>Settings</strong> 菜单项，然后选择 <strong>Resources > File Sharing</strong>，并勾选源代码所在的驱动器。在 macOS 上，选择 <strong>Preferences</strong> 菜单项，然后选择 <strong>Resources > File Sharing</strong>，并确保包含源代码的文件夹位于列表中指定的文件路径下。</p>
 
-<p>有关常见 Docker for Windows 问题的解决方法的更多信息，请参阅 <a href="../docs/devcontainers/tips-and-tricks.md#docker-desktop-for-windows-tips">Docker Desktop for Windows 提示</a>。</p>
+<p>有关常见 Docker for Windows 问题的解决方法的更多信息，请参阅 <a href="../../docs/devcontainers/tips-and-tricks.html#docker-desktop-for-windows-tips">Docker Desktop for Windows 提示</a>。</p>
 
 <h2>看到关于缺少库或依赖项的错误</h2>
 
-<p>某些扩展依赖于在特定 Docker 镜像中找不到的库。例如，<a href="https://visualstudio.microsoft.com/services/live-share/">Visual Studio Live Share</a> 需要安装系统级依赖项，这些依赖项<a href="https://learn.microsoft.com/visualstudio/liveshare/reference/linux#install-prerequisites-manually">在其文档中列出</a>。对这些依赖项的需求可能取决于 Docker 镜像所使用的操作系统（例如，特定的 Linux 发行版）。你可能需要在 Docker 构建过程中通过向 Dockerfile 添加所需命令来安装这些依赖项。请搜索特定扩展的文档以检查依赖项，并参阅<a href="../docs/devcontainers/create-dev-container.md#install-additional-software">安装额外软件</a>以获取解决问题的帮助。</p>
+<p>某些扩展依赖于在特定 Docker 镜像中找不到的库。例如，<a href="https://visualstudio.microsoft.com/services/live-share/">Visual Studio Live Share</a> 需要安装系统级依赖项，这些依赖项<a href="https://learn.microsoft.com/visualstudio/liveshare/reference/linux#install-prerequisites-manually">在其文档中列出</a>。对这些依赖项的需求可能取决于 Docker 镜像所使用的操作系统（例如，特定的 Linux 发行版）。你可能需要在 Docker 构建过程中通过向 Dockerfile 添加所需命令来安装这些依赖项。请搜索特定扩展的文档以检查依赖项，并参阅<a href="../../docs/devcontainers/create-dev-container.html#install-additional-software">安装额外软件</a>以获取解决问题的帮助。</p>
 
 <h2>能否同时连接到多个容器？</h2>
 
-<p>一个 VS Code 窗口当前只能连接到一个窗口，但你可以打开一个新窗口并<a href="../docs/devcontainers/attach-container.md">附加</a>到已运行的容器，或者<a href="../remote/advancedcontainers/connect-multiple-containers.md">使用包含多个 <code>devcontainer.json</code> 文件的通用 Docker Compose 文件</a>来进一步自动化该过程。</p>
+<p>一个 VS Code 窗口当前只能连接到一个窗口，但你可以打开一个新窗口并<a href="../../docs/devcontainers/attach-container.html">附加</a>到已运行的容器，或者<a href="../../remote/advancedcontainers/connect-multiple-containers.html">使用包含多个 <code>devcontainer.json</code> 文件的通用 Docker Compose 文件</a>来进一步自动化该过程。</p>
 
 <h2>能否在远程主机上使用容器？</h2>
 
-<p>可以，请参阅<a href="../docs/remote/ssh.md#open-a-folder-on-a-remote-ssh-host-in-a-container">在远程 SSH 主机上打开文件夹</a>或<a href="../docs/remote/tunnels.md#open-a-folder-on-a-remote-tunnels-host-in-a-container">在 Remote Tunnels 主机上的容器中打开文件夹</a>的相关章节获取更多信息。</p>
+<p>可以，请参阅<a href="../../docs/remote/ssh.html#open-a-folder-on-a-remote-ssh-host-in-a-container">在远程 SSH 主机上打开文件夹</a>或<a href="../../docs/remote/tunnels.html#open-a-folder-on-a-remote-tunnels-host-in-a-container">在 Remote Tunnels 主机上的容器中打开文件夹</a>的相关章节获取更多信息。</p>
 
 <h2>在容器内工作时，如何将容器镜像构建或部署到本地 Docker / Kubernetes 安装中？</h2>
 
@@ -509,14 +509,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>作为扩展作者，我需要做什么来确保我的扩展能正常工作？</h2>
 
-<p>VS Code 扩展 API 隐藏了远程运行的大部分实现细节，因此许多扩展无需任何修改即可在开发容器内正常工作。但是，我们建议你在开发容器中测试你的扩展，以确保其所有功能都按预期工作。有关详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>一文。</p>
+<p>VS Code 扩展 API 隐藏了远程运行的大部分实现细节，因此许多扩展无需任何修改即可在开发容器内正常工作。但是，我们建议你在开发容器中测试你的扩展，以确保其所有功能都按预期工作。有关详细信息，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>一文。</p>
 
 <h2>还有哪些其他资源可能能够解答我的问题？</h2>
 
 <p>以下文章可能有助于解答你的问题：</p>
 
 <ul>
-<li><a href="../remote/advancedcontainers/overview.md">高级容器配置</a>或<a href="../docs/devcontainers/tips-and-tricks.md">提示与技巧</a></li>
+<li><a href="../../remote/advancedcontainers/overview.html">高级容器配置</a>或<a href="../../docs/devcontainers/tips-and-tricks.html">提示与技巧</a></li>
 <li><a href="https://docs.docker.com/engine/reference/builder/">Dockerfile 参考</a></li>
 <li><a href="https://docs.docker.com/compose/compose-file/">Docker Compose 文件参考</a></li>
 <li><a href="https://docs.docker.com/docker-for-windows/troubleshoot">Docker Desktop for Windows 故障排除指南</a>和<a href="https://docs.docker.com/docker-for-windows/faqs/">常见问题解答</a></li>

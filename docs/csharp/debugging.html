@@ -463,7 +463,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>安装 C# Dev Kit 扩展后，如果调试视图中没有可选的调试配置，你可以打开一个 <code>.cs</code> 文件，然后按 <code>kb(workbench.action.debug.start)</code> 开始调试项目。调试器将自动查找你的项目并开始调试。如果你有多个项目，它会提示你选择要开始调试的项目。</p>
 
-<p>你也可以从 VS Code 侧边栏的<strong>运行和调试</strong>视图中启动调试会话。更多信息请参阅 <a href="../docs/debugtest/debugging.md">VS Code 中的调试</a>。</p>
+<p>你也可以从 VS Code 侧边栏的<strong>运行和调试</strong>视图中启动调试会话。更多信息请参阅 <a href="../../docs/debugtest/debugging.html">VS Code 中的调试</a>。</p>
 
 <p><img src="images/debugging/run-and-debug.gif" alt="使用运行和调试进行调试"></p>
 
@@ -527,7 +527,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>使用 launch.json 调试</h3>
 
-<p>如果你正在使用 C# Dev Kit，我们建议不要使用此选项。但是，如果你需要直接修改调试配置，请参阅 <a href="../docs/csharp/debugger-settings.md">为 C# 调试配置 launch.json</a>。</p>
+<p>如果你正在使用 C# Dev Kit，我们建议不要使用此选项。但是，如果你需要直接修改调试配置，请参阅 <a href="../../docs/csharp/debugger-settings.html">为 C# 调试配置 launch.json</a>。</p>
 
 <h2>附加到进程</h2>
 
@@ -537,7 +537,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>配置选项</h2>
 
-<p>有很多选项和设置可用于配置调试器。你可以使用 <code>launchSettings.json</code>、VS Code <a href="../docs/configure/settings">用户设置</a> 来修改调试选项，或直接修改你的 <code>launch.json</code>。</p>
+<p>有很多选项和设置可用于配置调试器。你可以使用 <code>launchSettings.json</code>、VS Code <a href="../../docs/configure/settings">用户设置</a> 来修改调试选项，或直接修改你的 <code>launch.json</code>。</p>
 
 <h3>launchSettings.json</h3>
 
@@ -545,7 +545,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/debugging/launch-profiles-debug.gif" alt="使用 launchSettings.json 调试"></p>
 
-<p>有关更多详细信息，请参阅 <a href="../docs/csharp/debugger-settings.md">配置 C# 调试</a>。</p>
+<p>有关更多详细信息，请参阅 <a href="../../docs/csharp/debugger-settings.html">配置 C# 调试</a>。</p>
 
 <h3>用户设置</h3>
 
@@ -554,13 +554,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><code>csharp.debug.stopAtEntry</code> - 如果为 true，调试器应在目标的入口点停止。此选项默认值为 <code>false</code>。</li>
 <li><code>csharp.debug.console</code> - 启动控制台项目时，指示目标程序应启动到哪个控制台。<strong>注意：</strong> 此选项仅用于 'dotnet' 调试配置类型。<ul>
-<li><code>internalConsole</code> [默认] - VS Code 的调试控制台。此模式允许你在一个地方查看来自调试器和目标程序的消息。有关更多详细信息，请参阅 <a href="../docs/csharp/debugger-settings.md#console-terminal-window">完整文档</a>。</li>
+<li><code>internalConsole</code> [默认] - VS Code 的调试控制台。此模式允许你在一个地方查看来自调试器和目标程序的消息。有关更多详细信息，请参阅 <a href="../../docs/csharp/debugger-settings.html#console-terminal-window">完整文档</a>。</li>
 <li><code>integratedTerminal</code> - VS Code 的集成终端。</li>
 <li><code>externalTerminal</code> - 可以通过用户设置配置的外部终端。</li>
 </ul>
 </li>
 <li><code>csharp.debug.sourceFileMap</code> - 将构建时路径映射到本地源位置。所有构建时路径的实例都将替换为本地源路径。<br> &emsp; 示例：<br> &emsp; &emsp; <code>{\"<build-path>\":\"<local-source-path>\"}</code></li>
-<li><code>csharp.debug.justMyCode</code> - 启用时（默认），调试器仅显示和单步执行用户代码（"我的代码"），忽略系统代码以及其他已优化或没有调试符号的代码。<a href="../docs/csharp/debugger-settings.md#just-my-code">更多信息</a>。</li>
+<li><code>csharp.debug.justMyCode</code> - 启用时（默认），调试器仅显示和单步执行用户代码（"我的代码"），忽略系统代码以及其他已优化或没有调试符号的代码。<a href="../../docs/csharp/debugger-settings.html#just-my-code">更多信息</a>。</li>
 <li><code>csharp.debug.requireExactSource</code> - 标志，要求当前源代码与 pdb 匹配。此选项默认值为 <code>true</code>。</li>
 <li><code>csharp.debug.enableStepFiltering</code> - 标志，启用跳过属性和运算符的单步执行。此选项默认值为 <code>true</code>。</li>
 <li><code>csharp.debug.logging.exceptions</code> - 标志，确定是否应将异常消息记录到输出窗口。此选项默认值为 <code>true</code>。</li>
@@ -571,7 +571,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>csharp.debug.logging.elapsedTiming</code> - 如果为 true，引擎日志包含 <code>adapterElapsedTime</code> 和 <code>engineElapsedTime</code> 属性，以指示请求所花费的时间（以微秒为单位）。此选项默认值为 <code>false</code>。</li>
 <li><code>csharp.debug.logging.threadExit</code> - 控制目标进程中线程退出时是否记录消息。此选项默认值为 <code>false</code>。</li>
 <li><code>csharp.debug.logging.processExit</code> - 控制目标进程退出或调试停止时是否记录消息。此选项默认值为 <code>true</code>。</li>
-<li><code>csharp.debug.suppressJITOptimizations</code> - 如果为 true，当优化的模块（在 Release 配置中编译的 .dll）加载到目标进程中时，调试器会要求即时编译器生成禁用了优化的代码。<a href="../docs/csharp/debugger-settings.md#suppress-jit-optimizations">更多信息</a></li>
+<li><code>csharp.debug.suppressJITOptimizations</code> - 如果为 true，当优化的模块（在 Release 配置中编译的 .dll）加载到目标进程中时，调试器会要求即时编译器生成禁用了优化的代码。<a href="../../docs/csharp/debugger-settings.html#suppress-jit-optimizations">更多信息</a></li>
 <li><code>csharp.debug.symbolOptions.searchPaths</code> - 用于搜索 .pdb 文件的符号服务器 URL（示例：<code>http://MyExampleSymbolServer</code>）或目录（示例：/build/symbols）的数组。这些目录将在默认位置（模块旁边和 pdb 最初放置的路径）之外进行搜索。</li>
 <li><code>csharp.debug.symbolOptions.searchMicrosoftSymbolServer</code> - 如果为 <code>true</code>，则将 Microsoft 符号服务器 (<code>https://msdl.microsoft.com/download/symbols</code>) 添加到符号搜索路径中。如果未指定，此选项默认值为 <code>false</code>。</li>
 <li><code>csharp.debug.symbolOptions.searchNuGetOrgSymbolServer</code> - 如果为 <code>true</code>，则将 NuGet.org 符号服务器 (<code>https://symbols.nuget.org/download/symbols</code>) 添加到符号搜索路径中。如果未指定，此选项默认值为 <code>false</code>。</li>
@@ -657,7 +657,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>请注意，<strong>断点</strong>部分将缺少这些条目，直到该文件夹首次使用 C# 调试器进行调试。</p>
 
-<p>勾选<strong>所有异常</strong>将配置调试器在抛出异常时停止。如果启用了<a href="../docs/csharp/debugger-settings.md#just-my-code">仅我的代码</a>（默认启用），调试器不会在库代码中内部抛出并捕获的异常处中断。但是，如果异常在库代码中抛出并返回到用户代码，调试器将会中断。</p>
+<p>勾选<strong>所有异常</strong>将配置调试器在抛出异常时停止。如果启用了<a href="../../docs/csharp/debugger-settings.html#just-my-code">仅我的代码</a>（默认启用），调试器不会在库代码中内部抛出并捕获的异常处中断。但是，如果异常在库代码中抛出并返回到用户代码，调试器将会中断。</p>
 
 <p>勾选<strong>用户未处理的异常</strong>将配置调试器在非用户代码中捕获到异常，但该异常是在用户代码中抛出或经过了用户代码时停止。成为用户未处理的异常并不总是表示被调试进程中存在错误——可能是用户代码正在实现一个 API 并且预期会引发异常。在许多情况下，确实存在实际问题，因此默认情况下，调试器会在异常变为用户未处理时停止。</p>
 
@@ -709,7 +709,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>Unity</td><td>❌</td><td>--</td><td></td></tr>
 </tbody>
 </table>
-<p>有关 C# Dev Kit 当前支持的项目类型的更多信息，请参阅<a href="../docs/csharp/cs-dev-kit-faq.md#what-project-types-are-currently-supported">支持的项目</a>。另请参阅 <a href="../docs/csharp/cs-dev-kit-faq.md#hot-reload">C# Dev Kit 常见问题解答</a>，了解有关排查其他不受支持场景的更多信息。</p>
+<p>有关 C# Dev Kit 当前支持的项目类型的更多信息，请参阅<a href="../../docs/csharp/cs-dev-kit-faq.html#what-project-types-are-currently-supported">支持的项目</a>。另请参阅 <a href="../../docs/csharp/cs-dev-kit-faq.html#hot-reload">C# Dev Kit 常见问题解答</a>，了解有关排查其他不受支持场景的更多信息。</p>
 
 <h3>如何应用代码更改</h3>
 
@@ -731,7 +731,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>继续阅读以了解：</p>
 
 <ul>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 了解如何在 VS Code 中为任何语言的项目使用调试器。</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a> - 了解如何在 VS Code 中为任何语言的项目使用调试器。</li>
 </ul>
 
   </div>

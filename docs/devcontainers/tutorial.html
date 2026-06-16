@@ -465,7 +465,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>Docker Desktop</h3>
 
-<p>下载并安装 <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>，或<a href="../remote/advancedcontainers/docker-options.md">其他 Docker 选项</a>，例如远程主机上的 Docker 或兼容 Docker 的 CLI。</p>
+<p>下载并安装 <a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a>，或<a href="../../remote/advancedcontainers/docker-options.html">其他 Docker 选项</a>，例如远程主机上的 Docker 或兼容 Docker 的 CLI。</p>
 
 <h3>启动 Docker</h3>
 
@@ -556,7 +556,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>首先，你的镜像是根据提供的 Dockerfile 或镜像名称构建的，在本示例中就是 <code>mcr.microsoft.com/devcontainers/javascript-node:0-18</code>。然后，使用 <code>devcontainer.json</code> 中的一些设置创建并启动容器。最后，根据 <code>devcontainer.json</code> 中的设置再次安装和配置你的 Visual Studio Code 环境。例如，本示例中的开发容器安装了 <code>streetsidesoftware.code-spell-checker</code> 扩展。</p>
 
-<blockquote><strong>注意：</strong> 基本镜像中的内容已经添加到容器的附加配置中。例如，我们上面看到了 <code>streetsidesoftware.code-spell-checker</code> 扩展，而容器还将包含 <code>"dbaeumer.vscode-eslint"</code>，因为<a href="https://github.com/devcontainers/images/blob/main/src/javascript-node/.devcontainer/devcontainer.json#L27">它是 <code>mcr.microsoft.com/devcontainers/typescript-node</code> 的一部分</a>。这在使用 devcontainer.json 进行预构建时会自动完成，你可以在<a href="../docs/devcontainers/containers.md#prebuilding-dev-container-images">预构建部分</a>中了解更多信息。</blockquote>
+<blockquote><strong>注意：</strong> 基本镜像中的内容已经添加到容器的附加配置中。例如，我们上面看到了 <code>streetsidesoftware.code-spell-checker</code> 扩展，而容器还将包含 <code>"dbaeumer.vscode-eslint"</code>，因为<a href="https://github.com/devcontainers/images/blob/main/src/javascript-node/.devcontainer/devcontainer.json#L27">它是 <code>mcr.microsoft.com/devcontainers/typescript-node</code> 的一部分</a>。这在使用 devcontainer.json 进行预构建时会自动完成，你可以在<a href="../../docs/devcontainers/containers.html#prebuilding-dev-container-images">预构建部分</a>中了解更多信息。</blockquote>
 
 <p>完成后，你的本地 Visual Studio Code 副本将连接到运行在新开发容器内的 Visual Studio Code Server。</p>
 
@@ -607,7 +607,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>---</td><td>---</td><td></td></tr>
   <tr><td></td><td><code>image</code></td><td>VS Code 应用于创建开发容器的容器注册表（<a href="https://hub.docker.com/">Docker Hub</a>、<a href="https://docs.github.com/packages/guides/about-github-container-registry">GitHub Container Registry</a>、<a href="https://azure.microsoft.com/services/container-registry/">Azure Container Registry</a>）中的镜像名称。<br></td><td></td></tr>
   <tr><td></td><td><code>dockerfile</code></td><td>除了引用 <code>image</code> 外，你还可以使用 <code>dockerfile</code> 属性，它是你要用作镜像的 <code>Dockerfile</code> 的相对路径。</td><td></td></tr>
-  <tr><td></td><td><code>features</code></td><td>包含要添加的<a href="../docs/devcontainers/containers.md#dev-container-features">开发容器功能</a> ID 及相关选项的对象。</td><td></td></tr>
+  <tr><td></td><td><code>features</code></td><td>包含要添加的<a href="../../docs/devcontainers/containers.html#dev-container-features">开发容器功能</a> ID 及相关选项的对象。</td><td></td></tr>
   <tr><td></td><td><code>customizations</code></td><td>配置工具特定的属性，例如 VS Code 的 <code>settings</code> 和 <code>extensions</code> 属性。</td><td></td></tr>
   <tr><td></td><td><code>settings</code></td><td>将默认的 <code>settings.json</code> 值添加到容器/机器特定的设置文件中，例如 <code>"terminal.integrated.defaultProfile.linux": "bash"</code>。</td><td></td></tr>
   <tr><td></td><td><code>extensions</code></td><td>指定容器创建时应在其中安装的扩展的扩展 ID 数组。</td><td></td></tr>
@@ -623,7 +623,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>恭喜，你已成功完成本教程！</p>
 
-<p>以上是关于使用开发容器所能实现的功能的简要概述。下一步，我们建议你了解如何<a href="../docs/devcontainers/containers.md#quick-start-open-an-existing-folder-in-a-container">从你的计算机在容器中打开现有文件夹</a>或<a href="../docs/devcontainers/containers.md#quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume">在容器中打开 GitHub 仓库或 PR</a>。</p>
+<p>以上是关于使用开发容器所能实现的功能的简要概述。下一步，我们建议你了解如何<a href="../../docs/devcontainers/containers.html#quick-start-open-an-existing-folder-in-a-container">从你的计算机在容器中打开现有文件夹</a>或<a href="../../docs/devcontainers/containers.html#quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume">在容器中打开 GitHub 仓库或 PR</a>。</p>
 
 <p>查看其他远程开发扩展。</p>
 

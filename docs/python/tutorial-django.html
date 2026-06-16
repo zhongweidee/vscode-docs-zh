@@ -461,7 +461,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>先决条件</h2>
 
-<p>要成功完成本 Django 教程，您必须完成以下操作（与<a href="../docs/python/python-tutorial.md">通用 Python 教程</a>中的步骤相同）：</p>
+<p>要成功完成本 Django 教程，您必须完成以下操作（与<a href="../../docs/python/python-tutorial.html">通用 Python 教程</a>中的步骤相同）：</p>
 
 <ol>
 <li>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>。
@@ -481,7 +481,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>在本节中，您将创建一个虚拟环境，并在其中安装 Django。使用虚拟环境可以避免将 Django 安装到全局 Python 环境中，并让您能够精确控制应用程序中使用的库。虚拟环境还便于<a href="#为环境创建-requirementstxt-文件">为环境创建 requirements.txt 文件</a>。</p>
 
-<p><a href="../docs/python/environments.md">Python Environments 扩展</a>支持多种环境类型，包括 venv、conda、poetry 等。本教程使用 <strong>venv</strong>，因为它内置于 Python 中，无需额外的工具。其他环境类型的步骤类似——详见<a href="../docs/python/environments.md#creating-environments">创建环境</a>。</p>
+<p><a href="../../docs/python/environments.html">Python Environments 扩展</a>支持多种环境类型，包括 venv、conda、poetry 等。本教程使用 <strong>venv</strong>，因为它内置于 Python 中，无需额外的工具。其他环境类型的步骤类似——详见<a href="../../docs/python/environments.html#creating-environments">创建环境</a>。</p>
 
 <ol>
 <li>在您的文件系统中，为本教程创建一个项目文件夹，例如 <code>hello_django</code>。
@@ -531,7 +531,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    <strong>使用终端：</strong></p>
 
-<p>    从命令面板中运行 <a href="../docs/terminal/basics.md"><strong>Terminal: Create New Terminal</strong></a>（<code>kb(workbench.action.terminal.new)</code>），这将创建一个终端并自动激活虚拟环境。然后运行：</p>
+<p>    从命令面板中运行 <a href="../../docs/terminal/basics.html"><strong>Terminal: Create New Terminal</strong></a>（<code>kb(workbench.action.terminal.new)</code>），这将创建一个终端并自动激活虚拟环境。然后运行：</p>
 
 <pre><code class="language-bash">    python -m pip install django</code></pre>
 
@@ -701,7 +701,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>调试让您有机会在特定的代码行上暂停正在运行的程序。当程序暂停时，您可以检查变量、在调试控制台面板中运行代码，以及利用<a href="../docs/python/debugging.md">调试</a>中描述的其他功能。运行调试器还会在调试会话开始前自动保存所有修改过的文件。</p>
+<p>调试让您有机会在特定的代码行上暂停正在运行的程序。当程序暂停时，您可以检查变量、在调试控制台面板中运行代码，以及利用<a href="../../docs/python/debugging.html">调试</a>中描述的其他功能。运行调试器还会在调试会话开始前自动保存所有修改过的文件。</p>
 
 <p><strong>开始之前</strong>：确保您已通过终端中的 <code>kbstyle(Ctrl+C)</code> 停止了上一节末尾正在运行的应用。如果您让应用在一个终端中继续运行，它会持续占用端口。因此，当您使用相同端口在调试器中运行应用时，原先运行的应用会处理所有请求，您将不会在被调试的应用中看到任何活动，程序也不会在断点处停止。换句话说，如果调试器似乎不工作，请确保没有其他应用实例仍在运行。</p>
 
@@ -769,7 +769,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>    <img src="images/django-tutorial/debug-status-bar.png" alt="Django tutorial: appearance of the debugging status bar"></p>
 
-<p>    VS Code 中还会出现一个调试工具栏（如下所示），其中包含以下命令：暂停（或继续，<code>kb(workbench.action.debug.continue)</code>）、单步跳过（<code>kb(workbench.action.debug.stepOver)</code>）、单步进入（<code>kb(workbench.action.debug.stepInto)</code>）、单步跳出（<code>kb(workbench.action.debug.stepOut)</code>）、重新启动（<code>kb(workbench.action.debug.restart)</code>）和停止（<code>kb(workbench.action.debug.stop)</code>）。有关每个命令的描述，请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>。</p>
+<p>    VS Code 中还会出现一个调试工具栏（如下所示），其中包含以下命令：暂停（或继续，<code>kb(workbench.action.debug.continue)</code>）、单步跳过（<code>kb(workbench.action.debug.stepOver)</code>）、单步进入（<code>kb(workbench.action.debug.stepInto)</code>）、单步跳出（<code>kb(workbench.action.debug.stepOut)</code>）、重新启动（<code>kb(workbench.action.debug.restart)</code>）和停止（<code>kb(workbench.action.debug.stop)</code>）。有关每个命令的描述，请参阅 <a href="../../docs/debugtest/debugging.html">VS Code 调试</a>。</p>
 
 <p>    <img src="images/shared/debug-toolbar.png" alt="Django tutorial: the VS Code debug toolbar"></p>
 
@@ -782,7 +782,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>使用"单步跳过"来运行 <code>now = datetime.now()</code> 语句。
 </li>
-<li>在 VS Code 窗口的左侧，您会看到一个 <strong>变量</strong> 窗格，其中显示局部变量（如 <code>now</code>）以及参数（如 <code>name</code>）。在其下方是 <strong>监视</strong>、<strong>调用堆栈</strong> 和 <strong>断点</strong> 窗格（详情请参阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>）。在 <strong>局部变量</strong> 区域，尝试展开不同的值。您也可以双击值（或使用 <code>kb(debug.setVariable)</code>）来修改它们。然而，更改像 <code>now</code> 这样的变量可能会破坏程序。开发人员通常只在代码没有产生正确值时才进行更正。
+<li>在 VS Code 窗口的左侧，您会看到一个 <strong>变量</strong> 窗格，其中显示局部变量（如 <code>now</code>）以及参数（如 <code>name</code>）。在其下方是 <strong>监视</strong>、<strong>调用堆栈</strong> 和 <strong>断点</strong> 窗格（详情请参阅 <a href="../../docs/debugtest/debugging.html">VS Code 调试</a>）。在 <strong>局部变量</strong> 区域，尝试展开不同的值。您也可以双击值（或使用 <code>kb(debug.setVariable)</code>）来修改它们。然而，更改像 <code>now</code> 这样的变量可能会破坏程序。开发人员通常只在代码没有产生正确值时才进行更正。
 </li>
 </ol>
 <p>    <img src="images/django-tutorial/debug-local-variables.png" alt="Django tutorial: local variables and arguments in VS Code during debugging"></p>
@@ -1054,7 +1054,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>现在，每当您开始输入代码片段的前缀（如 <code>djext</code>）时，VS Code 都会将该代码片段作为自动完成选项提供，如下一节所示。您也可以使用 <strong>插入代码片段</strong> 命令从菜单中选择代码片段。
 </li>
 </ol>
-<p>有关代码片段的更多一般信息，请参阅<a href="../docs/editing/userdefinedsnippets.md">创建代码片段</a>。</p>
+<p>有关代码片段的更多一般信息，请参阅<a href="../../docs/editing/userdefinedsnippets.html">创建代码片段</a>。</p>
 
 <h3>使用代码片段添加页面</h3>
 
@@ -1401,7 +1401,7 @@ python manage.py migrate</code></pre>
 
 <h3>使用 Container Tools 扩展为 Django 应用创建容器</h3>
 
-<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a> 使得从 Visual Studio Code 构建、管理和部署容器化应用程序变得容易。如果您有兴趣了解如何为本教程中开发的 Django 应用创建 Python 容器，请查看 <a href="../docs/containers/quickstart-python.md">Python 在容器中</a>教程，它将引导您完成以下操作：</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a> 使得从 Visual Studio Code 构建、管理和部署容器化应用程序变得容易。如果您有兴趣了解如何为本教程中开发的 Django 应用创建 Python 容器，请查看 <a href="../../docs/containers/quickstart-python.html">Python 在容器中</a>教程，它将引导您完成以下操作：</p>
 
 <ul>
 <li>创建一个描述简单 Python 容器的 <code>Dockerfile</code> 文件。</li>
@@ -1422,11 +1422,11 @@ python manage.py migrate</code></pre>
 <p>您可能还想查看 VS Code 文档中与 Python 相关的以下文章：</p>
 
 <ul>
-<li><a href="../docs/python/editing.md">编辑 Python 代码</a></li>
-<li><a href="../docs/python/linting.md">Linting</a></li>
-<li><a href="../docs/python/environments.md">管理 Python 环境</a></li>
-<li><a href="../docs/python/debugging.md">调试 Python</a></li>
-<li><a href="../docs/python/testing.md">测试</a></li>
+<li><a href="../../docs/python/editing.html">编辑 Python 代码</a></li>
+<li><a href="../../docs/python/linting.html">Linting</a></li>
+<li><a href="../../docs/python/environments.html">管理 Python 环境</a></li>
+<li><a href="../../docs/python/debugging.html">调试 Python</a></li>
+<li><a href="../../docs/python/testing.html">测试</a></li>
 </ul>
 
   </div>

@@ -451,11 +451,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/nodejs / angular-tutorial</div>
 <h1>在 Visual Studio Code 中使用 Angular</h1>
 
-<p><a href="https://angular.io/">Angular</a> 是一个流行的网络开发平台，由 Google 开发和维护。Angular 使用 <a href="../docs/languages/typescript.md">TypeScript</a> 作为其主要编程语言。Visual Studio Code 开箱即支持 TypeScript 智能感知和代码导航，因此你无需安装任何其他扩展即可进行 Angular 开发。</p>
+<p><a href="https://angular.io/">Angular</a> 是一个流行的网络开发平台，由 Google 开发和维护。Angular 使用 <a href="../../docs/languages/typescript.html">TypeScript</a> 作为其主要编程语言。Visual Studio Code 开箱即支持 TypeScript 智能感知和代码导航，因此你无需安装任何其他扩展即可进行 Angular 开发。</p>
 
 <p><img src="images/angular/Welcome-to-app.png" alt="Welcome to app"></p>
 
-<p>><strong>注意</strong>：为了帮助你开始 Angular 开发，你可以使用 <a href="../docs/configure/profiles.md#angular-profile-template">Angular 配置文件模板</a>，其中包含有用的扩展、设置和代码片段。</p>
+<p>><strong>注意</strong>：为了帮助你开始 Angular 开发，你可以使用 <a href="../../docs/configure/profiles.html#angular-profile-template">Angular 配置文件模板</a>，其中包含有用的扩展、设置和代码片段。</p>
 
 <h2>欢迎来到 Angular</h2>
 
@@ -471,7 +471,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <pre><code class="language-bash">ng new my-app</code></pre>
 
-<p><code>my-app</code> 是应用程序的文件夹名称。<code>ng new</code> 命令会提示你为生成的应用程序选择选项。按 <code>kbstyle(Enter)</code> 键接受默认设置。这可能需要几分钟来创建 <a href="../docs/languages/typescript.md">TypeScript</a> Angular 应用程序并安装其依赖项。</p>
+<p><code>my-app</code> 是应用程序的文件夹名称。<code>ng new</code> 命令会提示你为生成的应用程序选择选项。按 <code>kbstyle(Enter)</code> 键接受默认设置。这可能需要几分钟来创建 <a href="../../docs/languages/typescript.html">TypeScript</a> Angular 应用程序并安装其依赖项。</p>
 
 <p>让我们快速运行 Angular 应用程序，导航到新文件夹并键入 <code>ng serve</code> 来启动网络服务器并在浏览器中打开应用程序：</p>
 
@@ -505,11 +505,11 @@ code .</code></pre>
 
 <p><img src="images/angular/intellisense.png" alt="angular intellisense"></p>
 
-<p>VS Code 使用 TypeScript 语言服务来实现代码智能（<a href="../docs/editing/intellisense.md">智能感知</a>），并且它具有一个名为 <a href="../docs/nodejs/working-with-javascript.md#typings-and-automatic-type-acquisition">自动类型获取</a>（ATA）的功能。ATA 会为 <code>package.json</code> 中引用的 npm 模块下载 npm Type 声明文件（<code>*.d.ts</code>）。</p>
+<p>VS Code 使用 TypeScript 语言服务来实现代码智能（<a href="../../docs/editing/intellisense.html">智能感知</a>），并且它具有一个名为 <a href="../../docs/nodejs/working-with-javascript.html#typings-and-automatic-type-acquisition">自动类型获取</a>（ATA）的功能。ATA 会为 <code>package.json</code> 中引用的 npm 模块下载 npm Type 声明文件（<code>*.d.ts</code>）。</p>
 
 <h3>转到定义、速览定义</h3>
 
-<p>通过 TypeScript 语言服务，VS Code 还可以通过 <strong>转到定义</strong>（<code>kb(editor.action.revealDefinition)</code>）或 <strong>速览定义</strong>（<code>kb(editor.action.peekDefinition)</code>）在编辑器中提供类型定义信息。打开 <code>app.module.ts</code> 文件，将光标放在 <code>bootstrap</code> 属性声明中的 <code>AppComponent</code> 上，右键单击并选择 <strong>速览定义</strong>。一个 <a href="../docs/editing/editingevolved.md#peek">速览窗口</a> 将打开，显示来自 <code>app.component.ts</code> 的 <code>AppComponent</code> 定义。</p>
+<p>通过 TypeScript 语言服务，VS Code 还可以通过 <strong>转到定义</strong>（<code>kb(editor.action.revealDefinition)</code>）或 <strong>速览定义</strong>（<code>kb(editor.action.peekDefinition)</code>）在编辑器中提供类型定义信息。打开 <code>app.module.ts</code> 文件，将光标放在 <code>bootstrap</code> 属性声明中的 <code>AppComponent</code> 上，右键单击并选择 <strong>速览定义</strong>。一个 <a href="../../docs/editing/editingevolved.html#peek">速览窗口</a> 将打开，显示来自 <code>app.component.ts</code> 的 <code>AppComponent</code> 定义。</p>
 
 <p><img src="images/angular/peek-definition.png" alt="angular peek definition"></p>
 
@@ -532,7 +532,7 @@ export class AppComponent {
 
 <p>一旦你保存了 <code>app.component.ts</code> 文件，正在运行的服务器实例将更新网页，你将看到 "Welcome to Hello World!!"。</p>
 
-<p>><strong>提示</strong>：VS Code 支持自动保存，默认情况下会在延迟后保存你的文件。在 <strong>文件</strong> 菜单中勾选 <strong>自动保存</strong> 选项以启用自动保存，或直接配置 <code>files.autoSave</code> 用户 <a href="../docs/configure/settings.md">设置</a>。</p>
+<p>><strong>提示</strong>：VS Code 支持自动保存，默认情况下会在延迟后保存你的文件。在 <strong>文件</strong> 菜单中勾选 <strong>自动保存</strong> 选项以启用自动保存，或直接配置 <code>files.autoSave</code> 用户 <a href="../../docs/configure/settings.html">设置</a>。</p>
 
 <p><img src="images/angular/hello-world.png" alt="hello world"></p>
 
@@ -550,7 +550,7 @@ export class AppComponent {
 
 <h3>配置调试器</h3>
 
-<p>我们需要首先配置 <a href="../docs/debugtest/debugging.md">调试器</a>。为此，请转到 <strong>运行和调试</strong> 视图（<code>kb(workbench.view.debug)</code>），选择 <strong>创建 launch.json 文件</strong> 链接以创建 <code>launch.json</code> 调试器配置文件。从 <strong>选择调试器</strong> 下拉列表中选择 <strong>Web App（Edge）</strong>。这将在项目的 <code>.vscode</code> 新文件夹中创建一个 <code>launch.json</code> 文件，其中包含启动网站的配置。</p>
+<p>我们需要首先配置 <a href="../../docs/debugtest/debugging.html">调试器</a>。为此，请转到 <strong>运行和调试</strong> 视图（<code>kb(workbench.view.debug)</code>），选择 <strong>创建 launch.json 文件</strong> 链接以创建 <code>launch.json</code> 调试器配置文件。从 <strong>选择调试器</strong> 下拉列表中选择 <strong>Web App（Edge）</strong>。这将在项目的 <code>.vscode</code> 新文件夹中创建一个 <code>launch.json</code> 文件，其中包含启动网站的配置。</p>
 
 <p>我们需要针对我们的示例做一项更改：将 <code>url</code> 的端口从 <code>8080</code> 更改为 <code>4200</code>。你的 <code>launch.json</code> 应该如下所示：</p>
 
@@ -575,11 +575,11 @@ export class AppComponent {
 
 <p><img src="images/angular/debug-variable.png" alt="debug variable"></p>
 
-<p>有关调试器及其可用选项的更多信息，请查看我们的 <a href="../docs/nodejs/browser-debugging.md">浏览器调试</a> 文档。</p>
+<p>有关调试器及其可用选项的更多信息，请查看我们的 <a href="../../docs/nodejs/browser-debugging.html">浏览器调试</a> 文档。</p>
 
 <h2>Angular 配置文件模板</h2>
 
-<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a> 可让你根据当前项目或任务快速切换扩展、设置和用户界面布局。为了帮助你开始 Angular 开发，你可以使用 <a href="../docs/configure/profiles.md#angular-profile-template">Angular 配置文件模板</a>，这是一个精选的配置文件，包含有用的扩展和设置。你可以直接使用该配置文件模板，也可以将其作为起点，根据个人工作流程进一步自定义。</p>
+<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a> 可让你根据当前项目或任务快速切换扩展、设置和用户界面布局。为了帮助你开始 Angular 开发，你可以使用 <a href="../../docs/configure/profiles.html#angular-profile-template">Angular 配置文件模板</a>，这是一个精选的配置文件，包含有用的扩展和设置。你可以直接使用该配置文件模板，也可以将其作为起点，根据个人工作流程进一步自定义。</p>
 
 <p>你通过 <strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择配置文件模板：</p>
 
@@ -597,11 +597,11 @@ export class AppComponent {
 
 <h3>MEAN 入门套件</h3>
 
-<p>如果你想查看一个完整的 MEAN（MongoDB、Express、Angular、Node.js）技术栈示例，请查看 <a href="https://meanjs.org">MEAN.JS</a>。他们提供了文档和一个用于示例 MEAN 项目的应用程序生成器。你需要安装并启动 <a href="https://docs.mongodb.com/v3.0/installation/">MongoDB</a>，但很快你就能运行一个 MEAN 应用程序。VS Code 还通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb">Azure 数据库</a> 扩展提供了出色的 <a href="../docs/azure/mongodb.md">MongoDB 支持</a>。</p>
+<p>如果你想查看一个完整的 MEAN（MongoDB、Express、Angular、Node.js）技术栈示例，请查看 <a href="https://meanjs.org">MEAN.JS</a>。他们提供了文档和一个用于示例 MEAN 项目的应用程序生成器。你需要安装并启动 <a href="https://docs.mongodb.com/v3.0/installation/">MongoDB</a>，但很快你就能运行一个 MEAN 应用程序。VS Code 还通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-cosmosdb">Azure 数据库</a> 扩展提供了出色的 <a href="../../docs/azure/mongodb.html">MongoDB 支持</a>。</p>
 
 <h3>React</h3>
 
-<p><a href="https://reactjs.org">React</a> 是一个用于构建用户界面的库，它比 Angular 更加精简。如果你想查看 React 与 VS Code 配合使用的示例，请查看 <a href="../docs/nodejs/reactjs-tutorial.md">在 VS Code 中使用 React</a> 教程。它将指导你创建一个 React 应用程序并为 JavaScript 调试器配置 <code>launch.json</code> 文件。</p>
+<p><a href="https://reactjs.org">React</a> 是一个用于构建用户界面的库，它比 Angular 更加精简。如果你想查看 React 与 VS Code 配合使用的示例，请查看 <a href="../../docs/nodejs/reactjs-tutorial.html">在 VS Code 中使用 React</a> 教程。它将指导你创建一个 React 应用程序并为 JavaScript 调试器配置 <code>launch.json</code> 文件。</p>
 
 <h2>Angular 扩展</h2>
 

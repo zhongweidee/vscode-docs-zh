@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>设置同步允许你在多台计算机之间共享 Visual Studio Code 的配置，例如设置、键盘快捷键和已安装的扩展，让你始终使用自己偏好的工作环境。</p>
 
-<blockquote><strong>注意</strong>：VS Code 不会将你的扩展同步到<a href="../docs/remote/remote-overview.md">远程</a>窗口或从远程窗口同步，例如当你连接到 SSH、开发容器 (devcontainer) 或 WSL 时。</blockquote>
+<blockquote><strong>注意</strong>：VS Code 不会将你的扩展同步到<a href="../../docs/remote/remote-overview.html">远程</a>窗口或从远程窗口同步，例如当你连接到 SSH、开发容器 (devcontainer) 或 WSL 时。</blockquote>
 
 <h2>开启设置同步</h2>
 
@@ -499,7 +499,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>配置同步数据</h2>
 
-<p>具有 <code>machine</code> 或 <code>machine-overridable</code> <a href="../updates/v1_34.md#machinespecific-settings">作用域</a>的计算机设置默认不会同步，因为它们的值因计算机而异。你还可以从设置编辑器或使用设置 <code>setting(settingsSync.ignoredSettings)</code> 向此列表添加或删除你想忽略的设置。</p>
+<p>具有 <code>machine</code> 或 <code>machine-overridable</code> <a href="../../updates/v1_34.html#machinespecific-settings">作用域</a>的计算机设置默认不会同步，因为它们的值因计算机而异。你还可以从设置编辑器或使用设置 <code>setting(settingsSync.ignoredSettings)</code> 向此列表添加或删除你想忽略的设置。</p>
 
 <p><img src="images/settings-sync/sync-ignored-settings.png" alt="设置同步忽略的设置"></p>
 
@@ -538,7 +538,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>同步 Stable 版本与 Insiders 版本</h2>
 
-<p>默认情况下，VS Code Stable 和 <a href="../insiders">Insiders</a> 构建使用不同的设置同步服务，因此不会共享设置。你可以在开启设置同步时选择 Stable 同步服务，将 Insiders 与 Stable 同步。此选项仅在 VS Code Insiders 中可用。</p>
+<p>默认情况下，VS Code Stable 和 <a href="../../insiders">Insiders</a> 构建使用不同的设置同步服务，因此不会共享设置。你可以在开启设置同步时选择 Stable 同步服务，将 Insiders 与 Stable 同步。此选项仅在 VS Code Insiders 中可用。</p>
 
 <p><img src="images/settings-sync/settings-sync-switch.png" alt="设置同步切换服务"></p>
 
@@ -574,7 +574,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你的扩展需要在不同计算机之间保留某些用户状态，则可以使用 <code>vscode.ExtensionContext.globalState.setKeysForSync</code> 将状态提供给设置同步。在计算机之间共享诸如 UI 已关闭或已查看标志之类的状态可以提供更好的用户体验。</p>
 
-<p>在<a href="../api/extension-capabilities/common-capabilities.md#data-storage">扩展功能</a>主题中有一个使用 <code>setKeysforSync</code> 的示例。</p>
+<p>在<a href="../../api/extension-capabilities/common-capabilities.html#data-storage">扩展功能</a>主题中有一个使用 <code>setKeysforSync</code> 的示例。</p>
 
 <h2>报告问题</h2>
 
@@ -587,7 +587,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/configure/settings.md">用户和工作区设置</a> - 了解如何通过用户和工作区设置将 VS Code 配置为你的偏好。
+<li><a href="../../docs/configure/settings.html">用户和工作区设置</a> - 了解如何通过用户和工作区设置将 VS Code 配置为你的偏好。
 <h2>常见问题</h2>
 
 <h3>VS Code 设置同步与 Settings Sync 扩展相同吗？</h3>

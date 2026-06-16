@@ -461,7 +461,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>自定义</h2>
 
-<p>GitHub Codespaces 可以按项目进行完全自定义。这是通过在项目仓库中包含一个 <code>devcontainer.json</code> 文件来实现的，类似于 VS Code 的<a href="../docs/devcontainers/containers.md">开发容器</a>开发。</p>
+<p>GitHub Codespaces 可以按项目进行完全自定义。这是通过在项目仓库中包含一个 <code>devcontainer.json</code> 文件来实现的，类似于 VS Code 的<a href="../../docs/devcontainers/containers.html">开发容器</a>开发。</p>
 
 <p>自定义示例包括：</p>
 
@@ -494,7 +494,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>VS Code 扩展 API 隐藏了远程运行的大多数实现细节，因此许多扩展无需任何修改即可在 GitHub Codespaces 环境中正常工作。但是，我们建议你在 codespace 中测试你的扩展，以确保其所有功能按预期工作。有关详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发和 GitHub Codespaces</a> 一文。</p>
+<p>VS Code 扩展 API 隐藏了远程运行的大多数实现细节，因此许多扩展无需任何修改即可在 GitHub Codespaces 环境中正常工作。但是，我们建议你在 codespace 中测试你的扩展，以确保其所有功能按预期工作。有关详细信息，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发和 GitHub Codespaces</a> 一文。</p>
 
 <h2>基于浏览器的编辑器</h2>
 
@@ -529,7 +529,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>从浏览器下载没有扩展名的文件会自动添加 ".txt"</td><td>这是 Chrome 和 Edge 的行为方式。</td><td>背景信息和潜在的未来解决方案在<a href="https://github.com/microsoft/vscode/issues/118436">问题 #118436</a> 中。</td><td></td></tr>
   <tr><td></td><td>当你从远程（包括 Codespaces）下载文件时，可执行位等属性会被移除。</td><td>背景信息和潜在的未来解决方案可以在<a href="https://github.com/microsoft/vscode/issues/112099">问题 #112099</a> 中找到。</td><td>目前没有变通方案。</td><td></td></tr>
   <tr><td></td><td>尝试从 Codespace 下载某些文件夹时，你可能会看到提示"<code>Your_codespace_name</code> 无法打开此文件夹，因为它包含系统文件"。</td><td>用户代理可以自由地对敏感目录施加限制级别。更多信息在<a href="https://wicg.github.io/file-system-access/#privacy-wide-access">此规范</a>和 <a href="https://source.chromium.org/chromium/chromium/src/+/master:chrome/browser/file_system_access/chrome_file_system_access_permission_context.cc;l=140-208">Chromium 的阻止列表</a>中。</td><td>除了规范和阻止列表之外，没有其他变通方案。</td><td></td></tr>
-  <tr><td></td><td>手动访问 <code>http://localhost:forwarded_port</code> 无法从 Web 中的 Codespace 访问转发端口。</td><td>这是基于 Codespaces 如何处理端口转发并为 Web 生成正确 URL。</td><td>从端口转发通知中单击链接打开你的应用，或者单击<a href="../docs/devcontainers/containers.md#forwarding-or-publishing-a-port">端口视图</a>中的地球图标，两者都会提供正确生成的链接。更多信息在 <a href="https://docs.github.com/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace">Codespaces 文档</a>中。</td><td></td></tr>
+  <tr><td></td><td>手动访问 <code>http://localhost:forwarded_port</code> 无法从 Web 中的 Codespace 访问转发端口。</td><td>这是基于 Codespaces 如何处理端口转发并为 Web 生成正确 URL。</td><td>从端口转发通知中单击链接打开你的应用，或者单击<a href="../../docs/devcontainers/containers.html#forwarding-or-publishing-a-port">端口视图</a>中的地球图标，两者都会提供正确生成的链接。更多信息在 <a href="https://docs.github.com/codespaces/developing-in-codespaces/forwarding-ports-in-your-codespace">Codespaces 文档</a>中。</td><td></td></tr>
 </tbody>
 </table>
 <h3>某些扩展在 Web 中的行为不同</h3>
@@ -546,10 +546,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td><a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager">Project Manager</a></td><td>Project Manager 依赖于同步自定义 <code>projects.json</code> 文件，<a href="https://github.com/microsoft/vscode/issues/113774">目前不支持</a>。</td><td>你可以在桌面版 Codespaces 或本地 VS Code 中使用该扩展来保存和管理你的项目，因为这些选项不需要同步自定义文件。</td><td></td></tr>
   <tr><td></td><td>依赖 Chrome 的扩展，例如 <a href="https://marketplace.visualstudio.com/items?itemName=luciannaie.protractor-test-runner#:~:text=Protractor%20Test%20Runner%20is%20a,that%20has%20protractor%20test%20files.">Protractor Test Runner</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=auchenberg.vscode-browser-preview">Browser Preview</a>。</td><td>Chrome 不包含在 Codespace 中。</td><td>尝试寻找替代体验，或者你可以在本地 VS Code（未连接到 Codespaces）中在你的项目上使用这些扩展。</td><td></td></tr>
   <tr><td></td><td><a href="https://marketplace.visualstudio.com/items?itemName=Dart-Code.flutter">Flutter</a>（以及整体的 Flutter 开发）</td><td>由于 Docker 容器和 Codespaces 的性质，Flutter 工作流有几个方面受限。<ul><li>Flutter 建议从 snap 安装，但 snap 无法在 Codespaces 容器内安装。</li><li>Android 模拟在容器内不起作用。</li><li>Codespaces 无法检测插入到你机器上的 USB 设备，这使得在物理设备上开发不可能。</li><li>与其他 Linux 环境一样，Codespaces 不支持 iOS 开发。</li></ul></td><td>你可以使用本地 VS Code 进行 Flutter 开发。</td><td></td></tr>
-  <tr><td></td><td><a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a></td><td>该扩展提供三种功能来帮助 LaTeX 写作：1) 显示常用命令的一组视图，2) PDF 预览器，以及 3) 语言功能，如代码片段和 IntelliSense。该扩展可以相当完整地使用，但存在一些 Web 或安全限制。</td><td>以下变通方案解决了视图和预览器功能领域的限制：<ul><li>视图本身可以正常工作，但有一些命令会尝试启动本机应用程序，例如在操作系统文件资源管理器中显示输出文件夹。这些在 Web 中不起作用，因此使用桌面版是另一种选择。</li><li><code>"latex-workshop.view.pdf.viewer"</code> - 此设置提供了一个类似于 <a href="../docs/languages/markdown.md#markdown-preview">Markdown 预览</a>的 PDF 预览器。你可以在浏览器选项卡中、在单独的 PDF 查看器中或在 VS Code 选项卡中预览。<br>在基于 Web 的 Codespaces 中只能使用浏览器选项卡。单独的 PDF 查看器会静默失败，而 VS Code 选项卡会遇到<a href="../api/extension-guides/webview.md#content-security-policy">内容安全策略</a>问题。由于此限制，VS Code 选项卡查看器的其他功能也无法使用。</li></ul></td><td></td></tr>
+  <tr><td></td><td><a href="https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop">LaTeX Workshop</a></td><td>该扩展提供三种功能来帮助 LaTeX 写作：1) 显示常用命令的一组视图，2) PDF 预览器，以及 3) 语言功能，如代码片段和 IntelliSense。该扩展可以相当完整地使用，但存在一些 Web 或安全限制。</td><td>以下变通方案解决了视图和预览器功能领域的限制：<ul><li>视图本身可以正常工作，但有一些命令会尝试启动本机应用程序，例如在操作系统文件资源管理器中显示输出文件夹。这些在 Web 中不起作用，因此使用桌面版是另一种选择。</li><li><code>"latex-workshop.view.pdf.viewer"</code> - 此设置提供了一个类似于 <a href="../../docs/languages/markdown.html#markdown-preview">Markdown 预览</a>的 PDF 预览器。你可以在浏览器选项卡中、在单独的 PDF 查看器中或在 VS Code 选项卡中预览。<br>在基于 Web 的 Codespaces 中只能使用浏览器选项卡。单独的 PDF 查看器会静默失败，而 VS Code 选项卡会遇到<a href="../../api/extension-guides/webview.html#content-security-policy">内容安全策略</a>问题。由于此限制，VS Code 选项卡查看器的其他功能也无法使用。</li></ul></td><td></td></tr>
   <tr><td></td><td><a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a></td><td>某些 Git Graph webview 功能在 Codespaces 中可能受限。例如，在提交文件与 Git Graph webview 之间切换可能会导致 webview 变空白。</td><td>你可以在 VS Code 桌面版中完全使用 Git Graph。</td><td></td></tr>
-  <tr><td></td><td>其他<a href="../docs/remote/remote-overview">远程开发扩展</a>（WSL、Dev Containers、Remote - SSH）无法在 Codespace 中安装。</td><td>Codespace 已经是一个远程上下文。</td><td>如果你想在另一个远程上下文中运行（例如 WSL 或远程 SSH 计算机），请打开 VS Code 桌面版（未连接到 Codespace）并启动其他远程扩展之一。如果你想使用<a href="../docs/devcontainers/create-dev-container.md">自定义开发容器</a>，你可以在 Codespaces 和 Dev Containers 中使用相同的 <code>.devcontainer</code>。</td><td></td></tr>
-  <tr><td></td><td><strong>My_Favorite_Extension</strong> 不起作用且未在上面列出。</td><td>还有其他一些问题可能会阻止功能在远程上下文中按预期工作。</td><td>在某些情况下，你可以使用其他命令来解决该问题，但在其他情况下，可能需要修改扩展。查看<a href="../docs/remote/troubleshooting.md#extension-tips">远程扩展提示</a>以了解常见的远程问题及其解决技巧。</td><td></td></tr>
+  <tr><td></td><td>其他<a href="../../docs/remote/remote-overview">远程开发扩展</a>（WSL、Dev Containers、Remote - SSH）无法在 Codespace 中安装。</td><td>Codespace 已经是一个远程上下文。</td><td>如果你想在另一个远程上下文中运行（例如 WSL 或远程 SSH 计算机），请打开 VS Code 桌面版（未连接到 Codespace）并启动其他远程扩展之一。如果你想使用<a href="../../docs/devcontainers/create-dev-container.html">自定义开发容器</a>，你可以在 Codespaces 和 Dev Containers 中使用相同的 <code>.devcontainer</code>。</td><td></td></tr>
+  <tr><td></td><td><strong>My_Favorite_Extension</strong> 不起作用且未在上面列出。</td><td>还有其他一些问题可能会阻止功能在远程上下文中按预期工作。</td><td>在某些情况下，你可以使用其他命令来解决该问题，但在其他情况下，可能需要修改扩展。查看<a href="../../docs/remote/troubleshooting.html#extension-tips">远程扩展提示</a>以了解常见的远程问题及其解决技巧。</td><td></td></tr>
 </tbody>
 </table>
 <h2>常见问题</h2>

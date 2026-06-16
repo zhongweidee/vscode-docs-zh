@@ -460,16 +460,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><img src="../images/copilot-cli/copilot-cli-session.png" alt="Screenshot of Copilot CLI session as a chat editor in VS Code."></p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>如果你主要跨多个项目使用代理工作，你也可以在<a href="../docs/agents/agents-window.md">代理窗口</a>中管理你的 Copilot CLI 会话，这是一个以代理为先的界面，与主 VS Code 窗口共享会话。</blockquote>
+<blockquote>如果你主要跨多个项目使用代理工作，你也可以在<a href="../../../docs/agents/agents-window.html">代理窗口</a>中管理你的 Copilot CLI 会话，这是一个以代理为先的界面，与主 VS Code 窗口共享会话。</blockquote>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>像 OpenAI Codex 这样的第三方提供者也提供后台功能。详细了解<a href="../docs/agents/agent-types/third-party-agents.md">第三方代理</a>。</blockquote>
+<blockquote>像 OpenAI Codex 这样的第三方提供者也提供后台功能。详细了解<a href="../../../docs/agents/agent-types/third-party-agents.html">第三方代理</a>。</blockquote>
 
 <p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="Get started with agents"></p>
 <p>通过实践教程体验 VS Code 中的本地、后台和云端代理。</p>
 
 <ul>
-<li><a href="../docs/agents/agents-tutorial.md">开始教程</a>
+<li><a href="../../../docs/agents/agents-tutorial.html">开始教程</a>
 </li>
 </ul>
 <p></div></p>
@@ -484,15 +484,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>由于 Copilot CLI 会话在后台运行，它们非常适合具有明确定义范围、拥有所有必要上下文并且不需要频繁用户交互的任务。示例包括根据计划实现功能、创建概念验证的多个变体，或实现明确定义的修复或功能。</p>
 
-<p>Copilot CLI 支持聊天中的斜杠命令，包括<a href="../docs/agent-customization/prompt-files.md">可复用提示词</a>、<a href="../docs/agent-customization/agent-skills.md">代理技能</a>、<a href="../docs/agent-customization/hooks.md">钩子</a>、管理长对话的 <code>/compact</code>、<a href="#使用研究代理运行深度研究">运行深度研究</a>的 <code>/research</code>，以及切换<a href="../docs/agents/approvals.md#can-i-automatically-approve-all-tools-and-terminal-commands">工具自动审批</a>的 <code>/yolo</code> 或 <code>/autoApprove</code>。在 Copilot CLI 会话的聊天输入中键入 <code>/</code> 以查看可用命令。</p>
+<p>Copilot CLI 支持聊天中的斜杠命令，包括<a href="../../../docs/agent-customization/prompt-files.html">可复用提示词</a>、<a href="../../../docs/agent-customization/agent-skills.html">代理技能</a>、<a href="../../../docs/agent-customization/hooks.html">钩子</a>、管理长对话的 <code>/compact</code>、<a href="#使用研究代理运行深度研究">运行深度研究</a>的 <code>/research</code>，以及切换<a href="../../../docs/agents/approvals.html#can-i-automatically-approve-all-tools-and-terminal-commands">工具自动审批</a>的 <code>/yolo</code> 或 <code>/autoApprove</code>。在 Copilot CLI 会话的聊天输入中键入 <code>/</code> 以查看可用命令。</p>
 
 <h3>隔离模式</h3>
 
 <p>Copilot CLI 支持两种类型的隔离模式来管理代理所做的更改如何应用到你的代码库：<strong>工作树</strong>和<strong>文件夹</strong>隔离。你可以在创建新的 Copilot CLI 会话时选择隔离模式。</p>
 
-<p>若要隔离 Copilot CLI 代理的更改并防止干扰你的当前工作，请使用<strong>工作树</strong>隔离。在此模式下，VS Code 会在一个单独的文件夹中为 Copilot CLI 会话创建一个 <a href="../docs/sourcecontrol/branches-worktrees.md#understanding-worktrees">Git 工作树</a>。代理所做的所有更改都会应用到工作树中，使它们与你的主工作区分开，直到你准备审查并应用它们。</p>
+<p>若要隔离 Copilot CLI 代理的更改并防止干扰你的当前工作，请使用<strong>工作树</strong>隔离。在此模式下，VS Code 会在一个单独的文件夹中为 Copilot CLI 会话创建一个 <a href="../../../docs/sourcecontrol/branches-worktrees.html#understanding-worktrees">Git 工作树</a>。代理所做的所有更改都会应用到工作树中，使它们与你的主工作区分开，直到你准备审查并应用它们。</p>
 
-<p>如果你<a href="../docs/chat/chat-sessions.md#fork-a-chat-session">派生</a>一个使用工作树隔离的 Copilot CLI 会话，派生后的会话将继续使用与原始会话相同的工作树。VS Code 仅在最后一个关联的会话被删除或归档后才移除共享的工作树。</p>
+<p>如果你<a href="../../../docs/chat/chat-sessions.html#fork-a-chat-session">派生</a>一个使用工作树隔离的 Copilot CLI 会话，派生后的会话将继续使用与原始会话相同的工作树。VS Code 仅在最后一个关联的会话被删除或归档后才移除共享的工作树。</p>
 
 <p>如果你希望 Copilot CLI 会话的更改直接应用到当前工作区，你可以选择<strong>文件夹</strong>隔离。在此模式下，代理直接在你的当前工作区中操作，更改会就地应用。</p>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>权限与审批</h3>
 
-<p>Copilot CLI 会话支持与本地代理相同的<a href="../docs/agents/approvals.md#permission-levels">权限级别</a>。可用的权限级别取决于你选择的隔离模式：</p>
+<p>Copilot CLI 会话支持与本地代理相同的<a href="../../../docs/agents/approvals.html#permission-levels">权限级别</a>。可用的权限级别取决于你选择的隔离模式：</p>
 
 <ul>
 <li><strong>工作树隔离</strong>：权限级别自动设置为<strong>跳过审批</strong>，且无法更改。因为代理在代码库的隔离副本（Git 工作树）上操作，所有工具调用都会自动批准，无需确认对话框。</li>
@@ -544,7 +544,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>对于复杂的任务，首先在 VS Code 中与本地代理交互以明确需求，然后将任务移交给 Copilot CLI 进行后台自主执行可能会很有帮助。这在以下场景中很有用：使用<a href="../docs/agents/planning.md">计划代理</a>创建一个计划，然后将该计划的实现移交给 Copilot CLI。</p>
+<p>对于复杂的任务，首先在 VS Code 中与本地代理交互以明确需求，然后将任务移交给 Copilot CLI 进行后台自主执行可能会很有帮助。这在以下场景中很有用：使用<a href="../../../docs/agents/planning.html">计划代理</a>创建一个计划，然后将该计划的实现移交给 Copilot CLI。</p>
 
 <p>当将本地代理对话移交给 Copilot CLI 会话时，完整的对话历史记录和上下文会传递到后台会话。</p>
 
@@ -565,7 +565,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>        <img src="../images/copilot-cli/continue-in-cli.png" alt="Screenshot showing the Session Target dropdown in VS Code chat interface."></p>
 
 <ul>
-<li>如果你正在使用<a href="../docs/agents/planning.md">计划代理</a>，选择<strong>开始实现</strong>下拉菜单，然后选择<strong>在 Copilot CLI 中继续</strong>以在 Copilot CLI 会话中运行实现
+<li>如果你正在使用<a href="../../../docs/agents/planning.html">计划代理</a>，选择<strong>开始实现</strong>下拉菜单，然后选择<strong>在 Copilot CLI 中继续</strong>以在 Copilot CLI 会话中运行实现
 </li>
 </ul>
 <p>        <img src="../images/copilot-cli/plan-agent-start-implementation-cli.png" alt="Screenshot showing the "Start Implementation" button in VS Code chat interface."></p>
@@ -577,7 +577,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><code>"/remote on"</code> 命令允许你从 github.com 或 GitHub Mobile 应用程序远程控制 Copilot CLI 会话。通过远程控制，你可以从任何地方监控和操纵正在进行的 Copilot CLI 会话，让你更灵活地持续推进工作而无需被绑在机器旁。你可以在 VS Code 和 GitHub 之间保持完整的会话上下文和历史记录同步。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>远程控制是远程运行代理会话的两种方式之一。你还可以通过 SSH 或开发隧道将<a href="../docs/agents/agents-window.md">代理窗口</a>连接到远程机器。详细了解<a href="../docs/agents/concepts/agents.md#remote-agent-sessions">远程代理会话</a>。</blockquote>
+<blockquote>远程控制是远程运行代理会话的两种方式之一。你还可以通过 SSH 或开发隧道将<a href="../../../docs/agents/agents-window.html">代理窗口</a>连接到远程机器。详细了解<a href="../../../docs/agents/concepts/agents.html#remote-agent-sessions">远程代理会话</a>。</blockquote>
 
 <p>当启用远程控制时，VS Code 会将会话历史记录、工具活动和状态更新实时流式传输到链接的 GitHub 任务页面。你在一个地方执行的操作会反映在另一个地方。如果会话需要审批工具调用或回答问题，提示会在两个地方显示，你可以从任一位置回复。</p>
 
@@ -646,7 +646,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>在 Copilot CLI 中使用自定义代理</h2>
 
-<p><a href="../docs/agent-customization/custom-agents.md">自定义代理</a>允许你在 VS Code 中为代理定义自定义角色和人设。例如，你可以创建一个用于执行代码审查的自定义代理。自定义代理可以定义特定的指令和行为。</p>
+<p><a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>允许你在 VS Code 中为代理定义自定义角色和人设。例如，你可以创建一个用于执行代码审查的自定义代理。自定义代理可以定义特定的指令和行为。</p>
 
 <p>创建 Copilot CLI 会话时，你可以选择一个自定义代理来处理任务。自定义代理会根据定义的行为进行操作。</p>
 
@@ -665,7 +665,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>输入提示词，注意自定义代理被用于处理任务
 <blockquote>[!NOTE]</blockquote>
-<blockquote>目前，仅在工作区中定义的自定义代理可用于 Copilot CLI 会话。详细了解<a href="../docs/agent-customization/custom-agents.md#create-a-custom-agent">创建自定义代理</a>。</blockquote>
+<blockquote>目前，仅在工作区中定义的自定义代理可用于 Copilot CLI 会话。详细了解<a href="../../../docs/agent-customization/custom-agents.html#create-a-custom-agent">创建自定义代理</a>。</blockquote>
 
 <h2>使用研究代理运行深度研究</h2>
 
@@ -683,14 +683,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <pre><code class="language-prompt">/research How does the authentication flow work in this codebase?</code></pre>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>对于直接为实现计划提供素材的研究，请使用<a href="../docs/agents/planning.md">计划代理</a>，它会在提出计划之前研究你的任务。要在会话内委派专注的研究而不生成独立报告，请使用<a href="../docs/agents/subagents.md">子代理</a>。</blockquote>
+<blockquote>对于直接为实现计划提供素材的研究，请使用<a href="../../../docs/agents/planning.html">计划代理</a>，它会在提出计划之前研究你的任务。要在会话内委派专注的研究而不生成独立报告，请使用<a href="../../../docs/agents/subagents.html">子代理</a>。</blockquote>
 
 <p>有关研究代理的更多信息，请参阅 GitHub 文档中的<a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/research">使用 GitHub Copilot CLI 进行研究</a>。</p>
 
 <h2>Copilot CLI 会话的限制</h2>
 
 <ul>
-<li>Copilot CLI 会话无法访问所有 VS Code 内置工具。你可以显式地在聊天输入中<a href="../docs/chat/copilot-chat-context.md">添加上下文</a>。
+<li>Copilot CLI 会话无法访问所有 VS Code 内置工具。你可以显式地在聊天输入中<a href="../../../docs/chat/copilot-chat-context.html">添加上下文</a>。
 </li>
 <li>无法访问扩展提供的工具，并且仅限于通过 CLI 工具可用的模型。
 </li>
@@ -698,8 +698,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>相关资源</h2>
 
 </li>
-<li><a href="../docs/agents/overview.md">代理概览</a>：了解不同的代理类型以及如何在代理之间移交任务</li>
-<li><a href="../docs/agent-customization/custom-agents.md">自定义代理</a>：创建自定义代理角色和人设</li>
+<li><a href="../../../docs/agents/overview.html">代理概览</a>：了解不同的代理类型以及如何在代理之间移交任务</li>
+<li><a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>：创建自定义代理角色和人设</li>
 <li><a href="https://docs.github.com/en/copilot/concepts/agents/copilot-cli/research">使用 GitHub Copilot CLI 进行研究</a>：在 GitHub 文档中了解有关研究代理的更多信息</li>
 <li><a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-command-reference">GitHub Copilot CLI 文档</a></li>
 </ul>

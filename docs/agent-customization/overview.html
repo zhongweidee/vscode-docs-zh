@@ -451,13 +451,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/agent-customization / overview</div>
 <h1>在 Visual Studio Code 中自定义 AI</h1>
 
-<p>Visual Studio Code 为你提供了多种方式，让 AI 了解你的代码库、编码标准和工作流。本文介绍了各种自定义选项，帮助你快速入门。你可以从<a href="../docs/agents/chat-view.md">聊天视图</a>和<a href="../docs/agents/agents-window.md">代理窗口</a>管理自定义设置。</p>
+<p>Visual Studio Code 为你提供了多种方式，让 AI 了解你的代码库、编码标准和工作流。本文介绍了各种自定义选项，帮助你快速入门。你可以从<a href="../../docs/agents/chat-view.html">聊天视图</a>和<a href="../../docs/agents/agents-window.html">代理窗口</a>管理自定义设置。</p>
 
 <p><div class="docs-action" data-show-in-doc="true" data-show-in-sidebar="true" title="核心概念"></p>
 <p>了解不同的自定义类型以及何时使用每种类型。</p>
 
 <ul>
-<li><a href="../docs/agents/concepts/customization.md">自定义概念</a>
+<li><a href="../../docs/agents/concepts/customization.html">自定义概念</a>
 </li>
 </ul>
 <p></div></p>
@@ -466,7 +466,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>跟随实践教程，为你的项目自定义 AI。</p>
 
 <ul>
-<li><a href="../docs/agents/guides/customize-copilot-guide.md">为你的项目自定义 AI</a>
+<li><a href="../../docs/agents/guides/customize-copilot-guide.html">为你的项目自定义 AI</a>
 </li>
 </ul>
 <p></div></p>
@@ -476,21 +476,21 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>VS Code 提供了多种自定义类型，每种类型适用于不同的目标。以下列表简要描述了每种类型并链接到其设置文章：</p>
 
 <ul>
-<li><a href="../docs/agent-customization/custom-instructions.md">指令</a>：描述你的编码标准、规范和项目结构，应用于每个请求或限定于特定文件。</li>
-<li><a href="../docs/agent-customization/prompt-files.md">提示文件</a>：保存可重复使用的提示，在聊天中作为斜杠命令调用。</li>
-<li><a href="../docs/agent-customization/agent-skills.md">代理技能</a>：将多步骤工作流、脚本和资源打包，当任务匹配时代理自动加载。</li>
-<li><a href="../docs/agent-customization/custom-agents.md">自定义代理</a>：定义具有自己指令、工具访问权限和模型的专用角色。</li>
-<li><a href="../docs/agent-customization/language-models.md">语言模型</a>：选择处理你请求的模型，或使用自己的模型和 API 密钥。</li>
-<li><a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>：通过模型上下文协议将代理连接到外部工具、服务和数据。</li>
-<li><a href="../docs/agent-customization/hooks.md">钩子</a>：在代理循环的特定点执行确定性操作，以强制执行策略和护栏规则。</li>
-<li><a href="../docs/agent-customization/agent-plugins.md">代理插件</a>（预览）：将其他自定义类型打包成一个可安装的包。
+<li><a href="../../docs/agent-customization/custom-instructions.html">指令</a>：描述你的编码标准、规范和项目结构，应用于每个请求或限定于特定文件。</li>
+<li><a href="../../docs/agent-customization/prompt-files.html">提示文件</a>：保存可重复使用的提示，在聊天中作为斜杠命令调用。</li>
+<li><a href="../../docs/agent-customization/agent-skills.html">代理技能</a>：将多步骤工作流、脚本和资源打包，当任务匹配时代理自动加载。</li>
+<li><a href="../../docs/agent-customization/custom-agents.html">自定义代理</a>：定义具有自己指令、工具访问权限和模型的专用角色。</li>
+<li><a href="../../docs/agent-customization/language-models.html">语言模型</a>：选择处理你请求的模型，或使用自己的模型和 API 密钥。</li>
+<li><a href="../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>：通过模型上下文协议将代理连接到外部工具、服务和数据。</li>
+<li><a href="../../docs/agent-customization/hooks.html">钩子</a>：在代理循环的特定点执行确定性操作，以强制执行策略和护栏规则。</li>
+<li><a href="../../docs/agent-customization/agent-plugins.html">代理插件</a>（预览）：将其他自定义类型打包成一个可安装的包。
 </li>
 </ul>
-<p>要比较各个选项并确定哪个适合你的目标，请参阅<a href="../docs/agents/concepts/customization.md">自定义概念</a>。本文剩余部分重点介绍如何设置和管理自定义。</p>
+<p>要比较各个选项并确定哪个适合你的目标，请参阅<a href="../../docs/agents/concepts/customization.html">自定义概念</a>。本文剩余部分重点介绍如何设置和管理自定义。</p>
 
 <h2>逐步入门</h2>
 
-<p>逐步采用自定义设置，而不是一次性全部应用。从项目级指令开始，然后在发现重复出现的需求时逐步添加更具体的自定义设置。如需实践教程，请参阅<a href="../docs/agents/guides/customize-copilot-guide.md">为你的项目自定义 AI</a> 指南。</p>
+<p>逐步采用自定义设置，而不是一次性全部应用。从项目级指令开始，然后在发现重复出现的需求时逐步添加更具体的自定义设置。如需实践教程，请参阅<a href="../../docs/agents/guides/customize-copilot-guide.html">为你的项目自定义 AI</a> 指南。</p>
 
 <ol>
 <li><strong>设置项目指令</strong>：在聊天中输入 <code>/init</code>，生成一个 <code>.github/copilot-instructions.md</code> 文件，其中包含根据你的代码库量身定制的编码标准。
@@ -537,7 +537,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>{% /tab %}</p>
 <p>{% /tabs %}</p>
 
-<p>你可以为不同的<a href="../docs/agents/overview.md#configure-your-agent-session">代理类型</a>配置自定义设置：本地代理、Copilot CLI 和 Claude 代理。从编辑器顶部的下拉菜单中选择代理类型，以查看和管理该代理类型的自定义设置。</p>
+<p>你可以为不同的<a href="../../docs/agents/overview.html#configure-your-agent-session">代理类型</a>配置自定义设置：本地代理、Copilot CLI 和 Claude 代理。从编辑器顶部的下拉菜单中选择代理类型，以查看和管理该代理类型的自定义设置。</p>
 
 <h2>在单体仓库中使用自定义设置</h2>
 
@@ -567,7 +567,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>工作区文件夹不包含 <code>.git</code> 文件夹（它本身不是仓库根目录）。</li>
 <li>父文件夹包含 <code>.git</code> 文件夹。</li>
-<li>父仓库文件夹是<a href="../docs/editing/workspaces/workspace-trust.md">受信任的</a>。VS Code 会在打开工作区时提示你信任父文件夹。
+<li>父仓库文件夹是<a href="../../docs/editing/workspaces/workspace-trust.html">受信任的</a>。VS Code 会在打开工作区时提示你信任父文件夹。
 <blockquote>[!NOTE]</blockquote>
 <blockquote><code>setting(chat.useCustomizationsInParentRepositories)</code> 设置默认处于禁用状态。</blockquote>
 
@@ -575,13 +575,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>如果你的自定义设置未被应用或导致意外行为，请打开<strong>代理调试日志</strong>面板以<a href="../docs/agents/agent-troubleshooting/troubleshooting.md">排查代理问题</a>。从命令面板运行<strong>开发者：打开代理调试面板</strong>（<code>kb(workbench.action.showCommands)</code>），或在聊天视图中选择省略号（<strong>...</strong>）菜单并选择<strong>显示代理调试日志</strong>。</p>
+<p>如果你的自定义设置未被应用或导致意外行为，请打开<strong>代理调试日志</strong>面板以<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html">排查代理问题</a>。从命令面板运行<strong>开发者：打开代理调试面板</strong>（<code>kb(workbench.action.showCommands)</code>），或在聊天视图中选择省略号（<strong>...</strong>）菜单并选择<strong>显示代理调试日志</strong>。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agents/concepts/customization.md">自定义概念</a></li>
-<li><a href="../docs/agents/guides/customize-copilot-guide.md">为你的项目自定义 AI 指南</a></li>
+<li><a href="../../docs/agents/concepts/customization.html">自定义概念</a></li>
+<li><a href="../../docs/agents/guides/customize-copilot-guide.html">为你的项目自定义 AI 指南</a></li>
 </ul>
 
   </div>

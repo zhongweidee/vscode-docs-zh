@@ -471,7 +471,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>禁用 quickSuggestions 时的 Emmet</h3>
 
-<p>如果你已禁用 <code>setting(editor.quickSuggestions)</code> <a href="../docs/configure/settings.md">设置</a>，你在输入时将看不到建议。你仍然可以通过按 <code>kb(editor.action.triggerSuggest)</code> 手动触发建议并查看预览。</p>
+<p>如果你已禁用 <code>setting(editor.quickSuggestions)</code> <a href="../../docs/configure/settings.html">设置</a>，你在输入时将看不到建议。你仍然可以通过按 <code>kb(editor.action.triggerSuggest)</code> 手动触发建议并查看预览。</p>
 
 <h3>在建议中禁用 Emmet</h3>
 
@@ -490,7 +490,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>在其他文件类型中使用 Emmet 缩写</h2>
 
-<p>要在默认不支持的的文件类型中启用 Emmet 缩写展开，请使用 <code>setting(emmet.includeLanguages)</code> 设置。确保映射的两边都使用 <a href="../docs/languages/identifiers.md">语言标识符</a>，右边是 Emmet 支持的语言标识符（参见上面的列表）。</p>
+<p>要在默认不支持的的文件类型中启用 Emmet 缩写展开，请使用 <code>setting(emmet.includeLanguages)</code> 设置。确保映射的两边都使用 <a href="../../docs/languages/identifiers.html">语言标识符</a>，右边是 Emmet 支持的语言标识符（参见上面的列表）。</p>
 
 <p>例如：</p>
 
@@ -627,7 +627,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>以下是你可以用来在 VS Code 中自定义 Emmet 体验的 Emmet <a href="../docs/configure/settings.md">设置</a>。</p>
+<p>以下是你可以用来在 VS Code 中自定义 Emmet 体验的 Emmet <a href="../../docs/configure/settings.html">设置</a>。</p>
 
 <ul>
 <li><code>setting(emmet.includeLanguages)</code>
@@ -771,8 +771,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>Emmet 只是 VS Code 中众多出色的 Web 开发者功能之一。继续阅读以了解：</p>
 
 <ul>
-<li><a href="../docs/languages/html.md">HTML</a> - VS Code 通过智能感知、闭合标签和格式化支持 HTML。</li>
-<li><a href="../docs/languages/css.md">CSS</a> - 我们为 CSS、SCSS 和 Less 提供丰富的支持。
+<li><a href="../../docs/languages/html.html">HTML</a> - VS Code 通过智能感知、闭合标签和格式化支持 HTML。</li>
+<li><a href="../../docs/languages/css.html">CSS</a> - 我们为 CSS、SCSS 和 Less 提供丰富的支持。
 <h2>疑难解答</h2>
 
 <h3>自定义标签在建议列表中无法展开</h3>
@@ -787,7 +787,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>以 <code>+</code> 结尾的 HTML 代码片段不起作用</h3>
 
-<p>以 <code>+</code> 结尾的 HTML 代码片段，如 <a href="https://docs.emmet.io/cheat-sheet/">Emmet 速查表</a> 中的 <code>select+</code> 和 <code>ul+</code>，不受支持。这是 Emmet 2.0 中的一个已知问题 <a href="https://github.com/emmetio/html-matcher/issues/1">Issue: emmetio/html-matcher#1</a>。解决方法是为此类场景创建你自己的 <a href="../docs/languages/emmet.md#使用自定义-emmet-代码片段">自定义 Emmet 代码片段</a>。</p>
+<p>以 <code>+</code> 结尾的 HTML 代码片段，如 <a href="https://docs.emmet.io/cheat-sheet/">Emmet 速查表</a> 中的 <code>select+</code> 和 <code>ul+</code>，不受支持。这是 Emmet 2.0 中的一个已知问题 <a href="https://github.com/emmetio/html-matcher/issues/1">Issue: emmetio/html-matcher#1</a>。解决方法是为此类场景创建你自己的 <a href="../../docs/languages/emmet.html#使用自定义-emmet-代码片段">自定义 Emmet 代码片段</a>。</p>
 
 <h3>缩写无法展开</h3>
 
@@ -796,13 +796,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>如果缩写仍然无法展开：</p>
 
 <ul>
-<li>检查 <a href="../docs/configure/extensions/extension-marketplace.md#extensions-view-filters">内置扩展</a> 以查看 Emmet 是否已被禁用。</li>
-<li>尝试通过在 <a href="../docs/editing/userinterface.md#命令面板">命令面板</a> 中运行 <strong>Developer: Restart Extension Host</strong> (<code>workbench.action.restartExtensionHost</code>) 命令来重启扩展宿主。
+<li>检查 <a href="../../docs/configure/extensions/extension-marketplace.html#extensions-view-filters">内置扩展</a> 以查看 Emmet 是否已被禁用。</li>
+<li>尝试通过在 <a href="../../docs/editing/userinterface.html#命令面板">命令面板</a> 中运行 <strong>Developer: Restart Extension Host</strong> (<code>workbench.action.restartExtensionHost</code>) 命令来重启扩展宿主。
 <h3>在哪里可以设置 <a href="https://docs.emmet.io/customization/preferences/">Emmet 首选项</a> 文档中记录的所有首选项？</h3>
 
 </li>
 </ul>
-<p>你可以使用 <code>setting(emmet.preferences)</code> 设置首选项。只有 <a href="https://docs.emmet.io/customization/preferences/">Emmet 首选项</a> 文档中记录的一部分首选项可以自定义。请阅读 <a href="../docs/languages/emmet.md#emmet-配置">Emmet 配置</a> 下的首选项部分。</p>
+<p>你可以使用 <code>setting(emmet.preferences)</code> 设置首选项。只有 <a href="https://docs.emmet.io/customization/preferences/">Emmet 首选项</a> 文档中记录的一部分首选项可以自定义。请阅读 <a href="../../docs/languages/emmet.html#emmet-配置">Emmet 配置</a> 下的首选项部分。</p>
 
 <h3>有什么技巧和窍门吗？</h3>
 
@@ -811,7 +811,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>在 CSS 缩写中，当你使用 <code>:</code> 时，左边部分用于与 CSS 属性名模糊匹配，右边部分用于与 CSS 属性值匹配。充分利用这一点，使用诸如 <code>pos:f</code>、<code>trf:rx</code>、<code>fw:b</code> 等缩写。</li>
 <li>探索 <a href="https://docs.emmet.io/actions/">Emmet 操作</a> 文档中记录的所有其他 Emmet 功能。</li>
-<li>不要犹豫，创建你自己的 <a href="../docs/languages/emmet.md#使用自定义-emmet-代码片段">自定义 Emmet 代码片段</a>。</li>
+<li>不要犹豫，创建你自己的 <a href="../../docs/languages/emmet.html#使用自定义-emmet-代码片段">自定义 Emmet 代码片段</a>。</li>
 </ul>
 
   </div>

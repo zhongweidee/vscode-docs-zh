@@ -466,7 +466,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>默认情况下，shell 集成脚本应在从 VS Code 启动的受支持 shell 上自动激活。这是通过在 shell 会话启动时注入参数和/或环境变量来实现的。可以通过将 <code>setting(terminal.integrated.shellIntegration.enabled)</code> 设置为 <code>false</code> 来禁用此自动注入。</p>
 
-<p>这种标准、简单的方式不适用于某些高级使用场景，例如在子 shell 中、通过常规 <code>ssh</code> 会话（未使用 <a href="../docs/remote/ssh.md">Remote - SSH 扩展</a> 时）或某些复杂的 shell 设置。对于这些情况，推荐的启用 shell 集成的方法是<a href="#手动安装">手动安装</a>。</p>
+<p>这种标准、简单的方式不适用于某些高级使用场景，例如在子 shell 中、通过常规 <code>ssh</code> 会话（未使用 <a href="../../docs/remote/ssh.html">Remote - SSH 扩展</a> 时）或某些复杂的 shell 设置。对于这些情况，推荐的启用 shell 集成的方法是<a href="#手动安装">手动安装</a>。</p>
 
 <p>><strong>注意</strong>：自动注入可能不适用于旧版本的 shell，例如较旧版本的 fish 不支持通过 <code>$XDG_DATA_DIRS</code> 环境变量进行注入。你仍然可以通过手动安装来实现集成。</p>
 
@@ -546,7 +546,7 @@ code --locate-shell-integration-path bash
 <p>在你输入时，会出现一个建议列表。要手动触发建议，请使用 <code>kb(workbench.action.terminal.triggerSuggest)</code> 键盘快捷键。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote><code>kbstyle(Ctrl+Space)</code> 可能是在操作系统级别触发输入法编辑器（IME）的快捷键。如果是这样，你可以通过自定义<a href="../docs/configure/keybindings.md#keyboard-shortcuts-editor">键盘快捷键</a>来重新绑定 <code>workbench.action.terminal.triggerSuggest</code> 命令，或者更改操作系统级别的快捷键。</blockquote>
+<blockquote><code>kbstyle(Ctrl+Space)</code> 可能是在操作系统级别触发输入法编辑器（IME）的快捷键。如果是这样，你可以通过自定义<a href="../../docs/configure/keybindings.html#keyboard-shortcuts-editor">键盘快捷键</a>来重新绑定 <code>workbench.action.terminal.triggerSuggest</code> 命令，或者更改操作系统级别的快捷键。</blockquote>
 
 <p>默认情况下，<code>kbstyle(Tab)</code> 插入建议。在列表中导航时，<code>kbstyle(Enter)</code> 插入建议。你可以通过 <code>setting(terminal.integrated.suggest.selectionMode)</code> 设置来配置此行为。</p>
 
@@ -618,7 +618,7 @@ code --locate-shell-integration-path bash
 <li>当 <code>General</code> 或 <code>cmd-not-found</code> PowerShell 反馈提供程序触发时，建议每条建议。
 </li>
 </ul>
-<p>快速修复功能还支持<a href="../docs/configure/accessibility/accessibility.md#accessibility-signals">辅助功能信号</a>，以便在快速修复可用时提供额外的反馈。</p>
+<p>快速修复功能还支持<a href="../../docs/configure/accessibility/accessibility.html#accessibility-signals">辅助功能信号</a>，以便在快速修复可用时提供额外的反馈。</p>
 
 <h2>运行最近的命令</h2>
 
@@ -682,11 +682,11 @@ code --locate-shell-integration-path bash
 
 </li>
 </ul>
-<p>shell 集成提供给 VS Code 的信息用于改进<a href="../docs/configure/accessibility/accessibility.md#terminal-accessibility">终端的辅助功能</a>。一些增强功能示例包括：</p>
+<p>shell 集成提供给 VS Code 的信息用于改进<a href="../../docs/configure/accessibility/accessibility.html#terminal-accessibility">终端的辅助功能</a>。一些增强功能示例包括：</p>
 
 <ul>
 <li>在无障碍缓冲区中通过检测到的命令进行导航（<code>kb(workbench.action.terminal.focusAccessibleBuffer)</code>）</li>
-<li>当命令失败时播放<a href="../docs/configure/accessibility/accessibility.md#accessibility-signals">音频提示</a></li>
+<li>当命令失败时播放<a href="../../docs/configure/accessibility/accessibility.html#accessibility-signals">音频提示</a></li>
 <li>底层文本框同步，使箭头键和退格键的行为更加正确
 <h2>支持的转义序列</h2>
 

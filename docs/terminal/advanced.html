@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/terminal / advanced</div>
 <h1>终端高级功能</h1>
 
-<p>Visual Studio Code 的集成终端具有许多高级功能和设置，例如 Unicode 和表情符号支持、自定义键盘快捷方式以及自动回复。本文详细介绍了这些高级功能。如果你是 VS Code 或集成终端的新手，建议先阅读<a href="../docs/terminal/basics.md">终端基础</a>文章。</p>
+<p>Visual Studio Code 的集成终端具有许多高级功能和设置，例如 Unicode 和表情符号支持、自定义键盘快捷方式以及自动回复。本文详细介绍了这些高级功能。如果你是 VS Code 或集成终端的新手，建议先阅读<a href="../../docs/terminal/basics.html">终端基础</a>文章。</p>
 
 <h2>持久会话</h2>
 
@@ -497,7 +497,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>查看 <code>setting(terminal.integrated.commandsToSkipShell)</code> 设置详情以了解默认命令的完整列表。</p>
 
-<p>><strong>提示：</strong> <code>setting(terminal.integrated.sendKeybindingsToShell)</code> 可以配置为覆盖 <code>setting(terminal.integrated.commandsToSkipShell)</code>，并将大多数键盘快捷方式分发到 shell。但请注意，这将禁用诸如 <code>kbstyle(Ctrl+F)</code> 之类的键盘快捷方式来打开<a href="../docs/terminal/basics#find">查找</a>。</p>
+<p>><strong>提示：</strong> <code>setting(terminal.integrated.sendKeybindingsToShell)</code> 可以配置为覆盖 <code>setting(terminal.integrated.commandsToSkipShell)</code>，并将大多数键盘快捷方式分发到 shell。但请注意，这将禁用诸如 <code>kbstyle(Ctrl+F)</code> 之类的键盘快捷方式来打开<a href="../../docs/terminal/basics#find">查找</a>。</p>
 
 <h3>和弦键绑定</h3>
 
@@ -505,7 +505,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>macOS 清除屏幕</h3>
 
-<p>在 macOS 上，<code>kbstyle(Cmd+K)</code> 是终端中清除屏幕的常用键盘快捷方式，因此 VS Code 也遵循这一点，这意味着 <code>kbstyle(Cmd+K)</code> 和弦键绑定将不起作用。可以通过<a href="../docs/configure/keybindings.md#removing-a-specific-keyboard-shortcut-rule">删除清除键盘快捷方式</a>来启用 <code>kbstyle(Cmd+K)</code> 和弦键绑定：</p>
+<p>在 macOS 上，<code>kbstyle(Cmd+K)</code> 是终端中清除屏幕的常用键盘快捷方式，因此 VS Code 也遵循这一点，这意味着 <code>kbstyle(Cmd+K)</code> 和弦键绑定将不起作用。可以通过<a href="../../docs/configure/keybindings.html#removing-a-specific-keyboard-shortcut-rule">删除清除键盘快捷方式</a>来启用 <code>kbstyle(Cmd+K)</code> 和弦键绑定：</p>
 
 <pre><code class="language-json">{
     "key": "cmd+k",
@@ -538,7 +538,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   }
 }</code></pre>
 
-<p>此功能支持<a href="../docs/reference/variables-reference.md">变量替换</a>。</p>
+<p>此功能支持<a href="../../docs/reference/variables-reference.html">变量替换</a>。</p>
 
 <p><code>sendSequence</code> 命令仅支持通过字符代码使用 <code> </code> 格式来使用字符（不支持 <code>\x00</code>）。请参阅以下资源了解有关这些十六进制代码和终端序列的更多信息：</p>
 
@@ -618,7 +618,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>环境继承</h3>
 
-<p>当 VS Code 打开时，它会启动一个登录 shell 环境以获取 shell 环境。这是因为开发工具通常通过 shell 启动脚本（如 <code>~/.bash_profile</code>）添加到 <code>$PATH</code> 中。默认情况下，终端继承此环境，具体取决于你的<a href="../docs/terminal/profiles.md#configuring-profiles">配置文件 shell 参数</a>，这意味着可能运行了多个配置文件脚本，这可能导致意外行为。</p>
+<p>当 VS Code 打开时，它会启动一个登录 shell 环境以获取 shell 环境。这是因为开发工具通常通过 shell 启动脚本（如 <code>~/.bash_profile</code>）添加到 <code>$PATH</code> 中。默认情况下，终端继承此环境，具体取决于你的<a href="../../docs/terminal/profiles.html#configuring-profiles">配置文件 shell 参数</a>，这意味着可能运行了多个配置文件脚本，这可能导致意外行为。</p>
 
 <p>此环境继承可以通过 <code>setting(terminal.integrated.inheritEnv)</code> 设置在 macOS 和 Linux 上禁用。</p>
 
@@ -631,7 +631,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>后续的 VS Code 实例从第一个运行的 VS Code 实例继承环境变量，而不是从父进程。
 </li>
 </ul>
-<p>要隔离 VS Code 实例之间的环境变量，请使用 <a href="../docs/configure/command-line.md#isolating-vs-code-instances"><code>--user-data-dir</code> 命令行选项</a>为每个实例使用单独的用户数据目录运行。这确保每个实例维护自己的环境、设置和扩展。</p>
+<p>要隔离 VS Code 实例之间的环境变量，请使用 <a href="../../docs/configure/command-line.html#isolating-vs-code-instances"><code>--user-data-dir</code> 命令行选项</a>为每个实例使用单独的用户数据目录运行。这确保每个实例维护自己的环境、设置和扩展。</p>
 
 <h3>与 <code>$LANG</code> 的交互</h3>
 

@@ -457,7 +457,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>配置仅适用于特定一个或多个文件夹的设置。</li>
-<li>持久化仅在该工作区上下文中有效的<a href="../docs/debugtest/tasks.md">任务</a>和<a href="../docs/debugtest/debugging.md">调试器启动</a>配置。</li>
+<li>持久化仅在该工作区上下文中有效的<a href="../../../docs/debugtest/tasks.html">任务</a>和<a href="../../../docs/debugtest/debugging.html">调试器启动</a>配置。</li>
 <li>存储和恢复与该工作区关联的 UI 状态（例如，已打开的文件）。</li>
 <li>仅针对该工作区选择性地启用或禁用扩展。
 </li>
@@ -478,7 +478,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>您无需执行任何操作即可使文件夹成为 VS Code 工作区，只需用 VS Code 打开该文件夹即可。一旦您打开一个文件夹，VS Code 会自动跟踪配置，例如您打开的文件或编辑器布局。当您在 VS Code 中重新打开该文件夹时，编辑器将恢复为您之前离开时的状态。</p>
 
-<p>您还可以添加其他文件夹特定的配置，例如工作区特定的<a href="../docs/configure/settings.md">设置</a>（相对于全局用户设置）、<a href="../docs/debugtest/tasks.md">任务定义</a>和<a href="../docs/debugtest/debugging.md">调试启动</a>文件（请参阅下面的<a href="#workspace-settings">工作区设置</a>部分）。</p>
+<p>您还可以添加其他文件夹特定的配置，例如工作区特定的<a href="../../../docs/configure/settings.html">设置</a>（相对于全局用户设置）、<a href="../../../docs/debugtest/tasks.html">任务定义</a>和<a href="../../../docs/debugtest/debugging.html">调试启动</a>文件（请参阅下面的<a href="#workspace-settings">工作区设置</a>部分）。</p>
 
 <p><img src="images/workspaces/single-folder-workspace.png" alt="单文件夹工作区"></p>
 
@@ -486,7 +486,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>多根工作区</h2>
 
-<p><a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>是 VS Code 的一项高级功能，允许您将多个不同的文件夹配置为同一工作区的一部分。与将文件夹作为工作区打开不同，您需要打开一个列出了工作区所有文件夹的 <code><名称>.code-workspace</code> JSON 文件。例如：</p>
+<p><a href="../../../docs/editing/workspaces/multi-root-workspaces.html">多根工作区</a>是 VS Code 的一项高级功能，允许您将多个不同的文件夹配置为同一工作区的一部分。与将文件夹作为工作区打开不同，您需要打开一个列出了工作区所有文件夹的 <code><名称>.code-workspace</code> JSON 文件。例如：</p>
 
 <pre><code class="language-json">{
     "folders": [
@@ -525,7 +525,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>工作区设置使您能够在已打开的工作区上下文中配置设置。工作区设置始终会覆盖全局用户设置。它们在物理上存储在 JSON 文件中，其位置取决于您是打开了文件夹作为工作区，还是打开了 <code>.code-workspace</code> 文件。</p>
 
-<p>有关设置范围及其文件位置的全面说明，请参阅<a href="../docs/configure/settings.md">设置</a>文档。</p>
+<p>有关设置范围及其文件位置的全面说明，请参阅<a href="../../../docs/configure/settings.html">设置</a>文档。</p>
 
 <h3>单文件夹工作区设置</h3>
 
@@ -553,7 +553,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>根据您是将文件夹作为工作区打开还是打开了 <code>.code-workspace</code> 文件，工作区任务和启动配置的位置要么在 <code>.vscode</code> 文件夹内，要么在 <code>.code-workspace</code> 文件内。此外，即使您已经打开了 <code>.code-workspace</code> 文件，任务和启动配置也始终可以在文件夹级别定义。</p>
 
-<p>有关如何在 VS Code 中使用任务和启动配置的更全面概述，请参阅<a href="../docs/debugtest/tasks.md">任务</a>和<a href="../docs/debugtest/debugging.md">调试</a>章节。</p>
+<p>有关如何在 VS Code 中使用任务和启动配置的更全面概述，请参阅<a href="../../../docs/debugtest/tasks.html">任务</a>和<a href="../../../docs/debugtest/debugging.html">调试</a>章节。</p>
 
 <h2>常见问题</h2>
 

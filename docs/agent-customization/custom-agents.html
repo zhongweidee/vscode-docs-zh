@@ -458,20 +458,20 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>本文介绍如何在 VS Code 中创建和管理自定义代理。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote><strong>代理、提示文件还是技能？</strong> 当您需要一个具有特定工具限制、模型偏好或角色间交接的持久角色时，请使用自定义代理。对于不需要工具限制的一次性任务，请使用<a href="../docs/agent-customization/prompt-files.md">提示文件</a>。对于带有脚本和资源的可移植、可复用功能，请使用<a href="../docs/agent-customization/agent-skills.md">代理技能</a>。</blockquote>
+<blockquote><strong>代理、提示文件还是技能？</strong> 当您需要一个具有特定工具限制、模型偏好或角色间交接的持久角色时，请使用自定义代理。对于不需要工具限制的一次性任务，请使用<a href="../../docs/agent-customization/prompt-files.html">提示文件</a>。对于带有脚本和资源的可移植、可复用功能，请使用<a href="../../docs/agent-customization/agent-skills.html">代理技能</a>。</blockquote>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>使用<a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">代理自定义编辑器</a>（预览版）在一个地方发现、创建和管理所有代理自定义项。从命令面板运行 <strong>聊天：打开自定义项</strong>。</blockquote>
+<blockquote>使用<a href="../../docs/agent-customization/overview.html#manage-customizations-in-the-editor">代理自定义编辑器</a>（预览版）在一个地方发现、创建和管理所有代理自定义项。从命令面板运行 <strong>聊天：打开自定义项</strong>。</blockquote>
 
 <h2>什么是自定义代理？</h2>
 
-<p><a href="../docs/agents/agent-types/local-agents.md">内置代理</a>为 VS Code 中的聊天提供了通用配置。要获得更量身定制的聊天体验，您可以创建自己的自定义代理。</p>
+<p><a href="../../docs/agents/agent-types/local-agents.html">内置代理</a>为 VS Code 中的聊天提供了通用配置。要获得更量身定制的聊天体验，您可以创建自己的自定义代理。</p>
 
 <p>自定义代理由一组指令和工具组成，这些指令和工具会在您切换到该代理时应用。例如，"规划"代理可以包含生成实现计划的指令，并仅使用只读工具。通过创建自定义代理，您可以快速切换到该特定配置，而无需每次手动选择相关工具和指令。</p>
 
 <p>自定义代理定义在 <code>.agent.md</code> Markdown 文件中，可以存储在工作区中供他人使用，也可以存储在您的用户配置文件中，以便在不同工作区中复用。</p>
 
-<p>您可以在<a href="../docs/agents/agent-types/copilot-cli.md">后台代理</a>和<a href="../docs/agents/agent-types/cloud-agents.md">云端代理</a>中复用自定义代理，从而使用相同的专业配置运行自主任务。</p>
+<p>您可以在<a href="../../docs/agents/agent-types/copilot-cli.html">后台代理</a>和<a href="../../docs/agents/agent-types/cloud-agents.html">云端代理</a>中复用自定义代理，从而使用相同的专业配置运行自主任务。</p>
 
 <h2>为什么使用自定义代理？</h2>
 
@@ -480,7 +480,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>自定义代理还使您可以提供专门的指令，定义 AI 应如何运作。例如，规划代理可以指示 AI 收集项目上下文并生成详细的实现计划，而代码审查代理则可能专注于识别安全漏洞并建议改进。这些专门的指令确保每次切换到该代理时都能获得一致且适合任务的响应。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>子代理可以使用自定义代理运行。了解有关<a href="../docs/agents/subagents.md#run-a-custom-agent-as-a-subagent">使用自定义代理运行子代理</a>（实验性）的更多信息。</blockquote>
+<blockquote>子代理可以使用自定义代理运行。了解有关<a href="../../docs/agents/subagents.html#run-a-custom-agent-as-a-subagent">使用自定义代理运行子代理</a>（实验性）的更多信息。</blockquote>
 
 <h2>交接</h2>
 
@@ -525,7 +525,7 @@ handoffs:
 <p>要在用户数据中创建自定义代理，请使用代理自定义编辑器或使用 <strong>聊天：新建自定义代理</strong> 命令。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>在单仓中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 可以从父仓库根目录发现自定义代理。了解有关<a href="../docs/agent-customization/overview.md#use-customizations-in-a-monorepo">父仓库发现</a>的更多信息。</blockquote>
+<blockquote>在单仓中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 可以从父仓库根目录发现自定义代理。了解有关<a href="../../docs/agent-customization/overview.html#use-customizations-in-a-monorepo">父仓库发现</a>的更多信息。</blockquote>
 
 <h2>自定义代理文件结构</h2>
 
@@ -545,10 +545,10 @@ handoffs:
   <tr><td></td><td><code>description</code></td><td>自定义代理的简要描述，在聊天输入字段中显示为占位符文本。</td><td></td></tr>
   <tr><td></td><td><code>name</code></td><td>自定义代理的名称。如果未指定，则使用文件名。</td><td></td></tr>
   <tr><td></td><td><code>argument-hint</code></td><td>在聊天输入字段中显示的可选提示文本，用于指导用户如何与自定义代理交互。</td><td></td></tr>
-  <tr><td></td><td><code>tools</code></td><td>可供此自定义代理使用的工具或工具集名称列表。可以包括内置工具、工具集、MCP 工具或扩展贡献的工具。要包含 MCP 服务器的所有工具，请使用 <code><server name>/*</code> 格式。<br/>了解有关<a href="../docs/chat/chat-tools.md">聊天中使用工具</a>的更多信息。</td><td></td></tr>
-  <tr><td></td><td><code>agents</code></td><td>可在此代理中作为<a href="../docs/agents/subagents.md">子代理</a>使用的代理名称列表。使用 <code>*</code> 允许所有代理，或使用空数组 <code>[]</code> 阻止任何子代理使用。如果指定 <code>agents</code>，请确保在 <code>tools</code> 属性中包含 <code>agent</code> 工具。要创建在 <code>agents</code> 中列出自身的自引用代理，请启用 <code>setting(chat.subagents.allowInvocationsFromSubagents)</code>。了解有关<a href="../docs/agents/subagents.md#nested-subagents">嵌套子代理</a>的更多信息。</td><td></td></tr>
+  <tr><td></td><td><code>tools</code></td><td>可供此自定义代理使用的工具或工具集名称列表。可以包括内置工具、工具集、MCP 工具或扩展贡献的工具。要包含 MCP 服务器的所有工具，请使用 <code><server name>/*</code> 格式。<br/>了解有关<a href="../../docs/chat/chat-tools.html">聊天中使用工具</a>的更多信息。</td><td></td></tr>
+  <tr><td></td><td><code>agents</code></td><td>可在此代理中作为<a href="../../docs/agents/subagents.html">子代理</a>使用的代理名称列表。使用 <code>*</code> 允许所有代理，或使用空数组 <code>[]</code> 阻止任何子代理使用。如果指定 <code>agents</code>，请确保在 <code>tools</code> 属性中包含 <code>agent</code> 工具。要创建在 <code>agents</code> 中列出自身的自引用代理，请启用 <code>setting(chat.subagents.allowInvocationsFromSubagents)</code>。了解有关<a href="../../docs/agents/subagents.html#nested-subagents">嵌套子代理</a>的更多信息。</td><td></td></tr>
   <tr><td></td><td><code>model</code></td><td>运行提示词时使用的 AI 模型。指定单个模型名称（字符串）或优先模型列表（数组）。指定数组时，系统会按顺序尝试每个模型，直到找到可用的模型。如果未指定，则使用模型选择器中当前选择的模型。</td><td></td></tr>
-  <tr><td></td><td><code>user-invocable</code></td><td>可选布尔标志，控制代理是否出现在聊天的代理下拉列表中（默认为 <code>true</code>）。设置为 <code>false</code> 可创建只能作为<a href="../docs/agents/subagents.md">子代理</a>或以编程方式访问的代理。</td><td></td></tr>
+  <tr><td></td><td><code>user-invocable</code></td><td>可选布尔标志，控制代理是否出现在聊天的代理下拉列表中（默认为 <code>true</code>）。设置为 <code>false</code> 可创建只能作为<a href="../../docs/agents/subagents.html">子代理</a>或以编程方式访问的代理。</td><td></td></tr>
   <tr><td></td><td><code>disable-model-invocation</code></td><td>可选布尔标志，阻止代理被其他代理作为子代理调用（默认为 <code>false</code>）。</td><td></td></tr>
   <tr><td></td><td><code>infer</code></td><td><strong>已弃用。</strong> 请改用 <code>user-invocable</code> 和 <code>disable-model-invocation</code>。以前，<code>infer: true</code>（默认值）使代理在选择器中可见且可作为子代理使用。<code>infer: false</code> 则两者都隐藏。新字段提供独立控制：使用 <code>user-invocable: false</code> 从选择器中隐藏，同时仍允许子代理调用；或使用 <code>disable-model-invocation: true</code> 阻止子代理调用，同时保留在选择器中。</td><td></td></tr>
   <tr><td></td><td><code>target</code></td><td>自定义代理的目标环境或上下文（<code>vscode</code> 或 <code>github-copilot</code>）。</td><td></td></tr>
@@ -559,7 +559,7 @@ handoffs:
   <tr><td></td><td><code>handoffs.prompt</code></td><td>发送到目标代理的提示文本。</td><td></td></tr>
   <tr><td></td><td><code>handoffs.send</code></td><td>可选布尔标志，自动提交提示词（默认为 <code>false</code>）</td><td></td></tr>
   <tr><td></td><td><code>handoffs.model</code></td><td>交接执行时使用的可选语言模型。使用格式为 <code>模型名称 (vendor)</code> 的限定模型名称，例如 <code>GPT-5 (copilot)</code> 或 <code>Claude Sonnet 4.5 (copilot)</code>。</td><td></td></tr>
-  <tr><td></td><td><code>hooks</code>（预览版）</td><td>限定于此代理的可选钩子命令。此处定义的钩子仅在此代理处于活动状态时运行，无论是用户调用还是作为子代理调用。使用与<a href="../docs/agent-customization/hooks.md#hook-configuration-format">钩子配置文件</a>相同的格式。需要启用 <code>setting(chat.useCustomAgentHooks)</code>。</td><td></td></tr>
+  <tr><td></td><td><code>hooks</code>（预览版）</td><td>限定于此代理的可选钩子命令。此处定义的钩子仅在此代理处于活动状态时运行，无论是用户调用还是作为子代理调用。使用与<a href="../../docs/agent-customization/hooks.html#hook-configuration-format">钩子配置文件</a>相同的格式。需要启用 <code>setting(chat.useCustomAgentHooks)</code>。</td><td></td></tr>
 </tbody>
 </table>
 <blockquote>[!NOTE]</blockquote>
@@ -659,7 +659,7 @@ hooks:
 
 您是一个代码编辑代理。更改后，文件会自动格式化。</code></pre>
 
-<p>在<a href="../docs/agent-customization/hooks.md">代理钩子</a>中了解有关钩子的更多信息。</p>
+<p>在<a href="../../docs/agent-customization/hooks.html">代理钩子</a>中了解有关钩子的更多信息。</p>
 
 <p></details></p>
 
@@ -737,7 +737,7 @@ hooks:
 
 </li>
 </ol>
-<p>当您在自定义代理和提示文件中都使用 <code>tools</code> 时，提示文件的工具优先。有关完整的优先级顺序，请参阅提示文件文档中的<a href="../docs/agent-customization/prompt-files.md#tool-list-priority">工具列表优先级</a>。</p>
+<p>当您在自定义代理和提示文件中都使用 <code>tools</code> 时，提示文件的工具优先。有关完整的优先级顺序，请参阅提示文件文档中的<a href="../../docs/agent-customization/prompt-files.html#tool-list-priority">工具列表优先级</a>。</p>
 
 <h2>在团队中共享自定义代理</h2>
 
@@ -778,7 +778,7 @@ hooks:
 <li>从代理下拉列表中选择<strong>配置自定义代理</strong>。</li>
 <li>将鼠标悬停在列表中的自定义代理上。来源位置会显示在工具提示中。
 <blockquote>[!TIP]</blockquote>
-<blockquote>使用聊天自定义诊断视图查看所有已加载的自定义代理、提示文件、指令文件和技能以及任何错误。在聊天视图中右键单击并选择<strong>诊断</strong>。了解有关<a href="../docs/agents/agent-troubleshooting/troubleshooting.md">在 VS Code 中排查 AI 问题</a>的更多信息。</blockquote>
+<blockquote>使用聊天自定义诊断视图查看所有已加载的自定义代理、提示文件、指令文件和技能以及任何错误。在聊天视图中右键单击并选择<strong>诊断</strong>。了解有关<a href="../../docs/agents/agent-troubleshooting/troubleshooting.html">在 VS Code 中排查 AI 问题</a>的更多信息。</blockquote>
 
 <h2>安全考虑事项</h2>
 
@@ -789,10 +789,10 @@ hooks:
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agents/planning.md">使用代理进行规划</a></li>
-<li><a href="../docs/agent-customization/custom-instructions.md">使用自定义指令定制 AI</a></li>
-<li><a href="../docs/agent-customization/prompt-files.md">创建可复用的提示文件</a></li>
-<li><a href="../docs/chat/chat-tools.md">在聊天中使用工具</a></li>
+<li><a href="../../docs/agents/planning.html">使用代理进行规划</a></li>
+<li><a href="../../docs/agent-customization/custom-instructions.html">使用自定义指令定制 AI</a></li>
+<li><a href="../../docs/agent-customization/prompt-files.html">创建可复用的提示文件</a></li>
+<li><a href="../../docs/chat/chat-tools.html">在聊天中使用工具</a></li>
 </ul>
 
   </div>

@@ -486,7 +486,7 @@ code .</code></pre>
 <pre><code class="language-typescript">let message : string = "Hello World";
 console.log(message);</code></pre>
 
-<p>要编译 TypeScript 代码，你可以打开<a href="../docs/terminal/basics.md">集成终端</a>（<code>kb(workbench.action.terminal.toggleTerminal)</code>）并输入 <code>tsc helloworld.ts</code>。这将编译并创建一个新的 <code>helloworld.js</code> JavaScript 文件。</p>
+<p>要编译 TypeScript 代码，你可以打开<a href="../../docs/terminal/basics.html">集成终端</a>（<code>kb(workbench.action.terminal.toggleTerminal)</code>）并输入 <code>tsc helloworld.ts</code>。这将编译并创建一个新的 <code>helloworld.js</code> JavaScript 文件。</p>
 
 <p><img src="images/typescript/compiled-hello-world.png" alt="compiled hello world"></p>
 
@@ -525,13 +525,13 @@ console.log(message);</code></pre>
 
 <h2>代码片段</h2>
 
-<p>除了智能代码补全之外，VS Code 还包含基本的 TypeScript <a href="../docs/editing/userdefinedsnippets.md">代码片段</a>，在你输入时会自动建议。</p>
+<p>除了智能代码补全之外，VS Code 还包含基本的 TypeScript <a href="../../docs/editing/userdefinedsnippets.html">代码片段</a>，在你输入时会自动建议。</p>
 
 <p><img src="images/typescript/ts-snippets.png" alt="TypeScript 'for' snippet suggestions"></p>
 
-<p>你可以安装扩展来获取更多代码片段，也可以为 TypeScript 定义自己的代码片段。有关更多信息，请参阅<a href="../docs/editing/userdefinedsnippets.md">用户自定义代码片段</a>。</p>
+<p>你可以安装扩展来获取更多代码片段，也可以为 TypeScript 定义自己的代码片段。有关更多信息，请参阅<a href="../../docs/editing/userdefinedsnippets.html">用户自定义代码片段</a>。</p>
 
-<blockquote><strong>提示</strong>：你可以在<a href="../docs/configure/settings.md">设置</a>文件中将 <code>setting(editor.snippetSuggestions)</code> 设置为 <code>"none"</code> 来禁用代码片段。如果你想查看代码片段，可以指定它们相对于建议的排序方式：置顶（<code>"top"</code>）、置底（<code>"bottom"</code>）或按字母顺序内联排列（<code>"inline"</code>）。默认值为 <code>"inline"</code>。</blockquote>
+<blockquote><strong>提示</strong>：你可以在<a href="../../docs/configure/settings.html">设置</a>文件中将 <code>setting(editor.snippetSuggestions)</code> 设置为 <code>"none"</code> 来禁用代码片段。如果你想查看代码片段，可以指定它们相对于建议的排序方式：置顶（<code>"top"</code>）、置底（<code>"bottom"</code>）或按字母顺序内联排列（<code>"inline"</code>）。默认值为 <code>"inline"</code>。</blockquote>
 
 <h2>错误和警告</h2>
 
@@ -572,7 +572,7 @@ console.log(message);</code></pre>
 </ul>
 <p>VS Code 包含一个 TypeScript 格式化器，提供基本的代码格式化功能，并具有合理的默认设置。</p>
 
-<p>使用 <code>js/ts.format.*</code> <a href="../docs/configure/settings.md">设置</a>来配置内置格式化器，例如让大括号单独占一行。或者，如果内置格式化器干扰了你的工作，可以将 <code>"js/ts.format.enable"</code> 设置为 <code>false</code> 来禁用它。</p>
+<p>使用 <code>js/ts.format.*</code> <a href="../../docs/configure/settings.html">设置</a>来配置内置格式化器，例如让大括号单独占一行。或者，如果内置格式化器干扰了你的工作，可以将 <code>"js/ts.format.enable"</code> 设置为 <code>false</code> 来禁用它。</p>
 
 <p>如需更专业的代码格式化风格，请尝试从 VS Code Marketplace 安装格式化扩展。</p>
 
@@ -582,7 +582,7 @@ console.log(message);</code></pre>
 
 <p><img src="images/typescript/refactorings.png" alt="TypeScript refactoring"></p>
 
-<p>有关重构以及如何为各个重构操作配置键盘快捷键的更多信息，请参阅<a href="../docs/typescript/typescript-refactoring.md">重构 TypeScript</a>。</p>
+<p>有关重构以及如何为各个重构操作配置键盘快捷键的更多信息，请参阅<a href="../../docs/typescript/typescript-refactoring.html">重构 TypeScript</a>。</p>
 
 <h3>重命名</h3>
 
@@ -592,23 +592,23 @@ console.log(message);</code></pre>
 
 <h2>调试</h2>
 
-<p>VS Code 为 TypeScript 提供了出色的调试支持，包括对 sourcemap 的支持。你可以设置断点、检查对象、浏览调用堆栈，并在调试控制台中执行代码。有关详细信息，请参阅<a href="../docs/typescript/typescript-debugging.md">调试 TypeScript</a> 和<a href="../docs/debugtest/debugging.md">调试概述主题</a>。</p>
+<p>VS Code 为 TypeScript 提供了出色的调试支持，包括对 sourcemap 的支持。你可以设置断点、检查对象、浏览调用堆栈，并在调试控制台中执行代码。有关详细信息，请参阅<a href="../../docs/typescript/typescript-debugging.html">调试 TypeScript</a> 和<a href="../../docs/debugtest/debugging.html">调试概述主题</a>。</p>
 
 <h3>调试客户端代码</h3>
 
-<p>你可以使用浏览器调试器调试客户端代码，例如<a href="../docs/nodejs/browser-debugging.md">内置的 Edge 和 Chrome 调试器</a>，或 <a href="https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug">Debugger for Firefox</a>。</p>
+<p>你可以使用浏览器调试器调试客户端代码，例如<a href="../../docs/nodejs/browser-debugging.html">内置的 Edge 和 Chrome 调试器</a>，或 <a href="https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-firefox-debug">Debugger for Firefox</a>。</p>
 
 <h3>调试服务端代码</h3>
 
-<p>使用内置调试器在 VS Code 中调试 Node.js。设置非常简单，还有 <a href="../docs/nodejs/nodejs-tutorial.md#debug-your-express-app">Node.js 调试教程</a>可以帮助你。</p>
+<p>使用内置调试器在 VS Code 中调试 Node.js。设置非常简单，还有 <a href="../../docs/nodejs/nodejs-tutorial.html#debug-your-express-app">Node.js 调试教程</a>可以帮助你。</p>
 
 <p><img src="images/javascript/debug_data_inspection.gif" alt="debug data inspection"></p>
 
 <h2>Linter</h2>
 
-<p><a href="https://en.wikipedia.org/wiki/Lint_%28software%29">Linter</a> 可以对可疑代码提供警告。虽然 VS Code 不包含内置的 TypeScript linter，但 Marketplace 中提供了 TypeScript linter <a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>。</p>
+<p><a href="https://en.wikipedia.org/wiki/Lint_%28software%29">Linter</a> 可以对可疑代码提供警告。虽然 VS Code 不包含内置的 TypeScript linter，但 Marketplace 中提供了 TypeScript linter <a href="../../docs/configure/extensions/extension-marketplace.html">扩展</a>。</p>
 
-<p><a href="https://eslint.org">ESLint</a> 是一款流行的 linter，同样支持 TypeScript。<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint 扩展</a> 将 ESLint 集成到 VS Code 中，让你可以直接在编辑器中查看 lint 错误，甚至可以使用<a href="../docs/typescript/typescript-refactoring.md#quick-fixes">快速修复</a>快速修复其中的许多问题。<a href="https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin#readme">ESLint 插件指南</a>详细说明了如何为你的 TypeScript 项目配置 ESLint。</p>
+<p><a href="https://eslint.org">ESLint</a> 是一款流行的 linter，同样支持 TypeScript。<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint 扩展</a> 将 ESLint 集成到 VS Code 中，让你可以直接在编辑器中查看 lint 错误，甚至可以使用<a href="../../docs/typescript/typescript-refactoring.html#quick-fixes">快速修复</a>快速修复其中的许多问题。<a href="https://github.com/typescript-eslint/typescript-eslint/tree/main/packages/eslint-plugin#readme">ESLint 插件指南</a>详细说明了如何为你的 TypeScript 项目配置 ESLint。</p>
 
 <h2>TypeScript 扩展</h2>
 
@@ -623,11 +623,11 @@ console.log(message);</code></pre>
 <p>要了解更多信息，请参阅：</p>
 
 <ul>
-<li><a href="../docs/typescript/typescript-tutorial.md">TypeScript 教程</a> - 在 VS Code 中创建一个简单的 Hello World TypeScript。</li>
-<li><a href="../docs/typescript/typescript-editing.md">编辑 TypeScript</a> - TypeScript 的特定编辑功能。</li>
-<li><a href="../docs/typescript/typescript-refactoring.md">重构 TypeScript</a> - TypeScript 语言服务提供的实用重构功能。</li>
-<li><a href="../docs/typescript/typescript-transpiling.md">转译 TypeScript</a> - 将 TypeScript 编译为指定版本的 JavaScript 目标。</li>
-<li><a href="../docs/typescript/typescript-debugging.md">调试 TypeScript</a> - 了解如何使用 VS Code 在服务端和客户端进行 TypeScript 调试。
+<li><a href="../../docs/typescript/typescript-tutorial.html">TypeScript 教程</a> - 在 VS Code 中创建一个简单的 Hello World TypeScript。</li>
+<li><a href="../../docs/typescript/typescript-editing.html">编辑 TypeScript</a> - TypeScript 的特定编辑功能。</li>
+<li><a href="../../docs/typescript/typescript-refactoring.html">重构 TypeScript</a> - TypeScript 语言服务提供的实用重构功能。</li>
+<li><a href="../../docs/typescript/typescript-transpiling.html">转译 TypeScript</a> - 将 TypeScript 编译为指定版本的 JavaScript 目标。</li>
+<li><a href="../../docs/typescript/typescript-debugging.html">调试 TypeScript</a> - 了解如何使用 VS Code 在服务端和客户端进行 TypeScript 调试。
 <h2>常见问题</h2>
 
 <h3>可以使用 VS 2022 附带的 TypeScript 版本吗？</h3>
@@ -640,7 +640,7 @@ console.log(message);</code></pre>
 
 <p>在 VS Code 中试用最新 TypeScript 功能的最简单方法是安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next">JavaScript and TypeScript Nightly 扩展</a>。</p>
 
-<p>你也可以<a href="../docs/typescript/typescript-transpiling.md#using-newer-typescript-versions">配置 VS Code 使用特定的 TypeScript 版本</a>。</p>
+<p>你也可以<a href="../../docs/typescript/typescript-transpiling.html#using-newer-typescript-versions">配置 VS Code 使用特定的 TypeScript 版本</a>。</p>
 
   </div>
 </div>

@@ -564,7 +564,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><code>preLaunchTask</code> 字段在调试程序之前运行 <code>tasks.json</code> 中关联的 taskName。你可以通过从 VS Code 命令面板执行 <strong>任务：配置任务运行程序</strong> 命令来获得默认的生成预启动任务。</p>
 
-<p>这将创建一个运行 <code>dotnet build</code> 的任务。你可以在 VS Code <a href="../docs/debugtest/tasks.md">任务</a> 文档中了解更多信息。</p>
+<p>这将创建一个运行 <code>dotnet build</code> 的任务。你可以在 VS Code <a href="../../docs/debugtest/tasks.html">任务</a> 文档中了解更多信息。</p>
 
 <p><strong>可用性</strong></p>
 
@@ -651,7 +651,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><code>serverReadyAction</code> 是 VS Code 的新功能。推荐使用它来替代之前内置在 C# 扩展调试器中的 <code>launchBrowser</code> 功能，因为它可以在 C# 扩展运行在远程机器上时使用、使用为 VS Code 配置的默认浏览器，并且还允许使用脚本调试器。如果这些功能对你都不重要，你可以继续使用 <code>launchBrowser</code>。如果你想运行特定程序而不是启动默认浏览器，你也可以继续使用 <code>launchBrowser</code>。
 </li>
-<li>关于 <code>serverReadyAction</code> 的更多文档可以在 <a href="../updates/v1_32.md#automatically-open-a-uri-when-debugging-a-server-program">Visual Studio Code 2019 年 2 月发布说明</a> 中找到。
+<li>关于 <code>serverReadyAction</code> 的更多文档可以在 <a href="../../updates/v1_32.html#automatically-open-a-uri-when-debugging-a-server-program">Visual Studio Code 2019 年 2 月发布说明</a> 中找到。
 </li>
 <li>其工作原理是 VS Code 抓取输出到控制台的内容。如果某一行与模式匹配，它会针对模式"捕获"到的 URL 启动浏览器。
 </li>
@@ -736,7 +736,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><code>"internalConsole"</code>（默认）：目标进程的控制台输入（stdin）和输出（stdout/stderr）通过 VS Code 调试控制台进行路由。此模式的优势在于，它允许你在一个地方同时查看调试器和目标程序的消息，因此你不会错过重要消息，也无需来回切换。这对于具有简单控制台交互的程序很有用（例如：使用 <code>Console.WriteLine</code> 和/或 <code>Console.ReadLine</code>）。当目标程序需要完全控制控制台时不应使用此模式，例如更改光标位置的程序、使用 <code>Console.ReadKey</code> 进行输入的程序等。有关向控制台输入的说明，请参见下文。</li>
-<li><code>"integratedTerminal"</code>：目标进程将在 <a href="../docs/terminal/basics.md">VS Code 集成终端</a> 中运行。在编辑器下方的选项卡组中选择<strong>终端</strong>选项卡与你的应用程序交互。使用此模式时，默认情况下调试控制台在开始调试时不会显示。如果使用 <code>launch.json</code>，可以通过 <code>internalConsoleOptions</code> 进行配置。</li>
+<li><code>"integratedTerminal"</code>：目标进程将在 <a href="../../docs/terminal/basics.html">VS Code 集成终端</a> 中运行。在编辑器下方的选项卡组中选择<strong>终端</strong>选项卡与你的应用程序交互。使用此模式时，默认情况下调试控制台在开始调试时不会显示。如果使用 <code>launch.json</code>，可以通过 <code>internalConsoleOptions</code> 进行配置。</li>
 <li><code>"externalTerminal"</code>：目标进程将在其自己的外部终端中运行。使用此模式时，你需要在 Visual Studio Code 和外部终端窗口之间切换焦点。
 </li>
 </ul>

@@ -457,7 +457,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>这些工具大多从命令行运行，用于自动化软件开发的内部和外部循环（编辑、编译、测试和调试）中的任务。鉴于它们在开发生命周期中的重要性，能够在 VS Code 内部运行工具并分析其结果是非常有帮助的。VS Code 中的任务可以配置为运行脚本和启动进程，这样许多现有的工具就可以在 VS Code 内部使用，而无需进入命令行或编写新代码。工作区或文件夹特定的任务在 <code>.vscode</code> 文件夹中的 <code>tasks.json</code> 文件中配置。</p>
 
-<p>扩展也可以使用<a href="../api/extension-guides/task-provider.md">任务提供程序</a>来贡献任务，这些贡献的任务可以添加在 <code>tasks.json</code> 文件中定义的工作区特定配置。</p>
+<p>扩展也可以使用<a href="../../api/extension-guides/task-provider.html">任务提供程序</a>来贡献任务，这些贡献的任务可以添加在 <code>tasks.json</code> 文件中定义的工作区特定配置。</p>
 
 <p>><strong>注意：</strong> 任务支持仅在打开工作区文件夹时可用。在编辑单个文件时不可用。</p>
 
@@ -607,7 +607,7 @@ sayHello('Dave');</code></pre>
 
 <p><img src="images/tasks/tasks-intellisense.png" alt="tasks.json IntelliSense"></p>
 
-<p>您还可以查看 <a href="../docs/reference/tasks-appendix.md">tasks.json 架构</a>。</p>
+<p>您还可以查看 <a href="../../docs/reference/tasks-appendix.html">tasks.json 架构</a>。</p>
 
 <p>当涉及包含空格或其他特殊字符（如 <code>$</code>）的命令和参数时，Shell 命令需要特殊处理。默认情况下，任务系统支持以下行为：</p>
 
@@ -824,7 +824,7 @@ sayHello('Dave');</code></pre>
 </ul>
 </li>
 </ul>
-<p><code>setting(task.allowAutomaticTasks)</code> 设置控制是否允许带有 <code>"runOn": "folderOpen"</code> 的任务在您打开工作区时自动运行。自动任务永远不会在<a href="../docs/editing/workspaces/workspace-trust.md">不受信任的工作区</a>中运行，无论此设置如何。</p>
+<p><code>setting(task.allowAutomaticTasks)</code> 设置控制是否允许带有 <code>"runOn": "folderOpen"</code> 的任务在您打开工作区时自动运行。自动任务永远不会在<a href="../../docs/editing/workspaces/workspace-trust.html">不受信任的工作区</a>中运行，无论此设置如何。</p>
 
 <p>该设置接受两个值：</p>
 
@@ -907,7 +907,7 @@ gulp.task('default', ['lint'], function () {
 <li><strong>Node Sass 编译器</strong>：<code>$node-sass</code> 假定文件名以绝对路径报告。
 </li>
 </ul>
-<p>您也可以创建自己的问题匹配器，我们将在<a href="../docs/debugtest/tasks.md#定义问题匹配器">后面的部分</a>中讨论。</p>
+<p>您也可以创建自己的问题匹配器，我们将在<a href="../../docs/debugtest/tasks.html#定义问题匹配器">后面的部分</a>中讨论。</p>
 
 <h2>将键盘快捷键绑定到任务</h2>
 
@@ -923,7 +923,7 @@ gulp.task('default', ['lint'], function () {
 
 <h2>变量替换</h2>
 
-<p>在编写任务配置时，拥有一组预定义的通用变量（例如活动文件 <code>${file}</code> 或工作区根文件夹 <code>${workspaceFolder}</code>）非常有用。VS Code 支持在 <code>tasks.json</code> 文件中的字符串内进行变量替换，您可以在<a href="../docs/reference/variables-reference.md">变量参考</a>中查看预定义变量的完整列表。</p>
+<p>在编写任务配置时，拥有一组预定义的通用变量（例如活动文件 <code>${file}</code> 或工作区根文件夹 <code>${workspaceFolder}</code>）非常有用。VS Code 支持在 <code>tasks.json</code> 文件中的字符串内进行变量替换，您可以在<a href="../../docs/reference/variables-reference.html">变量参考</a>中查看预定义变量的完整列表。</p>
 
 <p>><strong>注意：</strong> 并非所有属性都接受变量替换。具体来说，只有 <code>command</code>、<code>args</code> 和 <code>options</code> 支持变量替换。</p>
 
@@ -958,7 +958,7 @@ gulp.task('default', ['lint'], function () {
 
 <p><img src="images/tasks/run-input-example.gif" alt="输入示例"></p>
 
-<p>有关 <code>inputs</code> 的更多信息，请参阅<a href="../docs/reference/variables-reference.md">变量参考</a>。</p>
+<p>有关 <code>inputs</code> 的更多信息，请参阅<a href="../../docs/reference/variables-reference.html">变量参考</a>。</p>
 
 <h2>操作系统特定属性</h2>
 
@@ -1057,15 +1057,15 @@ gulp.task('default', ['lint'], function () {
 
 <h3>将 TypeScript 转译为 JavaScript</h3>
 
-<p><a href="../docs/typescript/typescript-transpiling.md">TypeScript 主题</a>包含一个示例，该示例创建一个任务将 TypeScript 转译为 JavaScript，并在 VS Code 内观察任何相关错误。</p>
+<p><a href="../../docs/typescript/typescript-transpiling.html">TypeScript 主题</a>包含一个示例，该示例创建一个任务将 TypeScript 转译为 JavaScript，并在 VS Code 内观察任何相关错误。</p>
 
 <h3>将 Less 和 SCSS 转译为 CSS</h3>
 
 <p>CSS 主题提供了如何使用任务生成 CSS 文件的示例。</p>
 
 <ol>
-<li><a href="../docs/languages/css.md#transpiling-sass-and-less-into-css">手动使用生成任务进行转译</a></li>
-<li><a href="../docs/languages/css.md#automating-sassless-compilation">使用文件监视器自动化编译步骤</a>
+<li><a href="../../docs/languages/css.html#transpiling-sass-and-less-into-css">手动使用生成任务进行转译</a></li>
+<li><a href="../../docs/languages/css.html#automating-sassless-compilation">使用文件监视器自动化编译步骤</a>
 <h2>定义问题匹配器</h2>
 
 </li>
@@ -1329,11 +1329,11 @@ src/messages.ts(276,9): error TS2304: Cannot find name 'candidate'.
 <p>以上就是任务 - 让我们继续...</p>
 
 <ul>
-<li><a href="../docs/reference/tasks-appendix.md">tasks.json 架构</a> - 您可以查看完整的 <code>tasks.json</code> 架构和描述。</li>
-<li><a href="../docs/editing/codebasics.md">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a> - 在源代码中快速移动。</li>
-<li><a href="../docs/languages/overview.md">语言支持</a> - 了解我们支持的编程语言，包括 VS Code 内置的和通过社区扩展提供的。</li>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 直接在 VS Code 编辑器中调试您的源代码。
+<li><a href="../../docs/reference/tasks-appendix.html">tasks.json 架构</a> - 您可以查看完整的 <code>tasks.json</code> 架构和描述。</li>
+<li><a href="../../docs/editing/codebasics.html">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a> - 在源代码中快速移动。</li>
+<li><a href="../../docs/languages/overview.html">语言支持</a> - 了解我们支持的编程语言，包括 VS Code 内置的和通过社区扩展提供的。</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a> - 直接在 VS Code 编辑器中调试您的源代码。
 <h2>常见问题</h2>
 
 <h3>任务可以使用与集成终端指定的不同的 shell 吗？</h3>
@@ -1395,7 +1395,7 @@ src/messages.ts(276,9): error TS2304: Cannot find name 'candidate'.
     "preLaunchTask": "npm: watch"
 }</code></pre>
 
-<p>有关后台任务的更多信息，请前往<a href="../docs/debugtest/tasks.md#后台监视任务">后台/监视任务</a>。</p>
+<p>有关后台任务的更多信息，请前往<a href="../../docs/debugtest/tasks.html#后台监视任务">后台/监视任务</a>。</p>
 
 <h3>为什么在运行任务时出现"command not found"？</h3>
 

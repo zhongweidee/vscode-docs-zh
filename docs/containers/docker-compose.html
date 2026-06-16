@@ -490,14 +490,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>首先，请参考目标平台的调试文档，了解在 VS Code 中使用容器进行调试的基础知识：</p>
 
 <ul>
-<li><a href="../docs/containers/debug-node.md">Node.js 调试</a></li>
-<li><a href="../docs/containers/debug-python.md">Python 容器调试</a></li>
-<li><a href="../docs/containers/debug-netcore.md">.NET 调试</a>
+<li><a href="../../docs/containers/debug-node.html">Node.js 调试</a></li>
+<li><a href="../../docs/containers/debug-python.html">Python 容器调试</a></li>
+<li><a href="../../docs/containers/debug-netcore.html">.NET 调试</a>
 </li>
 </ul>
 <p>如果你想在 Docker Compose 中进行调试，请使用上一节中描述的两种 Docker Compose 文件之一运行<strong>容器：Compose Up</strong> 命令，然后使用相应的<strong>附加</strong>启动配置进行附加。直接使用普通启动配置进行启动不会使用 Docker Compose。</p>
 
-<p>创建一个<strong>附加</strong><a href="../docs/debugtest/debugging-configuration.md#launch-configurations">启动配置</a>。这是 <code>launch.json</code> 中的一个部分。这个过程大多是手动的，但在某些情况下，容器工具扩展可以通过添加一个预配置的启动配置来提供帮助，你可以将其用作模板并进行自定义。每种平台（Node.js、Python 和 .NET）的过程在以下各节中描述。</p>
+<p>创建一个<strong>附加</strong><a href="../../docs/debugtest/debugging-configuration.html#launch-configurations">启动配置</a>。这是 <code>launch.json</code> 中的一个部分。这个过程大多是手动的，但在某些情况下，容器工具扩展可以通过添加一个预配置的启动配置来提供帮助，你可以将其用作模板并进行自定义。每种平台（Node.js、Python 和 .NET）的过程在以下各节中描述。</p>
 
 <h3>Node.js</h3>
 
@@ -580,7 +580,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>完成编辑<strong>附加</strong>配置后，保存 <code>launch.json</code>。导航到<strong>调试</strong>选项卡，并选择<strong>Python 调试程序：远程附加</strong>作为活动配置。
 </li>
 <li>如果你已经有有效的 Dockerfile，我们建议运行<strong>容器：将 Docker Compose 文件添加到工作区</strong>命令。这将创建一个 <code>docker-compose.yml</code> 文件以及一个 <code>docker-compose.debug.yml</code> 文件，后者会进行卷映射并在容器中启动 Python 调试器。如果你还没有 Dockerfile，我们建议运行<strong>容器：将 Docker 文件添加到工作区</strong>并选择<strong>是</strong>以包含 Docker Compose 文件。
-<blockquote><strong>注意</strong>：默认情况下，使用<strong>容器：将 Docker 文件添加到工作区</strong>时，选择 Django 和 Flask 选项将搭建一个为 Gunicorn 配置的 Dockerfile。在继续之前，请按照 <a href="../docs/containers/quickstart-python.md#gunicorn-modifications-for-django-and-flask-apps">Python 容器快速入门</a> 中的说明确保其正确配置。</blockquote>
+<blockquote><strong>注意</strong>：默认情况下，使用<strong>容器：将 Docker 文件添加到工作区</strong>时，选择 Django 和 Flask 选项将搭建一个为 Gunicorn 配置的 Dockerfile。在继续之前，请按照 <a href="../../docs/containers/quickstart-python.html#gunicorn-modifications-for-django-and-flask-apps">Python 容器快速入门</a> 中的说明确保其正确配置。</blockquote>
 
 </li>
 <li>右键点击 <code>docker-compose.debug.yml</code> 文件（示例如下所示）并选择<strong>Compose Up</strong>。
@@ -662,13 +662,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用多个 Compose 文件的 Docker Compose</h2>
 
-<p>工作区可以有多个 docker-compose 文件来处理不同的环境，如开发、测试和生产。配置的内容可以拆分到多个文件中。例如，一个定义所有环境通用信息的基础 compose 文件，以及定义环境特定信息的单独覆盖文件。当这些文件作为 <code>docker-compose</code> 命令的输入传递时，它将这些文件合并成一个配置。默认情况下，<strong>容器：Compose Up</strong> 命令将单个文件作为输入传递给 compose 命令，但你可以使用<a href="../docs/containers/reference.md#command-customization">命令自定义</a>来自定义 <code>compose up</code> 命令以传递多个文件。或者，你也可以使用<a href="../docs/debugtest/tasks.md#custom-tasks">自定义任务</a>以所需的参数调用 <code>docker-compose</code> 命令。</p>
+<p>工作区可以有多个 docker-compose 文件来处理不同的环境，如开发、测试和生产。配置的内容可以拆分到多个文件中。例如，一个定义所有环境通用信息的基础 compose 文件，以及定义环境特定信息的单独覆盖文件。当这些文件作为 <code>docker-compose</code> 命令的输入传递时，它将这些文件合并成一个配置。默认情况下，<strong>容器：Compose Up</strong> 命令将单个文件作为输入传递给 compose 命令，但你可以使用<a href="../../docs/containers/reference.html#command-customization">命令自定义</a>来自定义 <code>compose up</code> 命令以传递多个文件。或者，你也可以使用<a href="../../docs/debugtest/tasks.html#custom-tasks">自定义任务</a>以所需的参数调用 <code>docker-compose</code> 命令。</p>
 
 <blockquote><strong>注意</strong>：如果你的工作区有 <code>docker-compose.yml</code> 和 <code>docker-compose.override.yml</code> 且没有其他 compose 文件，则 <code>docker-compose</code> 命令会在没有输入文件的情况下调用，并隐式使用这些文件。在这种情况下，不需要进行自定义。</blockquote>
 
 <h2>命令自定义</h2>
 
-<p><a href="../docs/containers/reference.md#command-customization">命令自定义</a>提供了多种方式，可以根据你的需求自定义 <code>compose up</code> 命令。以下是 <code>compose up</code> 命令的一些命令自定义示例。</p>
+<p><a href="../../docs/containers/reference.html#command-customization">命令自定义</a>提供了多种方式，可以根据你的需求自定义 <code>compose up</code> 命令。以下是 <code>compose up</code> 命令的一些命令自定义示例。</p>
 
 <h3>基础文件和覆盖文件</h3>
 
@@ -724,7 +724,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>自定义任务</h2>
 
-<p>你也可以不通过命令自定义，而是定义像下面这样的任务来调用 <code>docker-compose</code> 命令。有关此选项的更多详细信息，请参考<a href="../docs/debugtest/tasks.md#custom-tasks">自定义任务</a>。</p>
+<p>你也可以不通过命令自定义，而是定义像下面这样的任务来调用 <code>docker-compose</code> 命令。有关此选项的更多详细信息，请参考<a href="../../docs/debugtest/tasks.html#custom-tasks">自定义任务</a>。</p>
 
 <pre><code class="language-json">{
     "type": "shell",
@@ -740,7 +740,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><a href="https://docs.docker.com/compose/">Docker 文档中的 Docker Compose 概述</a></li>
-<li><a href="../docs/containers/troubleshooting.md">疑难解答</a></li>
+<li><a href="../../docs/containers/troubleshooting.html">疑难解答</a></li>
 </ul>
 
   </div>

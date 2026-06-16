@@ -461,7 +461,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>入门</h2>
 
-<p><strong>注意</strong>：阅读完本主题后，你可以通过入门 <a href="../docs/remote/wsl-tutorial.md">WSL 教程</a> 开始使用。</p>
+<p><strong>注意</strong>：阅读完本主题后，你可以通过入门 <a href="../../docs/remote/wsl-tutorial.html">WSL 教程</a> 开始使用。</p>
 
 <h3>安装</h3>
 
@@ -543,9 +543,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 Git</h2>
 
-<p>如果你在 WSL 和 Windows 中使用相同的仓库，请确保设置一致的行尾。详情请参阅<a href="../docs/remote/troubleshooting.md#resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files">提示和技巧</a>。</p>
+<p>如果你在 WSL 和 Windows 中使用相同的仓库，请确保设置一致的行尾。详情请参阅<a href="../../docs/remote/troubleshooting.html#resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files">提示和技巧</a>。</p>
 
-<p>你还可以通过配置 WSL 使用 Windows Git 凭据管理器来避免输入密码。详情请参阅<a href="../docs/remote/troubleshooting.md#sharing-git-credentials-between-windows-and-wsl">提示和技巧</a>。</p>
+<p>你还可以通过配置 WSL 使用 Windows Git 凭据管理器来避免输入密码。详情请参阅<a href="../../docs/remote/troubleshooting.html#sharing-git-credentials-between-windows-and-wsl">提示和技巧</a>。</p>
 
 <h2>管理扩展</h2>
 
@@ -557,7 +557,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/wsl/wsl-local-installed-extensions.png" alt="本地扩展类别"></p>
 
-<blockquote><strong>注意：</strong> 如果你是扩展作者，并且你的扩展无法正常工作或安装到了错误的位置，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>以获取详细信息。</blockquote>
+<blockquote><strong>注意：</strong> 如果你是扩展作者，并且你的扩展无法正常工作或安装到了错误的位置，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>以获取详细信息。</blockquote>
 
 <p>实际上需要在远程运行的本地扩展将在<strong>本地 - 已安装</strong>类别中显示为灰色和禁用状态。选择<strong>安装</strong>以在远程主机上安装扩展。</p>
 
@@ -579,7 +579,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>一旦你在 WSL 中打开了文件夹，你就可以像在本地运行应用程序一样使用 VS Code 的调试器。例如，如果你在 <code>launch.json</code> 中选择了一个启动配置并开始调试（<code>kb(workbench.action.debug.start)</code>），应用程序将在远程主机上启动，并将调试器附加到其上。</p>
 
-<p>有关在 <code>.vscode/launch.json</code> 中配置 VS Code 调试功能的详细信息，请参阅<a href="../docs/debugtest/debugging.md">调试</a>文档。</p>
+<p>有关在 <code>.vscode/launch.json</code> 中配置 VS Code 调试功能的详细信息，请参阅<a href="../../docs/debugtest/debugging.html">调试</a>文档。</p>
 
 <h2>WSL 特定设置</h2>
 
@@ -595,7 +595,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>高级: 在容器中打开 WSL 2 文件夹</h2>
 
-<p>如果你正在使用 WSL 2 和 <a href="https://docs.docker.com/docker-for-windows/wsl-tech-preview/">Docker Desktop 的 WSL 2 后端</a>，你可以使用<a href="../docs/devcontainers/containers.md">开发容器</a>扩展来处理存储在 WSL 内部的源代码！只需按照以下步骤操作：</p>
+<p>如果你正在使用 WSL 2 和 <a href="https://docs.docker.com/docker-for-windows/wsl-tech-preview/">Docker Desktop 的 WSL 2 后端</a>，你可以使用<a href="../../docs/devcontainers/containers.html">开发容器</a>扩展来处理存储在 WSL 内部的源代码！只需按照以下步骤操作：</p>
 
 <ol>
 <li>如果你尚未安装，请<a href="https://docs.docker.com/docker-for-windows/wsl-tech-preview/">安装和设置</a> Docker Desktop 的 WSL 2 支持。
@@ -623,7 +623,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>构建完成后，VS Code 将自动连接到容器。你现在可以从容器内部处理你的源代码了。
 </li>
 </ol>
-<p>有关更多信息，请参阅<a href="../docs/devcontainers/containers.md">开发容器文档</a>。</p>
+<p>有关更多信息，请参阅<a href="../../docs/devcontainers/containers.html">开发容器文档</a>。</p>
 
 <h2>已知限制</h2>
 
@@ -671,9 +671,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>扩展限制</h3>
 
-<p>许多扩展在 WSL 中无需修改即可工作。但是，在某些情况下，某些功能可能需要进行更改。如果你遇到扩展问题，请参阅<a href="../docs/remote/troubleshooting.md#extension-tips">此处以获取常见问题和解决方案的摘要</a>，你可以在报告问题时向扩展作者提及。</p>
+<p>许多扩展在 WSL 中无需修改即可工作。但是，在某些情况下，某些功能可能需要进行更改。如果你遇到扩展问题，请参阅<a href="../../docs/remote/troubleshooting.html#extension-tips">此处以获取常见问题和解决方案的摘要</a>，你可以在报告问题时向扩展作者提及。</p>
 
-<p>此外，在使用基于 Alpine Linux 的发行版时，由于扩展内原生代码中的 <code>glibc</code> 依赖项，某些安装在 WSL 中的扩展可能无法工作。详情请参阅<a href="../docs/remote/linux.md">使用 Linux 进行远程开发</a>文章。</p>
+<p>此外，在使用基于 Alpine Linux 的发行版时，由于扩展内原生代码中的 <code>glibc</code> 依赖项，某些安装在 WSL 中的扩展可能无法工作。详情请参阅<a href="../../docs/remote/linux.html">使用 Linux 进行远程开发</a>文章。</p>
 
 <h2>常见问题</h2>
 
@@ -708,7 +708,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>某些扩展（如 C#）会从 <code>download.microsoft.com</code> 或 <code>download.visualstudio.microsoft.com</code> 下载辅助依赖项。其他扩展（如 <a href="https://learn.microsoft.com/visualstudio/liveshare/reference/connectivity#requirements-for-connection-modes">Visual Studio Live Share</a>）可能还有其他连接要求。如果遇到问题，请查阅扩展的文档以获取详细信息。</p>
 
-<p>服务器和 VS Code 客户端之间的所有其他通信都通过一个随机的本地 TCP 端口完成。你可以在<a href="../docs/setup/network.md#common-hostnames">网络连接文章</a>中找到 VS Code 本身需要访问的位置列表。</p>
+<p>服务器和 VS Code 客户端之间的所有其他通信都通过一个随机的本地 TCP 端口完成。你可以在<a href="../../docs/setup/network.html#common-hostnames">网络连接文章</a>中找到 VS Code 本身需要访问的位置列表。</p>
 
 <h3>我在代理后面并遇到连接问题</h3>
 
@@ -718,14 +718,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>从操作系统设置继承</li>
-<li>如 <a href="../docs/setup/network">Visual Studio Code 中的网络连接</a> 中所述
+<li>如 <a href="../../docs/setup/network">Visual Studio Code 中的网络连接</a> 中所述
 </li>
 </ul>
 <p>当从 WSL 终端启动远程 VSCode 时，下载使用 WSL 发行版中的 <code>wget</code> 完成。代理设置可以在以下位置配置：</p>
 
 <ul>
 <li>wget 代理设置：<a href="https://stackoverflow.com/questions/11211705/how-to-set-proxy-for-wget">https://stackoverflow.com/questions/11211705/how-to-set-proxy-for-wget</a></li>
-<li>在<a href="../docs/remote/wsl.md#advanced-environment-setup-script">服务器设置脚本</a>中手动配置
+<li>在<a href="../../docs/remote/wsl.html#advanced-environment-setup-script">服务器设置脚本</a>中手动配置
 </li>
 </ul>
 <p>一旦服务器启动并运行，将使用<em>远程</em>选项卡上的代理设置。</p>
@@ -741,16 +741,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     "ms-vscode-remote.remote-ssh-edit": [ "workspace" ]
 }</code></pre>
 
-<p>值为 <code>"ui"</code> 而非 <code>"workspace"</code> 将强制扩展在本地 UI/客户端侧运行。通常，这仅应用于测试，除非扩展文档中另有说明，因为它<strong>可能会破坏扩展</strong>。详情请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>文章。</p>
+<p>值为 <code>"ui"</code> 而非 <code>"workspace"</code> 将强制扩展在本地 UI/客户端侧运行。通常，这仅应用于测试，除非扩展文档中另有说明，因为它<strong>可能会破坏扩展</strong>。详情请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>文章。</p>
 
 <h3>作为扩展作者，我需要做什么？</h3>
 
-<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。然而，由于扩展可以使用任何 node 模块或运行时，在某些情况下可能需要进行调整。我们建议你测试你的扩展，以确保不需要更新。详情请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。然而，由于扩展可以使用任何 node 模块或运行时，在某些情况下可能需要进行调整。我们建议你测试你的扩展，以确保不需要更新。详情请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>。</p>
 
 <h2>问题或反馈</h2>
 
 <ul>
-<li>参阅<a href="../docs/remote/troubleshooting.md#wsl-tips">提示和技巧</a>或<a href="../docs/remote/faq.md">常见问题解答</a>。</li>
+<li>参阅<a href="../../docs/remote/troubleshooting.html#wsl-tips">提示和技巧</a>或<a href="../../docs/remote/faq.html">常见问题解答</a>。</li>
 <li>在 <a href="https://stackoverflow.com/questions/tagged/vscode-remote">Stack Overflow</a> 上搜索。</li>
 <li>添加<a href="https://aka.ms/vscode-remote/feature-requests">功能请求</a>或<a href="https://aka.ms/vscode-remote/issues/new">报告问题</a>。</li>
 <li>为<a href="https://github.com/microsoft/vscode-docs">我们的文档</a>或 <a href="https://github.com/microsoft/vscode">VS Code 本身</a>做出贡献。</li>

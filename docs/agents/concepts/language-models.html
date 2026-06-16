@@ -455,9 +455,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>语言模型的工作原理</h2>
 
-<p>语言模型接收文本输入（"提示词"）并生成文本输出。在 VS Code 中，提示词由多个来源组合而成：你的消息、对话历史、文件内容、工具输出以及自定义指令。模型生成的响应可以包含解释说明、代码编辑或调用<a href="../docs/agents/concepts/tools.md">工具</a>的请求。</p>
+<p>语言模型接收文本输入（"提示词"）并生成文本输出。在 VS Code 中，提示词由多个来源组合而成：你的消息、对话历史、文件内容、工具输出以及自定义指令。模型生成的响应可以包含解释说明、代码编辑或调用<a href="../../../docs/agents/concepts/tools.html">工具</a>的请求。</p>
 
-<p>语言模型不会直接执行代码或访问文件。相反，它们生成文本，由<a href="../docs/agents/concepts/agents.md#agent-loop">代理循环</a>将其解释为操作。当模型请求工具调用时，VS Code 执行该工具并将结果反馈给模型，用于下一次迭代。</p>
+<p>语言模型不会直接执行代码或访问文件。相反，它们生成文本，由<a href="../../../docs/agents/concepts/agents.html#agent-loop">代理循环</a>将其解释为操作。当模型请求工具调用时，VS Code 执行该工具并将结果反馈给模型，用于下一次迭代。</p>
 
 <h2>关键特性</h2>
 
@@ -473,7 +473,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当上下文窗口填满时，VS Code 会自动总结对话中较早的部分以腾出空间。这意味着在长时间对话中，早期的细节可能会被压缩或丢失。你也可以在聊天输入框中输入 <code>/compact</code> 随时手动触发压缩。你还可以在命令后添加自定义指令来引导摘要，例如 <code>/compact focus on the API design decisions</code>。</p>
 
-<p>了解更多关于 <a href="../docs/agents/concepts/context.md">VS Code 如何组装上下文</a> 和 <a href="../docs/chat/copilot-chat-context.md#context-compaction">上下文压缩</a>。</p>
+<p>了解更多关于 <a href="../../../docs/agents/concepts/context.html">VS Code 如何组装上下文</a> 和 <a href="../../../docs/chat/copilot-chat-context.html#context-compaction">上下文压缩</a>。</p>
 
 <h2>思考与推理</h2>
 
@@ -493,7 +493,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>思考令牌计入模型的上下文窗口，即使它们在响应中不可见。实际的思考输出通常以摘要形式返回，或者可以完全省略以降低延迟。请注意，更高的思考力度级别可能会产生更多的思考令牌，从而增加延迟。</p>
 
-<p>了解如何在 VS Code 中<a href="../docs/agent-customization/language-models.md#configure-thinking-effort">配置思考力度级别</a>。</p>
+<p>了解如何在 VS Code 中<a href="../../../docs/agent-customization/language-models.html#configure-thinking-effort">配置思考力度级别</a>。</p>
 
 <h2>选择合适的模型</h2>
 
@@ -519,9 +519,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>每个 Copilot 计划包含每月的 <a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals">AI 积分</a> 额度。不同模型以不同速率消耗 AI 积分，取决于模型和处理的令牌数量。功能更强的模型每个令牌的成本更高，而轻量模型则可以让你的使用量延续更长。当你使用自动模型选择时，VS Code 会将每个请求路由到平衡质量与成本的高效模型。</p>
 
-<p>其他因素也会影响积分消耗，例如<a href="../docs/agent-customization/language-models.md#configure-thinking-effort">思考力度</a>（更高的力度产生更多思考令牌）、上下文窗口大小和工具使用。有关减少积分消耗的实用技巧，请参阅<a href="../docs/agents/guides/optimize-usage.md">优化 AI 积分使用</a>。</p>
+<p>其他因素也会影响积分消耗，例如<a href="../../../docs/agent-customization/language-models.html#configure-thinking-effort">思考力度</a>（更高的力度产生更多思考令牌）、上下文窗口大小和工具使用。有关减少积分消耗的实用技巧，请参阅<a href="../../../docs/agents/guides/optimize-usage.html">优化 AI 积分使用</a>。</p>
 
-<p>了解如何在 VS Code 中<a href="../docs/agent-customization/language-models.md">选择和配置语言模型</a>。</p>
+<p>了解如何在 VS Code 中<a href="../../../docs/agent-customization/language-models.html">选择和配置语言模型</a>。</p>
 
 <h2>使用自带语言模型密钥</h2>
 
@@ -543,13 +543,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>使用 BYOK 时，无法保证对模型输出应用负责任的 AI 过滤。
 </li>
 </ul>
-<p>了解如何在 VS Code 中<a href="../docs/agent-customization/language-models.md#bring-your-own-language-model-key">添加你自己的语言模型密钥</a>。</p>
+<p>了解如何在 VS Code 中<a href="../../../docs/agent-customization/language-models.html#bring-your-own-language-model-key">添加你自己的语言模型密钥</a>。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agents/concepts/context.md">上下文</a></li>
-<li><a href="../docs/agent-customization/language-models.md">VS Code 中的 AI 语言模型</a></li>
+<li><a href="../../../docs/agents/concepts/context.html">上下文</a></li>
+<li><a href="../../../docs/agent-customization/language-models.html">VS Code 中的 AI 语言模型</a></li>
 </ul>
 
   </div>

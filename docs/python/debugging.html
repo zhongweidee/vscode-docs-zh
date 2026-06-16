@@ -451,9 +451,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/python / debugging</div>
 <h1>VS Code 中的 Python 调试</h1>
 
-<p>Python 扩展通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy">Python Debugger 扩展</a>支持对多种类型的 Python 应用程序进行调试。有关基本调试的简短演练，请参阅<a href="../docs/python/python-tutorial.md#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。另请参阅 <a href="../docs/python/tutorial-flask.md">Flask 教程</a>。这两个教程演示了核心技能，如设置断点和逐步执行代码。</p>
+<p>Python 扩展通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy">Python Debugger 扩展</a>支持对多种类型的 Python 应用程序进行调试。有关基本调试的简短演练，请参阅<a href="../../docs/python/python-tutorial.html#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。另请参阅 <a href="../../docs/python/tutorial-flask.html">Flask 教程</a>。这两个教程演示了核心技能，如设置断点和逐步执行代码。</p>
 
-<p>有关常规调试功能，如检查变量、设置断点以及其他不依赖于语言的调试活动，请查阅 <a href="../docs/debugtest/debugging.md">VS Code 调试</a>。</p>
+<p>有关常规调试功能，如检查变量、设置断点以及其他不依赖于语言的调试活动，请查阅 <a href="../../docs/debugtest/debugging.html">VS Code 调试</a>。</p>
 
 <p>本文主要介绍特定于 Python 的调试<em>配置</em>，包括特定应用程序类型和远程调试的必要步骤。</p>
 
@@ -857,7 +857,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <tbody>
   <tr><td></td><td>----------------------------------</td><td>--------------------------------------------------------------------</td><td></td></tr>
   <tr><td></td><td><code>"internalConsole"</code></td><td><strong>VS Code 调试控制台。</strong> 如果 <code>redirectOutput</code> 设置为 False，则不显示任何输出。</td><td></td></tr>
-  <tr><td></td><td><code>"integratedTerminal"</code>（默认）</td><td><a href="../docs/terminal/basics.md">VS Code 集成终端</a>。如果 <code>redirectOutput</code> 设置为 True，输出也会显示在调试控制台中。</td><td></td></tr>
+  <tr><td></td><td><code>"integratedTerminal"</code>（默认）</td><td><a href="../../docs/terminal/basics.html">VS Code 集成终端</a>。如果 <code>redirectOutput</code> 设置为 True，输出也会显示在调试控制台中。</td><td></td></tr>
   <tr><td></td><td><code>"externalTerminal"</code></td><td><strong>独立控制台窗口</strong>。如果 <code>redirectOutput</code> 设置为 True，输出也会显示在调试控制台中。</td><td></td></tr>
 </tbody>
 </table>
@@ -886,7 +886,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3><code>subProcess</code></h3>
 
-<p>指定是否启用子进程调试。默认值为 <code>false</code>，设置为 <code>true</code> 以启用。有关更多信息，请参阅<a href="../docs/debugtest/debugging.md#multi-target-debugging">多目标调试</a>。</p>
+<p>指定是否启用子进程调试。默认值为 <code>false</code>，设置为 <code>true</code> 以启用。有关更多信息，请参阅<a href="../../docs/debugtest/debugging.html#multi-target-debugging">多目标调试</a>。</p>
 
 <h3><code>cwd</code></h3>
 
@@ -931,7 +931,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3><code>envFile</code></h3>
 
-<p>包含环境变量定义的文件的可选路径。请参阅<a href="../docs/python/environments.md#environment-variable-definitions-file">配置 Python 环境 - 环境变量定义文件</a>。</p>
+<p>包含环境变量定义的文件的可选路径。请参阅<a href="../../docs/python/environments.html#environment-variable-definitions-file">配置 Python 环境 - 环境变量定义文件</a>。</p>
 
 <h3><code>gevent</code></h3>
 
@@ -943,11 +943,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>断点和日志点</h2>
 
-<p>Python Debugger 扩展支持用于调试代码的<a href="../docs/debugtest/debugging.md#breakpoints">断点</a>和<a href="../docs/debugtest/debugging.md#logpoints">日志点</a>。有关基本调试和使用断点的简短演练，请参阅<a href="../docs/python/python-tutorial.md#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。</p>
+<p>Python Debugger 扩展支持用于调试代码的<a href="../../docs/debugtest/debugging.html#breakpoints">断点</a>和<a href="../../docs/debugtest/debugging.html#logpoints">日志点</a>。有关基本调试和使用断点的简短演练，请参阅<a href="../../docs/python/python-tutorial.html#configure-and-run-the-debugger">教程 - 配置和运行调试器</a>。</p>
 
 <h3>条件断点</h3>
 
-<p>断点也可以设置为基于表达式、命中次数或两者的组合来触发。Python Debugger 扩展支持整数命中次数，以及带有 ==、>、>=、<、<= 和 % 运算符的整数。例如，您可以通过设置命中次数为 <code>>5</code> 来设置一个在五次发生后触发的断点。有关更多信息，请参阅 VS Code 调试主文章中的<a href="../docs/debugtest/debugging.md#conditional-breakpoints">条件断点</a>。</p>
+<p>断点也可以设置为基于表达式、命中次数或两者的组合来触发。Python Debugger 扩展支持整数命中次数，以及带有 ==、>、>=、<、<= 和 % 运算符的整数。例如，您可以通过设置命中次数为 <code>>5</code> 来设置一个在五次发生后触发的断点。有关更多信息，请参阅 VS Code 调试主文章中的<a href="../../docs/debugtest/debugging.html#conditional-breakpoints">条件断点</a>。</p>
 
 <h3>在代码中调用断点</h3>
 
@@ -972,7 +972,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>Pyramid</td><td>移除 <code>program</code>，添加 <code>"args": ["${workspaceFolder}/development.ini"]</code>，添加 <code>"jinja": true</code> 以启用模板调试，并添加 <code>"pyramid": true</code> 以确保程序使用<a href="https://docs.pylonsproject.org/projects/pyramid/en/latest/narr/startup.html?highlight=pserve">必要的 <code>pserve</code> 命令</a>启动。</td><td></td></tr>
 </tbody>
 </table>
-<p>远程调试和 Google App Engine 还需要特定步骤。有关调试测试的详细信息，请参阅<a href="../docs/python/testing.md">测试</a>。</p>
+<p>远程调试和 Google App Engine 还需要特定步骤。有关调试测试的详细信息，请参阅<a href="../../docs/python/testing.html">测试</a>。</p>
 
 <p>要调试需要管理员权限的应用程序，请使用 <code>"console": "externalTerminal"</code> 和 <code>"sudo": "True"</code>。</p>
 
@@ -1041,10 +1041,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 </li>
-<li><a href="../docs/python/environments.md">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
-<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境并发现、运行和调试测试。</li>
-<li><a href="../docs/python/settings-reference.md">设置参考</a> - 探索 VS Code 中与 Python 相关的设置的完整范围。</li>
-<li><a href="../docs/debugtest/debugging.md">通用调试</a> - 了解 VS Code 的调试功能。</li>
+<li><a href="../../docs/python/environments.html">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
+<li><a href="../../docs/python/testing.html">测试</a> - 配置测试环境并发现、运行和调试测试。</li>
+<li><a href="../../docs/python/settings-reference.html">设置参考</a> - 探索 VS Code 中与 Python 相关的设置的完整范围。</li>
+<li><a href="../../docs/debugtest/debugging.html">通用调试</a> - 了解 VS Code 的调试功能。</li>
 </ul>
 
   </div>

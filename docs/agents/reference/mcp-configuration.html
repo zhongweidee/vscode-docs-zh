@@ -451,11 +451,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../../index.html">首页</a> / docs/agents/reference / mcp-configuration</div>
 <h1>MCP 配置参考</h1>
 
-<p>本文提供 MCP 服务器配置文件的格式、相关命令和 VS Code 设置的参考。有关添加和管理 MCP 服务器的信息，请参阅<a href="../docs/agent-customization/mcp-servers.md">添加和管理 MCP 服务器</a>。</p>
+<p>本文提供 MCP 服务器配置文件的格式、相关命令和 VS Code 设置的参考。有关添加和管理 MCP 服务器的信息，请参阅<a href="../../../docs/agent-customization/mcp-servers.html">添加和管理 MCP 服务器</a>。</p>
 
 <h2>配置文件</h2>
 
-<p>MCP 服务器配置存储在 <code>mcp.json</code> JSON 文件中。此文件可以位于工作区（<code>.vscode/mcp.json</code>）或<a href="../docs/configure/profiles.md">用户配置文件</a>中。VS Code 为该配置文件提供了 IntelliSense 支持。</p>
+<p>MCP 服务器配置存储在 <code>mcp.json</code> JSON 文件中。此文件可以位于工作区（<code>.vscode/mcp.json</code>）或<a href="../../../docs/configure/profiles.html">用户配置文件</a>中。VS Code 为该配置文件提供了 IntelliSense 支持。</p>
 
 <h3>配置结构</h3>
 
@@ -469,7 +469,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong><code>"sandbox": {}</code></strong>：一个可选对象，用于定义沙箱化服务器的文件系统和网络访问规则。请参阅<a href="#沙箱配置">沙箱配置</a>。仅适用于 macOS 和 Linux。
 </li>
 </ul>
-<p>您可以在服务器配置中使用<a href="../docs/reference/variables-reference.md">预定义变量</a>，例如引用工作区文件夹（<code>${workspaceFolder}</code>）。</p>
+<p>您可以在服务器配置中使用<a href="../../../docs/reference/variables-reference.html">预定义变量</a>，例如引用工作区文件夹（<code>${workspaceFolder}</code>）。</p>
 
 <h3>标准 I/O（stdio）服务器</h3>
 
@@ -533,7 +533,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td><code>network.deniedDomains</code></td><td>string[]</td><td>不允许服务器访问的域。</td><td></td></tr>
 </tbody>
 </table>
-<p>您可以在文件系统路径值中使用<a href="../docs/reference/variables-reference.md">预定义变量</a>，例如 <code>${workspaceFolder}</code>。</p>
+<p>您可以在文件系统路径值中使用<a href="../../../docs/reference/variables-reference.html">预定义变量</a>，例如 <code>${workspaceFolder}</code>。</p>
 
 <p><details></p>
 <p><summary>沙箱配置示例</summary></p>
@@ -630,7 +630,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>输入变量允许您为配置值定义占位符，避免在服务器配置中直接硬编码敏感信息（如 API 密钥或密码）。</p>
 
-<p>当您使用 <code>${input:variable-id}</code> 引用输入变量时，VS Code 会在服务器首次启动时提示您输入该值。然后该值将被安全存储以供后续使用。了解有关 VS Code 中<a href="../docs/reference/variables-reference.md#input-variables">输入变量</a>的更多信息。</p>
+<p>当您使用 <code>${input:variable-id}</code> 引用输入变量时，VS Code 会在服务器首次启动时提示您输入该值。然后该值将被安全存储以供后续使用。了解有关 VS Code 中<a href="../../../docs/reference/variables-reference.html#input-variables">输入变量</a>的更多信息。</p>
 
 <p>每个输入变量都有一个 <code>type</code>，决定 VS Code 如何提示输入该值。支持以下输入类型：</p>
 
@@ -722,7 +722,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>debug</code>：使您能够为 MCP 服务器设置调试器。目前，VS Code 支持调试 Node.js 和 Python MCP 服务器。仅适用于 stdio 服务器。
 </li>
 </ul>
-<p>在 MCP 开发指南中了解更多关于 <a href="../api/extension-guides/ai/mcp.md#mcp-development-mode-in-vs-code">MCP 开发模式</a> 的信息。</p>
+<p>在 MCP 开发指南中了解更多关于 <a href="../../../api/extension-guides/ai/mcp.html#mcp-development-mode-in-vs-code">MCP 开发模式</a> 的信息。</p>
 
 <h3>服务器命名规范</h3>
 
@@ -758,7 +758,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </table>
 <h2>设置</h2>
 
-<p>有关 VS Code AI 设置的完整列表，请参阅 <a href="../docs/agents/reference/ai-settings.md">AI 设置参考</a>。以下设置专用于 MCP 服务器。</p>
+<p>有关 VS Code AI 设置的完整列表，请参阅 <a href="../../../docs/agents/reference/ai-settings.html">AI 设置参考</a>。以下设置专用于 MCP 服务器。</p>
 
 <table>
   <thead><tr><th></th><th>设置</th><th>描述</th><th></th></tr></thead>
@@ -774,9 +774,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agent-customization/mcp-servers.md">添加和管理 MCP 服务器</a></li>
+<li><a href="../../../docs/agent-customization/mcp-servers.html">添加和管理 MCP 服务器</a></li>
 <li><a href="https://modelcontextprotocol.io/">Model Context Protocol 文档</a></li>
-<li><a href="../docs/agents/guides/mcp-developer-guide.md">MCP 开发指南</a></li>
+<li><a href="../../../docs/agents/guides/mcp-developer-guide.html">MCP 开发指南</a></li>
 </ul>
 
   </div>

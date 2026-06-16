@@ -453,13 +453,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>Visual Studio Code 中的聊天功能让你可以使用自然语言与 AI 代理进行交互。通过对话式界面，你可以询问代码相关问题、获取理解复杂逻辑的帮助、生成新功能、修复错误等。</p>
 
-<p>本文介绍与聊天交互的机制：如何发送请求、添加上下文、选择语言模型、编写有效的提示词以及审查 AI 生成的更改。这些机制适用于 VS Code 中的所有聊天界面。有关代理的功能以及如何配置会话的概述，请参阅<a href="../docs/agents/overview.md">在 VS Code 中使用代理构建</a>。</p>
+<p>本文介绍与聊天交互的机制：如何发送请求、添加上下文、选择语言模型、编写有效的提示词以及审查 AI 生成的更改。这些机制适用于 VS Code 中的所有聊天界面。有关代理的功能以及如何配置会话的概述，请参阅<a href="../../docs/agents/overview.html">在 VS Code 中使用代理构建</a>。</p>
 
 <p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="开始使用代理"></p>
 <p>跟随实践教程体验 VS Code 中的本地、后台和云端代理。</p>
 
 <ul>
-<li><a href="../docs/agents/agents-tutorial.md">开始教程</a>
+<li><a href="../../docs/agents/agents-tutorial.html">开始教程</a>
 </li>
 </ul>
 <p></div></p>
@@ -472,10 +472,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>名称</th><th>描述</th><th>如何打开</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>------</td><td>-------------</td><td>-------------</td><td></td></tr>
-  <tr><td></td><td><a href="../docs/agents/agents-window.md">代理窗口</a></td><td>一个专用的、以代理为先的窗口，用于跨多个项目编排任务。专注于高级任务和结果。</td><td><ul><li>在 VS Code 标题栏中选择<strong>在代理中打开</strong></li><li>使用<strong>聊天: 打开代理窗口</strong>命令</li><li>运行 <code>code --agents</code></li></ul></td><td></td></tr>
-  <tr><td></td><td><a href="../docs/agents/chat-view.md">聊天视图</a></td><td>一种以代码为先的体验，运行在编辑器侧边栏中，用于协助你在工作区中完成编码任务。</td><td><ul><li>选择 VS Code 标题栏中的聊天图标</li><li>使用<strong>聊天: 打开聊天</strong>命令</li><li>按 <code>kb(workbench.action.chat.open)</code></li></ul></td><td></td></tr>
-  <tr><td></td><td><a href="../docs/chat/inline-chat.md">内联聊天</a></td><td>快速的原处代码编辑或终端建议。</td><td><ul><li>按 <code>kb(inlineChat.start)</code></li></ul></td><td></td></tr>
-  <tr><td></td><td><a href="../docs/chat/inline-chat.md#use-quick-chat">快速聊天</a></td><td>一个位于编辑器顶部的轻量级聊天面板。</td><td><ul><li>按 <code>kb(workbench.action.quickchat.toggle)</code></li></ul></td><td></td></tr>
+  <tr><td></td><td><a href="../../docs/agents/agents-window.html">代理窗口</a></td><td>一个专用的、以代理为先的窗口，用于跨多个项目编排任务。专注于高级任务和结果。</td><td><ul><li>在 VS Code 标题栏中选择<strong>在代理中打开</strong></li><li>使用<strong>聊天: 打开代理窗口</strong>命令</li><li>运行 <code>code --agents</code></li></ul></td><td></td></tr>
+  <tr><td></td><td><a href="../../docs/agents/chat-view.html">聊天视图</a></td><td>一种以代码为先的体验，运行在编辑器侧边栏中，用于协助你在工作区中完成编码任务。</td><td><ul><li>选择 VS Code 标题栏中的聊天图标</li><li>使用<strong>聊天: 打开聊天</strong>命令</li><li>按 <code>kb(workbench.action.chat.open)</code></li></ul></td><td></td></tr>
+  <tr><td></td><td><a href="../../docs/chat/inline-chat.html">内联聊天</a></td><td>快速的原处代码编辑或终端建议。</td><td><ul><li>按 <code>kb(inlineChat.start)</code></li></ul></td><td></td></tr>
+  <tr><td></td><td><a href="../../docs/chat/inline-chat.html#use-quick-chat">快速聊天</a></td><td>一个位于编辑器顶部的轻量级聊天面板。</td><td><ul><li>按 <code>kb(workbench.action.quickchat.toggle)</code></li></ul></td><td></td></tr>
 </tbody>
 </table>
 <h2>发送聊天请求</h2>
@@ -486,11 +486,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要提供额外的项目特定上下文，你可以通过 <code>#</code>-提及引用文件、符号或其他信息来<a href="#向提示词添加上下文">向提示词添加上下文</a>。</p>
 
-<p>对于常见任务，你可以使用斜杠命令作为常用提示词的快捷方式，或调用<a href="../docs/agent-customization/agent-skills.md">代理技能</a>。在聊天输入中键入 <code>/</code> 即可查看所有可用命令。</p>
+<p>对于常见任务，你可以使用斜杠命令作为常用提示词的快捷方式，或调用<a href="../../docs/agent-customization/agent-skills.html">代理技能</a>。在聊天输入中键入 <code>/</code> 即可查看所有可用命令。</p>
 
-<p>你可以并行运行多个会话，同时处理不同的任务。当你开始一个新会话时，上一个会话在后台保持活跃状态，你可以随时切换回去而不会丢失上下文。了解更多信息，请参阅<a href="../docs/chat/chat-sessions.md">管理聊天会话</a>。</p>
+<p>你可以并行运行多个会话，同时处理不同的任务。当你开始一个新会话时，上一个会话在后台保持活跃状态，你可以随时切换回去而不会丢失上下文。了解更多信息，请参阅<a href="../../docs/chat/chat-sessions.html">管理聊天会话</a>。</p>
 
-<p>每个会话都有配置选项来影响代理的响应方式，例如代理类型、代理、权限级别和语言模型。了解如何<a href="../docs/agents/overview.md">配置你的代理会话</a>。</p>
+<p>每个会话都有配置选项来影响代理的响应方式，例如代理类型、代理、权限级别和语言模型。了解如何<a href="../../docs/agents/overview.html">配置你的代理会话</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>要获得最佳结果，请明确说明你想要什么，提供相关上下文，并编写清晰的指令。更多信息请参阅<a href="#获得更好的回复">获得更好的回复</a>。</blockquote>
@@ -526,10 +526,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><strong>视觉</strong>：附加图像，例如屏幕截图或 UI 模型，作为提示词的上下文。
 </li>
-<li><strong>浏览器元素</strong>（实验性）：从<a href="../docs/debugtest/integrated-browser.md">集成浏览器</a>中选择元素，将 HTML、CSS 和屏幕截图上下文添加到你的提示词中。
+<li><strong>浏览器元素</strong>（实验性）：从<a href="../../docs/debugtest/integrated-browser.html">集成浏览器</a>中选择元素，将 HTML、CSS 和屏幕截图上下文添加到你的提示词中。
 </li>
 </ul>
-<p>了解更多关于<a href="../docs/chat/copilot-chat-context.md">为 AI 管理上下文</a>的信息。</p>
+<p>了解更多关于<a href="../../docs/chat/copilot-chat-context.html">为 AI 管理上下文</a>的信息。</p>
 
 <h2>图像轮播（实验性）</h2>
 
@@ -542,9 +542,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>AI 对你的文件进行更改后，请审查并接受或放弃它们。</p>
 
 <ul>
-<li><strong>审查内联差异</strong>：打开已更改的文件以查看已应用更改的内联差异。使用编辑器覆盖控件在编辑之间导航，并<strong>保留</strong>或<strong>撤销</strong>单个更改。更多信息请参阅<a href="../docs/chat/review-code-edits.md">审查 AI 生成的代码编辑</a>。
+<li><strong>审查内联差异</strong>：打开已更改的文件以查看已应用更改的内联差异。使用编辑器覆盖控件在编辑之间导航，并<strong>保留</strong>或<strong>撤销</strong>单个更改。更多信息请参阅<a href="../../docs/chat/review-code-edits.html">审查 AI 生成的代码编辑</a>。
 </li>
-<li><strong>使用检查点</strong>：VS Code 可以在聊天交互的关键节点自动创建文件的快照，使你能够回滚到之前的状态。更多信息请参阅<a href="../docs/chat/chat-checkpoints.md">检查点和编辑请求</a>。
+<li><strong>使用检查点</strong>：VS Code 可以在聊天交互的关键节点自动创建文件的快照，使你能够回滚到之前的状态。更多信息请参阅<a href="../../docs/chat/chat-checkpoints.html">检查点和编辑请求</a>。
 </li>
 <li><strong>暂存以接受</strong>：在源代码管理视图中暂存更改会自动接受任何待处理的编辑。放弃更改也会放弃待处理的编辑。
 </li>
@@ -586,18 +586,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>聊天提供多种方法来提高 AI 回复的质量和相关性：</p>
 
 <ul>
-<li><strong>编写有效的提示词</strong>：明确说明你想要什么，引用相关文件和符号，对常见任务使用 <code>/</code> 命令。从<a href="../docs/agents/guides/prompt-examples.md">提示词示例</a>中获得灵感，或查阅完整的<a href="../docs/agents/best-practices.md">提示词工程指南</a>。
+<li><strong>编写有效的提示词</strong>：明确说明你想要什么，引用相关文件和符号，对常见任务使用 <code>/</code> 命令。从<a href="../../docs/agents/guides/prompt-examples.html">提示词示例</a>中获得灵感，或查阅完整的<a href="../../docs/agents/best-practices.html">提示词工程指南</a>。
 </li>
-<li><strong>自定义 AI</strong>：通过添加<a href="../docs/agent-customization/custom-instructions.md">自定义指令</a>、创建可重用的<a href="../docs/agent-customization/prompt-files.md">提示词文件</a>或为专业工作流构建<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>，为你的项目定制 AI 的行为。例如，创建一个"代码审查员"代理，提供关于代码质量以及是否符合团队编码标准的反馈。
+<li><strong>自定义 AI</strong>：通过添加<a href="../../docs/agent-customization/custom-instructions.html">自定义指令</a>、创建可重用的<a href="../../docs/agent-customization/prompt-files.html">提示词文件</a>或为专业工作流构建<a href="../../docs/agent-customization/custom-agents.html">自定义代理</a>，为你的项目定制 AI 的行为。例如，创建一个"代码审查员"代理，提供关于代码质量以及是否符合团队编码标准的反馈。
 </li>
-<li><strong>使用工具扩展</strong>：连接 <a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>或安装提供工具的扩展，使代理能够访问外部服务、数据库或 API。
+<li><strong>使用工具扩展</strong>：连接 <a href="../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>或安装提供工具的扩展，使代理能够访问外部服务、数据库或 API。
 </li>
 </ul>
-<p>更多信息请参阅<a href="../docs/agent-customization/overview.md">在 VS Code 中自定义 AI</a>。</p>
+<p>更多信息请参阅<a href="../../docs/agent-customization/overview.html">在 VS Code 中自定义 AI</a>。</p>
 
 <h2>排查聊天交互问题</h2>
 
-<p>使用<a href="../docs/agents/agent-troubleshooting/chat-debug-view.md">代理日志和聊天调试视图</a>来检查发送提示词时发生的情况。代理日志显示工具调用、LLM 请求和提示词文件发现的按时间顺序排列的事件日志。聊天调试视图显示每次交互的原始系统提示词、用户提示词、上下文和工具载荷。这些工具对于理解 AI 以某种方式响应的原因或排查意外结果非常有用。</p>
+<p>使用<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html">代理日志和聊天调试视图</a>来检查发送提示词时发生的情况。代理日志显示工具调用、LLM 请求和提示词文件发现的按时间顺序排列的事件日志。聊天调试视图显示每次交互的原始系统提示词、用户提示词、上下文和工具载荷。这些工具对于理解 AI 以某种方式响应的原因或排查意外结果非常有用。</p>
 
 <h2>支持</h2>
 
@@ -608,11 +608,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/chat/chat-sessions.md">创建和管理聊天会话</a>
+<li><a href="../../docs/chat/chat-sessions.html">创建和管理聊天会话</a>
 </li>
-<li><a href="../docs/agents/overview.md">选择代理并配置权限</a>
+<li><a href="../../docs/agents/overview.html">选择代理并配置权限</a>
 </li>
-<li><a href="../docs/agents/guides/prompt-examples.md">提示词示例</a></li>
+<li><a href="../../docs/agents/guides/prompt-examples.html">提示词示例</a></li>
 </ul>
 
   </div>

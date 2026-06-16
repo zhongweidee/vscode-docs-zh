@@ -454,7 +454,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>AI 驱动的开发功能可以自主执行不同的开发任务，这可能会带来重大的安全隐患。在本文中，你将了解 VS Code 的内置安全保护机制、需要注意的风险，以及如何配置环境以实现安全的 AI 辅助开发。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>本文涵盖 VS Code 编辑器中用于 AI 驱动开发功能的安全控制。有关 GitHub Copilot 如何处理你的数据、隐私和合规性的信息，请参阅 <a href="https://resources.github.com/copilot-trust-center/">GitHub Copilot Trust Center</a>。有关组织范围的 AI 策略和控制，请参阅<a href="../docs/enterprise/ai-settings.md">组织的 AI 设置</a>和<a href="../docs/enterprise/policies.md">企业策略</a>。</blockquote>
+<blockquote>本文涵盖 VS Code 编辑器中用于 AI 驱动开发功能的安全控制。有关 GitHub Copilot 如何处理你的数据、隐私和合规性的信息，请参阅 <a href="https://resources.github.com/copilot-trust-center/">GitHub Copilot Trust Center</a>。有关组织范围的 AI 策略和控制，请参阅<a href="../../docs/enterprise/ai-settings.html">组织的 AI 设置</a>和<a href="../../docs/enterprise/policies.html">企业策略</a>。</blockquote>
 
 <h2>推荐的安全基线</h2>
 
@@ -465,9 +465,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><strong>启用代理沙箱。</strong> 在 macOS 和 Linux（Windows 上的 WSL2）上，启用 <code>setting(chat.tools.terminal.sandbox.enabled)</code> 以限制代理执行命令的文件系统和网络访问。详细了解<a href="#代理沙箱预览">代理沙箱</a>。
 </li>
-<li><strong>在接受之前审查所有文件编辑。</strong> 使用<a href="../docs/chat/review-code-edits.md">差异编辑器</a>检查建议的更改。在应用之前保留或撤消单个更改。
+<li><strong>在接受之前审查所有文件编辑。</strong> 使用<a href="../../docs/chat/review-code-edits.html">差异编辑器</a>检查建议的更改。在应用之前保留或撤消单个更改。
 </li>
-<li><strong>保护敏感文件。</strong> 使用 glob 模式配置 <code>setting(chat.tools.edits.autoApprove)</code>（例如，<code>"**/.env": false</code>），要求对敏感文件的编辑进行手动批准。详细了解<a href="../docs/chat/review-code-edits.md#edit-sensitive-files">保护敏感文件</a>。
+<li><strong>保护敏感文件。</strong> 使用 glob 模式配置 <code>setting(chat.tools.edits.autoApprove)</code>（例如，<code>"**/.env": false</code>），要求对敏感文件的编辑进行手动批准。详细了解<a href="../../docs/chat/review-code-edits.html#edit-sensitive-files">保护敏感文件</a>。
 </li>
 <li><strong>将自动批准范围限制在会话内。</strong> 在会话级别而不是工作区或用户级别授予工具和终端权限。这样可以限制提升的信任的持续时间。
 </li>
@@ -479,10 +479,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>VS Code 的安全模型使用信任边界来限制不受信任代码的潜在影响。每个信任边界都需要明确的同意才会被视为受信任：</p>
 
 <ul>
-<li><strong>工作区</strong>：控制 VS Code 是否启用可以从项目执行代码的功能，如任务、调试和工作区设置。不受信任的工作区以<a href="../docs/editing/workspaces/workspace-trust.md">受限模式</a>运行，该模式也会禁用代理。</li>
-<li><strong>扩展发布者</strong>：控制是否可以安装和运行来自特定发布者的扩展。VS Code 会提示你<a href="../docs/configure/extensions/extension-runtime-security.md">信任发布者</a>，然后才会激活其扩展。</li>
-<li><strong>MCP 服务器</strong>：控制 MCP 服务器是否可以启动并提供工具。VS Code 会提示你<a href="../docs/agent-customization/mcp-servers.md#mcp-server-trust">信任每个 MCP 服务器</a>，然后才会运行它，并在配置更改后重新提示。</li>
-<li><strong>网络域</strong>：控制代理是否可以从 URL 获取内容。VS Code 会提示你信任一个域，然后才会向其发出请求，并与<a href="../docs/editing/editingevolved.md#outgoing-link-protection">受信任域</a>列表集成。你还可以启用 <code>setting(chat.agent.networkFilter)</code> 来限制代理工具（获取工具、集成浏览器）和沙箱终端命令可以访问哪些域。详细了解<a href="../docs/agents/approvals.md#configure-network-access">网络过滤</a>。
+<li><strong>工作区</strong>：控制 VS Code 是否启用可以从项目执行代码的功能，如任务、调试和工作区设置。不受信任的工作区以<a href="../../docs/editing/workspaces/workspace-trust.html">受限模式</a>运行，该模式也会禁用代理。</li>
+<li><strong>扩展发布者</strong>：控制是否可以安装和运行来自特定发布者的扩展。VS Code 会提示你<a href="../../docs/configure/extensions/extension-runtime-security.html">信任发布者</a>，然后才会激活其扩展。</li>
+<li><strong>MCP 服务器</strong>：控制 MCP 服务器是否可以启动并提供工具。VS Code 会提示你<a href="../../docs/agent-customization/mcp-servers.html#mcp-server-trust">信任每个 MCP 服务器</a>，然后才会运行它，并在配置更改后重新提示。</li>
+<li><strong>网络域</strong>：控制代理是否可以从 URL 获取内容。VS Code 会提示你信任一个域，然后才会向其发出请求，并与<a href="../../docs/editing/editingevolved.html#outgoing-link-protection">受信任域</a>列表集成。你还可以启用 <code>setting(chat.agent.networkFilter)</code> 来限制代理工具（获取工具、集成浏览器）和沙箱终端命令可以访问哪些域。详细了解<a href="../../docs/agents/approvals.html#configure-network-access">网络过滤</a>。
 </li>
 </ul>
 <p>你可以随时通过命令面板中的专用命令撤消信任。</p>
@@ -498,17 +498,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><strong>工作区限制的文件访问</strong>：内置代理工具只能读取和写入当前工作区文件夹内的文件。你可以通过 <code>setting(chat.additionalReadAccessFolders)</code> 设置选择性地授予对其他文件夹的只读访问权限。
 </li>
-<li><strong>工具选择器</strong>：你可以使用工具选择器选择性地<a href="../docs/chat/chat-tools.md">启用或禁用特定工具</a>，从而精确控制 AI 代理可用的功能。
+<li><strong>工具选择器</strong>：你可以使用工具选择器选择性地<a href="../../docs/chat/chat-tools.html">启用或禁用特定工具</a>，从而精确控制 AI 代理可用的功能。
 </li>
 <li><strong>会话隔离</strong>：你可以授予临时的、不会在当前会话之外持久化的权限。这使你能够在保持长期安全边界的同时试验 AI 功能。
 </li>
-<li><strong>请求限制</strong>：内置安全措施<a href="../docs/agents/reference/ai-settings.md#agent-settings">防止失控操作</a>，避免消耗过多资源或在代码库上执行非预期的批量操作。
+<li><strong>请求限制</strong>：内置安全措施<a href="../../docs/agents/reference/ai-settings.html#agent-settings">防止失控操作</a>，避免消耗过多资源或在代码库上执行非预期的批量操作。
 </li>
-<li><strong>代理隔离</strong>：<a href="../docs/agents/agent-types/copilot-cli.md">后台代理</a>在单独的 Git 工作树中工作，防止与你当前的工作区发生冲突。它们具有有限的工具访问权限，只能使用不需要身份验证的本地 MCP 服务器。<a href="../docs/agents/agent-types/cloud-agents.md">云端代理</a>在远程基础设施上运行，这提供了与本地机器和本地资源的固有隔离。
+<li><strong>代理隔离</strong>：<a href="../../docs/agents/agent-types/copilot-cli.html">后台代理</a>在单独的 Git 工作树中工作，防止与你当前的工作区发生冲突。它们具有有限的工具访问权限，只能使用不需要身份验证的本地 MCP 服务器。<a href="../../docs/agents/agent-types/cloud-agents.html">云端代理</a>在远程基础设施上运行，这提供了与本地机器和本地资源的固有隔离。
 </li>
 <li><strong>安全密钥存储</strong>：MCP 服务器的敏感输入参数使用 VS Code 的安全凭据存储来保护身份验证令牌和其他敏感数据。
 </li>
-<li><strong>MCP 身份验证</strong>：VS Code <a href="../blogs/2025/06/12/full-mcp-spec-support.md#security-first-the-new-authorization-foundation">实现了 MCP 授权规范</a>，以支持 VS Code 与外部工具和服务之间的 OAuth 身份验证。
+<li><strong>MCP 身份验证</strong>：VS Code <a href="../../blogs/2025/06/12/full-mcp-spec-support.html#security-first-the-new-authorization-foundation">实现了 MCP 授权规范</a>，以支持 VS Code 与外部工具和服务之间的 OAuth 身份验证。
 <h3>批准与审查</h3>
 
 </li>
@@ -516,7 +516,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>VS Code 使用基于权限的安全模型，让你能够保持对潜在风险操作的控制。</p>
 
 <ul>
-<li><strong>权限级别</strong>：聊天视图中的<a href="../docs/agents/approvals.md#permission-levels">权限选择器</a>允许你为当前会话选择权限级别。<strong>默认批准</strong>使用你配置的批准设置。<strong>绕过批准</strong>自动批准所有工具调用。<strong>自动驾驶</strong>自动批准所有工具，并驱动代理持续工作直到任务完成。
+<li><strong>权限级别</strong>：聊天视图中的<a href="../../docs/agents/approvals.html#permission-levels">权限选择器</a>允许你为当前会话选择权限级别。<strong>默认批准</strong>使用你配置的批准设置。<strong>绕过批准</strong>自动批准所有工具调用。<strong>自动驾驶</strong>自动批准所有工具，并驱动代理持续工作直到任务完成。
 </li>
 <li><strong>终端批准</strong>：在执行终端命令之前，代理会请求用户的明确批准。当启用终端自动批准时，可配置的逐命令规则（包括正则表达式模式）会自动批准安全命令，同时对潜在危险的命令进行提示。复合命令中的所有子命令都必须匹配已批准的规则。
 </li>
@@ -524,18 +524,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><strong>URL 和域批准</strong>：当代理从 URL 获取内容时，VS Code 使用两步批准流程。首先，它要求你信任该域（与受信任域列表集成）。然后，在内容被获取后，它在传递给模型之前会呈现内容供你审查。
 </li>
-<li><strong>文件更改的审查流程</strong>：你可以在更改被应用之前<a href="../docs/chat/review-code-edits.md">在差异编辑器中审查所有建议的更改</a>。保留或撤消单个更改，以便对代码库的修改进行精细控制。
+<li><strong>文件更改的审查流程</strong>：你可以在更改被应用之前<a href="../../docs/chat/review-code-edits.html">在差异编辑器中审查所有建议的更改</a>。保留或撤消单个更改，以便对代码库的修改进行精细控制。
 </li>
-<li><strong>自动批准通知</strong>：当<a href="../docs/agents/approvals.md#tool-approval">工具或终端命令被自动批准</a>时，VS Code 会显示一条信息消息和一个指向启用它的配置设置的链接。
+<li><strong>自动批准通知</strong>：当<a href="../../docs/agents/approvals.html#tool-approval">工具或终端命令被自动批准</a>时，VS Code 会显示一条信息消息和一个指向启用它的配置设置的链接。
 </li>
 <li><strong>警告横幅</strong>：当高级模式绕过正常的安全检查时，VS Code 会显示清晰的警告横幅并要求明确同意。
 </li>
 </ul>
-<p>详细了解<a href="../docs/agents/approvals.md#tool-approval">工具和命令批准</a>。</p>
+<p>详细了解<a href="../../docs/agents/approvals.html#tool-approval">工具和命令批准</a>。</p>
 
 <h3>代理沙箱（预览版）</h3>
 
-<p>代理沙箱使用操作系统级别的隔离来限制代理执行的进程可以在你的机器上访问的资源。沙箱不仅仅依赖批准提示，而是在内核级别强制执行严格的文件系统和网络边界，因此命令即使被批准也无法访问允许范围之外的资源。有关沙箱如何工作以及操作系统级别强制执行细节的更深入了解，请参阅<a href="../docs/agents/concepts/trust-and-safety.md#agent-sandboxing">代理沙箱</a>。</p>
+<p>代理沙箱使用操作系统级别的隔离来限制代理执行的进程可以在你的机器上访问的资源。沙箱不仅仅依赖批准提示，而是在内核级别强制执行严格的文件系统和网络边界，因此命令即使被批准也无法访问允许范围之外的资源。有关沙箱如何工作以及操作系统级别强制执行细节的更深入了解，请参阅<a href="../../docs/agents/concepts/trust-and-safety.html#agent-sandboxing">代理沙箱</a>。</p>
 
 <blockquote>[!IMPORTANT]</blockquote>
 <blockquote>代理沙箱是防范恶意终端命令的最强保护。如果提示注入是一个顾虑，请使用代理沙箱或在 <a href="https://code.visualstudio.com/docs/devcontainers/containers">dev container</a> 中运行 VS Code，而不是仅依赖自动批准规则。自动批准规则使用尽力而为的命令解析，并且存在 shell 别名、引号拼接和复杂 shell 语法方面的已知限制。</blockquote>
@@ -544,7 +544,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在 macOS 和 Linux 上，你可以为使用 stdio 传输的本地运行的 MCP 服务器启用沙箱。当启用沙箱时，服务器只能访问你在沙箱配置中明确允许的文件系统路径和网络域。来自沙箱服务器的工具调用会被自动批准，因为它们是在受控环境中运行的。</p>
 
-<p>详细了解<a href="../docs/agent-customization/mcp-servers.md#sandbox-mcp-servers">配置 MCP 服务器沙箱</a>。</p>
+<p>详细了解<a href="../../docs/agent-customization/mcp-servers.html#sandbox-mcp-servers">配置 MCP 服务器沙箱</a>。</p>
 
 <h2>需要注意的安全风险</h2>
 
@@ -596,16 +596,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><strong>终端自动批准</strong>：潜在破坏性命令在不受用户控制的情况下运行。基于规则的自动批准系统使用尽力而为的命令解析，存在已知限制。例如，引号拼接或 shell 别名可能会绕过规则。
 </li>
-<li><strong>整体工具自动批准</strong>：绕过所有用户批准，可能导致破坏性操作、更新敏感工作区文件或执行任意代码。这同时适用于 <code>setting(chat.tools.global.autoApprove)</code> 设置以及<strong>绕过批准</strong>和<strong>自动驾驶</strong><a href="../docs/agents/approvals.md#permission-levels">权限级别</a>。
+<li><strong>整体工具自动批准</strong>：绕过所有用户批准，可能导致破坏性操作、更新敏感工作区文件或执行任意代码。这同时适用于 <code>setting(chat.tools.global.autoApprove)</code> 设置以及<strong>绕过批准</strong>和<strong>自动驾驶</strong><a href="../../docs/agents/approvals.html#permission-levels">权限级别</a>。
 </li>
 <li><strong>自动驾驶模式</strong>：<strong>自动驾驶</strong>权限级别结合了自动批准和自主迭代。代理在没有用户干预的情况下持续工作，直到它标记任务完成。这降低了你在中间步骤进行审查的能力。
 </li>
-<li><strong>第三方代理权限</strong>：某些第三方代理提供绕过所有权限检查的设置（例如 <a href="../docs/agents/agent-types/third-party-agents.md">Claude 代理</a>中的 <code>allowDangerouslySkipPermissions</code>）。启用这些设置会移除批准提示的安全网，仅建议在沙箱或容器化环境中使用。
+<li><strong>第三方代理权限</strong>：某些第三方代理提供绕过所有权限检查的设置（例如 <a href="../../docs/agents/agent-types/third-party-agents.html">Claude 代理</a>中的 <code>allowDangerouslySkipPermissions</code>）。启用这些设置会移除批准提示的安全网，仅建议在沙箱或容器化环境中使用。
 </li>
 </ul>
 <p>VS Code 通过<a href="#批准与审查">可配置的批准范围</a>、<a href="#代理沙箱预览">代理沙箱</a>、<a href="#企业策略">企业策略</a>以及危险模式的<a href="#批准与审查">警告横幅</a>来应对这些风险。</p>
 
-<p>详细了解<a href="../docs/agents/approvals.md#tool-approval">管理自动批准</a>。</p>
+<p>详细了解<a href="../../docs/agents/approvals.html#tool-approval">管理自动批准</a>。</p>
 
 <p></details></p>
 
@@ -615,16 +615,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你的工作区数据和开发环境信息可能通过各种渠道被暴露。</p>
 
 <ul>
-<li><strong>上下文共享</strong>：工作区中的文件内容、终端输出和诊断信息作为上下文发送给语言模型和工具。这可能会暴露敏感信息，如 API 密钥、凭据或专有代码。有关包含哪些上下文的详细信息，请参阅<a href="../docs/agents/reference/workspace-context.md">工作区上下文参考</a>。
+<li><strong>上下文共享</strong>：工作区中的文件内容、终端输出和诊断信息作为上下文发送给语言模型和工具。这可能会暴露敏感信息，如 API 密钥、凭据或专有代码。有关包含哪些上下文的详细信息，请参阅<a href="../../docs/agents/reference/workspace-context.html">工作区上下文参考</a>。
 </li>
 <li><strong>数据泄漏</strong>：从某个工具检索到的敏感信息可能被无意中共享给另一个工具。
 </li>
 <li><strong>外部内容风险</strong>：来自外部来源的不受信任内容可能通过工具操作和文件编辑被引入你的工作区，可能导致数据泄漏。
 </li>
-<li><strong>自定义模型输出</strong>：当使用<a href="../docs/agent-customization/language-models.md">自带密钥模型</a>时，无法保证负责任 AI 过滤应用于模型输出。请仔细审查自定义模型的响应。
+<li><strong>自定义模型输出</strong>：当使用<a href="../../docs/agent-customization/language-models.html">自带密钥模型</a>时，无法保证负责任 AI 过滤应用于模型输出。请仔细审查自定义模型的响应。
 </li>
 </ul>
-<p>VS Code 通过<a href="#范围与隔离">工作区限制的文件访问</a>、<a href="#范围与隔离">工具选择器</a>、<a href="#范围与隔离">安全密钥存储</a>和<a href="../docs/chat/review-code-edits.md#edit-sensitive-files">敏感文件保护</a>来应对这些风险。</p>
+<p>VS Code 通过<a href="#范围与隔离">工作区限制的文件访问</a>、<a href="#范围与隔离">工具选择器</a>、<a href="#范围与隔离">安全密钥存储</a>和<a href="../../docs/chat/review-code-edits.html#edit-sensitive-files">敏感文件保护</a>来应对这些风险。</p>
 
 <p></details></p>
 
@@ -648,7 +648,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>钩子</h2>
 
-<p><a href="../docs/agent-customization/hooks.md">代理钩子</a>使你能够在代理会话的关键生命周期点执行自定义 shell 命令。与指导代理行为的指令或提示不同，钩子以确定性的方式运行并具有保证的结果，使其适用于强制执行安全策略。</p>
+<p><a href="../../docs/agent-customization/hooks.html">代理钩子</a>使你能够在代理会话的关键生命周期点执行自定义 shell 命令。与指导代理行为的指令或提示不同，钩子以确定性的方式运行并具有保证的结果，使其适用于强制执行安全策略。</p>
 
 <ul>
 <li><strong>阻止危险操作</strong>：使用 <code>PreToolUse</code> 钩子来拦截工具调用并在危险命令（例如 <code>rm -rf</code> 或 <code>DROP TABLE</code>）执行之前阻止它们，无论代理是如何被提示的。</li>
@@ -658,23 +658,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>组织可以实现<a href="../docs/enterprise/ai-settings.md">集中式安全控制</a>，以管理跨开发团队的 AI 辅助开发功能。关键的 AI 特定策略包括：</p>
+<p>组织可以实现<a href="../../docs/enterprise/ai-settings.html">集中式安全控制</a>，以管理跨开发团队的 AI 辅助开发功能。关键的 AI 特定策略包括：</p>
 
 <ul>
 <li><strong>禁用代理</strong>：使用 <code>ChatAgentMode</code> 策略完全阻止使用代理模式。</li>
 <li><strong>限制扩展工具</strong>：使用 <code>ChatAgentExtensionTools</code> 策略阻止扩展贡献的工具，同时保留内置和 MCP 工具。</li>
 <li><strong>控制 MCP 服务器来源</strong>：使用 <code>ChatMCP</code> 策略将 MCP 服务器限制为经过精选的注册表（<code>registryOnly</code>）或完全禁用 MCP 支持（<code>off</code>）。组织还可以使用 <code>McpGalleryServiceUrl</code> 策略托管私有 MCP 注册表。</li>
-<li><strong>禁用全局自动批准</strong>：使用 <code>ChatToolsAutoApprove</code> 策略阻止开发者启用全局自动批准，并隐藏<strong>绕过批准</strong>和<strong>自动驾驶</strong><a href="../docs/agents/approvals.md#permission-levels">权限级别</a>。</li>
+<li><strong>禁用全局自动批准</strong>：使用 <code>ChatToolsAutoApprove</code> 策略阻止开发者启用全局自动批准，并隐藏<strong>绕过批准</strong>和<strong>自动驾驶</strong><a href="../../docs/agents/approvals.html#permission-levels">权限级别</a>。</li>
 <li><strong>要求对特定工具进行手动批准</strong>：使用 <code>ChatToolsEligibleForAutoApproval</code> 策略强制对单个工具（例如 <code>execute/runInTerminal</code> 或 <code>web/fetch</code>）进行手动批准。</li>
 <li><strong>禁用终端自动批准</strong>：使用 <code>ChatToolsTerminalEnableAutoApprove</code> 策略关闭基于规则的终端自动批准系统。
 </li>
 </ul>
-<p>详细了解<a href="../docs/enterprise/ai-settings.md">在企业环境中管理 AI 设置</a>和<a href="../docs/enterprise/policies.md">部署企业策略</a>。</p>
+<p>详细了解<a href="../../docs/enterprise/ai-settings.html">在企业环境中管理 AI 设置</a>和<a href="../../docs/enterprise/policies.html">部署企业策略</a>。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/enterprise/overview.md">VS Code 企业支持</a></li>
+<li><a href="../../docs/enterprise/overview.html">VS Code 企业支持</a></li>
 <li><a href="https://resources.github.com/copilot-trust-center/">GitHub Copilot Trust Center</a></li>
 </ul>
 

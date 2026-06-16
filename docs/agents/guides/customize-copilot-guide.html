@@ -464,9 +464,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>先决条件</h2>
 
 </li>
-<li><a href="../download">下载并安装 Visual Studio Code</a>
+<li><a href="../../../download">下载并安装 Visual Studio Code</a>
 </li>
-<li><a href="../docs/getstarted/overview.md#enable-ai-features">在 VS Code 中启用 AI 功能</a>
+<li><a href="../../../docs/getstarted/overview.html#enable-ai-features">在 VS Code 中启用 AI 功能</a>
 <h2>步骤 1：设置项目级编码规范</h2>
 
 </li>
@@ -496,7 +496,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>验证是否生效</strong>：让 Copilot 生成一些代码（例如，“创建一个用于日期格式化的工具函数”）。检查回复是否遵循你的编码规范。在聊天回复中选择“<strong>引用</strong>”部分，确认 <code>copilot-instructions.md</code> 已被包含。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>在<a href="../docs/agent-customization/custom-instructions.md#use-a-githubcopilot-instructionsmd-file">使用自定义指令</a>中了解有关始终生效的指令的更多信息。</blockquote>
+<blockquote>在<a href="../../../docs/agent-customization/custom-instructions.html#use-a-githubcopilot-instructionsmd-file">使用自定义指令</a>中了解有关始终生效的指令的更多信息。</blockquote>
 
 <h2>步骤 2：添加特定文件指令</h2>
 
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>验证是否生效</strong>：打开一个 <code>.tsx</code> 文件，让 Copilot“创建一个用户个人资料卡片组件”。回复应遵循你设定的 React 特定约定。检查“<strong>引用</strong>”部分以确认指令文件已应用。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>你可以为不同的文件类型、框架或模块创建多个指令文件。在<a href="../docs/agent-customization/custom-instructions.md#use-instructionsmd-files">使用 <code>.instructions.md</code> 文件</a>中了解更多。</blockquote>
+<blockquote>你可以为不同的文件类型、框架或模块创建多个指令文件。在<a href="../../../docs/agent-customization/custom-instructions.html#use-instructionsmd-files">使用 <code>.instructions.md</code> 文件</a>中了解更多。</blockquote>
 
 <h2>步骤 3：创建可复用的提示文件</h2>
 
@@ -534,7 +534,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>验证是否生效</strong>：在聊天视图中输入 <code>/<提示名称> 带有排序和筛选功能的数据表格</code>，然后按 <code>kbstyle(Enter)</code>。代理应根据你的约定搭建组件和测试文件。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>在聊天中输入 <code>/create-prompt</code> 以借助 AI 辅助生成提示文件。你还可以通过说“将此工作流保存为提示”从正在进行的对话中提取可复用的提示。在<a href="../docs/agent-customization/prompt-files.md">使用提示文件</a>中了解更多。</blockquote>
+<blockquote>在聊天中输入 <code>/create-prompt</code> 以借助 AI 辅助生成提示文件。你还可以通过说“将此工作流保存为提示”从正在进行的对话中提取可复用的提示。在<a href="../../../docs/agent-customization/prompt-files.html">使用提示文件</a>中了解更多。</blockquote>
 
 <h2>步骤 4：构建自定义代理</h2>
 
@@ -553,7 +553,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>验证是否生效</strong>：从聊天视图的代理下拉菜单中选择“<strong>审查员</strong>”代理，然后提问“审查认证模块”。代理应分析代码而不进行任何更改。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>你可以为代理添加 <code>handoffs</code> 来创建引导式工作流。例如，从规划代理交接给实现代理。在<a href="../docs/agent-customization/custom-agents.md#handoffs">自定义代理</a>中了解更多。</blockquote>
+<blockquote>你可以为代理添加 <code>handoffs</code> 来创建引导式工作流。例如，从规划代理交接给实现代理。在<a href="../../../docs/agent-customization/custom-agents.html#handoffs">自定义代理</a>中了解更多。</blockquote>
 
 <h2>步骤 5：为专用功能创建技能</h2>
 
@@ -585,7 +585,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><strong>验证是否生效</strong>：在聊天中，让 Copilot 为你的项目添加一个新功能（例如，“添加一个健康检查端点”）。当它生成代码时，也应该自动用新端点的文档更新 README。你也可以在聊天视图中直接输入 <code>/update-readme</code> 来调用该技能。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>在聊天中输入 <code>/create-skill</code> 以借助 AI 辅助生成技能。你还可以通过说“从我们刚刚做的事情创建一个技能”从正在进行的对话中提取技能。在<a href="../docs/agent-customization/agent-skills.md">代理技能</a>中了解更多。</blockquote>
+<blockquote>在聊天中输入 <code>/create-skill</code> 以借助 AI 辅助生成技能。你还可以通过说“从我们刚刚做的事情创建一个技能”从正在进行的对话中提取技能。在<a href="../../../docs/agent-customization/agent-skills.html">代理技能</a>中了解更多。</blockquote>
 
 <h2>你构建了什么</h2>
 
@@ -607,11 +607,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li>添加 <a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>以使用外部工具和服务扩展代理</li>
-<li>设置<a href="../docs/agent-customization/hooks.md">钩子</a>以在代理生命周期的关键节点自动执行任务，例如在每次文件编辑后运行格式化器</li>
-<li>浏览<a href="../docs/agent-customization/agent-plugins.md">代理插件</a>以从社区市场安装预打包的自定义项</li>
+<li>添加 <a href="../../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>以使用外部工具和服务扩展代理</li>
+<li>设置<a href="../../../docs/agent-customization/hooks.html">钩子</a>以在代理生命周期的关键节点自动执行任务，例如在每次文件编辑后运行格式化器</li>
+<li>浏览<a href="../../../docs/agent-customization/agent-plugins.html">代理插件</a>以从社区市场安装预打包的自定义项</li>
 <li>通过将 <code>.github/</code> 目录提交到你的仓库，与团队共享自定义项</li>
-<li>使用<a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">代理自定义编辑器</a>在一个地方查看所有自定义项</li>
+<li>使用<a href="../../../docs/agent-customization/overview.html#manage-customizations-in-the-editor">代理自定义编辑器</a>在一个地方查看所有自定义项</li>
 </ul>
 
   </div>

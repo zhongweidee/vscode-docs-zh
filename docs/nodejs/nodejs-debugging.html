@@ -493,7 +493,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>自动附加智能模式</strong></p>
 
-<p>在 <code>smart</code> 自动附加模式下，VS Code 会尝试附加到你的代码，而不会附加到你不想调试的构建工具。它通过将主脚本与 <a href="../docs/editor/glob-patterns.md">glob 模式</a> 列表进行匹配来实现这一点。glob 模式可以在 <strong>debug.javascript.autoAttachSmartPattern</strong> 设置中配置，默认为：</p>
+<p>在 <code>smart</code> 自动附加模式下，VS Code 会尝试附加到你的代码，而不会附加到你不想调试的构建工具。它通过将主脚本与 <a href="../../docs/editor/glob-patterns.html">glob 模式</a> 列表进行匹配来实现这一点。glob 模式可以在 <strong>debug.javascript.autoAttachSmartPattern</strong> 设置中配置，默认为：</p>
 
 <pre><code class="language-js">[
   "!**/node_modules/**", // 排除 node_modules 文件夹中的脚本
@@ -531,29 +531,29 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>启动配置是在 VS Code 中设置调试的传统方式，为你运行复杂应用程序提供了最多的配置选项。</p>
 
-<p>在本节中，我们将更详细地介绍针对更高级调试场景的配置和功能。你将找到有关使用<a href="../docs/nodejs/nodejs-debugging.md#source-maps">源映射</a>、<a href="../docs/nodejs/nodejs-debugging.md#skipping-uninteresting-code">跳过外部代码</a>、进行<a href="../docs/nodejs/nodejs-debugging.md#remote-debugging">远程调试</a>等的说明。</p>
+<p>在本节中，我们将更详细地介绍针对更高级调试场景的配置和功能。你将找到有关使用<a href="../../docs/nodejs/nodejs-debugging.html#source-maps">源映射</a>、<a href="../../docs/nodejs/nodejs-debugging.html#skipping-uninteresting-code">跳过外部代码</a>、进行<a href="../../docs/nodejs/nodejs-debugging.html#remote-debugging">远程调试</a>等的说明。</p>
 
 <p>如果你想观看入门视频，请查看 <a href="https://www.youtube.com/watch?v=3HiLLByBWkg">VS Code 调试入门</a>。</p>
 
-<p>><strong>注意</strong>：如果你刚刚开始使用 VS Code，可以在<a href="../docs/debugtest/debugging.md">调试</a>主题中了解一般调试功能和创建 <code>launch.json</code> 配置文件。</p>
+<p>><strong>注意</strong>：如果你刚刚开始使用 VS Code，可以在<a href="../../docs/debugtest/debugging.html">调试</a>主题中了解一般调试功能和创建 <code>launch.json</code> 配置文件。</p>
 
 <h2>启动配置属性</h2>
 
-<p>调试配置存储在工作区 <code>.vscode</code> 文件夹中的 <code>launch.json</code> 文件里。关于调试配置文件的创建和使用介绍，请参阅通用的<a href="../docs/debugtest/debugging-configuration.md#launch-configurations">调试</a>文章。</p>
+<p>调试配置存储在工作区 <code>.vscode</code> 文件夹中的 <code>launch.json</code> 文件里。关于调试配置文件的创建和使用介绍，请参阅通用的<a href="../../docs/debugtest/debugging-configuration.html#launch-configurations">调试</a>文章。</p>
 
 <p>以下是 Node.js 调试器特有的常见 <code>launch.json</code> 属性参考。你可以在 <a href="https://github.com/microsoft/vscode-js-debug/blob/main/OPTIONS.md">vscode-js-debug 选项</a>文档中查看完整的选项集。</p>
 
 <p>以下属性在类型为 <code>launch</code> 和 <code>attach</code> 的启动配置中受支持：</p>
 
 <ul>
-<li><code>outFiles</code> - 用于定位生成的 JavaScript 文件的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>数组。请参阅<a href="../docs/nodejs/nodejs-debugging.md#source-maps">源映射</a>部分。</li>
-<li><code>resolveSourceMapLocations</code> - 用于指定应解析源映射的位置的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>数组。请参阅<a href="../docs/nodejs/nodejs-debugging.md#source-maps">源映射</a>部分。</li>
-<li><code>timeout</code> - 重新启动会话时，在此毫秒数后放弃。请参阅<a href="../docs/nodejs/nodejs-debugging.md#attaching-to-nodejs">附加到 Node.js</a> 部分。</li>
+<li><code>outFiles</code> - 用于定位生成的 JavaScript 文件的 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>数组。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#source-maps">源映射</a>部分。</li>
+<li><code>resolveSourceMapLocations</code> - 用于指定应解析源映射的位置的 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>数组。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#source-maps">源映射</a>部分。</li>
+<li><code>timeout</code> - 重新启动会话时，在此毫秒数后放弃。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#attaching-to-nodejs">附加到 Node.js</a> 部分。</li>
 <li><code>stopOnEntry</code> - 程序启动时立即中断。</li>
-<li><code>localRoot</code> - VS Code 的根目录。请参阅下面的<a href="../docs/nodejs/nodejs-debugging.md#remote-debugging">远程调试</a>部分。</li>
-<li><code>remoteRoot</code> - Node 的根目录。请参阅下面的<a href="../docs/nodejs/nodejs-debugging.md#remote-debugging">远程调试</a>部分。</li>
-<li><code>smartStep</code> - 尝试自动跳过不映射到源文件的代码。请参阅<a href="../docs/nodejs/nodejs-debugging.md#smart-stepping">智能单步执行</a>。</li>
-<li><code>skipFiles</code> - 自动跳过这些 <a href="../docs/editor/glob-patterns.md">glob 模式</a>匹配的文件。请参阅<a href="../docs/nodejs/nodejs-debugging.md#skipping-uninteresting-code">跳过不感兴趣的代码</a>部分。</li>
+<li><code>localRoot</code> - VS Code 的根目录。请参阅下面的<a href="../../docs/nodejs/nodejs-debugging.html#remote-debugging">远程调试</a>部分。</li>
+<li><code>remoteRoot</code> - Node 的根目录。请参阅下面的<a href="../../docs/nodejs/nodejs-debugging.html#remote-debugging">远程调试</a>部分。</li>
+<li><code>smartStep</code> - 尝试自动跳过不映射到源文件的代码。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#smart-stepping">智能单步执行</a>。</li>
+<li><code>skipFiles</code> - 自动跳过这些 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>匹配的文件。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#skipping-uninteresting-code">跳过不感兴趣的代码</a>部分。</li>
 <li><code>trace</code> - 启用诊断输出。
 </li>
 </ul>
@@ -563,21 +563,21 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>program</code> - 要调试的 Node.js 程序的绝对路径。</li>
 <li><code>args</code> - 传递给要调试的程序的参数。此属性类型为数组，期望将各个参数作为数组元素。</li>
 <li><code>cwd</code> - 在此目录中启动要调试的程序。</li>
-<li><code>runtimeExecutable</code> - 要使用的运行时可执行文件的绝对路径。默认为 <code>node</code>。请参阅<a href="../docs/nodejs/nodejs-debugging.md#launch-configuration-support-for-npm-and-other-tools">对 'npm' 和其他工具的启动配置支持</a>部分。</li>
+<li><code>runtimeExecutable</code> - 要使用的运行时可执行文件的绝对路径。默认为 <code>node</code>。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#launch-configuration-support-for-npm-and-other-tools">对 'npm' 和其他工具的启动配置支持</a>部分。</li>
 <li><code>runtimeArgs</code> - 传递给运行时可执行文件的可选参数。</li>
-<li><code>runtimeVersion</code> - 如果使用 "<a href="https://github.com/creationix/nvm">nvm</a>"（或 "<a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>"）或 "<a href="https://github.com/jasongin/nvs">nvs</a>" 来管理 Node.js 版本，此属性可用于选择特定的 Node.js 版本。请参阅下面的<a href="../docs/nodejs/nodejs-debugging.md#multi-version-support">多版本支持</a>部分。</li>
+<li><code>runtimeVersion</code> - 如果使用 "<a href="https://github.com/creationix/nvm">nvm</a>"（或 "<a href="https://github.com/coreybutler/nvm-windows">nvm-windows</a>"）或 "<a href="https://github.com/jasongin/nvs">nvs</a>" 来管理 Node.js 版本，此属性可用于选择特定的 Node.js 版本。请参阅下面的<a href="../../docs/nodejs/nodejs-debugging.html#multi-version-support">多版本支持</a>部分。</li>
 <li><code>env</code> - 可选的环境变量。此属性期望将环境变量作为字符串类型的键值对列表。</li>
-<li><code>envFile</code> - 包含环境变量定义的文件的可选路径。请参阅下面的<a href="../docs/nodejs/nodejs-debugging.md#load-environment-variables-from-external-file">从外部文件加载环境变量</a>部分。</li>
-<li><code>console</code> - 启动程序时使用的控制台类型（<code>internalConsole</code>、<code>integratedTerminal</code>、<code>externalTerminal</code>）。请参阅下面的 <a href="../docs/nodejs/nodejs-debugging.md#node-console">Node 控制台</a>部分。</li>
+<li><code>envFile</code> - 包含环境变量定义的文件的可选路径。请参阅下面的<a href="../../docs/nodejs/nodejs-debugging.html#load-environment-variables-from-external-file">从外部文件加载环境变量</a>部分。</li>
+<li><code>console</code> - 启动程序时使用的控制台类型（<code>internalConsole</code>、<code>integratedTerminal</code>、<code>externalTerminal</code>）。请参阅下面的 <a href="../../docs/nodejs/nodejs-debugging.html#node-console">Node 控制台</a>部分。</li>
 <li><code>outputCapture</code> - 如果设置为 <code>std</code>，进程 stdout/stderr 的输出将显示在调试控制台中，而不是通过调试端口监听输出。这对于直接写入 stdout/stderr 流而不是使用 <code>console.*</code> API 的程序或日志库很有用。
 </li>
 </ul>
 <p>此属性仅适用于请求类型为 <code>attach</code> 的启动配置：</p>
 
 <ul>
-<li><code>restart</code> - 终止时重新启动连接。请参阅<a href="../docs/nodejs/nodejs-debugging.md#restarting-debug-sessions-automatically-when-source-is-edited">源代码编辑时自动重启调试会话</a>部分。</li>
-<li><code>port</code> - 要使用的调试端口。请参阅<a href="../docs/nodejs/nodejs-debugging.md#attaching-to-nodejs">附加到 Node.js</a> 和<a href="../docs/nodejs/nodejs-debugging.md#remote-debugging">远程调试</a>部分。</li>
-<li><code>address</code> - 调试端口的 TCP/IP 地址。请参阅<a href="../docs/nodejs/nodejs-debugging.md#attaching-to-nodejs">附加到 Node.js</a> 和<a href="../docs/nodejs/nodejs-debugging.md#remote-debugging">远程调试</a>部分。</li>
+<li><code>restart</code> - 终止时重新启动连接。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#restarting-debug-sessions-automatically-when-source-is-edited">源代码编辑时自动重启调试会话</a>部分。</li>
+<li><code>port</code> - 要使用的调试端口。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#attaching-to-nodejs">附加到 Node.js</a> 和<a href="../../docs/nodejs/nodejs-debugging.html#remote-debugging">远程调试</a>部分。</li>
+<li><code>address</code> - 调试端口的 TCP/IP 地址。请参阅<a href="../../docs/nodejs/nodejs-debugging.html#attaching-to-nodejs">附加到 Node.js</a> 和<a href="../../docs/nodejs/nodejs-debugging.html#remote-debugging">远程调试</a>部分。</li>
 <li><code>processId</code> - 调试器在发送 USR1 信号后尝试附加到此进程。使用此设置，调试器可以附加到未在调试模式下启动的已运行进程。使用 <code>processId</code> 属性时，调试端口会根据 Node.js 版本（和所用协议）自动确定，无法显式配置。因此不要指定 <code>port</code> 属性。</li>
 <li><code>continueOnAttach</code> - 如果进程在附加时处于暂停状态，是否继续执行。如果你使用 <code>--inspect-brk</code> 启动程序，此选项很有用。
 <h3>常见场景的启动配置</h3>
@@ -877,7 +877,7 @@ lines="foo\nbar"</code></pre>
 
 <h2>远程调试</h2>
 
-<blockquote><strong>注意：</strong> VS Code 现在具有通用的<a href="../docs/remote/remote-overview.md">远程开发能力</a>。使用<a href="https://aka.ms/vscode-remote/download/extension">远程开发</a>扩展，远程场景和容器中的 Node.js 开发与本地设置中的 Node.js 开发没有区别。<strong>这是远程调试 Node.js 程序的推荐方式</strong>。请查看<a href="../docs/remote/remote-overview.md#getting-started">入门</a>部分和<a href="../docs/remote/remote-overview.md#remote-tutorials">远程教程</a>以了解更多信息。</blockquote>
+<blockquote><strong>注意：</strong> VS Code 现在具有通用的<a href="../../docs/remote/remote-overview.html">远程开发能力</a>。使用<a href="https://aka.ms/vscode-remote/download/extension">远程开发</a>扩展，远程场景和容器中的 Node.js 开发与本地设置中的 Node.js 开发没有区别。<strong>这是远程调试 Node.js 程序的推荐方式</strong>。请查看<a href="../../docs/remote/remote-overview.html#getting-started">入门</a>部分和<a href="../../docs/remote/remote-overview.html#remote-tutorials">远程教程</a>以了解更多信息。</blockquote>
 
 <p>如果你无法使用任何远程开发扩展来调试你的 Node.js 程序，以下是如何从本地 VS Code 实例调试远程 Node.js 程序的指南。</p>
 
@@ -1014,7 +1014,7 @@ lines="foo\nbar"</code></pre>
 
 <h2>跳过不感兴趣的代码</h2>
 
-<p>VS Code 的 Node.js 调试有一个功能，可以避免进入你不想单步执行的源代码（也称为"仅我的代码"）。此功能可以通过启动配置中的 <code>skipFiles</code> 属性启用。<code>skipFiles</code> 是一个要跳过的脚本路径的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>数组。</p>
+<p>VS Code 的 Node.js 调试有一个功能，可以避免进入你不想单步执行的源代码（也称为"仅我的代码"）。此功能可以通过启动配置中的 <code>skipFiles</code> 属性启用。<code>skipFiles</code> 是一个要跳过的脚本路径的 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>数组。</p>
 
 <p>例如，使用：</p>
 
@@ -1025,7 +1025,7 @@ lines="foo\nbar"</code></pre>
 
 <p>项目中 <code>node_modules</code> 和 <code>lib</code> 文件夹中的所有代码都将被跳过。<code>skipFiles</code> 也适用于调用 <code>console.log</code> 和类似方法时显示的位置：堆栈中第一个未被跳过的位置将显示在调试控制台的输出旁边。</p>
 
-<p>Node.js 内置的<strong>核心模块</strong>可以在 <a href="../docs/editor/glob-patterns.md">glob 模式</a>中通过"魔术名称" <code><node_internals></code> 引用。以下示例跳过所有内部模块：</p>
+<p>Node.js 内置的<strong>核心模块</strong>可以在 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>中通过"魔术名称" <code><node_internals></code> 引用。以下示例跳过所有内部模块：</p>
 
 <pre><code class="language-json">  "skipFiles": [
      "&lt;node_internals&gt;/**/*.js"
@@ -1048,7 +1048,7 @@ lines="foo\nbar"</code></pre>
 
 <p>调用堆栈上的上下文菜单项<strong>切换跳过此文件</strong>使你能够在运行时轻松跳过某个文件，而无需将其添加到启动配置中。此选项仅在当前调试会话中有效。你也可以使用它来停止跳过由启动配置中 <code>skipFiles</code> 选项跳过的文件。</p>
 
-<p>><strong>注意：</strong> <code>legacy</code> 协议调试器支持负 <a href="../docs/editor/glob-patterns.md">glob 模式</a>，但它们必须<strong>跟随</strong>正模式：正模式添加到被跳过文件集合中，而负模式从该集合中减去。</p>
+<p>><strong>注意：</strong> <code>legacy</code> 协议调试器支持负 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>，但它们必须<strong>跟随</strong>正模式：正模式添加到被跳过文件集合中，而负模式从该集合中减去。</p>
 
 <p>在以下（仅限 <code>legacy</code> 协议）示例中，除 'math' 模块外的所有模块都被跳过：</p>
 
@@ -1099,7 +1099,7 @@ lines="foo\nbar"</code></pre>
 <p>如果你还没有阅读过 Node.js 部分，请查看：</p>
 
 <ul>
-<li><a href="../docs/nodejs/nodejs-tutorial.md">Node.js</a> - 带有示例应用程序的端到端 Node 场景
+<li><a href="../../docs/nodejs/nodejs-tutorial.html">Node.js</a> - 带有示例应用程序的端到端 Node 场景
 </li>
 </ul>
 <p>要查看 VS Code 调试基础知识的教程，请观看以下视频：</p>
@@ -1111,13 +1111,13 @@ lines="foo\nbar"</code></pre>
 <p>要了解 VS Code 的任务运行支持，请访问：</p>
 
 <ul>
-<li><a href="../docs/debugtest/tasks.md">任务</a> - 使用 Gulp、Grunt 和 Jake 运行任务。显示错误和警告
+<li><a href="../../docs/debugtest/tasks.html">任务</a> - 使用 Gulp、Grunt 和 Jake 运行任务。显示错误和警告
 </li>
 </ul>
 <p>要编写你自己的调试器扩展，请访问：</p>
 
 <ul>
-<li><a href="../api/extension-guides/debugger-extension.md">调试器扩展</a> - 从模拟示例开始创建 VS Code 调试扩展的步骤
+<li><a href="../../api/extension-guides/debugger-extension.html">调试器扩展</a> - 从模拟示例开始创建 VS Code 调试扩展的步骤
 <h2>常见问题</h2>
 
 <h3>如果使用符号链接，我可以调试吗？</h3>

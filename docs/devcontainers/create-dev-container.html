@@ -486,7 +486,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>转发或发布其他端口。</li>
 <li>设置运行时参数。</li>
 <li>重用或<a href="https://aka.ms/vscode-remote/containers/docker-compose/extend">扩展现有的 Docker Compose 设置</a>。</li>
-<li>添加更多<a href="../remote/advancedcontainers/overview.md">高级容器配置</a>。
+<li>添加更多<a href="../../remote/advancedcontainers/overview.html">高级容器配置</a>。
 </li>
 </ul>
 <p>对于此示例，如果你希望将 <a href="https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker">Code Spell Checker 扩展</a>安装到你的容器中并自动转发端口 3000，你的 <code>devcontainer.json</code> 将如下所示：</p>
@@ -504,7 +504,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     "forwardPorts": [ 3000 ]
 }</code></pre>
 
-<blockquote><strong>注意：</strong> 其他配置已根据基础镜像中的内容添加到容器中。例如，我们在上面添加了 <code>streetsidesoftware.code-spell-checker</code> 扩展，而容器还将包含 <code>"dbaeumer.vscode-eslint"</code>，因为<a href="https://github.com/devcontainers/images/blob/main/src/javascript-node/.devcontainer/devcontainer.json#L27">它是 <code>mcr.microsoft.com/devcontainers/typescript-node</code> 的一部分</a>。这在使用 devcontainer.json 进行预构建时会自动发生，你可以在<a href="../docs/devcontainers/containers.md#预构建开发容器镜像">预构建部分</a>中了解更多信息。</blockquote>
+<blockquote><strong>注意：</strong> 其他配置已根据基础镜像中的内容添加到容器中。例如，我们在上面添加了 <code>streetsidesoftware.code-spell-checker</code> 扩展，而容器还将包含 <code>"dbaeumer.vscode-eslint"</code>，因为<a href="https://github.com/devcontainers/images/blob/main/src/javascript-node/.devcontainer/devcontainer.json#L27">它是 <code>mcr.microsoft.com/devcontainers/typescript-node</code> 的一部分</a>。这在使用 devcontainer.json 进行预构建时会自动发生，你可以在<a href="../../docs/devcontainers/containers.html#预构建开发容器镜像">预构建部分</a>中了解更多信息。</blockquote>
 
 <p>有了上面的 <code>devcontainer.json</code>，你的开发容器就功能齐全了，你可以连接到它并开始在其中进行开发。使用 <strong>Dev Containers: Reopen in Container</strong> 命令试一试：</p>
 
@@ -521,12 +521,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>启动一个独立容器来隔离你的工具链或加快设置速度。</li>
 <li>使用由镜像、<a href="#dockerfile">Dockerfile</a> 或 <a href="#使用-docker-compose">Docker Compose</a> 定义的容器部署应用程序。</li>
-<li>从开发容器内部<a href="../remote/advancedcontainers/use-docker-kubernetes.md">使用 Docker 或 Kubernetes</a> 来构建和部署你的应用程序。
+<li>从开发容器内部<a href="../../remote/advancedcontainers/use-docker-kubernetes.html">使用 Docker 或 Kubernetes</a> 来构建和部署你的应用程序。
 </li>
 </ul>
-<p>如果 <code>devcontainer.json</code> 支持的工作流无法满足你的需求，你也可以<a href="../docs/devcontainers/attach-container.md">附加到已在运行的容器</a>。</p>
+<p>如果 <code>devcontainer.json</code> 支持的工作流无法满足你的需求，你也可以<a href="../../docs/devcontainers/attach-container.html">附加到已在运行的容器</a>。</p>
 
-<blockquote><strong>提示：</strong> 想使用远程 Docker 主机？请参阅<a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker 主机上开发</a>文章了解设置详情。</blockquote>
+<blockquote><strong>提示：</strong> 想使用远程 Docker 主机？请参阅<a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker 主机上开发</a>文章了解设置详情。</blockquote>
 
 <h2>安装其他软件</h2>
 
@@ -542,7 +542,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 apt-get update
 apt-get install &lt;package&gt;</code></pre>
 
-<p>如果你以 root 身份运行，只要容器中配置了 <code>sudo</code>，你就可以安装软件。所有预定义容器都设置了 <code>sudo</code>，但<a href="../remote/advancedcontainers/add-nonroot-user.md">向容器添加非 root 用户</a>文章可以帮助你为自己的容器设置此项。无论如何，如果你安装并配置了 <code>sudo</code>，你就可以在以任何用户（包括 root）身份运行时使用它。</p>
+<p>如果你以 root 身份运行，只要容器中配置了 <code>sudo</code>，你就可以安装软件。所有预定义容器都设置了 <code>sudo</code>，但<a href="../../remote/advancedcontainers/add-nonroot-user.html">向容器添加非 root 用户</a>文章可以帮助你为自己的容器设置此项。无论如何，如果你安装并配置了 <code>sudo</code>，你就可以在以任何用户（包括 root）身份运行时使用它。</p>
 
 <pre><code class="language-bash"># 如果已安装并配置 sudo
 sudo apt-get update
@@ -681,7 +681,7 @@ RUN apt-get update &amp;&amp; export DEBIAN_FRONTEND=noninteractive \
 <li>使用现有未修改的 <code>docker-compose.yml</code> 中定义的服务。</li>
 <li>创建一个新的 <code>docker-compose.yml</code>（或复制现有文件）用于开发服务。</li>
 <li><a href="#为开发展展-docker-compose-文件">扩展现有的 Docker Compose 配置</a>来开发服务。</li>
-<li>使用单独的 VS Code 窗口来<a href="../remote/advancedcontainers/connect-multiple-containers.md">同时处理多个 Docker Compose 定义的服务</a>。
+<li>使用单独的 VS Code 窗口来<a href="../../remote/advancedcontainers/connect-multiple-containers.html">同时处理多个 Docker Compose 定义的服务</a>。
 <blockquote><strong>注意：</strong> 当使用 Alpine Linux 容器时，某些扩展可能无法工作，因为扩展中的原生代码依赖于 <code>glibc</code>。</blockquote>
 
 </li>
@@ -741,7 +741,7 @@ command: /bin/sh -c "while sleep 1000; do :; done"</code></pre>
   # '.devcontainer/devcontainer.json' 中引用此路径作为 'workspaceFolder'，以便 VS Code 在此启动。
   - ..:/workspace:cached</code></pre>
 
-<p>但是，在 Linux 上，使用绑定挂载时你可能需要设置并<strong>指定一个非 root 用户</strong>，否则你创建的任何文件都将属于 root。有关详细信息，请参阅<a href="../remote/advancedcontainers/add-nonroot-user.md">向开发容器添加非 root 用户</a>。要让 VS Code 以其他用户身份运行，请将其添加到 <code>devcontainer.json</code>：</p>
+<p>但是，在 Linux 上，使用绑定挂载时你可能需要设置并<strong>指定一个非 root 用户</strong>，否则你创建的任何文件都将属于 root。有关详细信息，请参阅<a href="../../remote/advancedcontainers/add-nonroot-user.html">向开发容器添加非 root 用户</a>。要让 VS Code 以其他用户身份运行，请将其添加到 <code>devcontainer.json</code>：</p>
 
 <pre><code class="language-json">"remoteUser": "你的用户名"</code></pre>
 
@@ -853,7 +853,7 @@ services:
 
 <h3>添加在开发容器中打开的标志</h3>
 
-<p>你还可以在你的仓库中添加一个徽章或链接，以便用户可以轻松地在 Dev Containers 中打开你的项目。如果需要，它将安装 Dev Containers 扩展，将仓库克隆到容器<a href="../remote/advancedcontainers/improve-performance.md#使用在容器卷中克隆仓库">卷</a>中，并启动开发容器。</p>
+<p>你还可以在你的仓库中添加一个徽章或链接，以便用户可以轻松地在 Dev Containers 中打开你的项目。如果需要，它将安装 Dev Containers 扩展，将仓库克隆到容器<a href="../../remote/advancedcontainers/improve-performance.html#使用在容器卷中克隆仓库">卷</a>中，并启动开发容器。</p>
 
 <p>例如，一个用于打开 <a href="https://github.com/microsoft/vscode-remote-try-java">https://github.com/microsoft/vscode-remote-try-java</a> 的徽章将如下所示：</p>
 
@@ -867,7 +867,7 @@ services:
 
 <p>在某些情况下，你可能想为不受你控制的仓库创建配置，或者你希望仓库本身不包含配置。为了处理这种情况，你可以配置本地文件系统上的一个位置，用于存储将根据仓库自动加载的配置文件。</p>
 
-<p>首先，使用要用于存储仓库容器配置文件的本地文件夹更新 <strong>Dev > Containers: Repository Configuration Paths</strong> <a href="../docs/configure/settings.md">用户设置</a>。</p>
+<p>首先，使用要用于存储仓库容器配置文件的本地文件夹更新 <strong>Dev > Containers: Repository Configuration Paths</strong> <a href="../../docs/configure/settings.html">用户设置</a>。</p>
 
 <p>在设置编辑器中，你可以搜索 'dev containers repo' 来找到该设置：</p>
 
@@ -887,8 +887,8 @@ services:
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/devcontainers/attach-container.md">附加到运行中的容器</a> - 附加到已在运行的 Docker 容器。</li>
-<li><a href="../remote/advancedcontainers/overview.md">高级容器</a> - 查找高级容器场景的解决方案。</li>
+<li><a href="../../docs/devcontainers/attach-container.html">附加到运行中的容器</a> - 附加到已在运行的 Docker 容器。</li>
+<li><a href="../../remote/advancedcontainers/overview.html">高级容器</a> - 查找高级容器场景的解决方案。</li>
 <li><a href="https://containers.dev/implementors/json_reference">devcontainer.json 参考</a> - 查看 <code>devcontainer.json</code> 模式。</li>
 </ul>
 

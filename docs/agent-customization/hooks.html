@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>钩子（Hooks）使您能够在代理会话的关键生命周期节点执行自定义 Shell 命令。使用钩子可以自动化工作流程、强制执行安全策略、验证操作以及集成外部工具。</p>
 
-<p>有关钩子在 AI 自定义框架中的定位，请参阅<a href="../docs/agents/concepts/customization.md">自定义概念</a>。</p>
+<p>有关钩子在 AI 自定义框架中的定位，请参阅<a href="../../docs/agents/concepts/customization.html">自定义概念</a>。</p>
 
 <p>本文介绍了如何在 VS Code 中配置和使用钩子。</p>
 
@@ -461,10 +461,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>代理钩子目前处于预览阶段。配置格式和行为在未来的版本中可能会发生变化。</blockquote>
 
 <blockquote>[!IMPORTANT]</blockquote>
-<blockquote>您的组织可能已禁用 VS Code 中的钩子功能。请联系您的管理员获取更多信息。有关详细信息，请参阅<a href="../docs/enterprise/policies.md">企业策略</a>。</blockquote>
+<blockquote>您的组织可能已禁用 VS Code 中的钩子功能。请联系您的管理员获取更多信息。有关详细信息，请参阅<a href="../../docs/enterprise/policies.html">企业策略</a>。</blockquote>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>使用<a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">代理自定义编辑器</a>（预览版）在一个地方发现、创建和管理所有代理自定义配置。通过命令面板运行 <strong>Chat: Open Customizations</strong>。</blockquote>
+<blockquote>使用<a href="../../docs/agent-customization/overview.html#manage-customizations-in-the-editor">代理自定义编辑器</a>（预览版）在一个地方发现、创建和管理所有代理自定义配置。通过命令面板运行 <strong>Chat: Open Customizations</strong>。</blockquote>
 
 <p>钩子被设计为跨代理类型工作，包括本地代理、后台代理和云端代理。每个钩子接收结构化的 JSON 输入，并可返回 JSON 输出来影响代理行为。</p>
 
@@ -530,7 +530,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>VS Code 在以下位置搜索钩子配置文件：</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>在单体仓库（monorepo）中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 来发现来自父仓库根目录的钩子。了解更多关于<a href="../docs/agent-customization/overview.md#use-customizations-in-a-monorepo">父仓库发现</a>的信息。</blockquote>
+<blockquote>在单体仓库（monorepo）中，启用 <code>setting(chat.useCustomizationsInParentRepositories)</code> 来发现来自父仓库根目录的钩子。了解更多关于<a href="../../docs/agent-customization/overview.html#use-customizations-in-a-monorepo">父仓库发现</a>的信息。</blockquote>
 
 <table>
   <thead><tr><th></th><th>作用域</th><th>默认文件位置</th><th></th></tr></thead>
@@ -540,7 +540,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>工作区（Claude 格式）</td><td><code>.claude/settings.json</code>、<code>.claude/settings.local.json</code></td><td></td></tr>
   <tr><td></td><td>用户</td><td><code>~/.copilot/hooks</code>、<code>~/.claude/settings.json</code></td><td></td></tr>
   <tr><td></td><td>自定义代理</td><td><code>.agent.md</code> 前言中的 <code>hooks</code> 字段（请参阅<a href="#agentscoped-hooks">代理作用域钩子</a>）</td><td></td></tr>
-  <tr><td></td><td>插件</td><td><code>hooks.json</code> 或 <code>hooks/hooks.json</code>，具体取决于插件格式（请参阅<a href="../docs/agent-customization/agent-plugins.md#hooks-in-plugins">插件中的钩子</a>）</td><td></td></tr>
+  <tr><td></td><td>插件</td><td><code>hooks.json</code> 或 <code>hooks/hooks.json</code>，具体取决于插件格式（请参阅<a href="../../docs/agent-customization/agent-plugins.html#hooks-in-plugins">插件中的钩子</a>）</td><td></td></tr>
 </tbody>
 </table>
 <p>对于同一事件类型，工作区钩子优先于用户钩子。</p>
@@ -576,7 +576,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>[!NOTE]</blockquote>
 <blockquote>代理作用域钩子目前处于预览阶段。</blockquote>
 
-<p>您可以直接在<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>的 YAML 前言中定义钩子。代理作用域钩子仅在该自定义代理处于活动状态时运行，无论是用户选择还是作为子代理调用。代理作用域钩子会与针对同一事件配置的任何工作区或用户级别钩子一起运行。</p>
+<p>您可以直接在<a href="../../docs/agent-customization/custom-agents.html">自定义代理</a>的 YAML 前言中定义钩子。代理作用域钩子仅在该自定义代理处于活动状态时运行，无论是用户选择还是作为子代理调用。代理作用域钩子会与针对同一事件配置的任何工作区或用户级别钩子一起运行。</p>
 
 <p>要启用代理作用域钩子，请将 <code>setting(chat.useCustomAgentHooks)</code> 设置为 <code>true</code>。</p>
 
@@ -769,7 +769,7 @@ hooks:
 <li><code>allow</code>（最宽松）：自动批准执行
 </li>
 </ol>
-<p><strong><code>updatedInput</code> 格式</strong>：要确定 <code>updatedInput</code> 的格式，请打开<a href="../docs/agents/agent-troubleshooting/chat-debug-view.md#agent-debug-log-panel">代理日志</a>并找到记录的工具模式。如果 <code>updatedInput</code> 与预期的模式不匹配，它将被忽略。</p>
+<p><strong><code>updatedInput</code> 格式</strong>：要确定 <code>updatedInput</code> 的格式，请打开<a href="../../docs/agents/agent-troubleshooting/chat-debug-view.html#agent-debug-log-panel">代理日志</a>并找到记录的工具模式。如果 <code>updatedInput</code> 与预期的模式不匹配，它将被忽略。</p>
 
 <h2>PostToolUse</h2>
 
@@ -1270,10 +1270,10 @@ EOF</code></pre>
 <h2>相关资源</h2>
 
 </li>
-<li><a href="../docs/chat/chat-tools.md">在聊天中使用工具</a> - 了解工具审批和执行</li>
-<li><a href="../docs/agent-customization/custom-agents.md">自定义代理</a> - 创建专门的代理配置</li>
-<li><a href="../docs/agents/subagents.md">子代理</a> - 将任务委派给上下文隔离的子代理</li>
-<li><a href="../docs/agents/security.md">安全注意事项</a> - VS Code 中 AI 安全的最佳实践</li>
+<li><a href="../../docs/chat/chat-tools.html">在聊天中使用工具</a> - 了解工具审批和执行</li>
+<li><a href="../../docs/agent-customization/custom-agents.html">自定义代理</a> - 创建专门的代理配置</li>
+<li><a href="../../docs/agents/subagents.html">子代理</a> - 将任务委派给上下文隔离的子代理</li>
+<li><a href="../../docs/agents/security.html">安全注意事项</a> - VS Code 中 AI 安全的最佳实践</li>
 </ul>
 
   </div>

@@ -499,7 +499,7 @@ tsc --help</code></pre>
 
 <h2>将 TypeScript 转译为 JavaScript</h2>
 
-<p>VS Code 通过我们的集成<a href="../docs/debugtest/tasks.md">任务运行器</a>与 <code>tsc</code> 集成。我们可以使用它将 <code>.ts</code> 文件转译为 <code>.js</code> 文件。使用 VS Code 任务的另一个好处是，你可以在<a href="../docs/editing/editingevolved.md#errors-warnings">问题</a>面板中获得集成的错误和警告检测。让我们逐步完成一个简单的 TypeScript Hello World 程序的转译。</p>
+<p>VS Code 通过我们的集成<a href="../../docs/debugtest/tasks.html">任务运行器</a>与 <code>tsc</code> 集成。我们可以使用它将 <code>.ts</code> 文件转译为 <code>.js</code> 文件。使用 VS Code 任务的另一个好处是，你可以在<a href="../../docs/editing/editingevolved.html#errors-warnings">问题</a>面板中获得集成的错误和警告检测。让我们逐步完成一个简单的 TypeScript Hello World 程序的转译。</p>
 
 <h3>步骤 1：创建一个简单的 TS 文件</h3>
 
@@ -551,11 +551,11 @@ console.log(message);</code></pre>
 
 <p>请注意，该任务有一个 <code>group</code> JSON 对象，将任务的 <code>kind</code> 设置为 <code>build</code> 并将其设为默认。现在，当你选择<strong>运行生成任务</strong>命令或按（<code>kb(workbench.action.tasks.build)</code>）时，系统不会再提示你选择任务，编译会直接开始。</p>
 
-<blockquote><strong>提示：</strong> 你还可以使用 VS Code 的运行/调试功能来运行程序。有关在 VS Code 中运行和调试 Node.js 应用程序的详细信息，请参阅 <a href="../docs/nodejs/nodejs-tutorial.md#debug-your-express-app">Node.js 教程</a></blockquote>
+<blockquote><strong>提示：</strong> 你还可以使用 VS Code 的运行/调试功能来运行程序。有关在 VS Code 中运行和调试 Node.js 应用程序的详细信息，请参阅 <a href="../../docs/nodejs/nodejs-tutorial.html#debug-your-express-app">Node.js 教程</a></blockquote>
 
 <h3>步骤 4：审查构建问题</h3>
 
-<p>VS Code 任务系统还可以通过<a href="../docs/debugtest/tasks.md#defining-a-problem-matcher">问题匹配器</a>检测构建问题。问题匹配器根据特定的构建工具解析构建输出，并提供集成的问显示和导航功能。VS Code 附带了许多问题匹配器，上面 <code>tasks.json</code> 中看到的 <code>$tsc</code> 就是用于 TypeScript 编译器输出的问题匹配器。</p>
+<p>VS Code 任务系统还可以通过<a href="../../docs/debugtest/tasks.html#defining-a-problem-matcher">问题匹配器</a>检测构建问题。问题匹配器根据特定的构建工具解析构建输出，并提供集成的问显示和导航功能。VS Code 附带了许多问题匹配器，上面 <code>tasks.json</code> 中看到的 <code>$tsc</code> 就是用于 TypeScript 编译器输出的问题匹配器。</p>
 
 <p>例如，如果我们的 TypeScript 文件中有一个简单的错误（<code>console.log</code> 中多了个 'g'），我们可能会从 <code>tsc</code> 得到以下输出：</p>
 
@@ -569,7 +569,7 @@ console.log(message);</code></pre>
 
 <p>你还可以使用键盘打开列表 <code>kb(workbench.actions.view.problems)</code>。</p>
 
-<p>><strong>提示：</strong> 任务对许多操作提供了丰富的支持。有关如何配置任务的更多信息，请参阅<a href="../docs/debugtest/tasks.md">任务</a>主题。</p>
+<p>><strong>提示：</strong> 任务对许多操作提供了丰富的支持。有关如何配置任务的更多信息，请参阅<a href="../../docs/debugtest/tasks.html">任务</a>主题。</p>
 
 <h2>JavaScript source map 支持</h2>
 
@@ -591,7 +591,7 @@ console.log(message);</code></pre>
 
 <h2>隐藏生成的 JavaScript 文件</h2>
 
-<p>在处理 TypeScript 时，你通常不希望文件资源管理器或搜索结果中显示生成的 JavaScript 文件。VS Code 通过 <code>files.exclude</code> <a href="../docs/configure/settings.md">工作区设置</a>提供了过滤功能，你可以轻松创建一个表达式来隐藏这些生成的文件：</p>
+<p>在处理 TypeScript 时，你通常不希望文件资源管理器或搜索结果中显示生成的 JavaScript 文件。VS Code 通过 <code>files.exclude</code> <a href="../../docs/configure/settings.html">工作区设置</a>提供了过滤功能，你可以轻松创建一个表达式来隐藏这些生成的文件：</p>
 
 <p><code><em>*/</em>.js: { "when": "$(basename).ts" }</code></p>
 
@@ -608,7 +608,7 @@ console.log(message);</code></pre>
     "**/**.js": { "when": "$(basename).tsx" }
 }</code></pre>
 
-<p>这有一点技巧。搜索<a href="../docs/editor/glob-patterns.md">glob 模式</a>被用作键。上述设置使用两个不同的 glob 模式来提供两个唯一的键，但搜索仍会匹配相同的文件。</p>
+<p>这有一点技巧。搜索<a href="../../docs/editor/glob-patterns.html">glob 模式</a>被用作键。上述设置使用两个不同的 glob 模式来提供两个唯一的键，但搜索仍会匹配相同的文件。</p>
 
 <h2>使用较新版本的 TypeScript</h2>
 
@@ -635,7 +635,7 @@ console.log(message);</code></pre>
 
 <p>使用此功能可以在 VS Code 自带的 TypeScript 版本和工作区中的 TypeScript 版本之间切换。你还可以通过 <strong>TypeScript: Select TypeScript Version</strong> 命令触发 TypeScript 版本选择器。</p>
 
-<p>VS Code 会自动检测工作区根目录 <code>node_modules</code> 下安装的工作区 TypeScript 版本。你也可以通过在用户或工作区<a href="../docs/configure/settings.md">设置</a>中配置 <code>js/ts.tsdk.path</code> 来明确告诉 VS Code 使用哪个版本的 TypeScript。<code>js/ts.tsdk.path</code> 设置应指向包含 TypeScript <code>tsserver.js</code> 文件的目录。你可以使用 <code>npm list -g typescript</code> 查找 TypeScript 的安装位置。<code>tsserver.js</code> 文件通常位于 <code>lib</code> 文件夹中。</p>
+<p>VS Code 会自动检测工作区根目录 <code>node_modules</code> 下安装的工作区 TypeScript 版本。你也可以通过在用户或工作区<a href="../../docs/configure/settings.html">设置</a>中配置 <code>js/ts.tsdk.path</code> 来明确告诉 VS Code 使用哪个版本的 TypeScript。<code>js/ts.tsdk.path</code> 设置应指向包含 TypeScript <code>tsserver.js</code> 文件的目录。你可以使用 <code>npm list -g typescript</code> 查找 TypeScript 的安装位置。<code>tsserver.js</code> 文件通常位于 <code>lib</code> 文件夹中。</p>
 
 <p>例如：</p>
 
@@ -688,9 +688,9 @@ console.log(message);</code></pre>
 <p>继续阅读以下内容：</p>
 
 <ul>
-<li><a href="../docs/typescript/typescript-editing.md">编辑 TypeScript</a> - TypeScript 的特定编辑功能。</li>
-<li><a href="../docs/typescript/typescript-refactoring.md">重构 TypeScript</a> - TypeScript 语言服务提供的有用重构。</li>
-<li><a href="../docs/typescript/typescript-debugging.md">调试 TypeScript</a> - 为你的 TypeScript 项目配置调试器。
+<li><a href="../../docs/typescript/typescript-editing.html">编辑 TypeScript</a> - TypeScript 的特定编辑功能。</li>
+<li><a href="../../docs/typescript/typescript-refactoring.html">重构 TypeScript</a> - TypeScript 语言服务提供的有用重构。</li>
+<li><a href="../../docs/typescript/typescript-debugging.html">调试 TypeScript</a> - 为你的 TypeScript 项目配置调试器。
 <h2>常见问题</h2>
 
 <h3>如何解决 TypeScript "Cannot compile external module" 错误？</h3>
@@ -722,7 +722,7 @@ console.log(message);</code></pre>
 </ul>
 <p>将这些视为警告与其他工具（如 TSLint）一致。当你从命令行运行 <code>tsc</code> 时，这些问题仍将显示为错误。</p>
 
-<p>你可以通过在用户<a href="../docs/configure/settings.md">设置</a>中设置 <code>"js/ts.reportStyleChecksAsWarnings": false</code> 来禁用此行为。</p>
+<p>你可以通过在用户<a href="../../docs/configure/settings.html">设置</a>中设置 <code>"js/ts.reportStyleChecksAsWarnings": false</code> 来禁用此行为。</p>
 
   </div>
 </div>

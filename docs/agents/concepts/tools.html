@@ -451,9 +451,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../../index.html">首页</a> / docs/agents/concepts / tools</div>
 <h1>工具</h1>
 
-<p>工具是让模型能够对开发环境执行操作的机制。没有工具，<a href="../docs/agents/concepts/language-models.md">语言模型</a>只能生成文本。有了工具，<a href="../docs/agents/concepts/agents.md">代理</a>就能读取文件、编写代码、运行终端命令、搜索代码库以及连接外部服务。</p>
+<p>工具是让模型能够对开发环境执行操作的机制。没有工具，<a href="../../../docs/agents/concepts/language-models.html">语言模型</a>只能生成文本。有了工具，<a href="../../../docs/agents/concepts/agents.html">代理</a>就能读取文件、编写代码、运行终端命令、搜索代码库以及连接外部服务。</p>
 
-<p>在<a href="../docs/agents/concepts/agents.md#agent-loop">代理循环</a>过程中，模型会根据任务决定调用哪些工具。每次工具调用产生的输出都会成为下一次迭代中<a href="../docs/agents/concepts/context.md">上下文</a>的一部分。</p>
+<p>在<a href="../../../docs/agents/concepts/agents.html#agent-loop">代理循环</a>过程中，模型会根据任务决定调用哪些工具。每次工具调用产生的输出都会成为下一次迭代中<a href="../../../docs/agents/concepts/context.html">上下文</a>的一部分。</p>
 
 <p>本文介绍了可用的工具类型、代理如何选择和使用工具，以及如何控制启用哪些工具。</p>
 
@@ -475,16 +475,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>为什么要限制可用工具</h2>
 
-<p>代理可以调用的每个工具都会增加模型需要推理的决策空间，而每次工具调用产生的输出都会被添加到<a href="../docs/agents/concepts/language-models.md#context-window">上下文窗口</a>中。将可用工具集缩小到与任务相关的工具有助于：</p>
+<p>代理可以调用的每个工具都会增加模型需要推理的决策空间，而每次工具调用产生的输出都会被添加到<a href="../../../docs/agents/concepts/language-models.html#context-window">上下文窗口</a>中。将可用工具集缩小到与任务相关的工具有助于：</p>
 
 <ul>
 <li><strong>保留上下文</strong>：更少的工具调用意味着中间结果消耗的上下文更少。</li>
-<li><strong>减少信用额度消耗</strong>：不必要的工具调用会增加令牌使用量，并消耗更多的 <a href="../docs/agents/concepts/language-models.md#ai-credits-and-model-costs">AI 信用额度</a>。</li>
+<li><strong>减少信用额度消耗</strong>：不必要的工具调用会增加令牌使用量，并消耗更多的 <a href="../../../docs/agents/concepts/language-models.html#ai-credits-and-model-costs">AI 信用额度</a>。</li>
 <li><strong>获得更相关的结果</strong>：代理专注于最合适的工具，而不是从大量工具中选择。</li>
 <li><strong>提升性能</strong>：较小的工具集减少了模型的决策空间。
 </li>
 </ul>
-<p>工具可用性可以按每次请求限定范围，也可以通过<a href="../docs/agent-customization/prompt-files.md">提示文件</a>和<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>为特定工作流固定工具集。有关配置步骤，请参阅<a href="../docs/chat/chat-tools.md">在聊天中使用工具</a>。</p>
+<p>工具可用性可以按每次请求限定范围，也可以通过<a href="../../../docs/agent-customization/prompt-files.html">提示文件</a>和<a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>为特定工作流固定工具集。有关配置步骤，请参阅<a href="../../../docs/chat/chat-tools.html">在聊天中使用工具</a>。</p>
 
 <h2>工具审批与信任</h2>
 
@@ -493,17 +493,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><strong>审批提示</strong>：具有副作用的工具在运行前会显示确认对话框。你可以批准单次使用、当前会话或所有后续调用。</li>
 <li><strong>URL 审批</strong>：当工具访问 URL 时，一个两步流程会验证请求和响应内容。</li>
-<li><strong>权限级别</strong>：<a href="../docs/agents/approvals.md#permission-levels">权限选择器</a>控制代理拥有多少自主权，从需要手动审批到完全自动运行。
+<li><strong>权限级别</strong>：<a href="../../../docs/agents/approvals.html#permission-levels">权限选择器</a>控制代理拥有多少自主权，从需要手动审批到完全自动运行。
 </li>
 </ul>
-<p>了解更多关于<a href="../docs/agents/concepts/trust-and-safety.md">信任与安全</a>的信息。</p>
+<p>了解更多关于<a href="../../../docs/agents/concepts/trust-and-safety.html">信任与安全</a>的信息。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/chat/chat-tools.md">在聊天中使用工具</a></li>
-<li><a href="../docs/agent-customization/mcp-servers.md">添加和管理 MCP 服务器</a></li>
-<li><a href="../docs/agents/concepts/agents.md">代理</a></li>
+<li><a href="../../../docs/chat/chat-tools.html">在聊天中使用工具</a></li>
+<li><a href="../../../docs/agent-customization/mcp-servers.html">添加和管理 MCP 服务器</a></li>
+<li><a href="../../../docs/agents/concepts/agents.html">代理</a></li>
 </ul>
 
   </div>

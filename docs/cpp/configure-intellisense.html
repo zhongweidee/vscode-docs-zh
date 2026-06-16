@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/cpp / configure-intellisense</div>
 <h1>配置 C/C++ IntelliSense</h1>
 
-<p>本文介绍如何配置 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a> 扩展，以便在 Visual Studio Code 中提供 C++ 专属的 <a href="../docs/editing/intellisense.md">IntelliSense</a> 建议。IntelliSense 是 VS Code 内置的强大工具，提供多种代码编辑功能，帮助您更快速、更高效地编写代码。例如，代码补全、参数信息、语法高亮、代码操作（灯泡图标）和成员列表都是通过 IntelliSense 生成的。</p>
+<p>本文介绍如何配置 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">C/C++</a> 扩展，以便在 Visual Studio Code 中提供 C++ 专属的 <a href="../../docs/editing/intellisense.html">IntelliSense</a> 建议。IntelliSense 是 VS Code 内置的强大工具，提供多种代码编辑功能，帮助您更快速、更高效地编写代码。例如，代码补全、参数信息、语法高亮、代码操作（灯泡图标）和成员列表都是通过 IntelliSense 生成的。</p>
 
 <p>C/C++ IntelliSense 只要求您的系统上安装了 C/C++ 编译器。C/C++ 编译器会向 IntelliSense 提供 C++ 专属信息，例如系统包含路径的位置和其他设置。有关项目级别的配置，请参考<a href="#project-level-intellisense-configuration">项目级别 IntelliSense 配置</a>部分。</p>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>使用 <code>compilerPath</code> 变量来添加一个编译器。此变量是您用于构建项目的编译器的完整路径。例如，在 Linux 上使用 GCC 的默认安装路径时，编译器路径为 <code>/usr/bin/gcc</code>。</p>
 
-<p>有关 <code>c_cpp_properties.json</code> 文件的更多信息，请参阅<a href="../docs/cpp/c-cpp-properties-schema-reference.md">架构参考</a>。</p>
+<p>有关 <code>c_cpp_properties.json</code> 文件的更多信息，请参阅<a href="../../docs/cpp/c-cpp-properties-schema-reference.html">架构参考</a>。</p>
 
 <p>根据您的操作系统选择以下示例，获取 <code>c_cpp_properties.json</code> 文件：</p>
 
@@ -606,13 +606,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><code>c_cpp_properties.json</code> 文件及相关设置</li>
-<li>以另一个 VS Code 扩展形式的自定义配置提供程序（例如，<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools">Makefile Tools</a> 或 <a href="../docs/cpp/cmake-linux.md">CMake Tools</a> 扩展）</li>
+<li>以另一个 VS Code 扩展形式的自定义配置提供程序（例如，<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools">Makefile Tools</a> 或 <a href="../../docs/cpp/cmake-linux.html">CMake Tools</a> 扩展）</li>
 <li><code>compile_commands.json</code> 文件
 <h3>配置提供程序</h3>
 
 </li>
 </ul>
-<p>自定义配置提供程序是 VS Code 中的另一个扩展，它可以潜在地提供比 C/C++ 扩展更准确的 C++ IntelliSense 配置。例如，对于 CMake 或 Make 构建系统，<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools">Makefile Tools</a> 或 <a href="../docs/cpp/cmake-linux.md">CMake Tools</a> 扩展可以作为配置提供程序。要将扩展添加为配置提供程序，可以通过配置快速选择选择扩展，通过在 <strong>Advanced Settings</strong> 下编辑 <strong>Configuration provider</strong> 字段将其添加到配置 UI 中，或者将 <code>configurationProvider</code> 字段添加到您的 <code>c_cpp_properties.json</code> 文件中。例如，对于 CMake 扩展，要添加的路径将是 <code>ms-vscode.cmake-tools</code>。</p>
+<p>自定义配置提供程序是 VS Code 中的另一个扩展，它可以潜在地提供比 C/C++ 扩展更准确的 C++ IntelliSense 配置。例如，对于 CMake 或 Make 构建系统，<a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.makefile-tools">Makefile Tools</a> 或 <a href="../../docs/cpp/cmake-linux.html">CMake Tools</a> 扩展可以作为配置提供程序。要将扩展添加为配置提供程序，可以通过配置快速选择选择扩展，通过在 <strong>Advanced Settings</strong> 下编辑 <strong>Configuration provider</strong> 字段将其添加到配置 UI 中，或者将 <code>configurationProvider</code> 字段添加到您的 <code>c_cpp_properties.json</code> 文件中。例如，对于 CMake 扩展，要添加的路径将是 <code>ms-vscode.cmake-tools</code>。</p>
 
 <p><img src="images/intellisense/advanced-settings.png" alt="C/C++ Advanced Settings Configuration provider"></p>
 
@@ -644,10 +644,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li>有关 IntelliSense 配置的更多信息，请参阅<a href="../docs/cpp/customize-default-settings-cpp.md">自定义默认设置</a>。</li>
+<li>有关 IntelliSense 配置的更多信息，请参阅<a href="../../docs/cpp/customize-default-settings-cpp.html">自定义默认设置</a>。</li>
 <li>如果您在配置设置时遇到问题，请在 <a href="https://github.com/microsoft/vscode-cpptools/discussions">GitHub discussions</a> 发起讨论，或者如果您发现需要修复的问题，请在 <a href="https://github.com/microsoft/vscode-cpptools/issues">GitHub issues</a> 提交问题。</li>
-<li>探索 <a href="../docs/cpp/c-cpp-properties-schema-reference.md">c_cpp_properties 架构</a>。</li>
-<li>查阅 <a href="../docs/languages/cpp.md">C++ 扩展概述</a>。</li>
+<li>探索 <a href="../../docs/cpp/c-cpp-properties-schema-reference.html">c_cpp_properties 架构</a>。</li>
+<li>查阅 <a href="../../docs/languages/cpp.html">C++ 扩展概述</a>。</li>
 </ul>
 
   </div>

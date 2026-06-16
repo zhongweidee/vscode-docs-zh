@@ -466,18 +466,18 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>列表中的每个扩展都包含简要说明、发布者、下载次数和五星评级。你可以选择扩展项以显示扩展详情页面，在那里了解更多信息。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>如果你的计算机通过代理服务器访问互联网，则需要配置代理服务器。有关详细信息，请参阅<a href="../docs/setup/network.md#proxy-server-support">代理服务器支持</a>。</blockquote>
+<blockquote>如果你的计算机通过代理服务器访问互联网，则需要配置代理服务器。有关详细信息，请参阅<a href="../../../docs/setup/network.html#proxy-server-support">代理服务器支持</a>。</blockquote>
 
 <h2>安装扩展</h2>
 
 <p>要安装扩展，请选择<strong>安装</strong>按钮。安装完成后，<strong>安装</strong>按钮将变为<strong>管理</strong>齿轮按钮。</p>
 
 <blockquote>[!IMPORTANT]</blockquote>
-<blockquote>扩展具有与 VS Code 本身相同的权限。从 VS Code 1.97 版本开始，当你首次安装来自第三方发布者的扩展时，VS Code 会显示一个对话框，提示你确认是否信任该扩展发布者。获取有关<a href="../docs/configure/extensions/extension-runtime-security.md">扩展运行时安全性</a>以及如何保护自己免受恶意扩展侵害的更多信息。</blockquote>
+<blockquote>扩展具有与 VS Code 本身相同的权限。从 VS Code 1.97 版本开始，当你首次安装来自第三方发布者的扩展时，VS Code 会显示一个对话框，提示你确认是否信任该扩展发布者。获取有关<a href="../../../docs/configure/extensions/extension-runtime-security.html">扩展运行时安全性</a>以及如何保护自己免受恶意扩展侵害的更多信息。</blockquote>
 
 <p>如果你想安装扩展的特定版本，右键单击扩展并选择<strong>安装其他版本</strong>。然后你可以从可用版本列表中选择一个版本。</p>
 
-<p>当<a href="../docs/configure/settings-sync.md">设置同步</a>启用时，你可以在多台计算机之间共享你的 VS Code 配置（如扩展）。要安装扩展但不在各计算机之间同步，请右键单击扩展并选择<strong>安装（不同步）</strong>。</p>
+<p>当<a href="../../../docs/configure/settings-sync.html">设置同步</a>启用时，你可以在多台计算机之间共享你的 VS Code 配置（如扩展）。要安装扩展但不在各计算机之间同步，请右键单击扩展并选择<strong>安装（不同步）</strong>。</p>
 
 <h3>查找并安装扩展</h3>
 
@@ -525,7 +525,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p><img src="images/extension-marketplace/extension-contributions.png" alt="扩展贡献"></p>
 
-<p>如果扩展是一个扩展包，<strong>扩展包</strong>部分将显示安装该包时将安装哪些扩展。<a href="../api/references/extension-manifest.md#extension-packs">扩展包</a>将多个独立扩展捆绑在一起，以便可以一次性轻松安装。</p>
+<p>如果扩展是一个扩展包，<strong>扩展包</strong>部分将显示安装该包时将安装哪些扩展。<a href="../../../api/references/extension-manifest.html#extension-packs">扩展包</a>将多个独立扩展捆绑在一起，以便可以一次性轻松安装。</p>
 
 <p><img src="images/extension-marketplace/extension-pack.png" alt="Azure Tools 扩展包"></p>
 
@@ -602,7 +602,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 检查扩展更新并自动安装它们。更新后，系统会提示你重新启动扩展宿主（<strong>重启扩展</strong>）。</p>
 
-<p>如果你更愿意手动更新扩展，可以使用<strong>禁用所有扩展的自动更新</strong>命令或扩展视图中相应的操作来禁用自动更新。你也可以配置 <code>setting(extensions.autoUpdate)</code> <a href="../docs/configure/settings.md">设置</a>。使用<strong>启用所有扩展的自动更新</strong>命令重新启用自动更新。</p>
+<p>如果你更愿意手动更新扩展，可以使用<strong>禁用所有扩展的自动更新</strong>命令或扩展视图中相应的操作来禁用自动更新。你也可以配置 <code>setting(extensions.autoUpdate)</code> <a href="../../../docs/configure/settings.html">设置</a>。使用<strong>启用所有扩展的自动更新</strong>命令重新启用自动更新。</p>
 
 <p><img src="images/extension-marketplace/disable-auto-update-all-extensions.png" alt="禁用所有扩展的自动更新操作"></p>
 
@@ -637,11 +637,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>配置扩展</h2>
 
-<p>VS Code 扩展可能具有非常不同的配置和要求。一些扩展向 VS Code 贡献<a href="../docs/configure/settings.md">设置</a>，可以在设置编辑器中进行修改。其他扩展可能有自己的配置文件。扩展还可能需要安装和设置额外的组件，如编译器、调试器和命令行工具。请查阅扩展的 README（在扩展视图详情页面中可见）或前往 <a href="https://marketplace.visualstudio.com/VSCode">VS Code Marketplace</a> 上的扩展页面（在详情页面中单击扩展名称）。许多扩展是开源的，并在其 Marketplace 页面上提供了指向其仓库的链接。</p>
+<p>VS Code 扩展可能具有非常不同的配置和要求。一些扩展向 VS Code 贡献<a href="../../../docs/configure/settings.html">设置</a>，可以在设置编辑器中进行修改。其他扩展可能有自己的配置文件。扩展还可能需要安装和设置额外的组件，如编译器、调试器和命令行工具。请查阅扩展的 README（在扩展视图详情页面中可见）或前往 <a href="https://marketplace.visualstudio.com/VSCode">VS Code Marketplace</a> 上的扩展页面（在详情页面中单击扩展名称）。许多扩展是开源的，并在其 Marketplace 页面上提供了指向其仓库的链接。</p>
 
 <h2>命令行扩展管理</h2>
 
-<p>为了更轻松地自动化和配置 VS Code，你可以从<a href="../docs/configure/command-line.md">命令行</a>列出、安装和卸载扩展。在标识扩展时，请提供 <code>publisher.extension</code> 形式的完整名称，例如 <code>ms-python.python</code>。</p>
+<p>为了更轻松地自动化和配置 VS Code，你可以从<a href="../../../docs/configure/command-line.html">命令行</a>列出、安装和卸载扩展。在标识扩展时，请提供 <code>publisher.extension</code> 形式的完整名称，例如 <code>ms-python.python</code>。</p>
 
 <p>示例：</p>
 
@@ -738,7 +738,7 @@ code --enable-proposed-api (&lt;extension-id&gt;)
 <blockquote>[!NOTE]</blockquote>
 <blockquote>当你通过 VSIX 安装扩展时，该扩展的<a href="#扩展自动更新">自动更新</a>默认处于禁用状态。</blockquote>
 
-<p>如果你想了解更多关于打包和发布扩展的信息，请参阅扩展 API 中的<a href="../api/working-with-extensions/publishing-extension.md">发布扩展</a>文章。</p>
+<p>如果你想了解更多关于打包和发布扩展的信息，请参阅扩展 API 中的<a href="../../../api/working-with-extensions/publishing-extension.html">发布扩展</a>文章。</p>
 
 <h2>工作区推荐的扩展</h2>
 
@@ -746,7 +746,7 @@ code --enable-proposed-api (&lt;extension-id&gt;)
 
 <p>在单文件夹工作区中，该命令会在工作区的 <code>.vscode</code> 文件夹中创建一个 <code>extensions.json</code> 文件，你可以在其中添加扩展标识符列表（{publisherName}.{extensionName}）。</p>
 
-<p>在<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>中，该命令将打开你的 <code>.code-workspace</code> 文件，你可以在 <code>extensions.recommendations</code> 下列出扩展。你仍然可以使用<strong>扩展：配置推荐的扩展（工作区文件夹）</strong>命令向多根工作区中的各个文件夹添加扩展推荐。</p>
+<p>在<a href="../../../docs/editing/workspaces/multi-root-workspaces.html">多根工作区</a>中，该命令将打开你的 <code>.code-workspace</code> 文件，你可以在 <code>extensions.recommendations</code> 下列出扩展。你仍然可以使用<strong>扩展：配置推荐的扩展（工作区文件夹）</strong>命令向多根工作区中的各个文件夹添加扩展推荐。</p>
 
 <p>一个 <code>extensions.json</code> 示例如下：</p>
 
@@ -772,9 +772,9 @@ code --enable-proposed-api (&lt;extension-id&gt;)
 <p>以下是你可能感兴趣的一些主题……</p>
 
 <ul>
-<li><a href="../api">扩展 API</a> - 开始学习 VS Code 扩展 API。</li>
-<li><a href="../api/get-started/your-first-extension.md">你的第一个扩展</a> - 尝试创建一个简单的 Hello World 扩展。</li>
-<li><a href="../api/working-with-extensions/publishing-extension.md">发布到市场</a> - 将你自己的扩展发布到 VS Code Marketplace。
+<li><a href="../../../api">扩展 API</a> - 开始学习 VS Code 扩展 API。</li>
+<li><a href="../../../api/get-started/your-first-extension.html">你的第一个扩展</a> - 尝试创建一个简单的 Hello World 扩展。</li>
+<li><a href="../../../api/working-with-extensions/publishing-extension.html">发布到市场</a> - 将你自己的扩展发布到 VS Code Marketplace。
 <h2>常见问题</h2>
 
 <h3>扩展安装在哪里？</h3>
@@ -789,13 +789,13 @@ code --enable-proposed-api (&lt;extension-id&gt;)
 <li><strong>Linux</strong> <code>~/.vscode/extensions</code>
 </li>
 </ul>
-<p>你可以通过使用 <code>--extensions-dir <dir></code> 命令行<a href="../docs/configure/command-line.md">选项</a>启动 VS Code 来更改此位置。</p>
+<p>你可以通过使用 <code>--extensions-dir <dir></code> 命令行<a href="../../../docs/configure/command-line.html">选项</a>启动 VS Code 来更改此位置。</p>
 
 <p>或者，你可以将 <code>VSCODE_EXTENSIONS</code> 环境变量设置为你想要安装扩展的位置。这在企业环境中非常有用，因为你希望集中管理用户计算机上安装扩展的位置。</p>
 
 <h3>每当我尝试安装任何扩展时，都会收到 connect ETIMEDOUT 错误</h3>
 
-<p>如果你的计算机通过代理服务器访问互联网，你可能会看到此错误。有关详细信息，请参阅设置主题中的<a href="../docs/setup/network.md#proxy-server-support">代理服务器支持</a>部分。</p>
+<p>如果你的计算机通过代理服务器访问互联网，你可能会看到此错误。有关详细信息，请参阅设置主题中的<a href="../../../docs/setup/network.html#proxy-server-support">代理服务器支持</a>部分。</p>
 
 <h3>我可以直接从市场下载扩展吗？</h3>
 
@@ -820,11 +820,11 @@ code --enable-proposed-api (&lt;extension-id&gt;)
 
 <p>从 VS Code 1.97 版本开始，当你首次安装来自第三方发布者的扩展时，VS Code 会显示一个对话框，提示你确认是否信任该扩展发布者。</p>
 
-<p>获取有关<a href="../docs/configure/extensions/extension-runtime-security.md">扩展运行时安全性</a>的更多信息。</p>
+<p>获取有关<a href="../../../docs/configure/extensions/extension-runtime-security.html">扩展运行时安全性</a>的更多信息。</p>
 
 <h3>我可以为我的组织内部托管扩展吗？</h3>
 
-<p>可以，请参阅<a href="../docs/enterprise/extensions.md#host-a-private-extension-marketplace">扩展的私有市场</a>。</p>
+<p>可以，请参阅<a href="../../../docs/enterprise/extensions.html#host-a-private-extension-marketplace">扩展的私有市场</a>。</p>
 
 <h3>VS Code 无法验证扩展签名</h3>
 
@@ -855,15 +855,15 @@ NotSigned</code></pre>
 
 <h3>连接到远程窗口时我的扩展无法同步</h3>
 
-<p><a href="../docs/configure/settings-sync.md">设置同步</a>允许你在多台计算机之间共享你的 Visual Studio Code 配置，如设置、键盘快捷键和已安装的扩展，这样你始终可以使用你喜欢的设置进行工作。</p>
+<p><a href="../../../docs/configure/settings-sync.html">设置同步</a>允许你在多台计算机之间共享你的 Visual Studio Code 配置，如设置、键盘快捷键和已安装的扩展，这样你始终可以使用你喜欢的设置进行工作。</p>
 
-<p>当你连接到<a href="../docs/remote/remote-overview.md">远程</a>窗口（例如连接到 SSH、开发容器（devcontainer）或 WSL）时，VS Code 不会将你的扩展同步到远程窗口或从远程窗口同步扩展。</p>
+<p>当你连接到<a href="../../../docs/remote/remote-overview.html">远程</a>窗口（例如连接到 SSH、开发容器（devcontainer）或 WSL）时，VS Code 不会将你的扩展同步到远程窗口或从远程窗口同步扩展。</p>
 
 <h3>我可以允许或阻止组织中的特定扩展吗？</h3>
 
 <p>你可以通过配置 <code>extensions.allowed</code> 应用程序设置来控制可以在组织中安装哪些扩展。如果未配置该设置，则允许所有扩展。如果配置了该设置，则未列出的所有扩展都将被阻止安装。</p>
 
-<p>获取有关<a href="../docs/enterprise/extensions.md#configure-allowed-extensions">配置允许的扩展</a>的更多详细信息。</p>
+<p>获取有关<a href="../../../docs/enterprise/extensions.html#configure-allowed-extensions">配置允许的扩展</a>的更多详细信息。</p>
 
   </div>
 </div>

@@ -469,7 +469,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>从市场安装代码片段</h2>
 
-<p><a href="https://marketplace.visualstudio.com/vscode">VS Code 市场</a>上的许多<a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>都包含代码片段。您可以使用 <code>@category:"snippets"</code> 过滤器在扩展视图（<code>kb(workbench.view.extensions)</code>）中搜索包含代码片段的扩展。</p>
+<p><a href="https://marketplace.visualstudio.com/vscode">VS Code 市场</a>上的许多<a href="../../docs/configure/extensions/extension-marketplace.html">扩展</a>都包含代码片段。您可以使用 <code>@category:"snippets"</code> 过滤器在扩展视图（<code>kb(workbench.view.extensions)</code>）中搜索包含代码片段的扩展。</p>
 
 <p><img src="images/userdefinedsnippets/category-snippets.png" alt="Searching for extensions with snippets"></p>
 
@@ -477,7 +477,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>创建您自己的代码片段</h2>
 
-<p>您可以轻松地定义自己的代码片段，而无需使用任何扩展。要创建或编辑自己的代码片段，请在<strong>文件</strong> > <strong>首选项</strong>下选择<strong>配置代码片段</strong>，然后选择代码片段应该出现的语言（按<a href="../docs/languages/identifiers.md">语言标识符</a>），或者选择<strong>新建全局代码片段文件</strong>选项，使代码片段适用于所有语言。VS Code 会为您管理底层代码片段文件的创建和刷新。</p>
+<p>您可以轻松地定义自己的代码片段，而无需使用任何扩展。要创建或编辑自己的代码片段，请在<strong>文件</strong> > <strong>首选项</strong>下选择<strong>配置代码片段</strong>，然后选择代码片段应该出现的语言（按<a href="../../docs/languages/identifiers.html">语言标识符</a>），或者选择<strong>新建全局代码片段文件</strong>选项，使代码片段适用于所有语言。VS Code 会为您管理底层代码片段文件的创建和刷新。</p>
 
 <p><img src="images/userdefinedsnippets/snippet-dropdown.png" alt="snippet dropdown"></p>
 
@@ -536,7 +536,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>单语言用户定义代码片段定义在特定语言的代码片段文件中（例如 <code>javascript.json</code>），您可以通过<strong>代码片段：配置代码片段</strong>按语言标识符访问它。该代码片段仅在编辑其所定义的语言时可用。</p>
 
-<p>多语言和全局用户定义代码片段都定义在"全局"代码片段文件中（文件后缀为 <code>.code-snippets</code> 的 JSON 文件），同样可以通过<strong>代码片段：配置代码片段</strong>访问。在全局代码片段文件中，代码片段定义可以有一个额外的 <code>scope</code> 属性，该属性接受一个或多个<a href="../docs/languages/identifiers.md">语言标识符</a>，使代码片段仅对这些指定的语言可用。如果未提供 <code>scope</code> 属性，则全局代码片段适用于<strong>所有</strong>语言。</p>
+<p>多语言和全局用户定义代码片段都定义在"全局"代码片段文件中（文件后缀为 <code>.code-snippets</code> 的 JSON 文件），同样可以通过<strong>代码片段：配置代码片段</strong>访问。在全局代码片段文件中，代码片段定义可以有一个额外的 <code>scope</code> 属性，该属性接受一个或多个<a href="../../docs/languages/identifiers.html">语言标识符</a>，使代码片段仅对这些指定的语言可用。如果未提供 <code>scope</code> 属性，则全局代码片段适用于<strong>所有</strong>语言。</p>
 
 <p>大多数用户定义的代码片段的作用域限定为单一语言，因此定义在特定语言的代码片段文件中。</p>
 
@@ -776,11 +776,11 @@ else        ::= text</code></pre>
 
 <h2>使用 TextMate 代码片段</h2>
 
-<p>您还可以在 VS Code 中使用现有的 TextMate 代码片段（.tmSnippets）。请参阅我们扩展 API 部分的<a href="../api/language-extensions/snippet-guide.md#using-textmate-snippets">使用 TextMate 代码片段</a>主题以了解更多信息。</p>
+<p>您还可以在 VS Code 中使用现有的 TextMate 代码片段（.tmSnippets）。请参阅我们扩展 API 部分的<a href="../../api/language-extensions/snippet-guide.html#using-textmate-snippets">使用 TextMate 代码片段</a>主题以了解更多信息。</p>
 
 <h2>为代码片段分配键盘快捷键</h2>
 
-<p>您可以创建自定义<a href="../docs/configure/keybindings.md">键盘快捷键</a>来插入特定的代码片段。打开 <code>keybindings.json</code>（<strong>首选项：打开键盘快捷方式文件</strong>），它定义了您的所有键盘快捷键，并添加一个键盘快捷键，将 <code>"snippet"</code> 作为额外参数传递：</p>
+<p>您可以创建自定义<a href="../../docs/configure/keybindings.html">键盘快捷键</a>来插入特定的代码片段。打开 <code>keybindings.json</code>（<strong>首选项：打开键盘快捷方式文件</strong>），它定义了您的所有键盘快捷键，并添加一个键盘快捷键，将 <code>"snippet"</code> 作为额外参数传递：</p>
 
 <pre><code class="language-json">{
   "key": "cmd+k 1",
@@ -791,7 +791,7 @@ else        ::= text</code></pre>
   }
 }</code></pre>
 
-<p>该键盘快捷键将调用<strong>插入代码片段</strong>命令，但不会提示您选择代码片段，而是直接插入提供的代码片段。您可以按照通常的方式定义自定义<a href="../docs/configure/keybindings.md">键绑定</a>，包括键盘快捷键、命令 ID 以及可选的<a href="../docs/configure/keybindings.md#when-clause-contexts">条件子句上下文</a>，用于指定键盘快捷键何时启用。</p>
+<p>该键盘快捷键将调用<strong>插入代码片段</strong>命令，但不会提示您选择代码片段，而是直接插入提供的代码片段。您可以按照通常的方式定义自定义<a href="../../docs/configure/keybindings.html">键绑定</a>，包括键盘快捷键、命令 ID 以及可选的<a href="../../docs/configure/keybindings.html#when-clause-contexts">条件子句上下文</a>，用于指定键盘快捷键何时启用。</p>
 
 <p>此外，除了使用 <code>snippet</code> 参数值来内联定义代码片段外，您还可以通过使用 <code>langId</code> 和 <code>name</code> 参数来引用现有代码片段。<code>langId</code> 参数选择由 <code>name</code> 指定的代码片段所对应的语言，例如下面的示例选择了适用于 <code>csharp</code> 文件的 <code>myFavSnippet</code>。</p>
 
@@ -808,16 +808,16 @@ else        ::= text</code></pre>
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/configure/command-line.md">命令行</a> - VS Code 具有丰富的命令行界面，用于打开或比较文件以及安装扩展。</li>
-<li><a href="../api">扩展 API</a> - 了解扩展 VS Code 的其他方式。</li>
-<li><a href="../api/language-extensions/snippet-guide.md">代码片段指南</a> - 您可以打包代码片段以在 VS Code 中使用。
+<li><a href="../../docs/configure/command-line.html">命令行</a> - VS Code 具有丰富的命令行界面，用于打开或比较文件以及安装扩展。</li>
+<li><a href="../../api">扩展 API</a> - 了解扩展 VS Code 的其他方式。</li>
+<li><a href="../../api/language-extensions/snippet-guide.html">代码片段指南</a> - 您可以打包代码片段以在 VS Code 中使用。
 <h2>常见问题</h2>
 
 <h3>如果我想使用 .tmSnippet 文件中的现有 TextMate 代码片段怎么办？</h3>
 
 </li>
 </ul>
-<p>您可以轻松地打包 TextMate 代码片段文件以在 VS Code 中使用。请参阅我们扩展 API 文档中的<a href="../api/language-extensions/snippet-guide.md#using-textmate-snippets">使用 TextMate 代码片段</a>。</p>
+<p>您可以轻松地打包 TextMate 代码片段文件以在 VS Code 中使用。请参阅我们扩展 API 文档中的<a href="../../api/language-extensions/snippet-guide.html#using-textmate-snippets">使用 TextMate 代码片段</a>。</p>
 
 <h3>如何在粘贴的脚本中让代码片段放置一个变量？</h3>
 

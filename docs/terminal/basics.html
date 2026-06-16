@@ -451,10 +451,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/terminal / basics</div>
 <h1>终端基础</h1>
 
-<p>Visual Studio Code 包含一个功能齐全的集成终端，该终端从工作区的根目录启动。它与编辑器集成，支持诸如<a href="#links">链接</a>和<a href="../docs/debugtest/tasks.md">错误检测</a>等功能。集成终端可以像独立终端一样运行 <code>mkdir</code> 和 <code>git</code> 等命令。</p>
+<p>Visual Studio Code 包含一个功能齐全的集成终端，该终端从工作区的根目录启动。它与编辑器集成，支持诸如<a href="#links">链接</a>和<a href="../../docs/debugtest/tasks.html">错误检测</a>等功能。集成终端可以像独立终端一样运行 <code>mkdir</code> 和 <code>git</code> 等命令。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>当工作区处于<a href="../docs/editing/workspaces/workspace-trust.md#terminal">受限模式</a>时，打开终端会被阻止，以防止 shell 根据工作区内容自动执行代码。</blockquote>
+<blockquote>当工作区处于<a href="../../docs/editing/workspaces/workspace-trust.html#terminal">受限模式</a>时，打开终端会被阻止，以防止 shell 根据工作区内容自动执行代码。</blockquote>
 
 <p>您可以通过以下方式打开终端：</p>
 
@@ -479,7 +479,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/basics/select-profile-dropdown.png" alt="检测到的配置文件可以在新终端按钮旁边的下拉菜单中选择。Windows 上的示例包括 PowerShell、命令提示符、Git Bash 和 WSL"></p>
 
-<p>您可以在<a href="../docs/terminal/profiles.md">终端配置文件</a>文章中了解更多关于配置终端 shell 的信息。</p>
+<p>您可以在<a href="../../docs/terminal/profiles.html">终端配置文件</a>文章中了解更多关于配置终端 shell 的信息。</p>
 
 <h2>管理终端</h2>
 
@@ -505,7 +505,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>kbstyle(Alt)</code> 并单击选项卡、<strong>+</strong> 按钮或终端面板上的单个选项卡。</li>
 <li>触发 <code>kb(workbench.action.terminal.split)</code> 命令。
 <blockquote>[!TIP]</blockquote>
-<blockquote>新终端的工作目录取决于 <code>setting(terminal.integrated.splitCwd)</code> <a href="../docs/configure/settings.md">设置</a>。</blockquote>
+<blockquote>新终端的工作目录取决于 <code>setting(terminal.integrated.splitCwd)</code> <a href="../../docs/configure/settings.html">设置</a>。</blockquote>
 
 </li>
 </ul>
@@ -539,7 +539,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>终端中的内容称为缓冲区，底部视口上方的部分称为"回滚区域"。保留的回滚量由 <code>setting(terminal.integrated.scrollback)</code> <a href="../docs/configure/settings.md">设置</a>决定，默认值为 <code>1000</code> 行。</p>
+<p>终端中的内容称为缓冲区，底部视口上方的部分称为"回滚区域"。保留的回滚量由 <code>setting(terminal.integrated.scrollback)</code> <a href="../../docs/configure/settings.html">设置</a>决定，默认值为 <code>1000</code> 行。</p>
 
 <p>有多个可用于在终端缓冲区中导航的命令：</p>
 
@@ -552,7 +552,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>滚动到底部 - <code>kb(workbench.action.terminal.scrollToBottom)</code>
 </li>
 </ul>
-<p><strong>命令</strong>导航也可用（参见 <a href="../docs/terminal/shell-integration.md">shell 集成</a>）：</p>
+<p><strong>命令</strong>导航也可用（参见 <a href="../../docs/terminal/shell-integration.html">shell 集成</a>）：</p>
 
 <ul>
 <li>滚动到上一个命令 - <code>kb(workbench.action.terminal.scrollToPreviousCommand)</code></li>
@@ -596,7 +596,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><img src="images/basics/link-open-detected.png" alt="打开检测到的链接会打开一个快速选择器，显示视口中所有按类别分组的链接"></p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>如果链接验证导致性能问题，例如在高延迟远程环境中，请通过 <code>setting(terminal.integrated.enableFileLinks)</code> <a href="../docs/configure/settings.md">设置</a>禁用它。</blockquote>
+<blockquote>如果链接验证导致性能问题，例如在高延迟远程环境中，请通过 <code>setting(terminal.integrated.enableFileLinks)</code> <a href="../../docs/configure/settings.html">设置</a>禁用它。</blockquote>
 
 <h3>扩展处理链接</h3>
 
@@ -669,7 +669,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><img src="images/basics/terminal-find.png" alt="在终端中查找将高亮显示所有匹配查询的文本"></p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>可以通过从<a href="../docs/terminal/advanced.md#keyboard-shortcuts-and-the-shell">跳过 shell 的命令</a>中删除 <code>workbench.action.terminal.focusFind</code> 命令，将 <code>kbstyle(Ctrl+F)</code> 发送给 shell。</blockquote>
+<blockquote>可以通过从<a href="../../docs/terminal/advanced.html#keyboard-shortcuts-and-the-shell">跳过 shell 的命令</a>中删除 <code>workbench.action.terminal.focusFind</code> 命令，将 <code>kbstyle(Ctrl+F)</code> 发送给 shell。</blockquote>
 
 <h2>运行选中的文本</h2>
 
@@ -682,7 +682,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>可以通过单击带有向上箭头图标的最大化面板大小按钮来最大化终端视图。这将暂时隐藏编辑器并最大化面板。这对于临时关注大量输出非常有用。一些开发人员通过打开新窗口、最大化面板并隐藏侧边栏来将 VS Code 用作独立终端。</p>
 
-<p>请注意，面板只有在<a href="../docs/configure/custom-layout.md#panel-alignment">对齐方式</a>选项设置为<strong>居中</strong>时才能被最大化。</p>
+<p>请注意，面板只有在<a href="../../docs/configure/custom-layout.html#panel-alignment">对齐方式</a>选项设置为<strong>居中</strong>时才能被最大化。</p>
 
 <h2>全选</h2>
 
@@ -700,7 +700,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用任务自动化终端</h2>
 
-<p><a href="../docs/debugtest/tasks.md">任务</a>功能可用于自动化终端的启动，例如，以下 <code>.vscode/tasks.json</code> 文件将在窗口启动时在单个终端组中启动一个命令提示符和 PowerShell 终端：</p>
+<p><a href="../../docs/debugtest/tasks.html">任务</a>功能可用于自动化终端的启动，例如，以下 <code>.vscode/tasks.json</code> 文件将在窗口启动时在单个终端组中启动一个命令提示符和 PowerShell 终端：</p>
 
 <pre><code class="language-jsonc">{
   "version": "2.0.0",
@@ -794,7 +794,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>GitHub Copilot 在终端中的应用</h2>
 
-<p>如果您有 <a href="../docs/setup/copilot.md">GitHub Copilot</a> 的访问权限，您可以使用它来获得 AI 驱动的终端命令和 shell 脚本帮助。有几种在终端中使用 Copilot 的方式：</p>
+<p>如果您有 <a href="../../docs/setup/copilot.html">GitHub Copilot</a> 的访问权限，您可以使用它来获得 AI 驱动的终端命令和 shell 脚本帮助。有几种在终端中使用 Copilot 的方式：</p>
 
 <h3>终端内联聊天</h3>
 
@@ -815,7 +815,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当 Copilot 提供回复时，您可以选择<strong>运行</strong>直接执行命令，或选择<strong>插入</strong>将其添加到终端中以供进一步编辑。</p>
 
-<p>有关在终端中使用 GitHub Copilot 的更多信息，请参阅<a href="../docs/chat/inline-chat.md#use-terminal-inline-chat">使用终端内联聊天</a>。</p>
+<p>有关在终端中使用 GitHub Copilot 的更多信息，请参阅<a href="../../docs/chat/inline-chat.html#use-terminal-inline-chat">使用终端内联聊天</a>。</p>
 
 <h3>终端聊天参与者</h3>
 
@@ -849,8 +849,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>本文档已涵盖终端的基础知识。请继续阅读以下内容了解更多：</p>
 
 <ul>
-<li><a href="../docs/chat/inline-chat.md#use-terminal-inline-chat">终端内联聊天</a> - 在终端中直接获得 AI 驱动的建议。</li>
-<li><a href="../docs/debugtest/tasks.md">任务</a> - 任务使您能够与外部工具集成并大量利用终端。</li>
+<li><a href="../../docs/chat/inline-chat.html#use-terminal-inline-chat">终端内联聊天</a> - 在终端中直接获得 AI 驱动的建议。</li>
+<li><a href="../../docs/debugtest/tasks.html">任务</a> - 任务使您能够与外部工具集成并大量利用终端。</li>
 <li><a href="https://www.growingwiththeweb.com/2017/03/mastering-vscodes-terminal.html">精通 VS Code 的终端</a> - 一个包含大量终端高级用户技巧的外部博客。</li>
 <li>通过在 VS Code 中浏览键盘快捷键来探索终端命令（<strong>首选项：打开键盘快捷方式</strong>然后搜索 "terminal"）。
 <h2>常见问题</h2>
@@ -859,13 +859,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>针对此类问题有一份<a href="../docs/supporting/troubleshoot-terminal-launch.md">专门的故障排除指南</a>。</p>
+<p>针对此类问题有一份<a href="../../docs/supporting/troubleshoot-terminal-launch.html">专门的故障排除指南</a>。</p>
 
 <h3>如何创建管理员终端？</h3>
 
 <p>集成终端 shell 使用 VS Code 的权限运行。如果您需要以提升的（管理员）或不同的权限运行 shell 命令，请在终端内使用 <code>runas.exe</code> 等平台实用工具。</p>
 
-<p>您可以在<a href="../docs/terminal/profiles.md#configuring-profiles">配置配置文件</a>中了解更多关于通过终端配置文件自定义终端的信息。</p>
+<p>您可以在<a href="../../docs/terminal/profiles.html#configuring-profiles">配置配置文件</a>中了解更多关于通过终端配置文件自定义终端的信息。</p>
 
 <h3>我能为资源管理器的"在集成终端中打开"命令添加快捷键吗？</h3>
 
@@ -939,7 +939,7 @@ EOF</code></pre>
     "terminal.integrated.gpuAcceleration": "off"
 }</code></pre>
 
-<p>有关更多信息，请参阅 <a href="../docs/terminal/appearance.md#gpu-acceleration">GPU 加速</a>部分。</p>
+<p>有关更多信息，请参阅 <a href="../../docs/terminal/appearance.html#gpu-acceleration">GPU 加速</a>部分。</p>
 
 <h3>粘贴时我看到 <code>1~</code> 或 <code>[201~</code></h3>
 
@@ -966,7 +966,7 @@ EOF</code></pre>
 
 </li>
 </ul>
-<p>macOS 默认终端使用 <code>kbstyle(Cmd+.)</code> 执行与 <code>kbstyle(Ctrl+C)</code> 相同的操作。要在 VS Code 中获得此行为，请添加此<a href="../docs/configure/keybindings.md">自定义键盘快捷键</a>：</p>
+<p>macOS 默认终端使用 <code>kbstyle(Cmd+.)</code> 执行与 <code>kbstyle(Ctrl+C)</code> 相同的操作。要在 VS Code 中获得此行为，请添加此<a href="../../docs/configure/keybindings.html">自定义键盘快捷键</a>：</p>
 
 <pre><code class="language-json">{
   "key": "cmd+.",
@@ -981,7 +981,7 @@ EOF</code></pre>
 
 <pre><code class="language-json">"terminal.integrated.minimumContrastRatio": 1</code></pre>
 
-<p>有关更多信息，请参阅<a href="../docs/terminal/appearance.md#minimum-contrast-ratio">最小对比度</a>部分。</p>
+<p>有关更多信息，请参阅<a href="../../docs/terminal/appearance.html#minimum-contrast-ratio">最小对比度</a>部分。</p>
 
   </div>
 </div>

@@ -465,7 +465,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>代理调试日志面板是了解发送提示时发生了什么的主要工具。它显示聊天会话期间代理交互的按时间顺序排列的事件日志，这在调试<a href="../docs/agents/agent-types/local-agents.md">自定义代理</a>和编排的子代理工作流时特别有用。</p>
+<p>代理调试日志面板是了解发送提示时发生了什么的主要工具。它显示聊天会话期间代理交互的按时间顺序排列的事件日志，这在调试<a href="../../../docs/agents/agent-types/local-agents.html">自定义代理</a>和编排的子代理工作流时特别有用。</p>
 
 <p>要打开代理调试日志面板：</p>
 
@@ -646,7 +646,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td><strong>工具响应</strong></td><td>请求期间调用的工具的输入和输出。</td><td>验证工具收到了正确的输入并返回了预期的输出。对于调试 MCP 服务器非常有用。</td><td></td></tr>
 </tbody>
 </table>
-<p>你可以展开每个部分以查看完整详细信息。这在<a href="../docs/agents/agent-types/local-agents.md">使用代理</a>时特别有用，因为单个请求中可能会调用多个工具。</p>
+<p>你可以展开每个部分以查看完整详细信息。这在<a href="../../../docs/agents/agent-types/local-agents.html">使用代理</a>时特别有用，因为单个请求中可能会调用多个工具。</p>
 
 <h2>常见故障排除场景</h2>
 
@@ -656,8 +656,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ol>
 <li>打开代理日志并检查<strong>发现</strong>事件以验证工作区文件是否已被索引。</li>
-<li>打开聊天调试视图并检查<strong>上下文</strong>部分，以验证工作区文件是否出现在上下文中。如果没有，请检查<a href="../docs/agents/reference/workspace-context.md">工作区索引</a>是否处于活动状态。</li>
-<li>尝试添加显式的 <code>#</code>-提及（例如 <code>#file</code> 或 <code>#codebase</code>）以确保包含正确的文件。了解更多关于<a href="../docs/chat/copilot-chat-context.md">管理上下文</a>的信息。
+<li>打开聊天调试视图并检查<strong>上下文</strong>部分，以验证工作区文件是否出现在上下文中。如果没有，请检查<a href="../../../docs/agents/reference/workspace-context.html">工作区索引</a>是否处于活动状态。</li>
+<li>尝试添加显式的 <code>#</code>-提及（例如 <code>#file</code> 或 <code>#codebase</code>）以确保包含正确的文件。了解更多关于<a href="../../../docs/chat/copilot-chat-context.html">管理上下文</a>的信息。
 <h3>MCP 工具未被调用</h3>
 
 </li>
@@ -677,7 +677,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ol>
 <li>检查代理日志中的 <strong>LLM 请求</strong>事件以查看令牌使用情况。</li>
-<li>上下文窗口已满可能导致模型截断其响应。启动<a href="../docs/chat/chat-sessions.md">新的聊天会话</a>以重置上下文。
+<li>上下文窗口已满可能导致模型截断其响应。启动<a href="../../../docs/chat/chat-sessions.html">新的聊天会话</a>以重置上下文。
 <h3>提示文件未生效</h3>
 
 </li>
@@ -687,14 +687,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>打开代理日志并检查<strong>发现</strong>事件，以查看文件是否已加载、被跳过或验证失败。</li>
 <li>验证文件位置和 <code>applyTo</code> 模式是否与当前上下文匹配。</li>
-<li>检查<a href="../docs/agents/agent-troubleshooting/troubleshooting.md#调试聊天交互">聊天自定义诊断</a>以获取错误详细信息。
+<li>检查<a href="../../../docs/agents/agent-troubleshooting/troubleshooting.html#调试聊天交互">聊天自定义诊断</a>以获取错误详细信息。
 <h2>相关资源</h2>
 
 </li>
-<li><a href="../docs/chat/chat-overview.md">聊天概览</a></li>
-<li><a href="../docs/chat/copilot-chat-context.md">管理 AI 上下文</a></li>
-<li><a href="../docs/agents/agent-troubleshooting/troubleshooting.md">在 VS Code 中排除 AI 故障</a></li>
-<li><a href="../docs/agents/security.md">在 VS Code 中使用 AI 的安全注意事项</a></li>
+<li><a href="../../../docs/chat/chat-overview.html">聊天概览</a></li>
+<li><a href="../../../docs/chat/copilot-chat-context.html">管理 AI 上下文</a></li>
+<li><a href="../../../docs/agents/agent-troubleshooting/troubleshooting.html">在 VS Code 中排除 AI 故障</a></li>
+<li><a href="../../../docs/agents/security.html">在 VS Code 中使用 AI 的安全注意事项</a></li>
 </ol>
 
   </div>

@@ -463,12 +463,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>你可以将容器作为你的全职开发环境</li>
-<li>你可以<a href="../docs/devcontainers/attach-container.md">附加到运行中的容器</a>来检查它。
-<blockquote><strong>注意</strong>：Dev Containers 扩展支持开放的 Dev Containers 规范，这使得任何人都可以在任何工具中配置一致的开发环境。你可以在我们的<a href="../docs/devcontainers/faq.md#can-i-use-dev-containers-outside-of-vs-code">开发容器 FAQ</a> 和规范网站 <a href="https://containers.dev/">containers.dev</a> 中了解更多信息。</blockquote>
+<li>你可以<a href="../../docs/devcontainers/attach-container.html">附加到运行中的容器</a>来检查它。
+<blockquote><strong>注意</strong>：Dev Containers 扩展支持开放的 Dev Containers 规范，这使得任何人都可以在任何工具中配置一致的开发环境。你可以在我们的<a href="../../docs/devcontainers/faq.html#can-i-use-dev-containers-outside-of-vs-code">开发容器 FAQ</a> 和规范网站 <a href="https://containers.dev/">containers.dev</a> 中了解更多信息。</blockquote>
 
 <h2>入门指南</h2>
 
-<blockquote><strong>注意</strong>：你可以在入门<a href="../docs/devcontainers/tutorial.md">Dev Containers 教程</a>中学习如何快速上手使用开发容器。</blockquote>
+<blockquote><strong>注意</strong>：你可以在入门<a href="../../docs/devcontainers/tutorial.html">Dev Containers 教程</a>中学习如何快速上手使用开发容器。</blockquote>
 
 <h3>系统要求</h3>
 
@@ -482,12 +482,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在本地安装 Docker。</li>
 <li>在远程环境中安装 Docker。</li>
 <li>其他兼容 Docker 的 CLI，可在本地或远程安装。<ul>
-<li>虽然其他 CLI 可能也能工作，但它们并未得到官方支持。请注意，<a href="../docs/devcontainers/attach-container.md#attach-to-a-container-in-a-kubernetes-cluster">附加到 Kubernetes 集群</a>只需要一个正确配置的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl CLI</a>。
+<li>虽然其他 CLI 可能也能工作，但它们并未得到官方支持。请注意，<a href="../../docs/devcontainers/attach-container.html#attach-to-a-container-in-a-kubernetes-cluster">附加到 Kubernetes 集群</a>只需要一个正确配置的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl CLI</a>。
 </li>
 </ul>
 </li>
 </ul>
-<p>你可以在<a href="../remote/advancedcontainers/docker-options.md">替代 Docker 选项文档</a>中了解更多信息。</p>
+<p>你可以在<a href="../../remote/advancedcontainers/docker-options.html">替代 Docker 选项文档</a>中了解更多信息。</p>
 
 <p>以下是在本地或远程主机上配置 Docker 的一些具体方法：</p>
 
@@ -505,14 +505,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>x86_64 Alpine Linux 3.9+
 </li>
 </ul>
-<p>其他基于 <code>glibc</code> 的 Linux 容器如果具有<a href="../docs/remote/linux.md">所需的 Linux 先决条件</a>，也可能可以工作。</p>
+<p>其他基于 <code>glibc</code> 的 Linux 容器如果具有<a href="../../docs/remote/linux.html">所需的 Linux 先决条件</a>，也可能可以工作。</p>
 
 <h3>安装</h3>
 
 <p>要开始使用，请按照以下步骤操作：</p>
 
 <ol>
-<li>为你的操作系统安装和配置 <a href="https://www.docker.com/get-started">Docker</a>，使用以下途径之一或<a href="../remote/advancedcontainers/docker-options.md">替代 Docker 选项</a>，例如远程主机上的 Docker 或兼容 Docker 的 CLI。
+<li>为你的操作系统安装和配置 <a href="https://www.docker.com/get-started">Docker</a>，使用以下途径之一或<a href="../../remote/advancedcontainers/docker-options.html">替代 Docker 选项</a>，例如远程主机上的 Docker 或兼容 Docker 的 CLI。
 </li>
 </ol>
 <p>    <strong>Windows / macOS：</strong></p>
@@ -522,7 +522,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>如果你在 Windows 上使用 WSL 2，为确保启用 <a href="https://aka.ms/vscode-remote/containers/docker-wsl2">WSL 2 后端</a>：右键单击 Docker 任务栏项并选择<strong>设置</strong>。选中 <strong>Use the WSL 2 based engine</strong> 并在 <strong>Resources > WSL Integration</strong> 下验证你的发行版已启用。
 <ol>
-<li>当不使用 WSL 2 后端时，右键单击 Docker 任务栏项，选择<strong>设置</strong>并更新 <strong>Resources > File Sharing</strong>，添加源代码所在的任何位置。有关疑难解答，请参阅<a href="../docs/devcontainers/tips-and-tricks.md">提示和技巧</a>。
+<li>当不使用 WSL 2 后端时，右键单击 Docker 任务栏项，选择<strong>设置</strong>并更新 <strong>Resources > File Sharing</strong>，添加源代码所在的任何位置。有关疑难解答，请参阅<a href="../../docs/devcontainers/tips-and-tricks.html">提示和技巧</a>。
 </li>
 </ol>
 </li>
@@ -552,8 +552,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>以下是两个值得考虑的提示：</p>
 
 <ul>
-<li>如果你在 Windows 本地和容器内使用同一个仓库，请确保设置一致的行尾。有关详细信息，请参阅<a href="../docs/remote/troubleshooting.md#resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files">提示和技巧</a>。</li>
-<li>如果你使用 Git 凭据管理器进行克隆，你的容器应该已经可以访问你的凭据！如果你使用 SSH 密钥，你也可以选择共享它们。有关详细信息，请参阅<a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>。
+<li>如果你在 Windows 本地和容器内使用同一个仓库，请确保设置一致的行尾。有关详细信息，请参阅<a href="../../docs/remote/troubleshooting.html#resolving-git-line-ending-issues-in-wsl-resulting-in-many-modified-files">提示和技巧</a>。</li>
+<li>如果你使用 Git 凭据管理器进行克隆，你的容器应该已经可以访问你的凭据！如果你使用 SSH 密钥，你也可以选择共享它们。有关详细信息，请参阅<a href="../../remote/advancedcontainers/sharing-git-credentials.html">与容器共享 Git 凭据</a>。
 <h2>选择你的快速入门</h2>
 
 </li>
@@ -568,11 +568,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>最简单的方法是尝试其中一个示例开发容器。<a href="../docs/devcontainers/tutorial.md">容器教程</a>将引导你设置 Docker 和 Dev Containers 扩展，并让你选择一个示例：</p>
+<p>最简单的方法是尝试其中一个示例开发容器。<a href="../../docs/devcontainers/tutorial.html">容器教程</a>将引导你设置 Docker 和 Dev Containers 扩展，并让你选择一个示例：</p>
 
 <p><img src="images/containers/select-a-sample.png" alt="Select a sample from the list"></p>
 
-<blockquote>注意：如果你已经安装了 VS Code 和 Docker，那么你可以使用<a href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-python">在开发容器中打开</a>。你可以在<a href="../docs/devcontainers/create-dev-container.md#add-configuration-files-to-a-repository">创建开发容器指南</a>中了解更多关于此功能以及如何将其添加到你的仓库的信息。</blockquote>
+<blockquote>注意：如果你已经安装了 VS Code 和 Docker，那么你可以使用<a href="https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/microsoft/vscode-remote-try-python">在开发容器中打开</a>。你可以在<a href="../../docs/devcontainers/create-dev-container.html#add-configuration-files-to-a-repository">创建开发容器指南</a>中了解更多关于此功能以及如何将其添加到你的仓库的信息。</blockquote>
 
 <h2>快速入门：在容器中打开现有文件夹</h2>
 
@@ -618,7 +618,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><strong>提示：</strong> 想要使用远程 Docker 主机？请参阅<a href="#open-a-folder-on-a-remote-ssh-host-in-a-container">在远程 SSH 主机上的容器中打开文件夹</a>部分了解信息。</blockquote>
 
-<p>虽然使用这种方法将本地文件系统<a href="https://docs.docker.com/storage/bind-mounts/">绑定挂载</a>到容器中很方便，但在 Windows 和 macOS 上确实会有一些性能开销。你可以应用<a href="../remote/advancedcontainers/improve-performance.md">一些技术</a>来提高磁盘性能，或者你也可以<a href="#quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume">使用隔离容器卷在容器中打开仓库</a>。</p>
+<p>虽然使用这种方法将本地文件系统<a href="https://docs.docker.com/storage/bind-mounts/">绑定挂载</a>到容器中很方便，但在 Windows 和 macOS 上确实会有一些性能开销。你可以应用<a href="../../remote/advancedcontainers/improve-performance.html">一些技术</a>来提高磁盘性能，或者你也可以<a href="#quick-start-open-a-git-repository-or-github-pr-in-an-isolated-container-volume">使用隔离容器卷在容器中打开仓库</a>。</p>
 
 <h3>在 Windows 上的容器中打开 WSL 2 文件夹</h3>
 
@@ -631,42 +631,42 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>从命令面板（<code>kbstyle(F1)</code>）中选择 <strong>Dev Containers: Open Folder in Container...</strong>，并使用本地 <code>\\wsl$</code> 共享（从 Windows 端）选择 WSL 文件夹。
 </li>
 </ul>
-<p>快速入门的其余部分照常适用！你可以在其<a href="../docs/remote/wsl.md">文档</a>中了解更多关于 WSL 扩展的信息。</p>
+<p>快速入门的其余部分照常适用！你可以在其<a href="../../docs/remote/wsl.html">文档</a>中了解更多关于 WSL 扩展的信息。</p>
 
 <h3>在远程 SSH 主机上的容器中打开文件夹</h3>
 
-<p>如果你使用的是 Linux 或 macOS SSH 主机，你可以同时使用 <a href="../docs/remote/ssh.md">Remote - SSH</a> 和 Dev Containers 扩展。你甚至不需要在本地安装 Docker 客户端。</p>
+<p>如果你使用的是 Linux 或 macOS SSH 主机，你可以同时使用 <a href="../../docs/remote/ssh.html">Remote - SSH</a> 和 Dev Containers 扩展。你甚至不需要在本地安装 Docker 客户端。</p>
 
 <p>操作步骤：</p>
 
 <ol>
-<li>按照 Remote - SSH 扩展的<a href="../docs/remote/ssh.md#installation">安装</a>和 SSH <a href="../docs/remote/ssh.md#ssh-host-setup">主机设置</a>步骤操作。</li>
-<li><strong>可选：</strong> 设置 SSH <a href="../docs/remote/troubleshooting.md#configuring-key-based-authentication">基于密钥的身份验证</a>，这样就不需要多次输入密码。</li>
+<li>按照 Remote - SSH 扩展的<a href="../../docs/remote/ssh.html#installation">安装</a>和 SSH <a href="../../docs/remote/ssh.html#ssh-host-setup">主机设置</a>步骤操作。</li>
+<li><strong>可选：</strong> 设置 SSH <a href="../../docs/remote/troubleshooting.html#configuring-key-based-authentication">基于密钥的身份验证</a>，这样就不需要多次输入密码。</li>
 <li>在 SSH 主机上<a href="#installation">安装 Docker</a>。你不需要在本地安装 Docker。</li>
-<li>按照 Remote - SSH 扩展的<a href="../docs/remote/ssh.md#connect-to-a-remote-host">快速入门</a>连接到主机并在那里打开一个文件夹。</li>
+<li>按照 Remote - SSH 扩展的<a href="../../docs/remote/ssh.html#connect-to-a-remote-host">快速入门</a>连接到主机并在那里打开一个文件夹。</li>
 <li>从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中使用 <strong>Dev Containers: Reopen in Container</strong> 命令。
 </li>
 </ol>
-<p>Dev Containers 快速入门的其余部分照常适用。你可以在其<a href="../docs/remote/ssh.md">文档</a>中了解更多关于 Remote - SSH 扩展的信息。如果此模式不符合你的需求，你还可以查看<a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker 主机上开发</a>文章了解其他选项。</p>
+<p>Dev Containers 快速入门的其余部分照常适用。你可以在其<a href="../../docs/remote/ssh.html">文档</a>中了解更多关于 Remote - SSH 扩展的信息。如果此模式不符合你的需求，你还可以查看<a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker 主机上开发</a>文章了解其他选项。</p>
 
 <h3>在远程 Tunnel 主机上的容器中打开文件夹</h3>
 
-<p>你可以同时使用 <a href="../docs/remote/tunnels.md">Remote - Tunnels</a> 和 Dev Containers 扩展，在远程主机上的容器中打开文件夹。你甚至不需要在本地安装 Docker 客户端。这与上述 SSH 主机场景类似，但使用 Remote - Tunnels 代替。</p>
+<p>你可以同时使用 <a href="../../docs/remote/tunnels.html">Remote - Tunnels</a> 和 Dev Containers 扩展，在远程主机上的容器中打开文件夹。你甚至不需要在本地安装 Docker 客户端。这与上述 SSH 主机场景类似，但使用 Remote - Tunnels 代替。</p>
 
 <p>操作步骤：</p>
 
 <ol>
-<li>按照 Remote - Tunnels 扩展的<a href="../docs/remote/tunnels.md#getting-started">入门指南</a>说明操作。</li>
+<li>按照 Remote - Tunnels 扩展的<a href="../../docs/remote/tunnels.html#getting-started">入门指南</a>说明操作。</li>
 <li>在你的隧道主机上<a href="#installation">安装 Docker</a>。你不需要在本地安装 Docker。</li>
-<li>按照 Remote - Tunnels 扩展的<a href="../docs/remote/tunnels.md#remote-tunnels-extension">步骤</a>连接到隧道主机并在那里打开一个文件夹。</li>
+<li>按照 Remote - Tunnels 扩展的<a href="../../docs/remote/tunnels.html#remote-tunnels-extension">步骤</a>连接到隧道主机并在那里打开一个文件夹。</li>
 <li>从命令面板（<code>kbstyle(F1)</code>、<code>kb(workbench.action.showCommands)</code>）中使用 <strong>Dev Containers: Reopen in Container</strong> 命令。
 </li>
 </ol>
-<p>Dev Containers 快速入门的其余部分照常适用。你可以在其<a href="../docs/remote/tunnels.md">文档</a>中了解更多关于 Remote - Tunnels 扩展的信息。如果此模式不符合你的需求，你还可以查看<a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker 主机上开发</a>文章了解其他选项。</p>
+<p>Dev Containers 快速入门的其余部分照常适用。你可以在其<a href="../../docs/remote/tunnels.html">文档</a>中了解更多关于 Remote - Tunnels 扩展的信息。如果此模式不符合你的需求，你还可以查看<a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker 主机上开发</a>文章了解其他选项。</p>
 
 <h3>在容器中打开现有工作区</h3>
 
-<p>你也可以按照类似的过程在<strong>单个容器</strong>中打开 <a href="../docs/editor/multi-root-workspaces">VS Code 多根工作区</a>，前提是该工作区仅<strong>引用相对于 <code>.code-workspace</code> 文件所在文件夹（或该文件夹本身）的子文件夹的相对路径。</strong></p>
+<p>你也可以按照类似的过程在<strong>单个容器</strong>中打开 <a href="../../docs/editor/multi-root-workspaces">VS Code 多根工作区</a>，前提是该工作区仅<strong>引用相对于 <code>.code-workspace</code> 文件所在文件夹（或该文件夹本身）的子文件夹的相对路径。</strong></p>
 
 <p>你可以：</p>
 
@@ -677,13 +677,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>连接后，你可能希望<strong>将 <code>.devcontainer</code> 文件夹</strong>添加到工作区，以便在其内容尚不可见时可以轻松编辑。</p>
 
-<p>另请注意，虽然你不能在同一个 VS Code 窗口中为同一个工作区使用多个容器，但你可以从单独的窗口同时使用<a href="../remote/advancedcontainers/connect-multiple-containers.md">多个 Docker Compose 管理的容器</a>。</p>
+<p>另请注意，虽然你不能在同一个 VS Code 窗口中为同一个工作区使用多个容器，但你可以从单独的窗口同时使用<a href="../../remote/advancedcontainers/connect-multiple-containers.html">多个 Docker Compose 管理的容器</a>。</p>
 
 <h2>快速入门：在隔离容器卷中打开 Git 仓库或 GitHub PR</h2>
 
 <p>虽然你可以<a href="#quick-start-open-an-existing-folder-in-a-container">在容器中打开本地克隆的仓库</a>，但你可能希望使用仓库的隔离副本进行 PR 审查或调查另一个分支，而不影响你的工作。</p>
 
-<p>仓库容器使用隔离的本地 Docker 卷，而不是绑定到本地文件系统。除了不污染你的文件树之外，本地卷还有在 Windows 和 macOS 上性能更佳的额外好处。（有关如何在其他场景中使用这些类型卷的信息，请参阅高级配置<a href="../remote/advancedcontainers/improve-performance.md">提高磁盘性能</a>文章。）</p>
+<p>仓库容器使用隔离的本地 Docker 卷，而不是绑定到本地文件系统。除了不污染你的文件树之外，本地卷还有在 Windows 和 macOS 上性能更佳的额外好处。（有关如何在其他场景中使用这些类型卷的信息，请参阅高级配置<a href="../../remote/advancedcontainers/improve-performance.html">提高磁盘性能</a>文章。）</p>
 
 <p>例如，按照以下步骤在仓库容器中打开一个"try"仓库：</p>
 
@@ -695,7 +695,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    <img src="images/containers/vscode-remote-try-node.png" alt="Input box with a repository name in it"></p>
 
-<blockquote><strong>提示：</strong> 如果你选择私有仓库，你可能需要设置凭据管理器或将 SSH 密钥添加到 SSH 代理。请参阅<a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>。</blockquote>
+<blockquote><strong>提示：</strong> 如果你选择私有仓库，你可能需要设置凭据管理器或将 SSH 密钥添加到 SSH 代理。请参阅<a href="../../remote/advancedcontainers/sharing-git-credentials.html">与容器共享 Git 凭据</a>。</blockquote>
 
 <ol>
 <li>如果你的仓库中没有 <code>.devcontainer/devcontainer.json</code> 文件，系统会要求你从可筛选列表中选择一个起点，或者使用现有的 <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a> 或 <a href="https://docs.docker.com/compose/compose-file/#compose-file-structure-and-examples">Docker Compose 文件</a>（如果存在）。
@@ -727,7 +727,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>信任你的工作区</h2>
 
-<p>Visual Studio Code 非常重视安全性，并希望帮助你在浏览和编辑代码时安全操作，无论代码来源或原始作者是谁。<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任功能</a>让你决定你的项目文件夹是否应该允许或限制自动代码执行。</p>
+<p>Visual Studio Code 非常重视安全性，并希望帮助你在浏览和编辑代码时安全操作，无论代码来源或原始作者是谁。<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任功能</a>让你决定你的项目文件夹是否应该允许或限制自动代码执行。</p>
 
 <p>Dev Containers 扩展已采用工作区信任。根据你打开和与源代码交互的方式，系统会在不同时机提示你决定是否信任你正在编辑或执行的代码。</p>
 
@@ -744,7 +744,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>在<a href="../docs/devcontainers/attach-container.md">附加到现有容器</a>时，系统会要求你确认附加意味着你信任该容器。这只需要确认一次。</p>
+<p>在<a href="../../docs/devcontainers/attach-container.html">附加到现有容器</a>时，系统会要求你确认附加意味着你信任该容器。这只需要确认一次。</p>
 
 <p><img src="images/containers/attach-containers-trust.png" alt="Workspace trust prompt when attaching to container"></p>
 
@@ -756,11 +756,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>检查卷</h3>
 
-<p><a href="#inspecting-volumes">检查卷</a>在<a href="../docs/editing/workspaces/workspace-trust.md#restricted-mode">限制模式</a>下启动，你可以在容器内部信任该文件夹。</p>
+<p><a href="#inspecting-volumes">检查卷</a>在<a href="../../docs/editing/workspaces/workspace-trust.html#restricted-mode">限制模式</a>下启动，你可以在容器内部信任该文件夹。</p>
 
 <h3>远程运行 Docker 守护进程</h3>
 
-<p>这意味着信任 <a href="../remote/advancedcontainers/develop-remote-host.md">Docker 守护进程运行的机器</a>。没有额外的确认提示（只有上述本地/WSL 情况中列出的那些）。</p>
+<p>这意味着信任 <a href="../../remote/advancedcontainers/develop-remote-host.html">Docker 守护进程运行的机器</a>。没有额外的确认提示（只有上述本地/WSL 情况中列出的那些）。</p>
 
 <h2>创建 devcontainer.json 文件</h2>
 
@@ -788,7 +788,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><strong>注意：</strong> 额外的配置将根据基础镜像中的内容添加到容器中。例如，我们在上面添加了 <code>streetsidesoftware.code-spell-checker</code> 扩展，而容器也将包含 <code>"dbaeumer.vscode-eslint"</code>，因为<a href="https://github.com/devcontainers/images/blob/main/src/javascript-node/.devcontainer/devcontainer.json#L27">它是 <code>mcr.microsoft.com/devcontainers/typescript-node</code> 的一部分</a>。这在使用 <code>devcontainer.json</code> 预构建时会自动发生，你可以在<a href="#prebuilding-dev-container-images">预构建部分</a>中了解更多信息。</blockquote>
 
-<p>要了解有关创建 <code>devcontainer.json</code> 文件的更多信息，请参阅<a href="../docs/devcontainers/create-dev-container.md">创建开发容器</a>。</p>
+<p>要了解有关创建 <code>devcontainer.json</code> 文件的更多信息，请参阅<a href="../../docs/devcontainers/create-dev-container.html">创建开发容器</a>。</p>
 
 <h2>Dev Container 功能（Features）</h2>
 
@@ -816,7 +816,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>"始终安装"的功能</h3>
 
-<p>类似于你可以<a href="#always-installed-extensions">设置始终安装的扩展</a>，你可以使用 <code>setting(dev.containers.defaultFeatures)</code> 用户<a href="../docs/configure/settings.md">设置</a>来设置你希望始终安装的功能：</p>
+<p>类似于你可以<a href="#always-installed-extensions">设置始终安装的扩展</a>，你可以使用 <code>setting(dev.containers.defaultFeatures)</code> 用户<a href="../../docs/configure/settings.html">设置</a>来设置你希望始终安装的功能：</p>
 
 <pre><code class="language-json">"dev.containers.defaultFeatures": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
@@ -845,17 +845,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>更好的是——预构建镜像可以包含 Dev Container 元数据，因此当你引用一个镜像时，设置将自动拉取。</p>
 
-<p>我们建议使用 <a href="../docs/devcontainers/devcontainer-cli.md">Dev Container CLI</a>（或其他<a href="https://containers.dev">规范</a>支持的实用工具，如 <a href="https://github.com/marketplace/actions/dev-container-build-and-run-action">GitHub Action</a>）来预构建你的镜像，因为它与 Dev Containers 扩展的最新功能保持同步——包括<a href="#dev-container-features">开发容器功能</a>。构建好镜像后，你可以将其推送到容器注册表（如 <a href="https://learn.microsoft.com/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli">Azure Container Registry</a>、<a href="https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pushing-container-images">GitHub Container Registry</a> 或 <a href="https://docs.docker.com/engine/reference/commandline/push">Docker Hub</a>）并直接引用它。</p>
+<p>我们建议使用 <a href="../../docs/devcontainers/devcontainer-cli.html">Dev Container CLI</a>（或其他<a href="https://containers.dev">规范</a>支持的实用工具，如 <a href="https://github.com/marketplace/actions/dev-container-build-and-run-action">GitHub Action</a>）来预构建你的镜像，因为它与 Dev Containers 扩展的最新功能保持同步——包括<a href="#dev-container-features">开发容器功能</a>。构建好镜像后，你可以将其推送到容器注册表（如 <a href="https://learn.microsoft.com/azure/container-registry/container-registry-get-started-docker-cli?tabs=azure-cli">Azure Container Registry</a>、<a href="https://docs.github.com/packages/working-with-a-github-packages-registry/working-with-the-container-registry#pushing-container-images">GitHub Container Registry</a> 或 <a href="https://docs.docker.com/engine/reference/commandline/push">Docker Hub</a>）并直接引用它。</p>
 
 <p>你可以使用 <a href="https://github.com/devcontainers/ci">devcontainers/ci</a> 仓库中的 GitHub Action 来帮助你在工作流中重用开发容器。</p>
 
-<p>有关更多信息，请参阅<a href="../docs/devcontainers/devcontainer-cli.md#prebuilding">关于预构建镜像的开发容器 CLI 文章</a>。</p>
+<p>有关更多信息，请参阅<a href="../../docs/devcontainers/devcontainer-cli.html#prebuilding">关于预构建镜像的开发容器 CLI 文章</a>。</p>
 
 <h3>继承元数据</h3>
 
 <p>你可以通过<a href="https://docs.docker.com/config/labels-custom-metadata/">镜像标签</a>在预构建镜像中包含 Dev Container 配置和功能元数据。这使得镜像是自包含的，因为这些设置在引用镜像时会被自动获取——无论是直接引用、在引用的 Dockerfile 的 <code>FROM</code> 中引用，还是在 Docker Compose 文件中引用。这有助于防止你的 Dev Container 配置和镜像内容不同步，并允许你通过简单的镜像引用将相同配置的更新推送到多个仓库。</p>
 
-<p>当你使用 <a href="../docs/devcontainers/devcontainer-cli.md">Dev Container CLI</a>（或其他<a href="https://containers.dev">规范</a>支持的实用工具，如 <a href="https://github.com/marketplace/actions/devcontainers-ci">GitHub Action</a> 或 <a href="https://marketplace.visualstudio.com/items?itemName=devcontainers.ci">Azure DevOps 任务</a>）预构建时，此元数据标签会<strong>自动添加</strong>，并包含来自 <code>devcontainer.json</code> 和任何引用的 Dev Container 功能的设置。</p>
+<p>当你使用 <a href="../../docs/devcontainers/devcontainer-cli.html">Dev Container CLI</a>（或其他<a href="https://containers.dev">规范</a>支持的实用工具，如 <a href="https://github.com/marketplace/actions/devcontainers-ci">GitHub Action</a> 或 <a href="https://marketplace.visualstudio.com/items?itemName=devcontainers.ci">Azure DevOps 任务</a>）预构建时，此元数据标签会<strong>自动添加</strong>，并包含来自 <code>devcontainer.json</code> 和任何引用的 Dev Container 功能的设置。</p>
 
 <p>这允许你有一个独立的<strong>更复杂</strong>的 <code>devcontainer.json</code> 用于预构建你的镜像，然后在一个或多个仓库中有一个<strong>简化版</strong>。镜像的内容将在你创建容器时与此简化版 <code>devcontainer.json</code> 内容合并（有关合并逻辑的信息，请参阅<a href="https://containers.dev/implementors/spec/#merge-logic">规范</a>）。但最简单的情况下，你可以直接在 <code>devcontainer.json</code> 中引用镜像以使设置生效：</p>
 
@@ -893,7 +893,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/containers/local-installed-extensions.png" alt="Local Extension Category"></p>
 
-<blockquote><strong>注意：</strong> 如果你是扩展作者，并且你的扩展不能正常工作或安装在了错误的位置，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>了解详细信息。</blockquote>
+<blockquote><strong>注意：</strong> 如果你是扩展作者，并且你的扩展不能正常工作或安装在了错误的位置，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>了解详细信息。</blockquote>
 
 <p>实际上需要在远程运行的本地扩展将在 <strong>Local - Installed</strong> 类别中显示为<strong>已禁用</strong>。选择<strong>安装</strong>以在你的远程主机上安装扩展。</p>
 
@@ -903,11 +903,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/containers/install-all-extn-containers.png" alt="Install all extensions"></p>
 
-<p>但是，某些扩展可能需要你在容器中<a href="../docs/devcontainers/create-dev-container.md#install-additional-software">安装额外的软件</a>。如果遇到问题，请查阅扩展文档了解详细信息。</p>
+<p>但是，某些扩展可能需要你在容器中<a href="../../docs/devcontainers/create-dev-container.html#install-additional-software">安装额外的软件</a>。如果遇到问题，请查阅扩展文档了解详细信息。</p>
 
 <h3>将扩展添加到 devcontainer.json</h3>
 
-<p>虽然你可以手动编辑 <a href="../docs/devcontainers/create-dev-container.md#create-a-devcontainerjson-file">devcontainer.json</a> 文件来添加扩展 ID 列表，但你也可以在扩展视图中右键单击任何扩展并选择 <strong>Add to devcontainer.json</strong>。</p>
+<p>虽然你可以手动编辑 <a href="../../docs/devcontainers/create-dev-container.html#create-a-devcontainerjson-file">devcontainer.json</a> 文件来添加扩展 ID 列表，但你也可以在扩展视图中右键单击任何扩展并选择 <strong>Add to devcontainer.json</strong>。</p>
 
 <p><img src="images/containers/containers-addto-devcontainer.png" alt="Add to devcontainer.json menu"></p>
 
@@ -928,7 +928,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>"始终安装"的扩展</h3>
 
-<p>如果有一些你希望在任何容器中始终安装的扩展，你可以更新 <code>setting(dev.containers.defaultExtensions)</code> 用户<a href="../docs/configure/settings.md">设置</a>。例如，如果你想安装 <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor">Resource Monitor</a> 扩展，你可以如下指定它们的扩展 ID：</p>
+<p>如果有一些你希望在任何容器中始终安装的扩展，你可以更新 <code>setting(dev.containers.defaultExtensions)</code> 用户<a href="../../docs/configure/settings.html">设置</a>。例如，如果你想安装 <a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">GitLens</a> 和 <a href="https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor">Resource Monitor</a> 扩展，你可以如下指定它们的扩展 ID：</p>
 
 <pre><code class="language-json">"dev.containers.defaultExtensions": [
     "eamodio.gitlens",
@@ -946,7 +946,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     "ms-vscode-remote.remote-ssh-edit": [ "workspace" ]
 }</code></pre>
 
-<p>值为 <code>"ui"</code> 而不是 <code>"workspace"</code> 将强制扩展在本地 UI/客户端端运行。通常，这应该仅用于测试，除非扩展的文档另有说明，因为它<strong>可能会破坏扩展</strong>。有关详细信息，请参阅<a href="../api/advanced-topics/extension-host#preferred-extension-location">首选扩展位置</a>部分。</p>
+<p>值为 <code>"ui"</code> 而不是 <code>"workspace"</code> 将强制扩展在本地 UI/客户端端运行。通常，这应该仅用于测试，除非扩展的文档另有说明，因为它<strong>可能会破坏扩展</strong>。有关详细信息，请参阅<a href="../../api/advanced-topics/extension-host#preferred-extension-location">首选扩展位置</a>部分。</p>
 
 <h2>转发或发布端口</h2>
 
@@ -1006,7 +1006,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>一旦你在容器中打开了一个文件夹，你可以像在本地运行应用程序时一样使用 VS Code 的调试器。例如，如果你在 <code>launch.json</code> 中选择一个启动配置并开始调试（<code>kb(workbench.action.debug.start)</code>），应用程序将在远程主机上启动，并将调试器附加到它上面。</p>
 
-<p>请参阅<a href="../docs/debugtest/debugging.md">调试</a>文档，了解在 <code>.vscode/launch.json</code> 中配置 VS Code 调试功能的详细信息。</p>
+<p>请参阅<a href="../../docs/debugtest/debugging.html">调试</a>文档，了解在 <code>.vscode/launch.json</code> 中配置 VS Code 调试功能的详细信息。</p>
 
 <h2>容器特定设置</h2>
 
@@ -1040,7 +1040,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/containers/containers-explorer.png" alt="Containers Explorer screenshot"></p>
 
-<p>如果你想清理镜像或批量删除容器，请参阅<a href="../docs/devcontainers/tips-and-tricks.md#cleaning-out-unused-containers-and-images">清理未使用的容器和镜像</a>了解不同的选项。</p>
+<p>如果你想清理镜像或批量删除容器，请参阅<a href="../../docs/devcontainers/tips-and-tricks.html#cleaning-out-unused-containers-and-images">清理未使用的容器和镜像</a>了解不同的选项。</p>
 
 <h2>使用 dotfile 仓库进行个性化设置</h2>
 
@@ -1088,26 +1088,26 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>扩展限制</h3>
 
-<p>目前，大多数扩展将在 Dev Containers 中无需修改即可工作。但是，在某些情况下，某些功能可能需要更改。如果你遇到扩展问题，请参阅<a href="../docs/remote/troubleshooting.md#extension-tips">此处了解常见问题和解决方案的摘要</a>，你可以在报告问题时向扩展作者提及这些信息。</p>
+<p>目前，大多数扩展将在 Dev Containers 中无需修改即可工作。但是，在某些情况下，某些功能可能需要更改。如果你遇到扩展问题，请参阅<a href="../../docs/remote/troubleshooting.html#extension-tips">此处了解常见问题和解决方案的摘要</a>，你可以在报告问题时向扩展作者提及这些信息。</p>
 
-<p>此外，虽然支持 Alpine，但在容器中安装的某些扩展可能由于扩展中本机代码的 <code>glibc</code> 依赖关系而无法工作。有关详细信息，请参阅<a href="../docs/remote/linux.md">使用 Linux 进行远程开发</a>文章。</p>
+<p>此外，虽然支持 Alpine，但在容器中安装的某些扩展可能由于扩展中本机代码的 <code>glibc</code> 依赖关系而无法工作。有关详细信息，请参阅<a href="../../docs/remote/linux.html">使用 Linux 进行远程开发</a>文章。</p>
 
 <h2>高级容器配置</h2>
 
-<p>请参阅<a href="../remote/advancedcontainers/overview.md">高级容器配置</a>文章，了解有关以下主题的信息：</p>
+<p>请参阅<a href="../../remote/advancedcontainers/overview.html">高级容器配置</a>文章，了解有关以下主题的信息：</p>
 
 <ul>
-<li><a href="../remote/advancedcontainers/environment-variables.md">添加环境变量</a></li>
-<li><a href="../remote/advancedcontainers/add-local-file-mount.md">添加另一个本地文件挂载</a></li>
-<li><a href="../remote/advancedcontainers/change-default-source-mount.md">更改或删除默认源代码挂载</a></li>
-<li><a href="../remote/advancedcontainers/improve-performance.md">提高容器磁盘性能</a></li>
-<li><a href="../remote/advancedcontainers/add-nonroot-user.md">向开发容器添加非 root 用户</a></li>
-<li><a href="../remote/advancedcontainers/set-docker-compose-project-name.md">设置 Docker Compose 的项目名称</a></li>
-<li><a href="../remote/advancedcontainers/use-docker-kubernetes.md">从容器内部使用 Docker 或 Kubernetes</a></li>
-<li><a href="../remote/advancedcontainers/connect-multiple-containers.md">同时连接到多个容器</a></li>
-<li><a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker Machine 或 SSH 主机上的容器中开发</a></li>
-<li><a href="../remote/advancedcontainers/reduce-docker-warnings.md">减少 Dockerfile 构建警告</a></li>
-<li><a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>
+<li><a href="../../remote/advancedcontainers/environment-variables.html">添加环境变量</a></li>
+<li><a href="../../remote/advancedcontainers/add-local-file-mount.html">添加另一个本地文件挂载</a></li>
+<li><a href="../../remote/advancedcontainers/change-default-source-mount.html">更改或删除默认源代码挂载</a></li>
+<li><a href="../../remote/advancedcontainers/improve-performance.html">提高容器磁盘性能</a></li>
+<li><a href="../../remote/advancedcontainers/add-nonroot-user.html">向开发容器添加非 root 用户</a></li>
+<li><a href="../../remote/advancedcontainers/set-docker-compose-project-name.html">设置 Docker Compose 的项目名称</a></li>
+<li><a href="../../remote/advancedcontainers/use-docker-kubernetes.html">从容器内部使用 Docker 或 Kubernetes</a></li>
+<li><a href="../../remote/advancedcontainers/connect-multiple-containers.html">同时连接到多个容器</a></li>
+<li><a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker Machine 或 SSH 主机上的容器中开发</a></li>
+<li><a href="../../remote/advancedcontainers/reduce-docker-warnings.html">减少 Dockerfile 构建警告</a></li>
+<li><a href="../../remote/advancedcontainers/sharing-git-credentials.html">与容器共享 Git 凭据</a>
 <h2>devcontainer.json 参考</h2>
 
 </li>
@@ -1117,7 +1117,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>问题或反馈</h2>
 
 <ul>
-<li>请参阅<a href="../docs/devcontainers/tips-and-tricks.md">提示和技巧</a>或 <a href="../docs/devcontainers/faq.md">FAQ</a>。</li>
+<li>请参阅<a href="../../docs/devcontainers/tips-and-tricks.html">提示和技巧</a>或 <a href="../../docs/devcontainers/faq.html">FAQ</a>。</li>
 <li>在 <a href="https://stackoverflow.com/questions/tagged/vscode-remote">Stack Overflow</a> 上搜索。</li>
 <li>添加<a href="https://aka.ms/vscode-remote/feature-requests">功能请求</a>或<a href="https://aka.ms/vscode-remote/issues/new">报告问题</a>。</li>
 <li>创建<a href="https://containers.dev/templates">开发容器模板</a>或<a href="https://containers.dev/features">功能</a>供他人使用。</li>
@@ -1142,9 +1142,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/devcontainers/attach-container.md">附加到运行中的容器</a> - 附加到已在运行的 Docker 容器。</li>
-<li><a href="../docs/devcontainers/create-dev-container.md">创建开发容器</a> - 为你的工作环境创建自定义容器。</li>
-<li><a href="../remote/advancedcontainers/overview.md">高级容器</a> - 查找高级容器场景的解决方案。</li>
+<li><a href="../../docs/devcontainers/attach-container.html">附加到运行中的容器</a> - 附加到已在运行的 Docker 容器。</li>
+<li><a href="../../docs/devcontainers/create-dev-container.html">创建开发容器</a> - 为你的工作环境创建自定义容器。</li>
+<li><a href="../../remote/advancedcontainers/overview.html">高级容器</a> - 查找高级容器场景的解决方案。</li>
 <li><a href="https://containers.dev/implementors/json_reference">devcontainer.json 参考</a> - 查看 <code>devcontainer.json</code> 架构。</li>
 </ul>
 

@@ -456,7 +456,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>在本主题中，我们将演示如何在不离开 VS Code 的情况下使用你最喜欢的 GitHub 功能。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>如果你刚接触源代码管理，或想进一步了解 VS Code 的基本 Git 支持，可以从<a href="../docs/sourcecontrol/overview.md">源代码管理</a>主题开始。</blockquote>
+<blockquote>如果你刚接触源代码管理，或想进一步了解 VS Code 的基本 Git 支持，可以从<a href="../../docs/sourcecontrol/overview.html">源代码管理</a>主题开始。</blockquote>
 
 <h2>先决条件</h2>
 
@@ -508,7 +508,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/github/github-repo-dropdown.png" alt="Screenshot showing the GitHub repository Quick Pick filtered on microsoft/vscode."></p>
 
-<p>详细了解<a href="../docs/sourcecontrol/repos-remotes.md#clone-repositories">克隆仓库和使用远程仓库</a>。</p>
+<p>详细了解<a href="../../docs/sourcecontrol/repos-remotes.html#clone-repositories">克隆仓库和使用远程仓库</a>。</p>
 
 <h3>对现有仓库进行身份验证</h3>
 
@@ -523,7 +523,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>请注意，有多种方式可以向 GitHub 进行身份验证，包括使用用户名和密码进行双因素身份验证（2FA）、个人访问令牌或 SSH 密钥。有关每种选项的更多信息和详细信息，请参阅<a href="https://docs.github.com/github/authenticating-to-github/about-authentication-to-github">关于 GitHub 身份验证</a>。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>如果你想在不将内容克隆到本地计算机的情况下处理仓库，可以安装 <a href="https://marketplace.visualstudio.com/items?itemName=github.remotehub">GitHub Repositories</a> 扩展，直接在 GitHub 上浏览和编辑。详细了解 <a href="../docs/sourcecontrol/github.md#github-repositories-extension">GitHub Repositories 扩展</a>。</blockquote>
+<blockquote>如果你想在不将内容克隆到本地计算机的情况下处理仓库，可以安装 <a href="https://marketplace.visualstudio.com/items?itemName=github.remotehub">GitHub Repositories</a> 扩展，直接在 GitHub 上浏览和编辑。详细了解 <a href="../../docs/sourcecontrol/github.html#github-repositories-extension">GitHub Repositories 扩展</a>。</blockquote>
 
 <h2>编辑器集成</h2>
 
@@ -545,7 +545,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>建议中显示的议题可以通过 <strong>GitHub Issues: Queries</strong>（<code>setting(githubIssues.queries)</code>）设置进行配置。查询使用 <a href="https://docs.github.com/search-github/getting-started-with-searching-on-github/understanding-the-search-syntax">GitHub 搜索语法</a>。</p>
 
-<p>你还可以使用 <strong>GitHub Issues: Ignore Completion Trigger</strong>（<code>setting(githubIssues.ignoreCompletionTrigger)</code>）和 <strong>GitHub Issues: Ignore User Completion Trigger</strong>（<code>setting(githubIssues.ignoreUserCompletionTrigger)</code>）设置来配置哪些文件类型会显示这些建议。这些设置接受一个<a href="../docs/languages/identifiers.md">语言标识符</a>数组来指定文件类型。</p>
+<p>你还可以使用 <strong>GitHub Issues: Ignore Completion Trigger</strong>（<code>setting(githubIssues.ignoreCompletionTrigger)</code>）和 <strong>GitHub Issues: Ignore User Completion Trigger</strong>（<code>setting(githubIssues.ignoreUserCompletionTrigger)</code>）设置来配置哪些文件类型会显示这些建议。这些设置接受一个<a href="../../docs/languages/identifiers.html">语言标识符</a>数组来指定文件类型。</p>
 
 <pre><code class="language-jsonc">// 不应使用 "#" 字符来触建议题自动完成建议的语言。
 "githubIssues.ignoreCompletionTrigger": [
@@ -644,7 +644,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以使用 <strong>GitHub Issues: Issue Branch Title</strong>（<code>setting(githubIssues.issueBranchTitle)</code>）设置配置分支的名称。如果你的工作流不涉及创建分支，或者你希望每次都提示输入分支名称，可以通过关闭 <strong>GitHub Issues: Use Branch For Issues</strong>（<code>setting(githubIssues.useBranchForIssues)</code>）设置来跳过该步骤。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>详细了解<a href="../docs/sourcecontrol/branches-worktrees.md">使用分支</a>，以理解分支管理、分支切换以及组织开发工作。</blockquote>
+<blockquote>详细了解<a href="../../docs/sourcecontrol/branches-worktrees.html">使用分支</a>，以理解分支管理、分支切换以及组织开发工作。</blockquote>
 
 <p>处理完议题并想要提交更改时，<strong>源代码管理</strong>视图中的提交消息输入框将填充一条消息，该消息可以通过 <strong>GitHub Issues: Working Issue Format SCM</strong>（<code>setting(githubIssues.workingIssueFormatScm)</code>）进行配置。</p>
 
@@ -694,7 +694,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/github/github-repositories-create-pull-request.png" alt="Create a Pull Request button in the Source Control view"></p>
 
-<p>创建 Pull Request 后，你可以使用 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github">GitHub Pull Request and Issues</a> 扩展来审阅、编辑和合并你的 PR，如本主题<a href="../docs/sourcecontrol/github.md#pull-requests">前面所述</a>。</p>
+<p>创建 Pull Request 后，你可以使用 <a href="https://marketplace.visualstudio.com/items?itemName=GitHub.vscode-pull-request-github">GitHub Pull Request and Issues</a> 扩展来审阅、编辑和合并你的 PR，如本主题<a href="../../docs/sourcecontrol/github.html#pull-requests">前面所述</a>。</p>
 
 <h3>虚拟文件系统</h3>
 
@@ -718,7 +718,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/github/continue-working.png" alt="Continue Working On command in Remote dropdown"></p>
 
-<p>如果你使用的是<a href="../docs/remote/codespaces.md#browserbased-editor">基于浏览器的编辑器</a>，<strong>"Continue Working On"</strong> 命令提供在本地打开仓库或在 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 中的云托管环境内打开的选项。</p>
+<p>如果你使用的是<a href="../../docs/remote/codespaces.html#browserbased-editor">基于浏览器的编辑器</a>，<strong>"Continue Working On"</strong> 命令提供在本地打开仓库或在 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 中的云托管环境内打开的选项。</p>
 
 <p><img src="images/github/codespaces-continue.png" alt="Continue Working On from web-based editor"></p>
 
@@ -731,7 +731,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li>详细了解 <a href="../docs/agent-native/overview.md">VS Code 中的 AI</a> - 了解 VS Code 中的 AI 功能。</li>
+<li>详细了解 <a href="../../docs/agent-native/overview.html">VS Code 中的 AI</a> - 了解 VS Code 中的 AI 功能。</li>
 </ul>
 
   </div>

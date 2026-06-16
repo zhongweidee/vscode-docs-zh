@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/datascience / jupyter-notebooks</div>
 <h1>VS Code 中的 Jupyter Notebook</h1>
 
-<p><a href="https://jupyter-notebook.readthedocs.io/en/latest/">Jupyter</a>（原名 IPython Notebook）是一个开源项目，可让你在一个名为<strong>笔记本</strong>的画布上轻松组合 Markdown 文本和可执行的 Python 源代码。Visual Studio Code 支持原生使用 Jupyter Notebook（通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">Jupyter 扩展</a>）以及通过 <a href="../docs/python/jupyter-support-py.md">Python 代码文件</a>。本主题介绍 Jupyter Notebook 的原生支持，并演示如何：</p>
+<p><a href="https://jupyter-notebook.readthedocs.io/en/latest/">Jupyter</a>（原名 IPython Notebook）是一个开源项目，可让你在一个名为<strong>笔记本</strong>的画布上轻松组合 Markdown 文本和可执行的 Python 源代码。Visual Studio Code 支持原生使用 Jupyter Notebook（通过 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">Jupyter 扩展</a>）以及通过 <a href="../../docs/python/jupyter-support-py.html">Python 代码文件</a>。本主题介绍 Jupyter Notebook 的原生支持，并演示如何：</p>
 
 <ul>
 <li>创建、打开和保存 Jupyter Notebook</li>
@@ -471,13 +471,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>环境变量</h3>
 
-<p>环境变量从 <code>.env</code> 文件中加载。请参阅 <a href="../docs/python/environments#environment-variable-definitions-file">Python 环境文档的相关章节</a>。</p>
+<p>环境变量从 <code>.env</code> 文件中加载。请参阅 <a href="../../docs/python/environments#environment-variable-definitions-file">Python 环境文档的相关章节</a>。</p>
 
 <h2>工作区信任</h2>
 
-<p>开始使用 Jupyter Notebook 时，你需要确保在一个受信任的工作区中工作。有害代码可以嵌入到笔记本中，而<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任</a>功能允许你指定哪些文件夹及其内容应该允许或限制自动代码执行。</p>
+<p>开始使用 Jupyter Notebook 时，你需要确保在一个受信任的工作区中工作。有害代码可以嵌入到笔记本中，而<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任</a>功能允许你指定哪些文件夹及其内容应该允许或限制自动代码执行。</p>
 
-<p>如果你在 VS Code 处于不受信任的工作区且运行<a href="../docs/editing/workspaces/workspace-trust.md#restricted-mode">受限模式</a>时尝试打开笔记本，你将无法执行单元格，并且富输出将被隐藏。</p>
+<p>如果你在 VS Code 处于不受信任的工作区且运行<a href="../../docs/editing/workspaces/workspace-trust.html#restricted-mode">受限模式</a>时尝试打开笔记本，你将无法执行单元格，并且富输出将被隐藏。</p>
 
 <h2>创建或打开 Jupyter Notebook</h2>
 
@@ -672,7 +672,7 @@ print(msg)</code></pre>
 
 <p><img src="images/jupyter/data-viewer.png" alt="Data Viewer"></p>
 
-<p>或者，你也可以使用其他扩展（如 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler">Data Wrangler</a>）提供的数据查看体验。Data Wrangler 扩展提供了一个丰富的用户界面来显示数据的洞察信息，并帮助你执行数据分析、质量检查、转换等操作。在我们的文档中了解有关 <a href="../docs/datascience/data-wrangler.md">Data Wrangler 扩展</a>的更多信息。</p>
+<p>或者，你也可以使用其他扩展（如 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler">Data Wrangler</a>）提供的数据查看体验。Data Wrangler 扩展提供了一个丰富的用户界面来显示数据的洞察信息，并帮助你执行数据分析、质量检查、转换等操作。在我们的文档中了解有关 <a href="../../docs/datascience/data-wrangler.html">Data Wrangler 扩展</a>的更多信息。</p>
 
 <h3>筛选行</h3>
 
@@ -704,7 +704,7 @@ print(msg)</code></pre>
 
 <p><img src="images/jupyter/notebook-diffing.png" alt="Custom notebook diffing"></p>
 
-<p>要了解有关 VS Code 中 Git 集成的更多信息，请访问 <a href="../docs/sourcecontrol/overview.md">VS Code 中的源代码管理</a>。</p>
+<p>要了解有关 VS Code 中 Git 集成的更多信息，请访问 <a href="../../docs/sourcecontrol/overview.html">VS Code 中的源代码管理</a>。</p>
 
 <h2>调试 Jupyter Notebook</h2>
 
@@ -783,7 +783,7 @@ print(msg)</code></pre>
 
 <h2>数据科学配置文件模板</h2>
 
-<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a>让你可以根据当前项目或任务快速切换扩展、设置和 UI 布局。为了帮助你开始使用 Jupyter Notebook，你可以使用<a href="../docs/configure/profiles.md#data-science-profile-template">数据科学配置文件模板</a>，这是一个包含有用的扩展、设置和代码片段的精选配置文件。你可以按原样使用配置文件模板，或将其作为起点，根据自己的工作流程进一步自定义。</p>
+<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a>让你可以根据当前项目或任务快速切换扩展、设置和 UI 布局。为了帮助你开始使用 Jupyter Notebook，你可以使用<a href="../../docs/configure/profiles.html#data-science-profile-template">数据科学配置文件模板</a>，这是一个包含有用的扩展、设置和代码片段的精选配置文件。你可以按原样使用配置文件模板，或将其作为起点，根据自己的工作流程进一步自定义。</p>
 
 <p>你通过<strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择配置文件模板：</p>
 

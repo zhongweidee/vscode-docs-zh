@@ -455,12 +455,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>代理窗口让你能够从一个地方访问所有工作区，并让你能够在多个项目中并行运行和跟踪多个会话，而无需在单独的窗口中打开每个工作区。它与主 VS Code 窗口共享相同的代理会话、设置和键绑定，因此你可以随时在以编辑器为中心的工作流和以代理为中心的工作流之间自由切换，而不会丢失上下文。</p>
 
-<p>在本文中，你将了解代理窗口以及如何跨项目启动和管理代理会话。有关同时适用于代理窗口和<a href="../docs/agents/chat-view.md">聊天视图</a>的聊天机制（例如发送请求、添加上下文和审查更改），请参阅<a href="../docs/chat/chat-overview.md">在 VS Code 中使用聊天</a>。</p>
+<p>在本文中，你将了解代理窗口以及如何跨项目启动和管理代理会话。有关同时适用于代理窗口和<a href="../../docs/agents/chat-view.html">聊天视图</a>的聊天机制（例如发送请求、添加上下文和审查更改），请参阅<a href="../../docs/chat/chat-overview.html">在 VS Code 中使用聊天</a>。</p>
 
 <p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/agents/images/agents-window/agents-demo-20260510.mp4" title="Video showing the Agents window experience in VS Code Insiders." controls></video></p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>代理窗口（以代理为先）和<a href="../docs/agents/chat-view.md">聊天视图</a>（以代码为先）是与代理协作的主要界面。它们共享相同的会话和设置，因此你可以在两者之间自由切换。如需帮助选择，请参阅<a href="../docs/agents/overview.md#choose-how-you-work-with-agents">选择与代理协作的方式</a>。</blockquote>
+<blockquote>代理窗口（以代理为先）和<a href="../../docs/agents/chat-view.html">聊天视图</a>（以代码为先）是与代理协作的主要界面。它们共享相同的会话和设置，因此你可以在两者之间自由切换。如需帮助选择，请参阅<a href="../../docs/agents/overview.html#choose-how-you-work-with-agents">选择与代理协作的方式</a>。</blockquote>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>代理窗口目前处于预览阶段。我们正根据你的反馈积极改进，并期待与开发者一同学习。请通过<a href="https://github.com/microsoft/vscode/issues">在 GitHub 上提交问题</a>分享你的体验，或浏览<a href="https://github.com/microsoft/vscode/issues?q=state%3Aopen%20label%3A%22agents-window%22">现有问题</a>。</blockquote>
@@ -468,8 +468,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>先决条件</h2>
 
 <ul>
-<li>已安装 Visual Studio Code。<a href="../download">下载 VS Code</a>。</li>
-<li>拥有 GitHub Copilot 访问权限。按照<a href="../docs/setup/copilot.md">在 VS Code 中设置 GitHub Copilot</a> 中的步骤登录并激活你的订阅。
+<li>已安装 Visual Studio Code。<a href="../../download">下载 VS Code</a>。</li>
+<li>拥有 GitHub Copilot 访问权限。按照<a href="../../docs/setup/copilot.html">在 VS Code 中设置 GitHub Copilot</a> 中的步骤登录并激活你的订阅。
 <h2>打开代理窗口</h2>
 
 </li>
@@ -487,7 +487,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>从命令行运行 <code>code --agents</code>。
 </li>
-<li>在浏览器中打开 <https://insiders.vscode.dev/agents>，从任何设备使用代理窗口。有关设置说明，请参阅<a href="../docs/agents/remote-agent-sessions.md#use-the-agents-window-in-the-browser">远程代理会话</a>。
+<li>在浏览器中打开 <https://insiders.vscode.dev/agents>，从任何设备使用代理窗口。有关设置说明，请参阅<a href="../../docs/agents/remote-agent-sessions.html#use-the-agents-window-in-the-browser">远程代理会话</a>。
 </li>
 </ul>
 <p>代理窗口需要 GitHub 身份验证才能访问你的 Copilot 订阅和会话。如果你已在 VS Code 中登录 GitHub，则在代理窗口打开时也会自动登录。</p>
@@ -535,7 +535,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>    如果你选择的文件夹或仓库尚未受信任，则在启动会话之前，系统会<a href="#trust-a-folder">提示你信任</a>该文件夹。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>你可以跟踪和创建通过 SSH 或开发隧道在远程机器上运行的会话。有关详细信息，请参阅<a href="../docs/agents/remote-agent-sessions.md">远程代理会话</a>。</blockquote>
+<blockquote>你可以跟踪和创建通过 SSH 或开发隧道在远程机器上运行的会话。有关详细信息，请参阅<a href="../../docs/agents/remote-agent-sessions.html">远程代理会话</a>。</blockquote>
 
 <ol>
 <li>选择工作区后，从下拉菜单中为会话选择代理类型。
@@ -552,13 +552,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>（可选）为会话选择额外的配置选项，例如自定义代理、语言模型、权限级别等。
 </li>
 </ul>
-<p>    你可以在会话期间的任何时候更改这些设置。详细了解<a href="../docs/agents/overview.md">配置代理会话</a>。</p>
+<p>    你可以在会话期间的任何时候更改这些设置。详细了解<a href="../../docs/agents/overview.html">配置代理会话</a>。</p>
 
 <ol>
 <li>输入描述你想要完成的任务的提示，然后按 <code>kbstyle(Enter)</code>。
 </li>
 </ol>
-<p>代理现在开始处理你的请求。详细了解<a href="../docs/chat/chat-overview.md">在聊天中进行交互</a>。</p>
+<p>代理现在开始处理你的请求。详细了解<a href="../../docs/chat/chat-overview.html">在聊天中进行交互</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>要在不离开当前会话的情况下在后台启动会话，请按 <code>kbstyle(Alt+Enter)</code> 或按住 <code>kbstyle(Alt)</code> 并选择"发送"。新启动的会话在提交后会出现在会话列表中。</blockquote>
@@ -567,7 +567,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>侧边栏中的会话列表显示你跨工作区的所有进行中的会话。每个会话项都显示关键信息，例如会话名称、工作区、代理类型和文件更改统计信息。</p>
 
-<p>默认情况下，会话按工作区分组，你还可以按时间范围分组。有关使用会话列表的更多详细信息，请参阅<a href="../docs/chat/chat-sessions.md">管理会话</a>。</p>
+<p>默认情况下，会话按工作区分组，你还可以按时间范围分组。有关使用会话列表的更多详细信息，请参阅<a href="../../docs/chat/chat-sessions.html">管理会话</a>。</p>
 
 <p>当你在列表中选择一个会话时，聊天面板会显示该会话的完整历史记录。该会话随后成为活动会话，<strong>更改</strong>面板会显示该会话中代理的最新文件更新以及相关工作区中的文件。</p>
 
@@ -639,7 +639,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>任务配置完成后，它将出现在"任务"下拉菜单中，你可以在当前会话的上下文中运行它以验证代理所做的更改。</p>
 
-<p>如果你的应用程序涉及基于浏览器的行为，你可以在代理窗口中使用<a href="../docs/debugtest/integrated-browser.md">集成浏览器</a>。从聊天会话中选择一个 <code>localhost</code> 链接即可在代理窗口内的集成浏览器中打开它。浏览器选项卡将在会话切换期间保持存在，因此如果你打开另一个会话，浏览器选项卡将打开到你之前打开的同一页面，并保留该页面的状态。</p>
+<p>如果你的应用程序涉及基于浏览器的行为，你可以在代理窗口中使用<a href="../../docs/debugtest/integrated-browser.html">集成浏览器</a>。从聊天会话中选择一个 <code>localhost</code> 链接即可在代理窗口内的集成浏览器中打开它。浏览器选项卡将在会话切换期间保持存在，因此如果你打开另一个会话，浏览器选项卡将打开到你之前打开的同一页面，并保留该页面的状态。</p>
 
 <p><img src="images/agents-window/agents-window-integrated-browser.png" alt="Screenshot showing the integrated browser open in the Agents window, displaying a localhost page that was opened from a link in the chat session."></p>
 
@@ -656,10 +656,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><strong>SSH</strong>：直接从工作区下拉菜单通过 SSH 连接到远程机器。代理窗口会在远程机器上自动安装并启动 VS Code CLI。
 </li>
-<li><strong>开发隧道</strong>：连接到运行<a href="../docs/remote/tunnels.md">开发隧道</a>的机器以启动会话或查看现有会话。
+<li><strong>开发隧道</strong>：连接到运行<a href="../../docs/remote/tunnels.html">开发隧道</a>的机器以启动会话或查看现有会话。
 </li>
 </ul>
-<p>详细了解如何在<a href="../docs/agents/remote-agent-sessions.md">远程代理会话</a>中设置和使用远程连接。</p>
+<p>详细了解如何在<a href="../../docs/agents/remote-agent-sessions.html">远程代理会话</a>中设置和使用远程连接。</p>
 
 <h2>创建子会话</h2>
 
@@ -680,7 +680,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>输入提示并按 <code>kbstyle(Enter)</code> 启动子会话。
 <blockquote>[!TIP]</blockquote>
-<blockquote>要从会话对话中的特定点探索替代方向，请<a href="../docs/chat/chat-sessions.md#fork-a-chat-session">派生会话</a>。派生会话会创建一个新的独立会话，其中包含到特定点为止的对话历史记录副本。</blockquote>
+<blockquote>要从会话对话中的特定点探索替代方向，请<a href="../../docs/chat/chat-sessions.html#fork-a-chat-session">派生会话</a>。派生会话会创建一个新的独立会话，其中包含到特定点为止的对话历史记录副本。</blockquote>
 
 <h2>并排打开多个会话</h2>
 
@@ -715,12 +715,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>自定义项</th><th>作用</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td><strong>代理</strong></td><td>定义具有特定工具和指令的自定义代理角色。<a href="../docs/agent-customization/custom-agents.md">了解更多</a>。</td><td></td></tr>
-  <tr><td></td><td><strong>技能</strong></td><td>添加便携式指令文件夹，代理在相关时加载。<a href="../docs/agent-customization/agent-skills.md">了解更多</a>。</td><td></td></tr>
-  <tr><td></td><td><strong>指令</strong></td><td>设置指导 AI 生成代码方式的准则。<a href="../docs/agent-customization/custom-instructions.md">了解更多</a>。</td><td></td></tr>
-  <tr><td></td><td><strong>钩子</strong></td><td>在代理会话的生命周期点运行 shell 命令。<a href="../docs/agent-customization/hooks.md">了解更多</a>。</td><td></td></tr>
-  <tr><td></td><td><strong>MCP 服务器</strong></td><td>通过 MCP 标准将 AI 连接到外部工具和服务。<a href="../docs/agent-customization/mcp-servers.md">了解更多</a>。</td><td></td></tr>
-  <tr><td></td><td><strong>插件</strong></td><td>安装预打包的自定义捆绑包。<a href="../docs/agent-customization/agent-plugins.md">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>代理</strong></td><td>定义具有特定工具和指令的自定义代理角色。<a href="../../docs/agent-customization/custom-agents.html">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>技能</strong></td><td>添加便携式指令文件夹，代理在相关时加载。<a href="../../docs/agent-customization/agent-skills.html">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>指令</strong></td><td>设置指导 AI 生成代码方式的准则。<a href="../../docs/agent-customization/custom-instructions.html">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>钩子</strong></td><td>在代理会话的生命周期点运行 shell 命令。<a href="../../docs/agent-customization/hooks.html">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>MCP 服务器</strong></td><td>通过 MCP 标准将 AI 连接到外部工具和服务。<a href="../../docs/agent-customization/mcp-servers.html">了解更多</a>。</td><td></td></tr>
+  <tr><td></td><td><strong>插件</strong></td><td>安装预打包的自定义捆绑包。<a href="../../docs/agent-customization/agent-plugins.html">了解更多</a>。</td><td></td></tr>
 </tbody>
 </table>
 <p>代理自定义面板使你能够在一个地方轻松管理所有自定义设置：</p>
@@ -744,7 +744,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/agents-window/agents-window-folder-trust.png" alt="Screenshot of the folder trust prompt in the Agents window, asking the user to trust the folder before starting an agent session."></p>
 
-<p>代理窗口与主 VS Code 窗口共享相同的工作区信任状态。如果你在 VS Code 中信任某个文件夹，则在代理窗口中也会受信任，反之亦然。有关工作区信任的更多信息，请参阅<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任文档</a>。</p>
+<p>代理窗口与主 VS Code 窗口共享相同的工作区信任状态。如果你在 VS Code 中信任某个文件夹，则在代理窗口中也会受信任，反之亦然。有关工作区信任的更多信息，请参阅<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任文档</a>。</p>
 
 <h2>切换到另一个 GitHub 帐户</h2>
 
@@ -846,9 +846,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/chat/chat-overview.md">聊天概述</a> - 添加上下文、编写有效的提示以及审查更改。</li>
-<li><a href="../docs/chat/chat-sessions.md">管理聊天会话</a> - 检查点、派生、存档和导出会话。</li>
-<li><a href="../docs/agents/remote-agent-sessions.md">远程代理会话</a> - SSH、开发隧道和基于浏览器的访问。</li>
+<li><a href="../../docs/chat/chat-overview.html">聊天概述</a> - 添加上下文、编写有效的提示以及审查更改。</li>
+<li><a href="../../docs/chat/chat-sessions.html">管理聊天会话</a> - 检查点、派生、存档和导出会话。</li>
+<li><a href="../../docs/agents/remote-agent-sessions.html">远程代理会话</a> - SSH、开发隧道和基于浏览器的访问。</li>
 </ul>
 
   </div>

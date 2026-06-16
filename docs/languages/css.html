@@ -477,7 +477,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <blockquote><strong>提示：</strong> 你可以通过点击选择器顶部的颜色字符串在不同的颜色模式之间切换。</blockquote>
 
-<p>你可以通过以下<a href="../docs/configure/settings.md">设置</a>来隐藏 VS Code 的颜色预览：</p>
+<p>你可以通过以下<a href="../../docs/configure/settings.html">设置</a>来隐藏 VS Code 的颜色预览：</p>
 
 <pre><code class="language-json">"editor.colorDecorators": false</code></pre>
 
@@ -503,17 +503,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>Emmet 代码片段</h2>
 
-<p>VS Code 内置了 <a href="../docs/languages/emmet.md">Emmet 缩写支持</a>，建议会与编辑器自动补全列表中的其他建议和代码片段一同列出。</p>
+<p>VS Code 内置了 <a href="../../docs/languages/emmet.html">Emmet 缩写支持</a>，建议会与编辑器自动补全列表中的其他建议和代码片段一同列出。</p>
 
 <p>><strong>提示：</strong> 请参阅 <a href="https://docs.emmet.io/cheat-sheet">Emmet 速查表</a>的 CSS 部分以了解有效的缩写。</p>
 
-<p>VS Code 也支持<a href="../docs/editing/userdefinedsnippets.md">用户自定义代码片段</a>。</p>
+<p>VS Code 也支持<a href="../../docs/editing/userdefinedsnippets.html">用户自定义代码片段</a>。</p>
 
 <h2>语法验证与 Linting</h2>
 
 <p>支持 CSS 版本 <= 2.1、Sass 版本 <= 3.2 和 Less 版本 <= 2.3。</p>
 
-<p>><strong>注意：</strong> 你可以通过将相应的 <code>.validate</code> 用户或工作区<a href="../docs/configure/settings.md">设置</a>设置为 false 来禁用 VS Code 默认的 CSS、Sass 或 Less 验证。</p>
+<p>><strong>注意：</strong> 你可以通过将相应的 <code>.validate</code> 用户或工作区<a href="../../docs/configure/settings.html">设置</a>设置为 false 来禁用 VS Code 默认的 CSS、Sass 或 Less 验证。</p>
 <p>>```json</p>
 <p>>"css.validate": false</p>
 <p>>```</p>
@@ -555,7 +555,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>将 Sass 和 Less 转译为 CSS</h2>
 
-<p>VS Code 可以通过集成的<a href="../docs/debugtest/tasks.md">任务运行器</a>与 Sass 和 Less 转译器集成。我们可以使用它来将 <code>.scss</code> 或 <code>.less</code> 文件转译为 <code>.css</code> 文件。下面让我们逐步了解如何转译一个简单的 Sass/Less 文件。</p>
+<p>VS Code 可以通过集成的<a href="../../docs/debugtest/tasks.html">任务运行器</a>与 Sass 和 Less 转译器集成。我们可以使用它来将 <code>.scss</code> 或 <code>.less</code> 文件转译为 <code>.css</code> 文件。下面让我们逐步了解如何转译一个简单的 Sass/Less 文件。</p>
 
 <h3>步骤 1：安装 Sass 或 Less 转译器</h3>
 
@@ -709,7 +709,7 @@ gulp.task('default', gulp.series('less', function(cb) {
 
 </li>
 </ol>
-<p>要完成与 VS Code 的任务集成，我们需要修改之前的任务配置，以运行我们刚刚创建的默认 Gulp 任务。你可以删除 <code>tasks.json</code> 文件或将其清空，只保留 <code>"version": "2.0.0"</code> 属性。现在从全局<strong>终端</strong>菜单执行<strong>运行任务</strong>。你会看到一个选择器，列出了 gulp 文件中定义的任务。选择 <strong>gulp: default</strong> 以启动任务。我们允许你扫描输出中的编译问题。根据编译器的不同，在列表中选择适当的条目来扫描工具输出中的错误和警告。如果你不想扫描输出，请从显示的列表中选择<strong>从不扫描生成输出</strong>。此时，如果你创建和/或修改 Less 或 Sass 文件，你将看到相应的 CSS 文件在保存时生成和/或反映更改。你还可以启用<a href="../docs/editing/codebasics.md#save-auto-save">自动保存</a>来使流程更加顺畅。</p>
+<p>要完成与 VS Code 的任务集成，我们需要修改之前的任务配置，以运行我们刚刚创建的默认 Gulp 任务。你可以删除 <code>tasks.json</code> 文件或将其清空，只保留 <code>"version": "2.0.0"</code> 属性。现在从全局<strong>终端</strong>菜单执行<strong>运行任务</strong>。你会看到一个选择器，列出了 gulp 文件中定义的任务。选择 <strong>gulp: default</strong> 以启动任务。我们允许你扫描输出中的编译问题。根据编译器的不同，在列表中选择适当的条目来扫描工具输出中的错误和警告。如果你不想扫描输出，请从显示的列表中选择<strong>从不扫描生成输出</strong>。此时，如果你创建和/或修改 Less 或 Sass 文件，你将看到相应的 CSS 文件在保存时生成和/或反映更改。你还可以启用<a href="../../docs/editing/codebasics.html#save-auto-save">自动保存</a>来使流程更加顺畅。</p>
 
 <p>如果你想将 <strong>gulp: default</strong> 任务设为按 <code>kb(workbench.action.tasks.build)</code> 时执行的默认生成任务，请从全局<strong>终端</strong>菜单中运行<strong>配置默认生成任务</strong>，然后从显示的列表中选择 <strong>gulp: default</strong>。</p>
 
@@ -719,7 +719,7 @@ gulp.task('default', gulp.series('less', function(cb) {
 
 <h2>自定义 CSS、SCSS 和 Less 设置</h2>
 
-<p>你可以将以下 lint 警告配置为<a href="../docs/configure/settings.md">用户和工作区设置</a>。</p>
+<p>你可以将以下 lint 警告配置为<a href="../../docs/configure/settings.html">用户和工作区设置</a>。</p>
 
 <p><code>validate</code> 设置允许你关闭内置验证。如果你希望使用其他 linter，可以这样做。</p>
 
@@ -760,10 +760,10 @@ gulp.task('default', gulp.series('less', function(cb) {
 <p>继续阅读以了解：</p>
 
 <ul>
-<li><a href="../docs/debugtest/tasks.md">配置任务</a> - 深入了解任务，帮助你转译 SCSS 和 Less 为 CSS。</li>
-<li><a href="../docs/editing/codebasics.md">基础编辑</a> - 了解功能强大的 VS Code 编辑器。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a> - 在源代码中快速移动。</li>
-<li><a href="../docs/languages/html.md">HTML</a> - CSS 仅仅是个开始，VS Code 对 HTML 的支持也非常出色。
+<li><a href="../../docs/debugtest/tasks.html">配置任务</a> - 深入了解任务，帮助你转译 SCSS 和 Less 为 CSS。</li>
+<li><a href="../../docs/editing/codebasics.html">基础编辑</a> - 了解功能强大的 VS Code 编辑器。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a> - 在源代码中快速移动。</li>
+<li><a href="../../docs/languages/html.html">HTML</a> - CSS 仅仅是个开始，VS Code 对 HTML 的支持也非常出色。
 <h2>常见问题</h2>
 
 <h3>VS Code 是否提供颜色选择器？</h3>

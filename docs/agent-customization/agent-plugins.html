@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/agent-customization / agent-plugins</div>
 <h1>VS Code 中的代理插件（预览版）</h1>
 
-<p>代理插件是预打包的代理自定义捆绑包，你可以从 Visual Studio Code 中的插件市场发现并安装。单个插件可以提供任意组合的斜杠命令、<a href="../docs/agent-customization/agent-skills.md">代理技能</a>、<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>、<a href="../docs/agent-customization/hooks.md">钩子</a>和 <a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>。</p>
+<p>代理插件是预打包的代理自定义捆绑包，你可以从 Visual Studio Code 中的插件市场发现并安装。单个插件可以提供任意组合的斜杠命令、<a href="../../docs/agent-customization/agent-skills.html">代理技能</a>、<a href="../../docs/agent-customization/custom-agents.html">自定义代理</a>、<a href="../../docs/agent-customization/hooks.html">钩子</a>和 <a href="../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>。</p>
 
 <p>插件与你本地定义的自定义设置并行工作。安装插件后，其命令、技能、代理、钩子和 MCP 服务器会出现在聊天中。</p>
 
@@ -464,10 +464,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><strong>斜杠命令</strong>：可在聊天中使用 <code>/</code> 调用的附加命令</li>
-<li><strong>技能</strong>：包含指令、脚本和资源的<a href="../docs/agent-customization/agent-skills.md">代理技能</a>，可按需加载</li>
-<li><strong>代理</strong>：具有专用角色和工具配置的<a href="../docs/agent-customization/custom-agents.md">自定义代理</a></li>
-<li><strong>钩子</strong>：在代理生命周期节点执行 shell 命令的<a href="../docs/agent-customization/hooks.md">钩子</a></li>
-<li><strong>MCP 服务器</strong>：用于外部工具集成的 <a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>
+<li><strong>技能</strong>：包含指令、脚本和资源的<a href="../../docs/agent-customization/agent-skills.html">代理技能</a>，可按需加载</li>
+<li><strong>代理</strong>：具有专用角色和工具配置的<a href="../../docs/agent-customization/custom-agents.html">自定义代理</a></li>
+<li><strong>钩子</strong>：在代理生命周期节点执行 shell 命令的<a href="../../docs/agent-customization/hooks.html">钩子</a></li>
+<li><strong>MCP 服务器</strong>：用于外部工具集成的 <a href="../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>
 </li>
 </ul>
 <p>例如，一个测试插件可能包含一个带有脚本的 <code>test-runner</code> 技能、一个带有只读工具的 <code>test-reviewer</code> 代理，以及一个用于测试报告仪表板的 MCP 服务器。插件目录结构如下所示：</p>
@@ -562,7 +562,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </table>
 <h2>插件中的钩子</h2>
 
-<p>插件可以包含在代理生命周期节点运行 shell 命令的<a href="../docs/agent-customization/hooks.md">钩子</a>。插件钩子与你的工作区和用户级钩子并行工作。启用插件后，其钩子会与为同一事件配置的任何其他钩子一起触发。</p>
+<p>插件可以包含在代理生命周期节点运行 shell 命令的<a href="../../docs/agent-customization/hooks.html">钩子</a>。插件钩子与你的工作区和用户级钩子并行工作。启用插件后，其钩子会与为同一事件配置的任何其他钩子一起触发。</p>
 
 <h3>钩子文件位置</h3>
 
@@ -586,7 +586,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>钩子配置格式</h3>
 
-<p>插件钩子使用与<a href="../docs/agent-customization/hooks.md#hook-configuration-format">工作区钩子</a>相同的基础格式。VS Code 解析 Claude Code 钩子配置，包括匹配器语法。目前，VS Code 忽略匹配器值，因此钩子会在每个匹配事件上运行。</p>
+<p>插件钩子使用与<a href="../../docs/agent-customization/hooks.html#hook-configuration-format">工作区钩子</a>相同的基础格式。VS Code 解析 Claude Code 钩子配置，包括匹配器语法。目前，VS Code 忽略匹配器值，因此钩子会在每个匹配事件上运行。</p>
 
 <p><strong>平铺格式</strong>（与工作区钩子相同）：</p>
 
@@ -640,7 +640,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>支持的钩子事件</h3>
 
-<p>插件钩子支持与工作区钩子相同的生命周期事件：<code>SessionStart</code>、<code>UserPromptSubmit</code>、<code>PreToolUse</code>、<code>PostToolUse</code>、<code>PreCompact</code>、<code>SubagentStart</code>、<code>SubagentStop</code> 和 <code>Stop</code>。有关每个事件的详细信息，请参阅<a href="../docs/agent-customization/hooks.md#hook-lifecycle-events">钩子生命周期事件</a>。</p>
+<p>插件钩子支持与工作区钩子相同的生命周期事件：<code>SessionStart</code>、<code>UserPromptSubmit</code>、<code>PreToolUse</code>、<code>PostToolUse</code>、<code>PreCompact</code>、<code>SubagentStart</code>、<code>SubagentStop</code> 和 <code>Stop</code>。有关每个事件的详细信息，请参阅<a href="../../docs/agent-customization/hooks.html#hook-lifecycle-events">钩子生命周期事件</a>。</p>
 
 <h3>插件钩子与其他钩子如何交互</h3>
 
@@ -650,7 +650,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>插件中的 MCP 服务器</h2>
 
-<p>插件可以捆绑 <a href="../docs/agent-customization/mcp-servers.md">MCP 服务器</a>，为代理提供额外的工具和数据源。插件 MCP 服务器在插件启用时自动启动，在插件禁用时停止。</p>
+<p>插件可以捆绑 <a href="../../docs/agent-customization/mcp-servers.html">MCP 服务器</a>，为代理提供额外的工具和数据源。插件 MCP 服务器在插件启用时自动启动，在插件禁用时停止。</p>
 
 <h3>MCP 配置文件</h3>
 
@@ -770,7 +770,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>在扩展视图的<strong>代理插件 - 已安装</strong>部分中，使用插件的上下文菜单。</li>
-<li>使用<a href="../docs/agent-customization/overview.md#manage-customizations-in-the-editor">代理自定义编辑器</a>切换插件的启用状态。
+<li>使用<a href="../../docs/agent-customization/overview.html#manage-customizations-in-the-editor">代理自定义编辑器</a>切换插件的启用状态。
 </li>
 </ul>
 <p>启用/禁用状态与插件配置分开存储，因此不会影响共享的工作区设置。</p>
@@ -804,7 +804,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 ]</code></pre>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>企业管理员可以集中控制开发人员可用的插件和市场。有关更多信息，请参阅<a href="../docs/enterprise/ai-settings.md#manage-agent-plugins-and-marketplaces">管理代理插件和市场</a>。</blockquote>
+<blockquote>企业管理员可以集中控制开发人员可用的插件和市场。有关更多信息，请参阅<a href="../../docs/enterprise/ai-settings.html#manage-agent-plugins-and-marketplaces">管理代理插件和市场</a>。</blockquote>
 
 <h2>使用本地插件</h2>
 
@@ -912,10 +912,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li><a href="https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/plugins-finding-installing">为 GitHub Copilot CLI 查找和安装插件</a></li>
 <li><a href="https://docs.github.com/en/copilot/reference/copilot-cli-reference/cli-plugin-reference">GitHub Copilot CLI 插件参考</a></li>
-<li><a href="../docs/agent-customization/agent-skills.md">使用代理技能</a></li>
-<li><a href="../docs/agent-customization/mcp-servers.md">添加和管理 MCP 服务器</a></li>
-<li><a href="../docs/agent-customization/hooks.md">使用钩子实现生命周期自动化</a></li>
-<li><a href="../docs/agent-customization/custom-agents.md">创建自定义代理</a></li>
+<li><a href="../../docs/agent-customization/agent-skills.html">使用代理技能</a></li>
+<li><a href="../../docs/agent-customization/mcp-servers.html">添加和管理 MCP 服务器</a></li>
+<li><a href="../../docs/agent-customization/hooks.html">使用钩子实现生命周期自动化</a></li>
+<li><a href="../../docs/agent-customization/custom-agents.html">创建自定义代理</a></li>
 </ul>
 
   </div>

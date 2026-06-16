@@ -464,7 +464,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>工作区信任在处理不熟悉的代码时提供了额外的安全层，当工作区以"受限模式"打开时，它会阻止工作区中任何代码的自动执行。</p>
 
 <blockquote>[!IMPORTANT]</blockquote>
-<blockquote>工作区信任在 VS Code 窗口和 <a href="../docs/agents/agents-window.md">Agents 窗口</a>之间是共享的。如果工作区在 VS Code 中不受信任，那么在 Agents 窗口中也不受信任，代理程序在两个位置都不会运行。你可以从任一界面管理工作区信任，信任状态在两者之间是共享的。</blockquote>
+<blockquote>工作区信任在 VS Code 窗口和 <a href="../../../docs/agents/agents-window.html">Agents 窗口</a>之间是共享的。如果工作区在 VS Code 中不受信任，那么在 Agents 窗口中也不受信任，代理程序在两个位置都不会运行。你可以从任一界面管理工作区信任，信任状态在两者之间是共享的。</blockquote>
 
 <h2>受限模式</h2>
 
@@ -476,7 +476,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>受限模式通过禁用或限制多个 VS Code 功能的运行来尝试防止自动代码执行：AI 代理程序、终端、任务、调试、工作区设置和扩展。</p>
 
-<p>要查看受限模式下禁用的功能的完整列表，你可以通过横幅中的<strong>管理</strong>链接或选择状态栏中的受限模式徽章来打开工作区信任编辑器。工作区信任编辑器默认以<a href="../docs/editing/userinterface.md#modal-editors">模态浮层</a>的形式在编辑器区域上方打开。</p>
+<p>要查看受限模式下禁用的功能的完整列表，你可以通过横幅中的<strong>管理</strong>链接或选择状态栏中的受限模式徽章来打开工作区信任编辑器。工作区信任编辑器默认以<a href="../../../docs/editing/userinterface.html#modal-editors">模态浮层</a>的形式在编辑器区域上方打开。</p>
 
 <p><img src="images/workspace-trust/workspace-trust-editor.png" alt="工作区信任编辑器"></p>
 
@@ -489,11 +489,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在审查项目是否存在恶意内容之前，请依赖工作区信任边界并在受限模式下打开它。在受限模式下打开工作区会禁用该工作区中的代理程序。</p>
 
-<p>详细了解在 VS Code 中使用 AI 驱动的开发功能时的 <a href="../docs/agents/security.md">AI 安全注意事项</a>。</p>
+<p>详细了解在 VS Code 中使用 AI 驱动的开发功能时的 <a href="../../../docs/agents/security.html">AI 安全注意事项</a>。</p>
 
 <h3>终端</h3>
 
-<p>Shell 可能会根据工作区内容自动执行代码，例如通过引用 <code>.env</code> 文件或运行引用当前目录的 shell 初始化脚本来执行此操作。为了防止这种情况，当文件夹以受限模式打开时，默认会阻止打开<a href="../docs/terminal/basics.md">终端</a>。</p>
+<p>Shell 可能会根据工作区内容自动执行代码，例如通过引用 <code>.env</code> 文件或运行引用当前目录的 shell 初始化脚本来执行此操作。为了防止这种情况，当文件夹以受限模式打开时，默认会阻止打开<a href="../../../docs/terminal/basics.html">终端</a>。</p>
 
 <p>如果你在受限模式下尝试打开终端，VS Code 会显示一个提示，要求确认你信任该文件夹。如果你取消该对话框，VS Code 将保持在受限模式，并且不会打开终端。</p>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>任务</h3>
 
-<p>VS Code <a href="../docs/debugtest/tasks.md">任务</a>可以运行脚本和工具二进制文件。由于任务定义定义在工作区的 <code>.vscode</code> 文件夹中，它们是仓库提交源代码的一部分，并共享给该仓库的每个用户。如果有人创建了一个恶意任务，任何克隆该仓库的人都可能在不经意间运行它。</p>
+<p>VS Code <a href="../../../docs/debugtest/tasks.html">任务</a>可以运行脚本和工具二进制文件。由于任务定义定义在工作区的 <code>.vscode</code> 文件夹中，它们是仓库提交源代码的一部分，并共享给该仓库的每个用户。如果有人创建了一个恶意任务，任何克隆该仓库的人都可能在不经意间运行它。</p>
 
 <p>如果你在受限模式下尝试运行甚至列举任务（<strong>任务</strong> > <strong>运行任务</strong>），VS Code 会显示一个提示，要求确认你信任该文件夹，然后才能继续执行任务。如果取消该对话框，VS Code 将保持在受限模式。</p>
 
@@ -509,7 +509,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>调试</h3>
 
-<p>与运行 VS Code 任务类似，调试扩展在启动调试会话时可以运行调试器二进制文件。因此，当文件夹以受限模式打开时，<a href="../docs/debugtest/debugging.md">调试</a>也会被禁用。</p>
+<p>与运行 VS Code 任务类似，调试扩展在启动调试会话时可以运行调试器二进制文件。因此，当文件夹以受限模式打开时，<a href="../../../docs/debugtest/debugging.html">调试</a>也会被禁用。</p>
 
 <p>如果你在受限模式下尝试启动调试会话（<strong>调试</strong> > <strong>开始调试</strong>），VS Code 会显示一个提示，要求确认你信任该文件夹，然后才能继续启动调试器。如果你取消该对话框，VS Code 将保持在受限模式，并且不会启动调试会话。</p>
 
@@ -517,7 +517,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>工作区设置</h3>
 
-<p>工作区<a href="../docs/configure/settings.md">设置</a>存储在工作区根目录下的 <code>.vscode</code> 文件夹中，因此会被克隆该工作区仓库的所有人共享。某些设置包含可执行文件的路径（例如 linter 二进制文件），如果指向恶意代码，可能会造成损害。因此，VS Code 在受限模式下会禁用它，而不是应用这些工作区设置。</p>
+<p>工作区<a href="../../../docs/configure/settings.html">设置</a>存储在工作区根目录下的 <code>.vscode</code> 文件夹中，因此会被克隆该工作区仓库的所有人共享。某些设置包含可执行文件的路径（例如 linter 二进制文件），如果指向恶意代码，可能会造成损害。因此，VS Code 在受限模式下会禁用它，而不是应用这些工作区设置。</p>
 
 <p><img src="images/workspace-trust/workspace-settings-link.png" alt="工作区信任编辑器工作区设置链接"></p>
 
@@ -527,7 +527,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>扩展</h3>
 
-<p>VS Code <a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>生态系统异常丰富和多样。人们创建了扩展来帮助完成几乎任何编程任务或编辑器自定义。有些扩展提供完整的编程语言支持（IntelliSense、调试、代码分析），而其他扩展则让你播放音乐或拥有虚拟<a href="https://marketplace.visualstudio.com/items?itemName=tonybaloney.vscode-pets">宠物</a>。</p>
+<p>VS Code <a href="../../../docs/configure/extensions/extension-marketplace.html">扩展</a>生态系统异常丰富和多样。人们创建了扩展来帮助完成几乎任何编程任务或编辑器自定义。有些扩展提供完整的编程语言支持（IntelliSense、调试、代码分析），而其他扩展则让你播放音乐或拥有虚拟<a href="https://marketplace.visualstudio.com/items?itemName=tonybaloney.vscode-pets">宠物</a>。</p>
 
 <p>大多数扩展会代表你运行代码，并可能造成伤害。有些扩展的设置如果被配置为运行意外的可执行文件，可能会导致它们恶意操作。因此，在受限模式下，未明确选择加入工作区信任的扩展默认会被禁用。</p>
 
@@ -558,7 +558,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><img src="images/workspace-trust/workspace-trust-install-extension.png" alt="工作区信任在受限模式下安装扩展对话框"></p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>扩展作者可以通过阅读<a href="../api/extension-guides/workspace-trust.md">工作区信任扩展指南</a>来了解如何更新他们的扩展以支持工作区信任。</blockquote>
+<blockquote>扩展作者可以通过阅读<a href="../../../api/extension-guides/workspace-trust.html">工作区信任扩展指南</a>来了解如何更新他们的扩展以支持工作区信任。</blockquote>
 
 <h2>信任工作区</h2>
 
@@ -586,7 +586,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>命令面板中的<strong>工作区：管理工作区信任</strong>命令 (<code>kb(workbench.action.showCommands)</code>)
 <blockquote>[!IMPORTANT]</blockquote>
-<blockquote>工作区信任在 VS Code 窗口和 <a href="../docs/agents/agents-window.md">Agents 窗口</a>之间是共享的。如果工作区在 VS Code 中不受信任，那么在 Agents 窗口中也不受信任，代理程序在两个位置都不会运行。你可以从任一界面管理工作区信任，信任状态在两者之间是共享的。</blockquote>
+<blockquote>工作区信任在 VS Code 窗口和 <a href="../../../docs/agents/agents-window.html">Agents 窗口</a>之间是共享的。如果工作区在 VS Code 中不受信任，那么在 Agents 窗口中也不受信任，代理程序在两个位置都不会运行。你可以从任一界面管理工作区信任，信任状态在两者之间是共享的。</blockquote>
 
 <h2>选择文件夹</h2>
 
@@ -649,7 +649,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你可以使用 <code>supported</code> 属性来启用或禁用工作区信任支持。<code>version</code> 属性指定了适用的确切扩展版本，如果你想为所有版本设置状态，可以移除 version 字段。</p>
 
-<p>如果你想了解更多关于扩展作者如何评估和确定在受限模式下限制哪些功能的信息，可以阅读<a href="../api/extension-guides/workspace-trust.md">工作区信任扩展指南</a>。</p>
+<p>如果你想了解更多关于扩展作者如何评估和确定在受限模式下限制哪些功能的信息，可以阅读<a href="../../../api/extension-guides/workspace-trust.html">工作区信任扩展指南</a>。</p>
 
 <h2>打开不受信任的文件</h2>
 
@@ -661,7 +661,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>打开不受信任的文件夹</h3>
 
-<p>当使用包含多个文件夹的<a href="../docs/editing/workspaces/multi-root-workspaces.md">多根工作区</a>时，如果你尝试向受信任的多根工作区添加一个新文件夹，系统会提示你决定是否信任该文件夹中的文件，否则整个工作区将切换到受限模式。</p>
+<p>当使用包含多个文件夹的<a href="../../../docs/editing/workspaces/multi-root-workspaces.html">多根工作区</a>时，如果你尝试向受信任的多根工作区添加一个新文件夹，系统会提示你决定是否信任该文件夹中的文件，否则整个工作区将切换到受限模式。</p>
 
 <p><img src="images/workspace-trust/untrusted-folder-dialog.png" alt="不受信任文件夹对话框"></p>
 
@@ -713,9 +713,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>了解更多：</p>
 
 <ul>
-<li><a href="../api/extension-guides/workspace-trust.md">工作区信任扩展指南</a> - 了解扩展作者如何支持工作区信任。</li>
-<li><a href="../docs/editing/workspaces/workspaces.md">什么是 VS Code"工作区"？</a> - 详细了解 VS Code"工作区"概念。</li>
-<li><a href="../docs/sourcecontrol/github.md#github-repositories-extension">GitHub 仓库扩展</a> - 直接在仓库上工作，无需将源代码克隆到本地计算机。
+<li><a href="../../../api/extension-guides/workspace-trust.html">工作区信任扩展指南</a> - 了解扩展作者如何支持工作区信任。</li>
+<li><a href="../../../docs/editing/workspaces/workspaces.html">什么是 VS Code"工作区"？</a> - 详细了解 VS Code"工作区"概念。</li>
+<li><a href="../../../docs/sourcecontrol/github.html#github-repositories-extension">GitHub 仓库扩展</a> - 直接在仓库上工作，无需将源代码克隆到本地计算机。
 <h2>常见问题</h2>
 
 <h3>我可以在受限模式下编辑源代码吗？</h3>
@@ -744,7 +744,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你在工作区信任对话框中看不到<strong>不信任</strong>按钮，则该文件夹的信任级别可能是从父文件夹继承的。查看<strong>受信任的文件夹和工作区</strong>列表，检查是否有父文件夹启用了工作区信任。</p>
 
-<p>某些工作流，如连接到 <a href="../docs/remote/codespaces.md">GitHub Codespace</a> 或<a href="../docs/remote/attach-container.md">附加到正在运行的 Docker 容器</a>，会自动受信任，因为这些是托管环境，你应该已经对其有较高的信任度。</p>
+<p>某些工作流，如连接到 <a href="../../../docs/remote/codespaces.html">GitHub Codespace</a> 或<a href="../../../docs/remote/attach-container.html">附加到正在运行的 Docker 容器</a>，会自动受信任，因为这些是托管环境，你应该已经对其有较高的信任度。</p>
 
 <h3>工作区信任可以防止什么？</h3>
 

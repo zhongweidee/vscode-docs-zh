@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/remote / faq</div>
 <h1>远程开发 FAQ</h1>
 
-<p>本文涵盖了每个 <strong>Visual Studio Code 远程开发</strong>扩展的常见问题。有关设置和使用各项功能的更多详细信息，请参阅 <a href="../docs/remote/ssh.md">SSH</a>、<a href="../docs/devcontainers/containers.md">容器</a> 和 <a href="../docs/remote/wsl.md">WSL</a> 文章。或尝试入门<a href="../docs/remote/ssh-tutorial.md">教程</a>，帮助你在远程环境中快速上手。</p>
+<p>本文涵盖了每个 <strong>Visual Studio Code 远程开发</strong>扩展的常见问题。有关设置和使用各项功能的更多详细信息，请参阅 <a href="../../docs/remote/ssh.html">SSH</a>、<a href="../../docs/devcontainers/containers.html">容器</a> 和 <a href="../../docs/remote/wsl.html">WSL</a> 文章。或尝试入门<a href="../../docs/remote/ssh-tutorial.html">教程</a>，帮助你在远程环境中快速上手。</p>
 
 <p>有关 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 的问题，请参阅 <a href="https://docs.github.com/github/developing-online-with-codespaces">GitHub Codespaces 文档</a>。</p>
 
@@ -487,7 +487,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/troubleshooting/architecture.png" alt="架构概览"></p>
 
-<p>有关扩展的更多详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+<p>有关扩展的更多详细信息，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>。</p>
 
 <h3>远程开发扩展如何保证对远程计算机、虚拟机或容器的安全访问？</h3>
 
@@ -529,7 +529,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>WSL：一个随机本地端口。
 </li>
 </ul>
-<p>你可以在<a href="../docs/setup/network.md#common-hostnames">网络连接文章</a>中找到 VS Code 本身需要访问的位置列表。</p>
+<p>你可以在<a href="../../docs/setup/network.html#common-hostnames">网络连接文章</a>中找到 VS Code 本身需要访问的位置列表。</p>
 
 <h3>为什么在使用 Remote - 扩展时，我在容器工具扩展中看不到本地容器？</h3>
 
@@ -540,13 +540,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li>打开一个新的本地窗口（<strong>文件 > 新建窗口</strong>）并用它来处理本地容器。
 </li>
-<li>安装 <a href="https://aka.ms/vscode-remote/download/containers">Dev Containers</a> 扩展，并在需要查看本地容器时使用<a href="../docs/devcontainers/containers.md#managing-containers">远程资源管理器</a>。
+<li>安装 <a href="https://aka.ms/vscode-remote/download/containers">Dev Containers</a> 扩展，并在需要查看本地容器时使用<a href="../../docs/devcontainers/containers.html#managing-containers">远程资源管理器</a>。
 </li>
 <li><strong>仅限 WSL</strong>：使用 <a href="https://docs.docker.com/docker-for-windows/wsl-tech-preview/">Docker Technical Preview for WSL 2</a> 或<a href="https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly">配置 Docker Desktop 以在 WSL 1 中使用</a>。
 </li>
 <li><strong>仅限 Dev Containers</strong>：在容器中转发 <a href="https://github.com/devcontainers/templates/tree/main/src/docker-outside-of-docker">Docker 套接字并安装 Docker CLI</a>（仅限）。
 </li>
-<li>使用 <a href="../docs/devcontainers/containers.md#advanced-forcing-an-extension-to-run-locally-or-remotely">extensionKind 属性</a> 强制扩展为 <code>ui</code>。但是，这将导致某些命令无法正常工作。
+<li>使用 <a href="../../docs/devcontainers/containers.html#advanced-forcing-an-extension-to-run-locally-or-remotely">extensionKind 属性</a> 强制扩展为 <code>ui</code>。但是，这将导致某些命令无法正常工作。
 <h3>在主机上使用远程开发需要安装哪些 Linux 软件包或库？</h3>
 
 </li>
@@ -555,7 +555,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>基于 musl 的 <a href="https://alpinelinux.org">Alpine Linux</a> 支持适用于 Dev Containers 和 WSL 扩展，而 ARMv7l（AArch32）/ ARMv8l（AArch64）在 Remote - SSH 中可用。但是，某些扩展中的原生依赖项可能导致它们在非 x86_64 glibc 发行版上无法运行。请注意，实验性 ARMv8l（AArch64）仅在 <a href="https://code.visualstudio.com/insiders/">VS Code Insiders</a> 中可用。</p>
 
-<p>有关更多详细信息，请参阅<a href="../docs/remote/linux.md">使用 Linux 进行远程开发</a>。</p>
+<p>有关更多详细信息，请参阅<a href="../../docs/remote/linux.html">使用 Linux 进行远程开发</a>。</p>
 
 <h3>我可以在较旧的 Linux 发行版上运行 VS Code Server 吗？</h3>
 
@@ -650,7 +650,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>与 <a href="../docs/configure/settings.md">Visual Studio Code 的其他部分</a> 一样，你可以通过扩展的设置来自定义每个远程开发扩展。以 Dev Containers 为例，你可以通过在扩展视图中打开扩展（<code>kb(workbench.view.extensions)</code>），然后导航到<strong>功能贡献</strong>来查看所有 Dev Containers 设置的列表：</p>
+<p>与 <a href="../../docs/configure/settings.html">Visual Studio Code 的其他部分</a> 一样，你可以通过扩展的设置来自定义每个远程开发扩展。以 Dev Containers 为例，你可以通过在扩展视图中打开扩展（<code>kb(workbench.view.extensions)</code>），然后导航到<strong>功能贡献</strong>来查看所有 Dev Containers 设置的列表：</p>
 
 <p><img src="images/faq/feature-contributions.png" alt="功能贡献中的设置列表"></p>
 
@@ -672,7 +672,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>作为扩展作者，我需要做什么？</h3>
 
-<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。但是，由于扩展可以使用任何 node 模块或运行时，因此可能存在需要调整的情况。我们建议你测试你的扩展（特别是在容器中），以确保不需要任何更新。有关详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。但是，由于扩展可以使用任何 node 模块或运行时，因此可能存在需要调整的情况。我们建议你测试你的扩展（特别是在容器中），以确保不需要任何更新。有关详细信息，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>。</p>
 
 <h3>当用户远程连接时，扩展可以访问本地资源或 API 吗？</h3>
 
@@ -680,7 +680,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当用户安装扩展时，VS Code 会尝试推断正确的位置，并根据其类型进行安装。不需要远程运行的扩展（如主题和其他 UI 自定义）会自动安装在 UI 端。所有其他扩展都被视为工作区扩展，因为它们功能最全面。但是，扩展作者也可以通过 <code>package.json</code> 中的 <code>extensionKind</code> 属性来覆盖此位置。</p>
 
-<p>如果你的扩展未按预期工作，<a href="../api/advanced-topics/remote-extensions#incorrect-execution-location">有一些步骤可以检查</a> 它是否在正确的位置运行，或者是否应该具有不同的 <code>extensionKind</code>。另请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>，了解扩展作者需要了解的有关远程开发和 Codespaces 的更多详细信息。</p>
+<p>如果你的扩展未按预期工作，<a href="../../api/advanced-topics/remote-extensions#incorrect-execution-location">有一些步骤可以检查</a> 它是否在正确的位置运行，或者是否应该具有不同的 <code>extensionKind</code>。另请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>，了解扩展作者需要了解的有关远程开发和 Codespaces 的更多详细信息。</p>
 
 <h2>许可和隐私</h2>
 
@@ -698,7 +698,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>Visual Studio Code 远程开发扩展及其相关组件使用<a href="https://aka.ms/vscode-remote/feedback">开放的规划、问题和功能请求流程</a>，但目前不开源。这些扩展共享的源代码也用于完全托管的远程开发服务中，如 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 及其相关扩展。</p>
 
-<p>有关更多信息，请参阅 <a href="https://github.com/microsoft/vscode/wiki/Differences-between-the-repository-and-Visual-Studio-Code">Visual Studio Code 与 'Code - OSS' 的差异</a> 和 <a href="../docs/supporting/oss-extensions.md">Microsoft 扩展开源许可</a> 文章。</p>
+<p>有关更多信息，请参阅 <a href="https://github.com/microsoft/vscode/wiki/Differences-between-the-repository-and-Visual-Studio-Code">Visual Studio Code 与 'Code - OSS' 的差异</a> 和 <a href="../../docs/supporting/oss-extensions.html">Microsoft 扩展开源许可</a> 文章。</p>
 
 <h3>远程开发扩展可以连接到哪里有什么限制吗？</h3>
 
@@ -718,14 +718,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>GDPR 和 VS Code 远程开发</h3>
 
-<p>VS Code 远程开发扩展遵循与 Visual Studio Code 自身相同的 GDPR 政策。有关更多详细信息，请参阅<a href="../docs/supporting/faq.md#gdpr-and-vs-code">通用 FAQ</a>。</p>
+<p>VS Code 远程开发扩展遵循与 Visual Studio Code 自身相同的 GDPR 政策。有关更多详细信息，请参阅<a href="../../docs/supporting/faq.html#gdpr-and-vs-code">通用 FAQ</a>。</p>
 
 <h2>问题或反馈</h2>
 
 <p>有问题或反馈？</p>
 
 <ul>
-<li>请参阅<a href="../docs/remote/troubleshooting.md">提示和技巧</a>。</li>
+<li>请参阅<a href="../../docs/remote/troubleshooting.html">提示和技巧</a>。</li>
 <li>在 <a href="https://stackoverflow.com/questions/tagged/vscode-remote">Stack Overflow</a> 上搜索。</li>
 <li>添加<a href="https://aka.ms/vscode-remote/feature-requests">功能请求</a> 或<a href="https://aka.ms/vscode-remote/issues/new">报告问题</a>。</li>
 </ul>

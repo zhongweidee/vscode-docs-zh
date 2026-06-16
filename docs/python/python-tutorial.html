@@ -457,16 +457,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要更深入地理解 Python 语言，你可以在 VS Code 环境中探索 <a href="https://wiki.python.org/moin/BeginnersGuide/Programmers">python.org</a> 上列出的任何编程教程。</p>
 
-<p>有关以数据科学为重点的 Python 教程，请查看我们的<a href="../docs/datascience/data-science-tutorial.md">数据科学部分</a>。</p>
+<p>有关以数据科学为重点的 Python 教程，请查看我们的<a href="../../docs/datascience/data-science-tutorial.html">数据科学部分</a>。</p>
 
 <h2>前提条件</h2>
 
 <p>要成功完成本教程，你需要首先设置好 Python 开发环境。具体来说，本教程需要：</p>
 
 <ul>
-<li><a href="../docs/python/python-tutorial.md#install-a-python-interpreter">Python 3</a></li>
+<li><a href="../../docs/python/python-tutorial.html#install-a-python-interpreter">Python 3</a></li>
 <li><a href="https://code.visualstudio.com/">VS Code</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python 扩展</a>（有关安装扩展的更多详细信息，请参见<a href="../docs/configure/extensions/extension-marketplace.md">扩展市场</a>）
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python 扩展</a>（有关安装扩展的更多详细信息，请参见<a href="../../docs/configure/extensions/extension-marketplace.html">扩展市场</a>）
 <h2>安装 Python 解释器</h2>
 
 </li>
@@ -485,7 +485,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>不支持 macOS 上系统自带的 Python 安装。建议使用包管理系统，如 <a href="https://brew.sh/">Homebrew</a>。要在 macOS 上使用 Homebrew 安装 Python，请在终端提示符下使用 <code>brew install python3</code>。</p>
 
-<blockquote><strong>注意</strong>：在 macOS 上，请确保你的 VS Code 安装位置包含在 PATH 环境变量中。更多信息请参见<a href="../docs/setup/mac.md#launching-from-the-command-line">这些设置说明</a>。</blockquote>
+<blockquote><strong>注意</strong>：在 macOS 上，请确保你的 VS Code 安装位置包含在 PATH 环境变量中。更多信息请参见<a href="../../docs/setup/mac.html#launching-from-the-command-line">这些设置说明</a>。</blockquote>
 
 <h3>Linux</h3>
 
@@ -496,7 +496,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><strong>数据科学</strong>：如果你使用 Python 的主要目的是数据科学，那么你可以考虑从 <a href="https://www.anaconda.com/download/">Anaconda</a> 下载。Anaconda 不仅提供 Python 解释器，还提供许多有用的数据科学库和工具。
 </li>
-<li><strong>适用于 Linux 的 Windows 子系统</strong>：如果你在 Windows 上工作，想要一个 Linux 环境来使用 Python，<a href="https://learn.microsoft.com/windows/wsl/about">适用于 Linux 的 Windows 子系统</a>（WSL）是一个可选方案。如果你选择此选项，你还需要安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">WSL 扩展</a>。有关在 VS Code 中使用 WSL 的更多信息，请参见 <a href="../docs/remote/remote-overview.md">VS Code 远程开发</a>或尝试<a href="../docs/remote/wsl-tutorial.md">在 WSL 中工作教程</a>，该教程将引导你完成 WSL 的设置、安装 Python 以及创建一个在 WSL 中运行的 Hello World 应用。
+<li><strong>适用于 Linux 的 Windows 子系统</strong>：如果你在 Windows 上工作，想要一个 Linux 环境来使用 Python，<a href="https://learn.microsoft.com/windows/wsl/about">适用于 Linux 的 Windows 子系统</a>（WSL）是一个可选方案。如果你选择此选项，你还需要安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">WSL 扩展</a>。有关在 VS Code 中使用 WSL 的更多信息，请参见 <a href="../../docs/remote/remote-overview.html">VS Code 远程开发</a>或尝试<a href="../../docs/remote/wsl-tutorial.html">在 WSL 中工作教程</a>，该教程将引导你完成 WSL 的设置、安装 Python 以及创建一个在 WSL 中运行的 Hello World 应用。
 </li>
 </ul>
 <p>><strong>注意</strong>：要验证你的机器上是否已成功安装 Python，请运行以下命令之一（取决于你的操作系统）：</p>
@@ -548,7 +548,7 @@ code .</code></pre>
 
 <p><img src="images/tutorial/interpreter-venv.png" alt="Select an Interpreter"></p>
 
-<blockquote><strong>注意</strong>：有关虚拟环境的更多信息，或者如果你在环境创建过程中遇到错误，请参见<a href="../docs/python/environments.md#creating-environments">环境</a>。</blockquote>
+<blockquote><strong>注意</strong>：有关虚拟环境的更多信息，或者如果你在环境创建过程中遇到错误，请参见<a href="../../docs/python/environments.html#creating-environments">环境</a>。</blockquote>
 
 <h2>创建 Python 源代码文件</h2>
 
@@ -569,7 +569,7 @@ code .</code></pre>
 <pre><code class="language-python">msg = "Roll a dice!"
 print(msg)</code></pre>
 
-<p>当你开始输入 <code>print</code> 时，请注意 <a href="../docs/editing/intellisense.md">IntelliSense</a> 如何显示自动完成选项。</p>
+<p>当你开始输入 <code>print</code> 时，请注意 <a href="../../docs/editing/intellisense.html">IntelliSense</a> 如何显示自动完成选项。</p>
 
 <p><img src="images/tutorial/intellisense01.png" alt="IntelliSense appearing for Python code"></p>
 
@@ -579,7 +579,7 @@ print(msg)</code></pre>
 
 <p>最后，保存文件（<code>kb(workbench.action.files.save)</code>）。此时，你已准备好在 VS Code 中运行你的第一个 Python 文件。</p>
 
-<p>有关编辑、格式化和重构的完整详细信息，请参见<a href="../docs/python/editing.md">编辑代码</a>。Python 扩展还对 <a href="../docs/python/linting.md">Linting</a> 提供全面支持。</p>
+<p>有关编辑、格式化和重构的完整详细信息，请参见<a href="../../docs/python/editing.html">编辑代码</a>。Python 扩展还对 <a href="../../docs/python/linting.html">Linting</a> 提供全面支持。</p>
 
 <h2>运行 Python 代码</h2>
 
@@ -655,9 +655,9 @@ msg.split()</code></pre>
 
 <p>要在程序完成之前停止运行程序，请使用调试工具栏上的红色方形停止按钮（<code>kb(workbench.action.debug.stop)</code>），或使用<strong>运行 > 停止调试</strong>菜单命令。</p>
 
-<p>有关完整详细信息，请参见<a href="../docs/python/debugging.md">调试配置</a>，其中包含如何使用特定 Python 解释器进行调试的说明。</p>
+<p>有关完整详细信息，请参见<a href="../../docs/python/debugging.html">调试配置</a>，其中包含如何使用特定 Python 解释器进行调试的说明。</p>
 
-<blockquote><strong>提示：使用日志点替代 print 语句</strong>：开发人员经常在源代码中散布 <code>print</code> 语句来快速检查变量，而不必在调试器中逐行单步执行代码。在 VS Code 中，你可以改用<strong>日志点</strong>。日志点类似于断点，但它会将消息记录到控制台，而不会停止程序。有关更多信息，请参见 VS Code 主要调试文章中的<a href="../docs/debugtest/debugging.md#logpoints">日志点</a>。</blockquote>
+<blockquote><strong>提示：使用日志点替代 print 语句</strong>：开发人员经常在源代码中散布 <code>print</code> 语句来快速检查变量，而不必在调试器中逐行单步执行代码。在 VS Code 中，你可以改用<strong>日志点</strong>。日志点类似于断点，但它会将消息记录到控制台，而不会停止程序。有关更多信息，请参见 VS Code 主要调试文章中的<a href="../../docs/debugtest/debugging.html#logpoints">日志点</a>。</blockquote>
 
 <h2>安装和使用包</h2>
 
@@ -743,20 +743,20 @@ print(np.random.randint(1,9))</code></pre>
 <p>要学习如何使用流行的 Python Web 框架构建 Web 应用，请参见以下教程：</p>
 
 <ul>
-<li><a href="../docs/python/tutorial-django.md">在 Visual Studio Code 中使用 Django</a></li>
-<li><a href="../docs/python/tutorial-flask.md">在 Visual Studio Code 中使用 Flask</a></li>
-<li><a href="../docs/python/tutorial-fastapi.md">在 Visual Studio Code 中使用 FastAPI</a>
+<li><a href="../../docs/python/tutorial-django.html">在 Visual Studio Code 中使用 Django</a></li>
+<li><a href="../../docs/python/tutorial-flask.html">在 Visual Studio Code 中使用 Flask</a></li>
+<li><a href="../../docs/python/tutorial-fastapi.html">在 Visual Studio Code 中使用 FastAPI</a>
 </li>
 </ul>
 <p>还有更多关于在 Visual Studio Code 中使用 Python 的内容值得探索：</p>
 
 <ul>
-<li><a href="../docs/configure/profiles.md#python-profile-template">Python 配置文件模板</a> - 使用精选的扩展、设置和代码片段集合创建一个新的<a href="../docs/configure/profiles">配置文件</a></li>
-<li><a href="../docs/python/editing.md">编辑代码</a> - 了解 Python 的自动完成、IntelliSense、格式化和重构。</li>
-<li><a href="../docs/python/linting.md">Linting</a> - 启用、配置和应用各种 Python Linter。</li>
-<li><a href="../docs/python/debugging.md">调试</a> - 学习本地和远程调试 Python。</li>
-<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
-<li><a href="../docs/python/settings-reference.md">设置参考</a> - 探索 VS Code 中与 Python 相关的全部设置。</li>
+<li><a href="../../docs/configure/profiles.html#python-profile-template">Python 配置文件模板</a> - 使用精选的扩展、设置和代码片段集合创建一个新的<a href="../../docs/configure/profiles">配置文件</a></li>
+<li><a href="../../docs/python/editing.html">编辑代码</a> - 了解 Python 的自动完成、IntelliSense、格式化和重构。</li>
+<li><a href="../../docs/python/linting.html">Linting</a> - 启用、配置和应用各种 Python Linter。</li>
+<li><a href="../../docs/python/debugging.html">调试</a> - 学习本地和远程调试 Python。</li>
+<li><a href="../../docs/python/testing.html">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
+<li><a href="../../docs/python/settings-reference.html">设置参考</a> - 探索 VS Code 中与 Python 相关的全部设置。</li>
 <li><a href="https://learn.microsoft.com/azure/developer/python/tutorial-containerize-deploy-python-web-app-azure-01">将 Python 部署到 Azure 应用服务</a></li>
 <li><a href="https://learn.microsoft.com/azure/developer/python/tutorial-deploy-python-web-app-azure-container-apps-01">将 Python 部署到容器应用</a></li>
 </ul>

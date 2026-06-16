@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/datascience / notebooks-web</div>
 <h1>在网页上使用 Jupyter 笔记本</h1>
 
-<p>Visual Studio Code 支持在桌面上使用 <a href="https://jupyter-notebook.readthedocs.io/en/latest/">Jupyter 笔记本</a>，并扩展到各种基于浏览器的平台，如 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 和 <a href="../docs/remote/vscode-web.md">VS Code for the Web</a>。</p>
+<p>Visual Studio Code 支持在桌面上使用 <a href="https://jupyter-notebook.readthedocs.io/en/latest/">Jupyter 笔记本</a>，并扩展到各种基于浏览器的平台，如 <a href="https://github.com/features/codespaces">GitHub Codespaces</a> 和 <a href="../../docs/remote/vscode-web.html">VS Code for the Web</a>。</p>
 
 <p>使用这些基于浏览器的平台，您可以在不安装任何软件的情况下处理笔记本（甚至更多！）。您可以在下面详细了解每种选项以及如何开始：</p>
 
@@ -480,7 +480,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>您还可以通过访问 <a href="https://vscode.dev">https://vscode.dev</a> 或 <a href="https://github.dev">https://github.dev</a>（在 GitHub 上查看仓库时输入 '.' 即可访问）来使用 <a href="../docs/remote/vscode-web.md">VS Code for the Web</a>。使用 VS Code for the Web 时，您有两种选择来为笔记本连接以下类型的内核：</p>
+<p>您还可以通过访问 <a href="https://vscode.dev">https://vscode.dev</a> 或 <a href="https://github.dev">https://github.dev</a>（在 GitHub 上查看仓库时输入 '.' 即可访问）来使用 <a href="../../docs/remote/vscode-web.html">VS Code for the Web</a>。使用 VS Code for the Web 时，您有两种选择来为笔记本连接以下类型的内核：</p>
 
 <ol>
 <li><a href="#通过-vs-code-server-进行远程隧道连接">通过 VS Code Server 进行远程隧道连接</a></li>
@@ -489,14 +489,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>您可以通过在远程计算机上安装 <a href="../docs/remote/vscode-server.md">VS Code Server</a> 并通过 VS Code for the Web 访问它，从而安全地连接到远程计算机，而无需 SSH（您也可以在 VS Code 桌面上连接到该服务器）。操作步骤如下：</p>
+<p>您可以通过在远程计算机上安装 <a href="../../docs/remote/vscode-server.html">VS Code Server</a> 并通过 VS Code for the Web 访问它，从而安全地连接到远程计算机，而无需 SSH（您也可以在 VS Code 桌面上连接到该服务器）。操作步骤如下：</p>
 
 <ol>
-<li>在远程计算机上安装 <code>code</code> <a href="../download">CLI</a>。
+<li>在远程计算机上安装 <code>code</code> <a href="../../download">CLI</a>。
 <blockquote><strong>注意</strong>：如果远程计算机上已安装 VS Code Desktop，则可以跳过此步骤，因为 <code>code</code> CLI 已内置在 VS Code Desktop 中。</blockquote>
 
 </li>
-<li>使用隧道命令创建<a href="../docs/remote/tunnels.md">安全隧道</a>：<code>code tunnel</code>（如果您希望使用 VS Code 的<a href="../insiders">每日发布版本</a>，也可以运行 <code>code-insiders tunnel</code>），然后按照提示授予服务器访问权限。这将在远程计算机上下载并启动 VS Code Server，然后创建到它的隧道。</li>
+<li>使用隧道命令创建<a href="../../docs/remote/tunnels.html">安全隧道</a>：<code>code tunnel</code>（如果您希望使用 VS Code 的<a href="../../insiders">每日发布版本</a>，也可以运行 <code>code-insiders tunnel</code>），然后按照提示授予服务器访问权限。这将在远程计算机上下载并启动 VS Code Server，然后创建到它的隧道。</li>
 <li>使用 CLI 输出的与此远程计算机关联的 vscode.dev URL，例如<br><code>https://vscode.dev/tunnel/<machine_name>/<folder_name></code><br>在任何客户端上访问此远程计算机。</li>
 <li>打开一个笔记本文件，选择任何 Jupyter 内核或 Python 环境来运行您的代码。
 <h2>连接到远程 Jupyter 服务器</h2>

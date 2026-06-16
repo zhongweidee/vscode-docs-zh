@@ -458,9 +458,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>在编写代码时，能够保持双手不离开键盘对于高效工作至关重要。VS Code 拥有一套丰富的默认键盘快捷键，同时也允许你自定义它们。</p>
 
 <ul>
-<li><a href="../docs/configure/keybindings.md#keyboard-shortcuts-reference">键盘快捷键参考</a>——下载参考表，学习最常用和最受欢迎的键盘快捷键。</li>
-<li><a href="../docs/configure/keybindings.md#keymap-extensions">安装按键映射扩展</a>——通过安装按键映射扩展，在 VS Code 中使用你旧编辑器（如 Sublime Text、Atom 和 Vim）的键盘快捷键。</li>
-<li><a href="../docs/configure/keybindings.md#keyboard-shortcuts-editor">自定义键盘快捷键</a>——更改默认键盘快捷键以适应你的风格。
+<li><a href="../../docs/configure/keybindings.html#keyboard-shortcuts-reference">键盘快捷键参考</a>——下载参考表，学习最常用和最受欢迎的键盘快捷键。</li>
+<li><a href="../../docs/configure/keybindings.html#keymap-extensions">安装按键映射扩展</a>——通过安装按键映射扩展，在 VS Code 中使用你旧编辑器（如 Sublime Text、Atom 和 Vim）的键盘快捷键。</li>
+<li><a href="../../docs/configure/keybindings.html#keyboard-shortcuts-editor">自定义键盘快捷键</a>——更改默认键盘快捷键以适应你的风格。
 <h2>多重选择（多光标）</h2>
 
 </li>
@@ -485,7 +485,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>多光标修饰键</h3>
 
-<p>如果你想将应用多光标的修饰键更改为 macOS 上的 <code>kbstyle(Cmd+Click)</code> 以及 Windows 和 Linux 上的 <code>kbstyle(Ctrl+Click)</code>，可以通过 <code>setting(editor.multiCursorModifier)</code> <a href="../docs/configure/settings.md">设置</a>来实现。这样，来自其他编辑器（如 Sublime Text 或 Atom）的用户可以继续使用他们熟悉的键盘修饰键。</p>
+<p>如果你想将应用多光标的修饰键更改为 macOS 上的 <code>kbstyle(Cmd+Click)</code> 以及 Windows 和 Linux 上的 <code>kbstyle(Ctrl+Click)</code>，可以通过 <code>setting(editor.multiCursorModifier)</code> <a href="../../docs/configure/settings.html">设置</a>来实现。这样，来自其他编辑器（如 Sublime Text 或 Atom）的用户可以继续使用他们熟悉的键盘修饰键。</p>
 
 <p>该设置可设置为：</p>
 
@@ -526,7 +526,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><code>kb(cursorColumnSelectPageDown)</code>|向下翻页列选择|<code>cursorColumnSelectPageDown</code></p>
 <p><code>kb(cursorColumnSelectPageUp)</code>|向上翻页列选择|<code>cursorColumnSelectPageUp</code></p>
 
-<p>如果你愿意，可以<a href="../docs/configure/keybindings.md">编辑</a> <code>keybindings.json</code> 将它们绑定到你更熟悉的键上。</p>
+<p>如果你愿意，可以<a href="../../docs/configure/keybindings.html">编辑</a> <code>keybindings.json</code> 将它们绑定到你更熟悉的键上。</p>
 
 <h3>列选择模式</h3>
 
@@ -540,7 +540,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>不过，启用 <code>自动保存</code> 也很容易，它会在配置的延迟后或焦点离开编辑器时保存更改。启用此选项后，无需显式保存文件。启用 <code>自动保存</code> 的最简单方法是通过 <strong>文件</strong> > <strong>自动保存</strong> 开关，它会在延迟后保存的开和关之间切换。</p>
 
-<p>要更精细地控制 <code>自动保存</code>，请打开用户或工作区<a href="../docs/configure/settings.md">设置</a>并找到相关设置：</p>
+<p>要更精细地控制 <code>自动保存</code>，请打开用户或工作区<a href="../../docs/configure/settings.html">设置</a>并找到相关设置：</p>
 
 <ul>
 <li><code>setting(files.autoSave)</code>：可以取以下值：<ul>
@@ -659,7 +659,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/codebasics/searchadvanced-v2.png" alt="Advanced search options"></p>
 
-<p>在搜索框下方的两个输入框中，你可以输入要包含在搜索中或从搜索中排除的模式。如果输入 <code>example</code>，它将匹配工作区中每个名为 <code>example</code> 的文件夹和文件。如果输入 <code>./example</code>，它将匹配工作区顶层的 <code>example/</code> 文件夹。使用 <code>,</code> 分隔多个模式。路径必须使用正斜杠。你还可以使用 <a href="../docs/editor/glob-patterns.md">glob 模式</a>语法，例如：</p>
+<p>在搜索框下方的两个输入框中，你可以输入要包含在搜索中或从搜索中排除的模式。如果输入 <code>example</code>，它将匹配工作区中每个名为 <code>example</code> 的文件夹和文件。如果输入 <code>./example</code>，它将匹配工作区顶层的 <code>example/</code> 文件夹。使用 <code>,</code> 分隔多个模式。路径必须使用正斜杠。你还可以使用 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>语法，例如：</p>
 
 <ul>
 <li><code>*</code> 匹配路径段中的零个或多个字符</li>
@@ -670,9 +670,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>[!...]</code> 否定要匹配的字符范围（<code>example.[!0-9]</code> 匹配 <code>example.a</code>、<code>example.b</code>，但不匹配 <code>example.0</code>）
 </li>
 </ul>
-<p><strong>关于大小写敏感的说明：</strong> Glob 模式遵循你操作系统的文件系统规则。在 Windows 和 macOS 上，模式不区分大小写（例如，<code>*.CS</code> 匹配 <code>file.cs</code>）。在 Linux 上，模式区分大小写。这与搜索文本的 <strong>区分大小写</strong> 开关是分开的，后者控制搜索文本本身是否区分大小写。详细了解 <a href="../docs/editor/glob-patterns.md#case-sensitivity">glob 模式</a>。</p>
+<p><strong>关于大小写敏感的说明：</strong> Glob 模式遵循你操作系统的文件系统规则。在 Windows 和 macOS 上，模式不区分大小写（例如，<code>*.CS</code> 匹配 <code>file.cs</code>）。在 Linux 上，模式区分大小写。这与搜索文本的 <strong>区分大小写</strong> 开关是分开的，后者控制搜索文本本身是否区分大小写。详细了解 <a href="../../docs/editor/glob-patterns.html#case-sensitivity">glob 模式</a>。</p>
 
-<p>VS Code 默认会排除一些文件夹，以减少你不感兴趣的搜索结果数量（例如：<code>node_modules</code>）。打开<a href="../docs/configure/settings.md">设置</a>，在 <code>setting(files.exclude)</code> 和 <code>setting(search.exclude)</code> 部分更改这些规则。</p>
+<p>VS Code 默认会排除一些文件夹，以减少你不感兴趣的搜索结果数量（例如：<code>node_modules</code>）。打开<a href="../../docs/configure/settings.html">设置</a>，在 <code>setting(files.exclude)</code> 和 <code>setting(search.exclude)</code> 部分更改这些规则。</p>
 
 <p>请注意，搜索视图中的 glob 模式与 <code>setting(files.exclude)</code> 和 <code>setting(search.exclude)</code> 等设置中的工作方式不同。在设置中，你必须使用 <code><strong>/example</code> 来匹配工作区中子文件夹 <code>folder1/example</code> 中名为 <code>example</code> 的文件夹。在搜索视图中，<code></strong></code> 前缀是默认的。这些设置中的 glob 模式始终相对于工作区文件夹的路径进行评估。</p>
 
@@ -681,7 +681,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>在 <strong>要包含的文件</strong> 框中，你可以使用 <strong>仅搜索已更改的文件</strong> 切换按钮将搜索结果限制为有未提交源代码管理更改的文件。当没有代码仓库或没有可搜索的更改时，此开关会被禁用。</p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote><code>.gitignore</code> 文件中模式的匹配在 Windows 和 macOS 上不区分大小写，在 Linux 上区分大小写。详细了解 <a href="../docs/editor/glob-patterns.md#case-sensitivity">glob 模式大小写敏感性</a>。</blockquote>
+<blockquote><code>.gitignore</code> 文件中模式的匹配在 Windows 和 macOS 上不区分大小写，在 Linux 上区分大小写。详细了解 <a href="../../docs/editor/glob-patterns.html#case-sensitivity">glob 模式大小写敏感性</a>。</blockquote>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>在资源管理器中，你可以右键单击一个文件夹并选择 <strong>在文件夹中查找</strong>，以仅在该文件夹内搜索。</blockquote>
@@ -760,17 +760,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>IntelliSense</h2>
 
-<p>我们始终提供单词补全，但对于丰富的<a href="../docs/languages/overview.md">语言</a>，如 JavaScript、JSON、HTML、CSS、SCSS、Less、C# 和 TypeScript，我们提供真正的 IntelliSense 体验。如果语言服务知道可能的补全项，IntelliSense 建议会在你输入时弹出。你可以随时通过 <code>kb(editor.action.triggerSuggest)</code> 手动触发它。默认情况下，<code>kbstyle(Tab)</code> 或 <code>kbstyle(Enter)</code> 是接受建议的键盘触发器，但你也可以<a href="../docs/configure/keybindings.md">自定义这些键盘快捷键</a>。</p>
+<p>我们始终提供单词补全，但对于丰富的<a href="../../docs/languages/overview.html">语言</a>，如 JavaScript、JSON、HTML、CSS、SCSS、Less、C# 和 TypeScript，我们提供真正的 IntelliSense 体验。如果语言服务知道可能的补全项，IntelliSense 建议会在你输入时弹出。你可以随时通过 <code>kb(editor.action.triggerSuggest)</code> 手动触发它。默认情况下，<code>kbstyle(Tab)</code> 或 <code>kbstyle(Enter)</code> 是接受建议的键盘触发器，但你也可以<a href="../../docs/configure/keybindings.html">自定义这些键盘快捷键</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote> 建议筛选支持驼峰命名法，因此你可以输入方法名中大写的字母来缩小建议范围。例如，"cra" 将快速显示 "createApplication"。</blockquote>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>IntelliSense 建议可以通过 <code>setting(editor.quickSuggestions)</code> 和 <code>setting(editor.suggestOnTriggerCharacters)</code> <a href="../docs/configure/settings.md">设置</a>进行配置。</blockquote>
+<blockquote>IntelliSense 建议可以通过 <code>setting(editor.quickSuggestions)</code> 和 <code>setting(editor.suggestOnTriggerCharacters)</code> <a href="../../docs/configure/settings.html">设置</a>进行配置。</blockquote>
 
-<p>JavaScript 和 TypeScript 开发人员可以利用 <a href="https://www.npmjs.com">npmjs</a> 类型声明（typings）文件仓库来获取常用 JavaScript 库（Node.js、React、Angular）的 IntelliSense。你可以在 <a href="../docs/languages/javascript.md#intellisense">JavaScript 语言</a>主题和 <a href="../docs/nodejs/nodejs-tutorial.md">Node.js</a> 教程中找到有关使用类型声明文件的详细说明。</p>
+<p>JavaScript 和 TypeScript 开发人员可以利用 <a href="https://www.npmjs.com">npmjs</a> 类型声明（typings）文件仓库来获取常用 JavaScript 库（Node.js、React、Angular）的 IntelliSense。你可以在 <a href="../../docs/languages/javascript.html#intellisense">JavaScript 语言</a>主题和 <a href="../../docs/nodejs/nodejs-tutorial.html">Node.js</a> 教程中找到有关使用类型声明文件的详细说明。</p>
 
-<p>在 <a href="../docs/editing/intellisense.md">IntelliSense 文档</a>中了解更多信息。</p>
+<p>在 <a href="../../docs/editing/intellisense.html">IntelliSense 文档</a>中了解更多信息。</p>
 
 <h2>格式化</h2>
 
@@ -783,11 +783,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>你可以从<strong>命令面板</strong>（<code>kb(workbench.action.showCommands)</code>）或编辑器上下文菜单中调用这些操作。</p>
 
-<p>VS Code 为 JavaScript、TypeScript、JSON、HTML 和 CSS 提供了默认格式化程序。每种语言都有特定的格式化选项（例如，<code>setting(html.format.indentInnerHtml)</code>），你可以在用户或工作区<a href="../docs/configure/settings.md">设置</a>中根据自己的偏好进行调整。如果你安装了其他为相同语言提供格式化的扩展，也可以禁用默认的语言格式化程序。</p>
+<p>VS Code 为 JavaScript、TypeScript、JSON、HTML 和 CSS 提供了默认格式化程序。每种语言都有特定的格式化选项（例如，<code>setting(html.format.indentInnerHtml)</code>），你可以在用户或工作区<a href="../../docs/configure/settings.html">设置</a>中根据自己的偏好进行调整。如果你安装了其他为相同语言提供格式化的扩展，也可以禁用默认的语言格式化程序。</p>
 
 <pre><code class="language-json">"html.format.enable": false</code></pre>
 
-<p>除了手动调用代码格式化外，你还可以根据用户操作（如输入、保存或粘贴）触发格式化。这些默认是关闭的，但你可以通过以下<a href="../docs/configure/settings.md">设置</a>启用这些行为：</p>
+<p>除了手动调用代码格式化外，你还可以根据用户操作（如输入、保存或粘贴）触发格式化。这些默认是关闭的，但你可以通过以下<a href="../../docs/configure/settings.html">设置</a>启用这些行为：</p>
 
 <ul>
 <li><code>setting(editor.formatOnType)</code>——输入后格式化行。</li>
@@ -866,7 +866,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>缩进</h2>
 
-<p>VS Code 允许你控制文本缩进以及是否使用空格或制表位。默认情况下，VS Code 插入空格，每个 <code>kbstyle(Tab)</code> 键使用 4 个空格。如果你想使用其他默认值，可以修改 <code>setting(editor.insertSpaces)</code> 和 <code>setting(editor.tabSize)</code> <a href="../docs/configure/settings.md">设置</a>。</p>
+<p>VS Code 允许你控制文本缩进以及是否使用空格或制表位。默认情况下，VS Code 插入空格，每个 <code>kbstyle(Tab)</code> 键使用 4 个空格。如果你想使用其他默认值，可以修改 <code>setting(editor.insertSpaces)</code> 和 <code>setting(editor.tabSize)</code> <a href="../../docs/configure/settings.html">设置</a>。</p>
 
 <pre><code class="language-json">    "editor.insertSpaces": true,
     "editor.tabSize": 4,</code></pre>
@@ -907,7 +907,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>改写模式</h2>
 
-<p>在 1.96 版本之前，VS Code 仅支持<em>插入</em>模式，即字符在光标位置插入，除非你安装了 Vim <a href="../docs/configure/keybindings.md#keymap-extensions">按键映射扩展</a>。</p>
+<p>在 1.96 版本之前，VS Code 仅支持<em>插入</em>模式，即字符在光标位置插入，除非你安装了 Vim <a href="../../docs/configure/keybindings.html#keymap-extensions">按键映射扩展</a>。</p>
 
 <p>从 1.96 版本开始，VS Code 支持<em>改写</em>模式，该模式允许你覆盖现有字符而不是在光标位置插入字符。默认情况下，改写模式是关闭的。</p>
 
@@ -935,7 +935,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在资源管理器视图中右键单击一个文件，然后选择 <strong>选择以进行比较</strong>。然后，右键单击第二个文件并选择 <strong>与已选项进行比较</strong>。</li>
 <li>要开始比较两个空的编辑器窗口，请从命令面板中选择 <strong>文件：比较新的未命名文本文件</strong>。
 <blockquote>[!TIP]</blockquote>
-<blockquote>你可以从命令行使用 <code>--diff</code> 选项启动 VS Code 来比较两个文件。了解更多关于 <a href="../docs/configure/command-line.md#core-cli-options">VS Code 命令行界面</a>的信息。</blockquote>
+<blockquote>你可以从命令行使用 <code>--diff</code> 选项启动 VS Code 来比较两个文件。了解更多关于 <a href="../../docs/configure/command-line.html#core-cli-options">VS Code 命令行界面</a>的信息。</blockquote>
 
 <h2>后续步骤</h2>
 
@@ -944,12 +944,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你已经了解了基本的用户界面——VS Code 还有更多精彩内容。继续阅读以了解：</p>
 
 <ul>
-<li><a href="../docs/introvideos/basics.md">入门视频——设置和基础</a>——观看关于 VS Code 基础知识的教程。</li>
-<li><a href="../docs/configure/settings.md">用户/工作区设置</a>——了解如何通过用户和工作区设置将 VS Code 配置为符合你的偏好。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a>——速览和转到定义，以及更多功能。</li>
-<li><a href="../docs/terminal/basics.md">集成终端</a>——了解集成终端，用于在 VS Code 中快速执行命令行任务。</li>
-<li><a href="../docs/editing/intellisense.md">IntelliSense</a>——VS Code 提供智能代码补全。</li>
-<li><a href="../docs/debugtest/debugging.md">调试</a>——这是 VS Code 真正大放异彩的地方。
+<li><a href="../../docs/introvideos/basics.html">入门视频——设置和基础</a>——观看关于 VS Code 基础知识的教程。</li>
+<li><a href="../../docs/configure/settings.html">用户/工作区设置</a>——了解如何通过用户和工作区设置将 VS Code 配置为符合你的偏好。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a>——速览和转到定义，以及更多功能。</li>
+<li><a href="../../docs/terminal/basics.html">集成终端</a>——了解集成终端，用于在 VS Code 中快速执行命令行任务。</li>
+<li><a href="../../docs/editing/intellisense.html">IntelliSense</a>——VS Code 提供智能代码补全。</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a>——这是 VS Code 真正大放异彩的地方。
 <h2>常见问题</h2>
 
 <h3>是否可以全局搜索和替换？</h3>
@@ -962,7 +962,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>如何开启自动换行？</h3>
 
-<p>你可以通过 <code>setting(editor.wordWrap)</code> <a href="../docs/configure/settings.md">设置</a>来控制自动换行。默认情况下，<code>setting(editor.wordWrap)</code> 为 <code>off</code>，但如果将其设置为 <code>on</code>，文本将根据编辑器的视口宽度进行换行。</p>
+<p>你可以通过 <code>setting(editor.wordWrap)</code> <a href="../../docs/configure/settings.html">设置</a>来控制自动换行。默认情况下，<code>setting(editor.wordWrap)</code> 为 <code>off</code>，但如果将其设置为 <code>on</code>，文本将根据编辑器的视口宽度进行换行。</p>
 
 <pre><code class="language-json">    "editor.wordWrap": "on"</code></pre>
 

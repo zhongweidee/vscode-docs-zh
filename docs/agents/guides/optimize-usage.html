@@ -461,26 +461,26 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>对于快速编辑、样板代码生成和简单问题，使用<strong>轻量级模型</strong>。</li>
 <li>对于复杂的重构、架构决策和多步骤调试，使用<strong>推理模型</strong>。</li>
 <li>使用<strong>自动模型选择</strong>，让 VS Code 将每个请求路由到在质量和成本之间取得平衡的高效模型。</li>
-<li>使用具有首选模型的<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>，将特定子任务路由到专业的、具有成本效益的模型。当你将自定义代理作为子代理调用时，它会使用自己配置的模型，而不是聊天会话的模型。
+<li>使用具有首选模型的<a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>，将特定子任务路由到专业的、具有成本效益的模型。当你将自定义代理作为子代理调用时，它会使用自己配置的模型，而不是聊天会话的模型。
 </li>
 </ul>
 <p>聊天中的模型选择器在悬停菜单中显示成本详情，包括每种令牌类型的成本以及通用的成本等级标签（低、中、高）。利用这些信息做出明智的选择。</p>
 
-<p>有关更多信息，请参阅<a href="../docs/agent-customization/language-models.md">选择和配置语言模型</a>以及<a href="../docs/agents/best-practices.md#choose-the-right-model">模型选择最佳实践</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/agent-customization/language-models.html">选择和配置语言模型</a>以及<a href="../../../docs/agents/best-practices.html#choose-the-right-model">模型选择最佳实践</a>。</p>
 
 <h2>先规划再实现</h2>
 
 <p>直接跳入代码生成可能会导致方案错误而浪费精力。同时，整个过程都需要一个具有足够推理能力的模型，这会消耗更多积分。相反，应将规划和实现阶段分开。这样你就可以使用推理模型进行规划，然后在计划确定后切换到更快、更高效的模型进行实现。</p>
 
 <ol>
-<li>使用<a href="../docs/agents/planning.md">计划代理</a>研究任务并创建结构化的实现计划。</li>
+<li>使用<a href="../../../docs/agents/planning.html">计划代理</a>研究任务并创建结构化的实现计划。</li>
 <li>在代理编写任何代码之前，先审阅和完善计划。</li>
 <li>将批准的计划移交给使用更快模型的实现代理来执行。
 </li>
 </ol>
 <p>这种工作流可确保代理在开始生成代码之前理解需求，从而减少反复修改和返工。</p>
 
-<p>有关更多信息，请参阅<a href="../docs/agents/best-practices.md#plan-first-then-implement">先规划，再实现</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/agents/best-practices.html#plan-first-then-implement">先规划，再实现</a>。</p>
 
 <h2>使用默认的思考力度</h2>
 
@@ -488,17 +488,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>对于大多数任务，默认设置已足够。只有在处理真正复杂的问题时（如架构规划或多步骤调试）才需要提高思考力度。</p>
 
-<p>有关更多信息，请参阅<a href="../docs/agent-customization/language-models.md#configure-thinking-effort">配置思考力度</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/agent-customization/language-models.html#configure-thinking-effort">配置思考力度</a>。</p>
 
 <h2>为新任务开启新的聊天</h2>
 
 <p>随着对话的增长，它会累积来自之前消息、工具输出和文件内容的上下文。当你在同一个会话中切换到不相关的任务时，模型仍然会处理所有那些无关的历史记录，这会消耗令牌却不会改善结果。</p>
 
-<p>当话题改变时，开启一个<a href="../docs/agents/sessions/chat-sessions.md">新的聊天会话</a>（<code>kb(workbench.action.chat.newChat)</code>）。这为模型提供了一个专注于当前任务的干净上下文窗口。</p>
+<p>当话题改变时，开启一个<a href="../../../docs/agents/sessions/chat-sessions.html">新的聊天会话</a>（<code>kb(workbench.action.chat.newChat)</code>）。这为模型提供了一个专注于当前任务的干净上下文窗口。</p>
 
 <h2>善用分支分叉</h2>
 
-<p>当你想探索替代方案或提出附带问题时，<a href="../docs/agents/sessions/chat-sessions.md#fork-a-chat-session">对对话进行分支分叉</a>，而不是从头开始重新提示。分支分叉会创建一个新会话，该会话继承现有的对话历史记录，因此你无需重新建立上下文。</p>
+<p>当你想探索替代方案或提出附带问题时，<a href="../../../docs/agents/sessions/chat-sessions.html#fork-a-chat-session">对对话进行分支分叉</a>，而不是从头开始重新提示。分支分叉会创建一个新会话，该会话继承现有的对话历史记录，因此你无需重新建立上下文。</p>
 
 <ul>
 <li>在聊天输入框中输入 <code>/fork</code>，将截至当前消息的整个会话进行分支分叉。</li>
@@ -507,31 +507,31 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>每个工具调用都会产生输出，这会占用<a href="../docs/agents/concepts/language-models.md#context-window">上下文窗口</a>的空间并导致积分消耗。为当前任务禁用不需要的工具，以防止不必要的调用。</p>
+<p>每个工具调用都会产生输出，这会占用<a href="../../../docs/agents/concepts/language-models.html#context-window">上下文窗口</a>的空间并导致积分消耗。为当前任务禁用不需要的工具，以防止不必要的调用。</p>
 
 <ul>
 <li>使用聊天输入字段中的<strong>配置工具</strong>按钮，为当前请求启用或禁用单个工具或整个 MCP 服务器。</li>
-<li>在<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>中，通过 <code>tools</code> 属性仅指定代理所需的工具。这可以防止代理调用与其工作流无关的工具。
+<li>在<a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>中，通过 <code>tools</code> 属性仅指定代理所需的工具。这可以防止代理调用与其工作流无关的工具。
 </li>
 </ul>
-<p>有关更多信息，请参阅<a href="../docs/chat/chat-tools.md">在聊天中使用工具</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/chat/chat-tools.html">在聊天中使用工具</a>。</p>
 
 <h2>将文件排除在 Copilot 上下文之外</h2>
 
 <p>大型生成文件、构建输出或无关目录可能会被包含在 AI 上下文中，从而增加令牌使用量却没有实际价值。排除这些文件以减少不必要的上下文：</p>
 
 <ul>
-<li>使用 <code>.gitignore</code> 文件将文件从<a href="../docs/agents/reference/workspace-context.md#what-content-is-included-in-the-semantic-index">工作区索引</a>中排除。工作区索引会遵循 <code>.gitignore</code> 规则。</li>
+<li>使用 <code>.gitignore</code> 文件将文件从<a href="../../../docs/agents/reference/workspace-context.html#what-content-is-included-in-the-semantic-index">工作区索引</a>中排除。工作区索引会遵循 <code>.gitignore</code> 规则。</li>
 <li>使用 <code>setting(files.exclude)</code> 设置将文件完全从 VS Code 中隐藏，这也会将其从索引中排除。
 </li>
 </ul>
-<p>有关更多信息，请参阅<a href="../docs/agents/reference/workspace-context.md">工作区上下文</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/agents/reference/workspace-context.html">工作区上下文</a>。</p>
 
 <h2>通过压缩来管理上下文</h2>
 
 <p>当对话变得冗长时，使用 <code>/compact</code> 来总结对话的较早部分并回收上下文窗口空间。你可以选择添加指令来引导总结的方向，例如 <code>/compact 重点关注 API 设计决策</code>。</p>
 
-<p>有关更多信息，请参阅<a href="../docs/chat/copilot-chat-context.md#context-compaction">上下文压缩</a>。</p>
+<p>有关更多信息，请参阅<a href="../../../docs/chat/copilot-chat-context.html#context-compaction">上下文压缩</a>。</p>
 
 <h2>监控你的使用情况</h2>
 
@@ -541,11 +541,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>请访问 GitHub Copilot 文档，了解有关<a href="https://docs.github.com/en/copilot/managing-copilot/monitoring-usage-and-entitlements/monitoring-your-copilot-usage-and-entitlements">监控使用情况和权益</a>的更多信息。</p>
 
-<p>你还可以在任何聊天会话中运行 <code>/chronicle:cost-tips</code> 命令，以根据你最近的活动获取个性化的 AI 积分优化建议。了解有关<a href="../docs/agents/sessions/session-insights.md">会话洞察和 chronicle 命令</a>的更多信息。</p>
+<p>你还可以在任何聊天会话中运行 <code>/chronicle:cost-tips</code> 命令，以根据你最近的活动获取个性化的 AI 积分优化建议。了解有关<a href="../../../docs/agents/sessions/session-insights.html">会话洞察和 chronicle 命令</a>的更多信息。</p>
 
 <h2>检查令牌使用量和缓存</h2>
 
-<p>使用<a href="../docs/agents/agent-troubleshooting/chat-debug-view.md">代理调试日志</a>来了解会话中是什么在消耗积分：</p>
+<p>使用<a href="../../../docs/agents/agent-troubleshooting/chat-debug-view.html">代理调试日志</a>来了解会话中是什么在消耗积分：</p>
 
 <ul>
 <li><strong>摘要视图</strong>显示会话的聚合令牌使用量，包括工具调用总数和整体持续时间。</li>
@@ -557,9 +557,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>相关内容</h2>
 
 <ul>
-<li><a href="../docs/agents/concepts/language-models.md#ai-credits-and-model-costs">AI 积分和模型成本</a></li>
-<li><a href="../docs/agent-customization/language-models.md">选择和配置语言模型</a></li>
-<li><a href="../docs/agents/best-practices.md">GitHub Copilot 最佳实践</a></li>
+<li><a href="../../../docs/agents/concepts/language-models.html#ai-credits-and-model-costs">AI 积分和模型成本</a></li>
+<li><a href="../../../docs/agent-customization/language-models.html">选择和配置语言模型</a></li>
+<li><a href="../../../docs/agents/best-practices.html">GitHub Copilot 最佳实践</a></li>
 <li><a href="https://docs.github.com/en/copilot/get-started/plans">GitHub Copilot 计划</a></li>
 <li><a href="https://docs.github.com/en/copilot/concepts/billing/usage-based-billing-for-individuals">按使用量计费</a></li>
 </ul>

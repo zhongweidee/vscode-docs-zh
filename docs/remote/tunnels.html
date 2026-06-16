@@ -468,7 +468,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你有两种使用隧道的方式：</p>
 
 <ul>
-<li>运行 <code>code</code> <a href="../docs/configure/command-line.md#create-remote-tunnel">命令行界面 (CLI)</a> 的 <code>tunnel</code> 命令。</li>
+<li>运行 <code>code</code> <a href="../../docs/configure/command-line.html#create-remote-tunnel">命令行界面 (CLI)</a> 的 <code>tunnel</code> 命令。</li>
 <li>通过 VS Code 桌面版用户界面启用隧道。
 </li>
 </ul>
@@ -478,7 +478,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 'code' CLI</h2>
 
-<p>你可以通过 <code>code</code> <a href="../docs/configure/command-line.md">CLI</a> 创建和使用隧道。</p>
+<p>你可以通过 <code>code</code> <a href="../../docs/configure/command-line.html">CLI</a> 创建和使用隧道。</p>
 
 <ol>
 <li>在你想通过 VS Code 客户端进行开发的远程计算机上安装 <code>code</code> CLI。CLI 会在 VS Code 客户端和你的远程计算机之间建立隧道。CLI 会自动内置于 VS Code 桌面版中——无需额外设置。
@@ -550,27 +550,27 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>在 Remote Tunnels 主机上的容器中打开文件夹</h3>
 
-<p>你可以同时使用 Remote - Tunnels 和 <a href="../docs/devcontainers/containers.md">Dev Containers</a> 扩展，在远程主机上的容器内打开文件夹。你甚至不需要在本地安装 Docker 客户端。</p>
+<p>你可以同时使用 Remote - Tunnels 和 <a href="../../docs/devcontainers/containers.html">Dev Containers</a> 扩展，在远程主机上的容器内打开文件夹。你甚至不需要在本地安装 Docker 客户端。</p>
 
 <p>操作步骤如下：</p>
 
 <ol>
-<li>按照远程主机上安装 Docker 的<a href="../docs/devcontainers/containers.md#installation">安装</a>步骤，并在本地安装 VS Code 和 Dev Containers 扩展。</li>
+<li>按照远程主机上安装 Docker 的<a href="../../docs/devcontainers/containers.html#installation">安装</a>步骤，并在本地安装 VS Code 和 Dev Containers 扩展。</li>
 <li>按照 Remote - Tunnels 扩展的<a href="#getting-started">入门指南</a>说明设置隧道、连接隧道并在那里打开文件夹。</li>
 <li>从命令面板 (<code>kbstyle(F1)</code>, <code>kb(workbench.action.showCommands)</code>) 中使用 <strong>Dev Containers: Reopen in Container</strong> 命令。
 </li>
 </ol>
-<p><a href="../docs/devcontainers/containers.md#quick-start-open-an-existing-folder-in-a-container">Dev Containers 快速入门</a>的其余部分同样适用。你可以在其文档中了解有关 <a href="../docs/devcontainers/containers.md">Dev Containers 扩展</a>的更多信息。如果此模式不满足你的需求，你还可以查看<a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker 主机上开发</a>一文以了解其他选项。</p>
+<p><a href="../../docs/devcontainers/containers.html#quick-start-open-an-existing-folder-in-a-container">Dev Containers 快速入门</a>的其余部分同样适用。你可以在其文档中了解有关 <a href="../../docs/devcontainers/containers.html">Dev Containers 扩展</a>的更多信息。如果此模式不满足你的需求，你还可以查看<a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker 主机上开发</a>一文以了解其他选项。</p>
 
 <h2>常见问题</h2>
 
 <h3>Remote Tunnels、VS Code Server 和远程开发之间的关系是什么？</h3>
 
-<p>Visual Studio Code <a href="../docs/remote/remote-overview.md">远程开发</a>允许你将容器、远程计算机或 Windows Subsystem for Linux (WSL) 用作全功能开发环境。</p>
+<p>Visual Studio Code <a href="../../docs/remote/remote-overview.html">远程开发</a>允许你将容器、远程计算机或 Windows Subsystem for Linux (WSL) 用作全功能开发环境。</p>
 
 <p>远程开发通过将某些命令的执行转移到"远程服务器"（即 VS Code Server）上，使你本地的 VS Code 安装能够透明地与源代码以及其他计算机（无论是虚拟的还是物理的）上的运行时环境进行交互。VS Code Server 会在你连接到远程端点时由 VS Code 快速安装，并且可以托管直接与远程工作区、计算机和文件系统交互的扩展。</p>
 
-<p>我们已将这个 VS Code Server 后端组件作为一个你可以自行运行的服务发布（你可以在其<a href="../docs/remote/vscode-server.md">文档</a>中阅读更多相关信息），而不仅仅是由远程开发扩展单独安装和管理。</p>
+<p>我们已将这个 VS Code Server 后端组件作为一个你可以自行运行的服务发布（你可以在其<a href="../../docs/remote/vscode-server.html">文档</a>中阅读更多相关信息），而不仅仅是由远程开发扩展单独安装和管理。</p>
 
 <p>访问 VS Code Server 涉及几个组件：</p>
 
@@ -581,7 +581,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。然而，由于扩展可以使用任何 node 模块或运行时，某些情况下可能需要进行调整。我们建议你测试你的扩展以确认不需要任何更新。有关详细信息，请参阅<a href="../api/advanced-topics/remote-extensions.md">支持远程开发</a>。</p>
+<p>VS Code 扩展 API 抽象了本地/远程的细节，因此大多数扩展无需修改即可工作。然而，由于扩展可以使用任何 node 模块或运行时，某些情况下可能需要进行调整。我们建议你测试你的扩展以确认不需要任何更新。有关详细信息，请参阅<a href="../../api/advanced-topics/remote-extensions.html">支持远程开发</a>。</p>
 
 <h3>多个用户或客户端可以同时访问同一个远程实例吗？</h3>
 
@@ -622,11 +622,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>使用 <code>no-sleep</code> 选项 <code>code tunnel --no-sleep</code> 来防止你的远程计算机进入睡眠状态。
 </li>
 </ul>
-<p>正如 <a href="../docs/configure/command-line.md#create-remote-tunnel"><code>code</code> CLI 文档</a>中提到的，你可以通过 <code>code tunnel --help</code> 探索所有可能的 CLI 命令和选项。</p>
+<p>正如 <a href="../../docs/configure/command-line.html#create-remote-tunnel"><code>code</code> CLI 文档</a>中提到的，你可以通过 <code>code tunnel --help</code> 探索所有可能的 CLI 命令和选项。</p>
 
 <h3>在使用隧道时，我可以使用其他远程开发扩展或开发容器吗？</h3>
 
-<p>可以！目前，你可以通过 Remote - Tunnels 连接到 <a href="../docs/remote/wsl.md">WSL</a> 和<a href="../docs/devcontainers/containers.md#open-a-folder-on-a-remote-tunnel-host-in-a-container">开发容器</a>。</p>
+<p>可以！目前，你可以通过 Remote - Tunnels 连接到 <a href="../../docs/remote/wsl.html">WSL</a> 和<a href="../../docs/devcontainers/containers.html#open-a-folder-on-a-remote-tunnel-host-in-a-container">开发容器</a>。</p>
 
   </div>
 </div>

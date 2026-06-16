@@ -451,22 +451,22 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../../index.html">首页</a> / docs/agents/concepts / agents</div>
 <h1>智能体</h1>
 
-<p>智能体是一个能够自主规划和执行编码任务的 AI 系统。你给智能体一个高层次目标，它会将该目标分解为步骤，使用<a href="../docs/agents/concepts/tools.md">工具</a>执行这些步骤，并在遇到错误时进行自我纠正。本文介绍智能体的核心架构：智能体循环、智能体类型、子智能体、记忆和规划。</p>
+<p>智能体是一个能够自主规划和执行编码任务的 AI 系统。你给智能体一个高层次目标，它会将该目标分解为步骤，使用<a href="../../../docs/agents/concepts/tools.html">工具</a>执行这些步骤，并在遇到错误时进行自我纠正。本文介绍智能体的核心架构：智能体循环、智能体类型、子智能体、记忆和规划。</p>
 
-<p>关于你可以使用智能体在 VS Code 中做什么以及在哪里操作，请参阅<a href="../docs/agents/overview.md">在 VS Code 中使用智能体进行构建</a>。</p>
+<p>关于你可以使用智能体在 VS Code 中做什么以及在哪里操作，请参阅<a href="../../../docs/agents/overview.html">在 VS Code 中使用智能体进行构建</a>。</p>
 
 <p><div class="docs-action" data-show-in-doc="false" data-show-in-sidebar="true" title="Get started with agents"></p>
 <p>Follow a hands-on tutorial to experience local, background, and cloud agents in VS Code.</p>
 
 <ul>
-<li><a href="../docs/agents/agents-tutorial.md">Start agents tutorial</a>
+<li><a href="../../../docs/agents/agents-tutorial.html">Start agents tutorial</a>
 </li>
 </ul>
 <p></div></p>
 
 <h2>智能体循环</h2>
 
-<p>当你给智能体分配任务时，它会遵循智能体循环。这种模式在现代 AI 助手中很常见。在 VS Code 中，智能体是规划和执行操作的系统，而<a href="../docs/agents/concepts/language-models.md">语言模型</a>则生成指导这些操作的响应。</p>
+<p>当你给智能体分配任务时，它会遵循智能体循环。这种模式在现代 AI 助手中很常见。在 VS Code 中，智能体是规划和执行操作的系统，而<a href="../../../docs/agents/concepts/language-models.html">语言模型</a>则生成指导这些操作的响应。</p>
 
 <p>在每一步中，智能体评估其进展并选择下一个操作。它可能会打开一个文件来理解 API，进行编辑，然后运行命令来验证更改是否成功。每个操作的输出都会成为下一步决策的输入。</p>
 
@@ -476,7 +476,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ol>
 <li><strong>理解。</strong> 智能体读取文件、搜索代码库、查阅文档，以了解需要更改什么。</li>
-<li><strong>行动。</strong> 智能体通过<a href="../docs/agents/concepts/tools.md">工具</a>修改代码、运行终端命令、安装依赖项或调用外部服务。</li>
+<li><strong>行动。</strong> 智能体通过<a href="../../../docs/agents/concepts/tools.html">工具</a>修改代码、运行终端命令、安装依赖项或调用外部服务。</li>
 <li><strong>验证。</strong> 智能体运行测试、检查编译错误并审查自己的更改。如果出现问题，它会继续迭代。
 </li>
 </ol>
@@ -484,21 +484,21 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>智能体根据需要将这些操作串联起来，直到完成任务。回答关于代码库的问题可能只需要读取几个文件。实现一个新功能通常需要循环编辑、运行测试、诊断失败，然后再次编辑，直到测试通过。</p>
 
-<p>在幕后，<a href="../docs/agents/concepts/context.md#how-vs-code-assembles-context">VS Code 将当前上下文</a>组装成提示并发送给语言模型。模型以文本、代码编辑或工具请求的形式响应。当工具运行时，其输出会被添加到下一轮迭代的上下文中，这个循环会持续进行，直到任务完成。</p>
+<p>在幕后，<a href="../../../docs/agents/concepts/context.html#how-vs-code-assembles-context">VS Code 将当前上下文</a>组装成提示并发送给语言模型。模型以文本、代码编辑或工具请求的形式响应。当工具运行时，其输出会被添加到下一轮迭代的上下文中，这个循环会持续进行，直到任务完成。</p>
 
-<p>在整个过程中，你始终掌握着控制权。你可以发送新消息来重定向智能体、添加上下文或建议不同的方法。有关审查更改和管理智能体行为的更多信息，请参阅<a href="../docs/agents/concepts/trust-and-safety.md">信任与安全</a>。</p>
+<p>在整个过程中，你始终掌握着控制权。你可以发送新消息来重定向智能体、添加上下文或建议不同的方法。有关审查更改和管理智能体行为的更多信息，请参阅<a href="../../../docs/agents/concepts/trust-and-safety.html">信任与安全</a>。</p>
 
 <h3>自定义智能体循环</h3>
 
 <p>智能体循环不是一刀切的，每个项目可能有所不同。有几种选项可以个性化智能体的行为：</p>
 
 <ul>
-<li>通过<a href="../docs/agent-customization/custom-agents.md"><strong>自定义智能体</strong></a>，你可以定义不同的角色，每个角色都有自己的指令、可用工具、语言模型，并可以选择移交给另一个智能体。</li>
-<li>通过<a href="../docs/agent-customization/agent-skills.md"><strong>智能体技能</strong></a>，你可以教授智能体针对特定领域或任务的新能力。</li>
-<li><a href="../docs/agent-customization/hooks.md"><strong>钩子</strong></a>在智能体循环的特定生命周期点运行自定义命令。
+<li>通过<a href="../../../docs/agent-customization/custom-agents.html"><strong>自定义智能体</strong></a>，你可以定义不同的角色，每个角色都有自己的指令、可用工具、语言模型，并可以选择移交给另一个智能体。</li>
+<li>通过<a href="../../../docs/agent-customization/agent-skills.html"><strong>智能体技能</strong></a>，你可以教授智能体针对特定领域或任务的新能力。</li>
+<li><a href="../../../docs/agent-customization/hooks.html"><strong>钩子</strong></a>在智能体循环的特定生命周期点运行自定义命令。
 </li>
 </ul>
-<p>详细了解<a href="../docs/agents/concepts/customization.md">自定义概念</a>。</p>
+<p>详细了解<a href="../../../docs/agents/concepts/customization.html">自定义概念</a>。</p>
 
 <h2>智能体类型</h2>
 
@@ -506,13 +506,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="../images/agents-overview/agent-types-diagram-v3.png" alt="Diagram showing the different agent types: Local agents (interactive in VS Code), Background agents (autonomous on your machine), Cloud agents (run on GitHub's infrastructure), and Third-party agents (connect external AI providers)."></p>
 
-<p>有关每种智能体类型的描述，请参阅<a href="../docs/agents/agent-types/local-agents.md">智能体类型</a>下的各篇文章。有关选择在哪里操作智能体的指导，请参阅<a href="../docs/agents/overview.md#configure-your-agent-session">在 VS Code 中使用智能体进行构建</a>。</p>
+<p>有关每种智能体类型的描述，请参阅<a href="../../../docs/agents/agent-types/local-agents.html">智能体类型</a>下的各篇文章。有关选择在哪里操作智能体的指导，请参阅<a href="../../../docs/agents/overview.html#configure-your-agent-session">在 VS Code 中使用智能体进行构建</a>。</p>
 
 <h2>子智能体</h2>
 
 <p>在处理复杂任务时，主智能体可以将子任务委托给子智能体。子智能体是一个独立的 AI 智能体，用于执行专注性工作，例如研究某个主题或分析代码，并将结果报告给主智能体。</p>
 
-<p>子智能体的主要优势是上下文优化。如果没有子智能体，每次文件读取、搜索结果以及研究过程中的每个中间步骤都会累积在主智能体的<a href="../docs/agents/concepts/language-models.md#context-window">上下文窗口</a>中，可能会挤掉重要信息。子智能体在独立的上下文窗口中执行工作，只返回摘要，从而使主对话专注于手头的任务。</p>
+<p>子智能体的主要优势是上下文优化。如果没有子智能体，每次文件读取、搜索结果以及研究过程中的每个中间步骤都会累积在主智能体的<a href="../../../docs/agents/concepts/language-models.html#context-window">上下文窗口</a>中，可能会挤掉重要信息。子智能体在独立的上下文窗口中执行工作，只返回摘要，从而使主对话专注于手头的任务。</p>
 
 <p>子智能体的关键特性：</p>
 
@@ -525,19 +525,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>例如，内置的<a href="#planning">规划智能体</a>使用子智能体在创建实现计划之前进行研究和分析。每个子智能体自主工作，仅返回其发现结果。</p>
 
-<p>详细了解<a href="../docs/agents/subagents.md">使用子智能体</a>。</p>
+<p>详细了解<a href="../../../docs/agents/subagents.html">使用子智能体</a>。</p>
 
 <h2>对话会话</h2>
 
 <p>对话会话是与智能体进行的单次对话，包括所有提示、响应以及在此过程中累积的上下文。每个会话都是独立的，拥有自己的上下文窗口，因此一个会话中的工作不会泄露到另一个会话中。会话是智能体工作的组织单位：你可以并行运行多个会话、在它们之间切换、分叉一个会话以探索替代方向，以及回滚到之前的检查点。</p>
 
-<p>由于<a href="../docs/agents/chat-view.md">聊天视图</a>和<a href="../docs/agents/agents-window.md">智能体窗口</a>共享相同的会话，你可以在一个界面上开始任务并在另一个界面上继续。会话列表为你提供所有会话的统一视图，无论它们在何处运行。</p>
+<p>由于<a href="../../../docs/agents/chat-view.html">聊天视图</a>和<a href="../../../docs/agents/agents-window.html">智能体窗口</a>共享相同的会话，你可以在一个界面上开始任务并在另一个界面上继续。会话列表为你提供所有会话的统一视图，无论它们在何处运行。</p>
 
-<p>详细了解<a href="../docs/chat/chat-sessions.md">管理对话会话</a>。</p>
+<p>详细了解<a href="../../../docs/chat/chat-sessions.html">管理对话会话</a>。</p>
 
 <h2>远程智能体会话</h2>
 
-<p>智能体会话不一定要在本地机器上运行。你可以在远程主机上运行会话，并从<a href="../docs/agents/agents-window.md">智能体窗口</a>、浏览器或其他客户端连接到它们。当你想要利用远程机器的资源、在你离开时保持会话运行，或从其他设备监控进度时，这非常有用。远程机器必须开机并可通过网络访问。</p>
+<p>智能体会话不一定要在本地机器上运行。你可以在远程主机上运行会话，并从<a href="../../../docs/agents/agents-window.html">智能体窗口</a>、浏览器或其他客户端连接到它们。当你想要利用远程机器的资源、在你离开时保持会话运行，或从其他设备监控进度时，这非常有用。远程机器必须开机并可通过网络访问。</p>
 
 <p>VS Code 支持两种使用远程智能体会话的方式：</p>
 
@@ -545,8 +545,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <thead><tr><th></th><th>方法</th><th>工作原理</th><th></th></tr></thead>
 <tbody>
   <tr><td></td><td>---</td><td>---</td><td></td></tr>
-  <tr><td></td><td>通过远程连接的<br>智能体窗口</td><td>通过 SSH 或开发隧道将智能体窗口连接到远程机器。智能体窗口会自动在远程机器上安装并启动 VS Code CLI，该 CLI 运行一个管理会话的智能体主机进程。<br><br>多个客户端可以同时连接到同一个智能体主机，并使用开放的<a href="https://microsoft.github.io/agent-host-protocol/">智能体主机协议（AHP）</a>查看所有会话的同步视图。即使所有客户端都断开连接，会话仍会在远程机器上继续运行。<br><br>详细了解<a href="../docs/agents/remote-agent-sessions.md">连接到远程机器</a>。</td><td></td></tr>
-  <tr><td></td><td>Copilot CLI<br>远程控制</td><td>在 <a href="../docs/agents/agent-types/copilot-cli.md">Copilot CLI 会话</a>中使用 <code>/remote on</code> 命令将会话镜像到 GitHub。然后，你可以在会话继续在你的机器上运行的同时，从 github.com 或 GitHub 移动应用监控和操控会话。<br><br>详细了解 <a href="../docs/agents/agent-types/copilot-cli.md#remote-control-copilot-cli-sessions-experimental">Copilot CLI 会话的远程控制</a>。</td><td></td></tr>
+  <tr><td></td><td>通过远程连接的<br>智能体窗口</td><td>通过 SSH 或开发隧道将智能体窗口连接到远程机器。智能体窗口会自动在远程机器上安装并启动 VS Code CLI，该 CLI 运行一个管理会话的智能体主机进程。<br><br>多个客户端可以同时连接到同一个智能体主机，并使用开放的<a href="https://microsoft.github.io/agent-host-protocol/">智能体主机协议（AHP）</a>查看所有会话的同步视图。即使所有客户端都断开连接，会话仍会在远程机器上继续运行。<br><br>详细了解<a href="../../../docs/agents/remote-agent-sessions.html">连接到远程机器</a>。</td><td></td></tr>
+  <tr><td></td><td>Copilot CLI<br>远程控制</td><td>在 <a href="../../../docs/agents/agent-types/copilot-cli.html">Copilot CLI 会话</a>中使用 <code>/remote on</code> 命令将会话镜像到 GitHub。然后，你可以在会话继续在你的机器上运行的同时，从 github.com 或 GitHub 移动应用监控和操控会话。<br><br>详细了解 <a href="../../../docs/agents/agent-types/copilot-cli.html#remote-control-copilot-cli-sessions-experimental">Copilot CLI 会话的远程控制</a>。</td><td></td></tr>
 </tbody>
 </table>
 <h2>记忆</h2>
@@ -567,7 +567,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><strong>Copilot 记忆</strong>：一个由 GitHub 托管的记忆系统，跨 Copilot 界面（编码智能体、代码审查、CLI）捕获特定于仓库的洞察。在 VS Code 之外的 GitHub Copilot 之间共享。
 </li>
 </ul>
-<p>详细了解 <a href="../docs/agents/memory.md">VS Code 智能体中的记忆</a>。</p>
+<p>详细了解 <a href="../../../docs/agents/memory.html">VS Code 智能体中的记忆</a>。</p>
 
 <h2>规划</h2>
 
@@ -584,15 +584,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>在计划经过审查和批准之前，规划智能体不会进行代码更改。一旦获得批准，你可以将计划移交给默认智能体，或保存计划以便进一步细化。</p>
 
-<p>详细了解<a href="../docs/agents/planning.md">使用智能体进行规划</a>。</p>
+<p>详细了解<a href="../../../docs/agents/planning.html">使用智能体进行规划</a>。</p>
 
 <h2>相关资源</h2>
 
 <ul>
-<li><a href="../docs/agents/overview.md">在 VS Code 中使用智能体</a></li>
-<li><a href="../docs/agents/concepts/tools.md">工具</a></li>
-<li><a href="../docs/agents/concepts/context.md">上下文</a></li>
-<li><a href="../docs/agents/concepts/trust-and-safety.md">信任与安全</a></li>
+<li><a href="../../../docs/agents/overview.html">在 VS Code 中使用智能体</a></li>
+<li><a href="../../../docs/agents/concepts/tools.html">工具</a></li>
+<li><a href="../../../docs/agents/concepts/context.html">上下文</a></li>
+<li><a href="../../../docs/agents/concepts/trust-and-safety.html">信任与安全</a></li>
 </ul>
 
   </div>

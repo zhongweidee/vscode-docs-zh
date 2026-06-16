@@ -554,7 +554,7 @@ debug.log = console.debug.bind(console);</code></pre>
 
 <h3>配置应用程序"就绪"的时机</h3>
 
-<p>当应用程序向调试控制台写入形如 <code>Listening on port <number></code> 的消息时，扩展会判定应用程序已"就绪"接受 HTTP 连接，这与 Express.js 的默认行为相同。如果应用程序记录的是不同的消息，则应将调试启动配置中 <a href="../docs/containers/debug-common.md#dockerserverreadyaction-object-properties">dockerServerReadyAction</a> 对象的 <code>pattern</code> 属性设置为匹配该消息的 <a href="https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions">JavaScript 正则表达式</a>。该正则表达式应包含一个捕获组，对应应用程序正在监听的端口。</p>
+<p>当应用程序向调试控制台写入形如 <code>Listening on port <number></code> 的消息时，扩展会判定应用程序已"就绪"接受 HTTP 连接，这与 Express.js 的默认行为相同。如果应用程序记录的是不同的消息，则应将调试启动配置中 <a href="../../docs/containers/debug-common.html#dockerserverreadyaction-object-properties">dockerServerReadyAction</a> 对象的 <code>pattern</code> 属性设置为匹配该消息的 <a href="https://developer.mozilla.org/docs/Web/JavaScript/Guide/Regular_Expressions">JavaScript 正则表达式</a>。该正则表达式应包含一个捕获组，对应应用程序正在监听的端口。</p>
 
 <p>例如，假设应用程序记录了以下消息：</p>
 
@@ -587,7 +587,7 @@ debug.log = console.debug.bind(console);</code></pre>
 
 <h3>配置应用程序入口页面</h3>
 
-<p>默认情况下，容器工具扩展将打开浏览器的"主页"面（由应用程序决定）。如果应将浏览器打开到特定页面，则应将调试启动配置中 <a href="../docs/containers/debug-common.md#dockerserverreadyaction-object-properties">dockerServerReadyAction</a> 对象的 <code>uriFormat</code> 属性设置为一个 Node.js 格式字符串，其中包含一个字符串标记，指示应在何处替换端口。</p>
+<p>默认情况下，容器工具扩展将打开浏览器的"主页"面（由应用程序决定）。如果应将浏览器打开到特定页面，则应将调试启动配置中 <a href="../../docs/containers/debug-common.html#dockerserverreadyaction-object-properties">dockerServerReadyAction</a> 对象的 <code>uriFormat</code> 属性设置为一个 Node.js 格式字符串，其中包含一个字符串标记，指示应在何处替换端口。</p>
 
 <p>在调试启动配置（在 <code>launch.json</code> 中）中，用于打开 <code>about.html</code> 页面而非主页面的对应 <code>uriFormat</code> 为：</p>
 
@@ -610,7 +610,7 @@ debug.log = console.debug.bind(console);</code></pre>
 
 <p>默认情况下，容器工具扩展假定运行中容器内的应用程序源文件位于 <code>/usr/src/app</code> 文件夹中，然后调试器将这些文件映射回已打开工作区的根目录，以便将容器中的断点转换回 Visual Studio Code。</p>
 
-<p>如果应用程序源文件位于不同的位置（例如，不同的 Node.js 框架有不同的约定），无论是在容器内还是在已打开的工作区内，则应分别将调试启动配置中 <a href="../docs/containers/debug-common.md#node-object-properties">node</a> 对象的 <code>localRoot</code> 和 <code>remoteRoot</code> 属性之一或两者设置为工作区内和容器内的根源位置。</p>
+<p>如果应用程序源文件位于不同的位置（例如，不同的 Node.js 框架有不同的约定），无论是在容器内还是在已打开的工作区内，则应分别将调试启动配置中 <a href="../../docs/containers/debug-common.html#node-object-properties">node</a> 对象的 <code>localRoot</code> 和 <code>remoteRoot</code> 属性之一或两者设置为工作区内和容器内的根源位置。</p>
 
 <p>例如，如果应用程序位于 <code>/usr/my-custom-location</code>，则对应的 <code>remoteRoot</code> 属性为：</p>
 

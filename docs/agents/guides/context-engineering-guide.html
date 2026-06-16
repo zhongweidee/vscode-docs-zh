@@ -456,7 +456,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>上下文工程是一种系统化的方法，为 AI 代理提供针对性的项目信息，以提高生成代码的质量和准确性。通过精选基本项目上下文（包括自定义指令、实现计划和编码指南），你可以让 AI 做出更好的决策、提高准确性，并在多次交互中保持持久的知识。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>VS Code 聊天提供了一个<a href="../docs/agents/planning.md">内置的计划代理</a>，可帮助你在开始复杂的编码任务之前创建详细的实现计划。如果你不想创建自定义计划工作流，可以使用计划代理快速生成实现计划。</blockquote>
+<blockquote>VS Code 聊天提供了一个<a href="../../../docs/agents/planning.html">内置的计划代理</a>，可帮助你在开始复杂的编码任务之前创建详细的实现计划。如果你不想创建自定义计划工作流，可以使用计划代理快速生成实现计划。</blockquote>
 
 <h2>上下文工程工作流</h2>
 
@@ -513,7 +513,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>* <code>Generate a CONTRIBUTING.md (max 1 page) file that describes developer guidelines and best practices for contributing to the project.</code></blockquote>
 
 </li>
-<li>在仓库根目录创建一个 <code>.github/copilot-instructions.md</code> <a href="../docs/agent-customization/custom-instructions.md#use-a-githubcopilot-instructionsmd-file">指令文件</a>。
+<li>在仓库根目录创建一个 <code>.github/copilot-instructions.md</code> <a href="../../../docs/agent-customization/custom-instructions.html#use-a-githubcopilot-instructionsmd-file">指令文件</a>。
 </li>
 </ol>
 <p>    此文件中的指令会自动作为 AI 代理的上下文包含在所有聊天交互中。</p>
@@ -539,7 +539,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>一旦有了项目特定的上下文，你就可以使用 AI 来提示为新功能或错误修复创建实现计划。生成实现计划是一个迭代过程，可能需要多轮优化才能确保其完整和准确。</p>
 
-<p>使用用于计划的<a href="../docs/agent-customization/custom-agents.md">自定义代理</a>，你可以创建一个具有计划特定指南和工具（例如对代码库的只读访问权限）的专用角色。它们还可以为你的项目和团队捕获头脑风暴、研究和协作的特定工作流。对于需要生成全面、引用充分的主题研究报告的深度研究，可以在 Copilot CLI 会话中使用内置的<a href="../docs/agents/agent-types/copilot-cli.md#run-deep-research-with-the-research-agent">研究代理</a>。</p>
+<p>使用用于计划的<a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a>，你可以创建一个具有计划特定指南和工具（例如对代码库的只读访问权限）的专用角色。它们还可以为你的项目和团队捕获头脑风暴、研究和协作的特定工作流。对于需要生成全面、引用充分的主题研究报告的深度研究，可以在 Copilot CLI 会话中使用内置的<a href="../../../docs/agents/agent-types/copilot-cli.html#run-deep-research-with-the-research-agent">研究代理</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>创建自定义代理后，请将它们视为活的文档。根据你在代理行为中观察到的任何错误或不足之处，随时间推移不断优化和改进它们。</blockquote>
@@ -571,10 +571,10 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     Outline 1-3 open questions or uncertainties that need to be clarified.</code></pre>
 
 <ol>
-<li>创建一个计划<a href="../docs/agent-customization/custom-agents.md">代理</a> <code>.github/agents/plan.agent.md</code>
+<li>创建一个计划<a href="../../../docs/agent-customization/custom-agents.html">代理</a> <code>.github/agents/plan.agent.md</code>
 </li>
 </ol>
-<p>    计划代理定义了一个计划角色，并指示代理不执行实现任务，而是专注于创建实现计划。你可以指定<a href="../docs/agent-customization/custom-agents.md#handoffs">交接</a>，在计划完成后转换到实现代理。</p>
+<p>    计划代理定义了一个计划角色，并指示代理不执行实现任务，而是专注于创建实现计划。你可以指定<a href="../../../docs/agent-customization/custom-agents.html#handoffs">交接</a>，在计划完成后转换到实现代理。</p>
 
 <p>    要创建自定义代理，请在命令面板中运行<strong>聊天: 新建自定义代理</strong>命令。</p>
 
@@ -612,7 +612,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>    你也可以引用 GitHub 议题来提供特定的上下文：<code>Implement the feature from issue #43</code>，在这种情况下，代理将获取议题描述和评论以得出需求。</p>
 
 <ol>
-<li>可选地，创建一个<a href="../docs/agent-customization/prompt-files.md">提示词文件</a> <code>.github/prompts/plan.prompt.md</code>，用于调用计划代理并指示代理根据提供的功能请求创建实现计划。
+<li>可选地，创建一个<a href="../../../docs/agent-customization/prompt-files.html">提示词文件</a> <code>.github/prompts/plan.prompt.md</code>，用于调用计划代理并指示代理根据提供的功能请求创建实现计划。
 </li>
 </ol>
 <p>    以下 <code>plan-qna.prompt.md</code> 文件为计划提示词提供了一个不同的起点，使用相同的工作流但增加了一个澄清步骤。</p>
@@ -654,7 +654,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <blockquote>Agent 针对执行多步骤任务进行了优化，它会根据计划和你的项目上下文找出最佳方式来实现目标。你只需提供计划文件或在提示词中引用它即可。</blockquote>
 
 <ol>
-<li>对于更定制化的工作流，创建一个<a href="../docs/agent-customization/custom-agents.md">自定义代理</a> <code>.github/agents/implement.agent.md</code>，专门用于基于计划实现代码。
+<li>对于更定制化的工作流，创建一个<a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a> <code>.github/agents/implement.agent.md</code>，专门用于基于计划实现代码。
 </li>
 </ol>
 <p>    以下 <code>tdd.agent.md</code> 文件为测试驱动实现自定义代理提供了一个起点。</p>
@@ -702,7 +702,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>保持上下文隔离</strong>：将不同类型的工作（计划、编码、测试、调试）放在不同的聊天会话中，以防止上下文混淆。</p>
 
-<p><strong>注意配额消耗</strong>：更多的上下文文件、更大的指令集和复杂的代理链都会增加令牌使用量和 <a href="../docs/agents/concepts/language-models.md#ai-credits-and-model-costs">AI 配额</a>消耗。从简洁的上下文开始，仅在需要时扩展。更多技巧请参阅<a href="../docs/agents/guides/optimize-usage.md">优化 AI 配额使用</a>。</p>
+<p><strong>注意配额消耗</strong>：更多的上下文文件、更大的指令集和复杂的代理链都会增加令牌使用量和 <a href="../../../docs/agents/concepts/language-models.html#ai-credits-and-model-costs">AI 配额</a>消耗。从简洁的上下文开始，仅在需要时扩展。更多技巧请参阅<a href="../../../docs/agents/guides/optimize-usage.html">优化 AI 配额使用</a>。</p>
 
 <h3>文档策略</h3>
 
@@ -716,7 +716,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>工作流优化</h3>
 
-<p><strong>代理之间的交接</strong>：使用<a href="../docs/agent-customization/custom-agents.md#handoffs">交接</a>在计划、实现和审查代理之间创建引导式转换，并实现端到端的开发工作流。</p>
+<p><strong>代理之间的交接</strong>：使用<a href="../../../docs/agent-customization/custom-agents.html#handoffs">交接</a>在计划、实现和审查代理之间创建引导式转换，并实现端到端的开发工作流。</p>
 
 <p><strong>实现反馈循环</strong>：持续验证 AI 是否正确理解了你的上下文。在出现误解时，尽早提出澄清性问题并纠正方向。</p>
 
@@ -726,7 +726,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>版本化你的上下文</strong>：使用 git 跟踪你的上下文工程设置的更改，以便你可以回退有问题的更改，并了解哪些设置效果最好。</p>
 
-<p><strong>验证缓存性能</strong>：使用<a href="../docs/agents/agent-troubleshooting/chat-debug-view.md">代理调试日志</a>查看提示词缓存命中率和令牌使用量。良好的缓存性能意味着你的上下文设置结构能够使模型提供商重用之前的请求前缀，从而降低延迟和令牌成本。</p>
+<p><strong>验证缓存性能</strong>：使用<a href="../../../docs/agents/agent-troubleshooting/chat-debug-view.html">代理调试日志</a>查看提示词缓存命中率和令牌使用量。良好的缓存性能意味着你的上下文设置结构能够使模型提供商重用之前的请求前缀，从而降低延迟和令牌成本。</p>
 
 <h3>应避免的反模式</h3>
 
@@ -738,7 +738,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><strong>一刀切</strong>：不同的团队成员或项目阶段可能需要不同的上下文配置。请保持灵活的方法。</p>
 
-<p><strong>过度设计代理链</strong>：深层嵌套的子代理工作流和过多的工具调用会成倍增加令牌使用量和<a href="../docs/agents/concepts/language-models.md#ai-credits-and-model-costs">配额消耗</a>。保持代理链尽可能扁平，并将工具限制在每个代理实际需要的范围内。</p>
+<p><strong>过度设计代理链</strong>：深层嵌套的子代理工作流和过多的工具调用会成倍增加令牌使用量和<a href="../../../docs/agents/concepts/language-models.html#ai-credits-and-model-costs">配额消耗</a>。保持代理链尽可能扁平，并将工具限制在每个代理实际需要的范围内。</p>
 
 <h3>衡量成功</h3>
 
@@ -755,7 +755,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p><strong>团队使用</strong>：通过版本控制共享上下文工程设置，并建立团队规范以维护共享上下文。</p>
 
-<p><strong>大型项目</strong>：考虑使用<a href="../docs/agent-customization/custom-instructions.md">指令文件</a>创建具有项目级、模块级和功能级上下文层的上下文层次结构。</p>
+<p><strong>大型项目</strong>：考虑使用<a href="../../../docs/agent-customization/custom-instructions.html">指令文件</a>创建具有项目级、模块级和功能级上下文层的上下文层次结构。</p>
 
 <p><strong>长期项目</strong>：建立定期的上下文审查周期，以保持文档的时效性并删除过时信息。</p>
 
@@ -768,9 +768,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>了解更多关于在 VS Code 中自定义 AI 的信息：</p>
 
 <ul>
-<li><a href="../docs/agent-customization/custom-instructions.md">指令文件</a></li>
-<li><a href="../docs/agent-customization/custom-agents.md">自定义代理</a></li>
-<li><a href="../docs/agent-customization/prompt-files.md">提示词文件</a></li>
+<li><a href="../../../docs/agent-customization/custom-instructions.html">指令文件</a></li>
+<li><a href="../../../docs/agent-customization/custom-agents.html">自定义代理</a></li>
+<li><a href="../../../docs/agent-customization/prompt-files.html">提示词文件</a></li>
 </ul>
 
   </div>

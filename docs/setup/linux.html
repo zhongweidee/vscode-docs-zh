@@ -471,7 +471,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     # sudo apt-get install -f # 安装依赖项</code></pre>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>其他二进制文件可在 <a href="../download">VS Code 下载页面</a>获取。</blockquote>
+<blockquote>其他二进制文件可在 <a href="../../download">VS Code 下载页面</a>获取。</blockquote>
 
 </li>
 </ol>
@@ -610,13 +610,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <pre><code class="language-bash">sudo dnf install &lt;file&gt;.rpm</code></pre>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>其他二进制文件可在 <a href="../download">VS Code 下载页面</a>获取。</blockquote>
+<blockquote>其他二进制文件可在 <a href="../../download">VS Code 下载页面</a>获取。</blockquote>
 
 <p></details></p>
 
 <h2>更新</h2>
 
-<p>VS Code 每周发布<a href="../updates">更新</a>。如果 VS Code 仓库已正确安装，系统包管理器会像处理系统上其他包一样自动处理更新。</p>
+<p>VS Code 每周发布<a href="../../updates">更新</a>。如果 VS Code 仓库已正确安装，系统包管理器会像处理系统上其他包一样自动处理更新。</p>
 
 <blockquote>[!NOTE]</blockquote>
 <blockquote>对于 <a href="#snap-package">Snap 包</a>，更新是自动的并在后台运行。</blockquote>
@@ -664,17 +664,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>配合 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl">WSL 扩展</a>使用时，VS Code 可在 WSL 上的 Linux 发行版环境中提供编辑和调试支持。</p>
 
-<p>请参阅<a href="../docs/remote/wsl.md">在 WSL 中开发</a>文档以了解更多信息，或尝试<a href="../docs/remote/wsl-tutorial.md">在 WSL 中工作</a>入门教程。</p>
+<p>请参阅<a href="../../docs/remote/wsl.html">在 WSL 中开发</a>文档以了解更多信息，或尝试<a href="../../docs/remote/wsl-tutorial.html">在 WSL 中工作</a>入门教程。</p>
 
 <h2>安装后</h2>
 
 <p>安装 VS Code 后，请完成开发工作流的设置：</p>
 
 <ul>
-<li><a href="../docs/setup/additional-components.md">安装附加组件</a>，包括 Git、Node.js、TypeScript、语言运行时和命令行工具。</li>
+<li><a href="../../docs/setup/additional-components.html">安装附加组件</a>，包括 Git、Node.js、TypeScript、语言运行时和命令行工具。</li>
 <li><a href="https://marketplace.visualstudio.com/VSCode">从 Visual Studio Marketplace 安装扩展</a>，以添加主题、格式化工具、调试器和语言支持。</li>
-<li><a href="../docs/setup/copilot.md">设置 GitHub Copilot</a>，以在 VS Code 中使用 AI 功能。</li>
-<li><a href="../docs/editing/getting-started.md">开始 VS Code 教程</a>，体验用户界面和关键功能的实操导览。
+<li><a href="../../docs/setup/copilot.html">设置 GitHub Copilot</a>，以在 VS Code 中使用 AI 功能。</li>
+<li><a href="../../docs/editing/getting-started.html">开始 VS Code 教程</a>，体验用户界面和关键功能的实操导览。
 <h2>常见问题</h2>
 
 </li>
@@ -736,7 +736,7 @@ Pin-Priority: 9999</code></pre>
 
 <p>每个文件监视<a href="https://stackoverflow.com/a/7091897/1156119">占用 1,080 字节</a>。如果全部 524,288 个监视都被消耗，上限约为 540 MiB。在内存受限的环境中，请选择较低的值。</p>
 
-<p>另一种选择是通过 <code>setting(files.watcherExclude)</code> <a href="../docs/configure/settings.md">设置</a>将特定工作区目录从 VS Code 文件监视器中排除。默认的 <code>setting(files.watcherExclude)</code> 值排除了 <code>node_modules</code> 和 <code>.git</code> 下的某些文件夹。你可以添加其他不希望 VS Code 跟踪的目录。</p>
+<p>另一种选择是通过 <code>setting(files.watcherExclude)</code> <a href="../../docs/configure/settings.html">设置</a>将特定工作区目录从 VS Code 文件监视器中排除。默认的 <code>setting(files.watcherExclude)</code> 值排除了 <code>node_modules</code> 和 <code>.git</code> 下的某些文件夹。你可以添加其他不希望 VS Code 跟踪的目录。</p>
 
 <pre><code class="language-json">"files.watcherExclude": {
     "**/.git/objects/**": true,

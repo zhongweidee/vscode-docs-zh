@@ -455,7 +455,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>IntelliSense</h2>
 
-<p>Visual Studio Code 的 JavaScript <a href="../docs/editing/intellisense.md">IntelliSense</a> 提供了智能代码补全、参数信息、引用搜索以及许多其他高级语言功能。我们的 JavaScript IntelliSense 由 TypeScript 团队开发的 <a href="https://github.com/microsoft/TypeScript/wiki/JavaScript-Language-Service-in-Visual-Studio">JavaScript 语言服务</a> 提供支持。虽然大多数 JavaScript 项目无需任何配置即可使用 IntelliSense，但您可以通过 <a href="../docs/languages/javascript.md#jsdoc-support">JSDoc</a> 或配置 <code>jsconfig.json</code> 项目使 IntelliSense 更加有用。</p>
+<p>Visual Studio Code 的 JavaScript <a href="../../docs/editing/intellisense.html">IntelliSense</a> 提供了智能代码补全、参数信息、引用搜索以及许多其他高级语言功能。我们的 JavaScript IntelliSense 由 TypeScript 团队开发的 <a href="https://github.com/microsoft/TypeScript/wiki/JavaScript-Language-Service-in-Visual-Studio">JavaScript 语言服务</a> 提供支持。虽然大多数 JavaScript 项目无需任何配置即可使用 IntelliSense，但您可以通过 <a href="../../docs/languages/javascript.html#jsdoc-support">JSDoc</a> 或配置 <code>jsconfig.json</code> 项目使 IntelliSense 更加有用。</p>
 
 <p>有关 JavaScript IntelliSense 工作原理的详细信息，包括基于类型推断、JSDoc 注解、TypeScript 声明以及混合 JavaScript 和 TypeScript 项目的内容，请参阅 <a href="https://github.com/microsoft/TypeScript/wiki/JavaScript-Language-Service-in-Visual-Studio">JavaScript 语言服务文档</a>。</p>
 
@@ -501,7 +501,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>npm 随 Node.js 运行时一起安装，可从 <a href="https://nodejs.org">Nodejs.org</a> 下载。安装当前的 LTS（长期支持）版本，npm 可执行文件将默认添加到您的系统路径中。</p>
 
-<p>如果您已安装 npm 但仍然看到警告消息，您可以使用 <code>js/ts.tsserver.npm.path</code> <a href="../docs/configure/settings.md">设置</a> 来明确告诉 VS Code npm 的安装位置。此设置应设为您计算机上 npm 可执行文件的完整路径，并且不必与您用于管理工作区中包的 npm 版本匹配。<code>js/ts.tsserver.npm.path</code> 需要 TypeScript 2.3.4+。</p>
+<p>如果您已安装 npm 但仍然看到警告消息，您可以使用 <code>js/ts.tsserver.npm.path</code> <a href="../../docs/configure/settings.html">设置</a> 来明确告诉 VS Code npm 的安装位置。此设置应设为您计算机上 npm 可执行文件的完整路径，并且不必与您用于管理工作区中包的 npm 版本匹配。<code>js/ts.tsserver.npm.path</code> 需要 TypeScript 2.3.4+。</p>
 
 <p>例如，在 Windows 上，您可以在 <code>settings.json</code> 文件中添加如下路径：</p>
 
@@ -511,7 +511,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>JavaScript 项目 (jsconfig.json)</h2>
 
-<p>目录中存在 <a href="../docs/languages/jsconfig.md">jsconfig.json</a> 文件表示该目录是 JavaScript 项目的根目录。<code>jsconfig.json</code> 指定了 <a href="https://github.com/microsoft/TypeScript/wiki/JavaScript-Language-Service-in-Visual-Studio">JavaScript 语言服务</a> 提供的语言功能的根文件和选项。对于常见设置，不需要 <code>jsconfig.json</code> 文件，但是在某些情况下您可能需要添加 <code>jsconfig.json</code>。</p>
+<p>目录中存在 <a href="../../docs/languages/jsconfig.html">jsconfig.json</a> 文件表示该目录是 JavaScript 项目的根目录。<code>jsconfig.json</code> 指定了 <a href="https://github.com/microsoft/TypeScript/wiki/JavaScript-Language-Service-in-Visual-Studio">JavaScript 语言服务</a> 提供的语言功能的根文件和选项。对于常见设置，不需要 <code>jsconfig.json</code> 文件，但是在某些情况下您可能需要添加 <code>jsconfig.json</code>。</p>
 
 <ul>
 <li>并非所有文件都应包含在您的 JavaScript 项目中（例如，您希望排除某些文件不显示 IntelliSense）。这种情况在前端和后端代码中很常见。</li>
@@ -564,7 +564,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>最佳实践且最不容易出错的方法是使用单个 <code>src</code> 文件夹配合 <code>include</code> 属性。请注意，<code>exclude</code> 和 <code>include</code> 中的文件路径是相对于 <code>jsconfig.json</code> 的位置。</p>
 
-<p>有关更多信息，请参阅完整的 <a href="../docs/languages/jsconfig.md">jsconfig.json 文档</a>。</p>
+<p>有关更多信息，请参阅完整的 <a href="../../docs/languages/jsconfig.html">jsconfig.json 文档</a>。</p>
 
 <h3>迁移到 TypeScript</h3>
 
@@ -695,11 +695,11 @@ declare var CAN_NOTIFY: number;</code></pre>
 
 <p>TypeScript 编译器 <code>tsc</code> 可以将 JavaScript 文件从 ES6 降级编译到另一个语言级别。使用所需的选项配置 <code>jsconfig.json</code>，然后使用 –p 参数让 <code>tsc</code> 使用您的 <code>jsconfig.json</code> 文件，例如 <code>tsc -p jsconfig.json</code> 进行降级编译。</p>
 
-<p>在 <a href="../docs/languages/jsconfig.md#jsconfig-options">jsconfig 文档</a> 中阅读有关降级编译的编译器选项的更多信息。</p>
+<p>在 <a href="../../docs/languages/jsconfig.html#jsconfig-options">jsconfig 文档</a> 中阅读有关降级编译的编译器选项的更多信息。</p>
 
 <h3>运行 Babel</h3>
 
-<p><a href="https://babeljs.io">Babel</a> 转译器将 ES6 文件转换为可读的 ES5 JavaScript 并附带 Source Maps。您可以通过将以下配置添加到 <code>tasks.json</code> 文件（位于工作区的 <code>.vscode</code> 文件夹下）来轻松地将 <strong>Babel</strong> 集成到您的工作流中。<code>group</code> 设置将此任务设为默认的 <strong>任务：运行构建任务</strong> 手势。<code>isBackground</code> 告诉 VS Code 在后台保持运行此任务。要了解更多信息，请访问 <a href="../docs/debugtest/tasks.md">任务</a>。</p>
+<p><a href="https://babeljs.io">Babel</a> 转译器将 ES6 文件转换为可读的 ES5 JavaScript 并附带 Source Maps。您可以通过将以下配置添加到 <code>tasks.json</code> 文件（位于工作区的 <code>.vscode</code> 文件夹下）来轻松地将 <strong>Babel</strong> 集成到您的工作流中。<code>group</code> 设置将此任务设为默认的 <strong>任务：运行构建任务</strong> 手势。<code>isBackground</code> 告诉 VS Code 在后台保持运行此任务。要了解更多信息，请访问 <a href="../../docs/debugtest/tasks.html">任务</a>。</p>
 
 <pre><code class="language-json">{
     "version": "2.0.0",
@@ -761,7 +761,7 @@ declare var CAN_NOTIFY: number;</code></pre>
 <p>在 <code>vscode.dev</code> 和 <code>github.dev</code> 上还有一些额外的功能被禁用：</p>
 
 <ul>
-<li><a href="../docs/nodejs/working-with-javascript.md#类型定义和自动类型获取">自动类型获取</a> 目前不受支持。
+<li><a href="../../docs/nodejs/working-with-javascript.html#类型定义和自动类型获取">自动类型获取</a> 目前不受支持。
 <h3>检查是否处于部分模式</h3>
 
 </li>

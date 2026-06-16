@@ -455,7 +455,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>什么是 VS Code Server？</h2>
 
-<p>在 VS Code 中，我们希望用户能够无缝地利用使其最高效的开发环境。<a href="../docs/remote/remote-overview.md">VS Code 远程开发扩展</a> 允许你直接在 VS Code 中操作 Windows Subsystem for Linux (WSL)、通过 SSH 连接远程机器以及开发容器。这些扩展会在远程环境中安装一个服务器，使本地 VS Code 能够与远程源代码和运行时顺畅交互。</p>
+<p>在 VS Code 中，我们希望用户能够无缝地利用使其最高效的开发环境。<a href="../../docs/remote/remote-overview.html">VS Code 远程开发扩展</a> 允许你直接在 VS Code 中操作 Windows Subsystem for Linux (WSL)、通过 SSH 连接远程机器以及开发容器。这些扩展会在远程环境中安装一个服务器，使本地 VS Code 能够与远程源代码和运行时顺畅交互。</p>
 
 <p>我们现在提供了一个独立的"VS Code Server"，它是基于远程扩展所使用的相同底层服务器构建的服务，并附加了一些额外功能，例如交互式 CLI 以及促进与 vscode.dev 的安全连接。</p>
 
@@ -465,7 +465,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>我们希望提供统一的 VS Code 体验，无论你如何使用编辑器，无论是在本地还是远程，在桌面端还是在浏览器中。</p>
 
-<p>对 VS Code Server 的访问已内置到现有的 <a href="../docs/configure/command-line.md#launching-from-command-line"><code>code</code> CLI</a> 中。</p>
+<p>对 VS Code Server 的访问已内置到现有的 <a href="../../docs/configure/command-line.html#launching-from-command-line"><code>code</code> CLI</a> 中。</p>
 
 <p>该 CLI 在 VS Code 客户端和你的远程机器之间建立一条隧道。隧道技术能够安全地将数据从一个网络传输到另一个网络。</p>
 
@@ -475,7 +475,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>VS Code Server：使 VS Code 远程体验成为可能的后端服务器。</li>
-<li><a href="../docs/remote/tunnels.md">Remote - Tunnels 扩展</a>：自动加载到你的本地 VS Code 客户端中，用于促进与远程机器的连接。
+<li><a href="../../docs/remote/tunnels.html">Remote - Tunnels 扩展</a>：自动加载到你的本地 VS Code 客户端中，用于促进与远程机器的连接。
 <h2>使用场景</h2>
 
 </li>
@@ -493,8 +493,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以选择以下两种路径来启用隧道功能，各自的文档内容中有更详细的描述：</p>
 
 <ul>
-<li><a href="../docs/remote/tunnels.md#using-the-code-cli">在 <code>code</code> CLI 中运行 <code>tunnel</code> 命令</a></li>
-<li><a href="../docs/remote/tunnels.md#using-the-vs-code-ui">通过 VS Code 用户界面启用隧道</a>
+<li><a href="../../docs/remote/tunnels.html#using-the-code-cli">在 <code>code</code> CLI 中运行 <code>tunnel</code> 命令</a></li>
+<li><a href="../../docs/remote/tunnels.html#using-the-vs-code-ui">通过 VS Code 用户界面启用隧道</a>
 <h2>尝试一下</h2>
 
 <h3>许可协议及其他命令</h3>
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>扩展命令</h3>
 
-<p>与 CLI 一样，VS Code Remote Tunnels 扩展也有额外的命令，你可以通过在 VS Code 中打开命令面板（<code>F1</code>）并输入 <strong>Remote Tunnels</strong> 来探索。你可以在 <a href="../docs/remote/tunnels.md">Remote Tunnels 文档</a> 中了解更多信息。</p>
+<p>与 CLI 一样，VS Code Remote Tunnels 扩展也有额外的命令，你可以通过在 VS Code 中打开命令面板（<code>F1</code>）并输入 <strong>Remote Tunnels</strong> 来探索。你可以在 <a href="../../docs/remote/tunnels.html">Remote Tunnels 文档</a> 中了解更多信息。</p>
 
 <h2>遥测</h2>
 
@@ -538,17 +538,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>如果你在受限环境中工作，可能需要确保 VS Code Server 能够访问以下文章中列出的端点：</p>
 
 <ul>
-<li><a href="../docs/setup/network.md#common-hostnames">设置网络常用主机名</a></li>
-<li><a href="../docs/remote/ssh.md#what-are-the-connectivity-requirements-for-the-vs-code-server-when-it-is-running-on-a-remote-machine--vm">VS Code Server 在远程机器/虚拟机上运行时的连接要求</a>
+<li><a href="../../docs/setup/network.html#common-hostnames">设置网络常用主机名</a></li>
+<li><a href="../../docs/remote/ssh.html#what-are-the-connectivity-requirements-for-the-vs-code-server-when-it-is-running-on-a-remote-machine--vm">VS Code Server 在远程机器/虚拟机上运行时的连接要求</a>
 <h3>还有其他扩展限制吗？</h3>
 
 </li>
 </ul>
-<p>在 VS Code 的基于 Web 的实例中，不支持纯 UI 扩展，你可以在扩展作者<a href="../api/advanced-topics/remote-extensions.md#architecture-and-extension-kinds">远程开发</a>指南中了解更多信息。</p>
+<p>在 VS Code 的基于 Web 的实例中，不支持纯 UI 扩展，你可以在扩展作者<a href="../../api/advanced-topics/remote-extensions.html#architecture-and-extension-kinds">远程开发</a>指南中了解更多信息。</p>
 
 <h3>浏览器有什么限制吗？</h3>
 
-<p>在浏览器中工作时，需要考虑某些限制和配置步骤。你可以在 <a href="../docs/remote/vscode-web.md#additional-browser-setup">VS Code for the Web</a> 文档中阅读更多相关内容。</p>
+<p>在浏览器中工作时，需要考虑某些限制和配置步骤。你可以在 <a href="../../docs/remote/vscode-web.html#additional-browser-setup">VS Code for the Web</a> 文档中阅读更多相关内容。</p>
 
 <h3>如何保持 VS Code Server 更新？</h3>
 

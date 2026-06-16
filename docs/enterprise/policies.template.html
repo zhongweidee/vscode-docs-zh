@@ -472,7 +472,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以从现有安装中获取 ADMX 和 ADML 文件，也可以通过下载并解压 VS Code zip 压缩包来获取。请按照以下步骤获取文件：</p>
 
 <ol>
-<li>下载适用于你的 VS Code 版本的 <a href="../download">VS Code zip 压缩包</a>。</li>
+<li>下载适用于你的 VS Code 版本的 <a href="../../download">VS Code zip 压缩包</a>。</li>
 <li>将 zip 文件解压到临时位置。</li>
 <li>在解压后的文件中导航到 <code>policies</code> 文件夹。此文件夹包含 ADMX 模板文件（例如 <code>vscode.admx</code>）以及一个包含不同语言 ADML 文件的 <code>locales</code> 子文件夹。
 <h3>步骤 2：配置策略值</h3>
@@ -809,7 +809,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ul>
 <li><strong>系统信息</strong>：VS Code 产品名称、版本和提交，用于将报告与特定构建匹配。</li>
 <li><strong>帐户信息</strong>：已登录的默认帐户的详细信息，包括帐户提供程序返回的原始帐户级策略数据。</li>
-<li><strong>帐户策略门</strong>：控制 AI 功能的<a href="../docs/enterprise/ai-settings.md#restrict-ai-features-to-approved-github-organizations">已批准的 GitHub 组织门</a>的状态。可能的状态有 <code>inactive</code>、<code>satisfied</code> 和 <code>restricted</code>。当状态为 <code>restricted</code> 时，报告还会列出原因，例如 <code>noAccount</code>、<code>wrongProvider</code>、<code>orgNotApproved</code> 或 <code>policyNotResolved</code>。</li>
+<li><strong>帐户策略门</strong>：控制 AI 功能的<a href="../../docs/enterprise/ai-settings.html#restrict-ai-features-to-approved-github-organizations">已批准的 GitHub 组织门</a>的状态。可能的状态有 <code>inactive</code>、<code>satisfied</code> 和 <code>restricted</code>。当状态为 <code>restricted</code> 时，报告还会列出原因，例如 <code>noAccount</code>、<code>wrongProvider</code>、<code>orgNotApproved</code> 或 <code>policyNotResolved</code>。</li>
 <li><strong>策略控制的设置</strong>：两个表格，列出了每个已注册设置的策略状态：<ul>
 <li><strong>已应用的策略</strong>：当前被策略覆盖的设置，包括设置键、策略名称、策略来源、默认值、当前值以及策略强制执行的值。<ul>
 <li><strong>未应用的策略</strong>：当前未被强制执行的已注册策略。使用此表格来检测部署错误，例如拼写错误的键或未被读取的策略文件。</li>

@@ -469,13 +469,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>创建 Python 项目</h3>
 
-<p>如果你还没有 Python 项目，请先按照<a href="../docs/python/python-tutorial.md">Python 入门</a>教程操作。</p>
+<p>如果你还没有 Python 项目，请先按照<a href="../../docs/python/python-tutorial.html">Python 入门</a>教程操作。</p>
 
 <blockquote><strong>注意</strong>：如果你想将完整的 Django 或 Flask Web 应用容器化，可以从以下示例之一开始：</blockquote>
 <p>></p>
-<p>>- <a href="https://github.com/microsoft/python-sample-vscode-django-tutorial/">python-sample-vscode-django-tutorial</a>，这是按照 <a href="../docs/python/tutorial-django.md">Django 教程</a>操作的结果</p>
+<p>>- <a href="https://github.com/microsoft/python-sample-vscode-django-tutorial/">python-sample-vscode-django-tutorial</a>，这是按照 <a href="../../docs/python/tutorial-django.html">Django 教程</a>操作的结果</p>
 <p>></p>
-<p>>- <a href="https://github.com/microsoft/python-sample-vscode-flask-tutorial/">python-sample-vscode-flask-tutorial</a>，这是按照 <a href="../docs/python/tutorial-flask.md">Flask 教程</a>操作的结果</p>
+<p>>- <a href="https://github.com/microsoft/python-sample-vscode-flask-tutorial/">python-sample-vscode-flask-tutorial</a>，这是按照 <a href="../../docs/python/tutorial-flask.html">Flask 教程</a>操作的结果</p>
 
 <blockquote><strong>注意</strong>：在本教程中，请确保使用示例仓库的 <strong>tutorial</strong> 分支。</blockquote>
 
@@ -493,7 +493,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>当系统提示选择应用类型时，选择 <strong>Python: Django</strong>、<strong>Python: Flask</strong> 或 <strong>Python: General</strong> 作为应用类型。在本教程中，我们将重点讨论 <strong>Python: General</strong> 的情况，但也会包含 Django 和 Flask 的说明。
 </li>
-<li>输入应用入口点的相对路径。这不包括你起始的工作区文件夹。如果你根据 <a href="../docs/python/python-tutorial">Python 入门</a>教程使用 <code>hello.py</code> 创建了 Python 应用，请选择该文件。
+<li>输入应用入口点的相对路径。这不包括你起始的工作区文件夹。如果你根据 <a href="../../docs/python/python-tutorial">Python 入门</a>教程使用 <code>hello.py</code> 创建了 Python 应用，请选择该文件。
 </li>
 </ol>
 <p>   <strong>Django</strong>：选择 <code>manage.py</code>（根文件夹）或 <code>subfolder_name/manage.py</code>。请参阅<a href="https://docs.djangoproject.com/en/stable/intro/tutorial01/#creating-a-project">官方 Django 文档</a>。</p>
@@ -503,7 +503,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>    ><strong>提示</strong>：你也可以输入文件夹名称的路径，只要该文件夹包含 <code>__main__.py</code> 文件即可。</p>
 
 <ol>
-<li>选择端口号。我们建议选择 1024 或以上的端口，以降低<a href="../docs/containers/troubleshooting.md#running-as-a-non-root-user">以 root 用户身份运行</a>带来的安全风险。任何未使用的端口都可以，但 Django 和 Flask 使用标准的默认端口。
+<li>选择端口号。我们建议选择 1024 或以上的端口，以降低<a href="../../docs/containers/troubleshooting.html#running-as-a-non-root-user">以 root 用户身份运行</a>带来的安全风险。任何未使用的端口都可以，但 Django 和 Flask 使用标准的默认端口。
 </li>
 </ol>
 <p>   <strong>Django</strong>：默认端口 8000。</p>
@@ -515,7 +515,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li>有了所有这些信息后，容器工具扩展将创建以下文件：
 <ul>
-<li>一个 <code>Dockerfile</code>。要了解有关此文件中 IntelliSense 的更多信息，请参阅<a href="../docs/containers/overview.md">概述</a>。
+<li>一个 <code>Dockerfile</code>。要了解有关此文件中 IntelliSense 的更多信息，请参阅<a href="../../docs/containers/overview.html">概述</a>。
 <ul>
 <li>一个 <code>.dockerignore</code> 文件，用于通过排除不需要的文件和文件夹（如 <code>.git</code>、<code>.vscode</code> 和 <code>__pycache__</code>）来减小镜像大小。
 </li>
@@ -533,7 +533,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>此步骤不是必需的，但包含它是为了帮助你了解如何添加需要在容器环境中设置的环境变量。</p>
 
-<p>容器工具扩展通过使用 <a href="../docs/editing/intellisense.md">IntelliSense</a> 提供自动补全和上下文帮助来帮助你编写 Dockerfile。要查看此功能的实际效果：</p>
+<p>容器工具扩展通过使用 <a href="../../docs/editing/intellisense.html">IntelliSense</a> 提供自动补全和上下文帮助来帮助你编写 Dockerfile。要查看此功能的实际效果：</p>
 
 <ol>
 <li>打开 <code>Dockerfile</code>。</li>
@@ -699,11 +699,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>完成了！现在你的容器已经就绪，你可能想要：</p>
 
 <ul>
-<li><a href="../docs/containers/docker-compose.md">了解如何使用 Docker Compose</a></li>
-<li><a href="../docs/containers/docker-compose.md#python">使用 Docker Compose 进行调试</a></li>
-<li><a href="../docs/containers/debug-python.md">自定义如何在容器中调试 Python 应用</a></li>
-<li><a href="../docs/containers/reference.md">自定义你的 Docker 构建和运行任务</a></li>
-<li><a href="../docs/containers/tutorial-django-push-to-registry.md">将你的 Django 镜像推送到 Azure Container Registry</a></li>
+<li><a href="../../docs/containers/docker-compose.html">了解如何使用 Docker Compose</a></li>
+<li><a href="../../docs/containers/docker-compose.html#python">使用 Docker Compose 进行调试</a></li>
+<li><a href="../../docs/containers/debug-python.html">自定义如何在容器中调试 Python 应用</a></li>
+<li><a href="../../docs/containers/reference.html">自定义你的 Docker 构建和运行任务</a></li>
+<li><a href="../../docs/containers/tutorial-django-push-to-registry.html">将你的 Django 镜像推送到 Azure Container Registry</a></li>
 <li><a href="https://learn.microsoft.com/azure/container-apps/deploy-visual-studio-code">部署到 Azure Container Apps</a></li>
 </ul>
 

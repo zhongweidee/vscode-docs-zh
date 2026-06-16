@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在 Visual Studio Code 中处理 Markdown 文件简单、直接且有趣。除了 VS Code 的基本编辑功能外，还有一些专为 Markdown 设计的功能，可帮助你提高工作效率。</p>
 
-<p>><strong>注意</strong>：为了帮助你快速上手编辑 Markdown 文件，你可以使用 <a href="../docs/configure/profiles.md#doc-writer-profile-template">Doc Writer 配置文件模板</a> 来安装有用的扩展（拼写检查器、Markdown 代码检查器）并配置合适的设置值。</p>
+<p>><strong>注意</strong>：为了帮助你快速上手编辑 Markdown 文件，你可以使用 <a href="../../docs/configure/profiles.html#doc-writer-profile-template">Doc Writer 配置文件模板</a> 来安装有用的扩展（拼写检查器、Markdown 代码检查器）并配置合适的设置值。</p>
 
 <h2>编辑 Markdown</h2>
 
@@ -469,7 +469,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 包含一些有用的代码片段，可以加速 Markdown 的编写。其中包括代码块、图片等代码片段。在编辑时按 <code>kb(editor.action.triggerSuggest)</code>（触发建议）可查看建议的 Markdown 代码片段列表。你也可以使用专用的代码片段选择器，在命令面板中选择<strong>插入代码片段</strong>。</p>
 
-<p>><strong>提示：</strong> 你可以为自己的 Markdown 添加用户自定义代码片段。请参阅<a href="../docs/editing/userdefinedsnippets.md">用户自定义代码片段</a>了解具体方法。</p>
+<p>><strong>提示：</strong> 你可以为自己的 Markdown 添加用户自定义代码片段。请参阅<a href="../../docs/editing/userdefinedsnippets.html">用户自定义代码片段</a>了解具体方法。</p>
 
 <h3>跳转到文件中的标题</h3>
 
@@ -489,7 +489,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>路径补全</h3>
 
-<p>路径补全功能可帮助你创建指向文件和图片的链接。当你输入图片或链接的路径时，这些路径会自动由 <a href="../docs/editing/intellisense.md">IntelliSense</a> 显示，也可以通过使用 <code>kb(editor.action.triggerSuggest)</code> 手动请求。</p>
+<p>路径补全功能可帮助你创建指向文件和图片的链接。当你输入图片或链接的路径时，这些路径会自动由 <a href="../../docs/editing/intellisense.html">IntelliSense</a> 显示，也可以通过使用 <code>kb(editor.action.triggerSuggest)</code> 手动请求。</p>
 
 <p><img src="images/Markdown/path-completions.png" alt="Path completions in a Markdown link"></p>
 
@@ -537,7 +537,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>插入的图片使用 Markdown 图片语法 <code><img src="path/to/image.png" alt=""></code>。链接则插入普通的 Markdown 链接 <code>[](path/to/file.md)</code>。</p>
 
-<p>默认情况下，VS Code 会自动将工作区外拖放或粘贴的图片复制到你的工作区中。<code>setting(markdown.copyFiles.destination)</code> 设置控制新图片文件的创建位置。此设置将匹配当前 Markdown 文档的 <a href="../docs/editor/glob-patterns.md">glob 模式</a>映射到目标图片位置。目标图片位置还可以使用一些简单的变量。有关可用变量的信息，请参阅 <code>setting(markdown.copyFiles.destination)</code> 的设置描述。</p>
+<p>默认情况下，VS Code 会自动将工作区外拖放或粘贴的图片复制到你的工作区中。<code>setting(markdown.copyFiles.destination)</code> 设置控制新图片文件的创建位置。此设置将匹配当前 Markdown 文档的 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>映射到目标图片位置。目标图片位置还可以使用一些简单的变量。有关可用变量的信息，请参阅 <code>setting(markdown.copyFiles.destination)</code> 的设置描述。</p>
 
 <p>例如，如果你希望工作区中 <code>/docs</code> 下的每个 Markdown 文件将新的媒体文件放入该文件专属的 <code>images</code> 目录中，可以这样配置：</p>
 
@@ -547,7 +547,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>现在，当在 <code>/docs/api/readme.md</code> 中粘贴一个新文件时，图片文件会创建在 <code>/docs/api/images/readme/image.png</code>。</p>
 
-<p>你甚至可以使用简单的正则表达式来转换变量，<a href="../docs/editing/userdefinedsnippets.md#variable-transforms">类似于代码片段的变量转换方式</a>。例如，此转换在创建媒体文件时仅使用文档文件名的首字母：</p>
+<p>你甚至可以使用简单的正则表达式来转换变量，<a href="../../docs/editing/userdefinedsnippets.html#variable-transforms">类似于代码片段的变量转换方式</a>。例如，此转换在创建媒体文件时仅使用文档文件名的首字母：</p>
 
 <pre><code class="language-jsonc">"markdown.copyFiles.destination": {
   "/docs/**/*": "images/${documentBaseName/(.).*/$1/}/"
@@ -560,7 +560,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以使用 AI 来为 Markdown 文件中的图片生成或更新替代文本（alt text）。生成替代文本的步骤：</p>
 
 <ol>
-<li>确保你已在 VS Code 环境中<a href="../docs/setup/copilot.md">设置 Copilot</a>。你可以免费开始使用 Copilot。
+<li>确保你已在 VS Code 环境中<a href="../../docs/setup/copilot.html">设置 Copilot</a>。你可以免费开始使用 Copilot。
 </li>
 <li>打开一个 Markdown 文件。</li>
 <li>将光标放在图片链接上。</li>
@@ -608,9 +608,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>你可以使用以下几个设置来自定义链接验证：</p>
 
 <ul>
-<li><code>setting(markdown.validate.fileLinks.enabled)</code> ——启用/禁用对本地文件的链接验证：<code><a href="../path/to/file.md">link</a></code></li>
+<li><code>setting(markdown.validate.fileLinks.enabled)</code> ——启用/禁用对本地文件的链接验证：<code><a href="../../path/to/file.html">link</a></code></li>
 <li><code>setting(markdown.validate.fragmentLinks.enabled)</code> ——启用/禁用对当前文件中标题的链接验证：<code><a href="#some-header">link</a></code></li>
-<li><code>setting(markdown.validate.fileLinks.markdownFragmentLinks)</code> ——启用/禁用对其他 Markdown 文件中标题的链接验证：<code><a href="other-file.md#some-header">link</a></code></li>
+<li><code>setting(markdown.validate.fileLinks.markdownFragmentLinks)</code> ——启用/禁用对其他 Markdown 文件中标题的链接验证：<code><a href="other-file.html#some-header">link</a></code></li>
 <li><code>setting(markdown.validate.referenceLinks.enabled)</code> ——启用/禁用对引用链接的验证：<code>[link][ref]</code>。</li>
 <li><code>setting(markdown.validate.ignoredLinks)</code> ——一个跳过验证的链接 glob 模式列表。当你链接到磁盘上不存在但 Markdown 发布后确实存在的文件时，这很有用。
 <h3>查找标题和链接的所有引用</h3>
@@ -627,7 +627,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>标题：<code># My Header</code>。显示所有指向 <code>#my-header</code> 的链接。</li>
 <li>外部链接：<code><a href="http://example.com">text</a></code>。显示所有指向 <code>http://example.com</code> 的链接。</li>
 <li>内部链接：<code><a href="path/to/file.html">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 的链接。</li>
-<li>链接中的片段：<code><a href="path/to/file.md#my-header">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 中 <code>#my-header</code> 的链接。
+<li>链接中的片段：<code><a href="path/to/file.html#my-header">text</a></code>。显示所有指向 <code>./path/to/file.md</code> 中 <code>#my-header</code> 的链接。
 <h3>重命名标题和链接</h3>
 
 </li>
@@ -642,7 +642,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>标题：<code># My Header</code>。这会更新所有指向 <code>#my-header</code> 的链接。</li>
 <li>外部链接：<code><a href="http://example.com/page">text</a></code>。这会更新所有链接到 <code>http://example.com/page</code> 的位置。</li>
 <li>内部链接：<code><a href="path/to/file.html">text</a></code>。这会重命名文件 <code>./path/to/file.md</code> 并更新所有指向它的链接。</li>
-<li>链接中的片段：<code><a href="path/to/file.md#my-header">text</a></code>。这会重命名 <code>./path/to/file.md</code> 中的标题并更新所有指向它的链接。
+<li>链接中的片段：<code><a href="path/to/file.html#my-header">text</a></code>。这会重命名 <code>./path/to/file.md</code> 中的标题并更新所有指向它的链接。
 <h3>文件移动或重命名时自动更新链接</h3>
 
 </li>
@@ -685,7 +685,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/Markdown/preview-scroll-sync.gif" alt="Markdown Preview editor selection scroll sync"></p>
 
-<p>你可以使用 <code>setting(markdown.preview.scrollPreviewWithEditor)</code> 和 <code>setting(markdown.preview.scrollEditorWithPreview)</code> <a href="../docs/configure/settings.md">设置</a>来禁用滚动同步。</p>
+<p>你可以使用 <code>setting(markdown.preview.scrollPreviewWithEditor)</code> 和 <code>setting(markdown.preview.scrollEditorWithPreview)</code> <a href="../../docs/configure/settings.html">设置</a>来禁用滚动同步。</p>
 
 <p>编辑器中当前选中的行会在 Markdown 预览的左侧边距中以浅灰色条标注：</p>
 
@@ -797,7 +797,7 @@ $$</code></pre>
 
 <h3>使用你自己的 CSS</h3>
 
-<p>你还可以通过 <code>"markdown.styles": []</code> <a href="../docs/configure/settings.md">设置</a>在 Markdown 预览中使用你自己的 CSS。该设置列出要在 Markdown 预览中加载的样式表 URL。这些样式表可以是 <code>https</code> URL，也可以是当前工作区中本地文件的相对路径。</p>
+<p>你还可以通过 <code>"markdown.styles": []</code> <a href="../../docs/configure/settings.html">设置</a>在 Markdown 预览中使用你自己的 CSS。该设置列出要在 Markdown 预览中加载的样式表 URL。这些样式表可以是 <code>https</code> URL，也可以是当前工作区中本地文件的相对路径。</p>
 
 <p>例如，要加载当前工作区根目录下一个名为 <code>Style.css</code> 的样式表，请使用 <strong>文件</strong> > <strong>首选项</strong> > <strong>设置</strong> 打开工作区的 <code>settings.json</code> 文件并进行如下更新：</p>
 
@@ -850,7 +850,7 @@ $$</code></pre>
 
 <h2>Doc Writer 配置文件模板</h2>
 
-<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a> 让你可以根据当前项目或任务快速切换扩展、设置和界面布局。为了帮助你开始编辑 Markdown，你可以使用 <a href="../docs/configure/profiles.md#doc-writer-profile-template">Doc Writer 配置文件模板</a>，这是一个包含有用扩展和设置的精选配置文件。你可以按原样使用配置文件模板，也可以将其作为起点，为你的工作流进一步自定义。</p>
+<p><a href="https://code.visualstudio.com/docs/configure/profiles">配置文件</a> 让你可以根据当前项目或任务快速切换扩展、设置和界面布局。为了帮助你开始编辑 Markdown，你可以使用 <a href="../../docs/configure/profiles.html#doc-writer-profile-template">Doc Writer 配置文件模板</a>，这是一个包含有用扩展和设置的精选配置文件。你可以按原样使用配置文件模板，也可以将其作为起点，为你的工作流进一步自定义。</p>
 
 <p>你可以通过 <strong>配置文件</strong> > <strong>创建配置文件...</strong> 下拉菜单选择一个配置文件模板：</p>
 
@@ -871,7 +871,7 @@ $$</code></pre>
 <p>继续阅读以了解更多：</p>
 
 <ul>
-<li><a href="../docs/languages/css.md">CSS、SCSS 和 Less</a> ——想要编辑你的 CSS？VS Code 为 CSS、SCSS 和 Less 编辑提供了强大的支持。
+<li><a href="../../docs/languages/css.html">CSS、SCSS 和 Less</a> ——想要编辑你的 CSS？VS Code 为 CSS、SCSS 和 Less 编辑提供了强大的支持。
 <h2>常见问题</h2>
 
 <h3>是否有拼写检查功能？</h3>

@@ -68,7 +68,13 @@ function mdToHtml(md, filePath) {
   }
   function resolveLink(url, fromFile) {
     if (url.startsWith('http') || url.startsWith('#') || url.startsWith('data:')) return url;
-    if (url.startsWith('/')) return '..' + url;
+    if (url.startsWith('/')) {
+      // Absolute path relative to site root, e.g. /docs/agents/overview.md or /docs/agents/overview.md#section
+      // Calculate how many ../ levels needed to reach root from this file's depth
+      var _rel = path.relative(SRC, fromFile).replace(/\\/g, '/');
+      var _depth = _rel.split('/').length;
+      return '../'.repeat(_depth) + url.slice(1).replace(/\.md(#.*)?$/, '.html$1');
+    }
     const mdDir = path.dirname(fromFile);
     const resolved = path.resolve(mdDir, url);
     const rel = path.relative(mdDir, resolved).replace(/\\/g, '/');
@@ -81,7 +87,7 @@ function mdToHtml(md, filePath) {
     if (url.match(/\.(png|jpg|jpeg|gif|svg)$/i)) return rel;
     if (url.match(/\.webp$/i)) return rel;
     // Markdown link: convert to .html, keep relative
-    return rel.replace(/\.md$/, '.html');
+    return rel.replace(/\.md(#.*)?$/, '.html$1');
   }
   function esc(text) { return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 }

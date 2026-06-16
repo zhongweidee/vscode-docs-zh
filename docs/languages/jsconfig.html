@@ -487,7 +487,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>使用 <code>"exclude"</code> 属性</h3>
 
-<p><code>exclude</code> 属性（一种 <a href="../docs/editor/glob-patterns.md">glob 模式</a>）告诉语言服务哪些文件不是源代码的一部分。这有助于保持高性能。如果 IntelliSense 运行缓慢，请将文件夹添加到 <code>exclude</code> 列表中（VS Code 在检测到速度变慢时会提示你这样做）。</p>
+<p><code>exclude</code> 属性（一种 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>）告诉语言服务哪些文件不是源代码的一部分。这有助于保持高性能。如果 IntelliSense 运行缓慢，请将文件夹添加到 <code>exclude</code> 列表中（VS Code 在检测到速度变慢时会提示你这样做）。</p>
 
 <pre><code class="language-json">{
     "compilerOptions": {
@@ -503,7 +503,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>使用 <code>"include"</code> 属性</h3>
 
-<p>或者，你可以使用 <code>include</code> 属性（一种 <a href="../docs/editor/glob-patterns.md">glob 模式</a>）显式设置项目中的文件。如果未指定 <code>include</code> 属性，则默认包含所在目录及其子目录中的所有文件。当指定了 <code>include</code> 属性时，仅包含这些文件。以下是一个带有显式 <code>include</code> 属性的示例。</p>
+<p>或者，你可以使用 <code>include</code> 属性（一种 <a href="../../docs/editor/glob-patterns.html">glob 模式</a>）显式设置项目中的文件。如果未指定 <code>include</code> 属性，则默认包含所在目录及其子目录中的所有文件。当指定了 <code>include</code> 属性时，仅包含这些文件。以下是一个带有显式 <code>include</code> 属性的示例。</p>
 
 <pre><code class="language-json">{
     "compilerOptions": {
@@ -539,7 +539,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 webpack 别名</h2>
 
-<p>要使 IntelliSense 与 webpack 别名配合使用，你需要使用 <a href="../docs/editor/glob-patterns.md">glob 模式</a> 指定 <code>paths</code> 键。</p>
+<p>要使 IntelliSense 与 webpack 别名配合使用，你需要使用 <a href="../../docs/editor/glob-patterns.html">glob 模式</a> 指定 <code>paths</code> 键。</p>
 
 <p>例如，对于别名 'ClientApp'：</p>
 

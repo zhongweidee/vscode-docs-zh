@@ -467,19 +467,19 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>选择你想要的主题，然后按 <code>kbstyle(Enter)</code>。
 </li>
 </ol>
-<p>当前活动的颜色主题存储在你的用户<a href="../docs/configure/settings.md">设置</a>中（键盘快捷键 <code>kb(workbench.action.openSettings)</code>）。</p>
+<p>当前活动的颜色主题存储在你的用户<a href="../../docs/configure/settings.html">设置</a>中（键盘快捷键 <code>kb(workbench.action.openSettings)</code>）。</p>
 
 <pre><code class="language-json">  // 指定工作台中使用的颜色主题。
   "workbench.colorTheme": "Solarized Dark"</code></pre>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>默认情况下，主题存储在你的用户设置中，并全局应用于所有工作区。你也可以配置特定于工作区的主题。为此，请在工作区<a href="../docs/configure/settings.md#workspace-settings">设置</a>中设置一个主题。</blockquote>
+<blockquote>默认情况下，主题存储在你的用户设置中，并全局应用于所有工作区。你也可以配置特定于工作区的主题。为此，请在工作区<a href="../../docs/configure/settings.html#workspace-settings">设置</a>中设置一个主题。</blockquote>
 <p>></p>
 <blockquote><img src="images/themes/workspace-color-theme.png" alt="设置编辑器截图，展示如何设置特定于工作区的颜色主题。"></blockquote>
 
 <h2>来自 Marketplace 的颜色主题</h2>
 
-<p>VS Code 中有多个开箱即用的颜色主题可供你试用。社区还将许多更多的主题上传到了 VS Code <a href="../docs/configure/extensions/extension-marketplace.md">扩展市场</a>。</p>
+<p>VS Code 中有多个开箱即用的颜色主题可供你试用。社区还将许多更多的主题上传到了 VS Code <a href="../../docs/configure/extensions/extension-marketplace.html">扩展市场</a>。</p>
 
 <p>你可以直接从颜色主题选择器中通过选择 <strong>浏览其他颜色主题...</strong> 来从 VS Code Marketplace 选择颜色主题。</p>
 
@@ -510,13 +510,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>工作台颜色</h3>
 
-<p>你可以使用 <code>setting(workbench.colorCustomizations)</code> 和 <code>setting(editor.tokenColorCustomizations)</code> 用户<a href="../docs/configure/settings.md">设置</a>来自定义当前活动的颜色主题。</p>
+<p>你可以使用 <code>setting(workbench.colorCustomizations)</code> 和 <code>setting(editor.tokenColorCustomizations)</code> 用户<a href="../../docs/configure/settings.html">设置</a>来自定义当前活动的颜色主题。</p>
 
 <p>要设置 VS Code UI 元素（如列表和树（文件资源管理器、建议小组件）、差异编辑器、活动栏、通知、滚动条、拆分视图、按钮等）的颜色，请使用 <code>setting(workbench.colorCustomizations)</code>。</p>
 
 <p><img src="images/themes/theme-activitybar.gif" alt="活动栏主题定制"></p>
 
-<p>你可以在设置 <code>setting(workbench.colorCustomizations)</code> 值时使用 IntelliSense，或者查看<a href="../api/references/theme-color.md">主题颜色参考</a>以获取所有可自定义颜色的列表。</p>
+<p>你可以在设置 <code>setting(workbench.colorCustomizations)</code> 值时使用 IntelliSense，或者查看<a href="../../api/references/theme-color.html">主题颜色参考</a>以获取所有可自定义颜色的列表。</p>
 
 <p>要对特定主题进行自定义，请使用以下语法：</p>
 
@@ -545,7 +545,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>编辑器语法高亮</h3>
 
-<p>要调整编辑器的语法高亮颜色，请在用户<a href="../docs/configure/settings.md">设置</a>的 <code>settings.json</code> 文件中使用 <code>setting(editor.tokenColorCustomizations)</code>：</p>
+<p>要调整编辑器的语法高亮颜色，请在用户<a href="../../docs/configure/settings.html">设置</a>的 <code>settings.json</code> 文件中使用 <code>setting(editor.tokenColorCustomizations)</code>：</p>
 
 <p><img src="images/themes/token_color_customization.png" alt="标记颜色自定义"></p>
 
@@ -554,7 +554,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><img src="images/themes/token_color_customization_advanced.png" alt="高级标记颜色自定义"></p>
 
 <blockquote>[!NOTE]</blockquote>
-<blockquote>直接配置 TextMate 规则是一项高级技能，因为你需要了解 TextMate 语法的工作原理。请参阅<a href="../api/extension-guides/color-theme.md">颜色主题指南</a>了解更多信息。</blockquote>
+<blockquote>直接配置 TextMate 规则是一项高级技能，因为你需要了解 TextMate 语法的工作原理。请参阅<a href="../../api/extension-guides/color-theme.html">颜色主题指南</a>了解更多信息。</blockquote>
 
 <p>要自定义特定主题，你可以通过以下方式之一进行操作：</p>
 
@@ -624,15 +624,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果语义标记在给定位置可用于该语言并且已被主题启用，则检查工具会显示一个 <strong>语义标记类型</strong> 部分。该部分显示语义标记信息（类型和任意数量的修饰符）以及应用的样式规则。</p>
 
-<p>有关语义标记和样式规则语法的更多信息，请参阅<a href="../api/language-extensions/semantic-highlight-guide.md">语义高亮指南</a>。</p>
+<p>有关语义标记和样式规则语法的更多信息，请参阅<a href="../../api/language-extensions/semantic-highlight-guide.html">语义高亮指南</a>。</p>
 
 <h2>创建你自己的颜色主题</h2>
 
 <p>创建和发布主题扩展很容易。在你的用户设置中自定义颜色，然后使用 <strong>开发人员: 根据当前设置生成颜色主题</strong> 命令生成主题定义文件。</p>
 
-<p>VS Code 的 Yeoman <a href="../api/get-started/your-first-extension.md">扩展生成器</a>可以帮助你生成扩展的其余部分。</p>
+<p>VS Code 的 Yeoman <a href="../../api/get-started/your-first-extension.html">扩展生成器</a>可以帮助你生成扩展的其余部分。</p>
 
-<p>请参阅我们的扩展 API 部分中的<a href="../api/extension-guides/color-theme.md#create-a-new-color-theme">创建新的颜色主题</a>文章以了解更多信息。</p>
+<p>请参阅我们的扩展 API 部分中的<a href="../../api/extension-guides/color-theme.html#create-a-new-color-theme">创建新的颜色主题</a>文章以了解更多信息。</p>
 
 <h2>移除默认颜色主题</h2>
 
@@ -640,7 +640,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/themes/built-in-themes.png" alt="内置主题"></p>
 
-<p>你可以像禁用任何其他 VS Code <a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>一样，通过齿轮上下文菜单中的 <strong>禁用</strong> 命令来禁用内置主题扩展。</p>
+<p>你可以像禁用任何其他 VS Code <a href="../../docs/configure/extensions/extension-marketplace.html">扩展</a>一样，通过齿轮上下文菜单中的 <strong>禁用</strong> 命令来禁用内置主题扩展。</p>
 
 <p><img src="images/themes/disable-theme.png" alt="禁用主题"></p>
 
@@ -666,14 +666,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>你也可以直接浏览 <a href="https://marketplace.visualstudio.com/vscode/Themes">VS Code Marketplace</a> 网站来查找可用的主题。</p>
 
-<p>当前活动的文件图标主题会持久保存在你的用户<a href="../docs/configure/settings.md">设置</a>中（键盘快捷键 <code>kb(workbench.action.openSettings)</code>）。</p>
+<p>当前活动的文件图标主题会持久保存在你的用户<a href="../../docs/configure/settings.html">设置</a>中（键盘快捷键 <code>kb(workbench.action.openSettings)</code>）。</p>
 
 <pre><code class="language-json">  // 指定工作台中使用的文件图标主题。
   "workbench.iconTheme": "vs-seti"</code></pre>
 
 <h2>创建你自己的文件图标主题</h2>
 
-<p>你可以用图标（最好是 SVG）创建自己的文件图标主题，请参阅我们扩展 API 部分中的<a href="../api/extension-guides/file-icon-theme.md">文件图标主题</a>文章了解详细信息。</p>
+<p>你可以用图标（最好是 SVG）创建自己的文件图标主题，请参阅我们扩展 API 部分中的<a href="../../api/extension-guides/file-icon-theme.html">文件图标主题</a>文章了解详细信息。</p>
 
 <h2>VS Code for the Web</h2>
 
@@ -683,7 +683,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>例如，你可以访问 <a href="https://vscode.dev/editor/theme/sdras.night-owl">https://vscode.dev/editor/theme/sdras.night-owl</a> 来体验 <a href="https://marketplace.visualstudio.com/items?itemName=sdras.night-owl">Night Owl 主题</a>，而无需经过下载和安装过程。</p>
 
-<p>你可以在 <a href="../docs/remote/vscode-web.md#themes">VS Code for the Web 文档</a>中了解更多关于预览和分享主题的信息。</p>
+<p>你可以在 <a href="../../docs/remote/vscode-web.html#themes">VS Code for the Web 文档</a>中了解更多关于预览和分享主题的信息。</p>
 
 <h2>产品图标主题</h2>
 
@@ -710,11 +710,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>主题只是自定义 VS Code 的一种方式。如果你想了解更多关于 VS Code 自定义和扩展性的信息，请尝试阅读以下文章：</p>
 
 <ul>
-<li><a href="../docs/configure/settings">设置</a> - 了解如何通过用户和工作区设置将 VS Code 配置为符合你的偏好。</li>
-<li><a href="../docs/editing/userdefinedsnippets.md">代码片段</a> - 为你喜欢的语言添加额外的代码片段。</li>
-<li><a href="../api">扩展 API</a> - 了解扩展 VS Code 的其他方法。</li>
-<li><a href="../api/extension-guides/color-theme.md">颜色主题</a> - 颜色主题扩展 API。</li>
-<li><a href="../api/extension-guides/file-icon-theme.md">文件图标主题</a> - 文件图标主题扩展 API。</li>
+<li><a href="../../docs/configure/settings">设置</a> - 了解如何通过用户和工作区设置将 VS Code 配置为符合你的偏好。</li>
+<li><a href="../../docs/editing/userdefinedsnippets.html">代码片段</a> - 为你喜欢的语言添加额外的代码片段。</li>
+<li><a href="../../api">扩展 API</a> - 了解扩展 VS Code 的其他方法。</li>
+<li><a href="../../api/extension-guides/color-theme.html">颜色主题</a> - 颜色主题扩展 API。</li>
+<li><a href="../../api/extension-guides/file-icon-theme.html">文件图标主题</a> - 文件图标主题扩展 API。</li>
 </ul>
 
   </div>

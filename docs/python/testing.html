@@ -451,7 +451,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     <div class="breadcrumb"><a href="../../index.html">首页</a> / docs/python / testing</div>
 <h1>Visual Studio Code 中的 Python 测试</h1>
 
-<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>构建在 VS Code 的<a href="../docs/debugtest/testing.md">内置测试功能</a>之上，提供测试发现、测试覆盖率，以及针对 Python 内置的 <a href="https://docs.python.org/3/library/unittest.html">unittest</a> 框架和 <a href="https://docs.pytest.org/">pytest</a> 的测试运行和调试功能。</p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">Python 扩展</a>构建在 VS Code 的<a href="../../docs/debugtest/testing.html">内置测试功能</a>之上，提供测试发现、测试覆盖率，以及针对 Python 内置的 <a href="https://docs.python.org/3/library/unittest.html">unittest</a> 框架和 <a href="https://docs.pytest.org/">pytest</a> 的测试运行和调试功能。</p>
 
 <h2>配置测试</h2>
 
@@ -462,7 +462,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/testing/test-explorer-no-tests.png" alt="测试尚未配置时，测试资源管理器中显示的“配置 Python 测试”按钮。"></p>
 
-<p>你可以随时通过<a href="../docs/editing/userinterface.md#command-palette">命令面板</a>使用 <strong>Python: 配置测试</strong>命令来配置测试，或者按照 VS Code 的<a href="../docs/configure/settings.md">设置</a>文档所述，在设置编辑器或 <code>settings.json</code> 文件中将 <code>python.testing.unittestEnabled</code> 或 <code>python.testing.pytestEnabled</code> 设为启用。每个框架还针对其文件夹和模式有特定的配置设置，请参阅<a href="#test-configuration-settings">测试配置设置</a>中的说明。</p>
+<p>你可以随时通过<a href="../../docs/editing/userinterface.html#command-palette">命令面板</a>使用 <strong>Python: 配置测试</strong>命令来配置测试，或者按照 VS Code 的<a href="../../docs/configure/settings.html">设置</a>文档所述，在设置编辑器或 <code>settings.json</code> 文件中将 <code>python.testing.unittestEnabled</code> 或 <code>python.testing.pytestEnabled</code> 设为启用。每个框架还针对其文件夹和模式有特定的配置设置，请参阅<a href="#test-configuration-settings">测试配置设置</a>中的说明。</p>
 
 <p>如果你启用了 pytest，而当前激活环境中尚未安装它，Python 扩展会尝试在后台安装它。此外，如果两个框架都已启用，Python 扩展只会运行 <code>pytest</code>。</p>
 
@@ -474,7 +474,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>默认情况下，一旦你启用了某个框架，Python 扩展就会尝试发现测试。你可以随时使用命令面板中的 <strong>Test: 刷新测试</strong>命令来触发测试发现。</p>
 
 <blockquote>[!Tip]</blockquote>
-<blockquote><code>python.testing.autoTestDiscoverOnSaveEnabled</code> 默认设置为 <code>true</code>，这意味着每当你添加、删除或更新工作区中的任何 Python 文件时，测试发现都会自动执行。要禁用此功能，请将该值设置为 <code>false</code>，这可以在设置编辑器中或者按照 VS Code 的<a href="../docs/getstarted/personalize-vscode.md#configure-settings">设置</a>文档所述在 <code>settings.json</code> 文件中进行设置。你需要重新加载窗口才能使此设置生效。要更精细地控制自动测试发现中包含哪些文件，可以调整 <code>python.testing.autoTestDiscoverOnSavePattern</code> 设置，该设置默认为 <code><em>*/</em>.py</code>。</blockquote>
+<blockquote><code>python.testing.autoTestDiscoverOnSaveEnabled</code> 默认设置为 <code>true</code>，这意味着每当你添加、删除或更新工作区中的任何 Python 文件时，测试发现都会自动执行。要禁用此功能，请将该值设置为 <code>false</code>，这可以在设置编辑器中或者按照 VS Code 的<a href="../../docs/getstarted/personalize-vscode.html#configure-settings">设置</a>文档所述在 <code>settings.json</code> 文件中进行设置。你需要重新加载窗口才能使此设置生效。要更精细地控制自动测试发现中包含哪些文件，可以调整 <code>python.testing.autoTestDiscoverOnSavePattern</code> 设置，该设置默认为 <code><em>*/</em>.py</code>。</blockquote>
 
 <p>测试发现会应用当前框架的发现模式（可通过<a href="#test-configuration-settings">测试配置设置</a>进行自定义）。默认行为如下：</p>
 
@@ -560,7 +560,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>要在使用 pytest 时更精细地控制覆盖率运行，你可以编辑 <code>python.testing.pytestArgs</code> 设置来包含你的规格说明。当 pytest 参数 <code>--cov</code> 存在于 <code>python.testing.pytestArgs</code> 中时，Python 扩展不会对覆盖率参数进行任何额外的修改，以便你的自定义设置生效。如果未找到 <code>--cov</code> 参数，扩展将在运行前向 pytest 参数中添加 <code>--cov=.</code>，以在工作区根目录启用覆盖率。</p>
 
-<p>有关测试覆盖率的更多信息，请访问 VS Code 的<a href="../docs/debugtest/testing.md#test-coverage">测试覆盖率文档</a>。</p>
+<p>有关测试覆盖率的更多信息，请访问 VS Code 的<a href="../../docs/debugtest/testing.html#test-coverage">测试覆盖率文档</a>。</p>
 
 <h2>调试测试</h2>
 
@@ -597,7 +597,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你有多个配置条目包含 <code>"purpose": ["debug-test"]</code>，将使用第一个定义，因为我们目前不支持此请求类型的多个定义。</p>
 
-<p>有关调试的更多信息或了解它在 VS Code 中的工作原理，请阅读 <a href="../docs/python/debugging.md">Python 调试配置</a>和一般的 VS Code <a href="../docs/debugtest/debugging.md">调试</a>文章。</p>
+<p>有关调试的更多信息或了解它在 VS Code 中的工作原理，请阅读 <a href="../../docs/python/debugging.html">Python 调试配置</a>和一般的 VS Code <a href="../../docs/debugtest/debugging.html">调试</a>文章。</p>
 
 <h2>并行运行测试</h2>
 
@@ -610,7 +610,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>Python 扩展还支持发现和运行 Django 单元测试！只需几个额外的设置步骤，你就可以发现 Django 测试：</p>
 
 <ol>
-<li>在你的 <code>settings.json</code> <a href="../docs/configure/settings.md">文件</a>中设置 <code>"python.testing.unittestEnabled": true,</code>。</li>
+<li>在你的 <code>settings.json</code> <a href="../../docs/configure/settings.html">文件</a>中设置 <code>"python.testing.unittestEnabled": true,</code>。</li>
 <li>将 <code>MANAGE_PY_PATH</code> 添加为环境变量：<ol>
 <li>在项目根目录创建一个 <code>.env</code> 文件。<ol>
 <li>将 <code>MANAGE_PY_PATH='<path-to-manage.py>'</code> 添加到 <code>.env</code> 文件中，将 <code><path-to-manage.py></code> 替换为你的应用程序 <code>manage.py</code> 文件的路径。<blockquote><strong>提示</strong>：你可以在资源管理器视图中右键单击该文件并选择<strong>复制路径</strong>来复制路径。</blockquote>
@@ -619,9 +619,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 </ol>
 </li>
-<li>根据需要，在 <code>settings.json</code> <a href="../docs/configure/settings.md">文件</a>中将 Django 测试参数添加到 <code>"python.testing.unittestArgs": []</code>，并删除所有与 Django 不兼容的参数。
+<li>根据需要，在 <code>settings.json</code> <a href="../../docs/configure/settings.html">文件</a>中将 Django 测试参数添加到 <code>"python.testing.unittestArgs": []</code>，并删除所有与 Django 不兼容的参数。
 <blockquote>[!Note]</blockquote>
-<blockquote>默认情况下，Python 扩展会在项目根目录查找并加载 <code>.env</code> 文件。如果你的 <code>.env</code> 文件不在项目根目录，或者你正在使用 <a href="../docs/reference/variables-reference.md">VS Code 变量替换</a>，请将 <code>"python.envFile": "${workspaceFolder}/<path-to-.env>"</code> 添加到你的 <code>settings.json</code> <a href="../docs/configure/settings.md">文件</a>中。这使 Python 扩展在运行和发现测试时能够从该文件加载环境变量。获取更多关于 <a href="../docs/python/environments.md#environment-variables">Python 环境变量</a>的信息。</blockquote>
+<blockquote>默认情况下，Python 扩展会在项目根目录查找并加载 <code>.env</code> 文件。如果你的 <code>.env</code> 文件不在项目根目录，或者你正在使用 <a href="../../docs/reference/variables-reference.html">VS Code 变量替换</a>，请将 <code>"python.envFile": "${workspaceFolder}/<path-to-.env>"</code> 添加到你的 <code>settings.json</code> <a href="../../docs/configure/settings.html">文件</a>中。这使 Python 扩展在运行和发现测试时能够从该文件加载环境变量。获取更多关于 <a href="../../docs/python/environments.html#environment-variables">Python 环境变量</a>的信息。</blockquote>
 
 </li>
 </ol>
@@ -676,7 +676,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>通用界面设置</h3>
 
-<p>影响测试功能界面的设置由 VS Code 自身提供，可以在 <a href="../docs/configure/settings.md">VS Code 设置编辑器</a>中搜索 "Testing" 找到。</p>
+<p>影响测试功能界面的设置由 VS Code 自身提供，可以在 <a href="../../docs/configure/settings.html">VS Code 设置编辑器</a>中搜索 "Testing" 找到。</p>
 
 <h3>通用 Python 设置</h3>
 
@@ -747,8 +747,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>另请参阅</h2>
 
 <ul>
-<li><a href="../docs/python/environments.md">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
-<li><a href="../docs/python/settings-reference.md">设置参考</a> - 浏览 VS Code 中与 Python 相关的完整设置范围。</li>
+<li><a href="../../docs/python/environments.html">Python 环境</a> - 控制用于编辑和调试的 Python 解释器。</li>
+<li><a href="../../docs/python/settings-reference.html">设置参考</a> - 浏览 VS Code 中与 Python 相关的完整设置范围。</li>
 </ul>
 
   </div>

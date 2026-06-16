@@ -556,7 +556,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>    你应该看到输出显示你所安装的 GCC、g++ 和 GDB 的版本。如果情况并非如此，请确保你的 PATH 条目与编译器工具所在的 Mingw-w64 二进制文件位置匹配，或参考<a href="../docs/cpp/config-mingw.md#check-your-mingw-installation">故障排除部分</a>。</p>
+<p>    你应该看到输出显示你所安装的 GCC、g++ 和 GDB 的版本。如果情况并非如此，请确保你的 PATH 条目与编译器工具所在的 Mingw-w64 二进制文件位置匹配，或参考<a href="../../docs/cpp/config-mingw.html#check-your-mingw-installation">故障排除部分</a>。</p>
 
 <h2>创建一个 Hello World 应用</h2>
 
@@ -575,7 +575,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ol>
-<p>    "code ." 命令会在当前工作文件夹中打开 VS Code，该文件夹将成为你的"工作区"。通过选择 <strong>是的，我信任此作者</strong> 来接受<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任</a>对话框，因为这是你创建的文件夹。</p>
+<p>    "code ." 命令会在当前工作文件夹中打开 VS Code，该文件夹将成为你的"工作区"。通过选择 <strong>是的，我信任此作者</strong> 来接受<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任</a>对话框，因为这是你创建的文件夹。</p>
 
 <ol>
 <li>现在，使用文件资源管理器中的 <strong>新建文件</strong> 按钮或 <strong>文件</strong> > <strong>新建文件</strong> 命令创建一个名为 <code>helloworld.cpp</code> 的新文件。
@@ -594,7 +594,7 @@ int main()
     std::cout &lt;&lt; "Hello World" &lt;&lt; std::endl;
 }</code></pre>
 
-<p>现在按 <code>kb(workbench.action.files.save)</code> 保存文件。你还可以通过选中主 <strong>文件</strong> 菜单中的 <strong>自动保存</strong> 来启用 <a href="../docs/editing/codebasics.md#save--auto-save">AutoSave</a>，自动保存文件更改。</p>
+<p>现在按 <code>kb(workbench.action.files.save)</code> 保存文件。你还可以通过选中主 <strong>文件</strong> 菜单中的 <strong>自动保存</strong> 来启用 <a href="../../docs/editing/codebasics.html#save--auto-save">AutoSave</a>，自动保存文件更改。</p>
 
 <h2>运行 helloworld.cpp</h2>
 
@@ -626,30 +626,30 @@ int main()
 <p>通过适用于你的环境的教程开始使用 C++ 和 VS Code：</p>
 
 <ul>
-<li><a href="../docs/cpp/config-mingw.md">Windows 上的 GCC（通过 MinGW）</a></li>
-<li><a href="../docs/cpp/config-msvc.md">Windows 上的 Microsoft C++</a></li>
-<li><a href="../docs/cpp/config-linux.md">Linux 上的 GCC</a></li>
-<li><a href="../docs/cpp/config-wsl.md">适用于 Linux 的 Windows 子系统上的 GCC</a></li>
-<li><a href="../docs/cpp/config-clang-mac.md">macOS 上的 Clang/LLVM</a></li>
-<li><a href="../docs/cpp/cmake-linux.md">Linux 上的 CMake 工具</a>
+<li><a href="../../docs/cpp/config-mingw.html">Windows 上的 GCC（通过 MinGW）</a></li>
+<li><a href="../../docs/cpp/config-msvc.html">Windows 上的 Microsoft C++</a></li>
+<li><a href="../../docs/cpp/config-linux.html">Linux 上的 GCC</a></li>
+<li><a href="../../docs/cpp/config-wsl.html">适用于 Linux 的 Windows 子系统上的 GCC</a></li>
+<li><a href="../../docs/cpp/config-clang-mac.html">macOS 上的 Clang/LLVM</a></li>
+<li><a href="../../docs/cpp/cmake-linux.html">Linux 上的 CMake 工具</a>
 <h2>文档</h2>
 
 </li>
 </ul>
-<p>你可以在 VS Code 网站的 <a href="../docs/cpp">C++ 部分</a>下找到更多关于使用 Microsoft C/C++ 扩展的文档，其中包括以下文章：</p>
+<p>你可以在 VS Code 网站的 <a href="../../docs/cpp">C++ 部分</a>下找到更多关于使用 Microsoft C/C++ 扩展的文档，其中包括以下文章：</p>
 
 <ul>
-<li><a href="../docs/cpp/cpp-debug.md">调试</a></li>
-<li><a href="../docs/cpp/cpp-ide.md">编辑</a></li>
-<li><a href="../docs/cpp/customize-default-settings-cpp.md">设置</a></li>
-<li><a href="../docs/cpp/faq-cpp.md">常见问题</a>
+<li><a href="../../docs/cpp/cpp-debug.html">调试</a></li>
+<li><a href="../../docs/cpp/cpp-ide.html">编辑</a></li>
+<li><a href="../../docs/cpp/customize-default-settings-cpp.html">设置</a></li>
+<li><a href="../../docs/cpp/faq-cpp.html">常见问题</a>
 </li>
 </ul>
 <p><img src="images/cpp/cpp-toc.png" alt="C++ TOC on code.visualstudio.com"></p>
 
 <h2>远程开发</h2>
 
-<p>VS Code 和 C++ 扩展支持<a href="../docs/remote/remote-overview.md">远程开发</a>，允许你通过 SSH 在远程计算机或虚拟机上工作、在 Docker 容器内工作，或在 <a href="https://learn.microsoft.com/windows/wsl">Windows Subsystem for Linux</a> (WSL) 中工作。</p>
+<p>VS Code 和 C++ 扩展支持<a href="../../docs/remote/remote-overview.html">远程开发</a>，允许你通过 SSH 在远程计算机或虚拟机上工作、在 Docker 容器内工作，或在 <a href="https://learn.microsoft.com/windows/wsl">Windows Subsystem for Linux</a> (WSL) 中工作。</p>
 
 <p>要安装远程开发支持：</p>
 
@@ -668,7 +668,7 @@ int main()
 
 <p>GitHub Copilot 为众多语言和各种框架提供建议，特别适用于 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++。</p>
 
-<p>你可以在 <a href="../docs/editor/github-copilot.md">Copilot 文档</a>中了解更多关于如何开始使用 Copilot 的信息。</p>
+<p>你可以在 <a href="../../docs/editor/github-copilot.html">Copilot 文档</a>中了解更多关于如何开始使用 Copilot 的信息。</p>
 
 <h2>反馈</h2>
 

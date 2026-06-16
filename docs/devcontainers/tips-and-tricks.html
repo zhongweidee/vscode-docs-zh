@@ -461,16 +461,16 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>本地安装的 Docker。</li>
 <li>远程环境中安装的 Docker。</li>
 <li>其他兼容 Docker 的 CLI，可以在本地或远程安装。<ul>
-<li>虽然其他 CLI 可能可以正常工作，但它们并未得到官方支持。请注意，<a href="../docs/devcontainers/attach-container.md#attach-to-a-container-in-a-kubernetes-cluster">附加到 Kubernetes 集群</a>仅需要正确配置的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl CLI</a>。
+<li>虽然其他 CLI 可能可以正常工作，但它们并未得到官方支持。请注意，<a href="../../docs/devcontainers/attach-container.html#attach-to-a-container-in-a-kubernetes-cluster">附加到 Kubernetes 集群</a>仅需要正确配置的 <a href="https://kubernetes.io/docs/reference/kubectl/overview/">kubectl CLI</a>。
 </li>
 </ul>
 </li>
 </ul>
-<p>你可以在<a href="../remote/advancedcontainers/docker-options.md">替代 Docker 选项文档</a>中了解更多信息。</p>
+<p>你可以在<a href="../../remote/advancedcontainers/docker-options.html">替代 Docker 选项文档</a>中了解更多信息。</p>
 
 <h2>自定义 AI 聊天响应</h2>
 
-<p><a href="../docs/agent-customization/overview.md">自定义指令</a>使你能够描述通用的指南或规则，以获得符合你特定编码实践和技术栈的响应。</p>
+<p><a href="../../docs/agent-customization/overview.html">自定义指令</a>使你能够描述通用的指南或规则，以获得符合你特定编码实践和技术栈的响应。</p>
 
 <p>你可以将自定义指令与开发容器结合使用，为 Copilot 提供有关你连接的开发容器类型的更多信息（例如安装了哪些语言或工具链）。你可以通过以下几种方式实现这一点：</p>
 <ul>
@@ -489,7 +489,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><a href="https://www.docker.com/products/docker-desktop">Docker Desktop</a> for Windows 在大多数设置中都能正常使用，但有一些"陷阱"可能会导致问题。以下是一些避免这些问题的小提示：</p>
 
 <ol>
-<li><strong>考虑在 Windows 10 (2004+) 上使用新的 Docker WSL 2 后端。</strong> 如果你使用 <a href="https://aka.ms/vscode-remote/containers/docker-wsl2">Docker Desktop 的 WSL 2 后端</a>，你可以用它来打开 WSL 内部以及本地的文件夹。容器也可以在 Windows 和 WSL 之间共享，并且这个新引擎不太容易出现文件共享问题。有关详细信息，请参阅<a href="../docs/devcontainers/containers.md#open-a-wsl-2-folder-in-a-container-on-windows">快速入门</a>。
+<li><strong>考虑在 Windows 10 (2004+) 上使用新的 Docker WSL 2 后端。</strong> 如果你使用 <a href="https://aka.ms/vscode-remote/containers/docker-wsl2">Docker Desktop 的 WSL 2 后端</a>，你可以用它来打开 WSL 内部以及本地的文件夹。容器也可以在 Windows 和 WSL 之间共享，并且这个新引擎不太容易出现文件共享问题。有关详细信息，请参阅<a href="../../docs/devcontainers/containers.html#open-a-wsl-2-folder-in-a-container-on-windows">快速入门</a>。
 </li>
 <li><strong>退出"Windows 上的 Linux 容器 (LCOW)"模式。</strong> 虽然默认情况下是禁用的，但最新版本的 Docker 支持<a href="https://learn.microsoft.com/virtualization/windowscontainers/deploy-containers/linux-containers">Windows 上的 Linux 容器 (LCOW)</a>，可以让你同时使用 Windows 和 Linux 容器。然而，这是一个新功能，因此你可能会遇到问题，而且 Dev Containers 扩展目前仅支持 Linux 容器。你可以随时退出 LCOW 模式，方法是右键单击 Docker 任务栏项，然后从上下文菜单中选择 <strong>切换到 Linux 容器...</strong>。
 </li>
@@ -555,7 +555,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 Docker Compose 时避免在容器中设置 Git</h2>
 
-<p>有关解决此问题的信息，请参阅主容器文章中的<a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>。</p>
+<p>有关解决此问题的信息，请参阅主容器文章中的<a href="../../remote/advancedcontainers/sharing-git-credentials.html">与容器共享 Git 凭据</a>。</p>
 
 <h2>解决在容器中进行 Git 推送或同步时挂起的问题</h2>
 
@@ -565,13 +565,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>解决缺少 Linux 依赖项的错误</h2>
 
-<p>某些扩展依赖于某些 Docker 镜像中找不到的库。有关解决此问题的几个选项，请参阅<a href="../docs/devcontainers/create-dev-container.md#install-additional-software">容器</a>文章。</p>
+<p>某些扩展依赖于某些 Docker 镜像中找不到的库。有关解决此问题的几个选项，请参阅<a href="../../docs/devcontainers/create-dev-container.html#install-additional-software">容器</a>文章。</p>
 
 <h2>加速 Docker Desktop 中的容器</h2>
 
 <p>默认情况下，Docker Desktop 只给容器分配计算机容量的一小部分。在大多数情况下，这已经足够了，但如果你正在执行需要更多容量的操作，则可以增加内存、CPU 或磁盘使用量。</p>
 
-<p>首先，尝试<a href="../docs/devcontainers/containers.md#managing-containers">停止你不再使用的任何正在运行的容器</a>。</p>
+<p>首先，尝试<a href="../../docs/devcontainers/containers.html#managing-containers">停止你不再使用的任何正在运行的容器</a>。</p>
 
 <p>如果这不能解决你的问题，你可能想要检查 CPU 使用率是否真的是问题所在，或者是否有其他情况发生。检查此问题的一种简单方法是安装 <a href="https://marketplace.visualstudio.com/items?itemName=mutantdino.resourcemonitor&ssr=false#overview">Resource Monitor 扩展</a>。当安装在容器中时，它会在状态栏中提供有关容器容量的信息。</p>
 
@@ -591,7 +591,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>在 macOS 上，转到 <strong>磁盘</strong> 以增加 Docker 在你的计算机上允许使用的磁盘量。在 Windows 上，此选项与其他设置一起位于"高级"下。
 </li>
 </ol>
-<p>最后，如果你的容器正在<strong>进行磁盘密集型</strong>操作，或者你只是在寻找更快的响应时间，请参阅<a href="../remote/advancedcontainers/improve-performance.md">提高容器磁盘性能</a>以获取提示。VS Code 的默认设置旨在优化便利性和通用支持，但可以进行优化。</p>
+<p>最后，如果你的容器正在<strong>进行磁盘密集型</strong>操作，或者你只是在寻找更快的响应时间，请参阅<a href="../../remote/advancedcontainers/improve-performance.html">提高容器磁盘性能</a>以获取提示。VS Code 的默认设置旨在优化便利性和通用支持，但可以进行优化。</p>
 
 <h2>清理未使用的容器和镜像</h2>
 
@@ -679,7 +679,7 @@ E: Some index files failed to download. They have been ignored, or old ones used
 
 <h2>使用 SSH 隧道连接到远程 Docker 主机</h2>
 
-<p><a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker Machine 或 SSH 主机的容器内开发</a>文章介绍了如何在远程 Docker 主机上工作时设置 VS Code。这通常只需在 <code>settings.json</code> 中设置 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a>的 <code>containers.environment</code> 属性，或将 <code>DOCKER_HOST</code> 环境变量设置为 <code>ssh://</code> 或 <code>tcp://</code> URI 即可。</p>
+<p><a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker Machine 或 SSH 主机的容器内开发</a>文章介绍了如何在远程 Docker 主机上工作时设置 VS Code。这通常只需在 <code>settings.json</code> 中设置 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a>的 <code>containers.environment</code> 属性，或将 <code>DOCKER_HOST</code> 环境变量设置为 <code>ssh://</code> 或 <code>tcp://</code> URI 即可。</p>
 
 <p>然而，由于 SSH 配置复杂性或其他限制，你可能会遇到在某些环境中此方法不可行的情况。在这种情况下，可以使用 SSH 隧道作为后备方案。</p>
 
@@ -690,7 +690,7 @@ E: Some index files failed to download. They have been ignored, or old ones used
 <p>请按照以下步骤操作：</p>
 
 <ol>
-<li>安装一个<a href="../docs/remote/troubleshooting.md#installing-a-supported-ssh-client">兼容 OpenSSH 的 SSH 客户端</a>。
+<li>安装一个<a href="../../docs/remote/troubleshooting.html#installing-a-supported-ssh-client">兼容 OpenSSH 的 SSH 客户端</a>。
 </li>
 <li>在你的用户或工作区 <code>settings.json</code> 中更新 <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-containers">Container Tools 扩展</a>的 <code>containers.environment</code> 属性，如下所示：
 <pre><code class="language-json">    "containers.environment": {
@@ -703,7 +703,7 @@ E: Some index files failed to download. They have been ignored, or old ones used
 
 </li>
 </ol>
-<p>VS Code 现在将能够<a href="../docs/devcontainers/attach-container.md">附加到远程主机上的任何正在运行的容器</a>。你还可以<a href="../remote/advancedcontainers/develop-remote-host.md#converting-an-existing-or-predefined-devcontainerjson">使用专用的本地 <code>devcontainer.json</code> 文件来创建/连接到远程开发容器</a>。</p>
+<p>VS Code 现在将能够<a href="../../docs/devcontainers/attach-container.html">附加到远程主机上的任何正在运行的容器</a>。你还可以<a href="../../remote/advancedcontainers/develop-remote-host.html#converting-an-existing-or-predefined-devcontainerjson">使用专用的本地 <code>devcontainer.json</code> 文件来创建/连接到远程开发容器</a>。</p>
 
 <p>完成后，在终端/PowerShell 中按 <code>kbstyle(Ctrl+C)</code> 关闭隧道。</p>
 
@@ -727,25 +727,25 @@ E: Some index files failed to download. They have been ignored, or old ones used
 
 <h2>高级容器配置提示</h2>
 
-<p>有关以下主题的信息，请参阅<a href="../remote/advancedcontainers/overview.md">高级容器配置</a>文章：</p>
+<p>有关以下主题的信息，请参阅<a href="../../remote/advancedcontainers/overview.html">高级容器配置</a>文章：</p>
 
 <ul>
-<li><a href="../remote/advancedcontainers/environment-variables.md">添加环境变量</a></li>
-<li><a href="../remote/advancedcontainers/add-local-file-mount.md">添加另一个本地文件挂载</a></li>
-<li><a href="../remote/advancedcontainers/change-default-source-mount.md">更改或删除默认源代码挂载</a></li>
-<li><a href="../remote/advancedcontainers/improve-performance.md">提高容器磁盘性能</a></li>
-<li><a href="../remote/advancedcontainers/add-nonroot-user.md">向开发容器添加非 root 用户</a></li>
-<li><a href="../remote/advancedcontainers/set-docker-compose-project-name.md">为 Docker Compose 设置项目名称</a></li>
-<li><a href="../remote/advancedcontainers/use-docker-kubernetes.md">从容器内部使用 Docker 或 Kubernetes</a></li>
-<li><a href="../remote/advancedcontainers/connect-multiple-containers.md">同时连接到多个容器</a></li>
-<li><a href="../remote/advancedcontainers/develop-remote-host.md">在远程 Docker Machine 或 SSH 主机的容器内开发</a></li>
-<li><a href="../remote/advancedcontainers/reduce-docker-warnings.md">减少 Dockerfile 构建警告</a></li>
-<li><a href="../remote/advancedcontainers/sharing-git-credentials.md">与容器共享 Git 凭据</a>
+<li><a href="../../remote/advancedcontainers/environment-variables.html">添加环境变量</a></li>
+<li><a href="../../remote/advancedcontainers/add-local-file-mount.html">添加另一个本地文件挂载</a></li>
+<li><a href="../../remote/advancedcontainers/change-default-source-mount.html">更改或删除默认源代码挂载</a></li>
+<li><a href="../../remote/advancedcontainers/improve-performance.html">提高容器磁盘性能</a></li>
+<li><a href="../../remote/advancedcontainers/add-nonroot-user.html">向开发容器添加非 root 用户</a></li>
+<li><a href="../../remote/advancedcontainers/set-docker-compose-project-name.html">为 Docker Compose 设置项目名称</a></li>
+<li><a href="../../remote/advancedcontainers/use-docker-kubernetes.html">从容器内部使用 Docker 或 Kubernetes</a></li>
+<li><a href="../../remote/advancedcontainers/connect-multiple-containers.html">同时连接到多个容器</a></li>
+<li><a href="../../remote/advancedcontainers/develop-remote-host.html">在远程 Docker Machine 或 SSH 主机的容器内开发</a></li>
+<li><a href="../../remote/advancedcontainers/reduce-docker-warnings.html">减少 Dockerfile 构建警告</a></li>
+<li><a href="../../remote/advancedcontainers/sharing-git-credentials.html">与容器共享 Git 凭据</a>
 <h2>扩展提示</h2>
 
 </li>
 </ul>
-<p>虽然许多扩展无需修改即可正常运行，但有一些问题可能会导致某些功能无法按预期工作。在某些情况下，你可以使用其他命令来解决问题，而在其他情况下，可能需要修改扩展。<a href="../docs/remote/troubleshooting.md#extension-tips">远程扩展提示</a>部分提供了常见问题和解决这些问题的技巧的快速参考。你还可以参考关于<a href="../api/advanced-topics/remote-extensions">支持远程开发</a>的主要扩展文章，获取有关修改扩展以支持远程扩展主机的深入指南。</p>
+<p>虽然许多扩展无需修改即可正常运行，但有一些问题可能会导致某些功能无法按预期工作。在某些情况下，你可以使用其他命令来解决问题，而在其他情况下，可能需要修改扩展。<a href="../../docs/remote/troubleshooting.html#extension-tips">远程扩展提示</a>部分提供了常见问题和解决这些问题的技巧的快速参考。你还可以参考关于<a href="../../api/advanced-topics/remote-extensions">支持远程开发</a>的主要扩展文章，获取有关修改扩展以支持远程扩展主机的深入指南。</p>
 
 <h2>问题和反馈</h2>
 

@@ -453,14 +453,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>本教程将引导你使用 Visual Studio Code <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh">Remote - SSH</a> 扩展，在 Azure 上创建并连接到虚拟机 (VM)。你将创建一个 Node.js Express Web 应用，以展示如何在远程计算机上使用 VS Code 进行编辑和调试，就像源代码在本地一样。</p>
 
-<blockquote><strong>注意</strong>：你的 Linux VM 可以托管在任何地方——本地主机、本地部署、Azure 或任何其他云平台，只要所选的 Linux 发行版满足这些<a href="../docs/remote/linux.md#local-linux-prerequisites">先决条件</a>。</blockquote>
+<blockquote><strong>注意</strong>：你的 Linux VM 可以托管在任何地方——本地主机、本地部署、Azure 或任何其他云平台，只要所选的 Linux 发行版满足这些<a href="../../docs/remote/linux.html#local-linux-prerequisites">先决条件</a>。</blockquote>
 
 <h2>先决条件</h2>
 
 <p>在开始之前，你需要完成以下步骤：</p>
 
 <ol>
-<li>安装一个<a href="../docs/remote/troubleshooting.md#installing-a-supported-ssh-client">兼容 OpenSSH 的 SSH 客户端</a>（不支持 PuTTY）。</li>
+<li>安装一个<a href="../../docs/remote/troubleshooting.html#installing-a-supported-ssh-client">兼容 OpenSSH 的 SSH 客户端</a>（不支持 PuTTY）。</li>
 <li>安装 <a href="https://code.visualstudio.com">Visual Studio Code</a>。</li>
 <li>拥有一个 Azure 订阅（如果你没有 Azure 订阅，请在开始前创建一个<a href="https://azure.microsoft.com/free/?WT.mc_id=A261C142F">免费账户</a>）。
 <h3>安装扩展</h3>
@@ -487,17 +487,17 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>如果你没有现有的 Linux 虚拟机，可以通过 <a href="https://portal.azure.com">Azure 门户</a>创建新的 VM。在 Azure 门户中，搜索"虚拟机"，然后选择<strong>添加</strong>。在此处，你可以选择 Azure 订阅并创建新的资源组（如果你还没有的话）。</p>
 
-<blockquote><strong>注意</strong>：在本教程中，我们使用的是 Azure，但你的 Linux VM 可以托管在任何地方，只要 Linux 发行版满足这些<a href="../docs/remote/linux.md#local-linux-prerequisites">先决条件</a>。</blockquote>
+<blockquote><strong>注意</strong>：在本教程中，我们使用的是 Azure，但你的 Linux VM 可以托管在任何地方，只要 Linux 发行版满足这些<a href="../../docs/remote/linux.html#local-linux-prerequisites">先决条件</a>。</blockquote>
 
 <p><img src="images/ssh-tutorial/create-vm.png" alt="Create a virtual machine"></p>
 
-<p>现在你可以指定 VM 的详细信息，例如名称、大小和基础映像。本示例选择 Ubuntu Server 18.04 LTS，但你也可以选择其他 Linux 发行版的较新版本，并查看 VS Code 的<a href="../docs/remote/troubleshooting.md#installing-a-supported-ssh-server">受支持的 SSH 服务器</a>。</p>
+<p>现在你可以指定 VM 的详细信息，例如名称、大小和基础映像。本示例选择 Ubuntu Server 18.04 LTS，但你也可以选择其他 Linux 发行版的较新版本，并查看 VS Code 的<a href="../../docs/remote/troubleshooting.html#installing-a-supported-ssh-server">受支持的 SSH 服务器</a>。</p>
 
 <p><img src="images/ssh-tutorial/vm-instance-details.png" alt="Virtual machine instance details"></p>
 
 <h2>设置 SSH</h2>
 
-<p>连接到 VM 有多种身份验证方法，包括 SSH 公钥/私钥对或用户名和密码。我们建议使用基于密钥的身份验证（如果使用用户名/密码，扩展会多次提示你输入凭据）。如果你使用的是 Windows 并且已经使用 PuttyGen 创建了密钥，你可以<a href="../docs/remote/troubleshooting.md#reusing-a-key-generated-in-puttygen">重用它们</a>。</p>
+<p>连接到 VM 有多种身份验证方法，包括 SSH 公钥/私钥对或用户名和密码。我们建议使用基于密钥的身份验证（如果使用用户名/密码，扩展会多次提示你输入凭据）。如果你使用的是 Windows 并且已经使用 PuttyGen 创建了密钥，你可以<a href="../../docs/remote/troubleshooting.html#reusing-a-key-generated-in-puttygen">重用它们</a>。</p>
 
 <h3>创建 SSH 密钥</h3>
 
@@ -621,7 +621,7 @@ npm install</code></pre>
 
 <h3>端口转发</h3>
 
-<p>要能够在本地计算机上浏览 Web 应用，你可以使用另一个功能，称为<a href="../docs/remote/ssh.md#temporarily-forwarding-a-port">端口转发</a>。</p>
+<p>要能够在本地计算机上浏览 Web 应用，你可以使用另一个功能，称为<a href="../../docs/remote/ssh.html#temporarily-forwarding-a-port">端口转发</a>。</p>
 
 <p>要访问远程计算机上可能未公开暴露的端口，你需要在本地计算机上的端口和服务器之间建立连接或隧道。在应用仍在运行的情况下，打开 SSH 资源管理器并找到<strong>已转发的端口</strong>视图。点击<strong>转发端口</strong>链接并指定你要转发端口 3000：</p>
 

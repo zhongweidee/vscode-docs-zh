@@ -455,7 +455,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/multi-root-workspaces/hero.png" alt="multi-root hero"></p>
 
-<p>><strong>注意</strong>：如果你想进一步了解 VS Code 的"工作区"概念，可以参阅<a href="../docs/editing/workspaces/workspaces.md">什么是 VS Code"工作区"？</a>除非你显式地创建了多根工作区，否则"工作区"就是指你的项目所在的单个根文件夹。</p>
+<p>><strong>注意</strong>：如果你想进一步了解 VS Code 的"工作区"概念，可以参阅<a href="../../../docs/editing/workspaces/workspaces.html">什么是 VS Code"工作区"？</a>除非你显式地创建了多根工作区，否则"工作区"就是指你的项目所在的单个根文件夹。</p>
 
 <h2>添加文件夹</h2>
 
@@ -570,7 +570,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/multi-root-workspaces/tabbed-headers.png" alt="tabbed headers"></p>
 
-<p>如果你希望始终在选项卡标题中显示文件夹，可以使用 <code>setting(workbench.editor.labelFormat)</code> <a href="../docs/configure/settings.md">设置</a>的 "medium" 或 "long" 值来显示文件夹或完整路径。</p>
+<p>如果你希望始终在选项卡标题中显示文件夹，可以使用 <code>setting(workbench.editor.labelFormat)</code> <a href="../../../docs/configure/settings.html">设置</a>的 "medium" 或 "long" 值来显示文件夹或完整路径。</p>
 
 <pre><code class="language-json">"workbench.editor.labelFormat": "medium"</code></pre>
 
@@ -578,7 +578,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/multi-root-workspaces/quick-open-list.png" alt="quick pick has folder name"></p>
 
-<p>如果你正在使用<a href="../docs/configure/themes.md#file-icon-themes">文件图标主题</a>并且活动主题支持，你将看到一个特殊的工作区图标。</p>
+<p>如果你正在使用<a href="../../../docs/configure/themes.html#file-icon-themes">文件图标主题</a>并且活动主题支持，你将看到一个特殊的工作区图标。</p>
 
 <p>下面你可以看到内置的 <strong>Minimal (Visual Studio Code)</strong> 文件图标主题中的工作区图标：</p>
 
@@ -650,7 +650,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/multi-root-workspaces/add-launch-config.png" alt="debugging template dropdown"></p>
 
-<p>配置中使用的<a href="../docs/reference/variables-reference.md">变量</a>（例如 <code>${workspaceFolder}</code> 或已弃用的 <code>${workspaceRoot}</code>）将相对于它们所属的文件夹进行解析。可以通过在变量后附加根文件夹名称（用冒号分隔）来将变量作用域限定到每个工作区文件夹。</p>
+<p>配置中使用的<a href="../../../docs/reference/variables-reference.html">变量</a>（例如 <code>${workspaceFolder}</code> 或已弃用的 <code>${workspaceRoot}</code>）将相对于它们所属的文件夹进行解析。可以通过在变量后附加根文件夹名称（用冒号分隔）来将变量作用域限定到每个工作区文件夹。</p>
 
 <h3>工作区启动配置</h3>
 
@@ -689,7 +689,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
       ]
   }]</code></pre>
 
-<p>除了 <code>compounds</code>，工作区配置文件的 <code>setting(launch)</code> 部分还可以包含常规的启动配置。请确保所有使用的变量都显式地限定到特定文件夹，否则它们对工作区无效。你可以在<a href="../docs/reference/variables-reference.md#variables-scoped-per-workspace-folder">变量参考</a>中找到有关显式作用域变量的更多详细信息。</p>
+<p>除了 <code>compounds</code>，工作区配置文件的 <code>setting(launch)</code> 部分还可以包含常规的启动配置。请确保所有使用的变量都显式地限定到特定文件夹，否则它们对工作区无效。你可以在<a href="../../../docs/reference/variables-reference.html#variables-scoped-per-workspace-folder">变量参考</a>中找到有关显式作用域变量的更多详细信息。</p>
 
 <p>以下是一个启动配置示例，其中程序位于"Program"文件夹中，在单步调试时应跳过"Library"文件夹中的所有文件：</p>
 
@@ -760,9 +760,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/editing/workspaces/workspaces.md">什么是 VS Code"工作区"？</a> - 有关单文件夹和多根工作区的更多信息。</li>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 了解如何为你的应用程序设置调试。</li>
-<li><a href="../docs/debugtest/tasks.md">任务</a> - 任务让你可以在 VS Code 中运行编译器等外部工具。
+<li><a href="../../../docs/editing/workspaces/workspaces.html">什么是 VS Code"工作区"？</a> - 有关单文件夹和多根工作区的更多信息。</li>
+<li><a href="../../../docs/debugtest/debugging.html">调试</a> - 了解如何为你的应用程序设置调试。</li>
+<li><a href="../../../docs/debugtest/tasks.html">任务</a> - 任务让你可以在 VS Code 中运行编译器等外部工具。
 <h2>常见问题</h2>
 
 <h3>如何回到使用单个项目文件夹的状态？</h3>

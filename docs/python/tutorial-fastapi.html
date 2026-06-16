@@ -455,7 +455,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>在本 FastAPI 教程中，我们将使用 FastAPI 创建一个购物清单应用。通过本教程，您将了解如何在 Visual Studio Code 的终端、编辑器和调试器中操作 FastAPI。本教程并非 FastAPI 的深入讲解，如需深入了解，可以参考<a href="https://fastapi.tiangolo.com/">官方 FastAPI 文档</a>。</p>
 
-<p>如果您是初次使用 Python，建议您先学习我们的 <a href="../docs/python/python-tutorial.md">Python 教程</a>，以熟悉该语言和 VS Code 的 Python 支持。本教程更适合那些已经熟悉 Python 并希望学习如何在 VS Code 中使用 FastAPI 的用户。</p>
+<p>如果您是初次使用 Python，建议您先学习我们的 <a href="../../docs/python/python-tutorial.html">Python 教程</a>，以熟悉该语言和 VS Code 的 Python 支持。本教程更适合那些已经熟悉 Python 并希望学习如何在 VS Code 中使用 FastAPI 的用户。</p>
 
 <p>本 FastAPI 教程的完整代码项目可在 GitHub 上找到：<a href="https://github.com/microsoft/python-sample-vscode-fastapi-tutorial">python-sample-vscode-fastapi-tutorial</a>。</p>
 
@@ -486,8 +486,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>要在 <a href="https://code.visualstudio.com/">VS Code</a> 中成功完成本教程，您首先需要设置 Python 开发环境。具体来说，本教程需要：</p>
 
 <ul>
-<li>Python 3（如果您尚未安装，请查看<a href="../docs/python/python-tutorial.md#install-a-python-interpreter">安装指南</a>）</li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code 的 Python 扩展</a>（有关安装扩展的更多详细信息，您可以阅读<a href="../docs/configure/extensions/extension-marketplace.md">扩展市场</a>）。
+<li>Python 3（如果您尚未安装，请查看<a href="../../docs/python/python-tutorial.html#install-a-python-interpreter">安装指南</a>）</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code 的 Python 扩展</a>（有关安装扩展的更多详细信息，您可以阅读<a href="../../docs/configure/extensions/extension-marketplace.html">扩展市场</a>）。
 </li>
 </ul>
 <p>在本节中，我们将创建一个文件夹作为工作区在 VS Code 中打开，设置 Python 虚拟环境，并安装项目的依赖项。</p>
@@ -497,7 +497,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </li>
 <li>在 VS Code 中打开这个新文件夹（<strong>文件</strong> > <strong>打开文件夹…</strong>）。
 </li>
-<li>当<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任</a>提示出现时，选择<strong>是的，我信任这些作者</strong>以允许工作区访问必要的资源和扩展。您可以了解更多关于工作区信任的<a href="../docs/editing/workspaces/workspace-trust.md">文档</a>。
+<li>当<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任</a>提示出现时，选择<strong>是的，我信任这些作者</strong>以允许工作区访问必要的资源和扩展。您可以了解更多关于工作区信任的<a href="../../docs/editing/workspaces/workspace-trust.html">文档</a>。
 </li>
 </ol>
 <p>现在，让我们创建一个 <code>requirements.txt</code> 文件，列出我们希望为应用安装的依赖项。<code>requirements.txt</code> 文件是 Python 开发中的常见做法，用于指定项目所依赖的库及其版本。此文件有助于确保参与项目的任何人都可以重新创建类似的开发环境，使其成为保持一致性的便捷组件。</p>
@@ -729,7 +729,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>    这将打开调试控制台并运行所选表达式。正如我们的示例所预期的，该表达式计算结果为 <code>False</code>。</p>
 
-<p>    调试控制台是一个强大的工具，可以快速测试表达式并更好地理解断点时代码的状态。您还可以使用它来运行任意代码，例如调用函数或打印变量。您可以在 <a href="../docs/python/python-tutorial.md#configure-and-run-the-debugger">Python 教程</a> 中了解更多关于在 VS Code 中进行 Python 调试的信息。</p>
+<p>    调试控制台是一个强大的工具，可以快速测试表达式并更好地理解断点时代码的状态。您还可以使用它来运行任意代码，例如调用函数或打印变量。您可以在 <a href="../../docs/python/python-tutorial.html#configure-and-run-the-debugger">Python 教程</a> 中了解更多关于在 VS Code 中进行 Python 调试的信息。</p>
 
 <p>    现在，您可以通过在调试视图工具栏中选择<strong>继续</strong>或按 <code>kb(workbench.action.debug.continue)</code> 来继续执行代码。</p>
 
@@ -904,7 +904,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>    ><strong>注意</strong>：构建容器可能需要几分钟时间，具体取决于网络速度和计算机性能。</p>
 
-<p>    您可以在 <a href="../docs/devcontainers/containers.md#create-a-devcontainerjson-file">Dev Containers 文档</a>中了解更多关于 dev 容器配置的信息。</p>
+<p>    您可以在 <a href="../../docs/devcontainers/containers.html#create-a-devcontainerjson-file">Dev Containers 文档</a>中了解更多关于 dev 容器配置的信息。</p>
 
 <p>完成后，您将拥有一个完全配置好的基于 Linux 的工作区，其中安装了 Python 3 和 Redis Server。</p>
 
@@ -1204,10 +1204,10 @@ redis_client.flushdb()
 <p>您还可以查看以下其他 VS Code Python 文章：</p>
 
 <ul>
-<li><a href="../docs/python/editing.md">编辑 Python 代码</a></li>
-<li><a href="../docs/python/environments.md">管理 Python 环境</a></li>
-<li><a href="../docs/python/debugging.md">调试 Python</a></li>
-<li><a href="../docs/python/testing.md">测试</a></li>
+<li><a href="../../docs/python/editing.html">编辑 Python 代码</a></li>
+<li><a href="../../docs/python/environments.html">管理 Python 环境</a></li>
+<li><a href="../../docs/python/debugging.html">调试 Python</a></li>
+<li><a href="../../docs/python/testing.html">测试</a></li>
 </ul>
 
   </div>

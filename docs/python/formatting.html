@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>格式化使源代码更易于人类阅读。通过强制执行特定的规则和约定（例如行间距、缩进和运算符周围的空格），代码在视觉上变得更有条理、更易于理解。你可以在 <a href="https://pypi.org/project/autopep8/">autopep8</a> 页面查看示例。请记住，格式化本身不会影响代码的功能。</p>
 
-<p><a href="../docs/python/linting.md">Linting</a> 通过分析代码中的常见语法、风格和功能错误以及非常规编程实践来帮助防止错误。尽管格式化和 linting 之间有一些重叠，但这两项功能是互补的。</p>
+<p><a href="../../docs/python/linting.html">Linting</a> 通过分析代码中的常见语法、风格和功能错误以及非常规编程实践来帮助防止错误。尽管格式化和 linting 之间有一些重叠，但这两项功能是互补的。</p>
 
 <h2>选择格式化工具</h2>
 
@@ -489,7 +489,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>isort</td><td><a href="https://marketplace.visualstudio.com/items?itemName=ms-python.isort">https://marketplace.visualstudio.com/items?itemName=ms-python.isort</a></td><td></td></tr>
 </tbody>
 </table>
-<blockquote><strong>注意</strong>：如果你在上面的表格或 Marketplace 中找不到你偏好的格式化工具，你可以通过扩展来添加对其的支持。你可以使用 <a href="../api/advanced-topics/python-extension-template.md">Python 扩展模板</a> 将新的 Python 工具集成到 VS Code 中。</blockquote>
+<blockquote><strong>注意</strong>：如果你在上面的表格或 Marketplace 中找不到你偏好的格式化工具，你可以通过扩展来添加对其的支持。你可以使用 <a href="../../api/advanced-topics/python-extension-template.html">Python 扩展模板</a> 将新的 Python 工具集成到 VS Code 中。</blockquote>
 
 <h2>设置默认格式化工具</h2>
 
@@ -559,21 +559,21 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
   <tr><td></td><td>Python 文件有多个可用的格式化工具。</td><td>按照<a href="#设置默认格式化工具">上一节</a>中的说明设置默认格式化工具。</td><td></td></tr>
   <tr><td></td><td>没有“格式化文档的方式...”选项可用。</td><td>如果你在上下文菜单中没有看到此选项，很可能你没有在 VS Code 中安装或启用格式化工具扩展。请参考<a href="#选择格式化工具">选择格式化工具</a>部分，了解如何安装 Python 格式化工具扩展。</td><td></td></tr>
   <tr><td></td><td>格式化工具的自定义参数不正确。</td><td>检查相应的 <code><formatter>.path</code> 设置是否不包含参数，以及 <code><formatter>.args</code> 是否包含独立顶级参数元素的列表。</td><td></td></tr>
-  <tr><td></td><td>显示“你已弃用的 linting 或格式化设置”通知。</td><td>如果你看到此通知，意味着你在 VS Code 中有诸如 <code>python.linting</code> 或 <code>python.formatting</code> 之类的设置。这些设置不再受 Python 扩展支持，因为 <a href="https://github.com/microsoft/vscode-python/wiki/Migration-to-Python-Tools-Extensions">linting 和格式化支持已迁移到工具扩展</a>。</td><td>通过打开命令面板 (<code>kb(workbench.action.showCommands)</code>) 并运行 <strong>首选项: 打开用户设置 (JSON)</strong> 命令，找到这些设置在 VS Code 中的定义位置。如果它们不在你的用户设置中，则运行 <strong>首选项: 打开工作区设置 (JSON)</strong> 命令。然后删除已弃用的设置。<br> <strong>注意</strong>：如果你正在使用 <a href="../docs/remote/remote-overview.md#remote-development-extension-pack">远程开发扩展包</a> 中的任何扩展，你还可以通过运行 <strong>首选项: 打开远程设置 (JSON)</strong> 命令来检查远程设置。</td><td></td></tr>
+  <tr><td></td><td>显示“你已弃用的 linting 或格式化设置”通知。</td><td>如果你看到此通知，意味着你在 VS Code 中有诸如 <code>python.linting</code> 或 <code>python.formatting</code> 之类的设置。这些设置不再受 Python 扩展支持，因为 <a href="https://github.com/microsoft/vscode-python/wiki/Migration-to-Python-Tools-Extensions">linting 和格式化支持已迁移到工具扩展</a>。</td><td>通过打开命令面板 (<code>kb(workbench.action.showCommands)</code>) 并运行 <strong>首选项: 打开用户设置 (JSON)</strong> 命令，找到这些设置在 VS Code 中的定义位置。如果它们不在你的用户设置中，则运行 <strong>首选项: 打开工作区设置 (JSON)</strong> 命令。然后删除已弃用的设置。<br> <strong>注意</strong>：如果你正在使用 <a href="../../docs/remote/remote-overview.html#remote-development-extension-pack">远程开发扩展包</a> 中的任何扩展，你还可以通过运行 <strong>首选项: 打开远程设置 (JSON)</strong> 命令来检查远程设置。</td><td></td></tr>
   <tr><td></td><td>使用 Black 格式化工具时，<strong>格式化选定内容</strong> 命令失败。</td><td><code>black</code> 不支持格式化代码的选定部分。要解决此限制，你可以禁用粘贴时格式化，并设置 <code>formatOnSave</code> 以使用以下设置格式化整个文件：<code>"[python]": {"editor.formatOnPaste": false, "editor.formatOnSaveMode": "file"}</code>。</td><td></td></tr>
   <tr><td></td><td>即使安装了格式化工具扩展，格式化也不起作用。</td><td>格式化可能因各种原因失败，例如代码中存在语法问题、使用了不受支持的 Python 版本，或者格式化工具配置不正确。请检查格式化工具扩展的输出通道，以了解格式化工具失败的原因（在命令面板中运行 <strong>输出: 聚焦于输出</strong> 命令，然后选择格式化工具扩展通道）。</td><td></td></tr>
 </tbody>
 </table>
-<blockquote><strong>注意</strong>：如果你在上面的列表中没有找到你偏好的格式化工具，你可以通过扩展来添加支持。<a href="../api/advanced-topics/python-extension-template.md">Python 扩展模板</a> 可以轻松地将新的 Python 工具集成到 VS Code 中。</blockquote>
+<blockquote><strong>注意</strong>：如果你在上面的列表中没有找到你偏好的格式化工具，你可以通过扩展来添加支持。<a href="../../api/advanced-topics/python-extension-template.html">Python 扩展模板</a> 可以轻松地将新的 Python 工具集成到 VS Code 中。</blockquote>
 
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/python/debugging.md">调试</a> - 学习在本地和远程调试 Python。</li>
-<li><a href="../docs/python/testing.md">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
-<li><a href="../docs/editing/codebasics.md">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
-<li><a href="../docs/editing/editingevolved.md">代码导航</a> - 快速浏览源代码。</li>
-<li><a href="../api/advanced-topics/python-extension-template.md">Python 扩展模板</a> - 创建一个扩展，将你喜欢的 linter 集成到 VS Code 中。</li>
+<li><a href="../../docs/python/debugging.html">调试</a> - 学习在本地和远程调试 Python。</li>
+<li><a href="../../docs/python/testing.html">测试</a> - 配置测试环境，发现、运行和调试测试。</li>
+<li><a href="../../docs/editing/codebasics.html">基本编辑</a> - 了解强大的 VS Code 编辑器。</li>
+<li><a href="../../docs/editing/editingevolved.html">代码导航</a> - 快速浏览源代码。</li>
+<li><a href="../../api/advanced-topics/python-extension-template.html">Python 扩展模板</a> - 创建一个扩展，将你喜欢的 linter 集成到 VS Code 中。</li>
 </ul>
 
   </div>

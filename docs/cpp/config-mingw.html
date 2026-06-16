@@ -462,7 +462,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>要成功完成本教程，你必须完成以下步骤：</p>
 
 <ol>
-<li>安装 <a href="../download">Visual Studio Code</a>。
+<li>安装 <a href="../../download">Visual Studio Code</a>。
 </li>
 <li>安装 <a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools">VS Code 的 C/C++ 扩展</a>。你可以在扩展视图（<code>kb(workbench.view.extensions)</code>）中搜索 "C++" 来安装 C/C++ 扩展。
 </li>
@@ -471,7 +471,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>安装 MinGW-w64 工具链</h2>
 
-<p>通过 <a href="https://www.msys2.org/">MSYS2</a> 获取最新版本的 MinGW-w64，它提供了 GCC、MinGW-w64 和其他有用的 C++ 工具和库的最新原生构建。这将为你提供编译代码、调试代码以及配置其与 <a href="../docs/editing/intellisense.md">IntelliSense</a> 协同工作所需的工具。</p>
+<p>通过 <a href="https://www.msys2.org/">MSYS2</a> 获取最新版本的 MinGW-w64，它提供了 GCC、MinGW-w64 和其他有用的 C++ 工具和库的最新原生构建。这将为你提供编译代码、调试代码以及配置其与 <a href="../../docs/editing/intellisense.html">IntelliSense</a> 协同工作所需的工具。</p>
 
 <p>要安装 MinGW-w64 工具链，请观看此视频或按照以下步骤操作：</p>
 
@@ -540,7 +540,7 @@ code .</code></pre>
 
 </li>
 </ol>
-<p>"code ." 命令在当前工作文件夹中打开 VS Code，该文件夹将成为你的"工作区"。通过选择<strong>是的，我相信作者</strong>来接受<a href="../docs/editing/workspaces/workspace-trust.md">工作区信任</a>对话框，因为这是你创建的文件夹。</p>
+<p>"code ." 命令在当前工作文件夹中打开 VS Code，该文件夹将成为你的"工作区"。通过选择<strong>是的，我相信作者</strong>来接受<a href="../../docs/editing/workspaces/workspace-trust.html">工作区信任</a>对话框，因为这是你创建的文件夹。</p>
 
 <p>随着教程的进行，你将在工作区的 <code>.vscode</code> 文件夹中看到三个文件被创建：</p>
 
@@ -581,13 +581,13 @@ int main()
 
 <p><img src="images/mingw/file-explorer-mingw.png" alt="File Explorer"></p>
 
-<p>你还可以通过选择<strong>文件</strong> > <strong>自动保存</strong>来启用<a href="../docs/editing/codebasics.md#save-auto-save">自动保存</a>以自动保存你的文件更改。你可以在 VS Code <a href="../docs/editing/userinterface.md">用户界面文档</a>中了解更多关于其他视图的信息。</p>
+<p>你还可以通过选择<strong>文件</strong> > <strong>自动保存</strong>来启用<a href="../../docs/editing/codebasics.html#save-auto-save">自动保存</a>以自动保存你的文件更改。你可以在 VS Code <a href="../../docs/editing/userinterface.html">用户界面文档</a>中了解更多关于其他视图的信息。</p>
 
 <p>><strong>注意</strong>：当你保存或打开 C++ 文件时，你可能会看到来自 C/C++ 扩展的通知，告知有关 Insider 版本的可用性，该版本让你可以测试新功能和新修复。你可以通过选择 <code>X</code>（<strong>清除通知</strong>）来忽略此通知。</p>
 
 <h2>探索 IntelliSense</h2>
 
-<p><a href="../docs/editing/intellisense.md">IntelliSense</a> 是一个帮助你更快、更高效编码的工具，它添加了代码编辑功能，如代码补全、参数信息、快速信息和成员列表。</p>
+<p><a href="../../docs/editing/intellisense.html">IntelliSense</a> 是一个帮助你更快、更高效编码的工具，它添加了代码编辑功能，如代码补全、参数信息、快速信息和成员列表。</p>
 
 <p>要查看 IntelliSense 的实际效果，</p>
 <p>将鼠标悬停在 <code>vector</code> 或 <code>string</code> 上以查看其类型信息。如果你在第 10 行输入 <code>msg.</code>，你可以看到推荐的成员函数补全列表，所有这些都由 IntelliSense 生成：</p>
@@ -596,7 +596,7 @@ int main()
 
 <p>你可以按 <code>kbstyle(Tab)</code> 键插入选中的成员。如果你然后添加左括号，IntelliSense 将显示需要哪些参数的信息。</p>
 
-<p>如果 IntelliSense 尚未配置，打开命令面板（<code>kb(workbench.action.showCommands)</code>）并输入<strong>选择 IntelliSense 配置</strong>。从编译器下拉列表中选择 <code>Use gcc.exe</code> 进行配置。更多信息可以在 <a href="../docs/languages/cpp.md#intellisense-configuration">IntelliSense 配置文档</a>中找到。</p>
+<p>如果 IntelliSense 尚未配置，打开命令面板（<code>kb(workbench.action.showCommands)</code>）并输入<strong>选择 IntelliSense 配置</strong>。从编译器下拉列表中选择 <code>Use gcc.exe</code> 进行配置。更多信息可以在 <a href="../../docs/languages/cpp.html#intellisense-configuration">IntelliSense 配置文档</a>中找到。</p>
 
 <h2>运行 helloworld.cpp</h2>
 
@@ -660,7 +660,7 @@ int main()
     "version": "2.0.0"
 }</code></pre>
 
-<p>><strong>注意</strong>：你可以在<a href="../docs/reference/variables-reference.md">变量参考</a>中了解更多关于 <code>tasks.json</code> 变量的信息。</p>
+<p>><strong>注意</strong>：你可以在<a href="../../docs/reference/variables-reference.html">变量参考</a>中了解更多关于 <code>tasks.json</code> 变量的信息。</p>
 
 <p><code>command</code> 设置指定要运行的程序；这里指的是 <code>g++</code>。</p>
 
@@ -907,8 +907,8 @@ int main()
 <h2>后续步骤</h2>
 
 <ul>
-<li>探索 <a href="../docs/editing/codebasics.md">VS Code 用户指南</a>。</li>
-<li>查看 <a href="../docs/languages/cpp.md">C++ 扩展概述</a>。</li>
+<li>探索 <a href="../../docs/editing/codebasics.html">VS Code 用户指南</a>。</li>
+<li>查看 <a href="../../docs/languages/cpp.html">C++ 扩展概述</a>。</li>
 <li>创建一个新的工作区，将你的 <code>.vscode</code> JSON 文件复制到其中，根据需要调整新工作区路径、程序名称等设置，然后开始编码！</li>
 </ul>
 

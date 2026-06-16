@@ -455,7 +455,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/javascript/overview.png" alt="Working with JavaScript in Visual Studio Code"></p>
 
-<p>这些功能大多开箱即用，但部分功能可能需要基本配置才能获得最佳体验。本页总结了 VS Code 自带的 JavaScript 功能。来自 <a href="https://marketplace.visualstudio.com">VS Code 扩展市场</a> 的扩展可以增强或更改这些内置功能中的大部分。有关这些功能如何工作以及如何配置的更深入指南，请参阅<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a>。</p>
+<p>这些功能大多开箱即用，但部分功能可能需要基本配置才能获得最佳体验。本页总结了 VS Code 自带的 JavaScript 功能。来自 <a href="https://marketplace.visualstudio.com">VS Code 扩展市场</a> 的扩展可以增强或更改这些内置功能中的大部分。有关这些功能如何工作以及如何配置的更深入指南，请参阅<a href="../../docs/nodejs/working-with-javascript.html">使用 JavaScript</a>。</p>
 
 <h2>IntelliSense</h2>
 
@@ -467,11 +467,11 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>VS Code 在您的 JavaScript 项目中提供 IntelliSense；适用于许多 npm 库，如 <code>React</code>、<code>lodash</code> 和 <code>express</code>；也适用于其他平台，如 <code>node</code>、无服务器或 IoT。</p>
 
-<p>有关 VS Code JavaScript IntelliSense 的信息、如何配置以及常见 IntelliSense 问题的故障排除帮助，请参阅<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a>。</p>
+<p>有关 VS Code JavaScript IntelliSense 的信息、如何配置以及常见 IntelliSense 问题的故障排除帮助，请参阅<a href="../../docs/nodejs/working-with-javascript.html">使用 JavaScript</a>。</p>
 
 <h2>JavaScript 项目 (jsconfig.json)</h2>
 
-<p><a href="../docs/languages/jsconfig.md">jsconfig.json</a> 文件定义了 VS Code 中的 JavaScript 项目。虽然 <code>jsconfig.json</code> 文件不是必需的，但在以下情况下您会希望创建一个：</p>
+<p><a href="../../docs/languages/jsconfig.html">jsconfig.json</a> 文件定义了 VS Code 中的 JavaScript 项目。虽然 <code>jsconfig.json</code> 文件不是必需的，但在以下情况下您会希望创建一个：</p>
 
 <ul>
 <li>如果工作区中的所有 JavaScript 文件不应被视为单个 JavaScript 项目的一部分。<code>jsconfig.json</code> 文件允许您将某些文件从 IntelliSense 中排除。</li>
@@ -492,23 +492,23 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
     ]
 }</code></pre>
 
-<p>有关更高级的 <code>jsconfig.json</code> 配置，请参阅<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a>。</p>
+<p>有关更高级的 <code>jsconfig.json</code> 配置，请参阅<a href="../../docs/nodejs/working-with-javascript.html">使用 JavaScript</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>要检查一个 JavaScript 文件是否属于 JavaScript 项目，只需在 VS Code 中打开该文件并运行 <strong>JavaScript: Go to Project Configuration</strong> 命令。此命令会打开引用该 JavaScript 文件的 <code>jsconfig.json</code>。如果该文件不属于任何 <code>jsconfig.json</code> 项目，则会显示通知。</blockquote>
 
 <h2>代码片段</h2>
 
-<p>VS Code 包含基本的 JavaScript <a href="../docs/editing/userdefinedsnippets.md">代码片段</a>，在您输入时会自动建议；</p>
+<p>VS Code 包含基本的 JavaScript <a href="../../docs/editing/userdefinedsnippets.html">代码片段</a>，在您输入时会自动建议；</p>
 
 <p><video src="https://media.githubusercontent.com/media/microsoft/vscode-docs/main/docs/languages/images/javascript/snippets.mp4" placeholder="images/javascript/snippets-placeholder.png" autoplay loop controls muted></p>
 <p>    Sorry, your browser doesn't support HTML 5 video.</p>
 <p></video></p>
 
-<p>有许多扩展提供额外的代码片段，包括针对 Redux 或 Angular 等流行框架的代码片段。您甚至可以<a href="../docs/editing/userdefinedsnippets.md">定义自己的代码片段</a>。</p>
+<p>有许多扩展提供额外的代码片段，包括针对 Redux 或 Angular 等流行框架的代码片段。您甚至可以<a href="../../docs/editing/userdefinedsnippets.html">定义自己的代码片段</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
-<blockquote>要禁用代码片段建议，请在<a href="../docs/configure/settings.md">设置</a>文件中将 <code>setting(editor.snippetSuggestions)</code> 设置为 <code>"none"</code>。<code>setting(editor.snippetSuggestions)</code> 设置还允许您更改代码片段在建议中出现的位置：在顶部（<code>"top"</code>）、在底部（<code>"bottom"</code>）或按字母顺序内联排列（<code>"inline"</code>）。默认值为 <code>"inline"</code>。</blockquote>
+<blockquote>要禁用代码片段建议，请在<a href="../../docs/configure/settings.html">设置</a>文件中将 <code>setting(editor.snippetSuggestions)</code> 设置为 <code>"none"</code>。<code>setting(editor.snippetSuggestions)</code> 设置还允许您更改代码片段在建议中出现的位置：在顶部（<code>"top"</code>）、在底部（<code>"bottom"</code>）或按字母顺序内联排列（<code>"inline"</code>）。默认值为 <code>"inline"</code>。</blockquote>
 
 <h2>JSDoc 支持</h2>
 
@@ -604,7 +604,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>VS Code 内置的 JavaScript 格式化工具提供基本的代码格式化，具有合理的默认设置。</p>
 
-<p><code>js/ts.format.*</code> <a href="../docs/configure/settings.md">设置</a>用于配置内置格式化工具。或者，如果内置格式化工具妨碍了您，请将 <code>"js/ts.format.enable"</code> 设置为 <code>false</code> 以禁用它。</p>
+<p><code>js/ts.format.*</code> <a href="../../docs/configure/settings.html">设置</a>用于配置内置格式化工具。或者，如果内置格式化工具妨碍了您，请将 <code>"js/ts.format.enable"</code> 设置为 <code>false</code> 以禁用它。</p>
 
 <p>对于更专业的代码格式化风格，可以尝试从<a href="https://marketplace.visualstudio.com/vscode">扩展市场</a>安装一个 JavaScript 格式化扩展。</p>
 
@@ -663,7 +663,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li>移动到新文件。
 </li>
 </ul>
-<p>有关重构以及如何为各个重构操作配置键盘快捷键的更多信息，请参阅<a href="../docs/editing/refactoring.md">重构</a>。</p>
+<p>有关重构以及如何为各个重构操作配置键盘快捷键的更多信息，请参阅<a href="../../docs/editing/refactoring.html">重构</a>。</p>
 
 <p>此外，<strong>Code Action Widget: Include Nearby Quick Fixes</strong>（<code>setting(editor.codeActionWidget.includeNearbyQuickFixes)</code>）是一项默认启用的设置，它会在您按下 <code>kb(editor.action.quickFix)</code>（命令 ID <code>editor.action.quickFix</code>）时，激活该行中最近的快速修复，无论光标在该行中的什么位置。</p>
 
@@ -715,7 +715,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <li><code>"addMissingImports"</code> - 保存时添加所有缺失的导入。
 </li>
 </ul>
-<p>有关详细信息，请参阅 <a href="../docs/nodejs/working-with-javascript">Node.js/JavaScript</a>。</p>
+<p>有关详细信息，请参阅 <a href="../../docs/nodejs/working-with-javascript">Node.js/JavaScript</a>。</p>
 
 <h2>代码建议</h2>
 
@@ -729,7 +729,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>使用 AI 增强补全</h2>
 
-<p>GitHub Copilot 可以为您提供 AI 驱动的内联建议，帮助您更快、更智能地编写代码。GitHub Copilot 为多种语言和广泛的框架提供建议，尤其适用于 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++。了解有关<a href="../docs/getstarted/getting-started.md">如何在 VS Code 中开始使用 Copilot</a> 的更多信息。</p>
+<p>GitHub Copilot 可以为您提供 AI 驱动的内联建议，帮助您更快、更智能地编写代码。GitHub Copilot 为多种语言和广泛的框架提供建议，尤其适用于 Python、JavaScript、TypeScript、Ruby、Go、C# 和 C++。了解有关<a href="../../docs/getstarted/getting-started.html">如何在 VS Code 中开始使用 Copilot</a> 的更多信息。</p>
 
 <p>创建一个新文件——您可以使用命令面板中的 <strong>File: New File</strong> 命令（<code>kbstyle(F1)</code>）。</p>
 
@@ -797,7 +797,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h2>代码检查工具</h2>
 
-<p><a href="https://en.wikipedia.org/wiki/Lint_%28software%29">代码检查工具</a> 为可疑的代码提供警告。虽然 VS Code 不包含内置的 JavaScript 代码检查工具，但扩展市场中有许多 JavaScript 代码检查工具<a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>可用。</p>
+<p><a href="https://en.wikipedia.org/wiki/Lint_%28software%29">代码检查工具</a> 为可疑的代码提供警告。虽然 VS Code 不包含内置的 JavaScript 代码检查工具，但扩展市场中有许多 JavaScript 代码检查工具<a href="../../docs/configure/extensions/extension-marketplace.html">扩展</a>可用。</p>
 
 <p><div class="marketplace-extensions-javascript-linters-curated"></div></p>
 
@@ -810,13 +810,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p><img src="images/javascript/checkjs-example.gif" alt="Using type checking and Quick Fixes in a JavaScript file"></p>
 
-<p>TypeScript 尝试在 <code>.js</code> 文件中推断类型，就像在 <code>.ts</code> 文件中所做的那样。当类型无法推断时，可以通过 JSDoc 注释显式指定。您可以在<a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a> 中阅读更多关于 TypeScript 如何使用 JSDoc 进行 JavaScript 类型检查的信息。</p>
+<p>TypeScript 尝试在 <code>.js</code> 文件中推断类型，就像在 <code>.ts</code> 文件中所做的那样。当类型无法推断时，可以通过 JSDoc 注释显式指定。您可以在<a href="../../docs/nodejs/working-with-javascript.html">使用 JavaScript</a> 中阅读更多关于 TypeScript 如何使用 JSDoc 进行 JavaScript 类型检查的信息。</p>
 
 <p>JavaScript 的类型检查是可选的，需要主动启用。现有的 JavaScript 验证工具（如 ESLint）可以与内置的类型检查功能配合使用。</p>
 
 <h2>调试</h2>
 
-<p>VS Code 为 JavaScript 提供了出色的调试支持。设置断点、检查对象、导航调用堆栈，并在调试控制台中执行代码。请参阅<a href="../docs/debugtest/debugging.md">调试主题</a>了解更多信息。</p>
+<p>VS Code 为 JavaScript 提供了出色的调试支持。设置断点、检查对象、导航调用堆栈，并在调试控制台中执行代码。请参阅<a href="../../docs/debugtest/debugging.html">调试主题</a>了解更多信息。</p>
 
 <h3>调试客户端代码</h3>
 
@@ -824,13 +824,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>调试服务端代码</h3>
 
-<p>使用内置调试器在 VS Code 中调试 Node.js。设置很容易，并且有 <a href="../docs/nodejs/nodejs-tutorial.md#debug-your-express-app">Node.js 调试教程</a>可以帮助您。</p>
+<p>使用内置调试器在 VS Code 中调试 Node.js。设置很容易，并且有 <a href="../../docs/nodejs/nodejs-tutorial.html#debug-your-express-app">Node.js 调试教程</a>可以帮助您。</p>
 
 <p><img src="images/javascript/debug_data_inspection.gif" alt="debug data inspection"></p>
 
 <h2>热门扩展</h2>
 
-<p>VS Code 自带优秀的 JavaScript 支持，但您还可以通过<a href="../docs/configure/extensions/extension-marketplace.md">扩展</a>安装调试器、代码片段、代码检查工具和其他 JavaScript 工具。</p>
+<p>VS Code 自带优秀的 JavaScript 支持，但您还可以通过<a href="../../docs/configure/extensions/extension-marketplace.html">扩展</a>安装调试器、代码片段、代码检查工具和其他 JavaScript 工具。</p>
 
 <p><div class="marketplace-extensions-javascript-curated"></div></p>
 
@@ -842,12 +842,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>继续阅读以了解：</p>
 
 <ul>
-<li><a href="../docs/nodejs/working-with-javascript.md">使用 JavaScript</a> - 关于 VS Code JavaScript 支持以及如何排查常见问题的更详细信息。</li>
-<li><a href="../docs/languages/jsconfig.md">jsconfig.json</a> - <code>jsconfig.json</code> 项目文件的详细说明。</li>
-<li><a href="../docs/editing/intellisense.md">IntelliSense</a> - 了解更多关于 IntelliSense 以及如何为您所用语言有效使用它的信息。</li>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 了解如何为您的应用程序设置调试。</li>
-<li><a href="../docs/nodejs/nodejs-tutorial.md">Node.js</a> - 创建 Express Node.js 应用程序的逐步演练。</li>
-<li><a href="../docs/languages/typescript.md">TypeScript</a> - VS Code 对 TypeScript 有很好的支持，TypeScript 为您的 JavaScript 代码带来了结构和强类型。
+<li><a href="../../docs/nodejs/working-with-javascript.html">使用 JavaScript</a> - 关于 VS Code JavaScript 支持以及如何排查常见问题的更详细信息。</li>
+<li><a href="../../docs/languages/jsconfig.html">jsconfig.json</a> - <code>jsconfig.json</code> 项目文件的详细说明。</li>
+<li><a href="../../docs/editing/intellisense.html">IntelliSense</a> - 了解更多关于 IntelliSense 以及如何为您所用语言有效使用它的信息。</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a> - 了解如何为您的应用程序设置调试。</li>
+<li><a href="../../docs/nodejs/nodejs-tutorial.html">Node.js</a> - 创建 Express Node.js 应用程序的逐步演练。</li>
+<li><a href="../../docs/languages/typescript.html">TypeScript</a> - VS Code 对 TypeScript 有很好的支持，TypeScript 为您的 JavaScript 代码带来了结构和强类型。
 <h2>常见问题</h2>
 
 </li>
@@ -895,14 +895,14 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><details></p>
 <p><summary>我可以调试压缩/混淆过的 JavaScript 吗？</summary></p>
 
-<p>是的，可以。您可以在 <a href="../docs/nodejs/nodejs-debugging.md">Node.js 调试</a>主题中看到使用 JavaScript 源映射的示例。</p>
+<p>是的，可以。您可以在 <a href="../../docs/nodejs/nodejs-debugging.html">Node.js 调试</a>主题中看到使用 JavaScript 源映射的示例。</p>
 
 <p></details></p>
 
 <p><details></p>
 <p><summary>在使用非 ES6 语法结构时如何禁用语法验证？</summary></p>
 
-<p>有些用户想使用像管道操作符（<code>|></code>）这样的提议语法结构。但是，这些目前不受 VS Code JavaScript 语言服务的支持，并被标记为错误。对于仍想使用这些未来功能的用户，我们提供了 <code>setting(js/ts.validate.enable)</code> <a href="../docs/configure/settings.md">设置</a>。</p>
+<p>有些用户想使用像管道操作符（<code>|></code>）这样的提议语法结构。但是，这些目前不受 VS Code JavaScript 语言服务的支持，并被标记为错误。对于仍想使用这些未来功能的用户，我们提供了 <code>setting(js/ts.validate.enable)</code> <a href="../../docs/configure/settings.html">设置</a>。</p>
 
 <p>通过设置 <code>js/ts.validate.enable: false</code>，您可以禁用所有内置的语法检查。如果您这样做，我们建议您使用像 <a href="https://eslint.org">ESLint</a> 这样的代码检查工具来验证您的源代码。</p>
 
@@ -911,7 +911,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p><details></p>
 <p><summary>我可以使用其他 JavaScript 工具（如 Flow）吗？</summary></p>
 
-<p>可以，但 <a href="https://flow.org">Flow</a> 的某些语言功能（如类型检查和错误检查）可能会干扰 VS Code 内置的 JavaScript 支持。要了解如何禁用 VS Code 内置的 JavaScript 支持，请参阅<a href="../docs/nodejs/working-with-javascript.md#disable-javascript-support">禁用 JavaScript 支持</a>。</p>
+<p>可以，但 <a href="https://flow.org">Flow</a> 的某些语言功能（如类型检查和错误检查）可能会干扰 VS Code 内置的 JavaScript 支持。要了解如何禁用 VS Code 内置的 JavaScript 支持，请参阅<a href="../../docs/nodejs/working-with-javascript.html#disable-javascript-support">禁用 JavaScript 支持</a>。</p>
 
 <p></details></p>
 

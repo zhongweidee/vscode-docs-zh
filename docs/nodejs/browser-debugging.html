@@ -455,13 +455,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li>使用 <a href="#open-link-command">打开链接</a> 命令调试一个 URL。</li>
-<li>在 <a href="../docs/nodejs/nodejs-debugging.md#javascript-debug-terminal">JavaScript 调试终端</a> 中点击链接。</li>
+<li>在 <a href="../../docs/nodejs/nodejs-debugging.html#javascript-debug-terminal">JavaScript 调试终端</a> 中点击链接。</li>
 <li>使用 <a href="#launch-configuration">启动配置</a> 启动一个浏览器并运行你的应用。
 </li>
 </ul>
-<p>你也可以在 VS Code 的 <a href="../docs/debugtest/integrated-browser.md#debugging">集成浏览器</a> 中调试 Web 应用，无需启动外部浏览器。</p>
+<p>你也可以在 VS Code 的 <a href="../../docs/debugtest/integrated-browser.html#debugging">集成浏览器</a> 中调试 Web 应用，无需启动外部浏览器。</p>
 
-<p>我们还提供了更详细的入门教程，包括 <a href="../docs/nodejs/reactjs-tutorial">React</a>、<a href="../docs/nodejs/angular-tutorial">Angular</a> 和 <a href="../docs/nodejs/vuejs-tutorial">Vue</a>，以及其他调试 <a href="../docs/nodejs/debugging-recipes">方法</a>。</p>
+<p>我们还提供了更详细的入门教程，包括 <a href="../../docs/nodejs/reactjs-tutorial">React</a>、<a href="../../docs/nodejs/angular-tutorial">Angular</a> 和 <a href="../../docs/nodejs/vuejs-tutorial">Vue</a>，以及其他调试 <a href="../../docs/nodejs/debugging-recipes">方法</a>。</p>
 
 <h2>打开链接命令</h2>
 
@@ -475,9 +475,9 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>启动配置是在 VS Code 中设置调试的传统方式，为你运行复杂的应用程序提供了最大的灵活性。</p>
 
-<p>在本节中，我们将详细介绍针对更高级调试场景的配置和功能。Node.js <a href="../docs/nodejs/nodejs-debugging.md#skipping-uninteresting-code">跳过外部代码</a> 的说明同样适用于基于浏览器的调试。</p>
+<p>在本节中，我们将详细介绍针对更高级调试场景的配置和功能。Node.js <a href="../../docs/nodejs/nodejs-debugging.html#skipping-uninteresting-code">跳过外部代码</a> 的说明同样适用于基于浏览器的调试。</p>
 
-<p>><strong>注意</strong>: 如果你刚刚开始使用 VS Code，可以在 <a href="../docs/debugtest/debugging.md">调试</a> 主题中了解通用的调试功能以及如何创建 <code>launch.json</code> 配置文件。</p>
+<p>><strong>注意</strong>: 如果你刚刚开始使用 VS Code，可以在 <a href="../../docs/debugtest/debugging.html">调试</a> 主题中了解通用的调试功能以及如何创建 <code>launch.json</code> 配置文件。</p>
 
 <h3>启动浏览器</h3>
 
@@ -497,7 +497,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>当你按下 <code>kb(workbench.action.debug.start)</code> 或点击 <strong>运行和调试</strong> 视图中的 <strong>开始</strong> 按钮时，<code>http://localhost:8000</code> 将在调试模式下打开。如果你想使用 Chrome 而非 Edge，请将 <code>msedge</code> 替换为 <code>chrome</code>。</p>
 
-<p>若要在不打开外部浏览器的情况下在 VS Code 内部调试，请使用 <code>editor-browser</code> 作为类型。详细了解 <a href="../docs/debugtest/integrated-browser.md#debugging">集成浏览器中的调试</a>。</p>
+<p>若要在不打开外部浏览器的情况下在 VS Code 内部调试，请使用 <code>editor-browser</code> 作为类型。详细了解 <a href="../../docs/debugtest/integrated-browser.html#debugging">集成浏览器中的调试</a>。</p>
 
 <p>你还可以调试单个文件而无需运行服务器，例如：</p>
 
@@ -539,15 +539,15 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <h3>启动配置属性</h3>
 
-<p>调试配置存储在位于工作区 <code>.vscode</code> 文件夹中的 <code>launch.json</code> 文件里。有关调试配置文件的创建和使用介绍，请参阅通用的 <a href="../docs/debugtest/debugging-configuration.md#launch-configurations">调试</a> 文章。你可以选择用你的应用"启动"一个浏览器，或者"附加"到一个你已 <a href="#attaching-to-browsers">在调试模式下启动</a> 的现有浏览器。</p>
+<p>调试配置存储在位于工作区 <code>.vscode</code> 文件夹中的 <code>launch.json</code> 文件里。有关调试配置文件的创建和使用介绍，请参阅通用的 <a href="../../docs/debugtest/debugging-configuration.html#launch-configurations">调试</a> 文章。你可以选择用你的应用"启动"一个浏览器，或者"附加"到一个你已 <a href="#attaching-to-browsers">在调试模式下启动</a> 的现有浏览器。</p>
 
 <p>以下是针对浏览器调试的常用 <code>launch.json</code> 属性参考。你可以在 <a href="https://github.com/microsoft/vscode-js-debug/blob/main/OPTIONS.md">vscode-js-debug 选项</a> 文档中查看完整的选项集。</p>
 
 <ul>
 <li><code>webRoot</code> - 你的源代码的根目录。大多数情况下，默认的 <code>webRoot</code> 是你的工作区文件夹。此选项用于源码映射解析。</li>
-<li><code>outFiles</code> - 用于定位生成的 JavaScript 文件的 <a href="../docs/editor/glob-patterns.md">glob 模式</a> 数组。请参阅 <a href="#source-maps">源映射</a> 部分。</li>
-<li><code>smartStep</code> - 尝试自动跳过未映射到源文件的源代码。请参阅 <a href="../docs/nodejs/nodejs-debugging.md#smart-stepping">智能单步执行</a> 部分。</li>
-<li><code>skipFiles</code> - 自动跳过这些 <a href="../docs/editor/glob-patterns.md">glob 模式</a> 覆盖的文件。请参阅 <a href="../docs/nodejs/nodejs-debugging.md#skipping-uninteresting-code">跳过无关注代码</a> 部分。</li>
+<li><code>outFiles</code> - 用于定位生成的 JavaScript 文件的 <a href="../../docs/editor/glob-patterns.html">glob 模式</a> 数组。请参阅 <a href="#source-maps">源映射</a> 部分。</li>
+<li><code>smartStep</code> - 尝试自动跳过未映射到源文件的源代码。请参阅 <a href="../../docs/nodejs/nodejs-debugging.html#smart-stepping">智能单步执行</a> 部分。</li>
+<li><code>skipFiles</code> - 自动跳过这些 <a href="../../docs/editor/glob-patterns.html">glob 模式</a> 覆盖的文件。请参阅 <a href="../../docs/nodejs/nodejs-debugging.html#skipping-uninteresting-code">跳过无关注代码</a> 部分。</li>
 <li><code>trace</code> - 启用诊断输出。
 </li>
 </ul>
@@ -569,13 +569,13 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 </li>
 </ul>
-<p>浏览器中的 WebAssembly 调试与 Node.js 相同，<a href="../docs/nodejs/nodejs-debugging.md#debugging-webassembly">在此处阅读有关 WebAssembly 调试的更多信息</a>。</p>
+<p>浏览器中的 WebAssembly 调试与 Node.js 相同，<a href="../../docs/nodejs/nodejs-debugging.html#debugging-webassembly">在此处阅读有关 WebAssembly 调试的更多信息</a>。</p>
 
 <h2>源映射</h2>
 
 <p>VS Code 中的 JavaScript 调试器支持源映射，允许调试转换后的代码。例如，TypeScript 代码会被编译为 JavaScript，而许多 Web 应用会将所有 JavaScript 文件打包在一起。源映射帮助调试器找出如何在你的原始代码与浏览器中运行的代码之间进行映射。</p>
 
-<p>大多数用于构建 Web 应用的现代工具都可以直接使用。如果不能，我们在 <a href="../docs/nodejs/nodejs-debugging.md#source-maps">Node.js 中的源映射</a> 部分中包含的指导同样适用于浏览器调试。</p>
+<p>大多数用于构建 Web 应用的现代工具都可以直接使用。如果不能，我们在 <a href="../../docs/nodejs/nodejs-debugging.html#source-maps">Node.js 中的源映射</a> 部分中包含的指导同样适用于浏览器调试。</p>
 
 <h3>加载源映射</h3>
 
@@ -592,8 +592,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/debugtest/debugging.md">调试</a> - 阅读有关 VS Code 通用调试功能的内容。</li>
-<li><a href="../docs/nodejs/debugging-recipes.md">调试方法</a> - 为你喜欢的平台设置调试。</li>
+<li><a href="../../docs/debugtest/debugging.html">调试</a> - 阅读有关 VS Code 通用调试功能的内容。</li>
+<li><a href="../../docs/nodejs/debugging-recipes.html">调试方法</a> - 为你喜欢的平台设置调试。</li>
 </ul>
 
   </div>

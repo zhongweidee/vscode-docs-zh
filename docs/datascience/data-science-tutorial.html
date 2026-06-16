@@ -459,7 +459,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><a href="https://code.visualstudio.com/">Visual Studio Code</a></li>
-<li>来自 Visual Studio Marketplace 的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python 扩展</a>和 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">VS Code Jupyter 扩展</a>。有关安装扩展的更多详细信息，请参阅<a href="../docs/configure/extensions/extension-marketplace.md">扩展市场</a>。这两个扩展均由 Microsoft 发布。
+<li>来自 Visual Studio Marketplace 的 <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">VS Code Python 扩展</a>和 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.jupyter">VS Code Jupyter 扩展</a>。有关安装扩展的更多详细信息，请参阅<a href="../../docs/configure/extensions/extension-marketplace.html">扩展市场</a>。这两个扩展均由 Microsoft 发布。
 </li>
 <li><a href="https://docs.anaconda.com/miniconda/">Miniconda 与最新版 Python</a>
 <blockquote><strong>注意</strong>：如果你已经安装了完整的 Anaconda 发行版，则无需安装 Miniconda。或者，如果你不希望使用 Anaconda 或 Miniconda，可以创建一个 Python 虚拟环境并使用 pip 安装本教程所需的包。如果选择这种方式，你需要安装以下包：pandas、jupyter、seaborn、scikit-learn、keras 和 tensorflow。</blockquote>
@@ -490,7 +490,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>使用 <strong>文件</strong> > <strong>另存为...</strong> 将文件保存为 <code>hello.ipynb</code>。
 </li>
-<li>文件创建后，你应该能在 notebook 编辑器中看到打开的 <a href="https://jupyter.org/">Jupyter notebook</a>。有关原生 Jupyter notebook 支持的更多信息，你可以阅读 <a href="../docs/datascience/jupyter-notebooks.md">Jupyter Notebooks</a> 主题。
+<li>文件创建后，你应该能在 notebook 编辑器中看到打开的 <a href="https://jupyter.org/">Jupyter notebook</a>。有关原生 Jupyter notebook 支持的更多信息，你可以阅读 <a href="../../docs/datascience/jupyter-notebooks.html">Jupyter Notebooks</a> 主题。
 </li>
 </ol>
 <p>   <img src="images/data-science-tutorial/notebook-editor.png" alt="Viewing a new Jupyter Notebook"></p>
@@ -518,7 +518,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <ol>
 <li>首先，从 <a href="https://hbiostat.org/data/repo/titanic3.csv">hbiostat.org</a> 下载泰坦尼克号数据为一个 CSV 文件（下载链接在右上角），文件名为 <code>titanic3.csv</code>，并将其保存到你上一节中创建的 <code>hello_ds</code> 文件夹中。</li>
 <li>如果尚未在 VS Code 中打开文件，请通过 <strong>文件</strong> > <strong>打开文件夹</strong> 打开 <code>hello_ds</code> 文件夹和 Jupyter notebook（<code>hello.ipynb</code>）。</li>
-<li>在你的 Jupyter notebook 中，首先导入 <a href="https://pandas.pydata.org/">pandas</a> 和 <a href="https://numpy.org/">numpy</a> 这两个常用的数据处理库，并将泰坦尼克号数据加载到 pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">DataFrame</a> 中。为此，请将下面的代码复制到 notebook 的第一个单元格中。有关在 VS Code 中使用 Jupyter notebook 的更多指导，请参阅<a href="../docs/datascience/jupyter-notebooks.md">使用 Jupyter Notebooks</a> 文档。
+<li>在你的 Jupyter notebook 中，首先导入 <a href="https://pandas.pydata.org/">pandas</a> 和 <a href="https://numpy.org/">numpy</a> 这两个常用的数据处理库，并将泰坦尼克号数据加载到 pandas <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html">DataFrame</a> 中。为此，请将下面的代码复制到 notebook 的第一个单元格中。有关在 VS Code 中使用 Jupyter notebook 的更多指导，请参阅<a href="../../docs/datascience/jupyter-notebooks.html">使用 Jupyter Notebooks</a> 文档。
 <pre><code class="language-python">   import pandas as pd
    import numpy as np
    data = pd.read_csv('titanic3.csv')</code></pre>
@@ -553,7 +553,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ol>
 <p>   <img src="images/data-science-tutorial/dataviewer.png" alt="Data viewer and variable explorer"></p>
 
-<p>   或者，你也可以使用其他扩展（如 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler">Data Wrangler</a>）提供的数据查看体验。Data Wrangler 扩展提供了丰富的用户界面来展示有关你数据的见解，并帮助你执行数据概要分析、质量检查、转换等操作。请在我们的文档中了解更多关于 <a href="../docs/datascience/data-wrangler.md">Data Wrangler 扩展</a> 的信息。</p>
+<p>   或者，你也可以使用其他扩展（如 <a href="https://marketplace.visualstudio.com/items?itemName=ms-toolsai.datawrangler">Data Wrangler</a>）提供的数据查看体验。Data Wrangler 扩展提供了丰富的用户界面来展示有关你数据的见解，并帮助你执行数据概要分析、质量检查、转换等操作。请在我们的文档中了解更多关于 <a href="../../docs/datascience/data-wrangler.html">Data Wrangler 扩展</a> 的信息。</p>
 
 <ol>
 <li>在绘制数据图表之前，你需要确保数据没有任何问题。如果你查看泰坦尼克号 CSV 文件，你会注意到的第一件事是问号（"?"）被用来标识数据不可用的单元格。
@@ -721,7 +721,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 <p>现在你已经熟悉了在 Visual Studio Code 中进行机器学习的基础知识，以下是一些你可以查看的其他 Microsoft 资源和教程。</p>
 
 <ul>
-<li><a href="../docs/configure/profiles.md#data-science-profile-template">数据科学配置文件模板</a> - 使用一组精选的扩展、设置和代码片段创建一个新的<a href="../docs/configure/profiles">配置文件</a>。</li>
+<li><a href="../../docs/configure/profiles.html#data-science-profile-template">数据科学配置文件模板</a> - 使用一组精选的扩展、设置和代码片段创建一个新的<a href="../../docs/configure/profiles">配置文件</a>。</li>
 <li>了解更多关于<a href="https://youtu.be/FSdIoJdSnig">在 Visual Studio Code 中使用 Jupyter Notebooks</a>（视频）。</li>
 <li><a href="https://learn.microsoft.com/azure/machine-learning/how-to-setup-vs-code">开始使用 Azure Machine Learning for VS Code</a> 来利用 Azure 的强大功能部署和优化你的模型。</li>
 <li>在 <a href="https://azure.microsoft.com/services/open-datasets/">Azure 开放数据集</a>上找到更多可供探索的数据。</li>

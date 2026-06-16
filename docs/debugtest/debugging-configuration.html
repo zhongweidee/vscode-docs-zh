@@ -453,7 +453,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>对于复杂的调试场景或应用程序，你需要创建一个 <code>launch.json</code> 文件来指定调试器配置。例如，指定应用程序入口点、附加到正在运行的应用程序，或设置环境变量。</p>
 
-<p>要了解有关 VS Code 调试的更多信息，请参阅<a href="../docs/debugtest/debugging.md">在 Visual Studio Code 中进行调试</a>。</p>
+<p>要了解有关 VS Code 调试的更多信息，请参阅<a href="../../docs/debugtest/debugging.html">在 Visual Studio Code 中进行调试</a>。</p>
 
 <blockquote>[!TIP]</blockquote>
 <blockquote>VS Code 中的 Copilot 可以帮助你为项目创建启动配置。获取有关<a href="#generate-a-launch-configuration-with-ai">使用 Copilot 生成启动配置</a>的更多信息。</blockquote>
@@ -464,7 +464,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <p>但是，对于大多数调试场景，你需要创建一个调试配置（_启动配置_）。例如，指定应用程序入口点、附加到正在运行的应用程序，或设置环境变量。创建启动配置文件也很有益，因为它允许你配置并保存调试设置详细信息与你的项目一起。</p>
 
-<p>VS Code 将调试配置信息存储在一个 <code>launch.json</code> 文件中，该文件位于工作区（项目根文件夹）的 <code>.vscode</code> 文件夹中，或你的<a href="../docs/debugtest/debugging-configuration.md#global-launch-configuration">用户设置</a>或<a href="../docs/editing/workspaces/multi-root-workspaces.md#workspace-launch-configurations">工作区设置</a>中。</p>
+<p>VS Code 将调试配置信息存储在一个 <code>launch.json</code> 文件中，该文件位于工作区（项目根文件夹）的 <code>.vscode</code> 文件夹中，或你的<a href="../../docs/debugtest/debugging-configuration.html#global-launch-configuration">用户设置</a>或<a href="../../docs/editing/workspaces/multi-root-workspaces.html#workspace-launch-configurations">工作区设置</a>中。</p>
 
 <p>以下代码片段描述了一个用于调试 Node.js 应用程序的示例配置：</p>
 
@@ -595,8 +595,8 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 
 <ul>
 <li><code>presentation</code> - 使用 <code>presentation</code> 对象中的 <code>order</code>、<code>group</code> 和 <code>hidden</code> 属性，你可以在调试配置下拉菜单和调试快速选择中对配置和复合配置进行排序、分组和隐藏。你也可以在<a href="#platform-specific-properties">特定平台部分</a>（<code>windows</code>、<code>linux</code>、<code>osx</code>）中设置 <code>presentation</code>，以按操作系统控制可见性。</li>
-<li><code>preLaunchTask</code> - 要在调试会话开始之前启动任务，请将此属性设置为 <a href="../docs/debugtest/tasks.md">tasks.json</a>（位于工作区的 <code>.vscode</code> 文件夹中）中指定的任务标签。或者，可以将其设置为 <code>${defaultBuildTask}</code> 以使用默认构建任务。</li>
-<li><code>postDebugTask</code> - 要在调试会话结束时启动任务，请将此属性设置为 <a href="../docs/debugtest/tasks.md">tasks.json</a>（位于工作区的 <code>.vscode</code> 文件夹中）中指定的任务名称。</li>
+<li><code>preLaunchTask</code> - 要在调试会话开始之前启动任务，请将此属性设置为 <a href="../../docs/debugtest/tasks.html">tasks.json</a>（位于工作区的 <code>.vscode</code> 文件夹中）中指定的任务标签。或者，可以将其设置为 <code>${defaultBuildTask}</code> 以使用默认构建任务。</li>
+<li><code>postDebugTask</code> - 要在调试会话结束时启动任务，请将此属性设置为 <a href="../../docs/debugtest/tasks.html">tasks.json</a>（位于工作区的 <code>.vscode</code> 文件夹中）中指定的任务名称。</li>
 <li><code>internalConsoleOptions</code> - 此属性控制调试会话期间调试控制台面板的可见性。</li>
 <li><code>debugServer</code> - <strong>仅适用于调试扩展作者</strong>：此属性允许你连接到指定端口，而不是启动调试适配器。</li>
 <li><code>serverReadyAction</code> - 如果你希望在程序调试输出特定消息到调试控制台或集成终端时自动在 Web 浏览器中打开一个 URL。有关详细信息，请参阅下面的<a href="#automatically-open-a-uri-when-debugging-a-server-program">在调试服务器程序时自动打开 URI</a> 部分。
@@ -619,7 +619,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubu
 </ul>
 <p>VS Code 将常用路径和其他值作为变量提供，并支持在 <code>launch.json</code> 中的字符串内进行变量替换。这意味着你不必在调试配置中使用绝对路径。例如，<code>${workspaceFolder}</code> 表示工作区文件夹的根路径，<code>${file}</code> 表示活动编辑器中打开的文件，<code>${env:Name}</code> 表示环境变量 'Name'。</p>
 
-<p>你可以在<a href="../docs/reference/variables-reference.md">变量参考</a>中查看预定义变量的完整列表，或在 <code>launch.json</code> 字符串属性内部调用 IntelliSense。</p>
+<p>你可以在<a href="../../docs/reference/variables-reference.html">变量参考</a>中查看预定义变量的完整列表，或在 <code>launch.json</code> 字符串属性内部调用 IntelliSense。</p>
 
 <pre><code class="language-json">{
     "type": "node",
@@ -836,8 +836,8 @@ app.listen(3000, function () {
 <h2>后续步骤</h2>
 
 <ul>
-<li><a href="../docs/debugtest/tasks.md">任务</a> - 描述如何使用 Gulp、Grunt 和 Jake 运行任务以及如何显示错误和警告。</li>
-<li><a href="../docs/reference/variables-reference.md">变量参考</a> - 描述 VS Code 中可用的变量。
+<li><a href="../../docs/debugtest/tasks.html">任务</a> - 描述如何使用 Gulp、Grunt 和 Jake 运行任务以及如何显示错误和警告。</li>
+<li><a href="../../docs/reference/variables-reference.html">变量参考</a> - 描述 VS Code 中可用的变量。
 <h2>常见问题</h2>
 
 <h3>我在"运行和调试"视图下拉菜单中看不到任何启动配置。出了什么问题？</h3>
